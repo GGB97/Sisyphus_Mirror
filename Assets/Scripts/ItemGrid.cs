@@ -1,34 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    const float TileSizeWidth = 32f;
-    const float TileSizeHeight = 32f;
+    const float TileSizeWidth = 32f;//ê°€ë¡œ íƒ€ì¼ì˜ ì‚¬ì´ì¦ˆ
+    const float TileSizeHeight = 32f;//ì„¸ë¡œ íƒ€ì¼ì˜ ì‚¬ì´ì¦ˆ
 
-    RectTransform rectTransform;
+    InventoryItem[,] inventoryItemSlot;
 
-    Vector2 mousePositionOnTheGrid; //±×¸®µå ¿ŞÂÊ »ó´Ü¿¡¼­ ¸¶¿ì½ºÀÇ À§Ä¡ °ª
-    Vector2Int tileGridPosition = new Vector2Int(); //±×¸®µå À§¿¡¼­ÀÇ ÁÂÇ¥
+    RectTransform rectTransform;//ê·¸ë¦¬ë“œì˜ íŠ¸ëœìŠ¤ í¼
+
+    [SerializeField] int gridSizeWidth = 10;//ê°€ë¡œ ê¸¸ì´
+    [SerializeField] int gridSizeHeight = 10; // ì„¸ë¡œ ê¸¸ì´
+
+    [SerializeField] GameObject inventoryItemPrefab;
+
+    Vector2 mousePositionOnTheGrid; //ê·¸ë¦¬ë“œ ì™¼ìª½ ìƒë‹¨ì—ì„œ ë§ˆìš°ìŠ¤ì˜ ìœ„ì¹˜ ê°’
+    Vector2Int tileGridPosition = new Vector2Int(); //ê·¸ë¦¬ë“œ ìœ„ì—ì„œì˜ ì¢Œí‘œ
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        Init(gridSizeWidth, gridSizeHeight);
+
+        
     }
-    public Vector2Int GetTileGridPosition(Vector2 mousePosition) //±×¸®µå ¿ŞÂÊ »ó´ÜÀ» 0,0 ¿À¸¥ÂÊ ÇÏ´ÜÀ» max,max·ÎÇÏ´Â ±×¸®µå À§¿¡¼­ÀÇ ÁÂÇ¥¹İÈ¯
+    void Start()
+    {
+        InventoryItem inventoryItem = Instantiate(inventoryItemPrefab).GetComponent<InventoryItem>();
+        PlaceItem(inventoryItem, 4, 4);
+        
+    }
+
+    private void Init(int width, int height)//ê·¸ë¦¬ë“œ ì´ˆê¸° ìƒì„±
+    {
+        inventoryItemSlot = new InventoryItem[width, height];
+        Vector2 size = new Vector2(width * TileSizeWidth,height * TileSizeHeight);
+        rectTransform.sizeDelta = size;
+    }
+
+    public Vector2Int GetTileGridPosition(Vector2 mousePosition) //ê·¸ë¦¬ë“œ ì™¼ìª½ ìƒë‹¨ì„ 0,0 ì˜¤ë¥¸ìª½ í•˜ë‹¨ì„ max,maxë¡œí•˜ëŠ” ê·¸ë¦¬ë“œ ìœ„ì—ì„œì˜ ì¢Œí‘œë°˜í™˜
     {
         mousePositionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         mousePositionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 
-        Vector2Int tileGridPosition = new Vector2Int();
         tileGridPosition.x = (int)(mousePositionOnTheGrid.x / TileSizeWidth);
         tileGridPosition.y = (int)(mousePositionOnTheGrid.y / TileSizeHeight);
 
         return tileGridPosition;
     }
-    private void Update()
+    public void PlaceItem(InventoryItem inventoryItem,int posX,int posY)
     {
-        tileGridPosition = GetTileGridPosition(Input.mousePosition);
-        Debug.Log($"{tileGridPosition}");
+        RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(this.rectTransform);
+        inventoryItemSlot[posX, posY] = inventoryItem;
+
+        Vector2 position = new Vector2();
+        position.x = (posX * TileSizeWidth) + (TileSizeWidth / 2);
+        position.y = -((posY * TileSizeHeight) + (TileSizeHeight / 2));
+
+        rectTransform.localPosition = position; //ì§€ì—­ ìœ„ì¹˜ë¥¼ positionê°’ìœ¼ë¡œ
     }
 }
