@@ -40,11 +40,22 @@ public class ItemGrid : MonoBehaviour
 
         return tileGridPosition;
     }
-    public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY) //그리드 좌표 x,y에 아이템 배치
+    public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
-        if (BoundryCheck(posX, posX, inventoryItem.itemData.width, inventoryItem.itemData.height) == false)
+        if (BoundryCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height) == false)
         { 
             return false; 
+        }
+
+        if (OverlapCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height,ref overlapitem) == false)
+        {
+            overlapitem = null; //겹치는 것이 있으면 overlap 초기화
+            return false; //실패 반환
+        }
+
+        if (overlapitem != null)
+        {
+            CleanGridReference(overlapitem);
         }
 
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
@@ -62,10 +73,36 @@ public class ItemGrid : MonoBehaviour
         inventoryItem.onGridPositionY = posY; //자신의 기준인 posY를 저장
 
         Vector2 position = new Vector2();
-        position.x = posX * TileSizeWidth + TileSizeWidth * inventoryItem.itemData.width / 2;
-        position.y = -((posY * TileSizeHeight) + (TileSizeHeight * inventoryItem .itemData.height / 2));
+        position.x = posX * TileSizeWidth + TileSizeWidth * inventoryItem.itemData.width / 2;//자신의 중심을 표현
+        position.y = -(posY * TileSizeHeight + TileSizeHeight * inventoryItem.itemData.height / 2);//자신의 중심을 표현
 
         rectTransform.localPosition = position; //지역 위치를 position값으로
+
+        return true;
+    }
+
+    private bool OverlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapitem)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (inventoryItemSlot[posX + x, posY + y] != null)
+                {
+                    if (overlapitem == null)//겹치는 것이 없다면
+                    {
+                        overlapitem = inventoryItemSlot[posX + x, posY + y];//해당 칸에 겹치는 오브젝트 참조
+                    }
+                    else
+                    {
+                        if (overlapitem != inventoryItemSlot[posX + x, posY + y]) //같은 객체가 들어있는지 확인
+                        { 
+                            return false; //아니면 false
+                        }
+                    }
+                }
+            }
+        }
 
         return true;
     }
@@ -76,19 +113,25 @@ public class ItemGrid : MonoBehaviour
 
         if (toReturn == null) { return null; } //빈 공간을 터치했을 때 널 리턴
 
-        for (int ix = 0; ix < toReturn.itemData.width; ix++)
+        CleanGridReference(toReturn);
+
+        return toReturn;
+    }
+
+    private void CleanGridReference(InventoryItem item)
+    {
+        for (int ix = 0; ix < item.itemData.width; ix++)
         {
-            for (int iy = 0; iy < toReturn.itemData.height; iy++)
+            for (int iy = 0; iy < item.itemData.height; iy++)
             {
-                inventoryItemSlot[toReturn.onGridPositionX + ix, toReturn.onGridPositionY + iy] = null;
+                inventoryItemSlot[item.onGridPositionX + ix, item.onGridPositionY + iy] = null;
             }
         }
-        return toReturn;
     }
 
     bool PositionCheck(int posX, int posY) //grid 안에 있는지 확인 후 bool 값 리턴
     {
-        if (posX < 0 || posY > 0)
+        if (posX < 0 || posY < 0)
         {
             return false;
         }
@@ -110,10 +153,12 @@ public class ItemGrid : MonoBehaviour
 
         posX += width - 1;
         posY += height - 1;
+
         if (PositionCheck(posX, posY) == false) //우하단 위치가 grid안에 없다면
         {
             return false;
         }
+
         return true;
     }
 }
