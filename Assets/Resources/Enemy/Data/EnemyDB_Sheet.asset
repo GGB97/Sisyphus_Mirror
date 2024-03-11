@@ -42,7 +42,7 @@ MonoBehaviour:
     meleeAtk: 7
     magicAtk: 0
     def: 7
-    attackSpeed: 0.7
+    attackSpeed: 0.8
     moveSpeed: 3
     type: 0
     rank: 2
