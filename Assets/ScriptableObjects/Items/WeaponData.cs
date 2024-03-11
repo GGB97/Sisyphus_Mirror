@@ -6,7 +6,7 @@ public enum WeaponType
     RangeAttack
 }
 
-public abstract class WeaponData : ItemData
+public abstract class WeaponData : ItemSO
 {
     public float Atk => _atk;
     public float AtkRate => _atkRate;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ItemData : ScriptableObject
+public abstract class ItemSO : ScriptableObject
 {
     public int ID => _id;
     public string Name => _name;
