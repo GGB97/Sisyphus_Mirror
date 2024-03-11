@@ -17,7 +17,7 @@ public enum EnemyRank // 등급
 
 public struct EnemyData
 {
-    public static readonly string DBPath = "EnemyData/EnemySheet";
+    public static readonly string DBPath = "Enemy/Data/EnemyDB_Sheet";
 
     public static readonly float[] ChasingDelay = { 
         0.2f, // Normal

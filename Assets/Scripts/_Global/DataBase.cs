@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DataBase : SingletoneBase<DataBase>
 {
-    //[SerializeField] EnemyDB _enemyStat;
+    [SerializeField] EnemyDB _enemyStat;
 
-    //public static EnemyDB EnemyStats
-    //{
-    //    get
-    //    {
-    //        if(Instance._enemyStat == null)
-    //            Instance._enemyStat = new EnemyDB();
+    public static EnemyDB EnemyStats
+    {
+        get
+        {
+            if (Instance._enemyStat == null)
+                Instance._enemyStat = new EnemyDB();
 
-    //        return Instance._enemyStat;
-    //    }
-    //}
+            return Instance._enemyStat;
+        }
+    }
 }

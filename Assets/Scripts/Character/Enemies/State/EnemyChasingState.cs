@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyChasingState : EnemyBaseState
 {
-    float chasingDelay;
+    protected float chasingDelay;
 
     public EnemyChasingState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine)
     {
@@ -28,6 +28,13 @@ public class EnemyChasingState : EnemyBaseState
 
         chasingDelay += Time.deltaTime;
 
+        // target과의 거리가 range 이하라면 == 공격이 가능한거리라면
+        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= stats.attackRange)
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+        }
+
+        // target의 위치 갱신
         // 매 프레임 호출하면 성능적으로 안좋을거 같아서 등급별로 호출 횟수를 다르게 설정
         if (chasingDelay >= EnemyData.ChasingDelay[(int)stats.rank])
         {
@@ -36,10 +43,10 @@ public class EnemyChasingState : EnemyBaseState
             agent.SetDestination(enemy.target.position); 
         }
 
-        // target과의 거리가 range 이하라면 == 공격이 가능한거리라면
-        if (Vector3.Distance(agent.destination, enemy.transform.position) <= stats.attackRange)
+        // target이 null이면 (죽었으면?) idle로 전환
+        if (enemy.target == null)
         {
-            stateMachine.ChangeState(stateMachine.AttackState);
+            stateMachine.ChangeState(stateMachine.IdleState);
         }
     }
 
