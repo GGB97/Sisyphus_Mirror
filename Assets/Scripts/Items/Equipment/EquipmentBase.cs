@@ -1,6 +1,6 @@
 public abstract class EquipmentBase : ItemBase
 {
-    protected EquipmentBase(ItemData data) : base(data)
+    protected EquipmentBase(ItemSO data) : base(data)
     {
     }
 
