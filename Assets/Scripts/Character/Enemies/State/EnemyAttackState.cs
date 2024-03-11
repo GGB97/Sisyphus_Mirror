@@ -12,7 +12,9 @@ public class EnemyAttackState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.AttackParameterHash);
+        //StartAnimation(EnemyAnimationData.AttackParameterHash);
+
+        Debug.Log("is Attacking...");
     }
 
     public override void Update()
@@ -24,6 +26,6 @@ public class EnemyAttackState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.AttackParameterHash);
+        //StopAnimation(EnemyAnimationData.AttackParameterHash);
     }
 }

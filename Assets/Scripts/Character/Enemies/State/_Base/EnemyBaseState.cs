@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBaseState : IState
 {
@@ -8,7 +9,9 @@ public class EnemyBaseState : IState
 
     protected Enemy enemy;
     protected Animator animator;
+    protected NavMeshAgent agent;
     protected CharacterController controller;
+    protected EnemyBaseStat stats;
 
     public EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
@@ -16,7 +19,9 @@ public class EnemyBaseState : IState
 
         enemy = stateMachine.Enemy;
         animator = enemy.Animator;
+        agent = enemy.Agent;
         controller = enemy.Controller;
+        stats = enemy.Stat;
     }
 
     public virtual void Enter()

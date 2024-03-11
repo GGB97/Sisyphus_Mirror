@@ -14,3 +14,14 @@ public enum EnemyRank // 등급
     Elite,
     Boss
 }
+
+public struct EnemyData
+{
+    public static readonly string DBPath = "EnemyData/EnemySheet";
+
+    public static readonly float[] ChasingDelay = { 
+        0.2f, // Normal
+        0.1f, // Elite
+        0.05f  // Boss
+    };
+}

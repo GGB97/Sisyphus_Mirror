@@ -19,7 +19,7 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Update();
 
-        // target이 죽어있는 상태? 혹은 그냥 존재한다면 ChasingState로 전환 예정
+        // target이 죽어있는 상태? 혹은 그냥 존재한다면 ChasingState로 전환
         if(enemy.target != null)
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
