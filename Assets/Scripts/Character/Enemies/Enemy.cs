@@ -17,20 +17,18 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        Stat = DataBase.EnemyStats.Get(id);
+
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
         Controller = GetComponent<CharacterController>();
 
         stateMachine = new(this);
-
-        //Stat = DataBase.EnemyStats.Get(id);
     }
 
     void Start()
     {
         stateMachine.ChangeState(stateMachine.IdleState);
-
-
     }
 
     void Update()
