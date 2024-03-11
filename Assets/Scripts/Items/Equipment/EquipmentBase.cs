@@ -4,5 +4,7 @@ public abstract class EquipmentBase : ItemBase
     {
     }
 
-    public 
+    public abstract void Equip();
+    public abstract void UnEquip();
 }
+ 

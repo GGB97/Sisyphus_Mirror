@@ -9,6 +9,7 @@ public abstract class ItemData : ScriptableObject
     public int IconWidth => _iconWidth;
     public int IconHeight => _iconHeight;
 
+    [field: Header("ItemInfo")]
     [SerializeField] int _id;
     [SerializeField] string _name;
     [SerializeField] string _description;
