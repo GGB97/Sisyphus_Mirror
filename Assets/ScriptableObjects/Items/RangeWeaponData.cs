@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RW_", menuName = "Items/Weapon/RangeWeapon", order = 3)]
+[Serializable]
 public class RangeWeaponData : WeaponData
 {
     public GameObject Projectile => _projectile;

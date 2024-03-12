@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum WeaponType
@@ -6,6 +7,7 @@ public enum WeaponType
     RangeAttack
 }
 
+[Serializable]
 public abstract class WeaponData : ItemSO
 {
     public float Atk => _atk;

@@ -17,7 +17,7 @@ public class MeleeWeaponController : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        if(timer <= 0f)
+        if (timer <= 0f)
         {
             meleeWeaponBase.Attack();
             timer = meleeWeaponData.AtkRate;
