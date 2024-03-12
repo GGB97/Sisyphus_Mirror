@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public Transform target;
 
     public int id; // DB에서 가져올 ID
-    public EnemyBaseStat Stat; //{ get; private set; }
+    public EnemyBaseStat Stat { get; private set; }
 
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
         Controller = GetComponent<CharacterController>();
 
         stateMachine = new(this);
+
+        Agent.stoppingDistance = Stat.attackRange - .3f; // 사거리보다 살짝 더 들어가게끔
     }
 
     void Start()
