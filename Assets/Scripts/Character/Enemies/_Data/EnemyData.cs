@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum EnemyType // 종족
 {
-    Type1,
-    Type2
+    Slime,
+    TurtleShell
 }
 
 public enum EnemyRank // 등급
