@@ -35,4 +35,14 @@ public class WeaponData : ItemSO
 
     public string ProjectilePath => _projectilePath;
     public int NumberOfProjectile => _numberOfProjectile;
+
+    private GameObject _projectile;
+    public GameObject Projectile
+    {
+        get
+        {
+            if (_projectile == null) _projectile = Resources.Load<GameObject>(ProjectilePath);
+            return _projectile;
+        }
+    }
 }

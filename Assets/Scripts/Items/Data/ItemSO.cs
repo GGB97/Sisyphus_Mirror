@@ -22,4 +22,24 @@ public class ItemSO
     public int IconHeight => _iconHeight;
     public string PrefabPath => _prefabPath;
     public int Price => _price;
+
+    private Sprite _sprite;
+    public Sprite Sprite
+    {
+        get
+        {
+            if (_sprite == null) _sprite = Resources.Load<Sprite>(SpritePath);
+            return _sprite;
+        }
+    }
+
+    private GameObject _prefab;
+    public GameObject Prefab
+    {
+        get
+        {
+            if(_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
+            return _prefab;
+        }
+    }
 }
