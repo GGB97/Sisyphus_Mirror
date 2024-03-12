@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataBase : SingletoneBase<DataBase>
 {
     [SerializeField] EnemyDB _enemyStat;
-    [SerializeField] WeaponDB _Weapon;
+    [SerializeField] WeaponDB _weapon;
 
     public static EnemyDB EnemyStats
     {
@@ -22,10 +22,10 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if(Instance._Weapon == null)
-                Instance._Weapon = new WeaponDB();
+            if(Instance._weapon == null)
+                Instance._weapon = new WeaponDB();
 
-            return Instance._Weapon;
+            return Instance._weapon;
         }
     }
 }

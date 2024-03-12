@@ -13,57 +13,57 @@ MonoBehaviour:
   m_Name: WeaponDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - id: 110001
-    itemName: Axe
-    description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
-    icon: Resources/Icons/Weapons
-    iconWidth: 1
-    iconHeight: 2
-    itemPrefab: Resources/Prefabs/Weapons
-    price: 24
-    atk: 2
-    atkRate: 1
-    critRate: 1
-    critDamage: 1
-    range: 3
-    lifeSteal: 1
-    type: 0
-    weaponTier: 1
-    projectile: None
-    numberOfProjectile: 0
-  - id: 110011
-    itemName: Spear
-    description: "\uCC3D"
-    icon: Resources/Icons/Weapons
-    iconWidth: 1
-    iconHeight: 3
-    itemPrefab: Resources/Prefabs/Weapons
-    price: 30
-    atk: 2
-    atkRate: 0.7
-    critRate: 1
-    critDamage: 1
-    range: 4
-    lifeSteal: 1
-    type: 0
-    weaponTier: 1
-    projectile: None
-    numberOfProjectile: 0
-  - id: 120001
-    itemName: Bow
-    description: "\uD65C."
-    icon: Resources/Items/Icons/Weapon
-    iconWidth: 2
-    iconHeight: 3
-    itemPrefab: Resources/Items/Prefabs/Weapons/
-    price: 35
-    atk: 3
-    atkRate: 0.7
-    critRate: 5
-    critDamage: 1
-    range: 10
-    lifeSteal: 0
-    type: 1
-    weaponTier: 1
-    projectile: Resources/Items/Prefabs/Projectiles/
-    numberOfProjectile: 1
+  - _id: 110001
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Icons/Weapons
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Prefabs/Weapons
+    _price: 24
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _weaponTier: 1
+    _projectilePath: None
+    _numberOfProjectile: 0
+  - _id: 110011
+    _name: Spear
+    _description: "\uCC3D"
+    _spritePath: Resources/Icons/Weapons
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Resources/Prefabs/Weapons
+    _price: 30
+    _atk: 2
+    _atkRate: 0.7
+    _critRate: 1
+    _critDamage: 1
+    _range: 4
+    _lifeSteal: 1
+    _type: 0
+    _weaponTier: 1
+    _projectilePath: None
+    _numberOfProjectile: 0
+  - _id: 120001
+    _name: Bow
+    _description: "\uD65C."
+    _spritePath: Resources/Items/Icons/Weapon
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Resources/Items/Prefabs/Weapons/
+    _price: 35
+    _atk: 3
+    _atkRate: 0.7
+    _critRate: 5
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _weaponTier: 1
+    _projectilePath: Resources/Items/Prefabs/Projectiles/
+    _numberOfProjectile: 1
