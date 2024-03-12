@@ -8,7 +8,7 @@ public enum WeaponType
 }
 
 [Serializable]
-public abstract class WeaponData : ItemSO
+public class WeaponData : ItemSO
 {
     [field: Header("Weapon")]
     public float atk;
@@ -19,4 +19,8 @@ public abstract class WeaponData : ItemSO
     public int lifeSteal;
     public WeaponType type;
     public int weaponTier;
+
+    [field: Header("Projectile")]
+    public string projectile;
+    public int numberOfProjectile;
 }
