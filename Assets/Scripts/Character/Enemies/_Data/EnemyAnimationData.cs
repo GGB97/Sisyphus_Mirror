@@ -17,6 +17,9 @@ public struct EnemyAnimationData
     public static readonly int DieParameterHash = Animator.StringToHash("Die");
     public static readonly int HitParameterHash = Animator.StringToHash("Hit");
 
+    public static readonly int AttackSpeedParameterHash = Animator.StringToHash("AttackSpeed");
+    public static readonly int MoveSpeedParameterHash = Animator.StringToHash("MoveSpeed");
+
     public static readonly int AttackAnimationHash = Animator.StringToHash("Attack");
     
 }

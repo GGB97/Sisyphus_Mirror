@@ -67,12 +67,6 @@ public class EnemyBaseState : IState
         return (enemy.target != null);
     }
 
-    protected bool IsAttacking()
-    {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.shortNameHash == EnemyAnimationData.AttackParameterHash;
-    }
-
     void UpdateTime()
     {
         if(attackDelay < 10f)

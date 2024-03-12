@@ -49,4 +49,10 @@ public class EnemyAttackState : EnemyBaseState
     {
         base.Exit();
     }
+
+    protected bool IsAttacking()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.shortNameHash == EnemyAnimationData.AttackAnimationHash;
+    }
 }

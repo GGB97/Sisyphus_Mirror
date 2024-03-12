@@ -15,12 +15,12 @@ MonoBehaviour:
   Entities:
   - id: 10101
     health: 0
-    maxHealth: 30
+    maxHealth: 20
     attackRange: 2
     meleeAtk: 3
     magicAtk: 0
     def: 3
-    attackSpeed: 0.4
+    attackSpeed: 0.5
     moveSpeed: 2
     type: 0
     rank: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     meleeAtk: 5
     magicAtk: 0
     def: 5
-    attackSpeed: 0.5
+    attackSpeed: 0.6
     moveSpeed: 3
     type: 0
     rank: 1
@@ -48,12 +48,12 @@ MonoBehaviour:
     rank: 2
   - id: 10201
     health: 0
-    maxHealth: 30
+    maxHealth: 20
     attackRange: 2
     meleeAtk: 3
     magicAtk: 0
     def: 3
-    attackSpeed: 0.4
+    attackSpeed: 0.5
     moveSpeed: 2
     type: 1
     rank: 0
