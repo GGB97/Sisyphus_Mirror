@@ -9,7 +9,7 @@ public class MeleeWeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meleeWeaponBase = (MeleeWeaponBase)meleeWeaponData.CreateItem();
+        //meleeWeaponBase = (MeleeWeaponBase)meleeWeaponData.CreateItem();
 
     }
 
@@ -20,7 +20,7 @@ public class MeleeWeaponController : MonoBehaviour
         if (timer <= 0f)
         {
             meleeWeaponBase.Attack();
-            timer = meleeWeaponData.AtkRate;
+            timer = meleeWeaponData.atkRate;
         }
     }
 }

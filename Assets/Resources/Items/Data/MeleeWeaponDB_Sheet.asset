@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383a109a622b79145be786488a6ca921, type: 3}
+  m_Name: MeleeWeaponDB_Sheet
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - id: 110001
+    itemName: Axe
+    description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    icon: Resources/Icons/Weapons
+    iconWidth: 1
+    iconHeight: 2
+    itemPrefab: Resources/Prefabs/Weapons
+    price: 24
+    atk: 2
+    atkRate: 1
+    critRate: 1
+    critDamage: 1
+    range: 3
+    lifeSteal: 1
+    type: 0
+    weaponTier: 1
+  - id: 110011
+    itemName: Spear
+    description: "\uCC3D"
+    icon: Resources/Icons/Weapons
+    iconWidth: 1
+    iconHeight: 3
+    itemPrefab: Resources/Prefabs/Weapons
+    price: 30
+    atk: 2
+    atkRate: 0.7
+    critRate: 1
+    critDamage: 1
+    range: 4
+    lifeSteal: 1
+    type: 0
+    weaponTier: 1
