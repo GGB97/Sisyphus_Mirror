@@ -8,7 +8,7 @@ public class WeaponDB
 
     public WeaponDB()
     {
-        var res = Resources.Load<WeaponDB_Sheet>("/Items/Data/WeaponDB_Sheet");
+        var res = Resources.Load<WeaponDB_Sheet>("Items/Data/WeaponDB_Sheet");
         var weaponSO = Object.Instantiate(res);
         var entities = weaponSO.Entities;
 
