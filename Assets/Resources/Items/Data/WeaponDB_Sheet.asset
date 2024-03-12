@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - _id: 110001
+  - _id: 10001011
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Resources/Icons/Weapons
@@ -21,6 +21,7 @@ MonoBehaviour:
     _iconHeight: 2
     _prefabPath: Resources/Prefabs/Weapons
     _price: 24
+    _grade: 0
     _atk: 2
     _atkRate: 1
     _critRate: 1
@@ -28,10 +29,45 @@ MonoBehaviour:
     _range: 3
     _lifeSteal: 1
     _type: 0
-    _weaponTier: 1
     _projectilePath: None
     _numberOfProjectile: 0
-  - _id: 110011
+  - _id: 10001012
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Icons/Weapons
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Prefabs/Weapons
+    _price: 24
+    _grade: 1
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: None
+    _numberOfProjectile: 0
+  - _id: 10001013
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Icons/Weapons
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Prefabs/Weapons
+    _price: 24
+    _grade: 2
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: None
+    _numberOfProjectile: 0
+  - _id: 10002011
     _name: Spear
     _description: "\uCC3D"
     _spritePath: Resources/Icons/Weapons
@@ -39,6 +75,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Resources/Prefabs/Weapons
     _price: 30
+    _grade: 0
     _atk: 2
     _atkRate: 0.7
     _critRate: 1
@@ -46,10 +83,9 @@ MonoBehaviour:
     _range: 4
     _lifeSteal: 1
     _type: 0
-    _weaponTier: 1
     _projectilePath: None
     _numberOfProjectile: 0
-  - _id: 120001
+  - _id: 20001011
     _name: Bow
     _description: "\uD65C."
     _spritePath: Resources/Items/Icons/Weapon
@@ -57,6 +93,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Resources/Items/Prefabs/Weapons/
     _price: 35
+    _grade: 0
     _atk: 3
     _atkRate: 0.7
     _critRate: 5
@@ -64,6 +101,5 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _weaponTier: 1
     _projectilePath: Resources/Items/Prefabs/Projectiles/
     _numberOfProjectile: 1

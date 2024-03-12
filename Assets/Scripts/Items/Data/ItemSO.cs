@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public enum ItemGrade
+{
+    Normal,
+    Rare,
+    Unique
+}
+
 [Serializable]
 public class ItemSO
 {
@@ -13,6 +20,7 @@ public class ItemSO
     [SerializeField] protected int _iconHeight;
     [SerializeField] protected string _prefabPath;
     [SerializeField] protected int _price;
+    [SerializeField] protected ItemGrade _grade;
 
     public int Id => _id;
     public string Name => _name;
@@ -22,6 +30,7 @@ public class ItemSO
     public int IconHeight => _iconHeight;
     public string PrefabPath => _prefabPath;
     public int Price => _price;
+    public ItemGrade Grade => _grade;
 
     private Sprite _sprite;
     public Sprite Sprite

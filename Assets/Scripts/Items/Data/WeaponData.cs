@@ -18,7 +18,6 @@ public class WeaponData : ItemSO
     [SerializeField] private float _range;
     [SerializeField] private int _lifeSteal;
     [SerializeField] private WeaponType _type;
-    [SerializeField] private int _weaponTier;
 
     [field: Header("Projectile")]
     [SerializeField] private string _projectilePath;
@@ -31,7 +30,6 @@ public class WeaponData : ItemSO
     public float Range => _range;
     public int LifeSteal => _lifeSteal;
     public WeaponType Type => _type;
-    public int WeaponTier => _weaponTier;
 
     public string ProjectilePath => _projectilePath;
     public int NumberOfProjectile => _numberOfProjectile;
@@ -41,7 +39,9 @@ public class WeaponData : ItemSO
     {
         get
         {
-            if (_projectile == null) _projectile = Resources.Load<GameObject>(ProjectilePath);
+            if (Type == WeaponType.Melee)
+                return null;
+            if (_projectile == null && !ProjectilePath.Equals("None")) _projectile = Resources.Load<GameObject>(ProjectilePath);
             return _projectile;
         }
     }
