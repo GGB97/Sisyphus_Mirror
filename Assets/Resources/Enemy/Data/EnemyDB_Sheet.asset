@@ -16,7 +16,7 @@ MonoBehaviour:
   - id: 10101
     health: 0
     maxHealth: 20
-    attackRange: 2
+    attackRange: 1.6
     meleeAtk: 3
     magicAtk: 0
     def: 3
@@ -27,7 +27,7 @@ MonoBehaviour:
   - id: 10102
     health: 0
     maxHealth: 50
-    attackRange: 2
+    attackRange: 1.6
     meleeAtk: 5
     magicAtk: 0
     def: 5
@@ -38,7 +38,7 @@ MonoBehaviour:
   - id: 10103
     health: 0
     maxHealth: 700
-    attackRange: 2
+    attackRange: 1.6
     meleeAtk: 7
     magicAtk: 0
     def: 7
@@ -49,7 +49,7 @@ MonoBehaviour:
   - id: 10201
     health: 0
     maxHealth: 20
-    attackRange: 2
+    attackRange: 1.7
     meleeAtk: 3
     magicAtk: 0
     def: 3

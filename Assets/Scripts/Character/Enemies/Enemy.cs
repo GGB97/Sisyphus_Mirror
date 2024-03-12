@@ -62,6 +62,12 @@ public class Enemy : MonoBehaviour
 
         stateMachine = new(this);
 
-        Agent.stoppingDistance = Stat.attackRange - .3f; // 사거리보다 살짝 더 들어가게끔
+        Agent.stoppingDistance = Stat.attackRange - .4f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+    }
+
+    public void OnChildTriggerEnter(Collider other)
+    {
+        //이곳에서 자식 콜라이더의 트리거 충돌 처리
+        Debug.Log($"OnChildTriggerEnter : {other.gameObject.name}");
     }
 }
