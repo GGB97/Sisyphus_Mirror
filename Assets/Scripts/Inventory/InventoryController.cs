@@ -184,7 +184,7 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
-            rectTransform.SetAsLastSibling();
+            //rectTransform.SetAsLastSibling();
         }
     }
     private void ItemIconDrag()
