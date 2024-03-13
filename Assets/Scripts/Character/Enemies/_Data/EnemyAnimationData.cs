@@ -25,7 +25,7 @@ public struct EnemyAnimationData
     #endregion
 
     #region State
-    public static readonly int AttackStateHash = Animator.StringToHash("Attack");
+    public static readonly int AttackStateHash = Animator.StringToHash("Attack01");
     public static readonly int HitStateHash = Animator.StringToHash("GetHit");
     #endregion
 

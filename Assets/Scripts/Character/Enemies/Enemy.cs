@@ -11,6 +11,9 @@ public class Enemy : CharacterBehaviour
     public EnemyStateMachine stateMachine;
     public Transform target;
 
+    public float chasingDelay;
+    public float attackDelay;
+
     [field: SerializeField] public EnemyInfo Info { get; private set; }
     public Status modifier; // 스탯 가중치 (Player의 경우 장비에 의한 가중치, Enemy의 경우 난이도/층수 에 의한 가중치)
 
@@ -77,7 +80,7 @@ public class Enemy : CharacterBehaviour
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        Debug.Log($"OnChildTriggerEnter : {other.gameObject.name}");
+        //Debug.Log($"OnChildTriggerEnter : {other.gameObject.name}");
     }
 
     void ChangeDieState()

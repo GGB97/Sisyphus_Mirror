@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,9 +16,6 @@ public class EnemyBaseState : IState
     protected NavMeshAgent agent;
     protected CharacterController controller;
 
-    protected float chasingDelay;
-    protected float attackDelay;
-
     public EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
         stateMachine = enemyStateMachine;
@@ -29,7 +27,7 @@ public class EnemyBaseState : IState
         animator = enemy.Animator;
         agent = enemy.Agent;
         controller = enemy.Controller;
-        
+
     }
 
     public virtual void Enter()
@@ -77,14 +75,31 @@ public class EnemyBaseState : IState
         animator.SetBool(animationHash, false);
     }
 
+    protected void UpdateTime()
+    {
+        if (enemy.attackDelay < 10f)
+        {
+            enemy.attackDelay += Time.deltaTime;
+        }
+    }
+
     protected bool HasTarget() // Tartget이 존재하는지 확인
     {
         return (enemy.target != null);
     }
 
-    protected void UpdateTime()
+    protected bool CanAttack() // 공격이 가능한지
     {
-        if(attackDelay < 10f)
-            attackDelay += Time.deltaTime;
+        return TargetInRange() && IsAttackReady();
+    }
+
+    protected bool TargetInRange()
+    {
+        return (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange);
+    }
+
+    protected bool IsAttackReady()
+    {
+        return (enemy.attackDelay >= 1 / enemy.Info.attackSpeed);
     }
 }
