@@ -31,8 +31,8 @@ MonoBehaviour:
     meleeAtk: 5
     magicAtk: 0
     def: 5
-    attackSpeed: 0.6
-    moveSpeed: 3
+    attackSpeed: 0.5
+    moveSpeed: 4
     type: 0
     rank: 1
   - id: 10103
@@ -42,8 +42,8 @@ MonoBehaviour:
     meleeAtk: 7
     magicAtk: 0
     def: 7
-    attackSpeed: 0.6
-    moveSpeed: 3
+    attackSpeed: 0.5
+    moveSpeed: 4
     type: 0
     rank: 2
   - id: 10201
@@ -57,3 +57,14 @@ MonoBehaviour:
     moveSpeed: 2
     type: 1
     rank: 0
+  - id: 10202
+    health: 0
+    maxHealth: 50
+    attackRange: 1.7
+    meleeAtk: 3
+    magicAtk: 0
+    def: 3
+    attackSpeed: 0.5
+    moveSpeed: 4
+    type: 1
+    rank: 1

@@ -18,4 +18,6 @@ public class CharacterBaseStat
 
     public float attackSpeed;
     public float moveSpeed;
+
+    // 초기화 함수 생성 예정
 }

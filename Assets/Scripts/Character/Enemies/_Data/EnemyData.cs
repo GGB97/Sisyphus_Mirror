@@ -24,4 +24,7 @@ public struct EnemyData
         0.1f, // Elite
         0.05f  // Boss
     };
+
+    public static readonly int ChasingPriority = 51;
+    public static readonly int DefaultPriority = 50;
 }

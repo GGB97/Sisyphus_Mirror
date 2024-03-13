@@ -18,6 +18,8 @@ public class EnemyChasingState : EnemyBaseState
 
         agent.speed = stats.moveSpeed;
         agent.SetDestination(enemy.target.position);
+
+        agent.avoidancePriority = EnemyData.ChasingPriority;
     }
 
     public override void Update()
@@ -53,6 +55,8 @@ public class EnemyChasingState : EnemyBaseState
         StopAnimation(EnemyAnimationData.MoveParameterHash);
 
         agent.ResetPath(); // 추적을 멈추기 위해서
+
+        agent.avoidancePriority = EnemyData.DefaultPriority;
     }
 
     bool CanChase()

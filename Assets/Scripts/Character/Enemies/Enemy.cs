@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.
         // OverrideAnimator는 애니메이션 클립을 부분적으로만 변경을 하려 할 때 사용하기 좋을 것 같음
-        // ex)특정 조건 만족시 공격 모션이나 그런게 변할 떄?
+        // ex)특정 조건 만족시 공격 모션이나 그런게 변할 때?
         //OverrideAnimator = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         //Animator.runtimeAnimatorController = OverrideAnimator;
         #endregion
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
 
         stateMachine = new(this);
 
-        Agent.stoppingDistance = Stat.attackRange - .4f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+        Agent.stoppingDistance = Stat.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
     }
 
     public void OnChildTriggerEnter(Collider other)
