@@ -244,7 +244,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnimController_Slime
+  m_Name: AnimController_Normal
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Idle
@@ -544,7 +544,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.85
   m_HasExitTime: 0
