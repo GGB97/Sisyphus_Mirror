@@ -167,7 +167,7 @@ Material:
     - _VColorBlendOffset: {r: 0, g: 0, b: 0, a: 0}
     - _VColorBlendSmooth: {r: 0.25, g: 0.25, b: 0.25, a: 0.25}
   m_BuildTextureStacks: []
---- !u!114 &6692139848831375910
+--- !u!114 &4901571037470248764
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
