@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4a0c6401016dff4cb4b8e3fed3f423d
+guid: 9db1255a8b99c9a458637e2b3da25f05
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bow_1
+      name: Bow_2
       rect:
         serializedVersion: 2
-        x: 1493
-        y: 27
-        width: 839
-        height: 2080
+        x: 1696
+        y: 138
+        width: 587
+        height: 1867
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1ca53bd9cdd2fe4499944ffc100ec46
-      internalID: -1672818761
+      spriteID: c4213eb27f5a98541a67e8e1760f7dd1
+      internalID: 1194287057
       vertices: []
       indices: 
       edges: []
@@ -133,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 80f83eb42ec45894eae7ed1dde755284
+    spriteID: d207cf1475365e643802faf2dc00e491
     internalID: 0
     vertices: []
     indices: 
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bow_1: -1672818761
+      Bow_2: 1194287057
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
