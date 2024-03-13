@@ -11,9 +11,12 @@ public class PlayerStateMachine : StateMachine
     public PlayerDashStare dashState { get; }
     
     public Vector2 MovementInput { get; set; }
-    public float MovementSpeed { get; set; }
+    public float MovementSpeed { get; private set; }        // 기본 이동 속도
+    public float MovementSpeedModifier { get; set; } = 1f;  // 상태에 따른 이동속도 결정
+    public float DashRange { get; set; }                    // 대쉬 지속 시간
+    public float DashRate { get;  set; }                    // 대쉬 쿨타임
 
-    public Transform PlayerTransform { get; set; }
+    public Transform PlayerTransform { get; set; }          
 
     public PlayerStateMachine(Player player)
     {
@@ -26,6 +29,7 @@ public class PlayerStateMachine : StateMachine
         PlayerTransform = player.transform;
 
         MovementSpeed = player.Data.playerBaseStat.moveSpeed;
-
+        DashRange = player.Data.playerBaseStat.DashRange;
+        DashRate = player.Data.playerBaseStat.DashRate;
     }
 }

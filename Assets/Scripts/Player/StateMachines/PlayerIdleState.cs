@@ -10,7 +10,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.MovementSpeed = 0;
+        stateMachine.MovementSpeedModifier = 0;
         base.Enter();
      //   StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
     }
@@ -25,10 +25,15 @@ public class PlayerIdleState : PlayerBaseState
     {
         base.Update();
 
-        if (stateMachine.MovementInput != Vector2.zero)
+        if (stateMachine.MovementInput != Vector2.zero) //input이 들오면 walk상태로 변경
         {
             OnMove();
             return;
         }
+    }
+
+    protected virtual void OnMove()  
+    {
+        stateMachine.ChangeState(stateMachine.walkState);
     }
 }

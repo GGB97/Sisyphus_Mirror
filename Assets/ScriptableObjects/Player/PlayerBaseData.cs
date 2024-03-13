@@ -14,6 +14,7 @@ public class PlayerBaseData : CharacterBaseStat
 
     public float LifeSteal;
 
+    public int LV;
     public float EXP;
     public float maxEXP;
 

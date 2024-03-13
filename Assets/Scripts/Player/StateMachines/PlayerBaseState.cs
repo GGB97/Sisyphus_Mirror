@@ -64,26 +64,23 @@ public class PlayerBaseState : IState
         
     }
 
-    protected virtual void OnMove()
-    {
-        stateMachine.ChangeState(stateMachine.walkState);
-    }
+    
 
     private void ReadMovementInput()
     {
         stateMachine.MovementInput = stateMachine.Player.Input.PlayerActions.Move.ReadValue<Vector2>();
     }
 
-    private void Move()
+    protected void Move()
     {
         Vector3 movementDirection = GetMovementDirection();
-        float movementSpeed = playerData.moveSpeed;
+        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
         stateMachine.Player.Controller.Move(
             (movementDirection * movementSpeed) * Time.deltaTime
             );
     }
 
-    private Vector3 GetMovementDirection()
+    protected Vector3 GetMovementDirection()  // x와 z축으로만 움직이도록 방향 설정
     {
 
         Vector3 forward = stateMachine.PlayerTransform.forward;

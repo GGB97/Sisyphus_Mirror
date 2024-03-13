@@ -22,10 +22,11 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 5
-    DashRange: 0
-    DashRate: 0
+    DashRange: 0.2
+    DashRate: 1
     CritRate: 0
     CritDamage: 0
     LifeSteal: 0
+    LV: 1
     EXP: 0
-    maxEXP: 0
+    maxEXP: 100
