@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class Surface : MonoBehaviour
 {
-    public EnemyType[] enemyTypes;
+    public EnemySize[] enemyTypes;
     NavMeshSurface[] _nms;
 
     private void Awake()

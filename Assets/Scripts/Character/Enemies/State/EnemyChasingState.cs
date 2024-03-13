@@ -16,10 +16,11 @@ public class EnemyChasingState : EnemyBaseState
 
         StartAnimation(EnemyAnimationData.MoveParameterHash);
 
-        agent.speed = stats.moveSpeed;
+        agent.speed = curStat.moveSpeed;
+        agent.isStopped = false;
         agent.SetDestination(enemy.target.position);
 
-        agent.avoidancePriority = EnemyData.ChasingPriority;
+        agent.avoidancePriority = EnemyData.ChasingPriority; // 움직일때 다른 상태의 몹들을 밀지않게 하기 위해
     }
 
     public override void Update()
@@ -29,7 +30,7 @@ public class EnemyChasingState : EnemyBaseState
         chasingDelay += Time.deltaTime;
 
         // target과의 거리가 range 이하라면 == 공격이 가능한거리라면
-        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= stats.attackRange)
+        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange)
         {
             stateMachine.ChangeState(stateMachine.AttackState);
         }
@@ -54,13 +55,13 @@ public class EnemyChasingState : EnemyBaseState
 
         StopAnimation(EnemyAnimationData.MoveParameterHash);
 
-        agent.ResetPath(); // 추적을 멈추기 위해서
+        agent.isStopped = true; // 추적을 멈추기 위해서
 
         agent.avoidancePriority = EnemyData.DefaultPriority;
     }
 
     bool CanChase()
     {
-        return chasingDelay >= EnemyData.ChasingDelay[(int)stats.rank];
+        return chasingDelay >= EnemyData.ChasingDelay[(int)info.rank];
     }
 }

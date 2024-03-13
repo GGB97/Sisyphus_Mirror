@@ -23,7 +23,7 @@ public class EnemyIdleState : EnemyBaseState
             return;
 
         // target과의 거리가 range 이하라면 == 공격이 가능한거리라면
-        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= stats.attackRange)
+        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange)
         {
             stateMachine.ChangeState(stateMachine.AttackState);
         }

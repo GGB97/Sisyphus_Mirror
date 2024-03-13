@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -5,13 +6,13 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : CharacterBehaviour
 {
     public EnemyStateMachine stateMachine;
     public Transform target;
 
-    public int id; // DB에서 가져올 ID
-    public EnemyBaseStat Stat { get; private set; } // 층 수가 올라갈때마다 Stat을 더해줄 수정자를 추가하면 좋을듯.
+    [field: SerializeField] public EnemyInfo Info { get; private set; }
+    public Status modifier; // 스탯 가중치 (Player의 경우 장비에 의한 가중치, Enemy의 경우 난이도/층수 에 의한 가중치)
 
     public Animator Animator { get; private set; }
     //public AnimatorOverrideController OverrideAnimator { get; private set; }
@@ -44,7 +45,8 @@ public class Enemy : MonoBehaviour
 
     void Init()
     {
-        Stat = DataBase.EnemyStats.Get(id);
+        Info = DataBase.EnemyStats.Get(id);
+        currentStat.InitStatus(Info, modifier);
 
         Animator = GetComponentInChildren<Animator>();
         #region AnimatorOverrideController 으로 시도했던것
@@ -62,12 +64,34 @@ public class Enemy : MonoBehaviour
 
         stateMachine = new(this);
 
-        Agent.stoppingDistance = Stat.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+        Agent.stoppingDistance = Info.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+
+        isDie = false;
+        OnDieEvent += ChangeDieState;
+
+        isHit = false;
+        OnHitEvent += ChangeHitState;
+        
     }
 
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
         Debug.Log($"OnChildTriggerEnter : {other.gameObject.name}");
+    }
+
+    void ChangeDieState()
+    {
+        stateMachine.ChangeState(stateMachine.DieState);
+    }
+
+    void ChangeHitState()
+    {
+        stateMachine.ChangeState(stateMachine.HitState);
+    }
+
+    public void InvokeEvent(Action action)
+    {
+        action?.Invoke();
     }
 }

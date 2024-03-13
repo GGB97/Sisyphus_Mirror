@@ -15,6 +15,13 @@ public enum EnemyRank // 등급
     Boss
 }
 
+public enum EnemySize // 기본 3~5종류에 특수한 개체가 있을 경우 해당 개체를 위한 사이즈 추가
+{
+    Small,
+    Medium,
+    Large
+}
+
 public struct EnemyData
 {
     public static readonly string DBPath = "Enemy/Data/EnemyDB_Sheet";

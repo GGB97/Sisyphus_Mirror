@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7921247206851701429}
   - component: {fileID: 7046224812519133230}
   m_Layer: 7
-  m_Name: Enemy_Slime
+  m_Name: Enemy_Slime_Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Transform:
   m_Children:
   - {fileID: 2103328461913871641}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &3033182990679868547
 CharacterController:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  id: 10101
+  id: 30000000
   animAttackSpeed: 1
   animMoveSpeed: 1
 --- !u!1001 &2107376266096621599

@@ -8,23 +8,28 @@ public class EnemyBaseState : IState
     protected EnemyStateMachine stateMachine;
 
     protected Enemy enemy;
+    protected EnemyInfo info;
+    protected Status curStat;
+
     protected Animator animator;
     protected NavMeshAgent agent;
     protected CharacterController controller;
-    protected EnemyBaseStat stats;
 
-    protected float chasingDelay = 0f;
-    protected float attackDelay = 0f; // 0으로 시작하면 첫타를 얼타고 있을거 같아서.
+    protected float chasingDelay;
+    protected float attackDelay;
 
     public EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
         stateMachine = enemyStateMachine;
 
         enemy = stateMachine.Enemy;
+        info = enemy.Info;
+        curStat = enemy.currentStat;
+
         animator = enemy.Animator;
         agent = enemy.Agent;
         controller = enemy.Controller;
-        stats = enemy.Stat;
+        
     }
 
     public virtual void Enter()
@@ -50,6 +55,16 @@ public class EnemyBaseState : IState
     public virtual void Update()
     {
         UpdateTime();
+
+        if (enemy.isDie)
+        {
+            enemy.InvokeEvent(enemy.OnDieEvent);
+        }
+
+        if (enemy.isHit)
+        {
+            enemy.InvokeEvent(enemy.OnHitEvent);
+        }
     }
 
     protected void StartAnimation(int animationHash)
@@ -67,7 +82,7 @@ public class EnemyBaseState : IState
         return (enemy.target != null);
     }
 
-    void UpdateTime()
+    protected void UpdateTime()
     {
         if(attackDelay < 10f)
             attackDelay += Time.deltaTime;
