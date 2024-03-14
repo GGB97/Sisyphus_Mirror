@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour
 {
     public ItemData itemData;//아이템 정보
-
     public int HEIGHT
     {
         get
@@ -36,7 +35,7 @@ public class InventoryItem : MonoBehaviour
 
     public bool rotated = false;
 
-    public void Set(ItemData itemData) //아이템 설정
+    public void Set(ItemData itemData) //아이템 생성할 때 아이템 설정
     {
         this.itemData = itemData; //아이템 데이터를 매개변수로 설정
 

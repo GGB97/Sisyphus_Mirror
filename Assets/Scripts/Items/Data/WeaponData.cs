@@ -20,7 +20,7 @@ public class WeaponData : ItemSO
     [SerializeField] private WeaponType _type;
 
     [field: Header("Projectile")]
-    [SerializeField] private string _projectilePath;
+    [SerializeField] private string _projectileTag;
     [SerializeField] private int _numberOfProjectile;
 
     public float Atk => _atk;
@@ -31,18 +31,6 @@ public class WeaponData : ItemSO
     public int LifeSteal => _lifeSteal;
     public WeaponType Type => _type;
 
-    public string ProjectilePath => _projectilePath;
+    public string ProjectileTag => _projectileTag;
     public int NumberOfProjectile => _numberOfProjectile;
-
-    private GameObject _projectile;
-    public GameObject Projectile
-    {
-        get
-        {
-            if (Type == WeaponType.Melee)
-                return null;
-            if (_projectile == null && !ProjectilePath.Equals("None")) _projectile = Resources.Load<GameObject>(ProjectilePath);
-            return _projectile;
-        }
-    }
 }
