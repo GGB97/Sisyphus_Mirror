@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RangeWeapon : MonoBehaviour
@@ -48,6 +46,7 @@ public class RangeWeapon : MonoBehaviour
     public void DetectEnemyInRange()
     {
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, weaponData.Range, 1 << 7);
+        if (colliders.Length == 0) return;
 
         foreach (Collider collider in colliders)
         {
@@ -55,7 +54,8 @@ public class RangeWeapon : MonoBehaviour
             Target.Add(collider.transform);
         }
 
-        RotateWeapon(Target[0].position);
+        int random = Random.Range(0, colliders.Length);
+        RotateWeapon(Target[random].position);
     }
 
     private void RotateWeapon(Vector3 target)
