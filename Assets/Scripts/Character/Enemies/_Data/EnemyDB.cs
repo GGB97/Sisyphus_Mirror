@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyDB
 {
-    Dictionary<int, EnemyBaseStat> _stats = new();
+    Dictionary<int, EnemyInfo> _stats = new();
 
     public EnemyDB()
     {
@@ -28,7 +28,7 @@ public class EnemyDB
         }
     }
 
-    public EnemyBaseStat Get(int id)
+    public EnemyInfo Get(int id)
     {
         if (_stats.ContainsKey(id))
             return _stats[id];

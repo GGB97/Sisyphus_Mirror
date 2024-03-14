@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class Surface : MonoBehaviour
 {
-    public EnemyType[] enemyTypes;
+    public EnemySize[] enemyTypes;
     NavMeshSurface[] _nms;
 
     private void Awake()
@@ -16,8 +16,8 @@ public class Surface : MonoBehaviour
         for (int i = 0; i < enemyTypes.Length; i++)
         {
             _nms[i] = gameObject.AddComponent<NavMeshSurface>();
-            _nms[i].agentTypeID = NavMesh.GetSettingsByIndex((int)enemyTypes[i]).agentTypeID;
-            LayerMask includeLayer = LayerData.Default | LayerData.Water; // 맵 구성되고 변경 예정
+            _nms[i].agentTypeID = NavMesh.GetSettingsByIndex((int)enemyTypes[i]).agentTypeID; // AgentType을 가져옴
+            LayerMask includeLayer = LayerData.Default | LayerData.Water; // bake할 레이어(맵 구성되고 변경 예정
             _nms[i].layerMask = includeLayer;
         }
     }
@@ -26,7 +26,7 @@ public class Surface : MonoBehaviour
     {
         foreach(var nms in _nms)
         {
-            nms.BuildNavMesh();
+            nms.BuildNavMesh(); // Bake
         }
     }
 }

@@ -22,15 +22,20 @@ public class EnemyIdleState : EnemyBaseState
         if (enemy.target == null)
             return;
 
-        // target과의 거리가 range 이하라면 == 공격이 가능한거리라면
-        if (Vector3.Distance(enemy.target.position, enemy.transform.position) <= stats.attackRange)
+        // 공격이 가능하다면
+        if (CanAttack())
         {
             stateMachine.ChangeState(stateMachine.AttackState);
+            return;
         }
 
-        // target이 죽어있는 상태가 아니거나 혹은 그냥 존재한다면 ChasingState로 전환
-        if (HasTarget())
+        // target이 존재하고 공격 사거리 안에 없다면
+        if (HasTarget() && !TargetInRange())
+        {
             stateMachine.ChangeState(stateMachine.ChasingState);
+            return;
+        }
+            
     }
 
     public override void Exit()
