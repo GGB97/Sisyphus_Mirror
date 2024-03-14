@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [field: Header("References")]
-    [field: SerializeField] public PlayerSO Data {  get; private set; }
+    [field: SerializeField] public PlayerBaseData Data {  get; private set; }
 
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData {  get; private set; }
@@ -15,15 +15,36 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public CharacterController Controller { get; private set; }
 
+    private PlayerStateMachine stateMachine;
+    int id;
+
     private void Awake()
     {
         AnimationData.Initialize();
 
+        Data = DataBase.Player.Get(id);
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
+
+        stateMachine = new PlayerStateMachine(this);
     }
 
+    private void Start()
+    {
+        stateMachine.ChangeState(stateMachine.idleState);
+    }
+
+    private void Update()
+    {
+        stateMachine.HandleInput();
+        stateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.PhysicsUpdate();
+    }
 
 }
