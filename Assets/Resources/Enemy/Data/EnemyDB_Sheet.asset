@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: EnemyDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - health: 0
+  - id: 30000000
+    health: 0
     maxHealth: 20
     attackRange: 1.6
     meleeAtk: 3
@@ -21,12 +22,10 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
-    id: 30000000
-    prefabPath: 
     type: 0
     rank: 0
-    size: 0
-  - health: 0
+  - id: 30010001
+    health: 0
     maxHealth: 50
     attackRange: 1.6
     meleeAtk: 5
@@ -34,12 +33,10 @@ MonoBehaviour:
     def: 5
     attackSpeed: 0.5
     moveSpeed: 3
-    id: 30010001
-    prefabPath: 
     type: 0
     rank: 1
-    size: 1
-  - health: 0
+  - id: 30020001
+    health: 0
     maxHealth: 700
     attackRange: 1.6
     meleeAtk: 7
@@ -47,12 +44,10 @@ MonoBehaviour:
     def: 7
     attackSpeed: 0.5
     moveSpeed: 3
-    id: 30020001
-    prefabPath: 
     type: 0
     rank: 2
-    size: 1
-  - health: 0
+  - id: 30100000
+    health: 0
     maxHealth: 20
     attackRange: 1.7
     meleeAtk: 3
@@ -60,12 +55,10 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
-    id: 30100000
-    prefabPath: 
     type: 1
     rank: 0
-    size: 0
-  - health: 0
+  - id: 30110001
+    health: 0
     maxHealth: 50
     attackRange: 1.7
     meleeAtk: 3
@@ -73,12 +66,10 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 3
-    id: 30110001
-    prefabPath: 
     type: 1
     rank: 1
-    size: 1
-  - health: 0
+  - id: 30120001
+    health: 0
     maxHealth: 700
     attackRange: 1.7
     meleeAtk: 7
@@ -86,8 +77,5 @@ MonoBehaviour:
     def: 7
     attackSpeed: 0.5
     moveSpeed: 3
-    id: 30120001
-    prefabPath: 
     type: 1
     rank: 2
-    size: 1
