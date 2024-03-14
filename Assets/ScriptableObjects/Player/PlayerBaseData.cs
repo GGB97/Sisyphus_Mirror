@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerBaseData : CharacterBaseStat
+public class PlayerBaseData : CharacterBase
 {
     public float DashRange;
     public float DashRate;
