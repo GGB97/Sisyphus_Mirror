@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -13,7 +14,7 @@ public class Projectile : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _trailRenderer = GetComponent<TrailRenderer>();
-        _duration = 5f;
+        _duration = 3f;
     }
 
     private void Update()
@@ -25,7 +26,7 @@ public class Projectile : MonoBehaviour
             gameObject.SetActive(false);
         }
         // TODO : 발사체 이동 처리
-        _rigidbody.velocity = gameObject.transform.forward * 5;     // 추후 수정
+        _rigidbody.velocity = gameObject.transform.forward * 10;     // 추후 수정
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +34,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.layer == 1 << 7)
         {
             Debug.Log("Monster TakeDamage");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

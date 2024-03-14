@@ -102,4 +102,4 @@ MonoBehaviour:
     _lifeSteal: 0
     _type: 1
     _projectileTag: Arrow
-    _numberOfProjectile: 1
+    _numberOfProjectile: 3
