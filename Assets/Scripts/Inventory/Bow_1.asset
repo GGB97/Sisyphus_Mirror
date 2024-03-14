@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7836c83a96c4e8448b503c3540741067, type: 3}
-  m_Name: Bow
+  m_Name: Bow_1
   m_EditorClassIdentifier: 
-  width: 3
-  height: 2
-  itemIcon: {fileID: 21300000, guid: 11b99d9fb5967dc4395536838415aa1b, type: 3}
+  width: 1
+  height: 3
+  itemIcon: {fileID: -1672818761, guid: a4a0c6401016dff4cb4b8e3fed3f423d, type: 3}

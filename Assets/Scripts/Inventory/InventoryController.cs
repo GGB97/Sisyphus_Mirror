@@ -37,7 +37,7 @@ public class InventoryController : MonoBehaviour
         {
             if (selectedItem == null)
             { 
-                CreateRandomItem(); 
+                CreateRandomItem();  //생성 후 아이템 선택 상태로 전환
             }
         }
 
@@ -51,13 +51,13 @@ public class InventoryController : MonoBehaviour
             RotateItem();
         }
 
-        if (selectedItemGrid == null)
+        if (selectedItemGrid == null) // 그리드 위에 없다면
         {
-            inventoryHighlight.Show(false);
+            inventoryHighlight.Show(false); //하이라이트 끔
             return;
         }
 
-        HandleHightlight();
+        HandleHightlight();//하이트 
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -129,7 +129,7 @@ public class InventoryController : MonoBehaviour
 
         rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
         rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
-        rectTransform.SetAsLastSibling();
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
 
         int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
         inventoryItem.Set(items[selectedItemId]);//아이템 설정
@@ -149,7 +149,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private Vector2Int GetTileGridPosition() //Grid상의 좌표를 얻는다.
+    private Vector2Int GetTileGridPosition() //Grid상의 첫 칸의 좌표를 얻는다.
     {
         Vector2 position = Input.mousePosition; //마우스위치에는 물체의 중심이 온다.
 
@@ -163,23 +163,23 @@ public class InventoryController : MonoBehaviour
 
     private void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
-        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y,ref overlapitem);
-        if (complete)
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y,ref overlapitem); //설치할 수 있으면 바로 설치
+        if (complete) // 설치가 되었으면
         {
-            selectedItem = null;
-            if (overlapitem != null)
+            selectedItem = null; //선택을 초기화
+            if (overlapitem != null)//겹치는 것이 있었으면 
             {
-                selectedItem = overlapitem;
-                overlapitem = null;
+                selectedItem = overlapitem; //겹친 아이템을 선택한 것으로 설정
+                overlapitem = null;//겹친 아이템 null 초기화
                 rectTransform = selectedItem.GetComponent<RectTransform>();
-                rectTransform.SetAsLastSibling();
+                rectTransform.SetAsLastSibling();//선택한 것을 맨 위로 보이게 함.
             }
         }
     }
 
-    private void PickUpItem(Vector2Int tileGridPosition)
+    private void PickUpItem(Vector2Int tileGridPosition) //해당 좌표의 아이템을 선택한다. 있던 자리는 null로 변경
     {
-        selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
+        selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
         Debug.Log("null");
         if (selectedItem != null)
         {
@@ -187,7 +187,7 @@ public class InventoryController : MonoBehaviour
             //rectTransform.SetAsLastSibling();
         }
     }
-    private void ItemIconDrag()
+    private void ItemIconDrag() //선택된 아이템의 위치를 마우스 위치로 이동
     {
         if (selectedItem != null)
         {
