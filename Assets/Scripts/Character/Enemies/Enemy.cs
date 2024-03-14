@@ -18,7 +18,6 @@ public class Enemy : CharacterBehaviour
     public Status modifier; // 스탯 가중치 (Player의 경우 장비에 의한 가중치, Enemy의 경우 난이도/층수 에 의한 가중치)
 
     public Animator Animator { get; private set; }
-    //public AnimatorOverrideController OverrideAnimator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
     public CharacterController Controller { get; private set; } // 아직은 안쓰고있음. 나중에도 안쓰면 제거 예정
 
@@ -80,7 +79,7 @@ public class Enemy : CharacterBehaviour
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        //Debug.Log($"OnChildTriggerEnter : {other.gameObject.name}");
+        Debug.Log($"OnChildTriggerEnter : {gameObject.name} Attack {other.gameObject.name}");
     }
 
     void ChangeDieState()

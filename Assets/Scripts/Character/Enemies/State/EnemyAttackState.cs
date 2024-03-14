@@ -24,10 +24,13 @@ public class EnemyAttackState : EnemyBaseState
         base.Update();
 
         // Attack이 재생중이 아니라면 (공격이 끝났다면)
-        if (!IsAttacking())
+        if (IsAttacking() == false)
         {
-            stateMachine.ChangeState(stateMachine.IdleState);
-            return;
+            if (enemy.attackDelay > 0.25f)
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+                return;
+            }
         }
 
         // target이 null이면 (죽었으면?) idle로 전환
@@ -45,9 +48,15 @@ public class EnemyAttackState : EnemyBaseState
         StopAnimation(EnemyAnimationData.AttackParameterHash);
     }
 
-    protected bool IsAttacking()
+    protected bool IsAttacking() // true == 공격 진행중
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.shortNameHash == EnemyAnimationData.AttackStateHash;
+        if (stateInfo.shortNameHash == EnemyAnimationData.AttackStateHash)
+        {
+            // Attack애니메이션이 어느정도 진행되었을때만.
+            return !(stateInfo.normalizedTime > 0.98f);
+        }
+
+        return false;
     }
 }
