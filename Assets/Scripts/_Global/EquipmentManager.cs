@@ -22,7 +22,7 @@ public class EquipmentManager : SingletoneBase<EquipmentManager>
     {
         if (Player != null)
         {
-
+            // TODO : Player 스탯 반영하기
         }
     }
 }
