@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyHitState : EnemyBaseState
@@ -23,7 +24,7 @@ public class EnemyHitState : EnemyBaseState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (!IsTakingHit())
+        if (IsTakingHit() == false)
         {
             stateMachine.ChangeState(stateMachine.IdleState);
         }
@@ -41,6 +42,11 @@ public class EnemyHitState : EnemyBaseState
     protected bool IsTakingHit()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.shortNameHash == EnemyAnimationData.HitStateHash;
+        if (stateInfo.shortNameHash == EnemyAnimationData.HitStateHash)
+        {
+            // 애니메이션이 어느정도 진행되었을때만.
+            return !(stateInfo.shortNameHash == EnemyAnimationData.HitStateHash);
+        }
+        return false;
     }
 }

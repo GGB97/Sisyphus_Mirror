@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6185711174174760361
 Transform:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
     moveSpeed: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
+  knockbackDelay: 0
 --- !u!114 &2262518605707484692
 MonoBehaviour:
   m_ObjectHideFlags: 0

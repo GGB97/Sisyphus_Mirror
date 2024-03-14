@@ -25,6 +25,8 @@ public class Enemy : CharacterBehaviour
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
 
+    public float knockbackDelay;
+
     private void Awake()
     {
         Init();

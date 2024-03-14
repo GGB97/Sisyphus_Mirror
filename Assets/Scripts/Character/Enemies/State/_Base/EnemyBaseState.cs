@@ -59,7 +59,7 @@ public class EnemyBaseState : IState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (enemy.isHit)
+        if (enemy.isHit && enemy.knockbackDelay > 0.3f)
         {
             enemy.InvokeEvent(enemy.OnHitEvent);
         }
@@ -81,6 +81,9 @@ public class EnemyBaseState : IState
         {
             enemy.attackDelay += Time.deltaTime;
         }
+
+        if (enemy.knockbackDelay < 3f)
+            enemy.knockbackDelay += Time.deltaTime;
     }
 
     protected bool HasTarget() // Tartget이 존재하는지 확인
