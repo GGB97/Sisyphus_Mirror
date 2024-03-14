@@ -59,7 +59,7 @@ public class EnemyBaseState : IState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (enemy.isHit && enemy.knockbackDelay > 0.3f)
+        if (enemy.isHit && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
         {
             enemy.InvokeEvent(enemy.OnHitEvent);
         }

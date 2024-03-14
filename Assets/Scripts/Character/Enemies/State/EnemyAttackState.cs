@@ -15,7 +15,7 @@ public class EnemyAttackState : EnemyBaseState
 
         StartAnimation(EnemyAnimationData.AttackParameterHash);
 
-        //enemy.transform.LookAt(enemy.target.transform);
+        enemy.transform.LookAt(enemy.target.transform);
         enemy.attackDelay = 0;
     }
 

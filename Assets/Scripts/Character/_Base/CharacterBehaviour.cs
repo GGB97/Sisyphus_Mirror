@@ -14,4 +14,5 @@ public class CharacterBehaviour : MonoBehaviour
 
     public bool isHit;
     public Action OnHitEvent;
+    public float knockbackDelay;
 }

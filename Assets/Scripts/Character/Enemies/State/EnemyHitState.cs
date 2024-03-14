@@ -13,6 +13,7 @@ public class EnemyHitState : EnemyBaseState
         base.Enter();
 
         StartAnimation(EnemyAnimationData.HitParameterHash);
+        enemy.knockbackDelay = 0f;
     }
 
     public override void Update()
@@ -24,11 +25,13 @@ public class EnemyHitState : EnemyBaseState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (IsTakingHit() == false)
+        if (enemy.knockbackDelay >= EnemyData.KnockBackDelayTime)
         {
-            stateMachine.ChangeState(stateMachine.IdleState);
+            if (IsTakingHit() == false)
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+            }
         }
-            
     }
 
     public override void Exit()
