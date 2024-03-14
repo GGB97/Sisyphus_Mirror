@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7836c83a96c4e8448b503c3540741067, type: 3}
-  m_Name: Diamond
+  m_Name: Axe_2
   m_EditorClassIdentifier: 
   width: 1
-  height: 1
-  itemIcon: {fileID: 21300000, guid: 5962305267cdfa346a9818fcc0823e86, type: 3}
+  height: 3
+  itemIcon: {fileID: -1089085101, guid: deb21c3bcdc6f7a42b657b2ba08dee9b, type: 3}
