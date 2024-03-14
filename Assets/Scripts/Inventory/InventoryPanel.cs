@@ -25,9 +25,9 @@ public class InventoryPanel : MonoBehaviour
         parentGrid = GetComponentInParent<ItemGrid>();
         if (parentGrid != null)
         {
-            for (int x = 0; x < width; x++) //아이템 
+            for (int y = 0; y < height; y++) //아이템 
             {
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
                 {
                     PanelSlot go = Instantiate(panelSlotPrefab).GetComponent<PanelSlot>();//한 칸 생성
                     go.transform.SetParent(transform);
@@ -99,14 +99,14 @@ public class InventoryPanel : MonoBehaviour
                     x = addPosition.x;
                     y = addPosition.y;
                     clearSlotList.Add(panelSlots[x, y]);
-                    panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+                    panelSlots[x, y].ChangeSlotState(PanelSlotState.Add);
                     currentAddSlot++;
                     Debug.Log("칸 추가 성공");
                 }
             }
         }
     }
-    public void AllClearSlotList()
+    public void ClearclearSlotList()
     {
         
     }
