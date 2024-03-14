@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88436a121439103429c7f8911ebf70a1, type: 3}
+  m_Name: PlayerDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - id: 30000001
+    health: 0
+    maxHealth: 100
+    attackRange: 1
+    meleeAtk: 3
+    magicAtk: 0
+    def: 2
+    attackSpeed: 10
+    moveSpeed: 5
+    DashRange: 0
+    DashRate: 0
+    CritRate: 0
+    CritDamage: 0
+    LifeSteal: 0
+    LV: 0
+    EXP: 0
+    maxEXP: 0
+  - id: 30000002
+    health: 0
+    maxHealth: 70
+    attackRange: 1
+    meleeAtk: 2
+    magicAtk: 0
+    def: 0
+    attackSpeed: 15
+    moveSpeed: 5
+    DashRange: 0
+    DashRate: 0
+    CritRate: 0
+    CritDamage: 0
+    LifeSteal: 0
+    LV: 0
+    EXP: 0
+    maxEXP: 0

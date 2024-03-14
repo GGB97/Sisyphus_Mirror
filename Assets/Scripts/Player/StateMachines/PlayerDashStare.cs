@@ -12,8 +12,8 @@ public class PlayerDashStare : PlayerBaseState
     public override void Enter()
     {
         stateMachine.MovementSpeedModifier = 3f;            
-        movementDirection = GetMovementDirection();         // 대쉬시 이동할 방형
-        stateMachine.DashRange = playerData.DashRange;      // 대쉬 지속시간 초기화
+        movementDirection = GetMovementDirection();         // 대시 이동할 방향 
+        stateMachine.DashRange = playerData.DashRange;      // 대시 지속시간 초기화
         base.Enter();
     //    StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
     }
@@ -24,7 +24,7 @@ public class PlayerDashStare : PlayerBaseState
       //  StopAnimation(stateMachine.Player.AnimationData.DashParameterHash);
     }
 
-    public override void Update() // 대쉬 이동 정해진 방향으로 일정 시간 동안 이동
+    public override void Update() // 대시 이동 정해진 방향으로 일정 시간 동안 이동
     {
         float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
         stateMachine.Player.Controller.Move(
@@ -35,7 +35,7 @@ public class PlayerDashStare : PlayerBaseState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        stateMachine.DashRange -= Time.deltaTime;  // 대쉬 지속 시간
+        stateMachine.DashRange -= Time.deltaTime;  // 대시 지속 시간
         if (stateMachine.DashRange <= 0)
         {
             stateMachine.ChangeState(stateMachine.idleState);

@@ -11,7 +11,7 @@ public class PlayerBaseState : IState
     public PlayerBaseState(PlayerStateMachine playerstateMachine)
     {
         stateMachine = playerstateMachine;
-        playerData = playerstateMachine.Player.Data.playerBaseStat;
+        playerData = playerstateMachine.Player.Data;
     }
 
     public virtual void Enter()
