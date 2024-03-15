@@ -14,8 +14,6 @@ public class EnemyAttackState : EnemyBaseState
         base.Enter();
 
         StartAnimation(EnemyAnimationData.AttackParameterHash);
-
-        enemy.transform.LookAt(enemy.target.transform);
         enemy.attackDelay = 0;
     }
 
@@ -58,5 +56,13 @@ public class EnemyAttackState : EnemyBaseState
         }
 
         return false;
+    }
+
+    void LookTarget() // 대상을 즉시 바라봄
+    {
+        Quaternion targetRotation = LookTargetPos();
+
+        // 바라보는 방향 수정
+        enemy.transform.rotation = targetRotation;
     }
 }

@@ -24,8 +24,7 @@ public class Enemy : CharacterBehaviour
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
-
-    public bool isstop;
+    public float rotationSpeed = 3f;
 
     private void Awake()
     {
@@ -39,7 +38,6 @@ public class Enemy : CharacterBehaviour
 
     void Update()
     {
-        isstop = Agent.isStopped;
         stateMachine.Update();
     }
 

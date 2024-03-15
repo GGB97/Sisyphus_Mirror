@@ -35,6 +35,11 @@ public class EnemyIdleState : EnemyBaseState
             stateMachine.ChangeState(stateMachine.ChasingState);
             return;
         }
+
+        if (TargetInRange()) // 사거리 내에 target이 있을때는 그녀석을 바라보게
+        {
+            //LookTargetSlerp();
+        }
             
     }
 
@@ -43,5 +48,13 @@ public class EnemyIdleState : EnemyBaseState
         base.Exit();
 
         StopAnimation(EnemyAnimationData.IdleParameterHash);
+    }
+
+    void LookTargetSlerp() // 대상을 천천히 바라봄
+    {
+        Quaternion targetRotation = LookTargetPos();
+
+        // 바라보는 방향 수정
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.rotationSpeed * Time.deltaTime); // 보간
     }
 }
