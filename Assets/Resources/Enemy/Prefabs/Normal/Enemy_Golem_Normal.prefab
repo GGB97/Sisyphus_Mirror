@@ -192,7 +192,10 @@ MonoBehaviour:
     prefabPath: 
     type: 0
     rank: 0
+    element: 0
     size: 0
+    rotationSpeed: 0
+    attackAngle: 0
   modifier:
     health: 0
     maxHealth: 0
@@ -204,7 +207,6 @@ MonoBehaviour:
     moveSpeed: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
-  rotationSpeed: 3
 --- !u!114 &2711227618756655968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23962246d85957c48a3397266f740f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 4681803008971222559}
+  AttackPivot: {fileID: 6058904223380281718}
 --- !u!4 &5209736816929387147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4191744185429214, guid: ed6d71d64c34430095360130d5077535,
