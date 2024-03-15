@@ -7,13 +7,9 @@ public class InventoryManager : MonoBehaviour
 {
     private static InventoryManager _inventoryManager;
 
-    //public Canvas canvas;
     //public ItemGrid grid;
 
-    [SerializeField]
-    public Sprite[] slotSprites; //슬롯의 스프라이트
-
-    string gridName = "InventoryGrid";
+    //string gridName = "InventoryGrid";
     public static InventoryManager Instance 
     {  
         get { return _inventoryManager;}

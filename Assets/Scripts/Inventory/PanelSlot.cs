@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum PanelSlotState
@@ -10,64 +11,65 @@ public enum PanelSlotState
     Add,
     Null,
 }
-public class PanelSlot : MonoBehaviour
+public class PanelSlot : MonoBehaviour , IPointerClickHandler
 {
-    private PanelSlotState state = PanelSlotState.Null;
+    public PanelSlotState state = PanelSlotState.Null;
+    //public RectTransform rectTransform;
     Image image;
     public int posX;
     public int posY;
-    //private InventoryManager _inventoryManager;
-
-    // Start is called before the first frame update
     private void Awake()
     {
         image = GetComponent<Image>();
-    }
-    void Start()
-    {
-        //_inventoryManager = InventoryManager.Instance;
-        //image.sprite = _inventoryManager.slotSprites[(int)PanelSlotState.Null];
+        //rectTransform = GetComponent<RectTransform>();
     }
     public void ChangeSlotState(PanelSlotState changeState)
     {
         state = changeState;//상태 변경
-        ChangeSlotSprite();
+        ChangeSlotSprite((int)changeState);
+        //ChangeSlotSprite();
     }
-    //public bool CanAddSlot(int posX , int posY)
+    //private void ChangeSlotSprite()//상태에 맞는 스프라이트 변경
     //{
-    //    if()
-    //    return true;
+    //    switch (state) 
+    //    {
+    //        case PanelSlotState.Empty:
+    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Empty];
+    //            break;
+    //        case PanelSlotState.Full:
+    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Full];
+    //            break;
+    //        case PanelSlotState.Add:
+    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Add];
+    //            break;
+    //        case PanelSlotState.Null:
+    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
+    //            break;
+    //        default:
+    //            {
+    //                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
+    //                break;
+    //            }
+    //    }
     //}
-    private void ChangeSlotSprite()//상태에 맞는 스프라이트 변경
+    private void ChangeSlotSprite(int num)//상태에 맞는 스프라이트 변경
     {
-        switch (state) 
-        {
-            case PanelSlotState.Empty:
-                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Empty];
-                break;
-            case PanelSlotState.Full:
-                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Full];
-                break;
-            case PanelSlotState.Add:
-                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Add];
-                break;
-            case PanelSlotState.Null:
-                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
-                break;
-            default:
-                {
-                    image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
-                    break;
-                }
-        }
+        image.sprite = InventoryController.Instance.slotSprites[num];
     }
     public bool CompareState(PanelSlotState compareState)
     {
         return state == compareState ? true : false;
     }
-    public void SetPosition(int x , int y)
+    public void SetPosition(int x, int y)
     {
         posX = x;
         posY = y;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (state == PanelSlotState.Add) //자신이 Add 상태일 때만 추가한다.
+        {
+            InventoryController.Instance.SelectedItemGrid.CreateAddSlot(); //그
+        }
     }
 }
