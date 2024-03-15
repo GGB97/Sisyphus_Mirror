@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         AnimationData.Initialize();
-
+        id = 21234567;
         Data = DataBase.Player.Get(id);
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
+        
     }
 
     private void Update()
