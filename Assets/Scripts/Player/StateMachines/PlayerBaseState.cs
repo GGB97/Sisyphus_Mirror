@@ -37,6 +37,7 @@ public class PlayerBaseState : IState
     public virtual void Update()
     {
         Move();
+        stateMachine.DashCoolTime += Time.deltaTime;
     }
 
 
@@ -56,7 +57,12 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        
+        if (stateMachine.DashCoolTime > 1)
+        {
+            stateMachine.ChangeState(stateMachine.dashState);
+        }
+        else
+            return;
     }
 
     protected virtual void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -74,6 +80,7 @@ public class PlayerBaseState : IState
     protected void Move()
     {
         Vector3 movementDirection = GetMovementDirection();
+        Rotate(movementDirection);
         float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
         stateMachine.Player.Controller.Move(
             (movementDirection * movementSpeed) * Time.deltaTime
@@ -83,8 +90,8 @@ public class PlayerBaseState : IState
     protected Vector3 GetMovementDirection()  // x와 z축으로만 움직이도록 방향 설정
     {
 
-        Vector3 forward = stateMachine.PlayerTransform.forward;
-        Vector3 right = stateMachine.PlayerTransform.right;
+        Vector3 forward = stateMachine.MainCameraTransform.forward;
+        Vector3 right = stateMachine.MainCameraTransform.right;
 
         forward.y = 0;
         right.y = 0;
@@ -95,6 +102,16 @@ public class PlayerBaseState : IState
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
 
+    private void Rotate(Vector3 movementDirection)
+    {
+        if(movementDirection != Vector3.zero)
+        {
+            //stateMachine.PlayerTransform.LookAt(stateMachine.PlayerTransform.position + movementDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, 1f );
+        }
+    }
+
     //private void Move(Vector3 movementDirection)
     //{
     //    float movementSpeed = playerData.moveSpeed;
@@ -103,13 +120,13 @@ public class PlayerBaseState : IState
     //        );
     //}
 
-    //protected void StartAnimation(int animationHash)
-    //{
-    //    stateMachine.Player.Animator.SetBool(animationHash, true);
-    //}
+    protected void StartAnimation(int animationHash)
+    {
+        stateMachine.Player.Animator.SetBool(animationHash, true);
+    }
 
-    //protected void StopAnimation(int animationHash)
-    //{
-    //    stateMachine.Player.Animator.SetBool(animationHash, false);
-    //}
+    protected void StopAnimation(int animationHash)
+    {
+        stateMachine.Player.Animator.SetBool(animationHash, false);
+    }
 }

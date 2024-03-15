@@ -13,13 +13,13 @@ public class PlayerWalkState : PlayerBaseState
     {
         stateMachine.MovementSpeedModifier = 1f;  //walk 속도
         base.Enter();
-       // StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
     }
 
     public override void Exit() 
     { 
         base.Exit();
-      //  StopAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        StopAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
     }
 
     protected override void OnMoveCanceled(InputAction.CallbackContext context)
@@ -32,13 +32,5 @@ public class PlayerWalkState : PlayerBaseState
         stateMachine.ChangeState(stateMachine.idleState);
 
         base.OnMoveCanceled(context);
-    }
-
-    protected override void OnDashStarted(InputAction.CallbackContext context)
-    {
-        base.OnDashStarted(context);
-        stateMachine.ChangeState(stateMachine.dashState);
-    }
-
-    
+    }    
 }

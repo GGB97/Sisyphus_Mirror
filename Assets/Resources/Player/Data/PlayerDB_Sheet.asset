@@ -14,38 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - health: 0
-    maxHealth: 100
+
+    maxHealth: 60
+
     attackRange: 1
     meleeAtk: 3
     magicAtk: 0
     def: 2
     attackSpeed: 10
     moveSpeed: 5
-    id: 30000001
+
+    id: 21234567
     prefabPath: 
-    DashRange: 0
-    DashRate: 0
-    CritRate: 0
-    CritDamage: 0
-    LifeSteal: 0
-    LV: 0
-    EXP: 0
-    maxEXP: 0
+    dashRange: 0.2
+    dashRate: 1
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
   - health: 0
-    maxHealth: 70
+    maxHealth: 50
+
     attackRange: 1
     meleeAtk: 2
     magicAtk: 0
     def: 0
     attackSpeed: 15
     moveSpeed: 5
-    id: 30000002
+
+    id: 20000002
     prefabPath: 
-    DashRange: 0
-    DashRate: 0
-    CritRate: 0
-    CritDamage: 0
-    LifeSteal: 0
-    LV: 0
-    EXP: 0
-    maxEXP: 0
+    dashRange: 0.2
+    dashRate: 1
+    critRate: 5
+    critDamage: 0
+    lifeSteal: 0
+
