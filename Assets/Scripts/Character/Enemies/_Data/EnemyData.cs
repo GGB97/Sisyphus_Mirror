@@ -12,7 +12,8 @@ public enum EnemyType // 종족
     Golem,
     Bat,
     Dragon,
-    MonsterPlant
+    MonsterPlant,
+    EvilMage
 }
 
 public enum EnemyRank // 등급

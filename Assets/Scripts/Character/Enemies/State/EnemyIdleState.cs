@@ -38,7 +38,7 @@ public class EnemyIdleState : EnemyBaseState
 
         if (TargetInRange()) // 사거리 내에 target이 있을때는 그녀석을 바라보게
         {
-            //LookTargetSlerp();
+            LookTargetSlerp();
         }
             
     }

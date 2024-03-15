@@ -12,7 +12,6 @@ public class EnemyAttackState : EnemyBaseState
     public override void Enter()
     {
         base.Enter();
-
         StartAnimation(EnemyAnimationData.AttackParameterHash);
         enemy.attackDelay = 0;
     }

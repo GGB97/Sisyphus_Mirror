@@ -182,3 +182,16 @@ MonoBehaviour:
     type: 8
     rank: 0
     size: 0
+  - health: 0
+    maxHealth: 20
+    attackRange: 7
+    meleeAtk: 0
+    magicAtk: 3
+    def: 3
+    attackSpeed: 0.3
+    moveSpeed: 2
+    id: 30900000
+    prefabPath: 
+    type: 9
+    rank: 0
+    size: 0
