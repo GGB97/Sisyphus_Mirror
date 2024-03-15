@@ -29,7 +29,7 @@ MonoBehaviour:
     _range: 3
     _lifeSteal: 1
     _type: 0
-    _projectilePath: 
+    _projectileTag: None
     _numberOfProjectile: 0
   - _id: 10001012
     _name: Axe
@@ -47,7 +47,7 @@ MonoBehaviour:
     _range: 3
     _lifeSteal: 1
     _type: 0
-    _projectilePath: 
+    _projectileTag: None
     _numberOfProjectile: 0
   - _id: 10001013
     _name: Axe
@@ -65,7 +65,7 @@ MonoBehaviour:
     _range: 3
     _lifeSteal: 1
     _type: 0
-    _projectilePath: 
+    _projectileTag: None
     _numberOfProjectile: 0
   - _id: 10002011
     _name: Spear
@@ -83,7 +83,7 @@ MonoBehaviour:
     _range: 4
     _lifeSteal: 1
     _type: 0
-    _projectilePath: 
+    _projectileTag: None
     _numberOfProjectile: 0
   - _id: 20001011
     _name: Bow
@@ -101,7 +101,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectilePath: 
+    _projectileTag: Arrow
     _numberOfProjectile: 1
   - _id: 20002011
     _name: Wand
@@ -119,5 +119,5 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectilePath: 
+    _projectileTag: Magic
     _numberOfProjectile: 3

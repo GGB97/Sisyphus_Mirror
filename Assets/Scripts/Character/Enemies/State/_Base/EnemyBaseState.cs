@@ -59,7 +59,7 @@ public class EnemyBaseState : IState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (enemy.isHit && enemy.knockbackDelay > 0.3f)
+        if (enemy.isHit && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
         {
             enemy.InvokeEvent(enemy.OnHitEvent);
         }
@@ -104,5 +104,13 @@ public class EnemyBaseState : IState
     protected bool IsAttackReady()
     {
         return (enemy.attackDelay >= 1 / enemy.Info.attackSpeed);
+    }
+
+    protected Quaternion LookTargetPos() // 바라볼 방향 계산
+    {
+        Vector3 directionToLookAt = enemy.target.position - enemy.transform.position;
+        directionToLookAt.y = 0; // 수평 회전만 고려
+
+        return Quaternion.LookRotation(directionToLookAt);
     }
 }
