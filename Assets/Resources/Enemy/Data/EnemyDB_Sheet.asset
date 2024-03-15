@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - id: 10101
+  - id: 30000000
     health: 0
     maxHealth: 20
     attackRange: 1.6
@@ -24,29 +24,29 @@ MonoBehaviour:
     moveSpeed: 2
     type: 0
     rank: 0
-  - id: 10102
+  - id: 30010001
     health: 0
     maxHealth: 50
     attackRange: 1.6
     meleeAtk: 5
     magicAtk: 0
     def: 5
-    attackSpeed: 0.6
+    attackSpeed: 0.5
     moveSpeed: 3
     type: 0
     rank: 1
-  - id: 10103
+  - id: 30020001
     health: 0
     maxHealth: 700
     attackRange: 1.6
     meleeAtk: 7
     magicAtk: 0
     def: 7
-    attackSpeed: 0.6
+    attackSpeed: 0.5
     moveSpeed: 3
     type: 0
     rank: 2
-  - id: 10201
+  - id: 30100000
     health: 0
     maxHealth: 20
     attackRange: 1.7
@@ -57,3 +57,25 @@ MonoBehaviour:
     moveSpeed: 2
     type: 1
     rank: 0
+  - id: 30110001
+    health: 0
+    maxHealth: 50
+    attackRange: 1.7
+    meleeAtk: 3
+    magicAtk: 0
+    def: 3
+    attackSpeed: 0.5
+    moveSpeed: 3
+    type: 1
+    rank: 1
+  - id: 30120001
+    health: 0
+    maxHealth: 700
+    attackRange: 1.7
+    meleeAtk: 7
+    magicAtk: 0
+    def: 7
+    attackSpeed: 0.5
+    moveSpeed: 3
+    type: 1
+    rank: 2

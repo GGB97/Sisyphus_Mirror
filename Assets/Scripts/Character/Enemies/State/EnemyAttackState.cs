@@ -15,44 +15,48 @@ public class EnemyAttackState : EnemyBaseState
 
         StartAnimation(EnemyAnimationData.AttackParameterHash);
 
-        enemy.transform.LookAt(enemy.target.transform);
-        attackDelay = 0;
+        //enemy.transform.LookAt(enemy.target.transform);
+        enemy.attackDelay = 0;
     }
 
     public override void Update()
     {
         base.Update();
-                
-        // Attack이 재생중이 아니라면 (공격을 하고있지 않을 경우)
-        if (!IsAttacking())
+
+        // Attack이 재생중이 아니라면 (공격이 끝났다면)
+        if (IsAttacking() == false)
         {
-            // target과의 거리가 range 보다 크다면 사거리 밖에 있으니 추적
-            if (Vector3.Distance(enemy.target.position, enemy.transform.position) > stats.attackRange)
+            if (enemy.attackDelay > 0.25f)
             {
-                stateMachine.ChangeState(stateMachine.ChasingState);
-            }
-            else // 사거리 밖에 있는게 아니면 사거리 이내에 있다는 뜻이니까
-            {
-                if (attackDelay >= 1 / enemy.Stat.attackSpeed) // 공격속도에 의해서 공격가능 판정
-                {
-                    stateMachine.ChangeState(stateMachine.AttackState);
-                }
+                stateMachine.ChangeState(stateMachine.IdleState);
+                return;
             }
         }
 
         // target이 null이면 (죽었으면?) idle로 전환
-        if (!HasTarget())
+        if (HasTarget() == false)
+        {
             stateMachine.ChangeState(stateMachine.IdleState);
+            return;
+        }
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        StopAnimation(EnemyAnimationData.AttackParameterHash);
     }
 
-    protected bool IsAttacking()
+    protected bool IsAttacking() // true == 공격 진행중
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.shortNameHash == EnemyAnimationData.AttackAnimationHash;
+        if (stateInfo.shortNameHash == EnemyAnimationData.AttackStateHash)
+        {
+            // Attack애니메이션이 어느정도 진행되었을때만.
+            return !(stateInfo.normalizedTime > 0.98f);
+        }
+
+        return false;
     }
 }

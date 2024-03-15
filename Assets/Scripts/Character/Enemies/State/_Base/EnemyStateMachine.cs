@@ -10,6 +10,8 @@ public class EnemyStateMachine : StateMachine
     public EnemyIdleState IdleState { get; private set; }
     public EnemyChasingState ChasingState { get; private set; }
     public EnemyAttackState AttackState { get; private set; }
+    public EnemyHitState HitState { get; private set; }
+    public EnemyDieState DieState { get; private set; }
 
     public EnemyStateMachine(Enemy enemy)
     {
@@ -18,5 +20,7 @@ public class EnemyStateMachine : StateMachine
         IdleState = new(this);
         ChasingState = new(this);
         AttackState = new(this);
+        HitState = new(this);
+        DieState = new(this);
     }
 }

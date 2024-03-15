@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e379f8326c9b14c48a0f8c964095567e, type: 3}
+  m_Name: WeaponDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 10001011
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
+    _price: 24
+    _grade: 0
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: 
+    _numberOfProjectile: 0
+  - _id: 10001012
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
+    _price: 24
+    _grade: 1
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: 
+    _numberOfProjectile: 0
+  - _id: 10001013
+    _name: Axe
+    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
+    _price: 24
+    _grade: 2
+    _atk: 2
+    _atkRate: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 3
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: 
+    _numberOfProjectile: 0
+  - _id: 10002011
+    _name: Spear
+    _description: "\uCC3D"
+    _spritePath: Resources/Items/Icons/Weapons/Melee/Spear1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Spear_1
+    _price: 30
+    _grade: 0
+    _atk: 2
+    _atkRate: 0.7
+    _critRate: 1
+    _critDamage: 1
+    _range: 4
+    _lifeSteal: 1
+    _type: 0
+    _projectilePath: 
+    _numberOfProjectile: 0
+  - _id: 20001011
+    _name: Bow
+    _description: "\uD65C."
+    _spritePath: Resources/Items/Icons/Weapon/Range/Bow_1
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Resources/Items/Prefabs/Weapons/Range/Bow_1
+    _price: 35
+    _grade: 0
+    _atk: 3
+    _atkRate: 0.7
+    _critRate: 5
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectilePath: 
+    _numberOfProjectile: 1
+  - _id: 20002011
+    _name: Wand
+    _description: "\uC644\uB4DC"
+    _spritePath: Resources/Items/Icons/Weapon/Range/Wand_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Resources/Items/Prefabs/Weapons/Range/Wand_1
+    _price: 35
+    _grade: 0
+    _atk: 5
+    _atkRate: 1
+    _critRate: 5
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectilePath: 
+    _numberOfProjectile: 3
