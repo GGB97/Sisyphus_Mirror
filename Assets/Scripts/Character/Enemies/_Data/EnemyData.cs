@@ -5,7 +5,15 @@ using UnityEngine;
 public enum EnemyType // 종족
 {
     Slime,
-    TurtleShell
+    TurtleShell,
+    Spider,
+    Skeleton,
+    Orc,
+    Golem,
+    Bat,
+    Dragon,
+    MonsterPlant,
+    EvilMage
 }
 
 public enum EnemyRank // 등급
@@ -34,4 +42,6 @@ public struct EnemyData
 
     public static readonly int ChasingPriority = 51;
     public static readonly int DefaultPriority = 50;
+
+    public static readonly float KnockBackDelayTime = 0.3f;
 }

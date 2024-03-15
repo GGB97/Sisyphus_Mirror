@@ -24,8 +24,7 @@ public class Enemy : CharacterBehaviour
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
-
-    public float knockbackDelay;
+    public float rotationSpeed = 3f;
 
     private void Awake()
     {
@@ -75,13 +74,29 @@ public class Enemy : CharacterBehaviour
 
         isHit = false;
         OnHitEvent += ChangeHitState;
-        
+
+        chasingDelay = 10f; // 그냥 초기값 설정
+        attackDelay = 10f;
+        knockbackDelay = 10f;
+
+        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
+        {
+            case EnemyRank.Normal:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance; 
+                break;
+            case EnemyRank.Elite:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Boss:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+                break;
+        }
     }
 
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        Debug.Log($"OnChildTriggerEnter : {gameObject.name} Attack {other.gameObject.name}");
+        Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     void ChangeDieState()
