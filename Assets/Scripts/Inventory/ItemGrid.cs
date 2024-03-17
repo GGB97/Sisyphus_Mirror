@@ -84,11 +84,6 @@ public class ItemGrid : MonoBehaviour
                     panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
                 }
             }
-
-            //addCount;
-            currentAddSlot = 0;//현재 추가 슬롯
-
-            //ShowRandomAddableSlot();
         }
     }
     public void ShowRandomAddableSlot()
@@ -220,7 +215,7 @@ public class ItemGrid : MonoBehaviour
 
         if (toReturn == null) { return null; } //빈 공간을 터치했을 때 널 리턴
 
-        CleanGridReference(toReturn);
+        CleanGridReference(toReturn);//있던 자리 null 처리
 
         return toReturn;
     }
@@ -283,14 +278,14 @@ public class ItemGrid : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
 
-                if (CheckAvailableSpace(x, y, itemToInsert.itemData.width, itemToInsert.itemData.height) == true)
+                if (CheckAvailableSpace(x, y, itemToInsert.itemData.width, itemToInsert.itemData.height) == true)//x, y에 아이템을 설치할 수 있는지 체크 후 true
                 {
-                    return new Vector2Int(x, y);
+                    return new Vector2Int(x, y);//설치할 수 있으면 x,y 값 리턴
                 }
             }
         }
 
-        return null;
+        return null;//설치 불가능하면 null리턴
     }
     public void ShowAddableSlot(PanelSlot panelSlot, ref int currentAddSlot)
     {

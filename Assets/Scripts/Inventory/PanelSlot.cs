@@ -14,44 +14,18 @@ public enum PanelSlotState
 public class PanelSlot : MonoBehaviour , IPointerClickHandler
 {
     public PanelSlotState state = PanelSlotState.Null;
-    //public RectTransform rectTransform;
     Image image;
     public int posX;
     public int posY;
     private void Awake()
     {
         image = GetComponent<Image>();
-        //rectTransform = GetComponent<RectTransform>();
     }
     public void ChangeSlotState(PanelSlotState changeState)
     {
         state = changeState;//상태 변경
         ChangeSlotSprite((int)changeState);
-        //ChangeSlotSprite();
     }
-    //private void ChangeSlotSprite()//상태에 맞는 스프라이트 변경
-    //{
-    //    switch (state) 
-    //    {
-    //        case PanelSlotState.Empty:
-    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Empty];
-    //            break;
-    //        case PanelSlotState.Full:
-    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Full];
-    //            break;
-    //        case PanelSlotState.Add:
-    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Add];
-    //            break;
-    //        case PanelSlotState.Null:
-    //            image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
-    //            break;
-    //        default:
-    //            {
-    //                image.sprite = InventoryManager.Instance.slotSprites[(int)PanelSlotState.Null];
-    //                break;
-    //            }
-    //    }
-    //}
     private void ChangeSlotSprite(int num)//상태에 맞는 스프라이트 변경
     {
         image.sprite = InventoryController.Instance.slotSprites[num];

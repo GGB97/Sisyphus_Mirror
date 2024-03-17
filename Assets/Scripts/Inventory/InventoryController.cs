@@ -15,7 +15,7 @@ public class InventoryController : MonoBehaviour
         get => selectedItemGrid; 
         set { 
             selectedItemGrid = value;
-            inventoryHighlight.SetParent(selectedItemGrid);
+            //inventoryHighlight.SetParent(selectedItemGrid);
         } 
     }
 
@@ -54,7 +54,8 @@ public class InventoryController : MonoBehaviour
     }
     private void Update()
     {
-       
+        ItemIconDrag();
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (selectedItem == null)
@@ -68,11 +69,11 @@ public class InventoryController : MonoBehaviour
             InsertRandomItem();
         }
 
-        if (selectedItemGrid == null) // 그리드 위에 없다면
-        {
-            inventoryHighlight.Show(false); //하이라이트 끔
-            return;
-        }
+        //if (selectedItemGrid == null) // 그리드 위에 없다면
+        //{
+        //    inventoryHighlight.Show(false); //하이라이트 끔
+        //    return;
+        //}
         //HandleHightlight();//하이트 
 
         //if (Input.GetMouseButtonDown(0))
@@ -108,7 +109,7 @@ public class InventoryController : MonoBehaviour
     {
         if (selectedItemGrid == null) { return; }
 
-        CreateRandomItem();
+        CreateRandomItem();//아이템 생성
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
         InsertItem(itemToInsert);
@@ -118,7 +119,7 @@ public class InventoryController : MonoBehaviour
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
-        if (posOnGrid == null)
+        if (posOnGrid == null)//설치 불가능 이면 return
         {
             return;
         }
@@ -180,20 +181,19 @@ public class InventoryController : MonoBehaviour
     //        PlaceItem(tileGridPosition);//설치한다.
     //    }
     //}
-    public void LeftMouseButtonPress() //마우스 클릭했을 때
+    public void LeftMouseButtonPress(Vector2 mousePostion) //마우스 클릭했을 때
     {
-        Vector2Int tileGridPosition = GetTileGridPosition();//Grid 좌표 가져옴
-        PickUpItem(tileGridPosition);//들고
+        Vector2Int tileGridPosition = GetTileGridPosition(mousePostion);//Grid 좌표 가져옴
+        PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
     }
-    public void LeftMouseButtonPut(Vector2 putPosition)
+    public void LeftMouseButtonPut(Vector2 putPosition)//스크린상 중심의 위치
     {
-        Vector2Int tileGridPosition = GetTileGridPosition(putPosition);//grid 상 좌표
-        if (DragPlaceItem(tileGridPosition) == false)
+        Vector2Int tileGridPosition = GetTileGridPosition(putPosition);//grid 상 첫 칸의 좌표
+        if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
         {
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition);
             PlaceItem(tileGridStartPosition);
         }
-        startPosition = Vector2.zero;
     }
     private Vector2Int GetTileGridPosition(Vector2 putPosition) //Grid상의 첫 칸의 좌표를 얻는다.
     {
@@ -252,7 +252,7 @@ public class InventoryController : MonoBehaviour
     private void PickUpItem(Vector2Int tileGridPosition) //해당 좌표의 아이템을 선택한다. 있던 자리는 null로 변경
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
-        Debug.Log("null");
+        Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();

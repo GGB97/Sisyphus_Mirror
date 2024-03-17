@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour
 {
     public ItemData itemData;//아이템 정보
-    public PanelSlot panelSlot;
 
     public int onGridPositionX;//아이템 첫 칸의 X정보
     public int onGridPositionY;//아이템 첫 칸의 Y정보
