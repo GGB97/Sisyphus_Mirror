@@ -191,17 +191,15 @@ public class ItemGrid : MonoBehaviour
 
         return true; 
     }
-    private bool CheckAvailableSpace(int posX, int posY, int width, int height)
+    private bool CheckAvailableSpace(int posX, int posY, int width, int height)//설치할 수 있는지 체크 
     {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                if (inventoryItemSlot[posX + x, posY + y] != null)
-                {
-                    
+                if (inventoryItemSlot[posX + x, posY + y] != null || !panelSlots[posX + x, posY + y].CompareState(PanelSlotState.Empty)) //물체의 크기만큼 바닥과 설치할 공간이 있는지 확인
+                {    
                     return false; //아니면 false
-
                 }
             }
         }
@@ -242,7 +240,10 @@ public class ItemGrid : MonoBehaviour
         {
             return false;
         }
-
+        if (!panelSlots[posX, posY].CompareState(PanelSlotState.Empty))//비어있는지 체크
+        {
+            return false;
+        }
         return true;
     }
 
