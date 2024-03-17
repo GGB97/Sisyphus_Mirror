@@ -147,6 +147,7 @@ public class ItemGrid : MonoBehaviour
             for (int y = 0; y < inventoryItem.itemData.height; y++)
             {
                 inventoryItemSlot[posX + x, posY + y] = inventoryItem;
+                panelSlots[posX + x, posY + y].ChangeSlotState(PanelSlotState.Full);//바닥 교체
             }
         }
 
@@ -225,6 +226,7 @@ public class ItemGrid : MonoBehaviour
             for (int iy = 0; iy < item.itemData.height; iy++)
             {
                 inventoryItemSlot[item.onGridPositionX + ix, item.onGridPositionY + iy] = null;//아이템 공간만큼 null
+                panelSlots[item.onGridPositionX + ix, item.onGridPositionY + iy].ChangeSlotState(PanelSlotState.Empty);//바닥 Empty 변경
             }
         }
     }
