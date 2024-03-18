@@ -81,9 +81,6 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Move(Vector3 position)
     {
-        while (!transform.position.Equals(position))
-        {
-            transform.Translate(position);
-        }
+        
     }
 }
