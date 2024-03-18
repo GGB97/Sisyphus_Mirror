@@ -14,16 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - health: 0
-
     maxHealth: 60
-
     attackRange: 1
     meleeAtk: 3
     magicAtk: 0
     def: 2
     attackSpeed: 10
     moveSpeed: 5
-
     id: 21234567
     prefabPath: 
     dashRange: 0.2
@@ -33,14 +30,12 @@ MonoBehaviour:
     lifeSteal: 0
   - health: 0
     maxHealth: 50
-
     attackRange: 1
     meleeAtk: 2
     magicAtk: 0
     def: 0
     attackSpeed: 15
     moveSpeed: 5
-
     id: 20000002
     prefabPath: 
     dashRange: 0.2
@@ -48,4 +43,3 @@ MonoBehaviour:
     critRate: 5
     critDamage: 0
     lifeSteal: 0
-

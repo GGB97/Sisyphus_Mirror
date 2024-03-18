@@ -148,7 +148,7 @@ MonoBehaviour:
   _weaponPivot: {fileID: 8255068039278082811}
   Target: []
   _animator: {fileID: 0}
-  id: 0
+  id: 10122011
   weaponData:
     _id: 0
     _name: 
