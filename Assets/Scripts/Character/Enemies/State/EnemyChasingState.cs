@@ -25,15 +25,7 @@ public class EnemyChasingState : EnemyBaseState
     public override void Update()
     {
         base.Update();
-
         enemy.chasingDelay += Time.deltaTime;
-
-        // 공격이 가능하다면
-        if (CanAttack())
-        {
-            stateMachine.ChangeState(stateMachine.AttackState);
-            return;
-        }
 
         // target의 위치 갱신
         if (CanChase())
@@ -42,6 +34,20 @@ public class EnemyChasingState : EnemyBaseState
             // 추후 Player의 진행방향과 속도를 가지고 보스 or 정예몹은 Player의 움직임을 예측해서 추적하는 방식으로 해도 괜찮을듯
             agent.SetDestination(enemy.target.position);
             return;
+        }
+
+        // 사거리 내에 target이 있다면
+        if (TargetInRange())
+        {
+            if (TargetOnFront() && IsAttackReady()) // 타겟이 정면에 있고 공격이 가능한 상태면
+            {
+                stateMachine.ChangeState(stateMachine.AttackState);
+                return;
+            }
+            else // 아니라면 idle로 전환해서 target을 바라보게
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+            }
         }
 
         // target이 null이면 (죽었으면?) idle로 전환

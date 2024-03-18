@@ -18,6 +18,8 @@ public class InventoryController : MonoBehaviour
             //inventoryHighlight.SetParent(selectedItemGrid);
         } 
     }
+    [SerializeField]
+    private ItemGrid previousItemGird;
 
     public InventoryItem selectedItem;
     InventoryItem overlapitem;
@@ -32,7 +34,6 @@ public class InventoryController : MonoBehaviour
 
     public Sprite[] slotSprites; //슬롯의 스프라이트
     public int addCount = 6;//추가 칸 개수
-    public bool isAdding = false;
     public Vector2 startPosition;
     //public Vector2 endPosition;
     private void Awake()
@@ -56,13 +57,13 @@ public class InventoryController : MonoBehaviour
     {
         ItemIconDrag();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (selectedItem == null)
-            {
-                CreateRandomItem();  //생성 후 아이템 선택 상태로 전환
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    if (selectedItem == null)
+        //    {
+        //        CreateRandomItem();  //생성 후 아이템 선택 상태로 전환
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -81,30 +82,12 @@ public class InventoryController : MonoBehaviour
         //    LeftMouseButtonPress();
         //}
     }
-    public void StartButton()
+    public void StartButton()//칸 확장 기능
     {
         addCount = 6;
         SelectedItemGrid = itemGrid;
         SelectedItemGrid.ShowRandomAddableSlot();
     }
-
-    public void CheckAddableBlock()
-    {
-        SelectedItemGrid = itemGrid;
-        while (addCount > 0)
-        {
-            AddBlock();
-        }
-        isAdding = false;
-    }
-    public void AddBlock()
-    {
-        if (SelectedItemGrid.isSetting == false)//기본이 false
-        {
-            SelectedItemGrid.ShowRandomAddableSlot();
-        }
-    }
-
     private void InsertRandomItem()
     {
         if (selectedItemGrid == null) { return; }
@@ -191,6 +174,7 @@ public class InventoryController : MonoBehaviour
         Vector2Int tileGridPosition = GetTileGridPosition(putPosition);//grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
         {
+            SelectedItemGrid = previousItemGird;//이동 전 그리도로 재 설정
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition);
             PlaceItem(tileGridStartPosition);
         }
@@ -252,11 +236,12 @@ public class InventoryController : MonoBehaviour
     private void PickUpItem(Vector2Int tileGridPosition) //해당 좌표의 아이템을 선택한다. 있던 자리는 null로 변경
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
+        previousItemGird = selectedItemGrid;//이전 그리드 설정
         Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
-            //rectTransform.SetAsLastSibling();
+            rectTransform.SetAsLastSibling();
         }
     }
     private void ItemIconDrag() //선택된 아이템의 위치를 마우스 위치로 이동

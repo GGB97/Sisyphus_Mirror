@@ -223,7 +223,7 @@ MonoBehaviour:
     attackAngle: 30
   - health: 0
     maxHealth: 20
-    attackRange: 7
+    attackRange: 10
     meleeAtk: 0
     magicAtk: 3
     def: 3
@@ -236,4 +236,20 @@ MonoBehaviour:
     element: 0
     size: 0
     rotationSpeed: 3
+    attackAngle: 5
+  - health: 0
+    maxHealth: 20
+    attackRange: 20
+    meleeAtk: 0
+    magicAtk: 5
+    def: 5
+    attackSpeed: 0.5
+    moveSpeed: 0
+    id: 31000000
+    prefabPath: 
+    type: 10
+    rank: 0
+    element: 0
+    size: 0
+    rotationSpeed: 4
     attackAngle: 5
