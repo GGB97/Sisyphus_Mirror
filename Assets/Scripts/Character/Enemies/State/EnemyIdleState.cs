@@ -30,7 +30,7 @@ public class EnemyIdleState : EnemyBaseState
         }
 
         // target이 존재하고 공격 사거리 안에 없다면
-        if (HasTarget() && !TargetInRange())
+        if (HasTarget() && TargetInRange() == false)
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
             return;
@@ -50,11 +50,5 @@ public class EnemyIdleState : EnemyBaseState
         StopAnimation(EnemyAnimationData.IdleParameterHash);
     }
 
-    void LookTargetSlerp() // 대상을 천천히 바라봄
-    {
-        Quaternion targetRotation = LookTargetPos();
-
-        // 바라보는 방향 수정
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.rotationSpeed * Time.deltaTime); // 보간
-    }
+    
 }

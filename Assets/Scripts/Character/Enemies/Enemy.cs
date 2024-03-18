@@ -24,7 +24,6 @@ public class Enemy : CharacterBehaviour
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
-    public float rotationSpeed = 3f;
 
     private void Awake()
     {
@@ -68,6 +67,7 @@ public class Enemy : CharacterBehaviour
         stateMachine = new(this);
 
         Agent.stoppingDistance = Info.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+        Agent.angularSpeed = 240f;
 
         isDie = false;
         OnDieEvent += ChangeDieState;
