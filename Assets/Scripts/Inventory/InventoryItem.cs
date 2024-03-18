@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public ItemData itemData;//아이템 정보
-    public PanelSlot panelSlot;
+    public ItemData itemData;//아이템 가로,세로,스프라이트 정보
 
     public int onGridPositionX;//아이템 첫 칸의 X정보
     public int onGridPositionY;//아이템 첫 칸의 Y정보
-
-    public bool rotated = false;
 
     public void Set(ItemData itemData) //아이템 생성할 때 아이템 설정
     {
