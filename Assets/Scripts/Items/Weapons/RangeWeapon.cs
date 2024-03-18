@@ -11,7 +11,7 @@ public class RangeWeapon : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
-    public int id;
+    [SerializeField] private int id;
     public WeaponData weaponData;
 
     private float _coolDown;
@@ -21,7 +21,6 @@ public class RangeWeapon : MonoBehaviour
 
     void Start()
     {
-        id = 20001011;  // 추후에 수정
         weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
 
