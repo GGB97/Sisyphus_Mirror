@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class EnemyDB
+public class ProjectileDB
 {
-    Dictionary<int, EnemyInfo> _stats = new();
+    Dictionary<int, ProjectileData> _datas = new();
 
-    public EnemyDB()
+    public ProjectileDB()
     {
-        var res = Resources.Load<EnemyDB_Sheet>(DBPath.EnemyDB);
+        var res = Resources.Load<ProjectileDB_Sheet>(DBPath.ProjectileDB);
         var enemySO = Object.Instantiate(res);
         var entities = enemySO.Entities;
 
@@ -21,17 +20,17 @@ public class EnemyDB
         {
             var stat = entities[i];
 
-            if (_stats.ContainsKey(stat.id))
-                _stats[stat.id] = stat;
+            if (_datas.ContainsKey(stat.id))
+                _datas[stat.id] = stat;
             else
-                _stats.Add(stat.id, stat);
+                _datas.Add(stat.id, stat);
         }
     }
 
-    public EnemyInfo Get(int id)
+    public ProjectileData Get(int id)
     {
-        if (_stats.ContainsKey(id))
-            return _stats[id];
+        if (_datas.ContainsKey(id))
+            return _datas[id];
 
         return null;
     }

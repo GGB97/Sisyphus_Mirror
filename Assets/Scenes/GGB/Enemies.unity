@@ -2836,6 +2836,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 383024382}
+    - target: {fileID: 439337337260440862, guid: e071d90c69f3b5f41987bfbb0576367f,
+        type: 3}
+      propertyPath: _projectileTag.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527959356449364712, guid: e071d90c69f3b5f41987bfbb0576367f,
         type: 3}
       propertyPath: m_Name

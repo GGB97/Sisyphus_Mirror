@@ -18,8 +18,14 @@ public struct LayerData
     public static readonly LayerMask Projectile = 1 << LayerMask.NameToLayer("Projectile");
 }
 
-public enum ProjectileData
+public struct DBPath
 {
-    OrangeExplosion = 123132132,
+    public static readonly string EnemyDB = "Enemy/Data/EnemyDB_Sheet";
+    public static readonly string ProjectileDB = "Enemy/Data/EnemyDB_Sheet";
+}
+
+public enum ProjectileID
+{
+    OrangeExplosion,
     Poison,
 }

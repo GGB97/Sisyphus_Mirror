@@ -29,7 +29,7 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Collider[] _meleeAttackColliders;
 
     [SerializeField] Transform[] _rangeAttackPos;
-    [SerializeField] ProjectileData[] _projectileTag;
+    [SerializeField] ProjectileID[] _projectileTag;
 
     private void Awake()
     {
