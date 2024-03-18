@@ -57,14 +57,6 @@ public class InventoryController : MonoBehaviour
     {
         ItemIconDrag();
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    if (selectedItem == null)
-        //    {
-        //        CreateRandomItem();  //생성 후 아이템 선택 상태로 전환
-        //    }
-        //}
-
         if (Input.GetKeyDown(KeyCode.W))
         {
             InsertRandomItem();
@@ -174,9 +166,11 @@ public class InventoryController : MonoBehaviour
         Vector2Int tileGridPosition = GetTileGridPosition(putPosition);//grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
         {
-            SelectedItemGrid = previousItemGird;//이동 전 그리도로 재 설정
+            ItemGrid temp = SelectedItemGrid;//마우스 위치의 Grid 임시 저장.
+            SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition);
             PlaceItem(tileGridStartPosition);
+            SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
     }
     private Vector2Int GetTileGridPosition(Vector2 putPosition) //Grid상의 첫 칸의 좌표를 얻는다.
