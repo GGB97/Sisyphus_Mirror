@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : CharacterBehaviour
 {
@@ -24,6 +25,12 @@ public class Enemy : CharacterBehaviour
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
+
+    [SerializeField] Collider[] _meleeAttackColliders;
+
+    [SerializeField] Transform[] _rangeAttackPos;
+    [SerializeField] GameObject[] _projectilePrefabs;
+    [SerializeField] string[] _projectileTag;
 
     private void Awake()
     {
@@ -82,7 +89,7 @@ public class Enemy : CharacterBehaviour
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
         {
             case EnemyRank.Normal:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance; 
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
                 break;
             case EnemyRank.Elite:
                 Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
@@ -112,5 +119,38 @@ public class Enemy : CharacterBehaviour
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
+    }
+
+    public void AttackStart(int num)
+    {
+        //Debug.Log("Attack Start");
+        _meleeAttackColliders[num].enabled = true;
+    }
+
+    public void AttackEnd(int num)
+    {
+        _meleeAttackColliders[num].enabled = false;
+        //Debug.Log("Attack End");
+    }
+
+    public void RangedAttack(int prfabNum, int posNum)
+    {
+        GameObject go = Instantiate(_projectilePrefabs[prfabNum],
+            _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
+
+        //GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        //    _projectileTag[prfabNum],
+        //    _rangeAttackPos[posNum].transform.position,
+        //    _rangeAttackPos[posNum].transform.rotation);
+
+        Vector3 directionToTarget = target.position - transform.position;
+        directionToTarget.y = 0f;
+        directionToTarget.Normalize();
+
+        ProjectileTest projectile = go.GetComponent<ProjectileTest>();
+
+        projectile.AddTarget(LayerData.Player);
+        projectile.AddExcludeLayer(LayerData.Enemy);
+        projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
     }
 }

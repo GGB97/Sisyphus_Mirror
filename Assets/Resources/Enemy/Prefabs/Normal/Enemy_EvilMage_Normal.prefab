@@ -35,7 +35,7 @@ Transform:
   - {fileID: 1633271275141041226}
   - {fileID: 7304681824439530632}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &5072865644131608700
 CharacterController:
@@ -141,6 +141,13 @@ MonoBehaviour:
     moveSpeed: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
+  _meleeAttackColliders: []
+  _rangeAttackPos:
+  - {fileID: 7304681824439530632}
+  _projectilePrefabs:
+  - {fileID: 6615606392305212438, guid: ece296002937ce646a0d3d9b3fad11dc, type: 3}
+  _projectileTag:
+  - Orange Explosion
 --- !u!114 &4161329191314674582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1388,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23962246d85957c48a3397266f740f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPivot: {fileID: 1371084417138996174}
-  testPrefab: {fileID: 4893003532053511732, guid: 5f6b63dda51be844f961f8c83bca24f4,
-    type: 3}

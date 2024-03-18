@@ -13,7 +13,8 @@ public enum EnemyType // 종족
     Bat,
     Dragon,
     MonsterPlant,
-    EvilMage
+    EvilMage,
+    Worm
 }
 
 public enum EnemyRank // 등급
