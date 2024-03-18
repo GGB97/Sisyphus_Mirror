@@ -39,6 +39,7 @@ public class ProjectileTest : MonoBehaviour
 
     private void OnDisable()
     {
+        ObjectPoolManager.Instance.ReturnToPull(gameObject);
         hitParticle.SetActive(false);
     }
 
