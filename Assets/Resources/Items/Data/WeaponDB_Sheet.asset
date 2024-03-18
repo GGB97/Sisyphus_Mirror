@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - _id: 10001011
+  - _id: 10111011
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
@@ -31,7 +31,7 @@ MonoBehaviour:
     _type: 0
     _projectileTag: None
     _numberOfProjectile: 0
-  - _id: 10001012
+  - _id: 10111012
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
@@ -49,7 +49,7 @@ MonoBehaviour:
     _type: 0
     _projectileTag: None
     _numberOfProjectile: 0
-  - _id: 10001013
+  - _id: 10111013
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Resources/Items/Icons/Weapons/Melee/Axe_1
@@ -67,7 +67,7 @@ MonoBehaviour:
     _type: 0
     _projectileTag: None
     _numberOfProjectile: 0
-  - _id: 10002011
+  - _id: 10112013
     _name: Spear
     _description: "\uCC3D"
     _spritePath: Resources/Items/Icons/Weapons/Melee/Spear1
@@ -85,7 +85,7 @@ MonoBehaviour:
     _type: 0
     _projectileTag: None
     _numberOfProjectile: 0
-  - _id: 20001011
+  - _id: 10121011
     _name: Bow
     _description: "\uD65C."
     _spritePath: Resources/Items/Icons/Weapon/Range/Bow_1
@@ -103,7 +103,7 @@ MonoBehaviour:
     _type: 1
     _projectileTag: Arrow
     _numberOfProjectile: 1
-  - _id: 20002011
+  - _id: 10122011
     _name: Wand
     _description: "\uC644\uB4DC"
     _spritePath: Resources/Items/Icons/Weapon/Range/Wand_1

@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IEquipable
+{
+    WeaponData OnEquip();
+    WeaponData OnUnequip();
+}
+
 public class EquipmentManager : SingletoneBase<EquipmentManager>
 {
     public Transform Player { get; private set; }
@@ -10,12 +16,6 @@ public class EquipmentManager : SingletoneBase<EquipmentManager>
     void Start()
     {
         Player = GameObject.FindWithTag("Player").transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnEquip()
