@@ -34,3 +34,9 @@ public enum ProjectileID
     OrangeExplosion = 40000100,
     Poison,
 }
+
+public enum DamageType
+{
+    Physical,
+    Magic
+}

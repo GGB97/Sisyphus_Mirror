@@ -150,6 +150,11 @@ public class Enemy : CharacterBehaviour
 
         projectile.AddTarget(LayerData.Player);
         projectile.AddExcludeLayer(LayerData.Enemy);
-        projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+
+        float value = projectile.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        projectile.SetValue(value);
+
+        //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+        projectile.SetVelocity(1f); // 속도 배율 설정
     }
 }

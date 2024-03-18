@@ -29,8 +29,5 @@ public class Surface : MonoBehaviour
         {
             nms.BuildNavMesh(); // Bake
         }
-
-        //GameObject go = Resources.Load<GameObject>("Projectile/Prefabs/Orange Explosion");
-        //Instantiate(go);
     }
 }

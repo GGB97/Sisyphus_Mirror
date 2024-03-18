@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93501b526380cd541acced0f9e95dd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 40000101
   target:
     serializedVersion: 2
     m_Bits: 0

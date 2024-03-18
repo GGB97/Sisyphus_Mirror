@@ -304,9 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pools:
   - id: 40000100
-    size: 5
+    size: 1
   - id: 40000101
-    size: 5
+    size: 1
   _spawnObjects: []
 --- !u!1 &383024378
 GameObject:
