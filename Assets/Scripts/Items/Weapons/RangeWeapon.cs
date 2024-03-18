@@ -45,6 +45,8 @@ public class RangeWeapon : MonoBehaviour
 
     public void DetectEnemyInRange()
     {
+        Target.Clear();
+
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, weaponData.Range, 1 << 7);
         if (colliders.Length == 0) return;
 

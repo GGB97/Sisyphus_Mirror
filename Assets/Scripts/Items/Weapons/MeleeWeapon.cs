@@ -8,31 +8,86 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private WeaponData _weaponData;
 
     [SerializeField] private Animator _animator;
-    [SerializeField] private TrailRenderer _trailRenderer;
+    //[SerializeField] private TrailRenderer _trailRenderer;
+    [SerializeField] GameObject _effect;
 
     public List<Transform> Target = new List<Transform>();
 
     [SerializeField] private int id;
-    [SerializeField] private float _coolDown;
-    private bool _canAttack;
+    [SerializeField] Vector3 _weaponPivot;
+    [SerializeField] Vector3 _targetPos;
+
+    bool _isMoving;
+    bool _canAttack;
+    bool _animationEnd;
+
+    float _timeStartedMoving;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _weaponData = DataBase.Weapon.Get(id);
+        _weaponPivot = transform.position;
 
-        StartCoroutine("Attack");
-
+        _effect.SetActive(false);
+        _isMoving = false;
         _canAttack = true;
     }
 
     private void Update()
     {
-        
+        if(Target.Count == 0)
+        {
+            DetectEnemyInRange();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        // 선형 보간 시작한 시간
+        float timeSinceStarted = Time.time - _timeStartedMoving;
+        // 선형 보간 진행 정도
+        float percentageComplete = timeSinceStarted / (_weaponData.AtkRate / 3);
+
+        if (Target.Count != 0 && _isMoving && _canAttack)
+        {
+            // 근접 공격 이동
+            transform.position = Vector3.Lerp(transform.position, _targetPos, percentageComplete);
+
+            // 이동이 완료되면
+            if(percentageComplete >= .5f)
+            {
+                _animationEnd = false;
+                Debug.Log("Melee Attack");
+                // 공격 애니메이션 재생
+                _animator.SetTrigger("Attack");
+                _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkRate);
+            }
+            if (percentageComplete >= 1f)
+            {
+                _effect.SetActive(true);
+                _timeStartedMoving = Time.time;
+                _canAttack = false;
+            }
+        }
+        else if(_animationEnd)
+        {
+            _effect.SetActive(false);
+
+            transform.position = Vector3.Lerp(transform.position, _weaponPivot, percentageComplete);
+            if (percentageComplete >= 1)
+            {
+                Debug.Log("Melee Attack End");
+                Target.Clear();
+                _canAttack = true;
+            }
+        }
     }
 
     public void DetectEnemyInRange()
     {
+        Target.Clear();
+
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, _weaponData.Range, 1 << 7);
         if (colliders.Length == 0) return;
 
@@ -41,46 +96,26 @@ public class MeleeWeapon : MonoBehaviour
             Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
-        //Attack(Target[random].position);
+
+        int random = Random.Range(0, colliders.Length);
+        _targetPos = Target[random].position;
+        // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
+        _targetPos.y = (Vector3.up * 1.0f).y;
+
+        _timeStartedMoving = Time.time;
+        _isMoving = true;
     }
 
-    //private void Attack(Vector3 position)
-    //{
-    //    _canAttack = false;
-    //    Vector3 currentPosition = transform.position;
-
-    //    //StartCoroutine(Move(currentPosition, position));
-    //    //transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime);
-    //    Debug.Log("Melee Attack!");
-    //    _animator.SetTrigger("Attack");
-
-    //    //Vector3.Lerp(transform.position, currentPosition, Time.deltaTime / 2);
-    //    _canAttack = true;
-    //}
-
-    IEnumerator Attack()
+    void OnAnimationEnd()
     {
-        while (true)
+        _animationEnd = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 1 << 7)
         {
-            _trailRenderer.enabled = true;
-            DetectEnemyInRange();
-
-            if (Target.Count == 0) continue;
-
-            int random = Random.Range(0, Target.Count);
-            Vector3 currentPosition = transform.position;
-            Move(Target[random].position);
-
-            _animator.SetTrigger("Attack");
-            _trailRenderer.enabled = false;
-
-            Move(currentPosition);
-            yield return new WaitForSeconds(_weaponData.AtkRate);
+            Debug.Log("Monster TakeDamage");
         }
-    }
-
-    private void Move(Vector3 position)
-    {
-        
     }
 }
