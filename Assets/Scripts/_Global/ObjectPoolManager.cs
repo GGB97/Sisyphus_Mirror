@@ -8,8 +8,8 @@ public class ObjectPoolManager : MonoBehaviour
     [Serializable]
     public struct Pool
     {
-        public string tag; // ID
-        public GameObject prefab; // DB에 Prefab Path로 가져오기?
+        public int id; // ID
+        //public GameObject prefab; // DB에 Prefab Path로 가져오기?
         public int size;
     }
 
@@ -18,7 +18,7 @@ public class ObjectPoolManager : MonoBehaviour
     [SerializeField] Pool[] _pools;
     public List<GameObject> _spawnObjects;
 
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<int, Queue<GameObject>> poolDictionary;
 
     private void Awake()
     {
@@ -28,32 +28,34 @@ public class ObjectPoolManager : MonoBehaviour
     void Start()
     {
         _spawnObjects = new List<GameObject>();
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        poolDictionary = new Dictionary<int, Queue<GameObject>>();
 
         // 미리 생성
         foreach (Pool pool in _pools)
         {
-            poolDictionary.Add(pool.tag, new Queue<GameObject>());
+            poolDictionary.Add(pool.id, new Queue<GameObject>());
             for (int i = 0; i < pool.size; ++i)
             {
-                var obj = CreateNewObject(pool.tag, pool.prefab);
+                GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
+                var obj = CreateNewObject(pool.id, projectilePrefab);
                 ArrangePool(obj);
             }
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(int id, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
+        if (!poolDictionary.ContainsKey(id))
             return null;
 
         // 큐에 없으면 새로 추가
-        Queue<GameObject> poolQueue = poolDictionary[tag];
+        Queue<GameObject> poolQueue = poolDictionary[id];
         if (poolQueue.Count <= 0)
         {
             // tag로 pools에서 prefab 찾기
-            Pool pool = Array.Find(_pools, x => x.tag == tag);
-            var obj = CreateNewObject(pool.tag, pool.prefab);
+            Pool pool = Array.Find(_pools, x => x.id == id);
+            GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
+            var obj = CreateNewObject(pool.id, projectilePrefab);
             // ObjectPool 정렬시키기
             ArrangePool(obj);
         }
@@ -67,10 +69,10 @@ public class ObjectPoolManager : MonoBehaviour
         return objectToSpawn;
     }
 
-    GameObject CreateNewObject(string tag, GameObject prefab)
+    GameObject CreateNewObject(int id, GameObject prefab)
     {
         var obj = Instantiate(prefab, transform);
-        obj.name = tag;
+        obj.name = id.ToString();
         obj.SetActive(false); // 비활성화시 ReturnToPool을 하므로 Enqueue가 됨
         return obj;
     }
@@ -101,6 +103,6 @@ public class ObjectPoolManager : MonoBehaviour
     // 생성된 프리팹에서 Disable될 때 호출됨
     public void ReturnToPull(GameObject obj)
     {
-        poolDictionary[obj.name].Enqueue(obj);
+        poolDictionary[int.Parse(obj.name)].Enqueue(obj);
     }
 }

@@ -18,6 +18,6 @@ MonoBehaviour:
   - id: 40000001
     prefabPath: 
   - id: 40000100
-    prefabPath: Resources/Projectile/Orange Explosion
+    prefabPath: Projectile/Prefabs/Orange Explosion
   - id: 40000101
-    prefabPath: Resources/Projectile/Poison
+    prefabPath: Projectile/Prefabs/Poison

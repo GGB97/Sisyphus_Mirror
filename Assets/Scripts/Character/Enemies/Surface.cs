@@ -4,6 +4,7 @@ using Unity.AI.Navigation;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
+using static ObjectPoolManager;
 
 public class Surface : MonoBehaviour
 {
@@ -28,5 +29,8 @@ public class Surface : MonoBehaviour
         {
             nms.BuildNavMesh(); // Bake
         }
+
+        //GameObject go = Resources.Load<GameObject>("Projectile/Prefabs/Orange Explosion");
+        //Instantiate(go);
     }
 }

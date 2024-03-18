@@ -138,7 +138,7 @@ public class Enemy : CharacterBehaviour
         //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
 
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-            _projectileTag[prfabNum].ToString(),
+            (int)_projectileTag[prfabNum],
             _rangeAttackPos[posNum].transform.position,
             _rangeAttackPos[posNum].transform.rotation);
 

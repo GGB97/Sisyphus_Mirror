@@ -189,9 +189,7 @@ MonoBehaviour:
   _meleeAttackColliders: []
   _rangeAttackPos:
   - {fileID: 6823599538812335952}
-  _projectilePrefabs:
-  - {fileID: 1967075783894275452, guid: 01f34a13bce1d9a4eb5d5fb99a533d89, type: 3}
-  _projectileTag: 01000000
+  _projectileTag: 655a6202
 --- !u!114 &559669192185584168
 MonoBehaviour:
   m_ObjectHideFlags: 0

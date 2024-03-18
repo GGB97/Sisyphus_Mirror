@@ -81,7 +81,7 @@ public class RangeWeapon : MonoBehaviour
 
     void Shot()
     {
-        ObjectPoolManager.Instance.SpawnFromPool("Arrow", _weaponPivot.position, _weaponPivot.rotation);
+        ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, _weaponPivot.rotation);
 
         if (weaponData.NumberOfProjectile > 1)
         {
@@ -92,7 +92,7 @@ public class RangeWeapon : MonoBehaviour
                 float randomRot = Random.Range(_weaponPivot.rotation.y - .1f, _weaponPivot.rotation.y + .1f);
                 Quaternion rot = _weaponPivot.rotation;
                 rot.y = randomRot;
-                ObjectPoolManager.Instance.SpawnFromPool("Arrow", _weaponPivot.position, rot);
+                ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
             }
         }
     }
