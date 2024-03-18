@@ -22,8 +22,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
     _price: 24
     _grade: 0
-    _atk: 2
-    _atkRate: 1
+    _physicalAtk: 2
+    _magicAtk: 0
+    _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
     _range: 3
@@ -40,8 +41,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
     _price: 24
     _grade: 1
-    _atk: 2
-    _atkRate: 1
+    _physicalAtk: 2
+    _magicAtk: 0
+    _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
     _range: 3
@@ -58,8 +60,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Axe_1
     _price: 24
     _grade: 2
-    _atk: 2
-    _atkRate: 1
+    _physicalAtk: 2
+    _magicAtk: 0
+    _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
     _range: 3
@@ -76,8 +79,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Melee/Spear_1
     _price: 30
     _grade: 0
-    _atk: 2
-    _atkRate: 0.7
+    _physicalAtk: 2
+    _magicAtk: 0
+    _atkSpeed: 0.7
     _critRate: 1
     _critDamage: 1
     _range: 4
@@ -94,8 +98,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Range/Bow_1
     _price: 35
     _grade: 0
-    _atk: 3
-    _atkRate: 0.7
+    _physicalAtk: 3
+    _magicAtk: 0
+    _atkSpeed: 0.7
     _critRate: 5
     _critDamage: 1
     _range: 10
@@ -112,8 +117,9 @@ MonoBehaviour:
     _prefabPath: Resources/Items/Prefabs/Weapons/Range/Wand_1
     _price: 35
     _grade: 0
-    _atk: 5
-    _atkRate: 1
+    _physicalAtk: 0
+    _magicAtk: 5
+    _atkSpeed: 1
     _critRate: 5
     _critDamage: 1
     _range: 10

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8848e7c3b9c6d7c4483bbf5733195b95, type: 3}
+  m_Name: EquipmentsDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 10201011
+    _name: "\uB098\uC774\uD2B8\uBE44\uC804"
+    _description: NightVision
+    _spritePath: Resources/Items/Icons/Equipments/Accessories_1
+    _iconWidth: 1
+    _iconHeight: 1
+    _prefabPath: Resources/Items/Prefabs/Equipments/Accessories_1
+    _price: 24
+    _grade: 0
+    _type: 1
+    _health: 0
+    _meleeAtk: 0
+    _magicAtk: 0
+    _def: 0
+    _atkSpeed: -1
+    _moveSpeed: 0
+    _critRate: 2
+    _critDamage: 0
+    _lifeSteal: 0

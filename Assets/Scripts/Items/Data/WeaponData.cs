@@ -11,8 +11,9 @@ public enum WeaponType
 public class WeaponData : ItemSO
 {
     [field: Header("Weapon")]
-    [SerializeField] private float _atk;
-    [SerializeField] private float _atkRate;
+    [SerializeField] private float _physicalAtk;
+    [SerializeField] private float _magicAtk;
+    [SerializeField] private float _atkSpeed;
     [SerializeField] private float _critRate;
     [SerializeField] private float _critDamage;
     [SerializeField] private float _range;
@@ -23,8 +24,9 @@ public class WeaponData : ItemSO
     [SerializeField] private string _projectileTag;
     [SerializeField] private int _numberOfProjectile;
 
-    public float Atk => _atk;
-    public float AtkRate => _atkRate;
+    public float PhysicalAtk => _physicalAtk;
+    public float MagicAtk => _magicAtk;
+    public float AtkSpeed => _atkSpeed;
     public float CritRate => _critRate;
     public float CritDamage => _critDamage;
     public float Range => _range;

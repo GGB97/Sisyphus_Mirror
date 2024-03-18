@@ -39,7 +39,7 @@ public class RangeWeapon : MonoBehaviour
 
             DetectEnemyInRange();
 
-            _coolDown = weaponData.AtkRate;
+            _coolDown = weaponData.AtkSpeed;
         }
     }
 
@@ -73,7 +73,7 @@ public class RangeWeapon : MonoBehaviour
     void Attack()
     {
         _animator.SetTrigger("Attack");     // 추후에 수정
-        _animator.SetFloat("AttackSpeed", 1 + weaponData.AtkRate);
+        _animator.SetFloat("AttackSpeed", 1 + weaponData.AtkSpeed);
         Shot();
 
         canAttack = true;
