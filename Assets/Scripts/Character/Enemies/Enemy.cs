@@ -138,7 +138,7 @@ public class Enemy : CharacterBehaviour
         //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
 
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-            _projectileTag[prfabNum].ToString(),
+            (int)_projectileTag[prfabNum],
             _rangeAttackPos[posNum].transform.position,
             _rangeAttackPos[posNum].transform.rotation);
 
@@ -150,6 +150,11 @@ public class Enemy : CharacterBehaviour
 
         projectile.AddTarget(LayerData.Player);
         projectile.AddExcludeLayer(LayerData.Enemy);
-        projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+
+        float value = projectile.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        projectile.SetValue(value);
+
+        //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+        projectile.SetVelocity(1f); // 속도 배율 설정
     }
 }

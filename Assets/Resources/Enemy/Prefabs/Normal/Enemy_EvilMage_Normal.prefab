@@ -144,10 +144,7 @@ MonoBehaviour:
   _meleeAttackColliders: []
   _rangeAttackPos:
   - {fileID: 7304681824439530632}
-  _projectilePrefabs:
-  - {fileID: 6615606392305212438, guid: ece296002937ce646a0d3d9b3fad11dc, type: 3}
-  _projectileTag:
-  - Orange_Explosion
+  _projectileTag: 645a6202
 --- !u!114 &4161329191314674582
 MonoBehaviour:
   m_ObjectHideFlags: 0

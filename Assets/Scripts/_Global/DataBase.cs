@@ -46,8 +46,8 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if (Instance._player == null)
-                Instance._player = new PlayerDB();
+            if (Instance._Projectile == null)
+                Instance._Projectile = new ProjectileDB();
 
             return Instance._Projectile;
         }

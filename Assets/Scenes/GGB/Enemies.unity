@@ -303,14 +303,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
-  - tag: OrangeExplosion
-    prefab: {fileID: 6615606392305212438, guid: ece296002937ce646a0d3d9b3fad11dc,
-      type: 3}
-    size: 5
-  - tag: Poison
-    prefab: {fileID: 1967075783894275452, guid: 01f34a13bce1d9a4eb5d5fb99a533d89,
-      type: 3}
-    size: 5
+  - id: 40000100
+    size: 1
+  - id: 40000101
+    size: 1
   _spawnObjects: []
 --- !u!1 &383024378
 GameObject:
