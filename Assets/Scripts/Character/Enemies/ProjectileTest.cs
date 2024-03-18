@@ -32,7 +32,7 @@ public class ProjectileTest : MonoBehaviour
         hitParticle.SetActive(false);
         projectileCollider.enabled = true;
 
-        target = LayerData.Test; // 초기화
+        target = LayerData.Terrain; // 기본적으로 벽/바닥에는 부딪히고 사라져야 하니까
         projectileCollider.includeLayers = 0;
         projectileCollider.excludeLayers = LayerData.Projectile;
     }

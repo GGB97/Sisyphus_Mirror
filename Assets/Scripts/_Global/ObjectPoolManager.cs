@@ -8,8 +8,8 @@ public class ObjectPoolManager : MonoBehaviour
     [Serializable]
     public struct Pool
     {
-        public string tag;
-        public GameObject prefab;
+        public string tag; // ID
+        public GameObject prefab; // DB에 Prefab Path로 가져오기?
         public int size;
     }
 

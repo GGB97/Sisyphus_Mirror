@@ -80,7 +80,7 @@ Transform:
   - {fileID: 6823599538812335952}
   - {fileID: 8530075172814957197}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7846280364660539207
 CharacterController:
@@ -191,6 +191,8 @@ MonoBehaviour:
   - {fileID: 6823599538812335952}
   _projectilePrefabs:
   - {fileID: 1967075783894275452, guid: 01f34a13bce1d9a4eb5d5fb99a533d89, type: 3}
+  _projectileTag:
+  - Posison
 --- !u!114 &559669192185584168
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,7 +29,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Collider[] _meleeAttackColliders;
 
     [SerializeField] Transform[] _rangeAttackPos;
-    [SerializeField] GameObject[] _projectilePrefabs; 
+    [SerializeField] GameObject[] _projectilePrefabs;
+    [SerializeField] string[] _projectileTag;
 
     private void Awake()
     {
@@ -134,8 +135,13 @@ public class Enemy : CharacterBehaviour
 
     public void RangedAttack(int prfabNum, int posNum)
     {
-        GameObject go = Instantiate(_projectilePrefabs[prfabNum], 
+        GameObject go = Instantiate(_projectilePrefabs[prfabNum],
             _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
+
+        //GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        //    _projectileTag[prfabNum],
+        //    _rangeAttackPos[posNum].transform.position,
+        //    _rangeAttackPos[posNum].transform.rotation);
 
         Vector3 directionToTarget = target.position - transform.position;
         directionToTarget.y = 0f;
