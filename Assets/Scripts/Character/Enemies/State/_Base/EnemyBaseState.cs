@@ -100,8 +100,6 @@ public class EnemyBaseState : IState
 
     protected bool TargetInRange()
     {
-
-
         return (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange);
     }
 

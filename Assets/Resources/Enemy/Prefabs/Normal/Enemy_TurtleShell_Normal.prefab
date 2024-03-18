@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 4863340937567849928}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &3517116299706712573
 CharacterController:
@@ -140,6 +140,10 @@ MonoBehaviour:
     moveSpeed: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
+  _meleeAttackColliders:
+  - {fileID: 2928011051638387269}
+  _rangeAttackPos: []
+  _projectilePrefabs: []
 --- !u!114 &2262518605707484692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +168,7 @@ GameObject:
   - component: {fileID: 2928011051638387269}
   - component: {fileID: 8282367879005048058}
   m_Layer: 7
-  m_Name: AttackPivot
+  m_Name: Attack01_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23962246d85957c48a3397266f740f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPivot: {fileID: 4967933416088137588}
 --- !u!4 &4863340937567849928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4544219117696442, guid: e039ba28c6ec4e1f8dc538cdefcaf55e,
