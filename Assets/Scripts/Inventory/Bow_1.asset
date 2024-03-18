@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bow_1
   m_EditorClassIdentifier: 
   width: 1
-  height: 3
-  itemIcon: {fileID: -1672818761, guid: a4a0c6401016dff4cb4b8e3fed3f423d, type: 3}
+  height: 4
+  itemIcon: {fileID: 209735139, guid: ba4517b45134bbe49bbbba47ffc045b1, type: 3}
