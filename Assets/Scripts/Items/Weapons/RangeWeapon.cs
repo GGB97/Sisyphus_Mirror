@@ -1,45 +1,45 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class RangeWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _weaponPivot;
 
-    private Transform _target;
-
     public List<Transform> Target = new List<Transform>();
 
     [SerializeField] private Animator _animator;
 
-    public int id;
+    [SerializeField] private int id;
     public WeaponData weaponData;
 
-    public float timer;
+    private float _coolDown;
     public bool canAttack;
 
     protected Vector3 direction;
 
     void Start()
     {
-        _weaponPivot = GetComponentInChildren<Transform>();
-        id = 20001011;  // 추후에 수정
         weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
 
-        timer = 0f;
+        _coolDown = 0f;
         canAttack = true;
     }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        _coolDown -= Time.deltaTime;
 
-        if (timer <= 0 && canAttack)
+        if (_coolDown <= 0 && canAttack)
         {
             canAttack = false;
+            Target.Clear();
+
             DetectEnemyInRange();
 
-            timer = weaponData.AtkRate;
+            _coolDown = weaponData.AtkRate;
         }
     }
 
@@ -70,12 +70,9 @@ public class RangeWeapon : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("attack");
-
-        Shot();
-
         _animator.SetTrigger("Attack");     // 추후에 수정
         _animator.SetFloat("AttackSpeed", 1 + weaponData.AtkRate);
+        Shot();
 
         canAttack = true;
     }

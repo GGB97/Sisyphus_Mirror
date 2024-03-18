@@ -898,7 +898,6 @@ GameObject:
   - component: {fileID: 4015981589820536102}
   - component: {fileID: 1102624845079757182}
   - component: {fileID: 2169507981314140513}
-  - component: {fileID: 6539271665437983494}
   - component: {fileID: 3965543801036355436}
   m_Layer: 5
   m_Name: InventoryGrid
@@ -1128,18 +1127,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &6539271665437983494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672865179483402266}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d146204899baa4343b15f520521eda3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6568836932693435920
 MonoBehaviour:
   m_ObjectHideFlags: 0

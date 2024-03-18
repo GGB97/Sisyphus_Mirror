@@ -18,7 +18,6 @@ public class EnemyChasingState : EnemyBaseState
 
         agent.speed = curStat.moveSpeed;
         agent.isStopped = false;
-        agent.SetDestination(enemy.target.position);
 
         agent.avoidancePriority = EnemyData.ChasingPriority; // 움직일때 다른 상태의 몹들을 밀지않게 하기 위해
     }
@@ -60,7 +59,6 @@ public class EnemyChasingState : EnemyBaseState
         StopAnimation(EnemyAnimationData.MoveParameterHash);
 
         agent.isStopped = true; // 추적을 멈추기 위해서
-
         agent.avoidancePriority = EnemyData.DefaultPriority;
     }
 

@@ -256,10 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7deb37bc9c86d6b418648389a6381d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPivot: {fileID: 0}
+  _weaponPivot: {fileID: 8839151847106888427}
   Target: []
   _animator: {fileID: 0}
-  id: 0
+  id: 10121011
   weaponData:
     _id: 0
     _name: 
@@ -279,7 +279,6 @@ MonoBehaviour:
     _type: 0
     _projectileTag: 
     _numberOfProjectile: 0
-  timer: 0
   canAttack: 0
 --- !u!1 &3847757567172513798
 GameObject:

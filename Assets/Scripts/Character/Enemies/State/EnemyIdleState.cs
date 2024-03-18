@@ -30,10 +30,15 @@ public class EnemyIdleState : EnemyBaseState
         }
 
         // target이 존재하고 공격 사거리 안에 없다면
-        if (HasTarget() && !TargetInRange())
+        if (HasTarget() && TargetInRange() == false)
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
             return;
+        }
+
+        if (TargetInRange()) // 사거리 내에 target이 있을때는 그녀석을 바라보게
+        {
+            LookTargetSlerp();
         }
             
     }
@@ -44,4 +49,6 @@ public class EnemyIdleState : EnemyBaseState
 
         StopAnimation(EnemyAnimationData.IdleParameterHash);
     }
+
+    
 }

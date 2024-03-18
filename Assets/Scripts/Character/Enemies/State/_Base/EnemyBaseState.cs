@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemyBaseState : IState
 {
@@ -59,7 +60,7 @@ public class EnemyBaseState : IState
             enemy.InvokeEvent(enemy.OnDieEvent);
         }
 
-        if (enemy.isHit && enemy.knockbackDelay > 0.3f)
+        if (enemy.isHit && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
         {
             enemy.InvokeEvent(enemy.OnHitEvent);
         }
@@ -93,16 +94,44 @@ public class EnemyBaseState : IState
 
     protected bool CanAttack() // 공격이 가능한지
     {
-        return TargetInRange() && IsAttackReady();
+        // 사거리 안에 있고 공격 딜레이가 충분히 지났으며 정면에 타겟이 있어야함.
+        return TargetInRange() && IsAttackReady() && TargetOnFront();
     }
 
     protected bool TargetInRange()
     {
+
+
         return (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange);
+    }
+
+    protected bool TargetOnFront()
+    {
+        Vector3 directionToTarget = enemy.target.transform.position - enemy.transform.position;
+        directionToTarget.y = 0;
+        float angleToTarget = Vector3.Angle(enemy.transform.forward, directionToTarget);
+
+        return angleToTarget < enemy.Info.attackAngle; // 일정 각도안에 target이 있는지 리턴
     }
 
     protected bool IsAttackReady()
     {
         return (enemy.attackDelay >= 1 / enemy.Info.attackSpeed);
+    }
+
+    protected Quaternion LookTargetPos() // 바라볼 방향 계산
+    {
+        Vector3 directionToLookAt = enemy.target.position - enemy.transform.position;
+        directionToLookAt.y = 0; // 수평 회전만 고려
+
+        return Quaternion.LookRotation(directionToLookAt);
+    }
+
+    protected void LookTargetSlerp() // 대상을 천천히 바라봄
+    {
+        Quaternion targetRotation = LookTargetPos();
+
+        // 바라보는 방향 수정
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime); // 보간
     }
 }

@@ -25,8 +25,6 @@ public class Enemy : CharacterBehaviour
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
 
-    public float knockbackDelay;
-
     private void Awake()
     {
         Init();
@@ -69,19 +67,36 @@ public class Enemy : CharacterBehaviour
         stateMachine = new(this);
 
         Agent.stoppingDistance = Info.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
+        Agent.angularSpeed = 240f;
 
         isDie = false;
         OnDieEvent += ChangeDieState;
 
         isHit = false;
         OnHitEvent += ChangeHitState;
-        
+
+        chasingDelay = 10f; // 그냥 초기값 설정
+        attackDelay = 10f;
+        knockbackDelay = 10f;
+
+        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
+        {
+            case EnemyRank.Normal:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance; 
+                break;
+            case EnemyRank.Elite:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Boss:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+                break;
+        }
     }
 
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        Debug.Log($"OnChildTriggerEnter : {gameObject.name} Attack {other.gameObject.name}");
+        Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     void ChangeDieState()
