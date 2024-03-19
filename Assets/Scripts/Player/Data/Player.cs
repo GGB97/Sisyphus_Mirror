@@ -51,18 +51,21 @@ public class Player : CharacterBehaviour
         stateMachine.PhysicsUpdate();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
+        {
+            HealthSystem.TakeDamage(20f);
+            if(isHit)
+            {
+                stateMachine.ChangeState(stateMachine.hitState);
+            }
+            if(isDie)
+            {
+                stateMachine.ChangeState(stateMachine.dieState);
+            }
+        }
+    }
+
     
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.tag == " ")
-    //    {
-    //        HealthSystem.TakeDamage(damage());
-    //    }
-    //}
-
-    //private int damage() // 플레이어 방어력과 몬스터 데미지 
-    //{
-    //    return 2;
-    //}
 }

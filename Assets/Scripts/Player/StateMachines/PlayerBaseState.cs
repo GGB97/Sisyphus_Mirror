@@ -117,9 +117,9 @@ public class PlayerBaseState : IState
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7 && player.hitDelay > 0.5f)
+        if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
         {
-           // player.HealthSystem.TakeDamage(3f);   //
+            player.HealthSystem.TakeDamage(10f);   
             stateMachine.ChangeState(stateMachine.hitState);
         }
     }

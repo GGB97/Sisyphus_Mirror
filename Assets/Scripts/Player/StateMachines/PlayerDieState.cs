@@ -12,7 +12,7 @@ public class PlayerDieState : PlayerBaseState
     {
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DieParameterHash);
-        player.enabled = false;
+        //player.enabled = false;
     }
 
     public override void Exit()
