@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class RangeWeapon : MonoBehaviour
 {
@@ -81,7 +79,13 @@ public class RangeWeapon : MonoBehaviour
 
     void Shot()
     {
-        ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, _weaponPivot.rotation);
+        GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
+        ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
+        _projectile.AddTarget(LayerData.Enemy);
+
+        float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
+        _projectile.SetValue(value);
+        _projectile.SetVelocity(1f); // 속도 배율 설정
 
         if (weaponData.NumberOfProjectile > 1)
         {
@@ -92,7 +96,13 @@ public class RangeWeapon : MonoBehaviour
                 float randomRot = Random.Range(_weaponPivot.rotation.y - .1f, _weaponPivot.rotation.y + .1f);
                 Quaternion rot = _weaponPivot.rotation;
                 rot.y = randomRot;
-                ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
+                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
+
+                ProjectileTest projectile = go.GetComponent<ProjectileTest>();
+                projectile.AddTarget(LayerData.Enemy);
+
+                projectile.SetValue(value);
+                projectile.SetVelocity(1f); // 속도 배율 설정
             }
         }
     }

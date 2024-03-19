@@ -21,7 +21,7 @@ public class WeaponData : ItemSO
     [SerializeField] private WeaponType _type;
 
     [field: Header("Projectile")]
-    [SerializeField] private string _projectileTag;
+    [SerializeField] private ProjectileID _projectileID;
     [SerializeField] private int _numberOfProjectile;
 
     public float PhysicalAtk => _physicalAtk;
@@ -33,6 +33,6 @@ public class WeaponData : ItemSO
     public int LifeSteal => _lifeSteal;
     public WeaponType Type => _type;
 
-    public string ProjectileTag => _projectileTag;
+    public ProjectileID ProjectileID => _projectileID;
     public int NumberOfProjectile => _numberOfProjectile;
 }
