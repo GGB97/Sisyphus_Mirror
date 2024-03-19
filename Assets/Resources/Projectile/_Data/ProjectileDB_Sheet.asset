@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - id: 40000000
-    prefabPath: 
+    prefabPath: Projectile/Prefabs/Arrow
     type: 0
-    speed: 0
+    speed: 10
   - id: 40000001
-    prefabPath: 
-    type: 0
-    speed: 0
+    prefabPath: Projectile/Prefabs/Cube
+    type: 1
+    speed: 10
   - id: 40000100
     prefabPath: Projectile/Prefabs/Orange Explosion
     type: 1
