@@ -150,16 +150,24 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
 
         //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
-        WeaponData weaponData = GetRandomWeaponItemId();
+        ItemSO weaponData = GetRandomWeaponItem();
         inventoryItem.Set(weaponData);//아이템 설정
     }
-    public WeaponData GetRandomWeaponItemId()//변경점 랜덤한 아이템 반환
+    public ItemSO GetRandomWeaponItem()//랜덤한 아이템 반환 
     {
         int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
         selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
         WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
         return weaponData;
     }
+    //public ItemSO GetRandomEquipmentItem()//변경점 랜덤한 아이템 반환 
+    //{
+    //    int selectedItemId = UnityEngine.Random.Range(0, DataBase..GetItemIdCount());
+    //    selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
+    //    ItemSO weaponData = DataBase.Weapon.Get(selectedItemId);
+    //    return weaponData;
+    //}
+
     //public void LeftMouseButtonPress() //마우스 클릭했을 때 (원본)
     //{
     //    Vector2Int tileGridPosition = GetTileGridPosition();//Grid 좌표 가져옴

@@ -40,7 +40,7 @@ public class InventoryItem : MonoBehaviour
     public int onGridPositionX;//아이템 좌상단 첫 칸의 X정보
     public int onGridPositionY;//아이템 좌상단 첫 칸의 Y정보
 
-    public float rotationDegree = 0;
+    public float rotationDegree = 0; //회전 정도
 
     public void Set(ItemSO weaponData) //아이템 생성할 때 아이템 설정
     {
