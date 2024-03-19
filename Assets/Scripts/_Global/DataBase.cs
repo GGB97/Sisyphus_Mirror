@@ -6,6 +6,7 @@ public class DataBase : SingletoneBase<DataBase>
 {
     [SerializeField] EnemyDB _enemyStat;
     [SerializeField] WeaponDB _weapon;
+    [SerializeField] EquipmentsDB _equipments;
     [SerializeField] PlayerDB _player;
     [SerializeField] ProjectileDB _Projectile; 
 
@@ -28,6 +29,17 @@ public class DataBase : SingletoneBase<DataBase>
                 Instance._weapon = new WeaponDB();
 
             return Instance._weapon;
+        }
+    }
+
+    public static EquipmentsDB Equipments
+    {
+        get
+        {
+            if (Instance._equipments == null)
+                Instance._equipments = new EquipmentsDB();
+
+            return Instance._equipments;
         }
     }
 
