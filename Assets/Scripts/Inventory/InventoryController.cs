@@ -35,7 +35,6 @@ public class InventoryController : MonoBehaviour
     public Sprite[] slotSprites; //슬롯의 스프라이트
     public int addCount = 6;//추가 칸 개수
     public Vector2 startPosition;
-    //public Vector2 endPosition;
     private void Awake()
     {
         if (Instance == null)
@@ -61,7 +60,10 @@ public class InventoryController : MonoBehaviour
         {
             InsertRandomItem();
         }
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotateItem();
+        }
         //if (selectedItemGrid == null) // 그리드 위에 없다면
         //{
         //    inventoryHighlight.Show(false); //하이라이트 끔
@@ -74,6 +76,14 @@ public class InventoryController : MonoBehaviour
         //    LeftMouseButtonPress();
         //}
     }
+
+    private void RotateItem()
+    {
+        if (selectedItem == null) { return; }
+
+        selectedItem.Rotate();
+    }
+
     public void StartButton()//칸 확장 기능
     {
         addCount = 6;
@@ -123,7 +133,7 @@ public class InventoryController : MonoBehaviour
         }
         else //선택한 것이 있다면
         {
-            inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.itemData.width, selectedItem.itemData.height));//활성화
+            inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));//활성화
             inventoryHighlight.SetSize(selectedItem);//사이즈 지정
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
         }
@@ -179,8 +189,8 @@ public class InventoryController : MonoBehaviour
 
         if (selectedItem != null) //선택 된 Grid가 있다면
         {
-            position.x -= (selectedItem.itemData.width - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
-            position.y += (selectedItem.itemData.height - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.x -= (selectedItem.WIDTH - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.y += (selectedItem.HEIGHT - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
@@ -190,8 +200,8 @@ public class InventoryController : MonoBehaviour
 
         if (selectedItem != null) //선택 된 Grid가 있다면
         {
-            position.x -= (selectedItem.itemData.width - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
-            position.y += (selectedItem.itemData.height - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.x -= (selectedItem.WIDTH - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.y += (selectedItem.HEIGHT - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
@@ -234,7 +244,9 @@ public class InventoryController : MonoBehaviour
         Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
+            Debug.Log($"현재 아이템 : {selectedItem.itemData.itemIcon.name}");
             rectTransform = selectedItem.GetComponent<RectTransform>();
+            rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
             rectTransform.SetAsLastSibling();
         }
     }
