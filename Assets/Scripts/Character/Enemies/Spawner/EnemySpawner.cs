@@ -8,12 +8,12 @@ public class EnemySpawner : MonoBehaviour
     public Transform target; // 나중에 GameManager 같은데서 들고있으면 거기서 가져오게 하면 될듯
 
     // 등장 가능 몬스터 설정해야함.
-    [SerializeField] WaveSO waveData;
+    [SerializeField] WaveSO waveData; // 장비 아이템에 의해 몬스터 수량같은게 조절될 가능성도 있을 수 있음
+                                      // 그럼 enemy스탯 관리하듯이 하면 될듯 
 
     // 최대 몬스터 수?
     [SerializeField] int maxEnemyCnt;
     [SerializeField] int currentEnemyCnt;
-
 
     [SerializeField] Transform plane;
     Vector3 bottomLeft;
@@ -42,9 +42,6 @@ public class EnemySpawner : MonoBehaviour
         bottomLeft = planeTransform.position + new Vector3(-width / 2, 0, -length / 2);
         topRight = planeTransform.position + new Vector3(width / 2, 0, length / 2);
 
-        Debug.Log("Bottom Left: " + bottomLeft);
-        Debug.Log("Top Right: " + topRight);
-
         StartCoroutine(SpawnStart());
     }
 
@@ -53,8 +50,8 @@ public class EnemySpawner : MonoBehaviour
         int spawnCnt = waveData.numPerSpawn;
         WaitForSeconds delay = new WaitForSeconds(waveData.spawnDelay);
 
-        // 보스 스테이지 일때는 시작시 보스 한마리 스폰하고 시작하면 될듯
-        //
+        // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
+        // --
 
         while (true) // 게임 종료 검사로 변경 필요함
         {
@@ -63,6 +60,8 @@ public class EnemySpawner : MonoBehaviour
                 // 한번에 스폰할 양 추후 WaveData에 넣을지 고민좀 해야함
                 for (int i = 0; i < spawnCnt; i++)
                 {
+                    // 이곳에서 조건검사로 Normal/Elite 나누면 될듯 확률로 해가지고
+                    // --
                     int rand = Random.Range(0, waveData.normal.Length);
                     Vector3 pos = new Vector3(
                         Random.Range(bottomLeft.x, topRight.x),
@@ -70,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
                         Random.Range(bottomLeft.z, topRight.z)
                         );
                     // 여기서 pos의 위치에 Spawn이 가능한지 검사 필요성이 생긴다면 추가 예정
+                    // --
 
                     EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
                     currentEnemyCnt++;

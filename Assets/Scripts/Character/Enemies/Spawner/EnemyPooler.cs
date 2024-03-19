@@ -38,15 +38,8 @@ public class EnemyPooler : MonoBehaviour
 
     private void Awake()
     {
-        //Instance = this;
-
         _spawnObjects = new List<GameObject>();
         poolDictionary = new Dictionary<int, Queue<GameObject>>();
-    }
-
-    void Start()
-    {
-        
     }
 
     public GameObject SpawnFromPool(int id, Vector3 position, Quaternion rotation)
@@ -126,19 +119,19 @@ public class EnemyPooler : MonoBehaviour
         }
 
         // Elite 세팅
+        int ptr = waveData.normal.Length;
         for (int i = 0; i < waveData.elite.Length; i++)
         {
-            int ptr = waveData.normal.Length;
             _pools[i + ptr].id = waveData.elite[i];
             _pools[i + ptr].size = 3;
         }
 
         // Boss 세팅
+        ptr = waveData.normal.Length + waveData.elite.Length;
         for (int i = 0; i < waveData.boss.Length; i++)
         {
-            int ptr = waveData.normal.Length + waveData.elite.Length;
             _pools[i + ptr].id = waveData.boss[i];
-            _pools[i + ptr].size = 3;
+            _pools[i + ptr].size = 2;
         }
 
         StartPool();
