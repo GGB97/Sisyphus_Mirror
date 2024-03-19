@@ -20,8 +20,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
             Debug.Log("Click Down");
             image.raycastTarget = false;
             inventoryController.startPosition = transform.position; ;//시작 위치 지정
-            Vector2 mousePostion = Input.mousePosition;
-            inventoryController.LeftMouseButtonPress(mousePostion);
+            inventoryController.LeftMouseButtonPress();
         }
     }
 
@@ -31,7 +30,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
         {
             image.raycastTarget = true;
             Debug.Log("Click Up");
-            inventoryController.LeftMouseButtonPut(transform.position);
+            inventoryController.LeftMouseButtonPut();
         }
     }
 }

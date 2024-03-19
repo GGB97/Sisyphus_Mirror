@@ -183,11 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousItemGird: {fileID: 0}
   selectedItem: {fileID: 0}
-  items:
-  - {fileID: 11400000, guid: 7224c6c9abbf1584e9b099fbc5cf440c, type: 2}
-  - {fileID: 11400000, guid: 8039ea6769329494884016cc1edd49c0, type: 2}
-  - {fileID: 11400000, guid: 10908eeabcddf724d87eb634027a9a4d, type: 2}
-  - {fileID: 11400000, guid: a534e3d066060fa45b57bc9ec1f741b5, type: 2}
   itemPrefab: {fileID: 8428332342166559987, guid: 25942dfb2076f7841a135acea4094448,
     type: 3}
   canvasTransform: {fileID: 5058254367029281297}
@@ -199,6 +194,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2742fed9a8521504baea79615abe6550, type: 3}
   addCount: 6
   startPosition: {x: 0, y: 0}
+  startRotation: 0
 --- !u!1 &293489818
 GameObject:
   m_ObjectHideFlags: 0

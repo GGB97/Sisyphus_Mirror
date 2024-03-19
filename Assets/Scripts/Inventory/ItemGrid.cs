@@ -114,6 +114,13 @@ public class ItemGrid : MonoBehaviour
 
         return tileGridPosition;
     }
+    //public Vector2 GridToScreenPosition(Vector2Int gridPosition)
+    //{
+    //    Vector2 screenPosition = new Vector2();
+    //    screenPosition.x = rectTransform.position.x + gridPosition.x * TileSizeWidth + TileSizeWidth / 2;
+    //    screenPosition.y = rectTransform.position.y - gridPosition.y * TileSizeHeight + TileSizeHeight / 2;
+    //    return screenPosition;
+    //}
     public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
         if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
@@ -137,7 +144,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)
+    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)//좌표에 설치
     {
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform); //현재 그리드를 자신의 부모로 설정

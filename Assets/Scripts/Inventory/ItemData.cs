@@ -6,6 +6,6 @@ public class ItemData
 {
     public int width = 1;
     public int height = 1;
-
+    public int id = 0000;
     public Sprite itemIcon;
 }

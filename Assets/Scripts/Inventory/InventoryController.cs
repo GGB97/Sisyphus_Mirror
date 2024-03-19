@@ -8,7 +8,7 @@ public class InventoryController : MonoBehaviour
 {
     private static InventoryController instance;
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
-
+    //Dictionary< 아이템 종류() , List<id>> 
     [HideInInspector]
     private ItemGrid selectedItemGrid; 
     public ItemGrid SelectedItemGrid { 
@@ -25,16 +25,18 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapitem;
     RectTransform rectTransform;
 
-    [SerializeField] List<ItemData> items;
-    [SerializeField] GameObject itemPrefab;
+    //[SerializeField] List<ItemData> items;
+    [SerializeField] GameObject itemPrefab; //아이템 프리팹
     [SerializeField] Transform canvasTransform;
-    [SerializeField] ItemGrid itemGrid;
+    [SerializeField] ItemGrid itemGrid;//인벤토리 그리드
 
     InventoryHighlight inventoryHighlight;
 
-    public Sprite[] slotSprites; //슬롯의 스프라이트
+    public Sprite[] slotSprites; //슬롯의 스프라이트 배열
     public int addCount = 6;//추가 칸 개수
-    public Vector2 startPosition;
+
+    public Vector2 startPosition;//처음 위치
+    public float startRotation;
     private void Awake()
     {
         if (Instance == null)
@@ -150,16 +152,24 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
 
         //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
-        WeaponData weaponData = GetRandomWeaponItemId();
+        ItemSO weaponData = GetRandomWeaponItem();
         inventoryItem.Set(weaponData);//아이템 설정
     }
-    public WeaponData GetRandomWeaponItemId()//변경점 랜덤한 아이템 반환
+    public ItemSO GetRandomWeaponItem()//랜덤한 아이템 반환 
     {
         int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
         selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
         WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
         return weaponData;
     }
+    //public ItemSO GetRandomEquipmentItem()//변경점 랜덤한 아이템 반환 
+    //{
+    //    int selectedItemId = UnityEngine.Random.Range(0, DataBase..GetItemIdCount());
+    //    selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
+    //    ItemSO weaponData = DataBase.Weapon.Get(selectedItemId);
+    //    return weaponData;
+    //}
+
     //public void LeftMouseButtonPress() //마우스 클릭했을 때 (원본)
     //{
     //    Vector2Int tileGridPosition = GetTileGridPosition();//Grid 좌표 가져옴
@@ -173,24 +183,33 @@ public class InventoryController : MonoBehaviour
     //        PlaceItem(tileGridPosition);//설치한다.
     //    }
     //}
-    public void LeftMouseButtonPress(Vector2 mousePostion) //마우스 클릭했을 때
+    public void LeftMouseButtonPress() //마우스 클릭했을 때
     {
-        Vector2Int tileGridPosition = GetTileGridPosition(mousePostion);//Grid 좌표 가져옴
+        Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
+        startRotation = selectedItem.rotationDegree;//처음 회전 값 저장.
     }
-    public void LeftMouseButtonPut(Vector2 putPosition)//스크린상 중심의 위치
+    public void LeftMouseButtonPut()//스크린상 중심의 위치
     {
-        Vector2Int tileGridPosition = GetTileGridPosition(putPosition);//grid 상 첫 칸의 좌표
+        Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
         {
             ItemGrid temp = SelectedItemGrid;//마우스 위치의 Grid 임시 저장.
             SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
-            Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition);
-            PlaceItem(tileGridStartPosition);
+
+            selectedItem.SetRotation(startRotation);//처음 회전 값으로 설정 width와 height에 영향을 주므로 먼저 실행되어야 한다.
+            Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
+
+            PlaceItem(tileGridStartPosition);//시작 위치에 설치
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
     }
-    private Vector2Int GetTileGridPosition(Vector2 putPosition) //Grid상의 첫 칸의 좌표를 얻는다.
+    //private Vector2 GridToScreenPosition(Vector2Int gridPosition) //그리드 좌표를 스크린 좌표로 변환
+    //{
+    //    Vector2 screenPosition = SelectedItemGrid.GridToScreenPosition(gridPosition);
+    //    return screenPosition;
+    //}
+    private Vector2Int GetTileGridPosition(Vector2 putPosition)//특정 좌표의 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
     {
         Vector2 position = putPosition; //마우스위치에는 물체의 중심이 온다.
 
@@ -201,7 +220,7 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
-    private Vector2Int GetTileGridPosition() //Grid상의 첫 칸의 좌표를 얻는다.
+    private Vector2Int GetTileGridPosition() //마우스의 위치를 가지고 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
     {
         Vector2 position = Input.mousePosition; //마우스위치에는 물체의 중심이 온다.
 
@@ -212,7 +231,7 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
-    private bool DragPlaceItem(Vector2Int tileGridPosition) //물체 설치
+    private bool DragPlaceItem(Vector2Int tileGridPosition) //물체를 설치할 수 있는지 체크 후 설치
     {
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면

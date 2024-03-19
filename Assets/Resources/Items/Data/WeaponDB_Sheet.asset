@@ -77,7 +77,7 @@ MonoBehaviour:
     _itemType: 0
     _name: Spear
     _description: "\uCC3D"
-    _spritePath: Items/Icons/Weapons/Melee/Spear1
+    _spritePath: Items/Icons/Weapons/Melee/Spear_1
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Spear_1
