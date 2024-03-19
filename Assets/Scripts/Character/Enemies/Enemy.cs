@@ -18,6 +18,7 @@ public class Enemy : CharacterBehaviour
     [field: SerializeField] public EnemyInfo Info { get; private set; }
     public Status modifier; // 스탯 가중치 (Player의 경우 장비에 의한 가중치, Enemy의 경우 난이도/층수 에 의한 가중치)
 
+    public Collider Collider { get; private set; }
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
@@ -34,6 +35,7 @@ public class Enemy : CharacterBehaviour
     {
         Info = DataBase.EnemyStats.Get(id);
 
+        Collider = GetComponent<Collider>();
         Animator = GetComponentInChildren<Animator>(); 
         Agent = GetComponent<NavMeshAgent>();
 
@@ -50,6 +52,7 @@ public class Enemy : CharacterBehaviour
 
     private void OnDisable()
     {
+        EnemySpawner.Instance.DecrementEnemyCnt();
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 

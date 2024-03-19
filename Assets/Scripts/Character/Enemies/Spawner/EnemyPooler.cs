@@ -12,7 +12,24 @@ public class EnemyPooler : MonoBehaviour
         public int size;
     }
 
-    public static EnemyPooler Instance;
+    public static EnemyPooler _instance;
+    public static EnemyPooler Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                string typeName = typeof(EnemyPooler).FullName;
+                GameObject go = new GameObject(typeName);
+                _instance = go.AddComponent<EnemyPooler>();
+
+                //Instantiate(go);
+            }
+
+            return _instance;
+        }
+    }
+
 
     [SerializeField] Pool[] _pools;
     public List<GameObject> _spawnObjects;
@@ -21,26 +38,15 @@ public class EnemyPooler : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        //Instance = this;
+
+        _spawnObjects = new List<GameObject>();
+        poolDictionary = new Dictionary<int, Queue<GameObject>>();
     }
 
     void Start()
     {
-        _spawnObjects = new List<GameObject>();
-        poolDictionary = new Dictionary<int, Queue<GameObject>>();
-
-        // 미리 생성
-        foreach (Pool pool in _pools)
-        {
-            poolDictionary.Add(pool.id, new Queue<GameObject>());
-            for (int i = 0; i < pool.size; ++i)
-            {
-                // todo
-                GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.EnemyStats.Get(pool.id).prefabPath); 
-                var obj = CreateNewObject(pool.id, projectilePrefab);
-                //ArrangePool(obj); // 실행하지 않아도 상관없음
-            }
-        }
+        
     }
 
     public GameObject SpawnFromPool(int id, Vector3 position, Quaternion rotation)
@@ -105,5 +111,52 @@ public class EnemyPooler : MonoBehaviour
     public void ReturnToPull(GameObject obj)
     {
         poolDictionary[int.Parse(obj.name)].Enqueue(obj);
+    }
+
+    public void SetPool(WaveSO waveData)
+    {
+        int cnt = waveData.GetAllLength();
+        _pools = new Pool[cnt];
+
+        // Normal 세팅
+        for(int i =0; i< waveData.normal.Length; i++)
+        {
+            _pools[i].id = waveData.normal[i];
+            _pools[i].size = 10;
+        }
+
+        // Elite 세팅
+        for (int i = 0; i < waveData.elite.Length; i++)
+        {
+            int ptr = waveData.normal.Length;
+            _pools[i + ptr].id = waveData.elite[i];
+            _pools[i + ptr].size = 3;
+        }
+
+        // Boss 세팅
+        for (int i = 0; i < waveData.boss.Length; i++)
+        {
+            int ptr = waveData.normal.Length + waveData.elite.Length;
+            _pools[i + ptr].id = waveData.boss[i];
+            _pools[i + ptr].size = 3;
+        }
+
+        StartPool();
+    }
+
+    void StartPool()
+    {
+        // 미리 생성
+        foreach (Pool pool in _pools)
+        {
+            poolDictionary.Add(pool.id, new Queue<GameObject>());
+            for (int i = 0; i < pool.size; ++i)
+            {
+                // todo
+                GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.EnemyStats.Get(pool.id).prefabPath);
+                var obj = CreateNewObject(pool.id, projectilePrefab);
+                //ArrangePool(obj); // 실행하지 않아도 상관없음
+            }
+        }
     }
 }
