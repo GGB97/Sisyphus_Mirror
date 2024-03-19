@@ -204,7 +204,7 @@ public class InventoryController : MonoBehaviour
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
     }
-    //private Vector2 GridToScreenPosition(Vector2Int gridPosition)
+    //private Vector2 GridToScreenPosition(Vector2Int gridPosition) //그리드 좌표를 스크린 좌표로 변환
     //{
     //    Vector2 screenPosition = SelectedItemGrid.GridToScreenPosition(gridPosition);
     //    return screenPosition;
@@ -231,7 +231,7 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
-    private bool DragPlaceItem(Vector2Int tileGridPosition) //물체 설치
+    private bool DragPlaceItem(Vector2Int tileGridPosition) //물체를 설치할 수 있는지 체크 후 설치
     {
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
