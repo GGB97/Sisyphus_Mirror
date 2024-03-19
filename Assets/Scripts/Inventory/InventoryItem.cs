@@ -58,9 +58,10 @@ public class InventoryItem : MonoBehaviour
         size.x = itemData.width * ItemGrid.TileSizeWidth; //아이템의 가로 길이
         size.y = itemData.height * ItemGrid.TileSizeHeight;//아이템의 세로 길이
         GetComponent<RectTransform>().sizeDelta = size;//아이템 사이즈 설정
+        rotationDegree = GetComponent<RectTransform>().rotation.z;
     }
 
-    internal void Rotate()
+    public void Rotate()
     {
         rotationDegree += 90f;//90도 더한다.
         if (rotationDegree >= 360f)//360도를 넘으면 초기화
@@ -68,5 +69,11 @@ public class InventoryItem : MonoBehaviour
 
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.rotation = Quaternion.Euler(0,0, rotationDegree);//회전 적용
+    }
+    public void SetRotation(float degree)
+    {
+        rotationDegree = degree;
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.rotation = Quaternion.Euler(0, 0, rotationDegree);
     }
 }
