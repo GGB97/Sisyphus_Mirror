@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - _id: 10201011
-    _name: "\uB098\uC774\uD2B8\uBE44\uC804"
+    _name: NightVision
     _description: NightVision
-    _spritePath: Resources/Items/Icons/Equipments/Accessories_1
-    _iconWidth: 1
+    _spritePath: Items/Icons/Equipments/Accessories_1
+    _iconWidth: 2
     _iconHeight: 1
-    _prefabPath: Resources/Items/Prefabs/Equipments/Accessories_1
+    _prefabPath: Items/Prefabs/Equipments/Accessories_1
     _price: 24
     _grade: 0
     _type: 1
@@ -29,6 +29,63 @@ MonoBehaviour:
     _def: 0
     _atkSpeed: -1
     _moveSpeed: 0
+    _critRate: 2
+    _critDamage: 0
+    _lifeSteal: 0
+  - _id: 10201021
+    _name: PiratePatch
+    _description: "\uD574\uC801 \uD328\uCE58"
+    _spritePath: Items/Icons/Equipments/Accessories_2
+    _iconWidth: 1
+    _iconHeight: 1
+    _prefabPath: Items/Prefabs/Equipments/Accessories_2
+    _price: 24
+    _grade: 0
+    _type: 1
+    _health: 0
+    _meleeAtk: 0
+    _magicAtk: 0
+    _def: 0
+    _atkSpeed: 1
+    _moveSpeed: 0
+    _critRate: 0
+    _critDamage: 0
+    _lifeSteal: 1
+  - _id: 10202011
+    _name: Helm of Valor
+    _description: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
+    _spritePath: Items/Icons/Equipments/Armor_1
+    _iconWidth: 2
+    _iconHeight: 2
+    _prefabPath: Items/Prefabs/Equipments/Armor_1
+    _price: 32
+    _grade: 0
+    _type: 0
+    _health: 5
+    _meleeAtk: 0
+    _magicAtk: 0
+    _def: 3
+    _atkSpeed: -1
+    _moveSpeed: -1
+    _critRate: 0
+    _critDamage: 0
+    _lifeSteal: 0
+  - _id: 10202021
+    _name: Shadow Veil
+    _description: "\uC5B4\uB460\uC758 \uC7A5\uB9C9"
+    _spritePath: Items/Icons/Equipments/Armor_2
+    _iconWidth: 2
+    _iconHeight: 1
+    _prefabPath: Items/Prefabs/Equipments/Armor_2
+    _price: 34
+    _grade: 0
+    _type: 0
+    _health: 0
+    _meleeAtk: 0
+    _magicAtk: 0
+    _def: -2
+    _atkSpeed: 2
+    _moveSpeed: 2
     _critRate: 2
     _critDamage: 0
     _lifeSteal: 0

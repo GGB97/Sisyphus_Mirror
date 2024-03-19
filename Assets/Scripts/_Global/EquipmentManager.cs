@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IEquipable
 {
-    WeaponData OnEquip();
-    WeaponData OnUnequip();
+    void OnEquip();
+    void OnUnequip();
 }
 
 public class EquipmentManager : SingletoneBase<EquipmentManager>
