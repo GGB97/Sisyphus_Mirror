@@ -8,7 +8,7 @@ public class InventoryController : MonoBehaviour
 {
     private static InventoryController instance;
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
-
+    //Dictionary< 아이템 종류() , List<id>> 
     [HideInInspector]
     private ItemGrid selectedItemGrid; 
     public ItemGrid SelectedItemGrid { 

@@ -49,6 +49,7 @@ public class InventoryItem : MonoBehaviour
         itemData.width = weaponData.IconWidth;
         itemData.height = weaponData.IconHeight;
         itemData.itemIcon = weaponData.Sprite;
+        itemData.id = weaponData.Id;
 
         this.itemData = itemData; //아이템 데이터를 매개변수로 설정
 
