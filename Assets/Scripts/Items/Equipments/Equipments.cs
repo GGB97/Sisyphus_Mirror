@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipments : MonoBehaviour
+public class Equipments : MonoBehaviour, IEquipable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int _id;
+    [SerializeField] EquipmentsData _data;
+
+    public void OnEquip()
     {
-        
+        // TODO : 장착 시 플레이어 스탯 반영
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnUnequip()
     {
-        
+        // TODO : 장비 해제 시 플레이어 스탯 반영
     }
 }
