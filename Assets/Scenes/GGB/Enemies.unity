@@ -303,10 +303,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
-  - tag: Orange Explosion
-    prefab: {fileID: 6615606392305212438, guid: ece296002937ce646a0d3d9b3fad11dc,
-      type: 3}
-    size: 10
+  - id: 40000100
+    size: 1
+  - id: 40000101
+    size: 1
   _spawnObjects: []
 --- !u!1 &383024378
 GameObject:
@@ -2648,11 +2648,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 383024382}
-    - target: {fileID: 4217810109485711020, guid: 7855af093f64bd040a06a7f21ac2496a,
-        type: 3}
-      propertyPath: _projectileTag.Array.data[0]
-      value: Orange Explosion
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2837,6 +2832,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 383024382}
+    - target: {fileID: 439337337260440862, guid: e071d90c69f3b5f41987bfbb0576367f,
+        type: 3}
+      propertyPath: _projectileTag.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527959356449364712, guid: e071d90c69f3b5f41987bfbb0576367f,
         type: 3}
       propertyPath: m_Name

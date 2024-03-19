@@ -29,8 +29,7 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Collider[] _meleeAttackColliders;
 
     [SerializeField] Transform[] _rangeAttackPos;
-    [SerializeField] GameObject[] _projectilePrefabs;
-    [SerializeField] string[] _projectileTag;
+    [SerializeField] ProjectileID[] _projectileTag;
 
     private void Awake()
     {
@@ -135,13 +134,13 @@ public class Enemy : CharacterBehaviour
 
     public void RangedAttack(int prfabNum, int posNum)
     {
-        GameObject go = Instantiate(_projectilePrefabs[prfabNum],
-            _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
+        //GameObject go = Instantiate(_projectilePrefabs[prfabNum],
+        //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
 
-        //GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-        //    _projectileTag[prfabNum],
-        //    _rangeAttackPos[posNum].transform.position,
-        //    _rangeAttackPos[posNum].transform.rotation);
+        GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+            (int)_projectileTag[prfabNum],
+            _rangeAttackPos[posNum].transform.position,
+            _rangeAttackPos[posNum].transform.rotation);
 
         Vector3 directionToTarget = target.position - transform.position;
         directionToTarget.y = 0f;
@@ -151,6 +150,11 @@ public class Enemy : CharacterBehaviour
 
         projectile.AddTarget(LayerData.Player);
         projectile.AddExcludeLayer(LayerData.Enemy);
-        projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+
+        float value = projectile.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        projectile.SetValue(value);
+
+        //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
+        projectile.SetVelocity(1f); // 속도 배율 설정
     }
 }

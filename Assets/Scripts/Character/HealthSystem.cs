@@ -43,5 +43,8 @@ public class HealthSystem : MonoBehaviour
         {
             character.isHit = true;
         }
+
+
+
     }
 }
