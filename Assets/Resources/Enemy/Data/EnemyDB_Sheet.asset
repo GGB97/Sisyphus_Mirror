@@ -22,7 +22,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30000000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Slime_Normal
     type: 0
     rank: 0
     element: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30100000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_TurtleShell_Normal
     type: 1
     rank: 0
     element: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30200000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Spider_Normal
     type: 2
     rank: 0
     element: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30300000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Skeleton_Normal
     type: 3
     rank: 0
     element: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30400001
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
     type: 4
     rank: 0
     element: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30700001
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
     type: 5
     rank: 0
     element: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30600000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Bat_Normal
     type: 6
     rank: 0
     element: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30700000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Dragon_Normal
     type: 7
     rank: 0
     element: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30800000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_MonsterPlant_Normal
     type: 8
     rank: 0
     element: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
     attackSpeed: 0.3
     moveSpeed: 2
     id: 30900000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage_Normal
     type: 9
     rank: 0
     element: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 0
     id: 31000000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Worm_Normal
     type: 10
     rank: 0
     element: 0

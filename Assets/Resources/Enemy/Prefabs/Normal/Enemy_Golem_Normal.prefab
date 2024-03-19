@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371465322185525832}
-  - component: {fileID: 6095071892141553562}
+  - component: {fileID: 7272340632377769663}
   - component: {fileID: 2667085031426733756}
   - component: {fileID: 5062388304122850377}
   - component: {fileID: 2711227618756655968}
@@ -103,8 +103,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &6095071892141553562
-CharacterController:
+--- !u!136 &7272340632377769663
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,19 +116,16 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  serializedVersion: 2
+  m_Radius: 1.2
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!195 &2667085031426733756
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -210,7 +207,7 @@ MonoBehaviour:
   _meleeAttackColliders:
   - {fileID: 4681803008971222559}
   _rangeAttackPos: []
-  _projectilePrefabs: []
+  _projectileTag: 
 --- !u!114 &2711227618756655968
 MonoBehaviour:
   m_ObjectHideFlags: 0

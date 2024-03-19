@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _trailRenderer = GetComponent<TrailRenderer>();
+        _trailRenderer = GetComponent<TrailRenderer>(); // Try로 해서 추가?
         _duration = 3f;
     }
 
@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDisable()
     {
-        _trailRenderer.Clear();
+        _trailRenderer.Clear(); // 여기도 null 체크해서
         ObjectPoolManager.Instance.ReturnToPull(gameObject);
     }
 }

@@ -1,9 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class EnemyPooler : MonoBehaviour
 {
     [Serializable]
     public struct Pool
@@ -12,7 +12,7 @@ public class ObjectPoolManager : MonoBehaviour
         public int size;
     }
 
-    public static ObjectPoolManager Instance;
+    public static EnemyPooler Instance;
 
     [SerializeField] Pool[] _pools;
     public List<GameObject> _spawnObjects;
@@ -35,9 +35,10 @@ public class ObjectPoolManager : MonoBehaviour
             poolDictionary.Add(pool.id, new Queue<GameObject>());
             for (int i = 0; i < pool.size; ++i)
             {
-                GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
+                // todo
+                GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.EnemyStats.Get(pool.id).prefabPath); 
                 var obj = CreateNewObject(pool.id, projectilePrefab);
-                ArrangePool(obj); // 실행하지 않아도 상관없음
+                //ArrangePool(obj); // 실행하지 않아도 상관없음
             }
         }
     }
@@ -51,12 +52,13 @@ public class ObjectPoolManager : MonoBehaviour
         Queue<GameObject> poolQueue = poolDictionary[id];
         if (poolQueue.Count <= 0)
         {
-            // tag로 pools에서 prefab 찾기
+            // tag로 pools에서 id 찾기
             Pool pool = Array.Find(_pools, x => x.id == id);
-            GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
+            // todo
+            GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.EnemyStats.Get(pool.id).prefabPath);
             var obj = CreateNewObject(pool.id, projectilePrefab);
             // ObjectPool 정렬시키기
-            ArrangePool(obj); // 실행하지 않아도 상관없음
+            //ArrangePool(obj); // 실행하지 않아도 상관없음
         }
 
         // 큐에서 꺼내서 사용
