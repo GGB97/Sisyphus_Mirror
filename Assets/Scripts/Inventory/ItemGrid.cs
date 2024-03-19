@@ -116,12 +116,12 @@ public class ItemGrid : MonoBehaviour
     }
     public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
-        if (BoundryCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height) == false) //아이템이 Grid 안에 있는지 체크 
+        if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
         {
             return false;
         }
 
-        if (OverlapCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height, ref overlapitem) == false)//물체 마지막 하단 칸에 설치할 수 있는지 체크
+        if (OverlapCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT, ref overlapitem) == false)//물체 마지막 하단 칸에 설치할 수 있는지 체크
         {
             overlapitem = null; //겹치는 것이 있으면 overlap 초기화
             return false; //실패 반환
@@ -142,9 +142,9 @@ public class ItemGrid : MonoBehaviour
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform); //현재 그리드를 자신의 부모로 설정
 
-        for (int x = 0; x < inventoryItem.itemData.width; x++) // 아이템 배열에 아이템 크기에 해당하는 칸 수만큼 저장.
+        for (int x = 0; x < inventoryItem.WIDTH; x++) // 아이템 배열에 아이템 크기에 해당하는 칸 수만큼 저장.
         {
-            for (int y = 0; y < inventoryItem.itemData.height; y++)
+            for (int y = 0; y < inventoryItem.HEIGHT; y++)
             {
                 inventoryItemSlot[posX + x, posY + y] = inventoryItem;
                 panelSlots[posX + x, posY + y].ChangeSlotState(PanelSlotState.Full);//바닥 교체
@@ -162,8 +162,8 @@ public class ItemGrid : MonoBehaviour
     public Vector2 CalculatePositionOnGrid(InventoryItem inventoryItem, int posX, int posY) //Grid 상에서 물체 중심의 local 위치
     {
         Vector2 position = new Vector2();
-        position.x = posX * TileSizeWidth + TileSizeWidth * inventoryItem.itemData.width / 2;//자신의 중심을 표현
-        position.y = -(posY * TileSizeHeight + TileSizeHeight * inventoryItem.itemData.height / 2);//자신의 중심을 표현
+        position.x = posX * TileSizeWidth + TileSizeWidth * inventoryItem.WIDTH / 2;//자신의 중심을 표현
+        position.y = -(posY * TileSizeHeight + TileSizeHeight * inventoryItem.HEIGHT / 2);//자신의 중심을 표현
         return position;
     }
 
@@ -221,9 +221,9 @@ public class ItemGrid : MonoBehaviour
 
     private void CleanGridReference(InventoryItem item)//아이템의 정보로 차지하는 공간만큼 초기화
     {
-        for (int ix = 0; ix < item.itemData.width; ix++)
+        for (int ix = 0; ix < item.WIDTH; ix++)
         {
-            for (int iy = 0; iy < item.itemData.height; iy++)
+            for (int iy = 0; iy < item.HEIGHT; iy++)
             {
                 inventoryItemSlot[item.onGridPositionX + ix, item.onGridPositionY + iy] = null;//아이템 공간만큼 null
                 panelSlots[item.onGridPositionX + ix, item.onGridPositionY + iy].ChangeSlotState(PanelSlotState.Empty);//바닥 Empty 변경
@@ -274,14 +274,14 @@ public class ItemGrid : MonoBehaviour
 
     public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)
     {
-        int height = gridSizeHeight - itemToInsert.itemData.height +1;
-        int width = gridSizeWidth - itemToInsert.itemData.width +1;
+        int height = gridSizeHeight - itemToInsert.HEIGHT +1;
+        int width = gridSizeWidth - itemToInsert.WIDTH +1;
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
 
-                if (CheckAvailableSpace(x, y, itemToInsert.itemData.width, itemToInsert.itemData.height) == true)//x, y에 아이템을 설치할 수 있는지 체크 후 true
+                if (CheckAvailableSpace(x, y, itemToInsert.WIDTH, itemToInsert.HEIGHT) == true)//x, y에 아이템을 설치할 수 있는지 체크 후 true
                 {
                     return new Vector2Int(x, y);//설치할 수 있으면 x,y 값 리턴
                 }
