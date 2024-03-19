@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: potion_2
+      name: Potion_2
       rect:
         serializedVersion: 2
         x: 1400
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      potion_2: 280856172
+      Potion_2: 280856172
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
