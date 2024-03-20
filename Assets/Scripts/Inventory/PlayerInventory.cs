@@ -14,8 +14,10 @@ public class PlayerInventory : ItemGrid
     // Start is called before the first frame update
     protected override void Start()
     {
+        SetGridSize(10, 10);//그리드 설정
         base.Start();
         CreateBaseBlock(gridSizeWidth, gridSizeHeight);
+        maxCount = 100;
     }
 
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가

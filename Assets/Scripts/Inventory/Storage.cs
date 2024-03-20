@@ -11,7 +11,8 @@ public class Storage : ItemGrid
     {
         SetGridSize(4, 4);//그리드 4,4설정
         base.Start();
-        CreateBaseBlock(4,4); 
+        CreateBaseBlock(4,4);
+        maxCount = 1;
     }
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
     {

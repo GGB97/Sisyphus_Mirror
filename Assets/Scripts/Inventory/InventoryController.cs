@@ -263,7 +263,9 @@ public class InventoryController : MonoBehaviour
         if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
         {
             previousItemGird.SubtractItemFromInventory(selectedItem);
+            previousItemGird.AddCurrentCount(-1);
             selectedItemGrid.AddItemToInventory(selectedItem);
+            selectedItemGrid.AddCurrentCount(1);
         }
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치

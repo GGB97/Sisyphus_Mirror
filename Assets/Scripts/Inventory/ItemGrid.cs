@@ -10,6 +10,27 @@ public class ItemGrid : MonoBehaviour
     public const float TileSizeHeight = 32f;//세로 타일의 사이즈
 
     public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
+    public int maxCount = 1;
+    public int currentCount = 0;
+    //public int currnetCount
+    //{
+    //    get
+    //    {
+    //        int num = 0;
+    //        foreach (var itemType in inventory)
+    //        {
+    //            foreach (var item in itemType.Value)
+    //            {
+    //                if (item != null)
+    //                {
+    //                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+    //                    num++;
+    //                }
+    //            }
+    //        }
+    //        return num;
+    //    }
+    //}
 
     public InventoryItem[,] inventoryItemSlot;//해당칸의 아이템 정보를 담는 배열
 
@@ -63,25 +84,26 @@ public class ItemGrid : MonoBehaviour
             itemList = new List<InventoryItem>() { seletecteditem };
             inventory.Add(seletecteditem.itemData.itemType, itemList);
         }
-        ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+        //ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         Debug.Log($"아이템 추가 - {seletecteditem.itemData.itemIcon.name}");
     }
-    public bool SubtractItemFromInventory(InventoryItem seletecteditem)
+    public void SubtractItemFromInventory(InventoryItem seletecteditem)
     {
         if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
         {
             inventory[seletecteditem.itemData.itemType].Remove(seletecteditem);
             Debug.Log($"아이템 빼기 - {seletecteditem.itemData.itemIcon.name}");
-            ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
-            return true;
+            //ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         }
         else//키가 존재하지 않다면
         {
             Debug.Log($"아이템이 존재하지 않습니다.");
-            return false;
         }
     }
-
+    public void AddCurrentCount(int num)
+    {
+        currentCount += num;
+    }
     private void GridInit(int width, int height)//Gird 공간 마련
     {
         inventoryItemSlot = new InventoryItem[width, height];//공간 마련
@@ -131,6 +153,13 @@ public class ItemGrid : MonoBehaviour
     //    screenPosition.y = rectTransform.position.y - gridPosition.y * TileSizeHeight + TileSizeHeight / 2;
     //    return screenPosition;
     //}
+    public bool CheckMaxCount()
+    {
+        if (maxCount <= currentCount)
+            return false;
+        else
+            return true;
+    }
     public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
         if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
@@ -148,7 +177,11 @@ public class ItemGrid : MonoBehaviour
         {
             CleanGridReference(overlapitem);//겹치는 곳 null로 만듬
         }
-
+        if (CheckMaxCount() == false)//최대를 넘겼는지 확인
+        {
+            return false;
+        }
+        
         PlaceItem(inventoryItem, posX, posY);//새로운 아이템 놓기
 
         return true;
