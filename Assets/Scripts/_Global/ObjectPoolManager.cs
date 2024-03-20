@@ -37,7 +37,7 @@ public class ObjectPoolManager : MonoBehaviour
             {
                 GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
                 var obj = CreateNewObject(pool.id, projectilePrefab);
-                ArrangePool(obj);
+                ArrangePool(obj); // 실행하지 않아도 상관없음
             }
         }
     }
@@ -58,7 +58,7 @@ public class ObjectPoolManager : MonoBehaviour
             GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
             var obj = CreateNewObject(pool.id, projectilePrefab);
             // ObjectPool 정렬시키기
-            ArrangePool(obj);
+            ArrangePool(obj); // 실행하지 않아도 상관없음
         }
 
         // 큐에서 꺼내서 사용

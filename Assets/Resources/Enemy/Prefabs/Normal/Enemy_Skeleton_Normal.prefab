@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4522104547264397978}
-  - component: {fileID: 684234702935881903}
+  - component: {fileID: -835518313897744915}
   - component: {fileID: 4851520459956273244}
   - component: {fileID: 3812002328401850423}
   - component: {fileID: 1730006547761890338}
@@ -103,8 +103,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &684234702935881903
-CharacterController:
+--- !u!136 &-835518313897744915
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,14 +121,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!195 &4851520459956273244
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -205,12 +202,15 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 5239577603611756580}
+  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
   - {fileID: 7060460444691705043}
   _rangeAttackPos: []
-  _projectilePrefabs: []
+  _projectileTag: 
 --- !u!114 &1730006547761890338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +605,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3109857909551086197}
   m_SourcePrefab: {fileID: 100100000, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+--- !u!137 &5239577603611756580 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6285209290510499372, guid: 67ddb690e8bc43439efb218ba32a3d45,
+    type: 3}
+  m_PrefabInstance: {fileID: 2274094187765036552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5239577603614447898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6285209290496798482, guid: 67ddb690e8bc43439efb218ba32a3d45,

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3068749537da8ce4c89bc39e3bf7f554, type: 3}
+  m_Name: Wave02
+  m_EditorClassIdentifier: 
+  normal: 6057ce0101decf01e171d401e071d40180f8d501207fd701c005d901
+  elite: 717ece01
+  boss: 
+  maxEnemyCnt: 70
+  numPerSpawn: 5
+  spawnDelay: 3
+  eliteSpawnChance: 5

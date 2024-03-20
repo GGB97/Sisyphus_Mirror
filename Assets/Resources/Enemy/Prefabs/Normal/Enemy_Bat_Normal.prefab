@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2395636408284709920}
-  - component: {fileID: 9149670446613231663}
+  - component: {fileID: -6810353280041848986}
   - component: {fileID: 3263090115381624221}
   - component: {fileID: 9145870295938915998}
   - component: {fileID: 1928164017139885424}
@@ -103,8 +103,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &9149670446613231663
-CharacterController:
+--- !u!136 &-6810353280041848986
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,14 +121,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.4, z: 0}
 --- !u!195 &3263090115381624221
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -205,12 +202,15 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 4006069117572938258}
+  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
   - {fileID: 8307763689865581569}
   _rangeAttackPos: []
-  _projectilePrefabs: []
+  _projectileTag: 
 --- !u!114 &1928164017139885424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +237,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: dad76fac16bffff468a1e8ffa3bbb3c5,
         type: 2}
+    - target: {fileID: 5122791751599443553, guid: 9540b37624f44ab092e166a9bc78d58c,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122791751599443553, guid: 9540b37624f44ab092e166a9bc78d58c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
     - target: {fileID: 5122791751604650753, guid: 9540b37624f44ab092e166a9bc78d58c,
         type: 3}
       propertyPath: m_Layer
@@ -917,6 +927,12 @@ Transform:
 --- !u!4 &4006069117568150318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122791751604887389, guid: 9540b37624f44ab092e166a9bc78d58c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8110883251276100723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4006069117572938258 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5122791751599443553, guid: 9540b37624f44ab092e166a9bc78d58c,
     type: 3}
   m_PrefabInstance: {fileID: 8110883251276100723}
   m_PrefabAsset: {fileID: 0}
