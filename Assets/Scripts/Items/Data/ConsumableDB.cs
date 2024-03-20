@@ -9,7 +9,7 @@ public class ConsumableDB : MonoBehaviour
 
     public ConsumableDB()
     {
-        var res = Resources.Load<ConsumalbeDB_Sheet>("Items/Data/ConsumableDB_Sheet");
+        var res = Resources.Load<ConsumableDB_Sheet>("Items/Data/ConsumableDB_Sheet");
         var consumableSO = Object.Instantiate(res);
         var entities = consumableSO.Entities;
 

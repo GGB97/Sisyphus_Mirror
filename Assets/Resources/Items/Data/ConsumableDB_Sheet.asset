@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8acd90c8a57593246b93e6e0e843f42b, type: 3}
-  m_Name: ConsumalbeDB_Sheet
+  m_Name: ConsumableDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
   - _id: 10301011

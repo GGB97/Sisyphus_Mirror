@@ -29,7 +29,7 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         _playerStats = Player.Data;
     }

@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
 
         maxEnemyCnt = waveData.maxEnemyCnt;
         currentEnemyCnt = 0;
-
+        plane = transform;
         EnemyPooler.Instance.SetPool(waveData);
     }
 
