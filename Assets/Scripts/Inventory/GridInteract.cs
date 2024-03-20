@@ -16,7 +16,7 @@ public class GridInteract : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         inventoryController.SelectedItemGrid = ItemGrid;
-        Debug.Log($"Enter Grid :{this.name}");
+        //Debug.Log($"Enter Grid :{this.name}");
     }
 
     public void OnPointerExit(PointerEventData eventData)

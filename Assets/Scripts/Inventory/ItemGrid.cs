@@ -9,38 +9,36 @@ public class ItemGrid : MonoBehaviour
     public const float TileSizeWidth = 32f;//가로 타일의 사이즈
     public const float TileSizeHeight = 32f;//세로 타일의 사이즈
 
-    public InventoryItem[,] inventoryItemSlot;
+    public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
+
+    public InventoryItem[,] inventoryItemSlot;//해당칸의 아이템 정보를 담는 배열
 
     public InventoryPanel inventoryPanel; // 한 칸들의 모음 판넬
 
-    RectTransform rectTransform;//그리드의 트랜스 폼
+    RectTransform rectTransform;//UI 그리드의 트랜스 폼
 
-    [SerializeField] int gridSizeWidth = 10;//가로 길이
-    [SerializeField] int gridSizeHeight = 10; // 세로 길이
+    protected int gridSizeWidth = 10;//가로 길이
+    protected int gridSizeHeight = 10; // 세로 길이
 
-    Vector2 mousePositionOnTheGrid; //그리드 왼쪽 상단에서 마우스의 위치 값
-    Vector2Int tileGridPosition = new Vector2Int(); //그리드 위에서의 좌표
+    protected Vector2 mousePositionOnTheGrid; //그리드 왼쪽 상단에서 마우스의 위치 값
+    protected Vector2Int tileGridPosition = new Vector2Int(); //그리드 위에서의 좌표
     #endregion
 
     #region panel
-    [SerializeField] GameObject panelPrefab;
+    //[SerializeField] GameObject panelPrefab;
     [SerializeField] GameObject panelSlotPrefab; //판넬 슬롯의 프리팹
-    public PanelSlot[,] panelSlots; // 패널의 슬롯 배열
-    private List<PanelSlot> addableSlotList = new List<PanelSlot>();
-    private List<PanelSlot> clearSlotList = new List<PanelSlot>();
-    private List<PanelSlot> subtractSlotList = new List<PanelSlot>();
-    private List<Vector2Int> fourVector = new List<Vector2Int>() { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) };
+    public PanelSlot[,] panelSlots; //패널의 슬롯 바닥 배열
 
-    public bool isSetting = false;
-    public int minAddSlot = 5;
-    public int currentAddSlot = 0;
+    //public bool isSetting = false;
+    protected int minAddSlot = 5;
+    protected int currentAddSlot = 0;
     #endregion
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
-    private void Start()
+    protected virtual void Start()
     {
         Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
@@ -51,18 +49,49 @@ public class ItemGrid : MonoBehaviour
         GridInit(width, height);
         PanelInit(width, height);
     }
+    public void AddItemToInventory(InventoryItem seletecteditem)
+    {
+        List<InventoryItem> itemList = null;
+        if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
+        {
+            itemList = inventory[seletecteditem.itemData.itemType];
+            itemList.Add(seletecteditem);
+            inventory[seletecteditem.itemData.itemType] = itemList;
+        }
+        else//키가 존재하지 않다면
+        {
+            itemList = new List<InventoryItem>() { seletecteditem };
+            inventory.Add(seletecteditem.itemData.itemType, itemList);
+        }
+        Debug.Log($"아이템 추가 - {seletecteditem.itemData.itemIcon.name}");
+    }
+    public bool SubtractItemFromInventory(InventoryItem seletecteditem)
+    {
+        if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
+        {
+            inventory[seletecteditem.itemData.itemType].Remove(seletecteditem);
+            Debug.Log($"아이템 빼기 - {seletecteditem.itemData.itemIcon.name}");
+            return true;
+        }
+        else//키가 존재하지 않다면
+        {
+            Debug.Log($"아이템이 존재하지 않습니다.");
+            return false;
+        }
+        
+    }
 
-    private void GridInit(int width, int height)
+    private void GridInit(int width, int height)//Gird 공간 마련
     {
         inventoryItemSlot = new InventoryItem[width, height];//공간 마련
         Vector2 size = new Vector2(width * TileSizeWidth, height * TileSizeHeight);
         rectTransform.sizeDelta = size;
     }
-    private void PanelInit(int width, int height)
+    private void PanelInit(int width, int height)//바닥 공간 마련
     {
         panelSlots = new PanelSlot[width, height];
 
-        if (inventoryPanel != null)
+        if (inventoryPanel != null) //판넬이 있을 때
         {
             for (int y = 0; y < height; y++) //아이템 
             {
@@ -76,34 +105,14 @@ public class ItemGrid : MonoBehaviour
                     //parentGrid.inventoryItemSlot[x,y].panelSlot = panelSlots[x, y];
                 }
             }
-            for (int x = width / 2 - 1; x <= width / 2; x++)//중앙 바꾸기
-            {
-                for (int y = height / 2 - 1; y <= height / 2; y++)
-                {
-                    addableSlotList.Add(panelSlots[x, y]);//생성 시 리스트에 추가
-                    panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
-                }
-            }
+            
         }
     }
-    public void ShowRandomAddableSlot()
+    public void SetGridSize(int width, int height)
     {
-        isSetting = true;// 설정을 한 번 한 것으로 설정
-        currentAddSlot = 0;//현재 추가 슬롯
-        for(int i = 0 ; i < minAddSlot; i++)//추가 되어야할 칸이 최소 5개
-        {
-            foreach (PanelSlot go in addableSlotList)
-            {
-                if (currentAddSlot >= minAddSlot)
-                    break;
-
-                ShowAddableSlot(go, ref currentAddSlot);
-            }
-            if (currentAddSlot >= minAddSlot)
-                break;
-        }
+        gridSizeWidth = width;
+        gridSizeHeight = height;
     }
-
     public Vector2Int GetTileGridPosition(Vector2 mousePosition) //그리드 판의 왼쪽 상단을 0,0 오른쪽 하단을 max,max로하는 그리드 위에서의 좌표반환
     {
         mousePositionOnTheGrid.x = mousePosition.x - rectTransform.position.x;//Grid 와 마우스의 떨어짐 정도
@@ -114,6 +123,13 @@ public class ItemGrid : MonoBehaviour
 
         return tileGridPosition;
     }
+    //public Vector2 GridToScreenPosition(Vector2Int gridPosition)
+    //{
+    //    Vector2 screenPosition = new Vector2();
+    //    screenPosition.x = rectTransform.position.x + gridPosition.x * TileSizeWidth + TileSizeWidth / 2;
+    //    screenPosition.y = rectTransform.position.y - gridPosition.y * TileSizeHeight + TileSizeHeight / 2;
+    //    return screenPosition;
+    //}
     public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
         if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
@@ -137,7 +153,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)
+    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)//좌표에 설치
     {
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform); //현재 그리드를 자신의 부모로 설정
@@ -267,12 +283,12 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public InventoryItem GetItem(int x, int y)
+    public InventoryItem GetItem(int x, int y)//해당 칸의 아이템 정보
     {
         return inventoryItemSlot[x, y];
     }
 
-    public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)
+    public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)//전체 배열에서 아이템을 설치할 수 있는지 체크
     {
         int height = gridSizeHeight - itemToInsert.HEIGHT +1;
         int width = gridSizeWidth - itemToInsert.WIDTH +1;
@@ -289,82 +305,5 @@ public class ItemGrid : MonoBehaviour
         }
 
         return null;//설치 불가능하면 null리턴
-    }
-    public void ShowAddableSlot(PanelSlot panelSlot, ref int currentAddSlot)
-    {
-        List<Vector2Int> addPositionArr = new List<Vector2Int>();//추가 가능한 칸의 좌표 배열
-        int x;
-        int y;
-        foreach (var vector in fourVector)
-        {
-            x = panelSlot.posX + vector.x;
-            y = panelSlot.posY + vector.y;
-            if (panelSlots[x, y].CompareState(PanelSlotState.Null))//옆이 널일 때만 List에 넣음
-            {
-                addPositionArr.Add(new Vector2Int(x, y));
-            }
-        }
-        if (addPositionArr.Count > 0) // 칸 변경
-        {
-            int rnd;
-            foreach (var addPosition in addPositionArr)
-            {
-                if (currentAddSlot >= minAddSlot)
-                    break;
-
-                rnd = Random.Range(0, 3);
-                if (rnd == 0) //당첨되면
-                {
-                    x = addPosition.x;
-                    y = addPosition.y;
-                    clearSlotList.Add(panelSlots[x, y]);
-                    panelSlots[x, y].ChangeSlotState(PanelSlotState.Add);
-                    currentAddSlot++;
-                    Debug.Log("칸 추가 성공");
-                }
-            }
-        }
-        else
-        {
-            subtractSlotList.Add(panelSlot);
-        }
-    }
-    public void SubtractToAddableSlotList()
-    {
-        if (subtractSlotList.Count > 0)
-        {
-            foreach (var slot in subtractSlotList)
-            {
-                addableSlotList.Remove(slot);
-            }
-            subtractSlotList.Clear();
-        }    
-    }
-    public void AddToAddableSlotList(PanelSlot panelSlot)
-    {
-        addableSlotList.Add(panelSlot);//집어넣고
-        clearSlotList.Remove(panelSlot);//Clear에 있던 것을 제거
-    }
-    public void CreateAddSlot()
-    {
-        Vector2Int tileGridPosition = GetTileGridPosition(Input.mousePosition);//클릭했을 때의 마우스 좌표
-        panelSlots[tileGridPosition.x, tileGridPosition.y].ChangeSlotState(PanelSlotState.Empty);//Add를 Empty로 변경
-        AddToAddableSlotList(panelSlots[tileGridPosition.x, tileGridPosition.y]);//AddList에 추가.
-        ClearToClearSlotList();//Clear 초기화
-        SubtractToAddableSlotList();
-        isSetting = false;
-        InventoryController.Instance.addCount -= 1;
-        if (InventoryController.Instance.addCount > 0)
-        {
-            ShowRandomAddableSlot();
-        }
-    }
-    public void ClearToClearSlotList()
-    {
-        foreach (var panelSlot in clearSlotList)
-        {
-            panelSlot.ChangeSlotState(PanelSlotState.Null);//안에 들어있던 것들 null로 변경
-        }
-        clearSlotList.Clear();//리스트 참조 초기화
     }
 }

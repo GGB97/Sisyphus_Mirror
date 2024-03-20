@@ -183,15 +183,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousItemGird: {fileID: 0}
   selectedItem: {fileID: 0}
-  items:
-  - {fileID: 11400000, guid: 7224c6c9abbf1584e9b099fbc5cf440c, type: 2}
-  - {fileID: 11400000, guid: 8039ea6769329494884016cc1edd49c0, type: 2}
-  - {fileID: 11400000, guid: 10908eeabcddf724d87eb634027a9a4d, type: 2}
-  - {fileID: 11400000, guid: a534e3d066060fa45b57bc9ec1f741b5, type: 2}
   itemPrefab: {fileID: 8428332342166559987, guid: 25942dfb2076f7841a135acea4094448,
     type: 3}
   canvasTransform: {fileID: 5058254367029281297}
-  itemGrid: {fileID: 3965543801036355436}
+  playerInventoryGrid: {fileID: 4015981589820536104}
+  storageGrid: {fileID: 307498862}
   slotSprites:
   - {fileID: 21300000, guid: d8080f6ef8c48ea4ba5f471321930686, type: 3}
   - {fileID: 21300000, guid: cfc1945396953e34ebda7bd467731b54, type: 3}
@@ -199,6 +195,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2742fed9a8521504baea79615abe6550, type: 3}
   addCount: 6
   startPosition: {x: 0, y: 0}
+  startRotation: 0
 --- !u!1 &293489818
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,8 +325,8 @@ GameObject:
   - component: {fileID: 307498857}
   - component: {fileID: 307498860}
   - component: {fileID: 307498859}
-  - component: {fileID: 307498858}
   - component: {fileID: 307498861}
+  - component: {fileID: 307498862}
   m_Layer: 5
   m_Name: StorageGrid
   m_TagString: Untagged
@@ -358,28 +355,6 @@ RectTransform:
   m_AnchoredPosition: {x: 582, y: 562}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &307498858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307498856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30555e56c89621049b8c4a4129059ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
-  gridSizeWidth: 4
-  gridSizeHeight: 4
-  panelPrefab: {fileID: 4765831348057311655, guid: df80097d29b06d748b82fe4c63a08c00,
-    type: 3}
-  panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
-    type: 3}
-  isSetting: 0
-  minAddSlot: 5
-  currentAddSlot: 0
 --- !u!114 &307498859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +405,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146204899baa4343b15f520521eda3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &307498862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307498856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d069199b328f3e4aa106bbaf6626b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 0}
+  panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
+    type: 3}
+  minAddSlot: 5
+  currentAddSlot: 0
 --- !u!1 &1154441154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,8 +1117,8 @@ GameObject:
   - component: {fileID: 4015981589820536102}
   - component: {fileID: 1102624845079757182}
   - component: {fileID: 2169507981314140513}
-  - component: {fileID: 3965543801036355436}
   - component: {fileID: 4015981589820536103}
+  - component: {fileID: 4015981589820536104}
   m_Layer: 5
   m_Name: InventoryGrid
   m_TagString: Untagged
@@ -1164,28 +1156,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3965543801036355436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3672865179483402266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30555e56c89621049b8c4a4129059ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryPanel: {fileID: 0}
-  gridSizeWidth: 10
-  gridSizeHeight: 10
-  panelPrefab: {fileID: 4765831348057311655, guid: df80097d29b06d748b82fe4c63a08c00,
-    type: 3}
-  panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
-    type: 3}
-  isSetting: 0
-  minAddSlot: 5
-  currentAddSlot: 0
 --- !u!224 &4015981589820536102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1219,6 +1189,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146204899baa4343b15f520521eda3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4015981589820536104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672865179483402266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f7175cf381703448aeb4b3a7b93504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 0}
+  panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
+    type: 3}
+  minAddSlot: 5
+  currentAddSlot: 0
 --- !u!224 &4271292779529678899
 RectTransform:
   m_ObjectHideFlags: 0
