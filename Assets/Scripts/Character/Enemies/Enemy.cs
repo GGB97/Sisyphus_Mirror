@@ -218,7 +218,6 @@ public class Enemy : CharacterBehaviour
         SpawnEnd();
 
         Init();
-        
     }
 
     void SpawnEnd()
