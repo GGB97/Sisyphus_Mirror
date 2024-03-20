@@ -17,7 +17,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Update()
     {
-        if (enemy.isSpawning)
+        if (enemy.IsSpawning)
             return;
 
         base.Update();

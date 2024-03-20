@@ -12,6 +12,7 @@ public class Enemy : CharacterBehaviour
     public EnemyStateMachine stateMachine;
     public Transform target;
 
+    public bool IsSpawning { get; private set; }
     public float chasingDelay;
     public float attackDelay;
 
@@ -31,14 +32,12 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
 
-    public bool isSpawning;
-
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
 
         Collider = GetComponent<Collider>();
-        Animator = GetComponentInChildren<Animator>(); 
+        Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
 
         stateMachine = new(this);
@@ -83,7 +82,7 @@ public class Enemy : CharacterBehaviour
     void Init()
     {
         currentStat.InitStatus(Info, modifier);
-       
+
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.
         // OverrideAnimator는 애니메이션 클립을 부분적으로만 변경을 하려 할 때 사용하기 좋을 것 같음
@@ -104,7 +103,7 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
-        isSpawning = true;
+        IsSpawning = true;
 
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
         {
@@ -138,7 +137,7 @@ public class Enemy : CharacterBehaviour
 
     void SpawnEnd()
     {
-        isSpawning = false;
+        IsSpawning = false;
     }
 
     public void InvokeEvent(Action action)
