@@ -24,7 +24,7 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
-    Renderer _enemyRenderer; // 투명도 조절을 위한 mat
+    Renderer[] _enemyRenderer; // 투명도 조절을 위한 mat 
     [SerializeField] Material _baseMat; // 원래 mat저장해두기 위한 용도.
     [SerializeField] Material _spawnMat;
 
@@ -45,7 +45,7 @@ public class Enemy : CharacterBehaviour
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
 
-        _enemyRenderer = GetComponentInChildren<Renderer>();
+        _enemyRenderer = GetComponentsInChildren<Renderer>();
 
         stateMachine = new(this);
 
@@ -54,9 +54,8 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
+        stateMachine.ChangeState(stateMachine.IdleState);
         StartSpawn();
-
-        
     }
 
     private void OnDisable()
@@ -198,19 +197,28 @@ public class Enemy : CharacterBehaviour
         tempColor.a = 0;
         _spawnMat.color = tempColor;
 
-        _enemyRenderer.material = _spawnMat;
+        for (int i = 0; i < _enemyRenderer.Length; i++)
+        {
+            _enemyRenderer[i].material = _spawnMat;
 
-        _enemyRenderer.material.DOFade(1, 1).OnComplete(SpawnComplete);
+            if (i == _enemyRenderer.Length - 1)
+                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(SpawnComplete);
+            else
+                _enemyRenderer[i].material.DOFade(1, 1);
+        }
     }
 
     void SpawnComplete()
     {
         //_enemyRenderer.sharedMaterial = _baseMat;
-        _enemyRenderer.material = _baseMat;
+        foreach (var renderer in _enemyRenderer)
+        {
+            renderer.material = _baseMat;
+        }
         SpawnEnd();
 
         Init();
-        stateMachine.ChangeState(stateMachine.IdleState);
+        
     }
 
     void SpawnEnd()
@@ -220,7 +228,7 @@ public class Enemy : CharacterBehaviour
 
     void InvokeOnDieFadeOut()
     {
-        Invoke(nameof(OnDieFadeOut), 1f);
+        Invoke(nameof(OnDieFadeOut), 1.5f);
     }
 
     void OnDieFadeOut()
@@ -229,9 +237,16 @@ public class Enemy : CharacterBehaviour
         tempColor.a = 1;
         _spawnMat.color = tempColor;
 
-        _enemyRenderer.material = _spawnMat;
 
-        _enemyRenderer.material.DOFade(0, 1).OnComplete(ActiveFalse);
+        for (int i = 0; i < _enemyRenderer.Length; i++)
+        {
+            _enemyRenderer[i].material = _spawnMat;
+
+            if (i == _enemyRenderer.Length - 1)
+                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(ActiveFalse);
+            else
+                _enemyRenderer[i].material.DOFade(1, 1);
+        }
     }
 
     void ActiveFalse()

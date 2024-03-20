@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
                     // 여기서 pos의 위치에 Spawn이 가능한지 검사 필요성이 생긴다면 추가 예정
                     // --
 
-                    EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
+                    var enemy = EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
                     currentEnemyCnt++;
 
                     if (currentEnemyCnt >= maxEnemyCnt)

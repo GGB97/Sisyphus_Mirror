@@ -136,6 +136,7 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 1633271275138227572}
   _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
   _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
@@ -1360,6 +1361,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6102503398811435111}
   m_SourcePrefab: {fileID: 100100000, guid: 9b551562a7704a69bb4b5a781408b6a2, type: 3}
+--- !u!137 &1633271275138227572 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3972964382695621628, guid: 9b551562a7704a69bb4b5a781408b6a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2416257737201327752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1633271275141041226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3972964382682190530, guid: 9b551562a7704a69bb4b5a781408b6a2,
