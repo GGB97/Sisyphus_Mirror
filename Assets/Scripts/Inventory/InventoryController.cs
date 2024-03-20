@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,9 +22,6 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     private ItemGrid previousItemGird;//이전 그리드 정보
 
-    public Dictionary<ItemType, List<InventoryItem>> playerInventory = new Dictionary<ItemType, List<InventoryItem>>();
-    public Dictionary<ItemType, List<InventoryItem>> storage = new Dictionary<ItemType, List<InventoryItem>>();
-
     public InventoryItem selectedItem;//현재 선택된 아이템
     InventoryItem overlapitem;
     RectTransform rectTransform;//선택된 아이템의 트랜스폼
@@ -31,9 +29,8 @@ public class InventoryController : MonoBehaviour
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
     [SerializeField] Transform canvasTransform;
-    [SerializeField] ItemGrid inventoryGrid;//인벤토리 그리드
-    [SerializeField] ItemGrid storageGrid;//창고 그리드
-
+    public PlayerInventory playerInventoryGrid;//인벤토리 그리드
+    public Storage storageGrid;//창고 그리드
 
     InventoryHighlight inventoryHighlight;
 
@@ -98,8 +95,8 @@ public class InventoryController : MonoBehaviour
     public void StartButton()//칸 확장 기능
     {
         addCount = 6;
-        SelectedItemGrid = inventoryGrid;
-        SelectedItemGrid.ShowRandomAddableSlot();
+        SelectedItemGrid = playerInventoryGrid;
+        playerInventoryGrid.ShowRandomAddableSlot();
     }
     private void InsertRandomItem()
     {
@@ -122,24 +119,11 @@ public class InventoryController : MonoBehaviour
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
 
-        if (selectedItemGrid == inventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
+        if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
         {
-            List<InventoryItem> itemList = null;
-            if (playerInventory.ContainsKey(itemToInsert.itemData.itemType))//키가 존재하다면
-            {
-                itemList = playerInventory[itemToInsert.itemData.itemType];
-                itemList.Add(itemToInsert);
-                playerInventory[itemToInsert.itemData.itemType] = itemList;
-            }
-            else
-            {
-                itemList = new List<InventoryItem>() { itemToInsert };
-                playerInventory.Add(itemToInsert.itemData.itemType, itemList);
-            }
-            Debug.Log($"{playerInventory[itemToInsert.itemData.itemType].Count}");
+            playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
         }
     }
-
     InventoryItem itemToHighlight;
 
     private void HandleHightlight()//하이라이트 표시하기
@@ -262,10 +246,7 @@ public class InventoryController : MonoBehaviour
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
-            if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
-            {
-               
-            }
+            TradeItem();
             selectedItem = null; //선택을 초기화
             if (overlapitem != null)//겹치는 것이 있었으면 
             {
@@ -276,6 +257,14 @@ public class InventoryController : MonoBehaviour
             }
         }
         return complete;
+    }
+    public void TradeItem()//다른 곳에 설치했을 때 아이템 이동
+    {
+        if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
+        {
+            previousItemGird.SubtractItemFromInventory(selectedItem);
+            selectedItemGrid.AddItemToInventory(selectedItem);
+        }
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
@@ -297,7 +286,7 @@ public class InventoryController : MonoBehaviour
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
         previousItemGird = selectedItemGrid;//이전 그리드 설정
-        Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
+        //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
             Debug.Log($"현재 아이템 : {selectedItem.itemData.itemIcon.name}");
@@ -313,18 +302,20 @@ public class InventoryController : MonoBehaviour
             rectTransform.position = Input.mousePosition;
         }
     }
-    private void SaveItemToInventory()
-    {
-        
-    }
     public void PrintAllPlayerInventory()//플레이어가 가지고 있는 아이템 전체 목록 로그 찍기
     {
-        foreach (var itemType in playerInventory)
+        int num = 0;
+        foreach (var itemType in playerInventoryGrid.inventory)
         {
             foreach (var item in itemType.Value)
             {
-                Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+                if (item != null)
+                {
+                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+                    num++;
+                }
             }
         }
+        Debug.Log($"소지한 아이템 수 : {num}");
     }
 }
