@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,10 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
+    Renderer _enemyRenderer; // 투명도 조절을 위한 mat
+    [SerializeField] Material _baseMat; // 원래 mat저장해두기 위한 용도.
+    [SerializeField] Material _spawnMat;
+
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
@@ -40,6 +45,8 @@ public class Enemy : CharacterBehaviour
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
 
+        _enemyRenderer = GetComponentInChildren<Renderer>();
+
         stateMachine = new(this);
 
         Init();
@@ -47,15 +54,13 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
-        Init();
-        stateMachine.ChangeState(stateMachine.IdleState);
+        StartSpawn();
 
-        Invoke(nameof(SpawnEnd), 1f); // 스폰되고 잠시 대기시간?
+        
     }
 
     private void OnDisable()
     {
-        EnemySpawner.Instance.DecrementEnemyCnt();
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -64,6 +69,8 @@ public class Enemy : CharacterBehaviour
         //stateMachine.ChangeState(stateMachine.IdleState);
 
         OnDieEvent += ChangeDieState;
+        OnDieEvent += InvokeOnDieFadeOut;
+
         OnHitEvent += ChangeHitState;
 
         target = EnemySpawner.Instance.target; // 임시
@@ -103,8 +110,6 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
-        IsSpawning = true;
-
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
         {
             case EnemyRank.Normal:
@@ -133,11 +138,6 @@ public class Enemy : CharacterBehaviour
     void ChangeHitState()
     {
         stateMachine.ChangeState(stateMachine.HitState);
-    }
-
-    void SpawnEnd()
-    {
-        IsSpawning = false;
     }
 
     public void InvokeEvent(Action action)
@@ -181,5 +181,61 @@ public class Enemy : CharacterBehaviour
 
         //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
         projectile.SetVelocity(1f); // 속도 배율 설정
+    }
+
+    void StartSpawn()
+    {
+        IsSpawning = true;
+
+        #region Renderer.sharedMaterial
+        // shared를 사용하면 해당 mat을 사용하는 모든 객체들이 변경되어야 하지만 실제로 사용해보니까 그렇게 되지는 않았음.
+        // 하지만 shared를 사용하게되면 다른때에 갑자기 다 바뀔수도 있을거 같아서 채택하지 않음.
+        // GPT피셜 : Unity의 렌더링 시스템과 최적화 메커니즘으로 인해 실제 동작은 다소 복잡하고, 예상과 다를 수 있습니다
+        // 라고 하기는 하는데 잘 모르겠다..
+        //_enemyRenderer.sharedMaterial = _spawnMat; 
+        #endregion
+        Color tempColor = _spawnMat.color;
+        tempColor.a = 0;
+        _spawnMat.color = tempColor;
+
+        _enemyRenderer.material = _spawnMat;
+
+        _enemyRenderer.material.DOFade(1, 1).OnComplete(SpawnComplete);
+    }
+
+    void SpawnComplete()
+    {
+        //_enemyRenderer.sharedMaterial = _baseMat;
+        _enemyRenderer.material = _baseMat;
+        SpawnEnd();
+
+        Init();
+        stateMachine.ChangeState(stateMachine.IdleState);
+    }
+
+    void SpawnEnd()
+    {
+        IsSpawning = false;
+    }
+
+    void InvokeOnDieFadeOut()
+    {
+        Invoke(nameof(OnDieFadeOut), 1f);
+    }
+
+    void OnDieFadeOut()
+    {
+        Color tempColor = _spawnMat.color;
+        tempColor.a = 1;
+        _spawnMat.color = tempColor;
+
+        _enemyRenderer.material = _spawnMat;
+
+        _enemyRenderer.material.DOFade(0, 1).OnComplete(ActiveFalse);
+    }
+
+    void ActiveFalse()
+    {
+        gameObject.SetActive(false);
     }
 }

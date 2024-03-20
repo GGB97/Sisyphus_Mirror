@@ -52,6 +52,4 @@ public class EnemyIdleState : EnemyBaseState
 
         StopAnimation(EnemyAnimationData.IdleParameterHash);
     }
-
-    
 }

@@ -92,8 +92,22 @@ public class EnemySpawner : MonoBehaviour
         StopCoroutine(SpawnStart());
     }
 
+    public void IncrementEnemyCnt()
+    {
+        currentEnemyCnt++;
+    }
     public void DecrementEnemyCnt()
     {
         currentEnemyCnt--;
+    }
+
+    public void FindAllEnemiesAndDie() // Test용
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.isDie = true;
+        }
     }
 }
