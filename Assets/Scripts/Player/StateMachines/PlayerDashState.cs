@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDashStare : PlayerBaseState
+public class PlayerDashState : PlayerBaseState
 {
-    public PlayerDashStare(PlayerStateMachine playerstateMachine) : base(playerstateMachine)
+    public PlayerDashState(PlayerStateMachine playerstateMachine) : base(playerstateMachine)
     {
     }
 
@@ -13,7 +13,7 @@ public class PlayerDashStare : PlayerBaseState
     {
         stateMachine.MovementSpeedModifier = 3f;            
         movementDirection = GetMovementDirection();         // 대시 이동할 방향 
-        stateMachine.DashRange = playerData.dashRange;      // 대시 지속시간 초기화
+        stateMachine.DashRange = curState.dashRange;      // 대시 지속시간 초기화
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
     }

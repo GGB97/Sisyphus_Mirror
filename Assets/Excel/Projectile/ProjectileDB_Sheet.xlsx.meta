@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/KHR/Mpa.unity.meta
+guid: 0d393bcd3add56941b91dabff96236ec
+========
 guid: 1d309791f49f3454eb6b794e62014760
+>>>>>>>> Dev:Assets/Excel/Projectile/ProjectileDB_Sheet.xlsx.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

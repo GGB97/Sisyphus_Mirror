@@ -37,6 +37,15 @@ public class Status
     public float attackSpeed;
     public float moveSpeed;
 
+    public float knockbackPower;
+    public float dashRange;
+    public float dashCoolTime;
+
+    public float critRate;
+    public float critDamage;
+
+    public float lifeSteal;
+
     public Status()
     {
         Init();
@@ -60,5 +69,14 @@ public class Status
 
         attackSpeed = baseStat.attackSpeed + modifier.attackSpeed;
         moveSpeed = baseStat.moveSpeed + modifier.moveSpeed;
+
+        knockbackPower = baseStat.knockbackPower + modifier.knockbackPower;
+        dashRange = baseStat.dashRange + modifier.dashRange;
+        dashCoolTime = baseStat.dashCoolTime + modifier.dashCoolTime;
+
+        critRate = baseStat.critRate + modifier.critRate;
+        critDamage = baseStat.critDamage + modifier.critDamage;
+
+        lifeSteal = baseStat.lifeSteal + modifier.lifeSteal;
     }
 }
