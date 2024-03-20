@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < spawnCnt; i++)
                 {
-                    Vector3 pos = GetRandomPos(); // Enemy가 생성될 위치
+                    Vector3 pos = GetSpawnPos(); // Enemy가 생성될 위치
 
                     // 여기서 pos의 위치에 Spawn이 가능한지 검사 필요성이 생긴다면 추가 예정
                     // --
@@ -84,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomPos()
+    Vector3 GetSpawnPos()
     {
         return new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
     }
