@@ -32,7 +32,7 @@ public class ItemManager : SingletoneBase<ItemManager>
         // foreach(WeaponData weapon in ownItems[ItemType.Weapon]) 이런 식으로 하면 될듯?
     }
 
-    public void OnEquip()
+    public void OnEquip(int id, ItemType itemType)
     {
         if (Player != null)
         {
@@ -41,7 +41,7 @@ public class ItemManager : SingletoneBase<ItemManager>
         }
     }
 
-    public void OnUnequip()
+    public void OnUnequip(int id, ItemType itemType)
     {
 
     }

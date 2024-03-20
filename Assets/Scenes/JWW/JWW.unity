@@ -420,8 +420,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
     type: 3}
-  minAddSlot: 5
-  currentAddSlot: 0
 --- !u!1 &1154441154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,8 +1202,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
     type: 3}
-  minAddSlot: 5
-  currentAddSlot: 0
 --- !u!224 &4271292779529678899
 RectTransform:
   m_ObjectHideFlags: 0
