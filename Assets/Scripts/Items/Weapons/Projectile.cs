@@ -16,7 +16,6 @@ public class Projectile : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
-        
         _duration = 3f;
     }
 

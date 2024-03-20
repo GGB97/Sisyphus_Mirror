@@ -17,6 +17,9 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Update()
     {
+        if (enemy.IsSpawning)
+            return;
+
         base.Update();
 
         if (enemy.target == null)
@@ -49,6 +52,4 @@ public class EnemyIdleState : EnemyBaseState
 
         StopAnimation(EnemyAnimationData.IdleParameterHash);
     }
-
-    
 }

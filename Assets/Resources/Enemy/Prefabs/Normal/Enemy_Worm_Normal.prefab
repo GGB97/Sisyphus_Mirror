@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9024390909964876277}
-  - component: {fileID: 7846280364660539207}
+  - component: {fileID: 2129318379596942360}
   - component: {fileID: 6476697723984847}
   - component: {fileID: 439337337260440862}
   - component: {fileID: 559669192185584168}
@@ -80,10 +80,10 @@ Transform:
   - {fileID: 6823599538812335952}
   - {fileID: 8530075172814957197}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &7846280364660539207
-CharacterController:
+--- !u!136 &2129318379596942360
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,14 +100,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &6476697723984847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -126,7 +123,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -184,6 +181,9 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 8530075172828658671}
+  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders: []
@@ -884,3 +884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23962246d85957c48a3397266f740f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!137 &8530075172828658671 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7581544333501609223, guid: 945060dcafb5431db5008d096e3a8912,
+    type: 3}
+  m_PrefabInstance: {fileID: 2258524752830893800}
+  m_PrefabAsset: {fileID: 0}

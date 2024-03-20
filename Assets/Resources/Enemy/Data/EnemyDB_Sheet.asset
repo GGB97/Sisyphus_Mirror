@@ -22,7 +22,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30000000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Slime_Normal
     type: 0
     rank: 0
     element: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30100000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_TurtleShell_Normal
     type: 1
     rank: 0
     element: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30200000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Spider_Normal
     type: 2
     rank: 0
     element: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 20
+    maxHealth: 30
     attackRange: 2.3
     meleeAtk: 3
     magicAtk: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30300000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Skeleton_Normal
     type: 3
     rank: 0
     element: 0
@@ -142,7 +142,23 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 20
+    maxHealth: 100
+    attackRange: 4
+    meleeAtk: 6
+    magicAtk: 0
+    def: 5
+    attackSpeed: 0.5
+    moveSpeed: 3
+    id: 30310001
+    prefabPath: Enemy/Prefabs/Elite/Enemy_Skeleton_Elite
+    type: 3
+    rank: 1
+    element: 0
+    size: 1
+    rotationSpeed: 4
+    attackAngle: 20
+  - health: 0
+    maxHealth: 50
     attackRange: 3
     meleeAtk: 3
     magicAtk: 0
@@ -150,24 +166,8 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30400001
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
     type: 4
-    rank: 0
-    element: 0
-    size: 1
-    rotationSpeed: 3
-    attackAngle: 30
-  - health: 0
-    maxHealth: 20
-    attackRange: 2.5
-    meleeAtk: 3
-    magicAtk: 0
-    def: 3
-    attackSpeed: 0.5
-    moveSpeed: 2
-    id: 30700001
-    prefabPath: 
-    type: 5
     rank: 0
     element: 0
     size: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30600000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Bat_Normal
     type: 6
     rank: 0
     element: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 20
+    maxHealth: 50
     attackRange: 3
     meleeAtk: 3
     magicAtk: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30700000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Dragon_Normal
     type: 7
     rank: 0
     element: 0
@@ -206,7 +206,23 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 20
+    maxHealth: 50
+    attackRange: 2.5
+    meleeAtk: 3
+    magicAtk: 0
+    def: 3
+    attackSpeed: 0.5
+    moveSpeed: 2
+    id: 30700001
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
+    type: 5
+    rank: 0
+    element: 0
+    size: 1
+    rotationSpeed: 3
+    attackAngle: 30
+  - health: 0
+    maxHealth: 30
     attackRange: 2
     meleeAtk: 3
     magicAtk: 0
@@ -214,7 +230,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 2
     id: 30800000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_MonsterPlant_Normal
     type: 8
     rank: 0
     element: 0
@@ -222,7 +238,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 20
+    maxHealth: 30
     attackRange: 10
     meleeAtk: 0
     magicAtk: 3
@@ -230,7 +246,7 @@ MonoBehaviour:
     attackSpeed: 0.3
     moveSpeed: 2
     id: 30900000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage_Normal
     type: 9
     rank: 0
     element: 0
@@ -238,7 +254,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 5
   - health: 0
-    maxHealth: 20
+    maxHealth: 100
     attackRange: 20
     meleeAtk: 0
     magicAtk: 5
@@ -246,7 +262,7 @@ MonoBehaviour:
     attackSpeed: 0.5
     moveSpeed: 0
     id: 31000000
-    prefabPath: 
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Worm_Normal
     type: 10
     rank: 0
     element: 0

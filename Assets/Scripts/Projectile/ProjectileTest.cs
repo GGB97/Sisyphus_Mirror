@@ -88,8 +88,8 @@ public class ProjectileTest : MonoBehaviour
         //rb.velocity = Vector3.zero;
         _velocity = 0f;
 
-        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        hitParticle.SetActive(true);
+        ps?.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        hitParticle?.SetActive(true);
 
         Invoke(nameof(ActiveFalse), 1f);
     }

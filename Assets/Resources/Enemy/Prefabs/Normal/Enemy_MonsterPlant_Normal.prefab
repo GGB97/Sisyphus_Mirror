@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8278614010341594991}
-  - component: {fileID: 7011176141937760198}
+  - component: {fileID: 1882309681848579000}
   - component: {fileID: 5989665561921380961}
   - component: {fileID: 7355870060952564493}
   - component: {fileID: 8134512773483230711}
@@ -103,8 +103,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &7011176141937760198
-CharacterController:
+--- !u!136 &1882309681848579000
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,14 +121,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!195 &5989665561921380961
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -205,12 +202,15 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 5286711513767215263}
+  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
   - {fileID: 1709669061523666237}
   _rangeAttackPos: []
-  _projectilePrefabs: []
+  _projectileTag: 
 --- !u!114 &8134512773483230711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1045,12 @@ MonoBehaviour:
 --- !u!4 &5239987215153481837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4238785027738844, guid: e13e0841a00249caa40b7491ec922069,
+    type: 3}
+  m_PrefabInstance: {fileID: 5239695977552823473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5286711513767215263 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137658475978441774, guid: e13e0841a00249caa40b7491ec922069,
     type: 3}
   m_PrefabInstance: {fileID: 5239695977552823473}
   m_PrefabAsset: {fileID: 0}

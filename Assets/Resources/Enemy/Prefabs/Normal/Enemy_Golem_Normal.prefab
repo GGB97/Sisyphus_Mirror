@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371465322185525832}
-  - component: {fileID: 6095071892141553562}
+  - component: {fileID: 7272340632377769663}
   - component: {fileID: 2667085031426733756}
   - component: {fileID: 5062388304122850377}
   - component: {fileID: 2711227618756655968}
@@ -103,8 +103,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &6095071892141553562
-CharacterController:
+--- !u!136 &7272340632377769663
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,14 +121,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  serializedVersion: 2
+  m_Radius: 1.2
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!195 &2667085031426733756
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -205,12 +202,15 @@ MonoBehaviour:
     def: 0
     attackSpeed: 0
     moveSpeed: 0
+  _enemyRenderer: {fileID: 5307630535540341099}
+  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
   - {fileID: 4681803008971222559}
   _rangeAttackPos: []
-  _projectilePrefabs: []
+  _projectileTag: 
 --- !u!114 &2711227618756655968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1089,12 @@ Transform:
 --- !u!4 &5211631790785594365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4855264848666024, guid: ed6d71d64c34430095360130d5077535,
+    type: 3}
+  m_PrefabInstance: {fileID: 5206812450119278165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5307630535540341099 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137972834962319166, guid: ed6d71d64c34430095360130d5077535,
     type: 3}
   m_PrefabInstance: {fileID: 5206812450119278165}
   m_PrefabAsset: {fileID: 0}

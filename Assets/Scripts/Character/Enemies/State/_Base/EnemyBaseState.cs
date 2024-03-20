@@ -15,7 +15,6 @@ public class EnemyBaseState : IState
 
     protected Animator animator;
     protected NavMeshAgent agent;
-    protected CharacterController controller;
 
     public EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
@@ -27,8 +26,6 @@ public class EnemyBaseState : IState
 
         animator = enemy.Animator;
         agent = enemy.Agent;
-        controller = enemy.Controller;
-
     }
 
     public virtual void Enter()
@@ -53,6 +50,8 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
+        
+
         UpdateTime();
 
         if (enemy.isDie)
