@@ -21,6 +21,7 @@ MonoBehaviour:
     def: 2
     attackSpeed: 0
     moveSpeed: 5
+    knockbackPower: 0
     dashRange: 0.2
     dashCoolTime: 1
     critRate: 0
@@ -39,6 +40,7 @@ MonoBehaviour:
     def: 0
     attackSpeed: 20
     moveSpeed: 5
+    knockbackPower: 0
     dashRange: 0.2
     dashCoolTime: 1
     critRate: 5

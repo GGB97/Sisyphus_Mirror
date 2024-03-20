@@ -21,6 +21,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Slime_Normal
     type: 0
@@ -37,6 +43,12 @@ MonoBehaviour:
     def: 5
     attackSpeed: 0.5
     moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30010001
     prefabPath: 
     type: 0
@@ -53,6 +65,12 @@ MonoBehaviour:
     def: 7
     attackSpeed: 0.5
     moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30020001
     prefabPath: 
     type: 0
@@ -69,6 +87,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30100000
     prefabPath: Enemy/Prefabs/Normal/Enemy_TurtleShell_Normal
     type: 1
@@ -85,6 +109,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30110001
     prefabPath: 
     type: 1
@@ -101,6 +131,12 @@ MonoBehaviour:
     def: 7
     attackSpeed: 0.5
     moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30120001
     prefabPath: 
     type: 1
@@ -117,6 +153,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30200000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Spider_Normal
     type: 2
@@ -133,6 +175,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30300000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Skeleton_Normal
     type: 3
@@ -149,6 +197,12 @@ MonoBehaviour:
     def: 5
     attackSpeed: 0.5
     moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30310001
     prefabPath: Enemy/Prefabs/Elite/Enemy_Skeleton_Elite
     type: 3
@@ -165,6 +219,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30400001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
     type: 4
@@ -181,6 +241,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30600000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Bat_Normal
     type: 6
@@ -197,6 +263,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30700000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Dragon_Normal
     type: 7
@@ -213,6 +285,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30700001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
     type: 5
@@ -229,6 +307,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.5
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30800000
     prefabPath: Enemy/Prefabs/Normal/Enemy_MonsterPlant_Normal
     type: 8
@@ -245,6 +329,12 @@ MonoBehaviour:
     def: 3
     attackSpeed: 0.3
     moveSpeed: 2
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 30900000
     prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage_Normal
     type: 9
@@ -261,6 +351,12 @@ MonoBehaviour:
     def: 5
     attackSpeed: 0.5
     moveSpeed: 0
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
     id: 31000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Worm_Normal
     type: 10
