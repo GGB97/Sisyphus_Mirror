@@ -9839,7 +9839,7 @@ MonoBehaviour:
   id: 40000000
   target:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   ps: {fileID: 385656496852123085}
   hitParticle: {fileID: 8967618421679587929}
 --- !u!1 &7847411789696539746
