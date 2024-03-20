@@ -31,24 +31,26 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        // Plane 오브젝트의 Transform 컴포넌트
-        Transform planeTransform = plane.transform;
+        StartCoroutine(SpawnStart());
+    }
 
-        // Plane의 스케일을 기준으로 실제 크기 계산
-        float width = 10f * planeTransform.localScale.x;
-        float length = 10f * planeTransform.localScale.z;
+    void SetSpawnPos()
+    {
+        // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
+        float width = 10f * plane.transform.localScale.x;
+        float length = 10f * plane.transform.localScale.z;
 
         // 좌측 하단과 우측 상단 좌표 계산
-        bottomLeft = planeTransform.position + new Vector3(-width / 2, 0, -length / 2);
-        topRight = planeTransform.position + new Vector3(width / 2, 0, length / 2);
-
-        StartCoroutine(SpawnStart());
+        bottomLeft = plane.transform.position + new Vector3(-width / 2, 0, -length / 2);
+        topRight = plane.transform.position + new Vector3(width / 2, 0, length / 2);
     }
 
     IEnumerator SpawnStart()
     {
         int spawnCnt = waveData.numPerSpawn;
         WaitForSeconds delay = new WaitForSeconds(waveData.spawnDelay);
+
+        SetSpawnPos();
 
         yield return delay;
 
@@ -59,7 +61,6 @@ public class EnemySpawner : MonoBehaviour
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {
-                // 한번에 스폰할 양 추후 WaveData에 넣을지 고민좀 해야함
                 for (int i = 0; i < spawnCnt; i++)
                 {
                     // 이곳에서 조건검사로 Normal/Elite 나누면 될듯 확률로 해가지고
@@ -86,6 +87,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnStop() // 스테이지 종료될때 호출하면 될듯
     {
+        // 스테이지 종료 시 Enemy가 다 사라져야 한다면?
+        // Envent 하나 만들고 Enemy Awake시 비활성화 되는 함수를 구독 -> 이벤트 실행 하면 될듯
         StopCoroutine(SpawnStart());
     }
 

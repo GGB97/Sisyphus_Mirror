@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 단일 책임의 원칙이 생각나서 Object Pooler와 거의 같은기능을 하지만 분리해둠
+// + Hiearachy 에서 투사체와 몬스터가 한오브젝트 하위에 뭉쳐있는게 깔끔해 보이지 않아서도 있음.
 public class EnemyPooler : MonoBehaviour
 {
     [Serializable]
