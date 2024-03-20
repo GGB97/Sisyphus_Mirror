@@ -32,6 +32,7 @@ public class RangeWeapon : MonoBehaviour
 
         if (_coolDown <= 0 && canAttack)
         {
+            Debug.Log("Range Attack");
             canAttack = false;
             Target.Clear();
 
@@ -46,7 +47,11 @@ public class RangeWeapon : MonoBehaviour
         Target.Clear();
 
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, weaponData.Range, 1 << 7);
-        if (colliders.Length == 0) return;
+        if (colliders.Length == 0)
+        {
+            canAttack = true;
+            return;
+        }
 
         foreach (Collider collider in colliders)
         {
