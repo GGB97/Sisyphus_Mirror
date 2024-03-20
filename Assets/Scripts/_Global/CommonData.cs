@@ -26,9 +26,10 @@ public struct DBPath
 
 public enum ProjectileID
 {
+    None,
     // 에러 수정용 임시 Arrow
     Arrow = 40000000,
-
+    Cube = 40000001,
     // -----
 
     OrangeExplosion = 40000100,

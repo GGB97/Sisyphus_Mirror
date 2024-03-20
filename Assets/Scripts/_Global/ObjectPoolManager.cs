@@ -47,6 +47,8 @@ public class ObjectPoolManager : MonoBehaviour
         if (!poolDictionary.ContainsKey(id))
             return null;
 
+        Debug.Log(id);
+
         // 큐에 없으면 새로 추가
         Queue<GameObject> poolQueue = poolDictionary[id];
         if (poolQueue.Count <= 0)
@@ -102,6 +104,8 @@ public class ObjectPoolManager : MonoBehaviour
     // 생성된 프리팹에서 Disable될 때 호출됨
     public void ReturnToPull(GameObject obj)
     {
-        poolDictionary[int.Parse(obj.name)].Enqueue(obj);
+        if (int.TryParse(obj.name, out int id))
+            poolDictionary[id].Enqueue(obj);
+        else Destroy(obj);
     }
 }

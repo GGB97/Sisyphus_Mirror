@@ -10,7 +10,7 @@ public enum EquipmentType
 public class EquipmentsData : ItemSO
 {
     [field: Header("Stats")]
-    [SerializeField] EquipmentType _equipmentType;
+    [SerializeField] EquipmentType _type;
     [SerializeField] float _health;
     [SerializeField] float _meleeAtk;
     [SerializeField] float _magicAtk;
@@ -21,7 +21,7 @@ public class EquipmentsData : ItemSO
     [SerializeField] float _critDamage;
     [SerializeField] float _lifeSteal;
 
-    public EquipmentType EquipmentType => _equipmentType;
+    public EquipmentType EquipmentType => _type;
     public float Health => _health;
     public float MeleeAtk => _meleeAtk;
     public float MagicAtk => _magicAtk;

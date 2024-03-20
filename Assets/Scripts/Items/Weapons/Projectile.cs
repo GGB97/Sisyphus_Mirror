@@ -7,13 +7,15 @@ public class Projectile : MonoBehaviour
 {
     int _damage; // 추후에 Player에게서 현재 공격력 가져오기
     float _duration;  // 추후에 Const 설정하기
-    Rigidbody _rigidbody;
-    TrailRenderer _trailRenderer;
+    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] ParticleSystem _particleSystem;
+    [SerializeField] Collider _collider;
+    //TrailRenderer _trailRenderer;
 
     private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _trailRenderer = GetComponent<TrailRenderer>(); // Try로 해서 추가?
+        _collider = GetComponent<Collider>();
         _duration = 3f;
     }
 
@@ -40,7 +42,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDisable()
     {
-        _trailRenderer.Clear(); // 여기도 null 체크해서
+        //_trailRenderer.Clear();
         ObjectPoolManager.Instance.ReturnToPull(gameObject);
     }
 }

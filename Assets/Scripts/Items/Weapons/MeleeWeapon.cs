@@ -47,7 +47,7 @@ public class MeleeWeapon : MonoBehaviour
         // 선형 보간 시작한 시간
         float timeSinceStarted = Time.time - _timeStartedMoving;
         // 선형 보간 진행 정도
-        float percentageComplete = timeSinceStarted / (_weaponData.AtkRate / 3);
+        float percentageComplete = timeSinceStarted / (_weaponData.AtkSpeed / 3);
 
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
@@ -61,7 +61,7 @@ public class MeleeWeapon : MonoBehaviour
                 Debug.Log("Melee Attack");
                 // 공격 애니메이션 재생
                 _animator.SetTrigger("Attack");
-                _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkRate);
+                _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
             }
             if (percentageComplete >= 1f)
             {
