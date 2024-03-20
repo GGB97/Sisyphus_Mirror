@@ -50,6 +50,7 @@ public class InventoryItem : MonoBehaviour
         itemData.height = weaponData.IconHeight;
         itemData.itemIcon = weaponData.Sprite;
         itemData.id = weaponData.Id;
+        itemData.itemType = weaponData.ItemType;
 
         this.itemData = itemData; //아이템 데이터를 매개변수로 설정
 
@@ -62,7 +63,7 @@ public class InventoryItem : MonoBehaviour
         rotationDegree = GetComponent<RectTransform>().rotation.z;
     }
 
-    public void Rotate()
+    public void Rotate()//90도 회전
     {
         rotationDegree += 90f;//90도 더한다.
         if (rotationDegree >= 360f)//360도를 넘으면 초기화
@@ -71,7 +72,7 @@ public class InventoryItem : MonoBehaviour
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.rotation = Quaternion.Euler(0,0, rotationDegree);//회전 적용
     }
-    public void SetRotation(float degree)
+    public void SetRotation(float degree)//degree로 로테이션 설정
     {
         rotationDegree = degree;
         RectTransform rectTransform = GetComponent<RectTransform>();

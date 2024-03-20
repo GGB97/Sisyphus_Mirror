@@ -10,7 +10,7 @@ public class InventoryController : MonoBehaviour
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
     [HideInInspector]
-    private ItemGrid selectedItemGrid; 
+    private ItemGrid selectedItemGrid; //현재 그리드 정보
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid; 
         set { 
@@ -19,16 +19,21 @@ public class InventoryController : MonoBehaviour
         } 
     }
     [SerializeField]
-    private ItemGrid previousItemGird;
+    private ItemGrid previousItemGird;//이전 그리드 정보
 
-    public InventoryItem selectedItem;
+    public Dictionary<ItemType, List<InventoryItem>> playerInventory = new Dictionary<ItemType, List<InventoryItem>>();
+    public Dictionary<ItemType, List<InventoryItem>> storage = new Dictionary<ItemType, List<InventoryItem>>();
+
+    public InventoryItem selectedItem;//현재 선택된 아이템
     InventoryItem overlapitem;
-    RectTransform rectTransform;
+    RectTransform rectTransform;//선택된 아이템의 트랜스폼
 
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
     [SerializeField] Transform canvasTransform;
-    [SerializeField] ItemGrid itemGrid;//인벤토리 그리드
+    [SerializeField] ItemGrid inventoryGrid;//인벤토리 그리드
+    [SerializeField] ItemGrid storageGrid;//창고 그리드
+
 
     InventoryHighlight inventoryHighlight;
 
@@ -66,6 +71,10 @@ public class InventoryController : MonoBehaviour
         {
             RotateItem();
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PrintAllPlayerInventory();
+        }
         //if (selectedItemGrid == null) // 그리드 위에 없다면
         //{
         //    inventoryHighlight.Show(false); //하이라이트 끔
@@ -89,7 +98,7 @@ public class InventoryController : MonoBehaviour
     public void StartButton()//칸 확장 기능
     {
         addCount = 6;
-        SelectedItemGrid = itemGrid;
+        SelectedItemGrid = inventoryGrid;
         SelectedItemGrid.ShowRandomAddableSlot();
     }
     private void InsertRandomItem()
@@ -112,6 +121,23 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+
+        if (selectedItemGrid == inventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
+        {
+            List<InventoryItem> itemList = null;
+            if (playerInventory.ContainsKey(itemToInsert.itemData.itemType))//키가 존재하다면
+            {
+                itemList = playerInventory[itemToInsert.itemData.itemType];
+                itemList.Add(itemToInsert);
+                playerInventory[itemToInsert.itemData.itemType] = itemList;
+            }
+            else
+            {
+                itemList = new List<InventoryItem>() { itemToInsert };
+                playerInventory.Add(itemToInsert.itemData.itemType, itemList);
+            }
+            Debug.Log($"{playerInventory[itemToInsert.itemData.itemType].Count}");
+        }
     }
 
     InventoryItem itemToHighlight;
@@ -236,6 +262,10 @@ public class InventoryController : MonoBehaviour
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
+            if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
+            {
+               
+            }
             selectedItem = null; //선택을 초기화
             if (overlapitem != null)//겹치는 것이 있었으면 
             {
@@ -281,6 +311,20 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform.position = Input.mousePosition;
+        }
+    }
+    private void SaveItemToInventory()
+    {
+        
+    }
+    public void PrintAllPlayerInventory()//플레이어가 가지고 있는 아이템 전체 목록 로그 찍기
+    {
+        foreach (var itemType in playerInventory)
+        {
+            foreach (var item in itemType.Value)
+            {
+                Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+            }
         }
     }
 }
