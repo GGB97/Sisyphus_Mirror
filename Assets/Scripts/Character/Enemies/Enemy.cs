@@ -31,6 +31,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
 
+    public bool isSpawning;
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -48,6 +50,8 @@ public class Enemy : CharacterBehaviour
     {
         Init();
         stateMachine.ChangeState(stateMachine.IdleState);
+
+        Invoke(nameof(SpawnEnd), 1f); // 스폰되고 잠시 대기시간?
     }
 
     private void OnDisable()
@@ -58,7 +62,7 @@ public class Enemy : CharacterBehaviour
 
     void Start()
     {
-        stateMachine.ChangeState(stateMachine.IdleState);
+        //stateMachine.ChangeState(stateMachine.IdleState);
 
         OnDieEvent += ChangeDieState;
         OnHitEvent += ChangeHitState;
@@ -100,6 +104,8 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
+        isSpawning = true;
+
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
         {
             case EnemyRank.Normal:
@@ -128,6 +134,11 @@ public class Enemy : CharacterBehaviour
     void ChangeHitState()
     {
         stateMachine.ChangeState(stateMachine.HitState);
+    }
+
+    void SpawnEnd()
+    {
+        isSpawning = false;
     }
 
     public void InvokeEvent(Action action)

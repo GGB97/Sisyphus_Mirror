@@ -50,6 +50,8 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
+        
+
         UpdateTime();
 
         if (enemy.isDie)

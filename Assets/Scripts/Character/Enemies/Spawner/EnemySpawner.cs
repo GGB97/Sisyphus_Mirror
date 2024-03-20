@@ -50,6 +50,8 @@ public class EnemySpawner : MonoBehaviour
         int spawnCnt = waveData.numPerSpawn;
         WaitForSeconds delay = new WaitForSeconds(waveData.spawnDelay);
 
+        yield return delay;
+
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
         // --
 
