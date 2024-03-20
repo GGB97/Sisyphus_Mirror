@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public enum ItemType
+{
+    Weapon,
+    Equipments,
+    Consumable
+}
+
 public enum ItemGrade
 {
     Normal,
@@ -13,6 +20,7 @@ public class ItemSO
 {
     [field: Header("ItemInfo")]
     [SerializeField] protected int _id;
+    [SerializeField] protected ItemType _itemType;
     [SerializeField] protected string _name;
     [SerializeField] protected string _description;
     [SerializeField] protected string _spritePath;
@@ -23,6 +31,7 @@ public class ItemSO
     [SerializeField] protected ItemGrade _grade;
 
     public int Id => _id;
+    public ItemType ItemType => _itemType;
     public string Name => _name;
     public string Description => _description;
     public string SpritePath => _spritePath;

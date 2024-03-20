@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - _id: 10111011
+    _itemType: 0
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Items/Icons/Weapons/Melee/Axe_1
@@ -33,6 +34,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
   - _id: 10111012
+    _itemType: 0
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Items/Icons/Weapons/Melee/Axe_1
@@ -52,6 +54,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
   - _id: 10111013
+    _itemType: 0
     _name: Axe
     _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
     _spritePath: Items/Icons/Weapons/Melee/Axe_1
@@ -71,9 +74,10 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
   - _id: 10112013
+    _itemType: 0
     _name: Spear
     _description: "\uCC3D"
-    _spritePath: Items/Icons/Weapons/Melee/Spear1
+    _spritePath: Items/Icons/Weapons/Melee/Spear_1
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Spear_1
@@ -90,9 +94,10 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
   - _id: 10121011
+    _itemType: 0
     _name: Bow
     _description: "\uD65C."
-    _spritePath: Items/Icons/Weapon/Range/Bow_1
+    _spritePath: Items/Icons/Weapons/Range/Bow_1
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
@@ -109,9 +114,10 @@ MonoBehaviour:
     _projectileID: 40000000
     _numberOfProjectile: 1
   - _id: 10122011
+    _itemType: 0
     _name: Wand
     _description: "\uC644\uB4DC"
-    _spritePath: Items/Icons/Weapon/Range/Wand_1
+    _spritePath: Items/Icons/Weapons/Range/Wand_1
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
