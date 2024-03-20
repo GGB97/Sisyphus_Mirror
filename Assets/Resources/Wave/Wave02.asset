@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Wave02
   m_EditorClassIdentifier: 
   normal: 6057ce0101decf01e171d401e071d40180f8d501207fd701c005d901
-  elite: 
+  elite: 717ece01
   boss: 
+  maxEnemyCnt: 70
   numPerSpawn: 5
   spawnDelay: 3
+  eliteSpawnChance: 5

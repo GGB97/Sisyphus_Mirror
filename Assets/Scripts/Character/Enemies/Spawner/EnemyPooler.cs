@@ -117,7 +117,7 @@ public class EnemyPooler : MonoBehaviour
         for(int i =0; i< waveData.normal.Length; i++)
         {
             _pools[i].id = waveData.normal[i];
-            _pools[i].size = 10;
+            _pools[i].size = 15;
         }
 
         // Elite 세팅
@@ -125,7 +125,7 @@ public class EnemyPooler : MonoBehaviour
         for (int i = 0; i < waveData.elite.Length; i++)
         {
             _pools[i + ptr].id = waveData.elite[i];
-            _pools[i + ptr].size = 3;
+            _pools[i + ptr].size = 5;
         }
 
         // Boss 세팅
@@ -133,7 +133,7 @@ public class EnemyPooler : MonoBehaviour
         for (int i = 0; i < waveData.boss.Length; i++)
         {
             _pools[i + ptr].id = waveData.boss[i];
-            _pools[i + ptr].size = 2;
+            _pools[i + ptr].size = 3;
         }
 
         StartPool();

@@ -14,6 +14,8 @@ public class WaveSO : ScriptableObject
     public int numPerSpawn;
     public float spawnDelay;
 
+    public float eliteSpawnChance = 5f;
+
     public int GetAllLength()
     {
         return normal.Length + elite.Length + boss.Length;

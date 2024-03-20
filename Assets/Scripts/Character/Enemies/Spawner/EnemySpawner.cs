@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnStart()
     {
         int spawnCnt = waveData.numPerSpawn;
-        WaitForSeconds delay = new WaitForSeconds(waveData.spawnDelay);
+        WaitForSeconds delay = new(waveData.spawnDelay);
 
         SetSpawnPos();
 
@@ -63,19 +64,17 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < spawnCnt; i++)
                 {
-                    // 이곳에서 조건검사로 Normal/Elite 나누면 될듯 확률로 해가지고
-                    // --
-                    int rand = Random.Range(0, waveData.normal.Length);
-                    Vector3 pos = new Vector3(
-                        Random.Range(bottomLeft.x, topRight.x),
-                        0,
-                        Random.Range(bottomLeft.z, topRight.z)
-                        );
+                    Vector3 pos = GetRandomPos(); // Enemy가 생성될 위치
+
                     // 여기서 pos의 위치에 Spawn이 가능한지 검사 필요성이 생긴다면 추가 예정
                     // --
 
-                    var enemy = EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
-                    currentEnemyCnt++;
+                    // 특정 확률에 의해 Normal/Elite 생성
+                    float randomValue = Random.Range(0f, 100f);
+                    if (randomValue < waveData.eliteSpawnChance)
+                        SpawnElite(pos);
+                    else
+                        SpawnNormal(pos);
 
                     if (currentEnemyCnt >= maxEnemyCnt)
                         break;
@@ -83,6 +82,24 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return delay;
         }
+    }
+
+    Vector3 GetRandomPos()
+    {
+        return new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
+    }
+
+    void SpawnNormal(Vector3 pos)
+    {
+        int rand = Random.Range(0, waveData.normal.Length);
+        EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
+        currentEnemyCnt++;
+    }
+    void SpawnElite(Vector3 pos)
+    {
+        int rand = Random.Range(0, waveData.elite.Length);
+        EnemyPooler.Instance.SpawnFromPool(waveData.elite[rand], pos, Quaternion.identity);
+        currentEnemyCnt++;
     }
 
     public void SpawnStop() // 스테이지 종료될때 호출하면 될듯

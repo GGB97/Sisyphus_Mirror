@@ -142,6 +142,22 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
+    maxHealth: 100
+    attackRange: 4
+    meleeAtk: 6
+    magicAtk: 0
+    def: 5
+    attackSpeed: 0.5
+    moveSpeed: 3
+    id: 30310001
+    prefabPath: Enemy/Prefabs/Elite/Enemy_Skeleton_Elite
+    type: 3
+    rank: 1
+    element: 0
+    size: 1
+    rotationSpeed: 4
+    attackAngle: 20
+  - health: 0
     maxHealth: 50
     attackRange: 3
     meleeAtk: 3
@@ -152,22 +168,6 @@ MonoBehaviour:
     id: 30400001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
     type: 4
-    rank: 0
-    element: 0
-    size: 1
-    rotationSpeed: 3
-    attackAngle: 30
-  - health: 0
-    maxHealth: 50
-    attackRange: 2.5
-    meleeAtk: 3
-    magicAtk: 0
-    def: 3
-    attackSpeed: 0.5
-    moveSpeed: 2
-    id: 30700001
-    prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
-    type: 5
     rank: 0
     element: 0
     size: 1
@@ -203,6 +203,22 @@ MonoBehaviour:
     rank: 0
     element: 0
     size: 0
+    rotationSpeed: 3
+    attackAngle: 30
+  - health: 0
+    maxHealth: 50
+    attackRange: 2.5
+    meleeAtk: 3
+    magicAtk: 0
+    def: 3
+    attackSpeed: 0.5
+    moveSpeed: 2
+    id: 30700001
+    prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
+    type: 5
+    rank: 0
+    element: 0
+    size: 1
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
