@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ public class InventoryController : MonoBehaviour
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
     [HideInInspector]
-    private ItemGrid selectedItemGrid; 
+    private ItemGrid selectedItemGrid; //현재 그리드 정보
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid; 
         set { 
@@ -19,16 +20,17 @@ public class InventoryController : MonoBehaviour
         } 
     }
     [SerializeField]
-    private ItemGrid previousItemGird;
+    private ItemGrid previousItemGird;//이전 그리드 정보
 
-    public InventoryItem selectedItem;
+    public InventoryItem selectedItem;//현재 선택된 아이템
     InventoryItem overlapitem;
-    RectTransform rectTransform;
+    RectTransform rectTransform;//선택된 아이템의 트랜스폼
 
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
     [SerializeField] Transform canvasTransform;
-    [SerializeField] ItemGrid itemGrid;//인벤토리 그리드
+    public PlayerInventory playerInventoryGrid;//인벤토리 그리드
+    public Storage storageGrid;//창고 그리드
 
     InventoryHighlight inventoryHighlight;
 
@@ -66,6 +68,10 @@ public class InventoryController : MonoBehaviour
         {
             RotateItem();
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PrintAllPlayerInventory();
+        }
         //if (selectedItemGrid == null) // 그리드 위에 없다면
         //{
         //    inventoryHighlight.Show(false); //하이라이트 끔
@@ -89,8 +95,8 @@ public class InventoryController : MonoBehaviour
     public void StartButton()//칸 확장 기능
     {
         addCount = 6;
-        SelectedItemGrid = itemGrid;
-        SelectedItemGrid.ShowRandomAddableSlot();
+        SelectedItemGrid = playerInventoryGrid;
+        playerInventoryGrid.ShowRandomAddableSlot();
     }
     private void InsertRandomItem()
     {
@@ -112,8 +118,12 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
-    }
 
+        if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
+        {
+            playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
+        }
+    }
     InventoryItem itemToHighlight;
 
     private void HandleHightlight()//하이라이트 표시하기
@@ -236,6 +246,7 @@ public class InventoryController : MonoBehaviour
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
+            TradeItem();
             selectedItem = null; //선택을 초기화
             if (overlapitem != null)//겹치는 것이 있었으면 
             {
@@ -246,6 +257,14 @@ public class InventoryController : MonoBehaviour
             }
         }
         return complete;
+    }
+    public void TradeItem()//다른 곳에 설치했을 때 아이템 이동
+    {
+        if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
+        {
+            previousItemGird.SubtractItemFromInventory(selectedItem);
+            selectedItemGrid.AddItemToInventory(selectedItem);
+        }
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
@@ -267,7 +286,7 @@ public class InventoryController : MonoBehaviour
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
         previousItemGird = selectedItemGrid;//이전 그리드 설정
-        Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
+        //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
             Debug.Log($"현재 아이템 : {selectedItem.itemData.itemIcon.name}");
@@ -282,5 +301,21 @@ public class InventoryController : MonoBehaviour
         {
             rectTransform.position = Input.mousePosition;
         }
+    }
+    public void PrintAllPlayerInventory()//플레이어가 가지고 있는 아이템 전체 목록 로그 찍기
+    {
+        int num = 0;
+        foreach (var itemType in playerInventoryGrid.inventory)
+        {
+            foreach (var item in itemType.Value)
+            {
+                if (item != null)
+                {
+                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+                    num++;
+                }
+            }
+        }
+        Debug.Log($"소지한 아이템 수 : {num}");
     }
 }
