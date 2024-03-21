@@ -20,12 +20,12 @@ public class PlayerHitState : PlayerBaseState
     {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.HitParameterHash);
+        player.isHit = false;
     }
 
     public override void Update()
     {
         base.Update();
-        player.isHit = false;
         player.hitDelay += Time.deltaTime;
         if(player.hitDelay > 0.5f) 
         {
@@ -33,7 +33,7 @@ public class PlayerHitState : PlayerBaseState
         }
         if(player.currentStat.health <= 0)
         {
-            stateMachine.ChangeState(stateMachine.dieState);
+          //  stateMachine.ChangeState(stateMachine.dieState);
         }
     }
 }

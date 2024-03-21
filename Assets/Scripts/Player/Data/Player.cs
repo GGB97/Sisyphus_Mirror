@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,12 @@ public class Player : CharacterBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
+
+        isDie = false;
+        isHit = false;
+
+        OnDieEvent += ChangeDieState;
+        OnHitEvent += ChangeHitState;
     }
 
     private void Update()
@@ -51,21 +58,36 @@ public class Player : CharacterBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void ChangeDieState()
     {
-        if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
-        {
-            HealthSystem.TakeDamage(20f);
-            if(isHit)
-            {
-                stateMachine.ChangeState(stateMachine.hitState);
-            }
-            if(isDie)
-            {
-                stateMachine.ChangeState(stateMachine.dieState);
-            }
-        }
+        stateMachine.ChangeState(stateMachine.dieState);
     }
+
+    void ChangeHitState()
+    {
+        stateMachine.ChangeState(stateMachine.hitState);
+    }
+
+    public void InvokeEvent(Action action)
+    {
+        action?.Invoke();
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (LayerData.Enemy == (1 <<)
+    //    {
+            
+    //        if(isHit)
+    //        {
+    //            stateMachine.ChangeState(stateMachine.hitState);
+    //        }
+    //        if(isDie)
+    //        {
+    //            stateMachine.ChangeState(stateMachine.dieState);
+    //        }
+    //    }
+    //}
 
     
 }
