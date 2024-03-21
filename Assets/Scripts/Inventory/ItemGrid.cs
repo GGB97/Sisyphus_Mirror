@@ -6,8 +6,8 @@ using static UnityEngine.InputSystem.InputSettings;
 public class ItemGrid : MonoBehaviour
 {
     #region grid
-    public const float TileSizeWidth = 32f;//가로 타일의 사이즈
-    public const float TileSizeHeight = 32f;//세로 타일의 사이즈
+    public const float TileSizeWidth = 64f;//가로 타일의 사이즈
+    public const float TileSizeHeight = 64f;//세로 타일의 사이즈
 
     public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
     public int maxCount = 1;
@@ -155,7 +155,7 @@ public class ItemGrid : MonoBehaviour
     //}
     public bool CheckMaxCount()
     {
-        if (maxCount <= currentCount)
+        if (maxCount > currentCount)
             return false;
         else
             return true;
@@ -167,17 +167,17 @@ public class ItemGrid : MonoBehaviour
             return false;
         }
 
-        if (OverlapCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT, ref overlapitem) == false)//물체 마지막 하단 칸에 설치할 수 있는지 체크
-        {
-            overlapitem = null; //겹치는 것이 있으면 overlap 초기화
-            return false; //실패 반환
-        }
+        //if (OverlapCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT, ref overlapitem) == false)//물체 마지막 하단 칸에 설치할 수 있는지 체크
+        //{
+        //    overlapitem = null; //겹치는 것이 있으면 overlap 초기화
+        //    return false; //실패 반환
+        //}
 
-        if (overlapitem != null) //겹치는 것이 있다면
-        {
-            CleanGridReference(overlapitem);//겹치는 곳 null로 만듬
-        }
-        if (CheckMaxCount() == false)//최대를 넘겼는지 확인
+        //if (overlapitem != null) //겹치는 것이 있다면
+        //{
+        //    CleanGridReference(overlapitem);//겹치는 곳 null로 만듬
+        //}
+        if (CheckMaxCount() == true)//최대를 넘겼는지 확인
         {
             return false;
         }
@@ -301,18 +301,28 @@ public class ItemGrid : MonoBehaviour
 
     public bool BoundryCheck(int posX, int posY, int width, int height)//Grid 안에 물체가 포함되는지 확인
     {
-        if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        for (int x = posX; x < posX + width; x++)
         {
-            return false;
+            for (int y = posY; y < posY + height; y++)
+            {
+                if (PositionCheck(x, y) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+                {
+                    return false;
+                }
+            }
         }
+        //if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
-        posX += width - 1;
-        posY += height - 1;
+        //posX += width - 1;
+        //posY += height - 1;
 
-        if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
-        {
-            return false;
-        }
+        //if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
         return true;
     }

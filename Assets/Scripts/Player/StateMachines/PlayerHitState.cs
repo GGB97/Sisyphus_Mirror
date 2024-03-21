@@ -13,7 +13,7 @@ public class PlayerHitState : PlayerBaseState
         base.Enter();
         player.hitDelay = 0;
         StartAnimation(stateMachine.Player.AnimationData.HitParameterHash);
-        Debug.Log("damage");
+        //Debug.Log("damage");
     }
 
     public override void Exit()

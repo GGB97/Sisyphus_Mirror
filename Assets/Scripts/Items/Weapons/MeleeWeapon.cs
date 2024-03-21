@@ -58,7 +58,7 @@ public class MeleeWeapon : MonoBehaviour
             if(percentageComplete >= .5f)
             {
                 _animationEnd = false;
-                Debug.Log("Melee Attack");
+                //Debug.Log("Melee Attack");
                 // 공격 애니메이션 재생
                 _animator.SetTrigger("Attack");
                 _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
@@ -78,7 +78,7 @@ public class MeleeWeapon : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
             if (percentageComplete >= 1)
             {
-                Debug.Log("Melee Attack End");
+                //Debug.Log("Melee Attack End");
                 Target.Clear();
                 _canAttack = true;
             }
@@ -94,7 +94,7 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log($"Detect : {collider.name}");
+            //Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
 

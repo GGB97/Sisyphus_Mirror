@@ -125,4 +125,15 @@ public class PlayerInventory : ItemGrid
         }
         clearSlotList.Clear();//리스트 참조 초기화
     }
+
+    public void AddBigInventory()
+    {
+        for (int x = 2; x < gridSizeWidth - 2; x++)
+        {
+            for (int y = 2; y < gridSizeHeight - 2; y++)
+            {
+                panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+            }
+        }
+    }
 }

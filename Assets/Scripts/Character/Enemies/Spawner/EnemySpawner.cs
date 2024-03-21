@@ -38,8 +38,8 @@ public class EnemySpawner : MonoBehaviour
     void SetSpawnPos()
     {
         // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
-        float width = 10f * plane.transform.localScale.x;
-        float length = 10f * plane.transform.localScale.z;
+        float width = 23f * plane.transform.localScale.x;
+        float length = 23f * plane.transform.localScale.z;
 
         // 좌측 하단과 우측 상단 좌표 계산
         bottomLeft = plane.transform.position + new Vector3(-width / 2, 0, -length / 2);

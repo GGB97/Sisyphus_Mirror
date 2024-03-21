@@ -100,7 +100,7 @@ public class InventoryController : MonoBehaviour
     }
     private void InsertRandomItem()
     {
-        if (selectedItemGrid == null) { return; }
+        if (selectedItemGrid != playerInventoryGrid) { return; }
 
         CreateRandomItem();//아이템 생성
         InventoryItem itemToInsert = selectedItem;
@@ -114,14 +114,18 @@ public class InventoryController : MonoBehaviour
 
         if (posOnGrid == null)//설치 불가능 이면 return
         {
+            Destroy(itemToInsert.gameObject);
+            Debug.Log("삭제완료");
             return;
         }
 
-        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        //selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        playerInventoryGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
 
         if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
         {
             playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
+            selectedItemGrid.AddCurrentCount(1);
         }
     }
     InventoryItem itemToHighlight;
@@ -193,13 +197,14 @@ public class InventoryController : MonoBehaviour
     //        PlaceItem(tileGridPosition);//설치한다.
     //    }
     //}
-    public void LeftMouseButtonPress() //마우스 클릭했을 때
+    public void LeftMouseButtonPress() //마우스 누른 순간
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
         startRotation = selectedItem.rotationDegree;//처음 회전 값 저장.
+        SelectedItemGrid.AddCurrentCount(-1);
     }
-    public void LeftMouseButtonPut()//스크린상 중심의 위치
+    public void LeftMouseButtonPut()//마우스 뗀 순간
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
@@ -211,6 +216,8 @@ public class InventoryController : MonoBehaviour
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
 
             PlaceItem(tileGridStartPosition);//시작 위치에 설치
+            SelectedItemGrid.AddCurrentCount(1);
+
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
     }
@@ -262,11 +269,23 @@ public class InventoryController : MonoBehaviour
     {
         if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
         {
-            previousItemGird.SubtractItemFromInventory(selectedItem);
-            previousItemGird.AddCurrentCount(-1);
-            selectedItemGrid.AddItemToInventory(selectedItem);
-            selectedItemGrid.AddCurrentCount(1);
+            if (previousItemGird == playerInventoryGrid)//이동 전이 플레이어 인벤토리라면
+            {
+                previousItemGird.SubtractItemFromInventory(selectedItem);//인벤토리에서 아이템 빼기
+            }
+            if (selectedItemGrid == playerInventoryGrid)//이동 후가 플레이어 인벤토리라면
+            {
+                selectedItemGrid.AddItemToInventory(selectedItem);//인벤토리에 집어 넣기
+            }
+            //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
+            //selectedItemGrid.AddItemToInventory(selectedItem);
+            //selectedItemGrid.AddCurrentCount(1);
         }
+        //else//제자리서 들었다 놓았을 때 //원래 이거였던 것
+        //{
+        //    selectedItemGrid.AddCurrentCount(1);
+        //}
+        selectedItemGrid.AddCurrentCount(1);
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
@@ -319,5 +338,9 @@ public class InventoryController : MonoBehaviour
             }
         }
         Debug.Log($"소지한 아이템 수 : {num}");
+    }
+    public void AddBigInventory()
+    {
+        playerInventoryGrid.AddBigInventory();
     }
 }
