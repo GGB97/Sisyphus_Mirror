@@ -88,7 +88,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         Target.Clear();
 
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, _weaponData.Range, 1 << 7);
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, _weaponData.Range, LayerData.Enemy);
         if (colliders.Length == 0) return;
 
         foreach (Collider collider in colliders)
@@ -113,9 +113,19 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 1 << 7)
+        if (LayerData.Enemy == (1 << other.gameObject.layer | LayerData.Enemy))
         {
             Debug.Log("Monster TakeDamage");
+            //HealthSystem _healthSystem = other.gameObject.GetComponent<HealthSystem>();
+            //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
+            if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+            {
+                _healthSystem.TakeDamage(_weaponData.PhysicalAtk);
+            }
+        }
+        else
+        {
+            Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
         }
     }
 }
