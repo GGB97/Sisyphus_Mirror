@@ -117,11 +117,13 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        //selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        playerInventoryGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
 
         if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
         {
             playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
+            selectedItemGrid.AddCurrentCount(1);
         }
     }
     InventoryItem itemToHighlight;
@@ -193,13 +195,14 @@ public class InventoryController : MonoBehaviour
     //        PlaceItem(tileGridPosition);//설치한다.
     //    }
     //}
-    public void LeftMouseButtonPress() //마우스 클릭했을 때
+    public void LeftMouseButtonPress() //마우스 누른 순간
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
         startRotation = selectedItem.rotationDegree;//처음 회전 값 저장.
+        SelectedItemGrid.AddCurrentCount(-1);
     }
-    public void LeftMouseButtonPut()//스크린상 중심의 위치
+    public void LeftMouseButtonPut()//마우스 뗀 순간
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
@@ -211,6 +214,8 @@ public class InventoryController : MonoBehaviour
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
 
             PlaceItem(tileGridStartPosition);//시작 위치에 설치
+            SelectedItemGrid.AddCurrentCount(1);
+
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
     }
@@ -263,8 +268,11 @@ public class InventoryController : MonoBehaviour
         if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
         {
             previousItemGird.SubtractItemFromInventory(selectedItem);
-            previousItemGird.AddCurrentCount(-1);
             selectedItemGrid.AddItemToInventory(selectedItem);
+            selectedItemGrid.AddCurrentCount(1);
+        }
+        else//제자리서 들었다 놓았을 때
+        {
             selectedItemGrid.AddCurrentCount(1);
         }
     }
