@@ -21,8 +21,8 @@ public class Storage : ItemGrid
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                //image = panelSlots[x,y].GetComponent<Image>();
-                //image.enabled = false;
+                image = panelSlots[x,y].GetComponent<Image>();
+                image.enabled = false;
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
