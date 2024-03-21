@@ -57,7 +57,7 @@ public class PlayerInventory : ItemGrid
         {
             x = panelSlot.posX + vector.x;
             y = panelSlot.posY + vector.y;
-            if (PanelPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
+            if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
             {
                 if (panelSlots[x, y].CompareState(PanelSlotState.Null)|| panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 널일 때만 List에 넣음
                 {
