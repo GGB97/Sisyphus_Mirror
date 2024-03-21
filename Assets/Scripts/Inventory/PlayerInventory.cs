@@ -35,11 +35,6 @@ public class PlayerInventory : ItemGrid
     {
         //isSetting = true;// 설정을 한 번 한 것으로 설정
         currentAddSlot = 0;//현재 추가 슬롯
-        foreach (var slot in addableSlotList)
-        {
-            Debug.Log($"[{slot.posX},{slot.posY}");
-        }
-        Debug.Log($"총 개수 : {addableSlotList.Count}");
         for (int i = 0; i < 10; i++)//추가 되어야할 칸이 최소 5개
         {
             foreach (PanelSlot go in addableSlotList)
@@ -105,6 +100,7 @@ public class PlayerInventory : ItemGrid
             foreach (var slot in subtractSlotList)
             {
                 addableSlotList.Remove(slot);
+                Debug.Log($"[{slot.posX},{slot.posY}");
             }
             subtractSlotList.Clear();
         }
@@ -121,6 +117,11 @@ public class PlayerInventory : ItemGrid
         AddToAddableSlotList(panelSlots[tileGridPosition.x, tileGridPosition.y]);//AddList에 추가.
         ClearToClearSlotList();//Clear 초기화
         SubtractToAddableSlotList();
+        //foreach (var slot in addableSlotList)
+        //{
+        //    Debug.Log($"[{slot.posX},{slot.posY}");
+        //}
+        Debug.Log($"총 개수 : {addableSlotList.Count}");
         //isSetting = false;
         InventoryController.Instance.addCount -= 1;
         if (InventoryController.Instance.addCount > 0)
