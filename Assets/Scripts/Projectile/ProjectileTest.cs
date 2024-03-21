@@ -104,7 +104,7 @@ public class ProjectileTest : MonoBehaviour
         target |= layer;
         _projectileCollider.includeLayers |= target;
     }
-
+    
     public void AddExcludeLayer(LayerMask layer) // 부딪히지 않아야할 Layer 추가
     {
         _projectileCollider.excludeLayers |= layer;

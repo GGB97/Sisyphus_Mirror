@@ -72,7 +72,6 @@ public class MeleeWeapon : MonoBehaviour
         }
         else if(_animationEnd)
         {
-            
             _effect.SetActive(false);
 
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
@@ -80,9 +79,14 @@ public class MeleeWeapon : MonoBehaviour
             {
                 //Debug.Log("Melee Attack End");
                 Target.Clear();
-                _canAttack = true;
+                Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
             }
         }
+    }
+
+    void SetCanAttack()
+    {
+        _canAttack = true;
     }
 
     public void DetectEnemyInRange()

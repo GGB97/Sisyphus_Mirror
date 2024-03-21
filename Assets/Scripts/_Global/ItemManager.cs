@@ -94,16 +94,19 @@ public class ItemManager : MonoBehaviour
             Instantiate(weapon.Prefab, weaponPivot);
             _playerStats.meleeAtk += weapon.PhysicalAtk;
             _playerStats.magicAtk += weapon.MagicAtk;
-            _playerStats.attackSpeed += weapon.AtkSpeed;
+            //_playerStats.attackSpeed += weapon.AtkSpeed;
             _playerStats.critRate += weapon.CritRate;
             _playerStats.critDamage += weapon.CritDamage;
-            _playerStats.attackRange += weapon.Range;
+            //_playerStats.attackRange += weapon.Range;
             _playerStats.lifeSteal += weapon.LifeSteal;
         }
     }
 
     public void SetPlayerStats()
     {
+        foreach(var equipment in _ownEquipments)
+        {
 
+        }
     }
 }
