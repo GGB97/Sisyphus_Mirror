@@ -298,6 +298,21 @@ public class ItemGrid : MonoBehaviour
         }
         return true;
     }
+    public bool PanelPositionCheck(int posX, int posY)
+    {
+        if (posX < 0 || posY < 0)
+        {
+            return false;
+        }
+
+        if (posX >= gridSizeWidth || posY >= gridSizeHeight)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 
     public bool BoundryCheck(int posX, int posY, int width, int height)//Grid 안에 물체가 포함되는지 확인
     {
