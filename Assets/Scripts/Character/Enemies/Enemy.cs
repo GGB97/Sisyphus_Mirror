@@ -126,7 +126,7 @@ public class Enemy : CharacterBehaviour
     public void OnChildTriggerEnter(Collider other)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
+        //Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     void ChangeDieState()
