@@ -15,11 +15,16 @@ public class ItemManager : MonoBehaviour
 
     public Transform PlayerTransform {  get; private set; }
     public Player Player { get; private set; }
+    public Transform weaponPivot;
+
     [SerializeField] PlayerBaseData _playerStats;
     public Dictionary<ItemType, List<InventoryItem>> ownItems;
-    private Dictionary<int, WeaponData> _ownWeapons;
-    private Dictionary<int, EquipmentsData> _ownEquipments;
-    private Dictionary<int, ConsumableData> _ownConsumable;
+    //private Dictionary<ItemType, WeaponData> _ownWeapons = new Dictionary<ItemType, WeaponData>();
+    //private Dictionary<ItemType, EquipmentsData> _ownEquipments = new Dictionary<ItemType, EquipmentsData>();
+    //private Dictionary<ItemType, ConsumableData> _ownConsumable = new Dictionary<ItemType, ConsumableData>();
+    private List<WeaponData> _ownWeapons = new List<WeaponData>();
+    private List<EquipmentsData> _ownEquipments = new List<EquipmentsData>();
+    private List<ConsumableData> _ownConsumable = new List<ConsumableData>();
 
     private void Awake()
     {
@@ -47,13 +52,13 @@ public class ItemManager : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                _ownWeapons.Add(id, DataBase.Weapon.Get(id));
+                _ownWeapons.Add(DataBase.Weapon.Get(id));
                 break;
             case ItemType.Consumable:
-                _ownConsumable.Add(id, DataBase.Consumable.Get(id));
+                _ownConsumable.Add(DataBase.Consumable.Get(id));
                 break;
             case ItemType.Equipments:
-                _ownEquipments.Add(id, DataBase.Equipments.Get(id));
+                _ownEquipments.Add(DataBase.Equipments.Get(id));
                 break;
         }
     }
@@ -63,13 +68,14 @@ public class ItemManager : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                _ownWeapons.Remove(id);
+                //_ownWeapons.Find(x => x.Id == id);
+                _ownWeapons.Remove(_ownWeapons.Find(x => x.Id == id));
                 break;
             case ItemType.Consumable:
-                _ownConsumable.Remove(id);
+                _ownConsumable.Remove(_ownConsumable.Find(x => x.Id == id));
                 break;
             case ItemType.Equipments:
-                _ownEquipments.Remove(id);
+                _ownEquipments.Remove(_ownEquipments.Find(x => x.Id == id));
                 break;
         }
     }
@@ -85,14 +91,14 @@ public class ItemManager : MonoBehaviour
     {
         foreach(var weapon in _ownWeapons)
         {
-            Instantiate(weapon.Value.Prefab);
-            _playerStats.meleeAtk = weapon.Value.PhysicalAtk;
-            _playerStats.magicAtk = weapon.Value.MagicAtk;
-            _playerStats.attackSpeed = weapon.Value.AtkSpeed;
-            _playerStats.critRate = weapon.Value.CritRate;
-            _playerStats.critDamage = weapon.Value.CritDamage;
-            _playerStats.attackRange = weapon.Value.Range;
-            _playerStats.lifeSteal = weapon.Value.LifeSteal;
+            Instantiate(weapon.Prefab, weaponPivot);
+            _playerStats.meleeAtk += weapon.PhysicalAtk;
+            _playerStats.magicAtk += weapon.MagicAtk;
+            _playerStats.attackSpeed += weapon.AtkSpeed;
+            _playerStats.critRate += weapon.CritRate;
+            _playerStats.critDamage += weapon.CritDamage;
+            _playerStats.attackRange += weapon.Range;
+            _playerStats.lifeSteal += weapon.LifeSteal;
         }
     }
 

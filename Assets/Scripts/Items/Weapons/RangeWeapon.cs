@@ -4,6 +4,7 @@ using UnityEngine;
 public class RangeWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _weaponPivot;
+    [SerializeField] private Transform _weaponContainer;
 
     public List<Transform> Target = new List<Transform>();
 
@@ -21,6 +22,7 @@ public class RangeWeapon : MonoBehaviour
     {
         weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
+        _weaponContainer = transform.parent;
 
         _coolDown = 0f;
         canAttack = true;
@@ -87,6 +89,8 @@ public class RangeWeapon : MonoBehaviour
         GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
         ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
         _projectile.AddTarget(LayerData.Enemy);
+        _projectile.AddExcludeLayer(LayerData.Player);
+        _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
 
         float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
         _projectile.SetValue(value);

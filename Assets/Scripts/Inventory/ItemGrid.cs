@@ -84,7 +84,7 @@ public class ItemGrid : MonoBehaviour
             itemList = new List<InventoryItem>() { seletecteditem };
             inventory.Add(seletecteditem.itemData.itemType, itemList);
         }
-        //ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+        ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         Debug.Log($"아이템 추가 - {seletecteditem.itemData.itemIcon.name}");
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)
@@ -93,7 +93,7 @@ public class ItemGrid : MonoBehaviour
         {
             inventory[seletecteditem.itemData.itemType].Remove(seletecteditem);
             Debug.Log($"아이템 빼기 - {seletecteditem.itemData.itemIcon.name}");
-            //ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+            ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         }
         else//키가 존재하지 않다면
         {

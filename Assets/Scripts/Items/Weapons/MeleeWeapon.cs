@@ -27,7 +27,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _weaponData = DataBase.Weapon.Get(id);
-        transform.parent = _weaponPivot;
+        _weaponPivot = transform.parent;
 
         _effect.SetActive(false);
         _isMoving = false;
