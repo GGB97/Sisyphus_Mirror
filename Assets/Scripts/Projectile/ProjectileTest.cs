@@ -77,7 +77,7 @@ public class ProjectileTest : MonoBehaviour
         if (isContained)
         {
             // 데미지 처리 예정
-            Debug.Log($"OnTriggerEnter : hit {other.gameObject.name}");
+            Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
         }
         OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
