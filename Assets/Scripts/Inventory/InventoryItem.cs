@@ -51,6 +51,7 @@ public class InventoryItem : MonoBehaviour
         itemData.itemIcon = weaponData.Sprite;
         itemData.id = weaponData.Id;
         itemData.itemType = weaponData.ItemType;
+        itemData.itemGrade = weaponData.Grade;
 
         this.itemData = itemData; //아이템 데이터를 매개변수로 설정
 
