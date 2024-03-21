@@ -12,9 +12,9 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] GameObject _effect;
 
     public List<Transform> Target = new List<Transform>();
+    public Transform _weaponPivot;
 
     [SerializeField] private int id;
-    [SerializeField] Vector3 _weaponPivot;
     [SerializeField] Vector3 _targetPos;
 
     bool _isMoving;
@@ -27,7 +27,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _weaponData = DataBase.Weapon.Get(id);
-        _weaponPivot = transform.position;
+        transform.parent = _weaponPivot;
 
         _effect.SetActive(false);
         _isMoving = false;
@@ -72,9 +72,10 @@ public class MeleeWeapon : MonoBehaviour
         }
         else if(_animationEnd)
         {
+            
             _effect.SetActive(false);
 
-            transform.position = Vector3.Lerp(transform.position, _weaponPivot, percentageComplete);
+            transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
             if (percentageComplete >= 1)
             {
                 Debug.Log("Melee Attack End");
@@ -102,12 +103,14 @@ public class MeleeWeapon : MonoBehaviour
         // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
         _targetPos.y = (Vector3.up * 1.0f).y;
 
+        transform.parent = null;
         _timeStartedMoving = Time.time;
         _isMoving = true;
     }
 
     void OnAnimationEnd()
     {
+        transform.parent = _weaponPivot;
         _animationEnd = true;
     }
 
