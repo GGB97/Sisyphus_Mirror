@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerBaseState : IState
 {
@@ -42,6 +43,16 @@ public class PlayerBaseState : IState
     {
         Move();
         stateMachine.DashCoolTime += Time.deltaTime;
+
+        if (player.isDie)
+        {
+            player.InvokeEvent(player.OnDieEvent);
+        }
+
+        if (player.isHit)
+        {
+            player.InvokeEvent(player.OnHitEvent);
+        }
     }
 
 
@@ -97,12 +108,6 @@ public class PlayerBaseState : IState
         Vector3 forward = new Vector3(0, 0, 1);       // stateMachine.MainCameraTransform.forward;
         Vector3 right = new Vector3(1, 0, 0);      // stateMachine.MainCameraTransform.right;
 
-        //forward.y = 0;
-        //right.y = 0;
-
-        //forward.Normalize();
-        //right.Normalize();
-
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
 
@@ -115,14 +120,14 @@ public class PlayerBaseState : IState
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
-        {
-            player.HealthSystem.TakeDamage(10f);   
-            stateMachine.ChangeState(stateMachine.hitState);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
+    //    {
+    //        player.HealthSystem.TakeDamage(10f);   
+    //        stateMachine.ChangeState(stateMachine.hitState);
+    //    }
+    //}
 
 
 
