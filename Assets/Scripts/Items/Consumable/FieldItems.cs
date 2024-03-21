@@ -12,7 +12,7 @@ public class FieldItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 1 << 6)
+        if(LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
             switch (_type)
             {

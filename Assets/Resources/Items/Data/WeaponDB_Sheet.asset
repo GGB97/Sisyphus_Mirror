@@ -73,7 +73,27 @@ MonoBehaviour:
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
-  - _id: 10112013
+  - _id: 10112011
+    _itemType: 0
+    _name: Sword
+    _description: "\uCE7C"
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
+    _price: 35
+    _grade: 0
+    _physicalAtk: 3
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 4
+    _lifeSteal: 1
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+  - _id: 10113011
     _itemType: 0
     _name: Spear
     _description: "\uCC3D"

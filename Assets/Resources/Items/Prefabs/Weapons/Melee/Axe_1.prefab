@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8756964526590457122}
   - component: {fileID: 7852037713842474213}
   - component: {fileID: 2748098918407299940}
+  - component: {fileID: 5563305409534948711}
   m_Layer: 0
   m_Name: Axe_1
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponData:
     _id: 0
+    _itemType: 0
     _name: 
     _description: 
     _spritePath: 
@@ -109,20 +111,21 @@ MonoBehaviour:
     _prefabPath: 
     _price: 0
     _grade: 0
-    _atk: 0
-    _atkRate: 0
+    _physicalAtk: 0
+    _magicAtk: 0
+    _atkSpeed: 0
     _critRate: 0
     _critDamage: 0
     _range: 0
     _lifeSteal: 0
     _type: 0
-    _projectileTag: 
+    _projectileID: 0
     _numberOfProjectile: 0
   _animator: {fileID: 0}
   _effect: {fileID: 6038284373842108189}
   Target: []
+  _weaponPivot: {fileID: 0}
   id: 10111011
-  _weaponPivot: {x: 0, y: 0, z: 0}
   _targetPos: {x: 0, y: 0, z: 0}
 --- !u!95 &7852037713842474213
 Animator:
@@ -166,6 +169,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.37392724, y: 0.728488, z: 0.06049145}
   m_Center: {x: -0.0031984076, y: 0.19418201, z: -0.000762837}
+--- !u!54 &5563305409534948711
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999748106215116}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &6038284373842108189
 GameObject:
   m_ObjectHideFlags: 0
