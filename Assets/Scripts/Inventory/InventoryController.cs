@@ -100,7 +100,7 @@ public class InventoryController : MonoBehaviour
     }
     private void InsertRandomItem()
     {
-        if (selectedItemGrid == null) { return; }
+        if (selectedItemGrid != playerInventoryGrid) { return; }
 
         CreateRandomItem();//아이템 생성
         InventoryItem itemToInsert = selectedItem;
@@ -114,6 +114,8 @@ public class InventoryController : MonoBehaviour
 
         if (posOnGrid == null)//설치 불가능 이면 return
         {
+            Destroy(itemToInsert.gameObject);
+            Debug.Log("삭제완료");
             return;
         }
 
@@ -267,14 +269,23 @@ public class InventoryController : MonoBehaviour
     {
         if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
         {
-            previousItemGird.SubtractItemFromInventory(selectedItem);
-            selectedItemGrid.AddItemToInventory(selectedItem);
-            selectedItemGrid.AddCurrentCount(1);
+            if (previousItemGird == playerInventoryGrid)//이동 전이 플레이어 인벤토리라면
+            {
+                previousItemGird.SubtractItemFromInventory(selectedItem);//인벤토리에서 아이템 빼기
+            }
+            if (selectedItemGrid == playerInventoryGrid)//이동 후가 플레이어 인벤토리라면
+            {
+                selectedItemGrid.AddItemToInventory(selectedItem);//인벤토리에 집어 넣기
+            }
+            //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
+            //selectedItemGrid.AddItemToInventory(selectedItem);
+            //selectedItemGrid.AddCurrentCount(1);
         }
-        else//제자리서 들었다 놓았을 때
-        {
-            selectedItemGrid.AddCurrentCount(1);
-        }
+        //else//제자리서 들었다 놓았을 때 //원래 이거였던 것
+        //{
+        //    selectedItemGrid.AddCurrentCount(1);
+        //}
+        selectedItemGrid.AddCurrentCount(1);
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
@@ -327,5 +338,9 @@ public class InventoryController : MonoBehaviour
             }
         }
         Debug.Log($"소지한 아이템 수 : {num}");
+    }
+    public void AddBigInventory()
+    {
+        playerInventoryGrid.AddBigInventory();
     }
 }

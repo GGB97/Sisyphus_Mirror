@@ -301,18 +301,28 @@ public class ItemGrid : MonoBehaviour
 
     public bool BoundryCheck(int posX, int posY, int width, int height)//Grid 안에 물체가 포함되는지 확인
     {
-        if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        for (int x = posX; x < posX + width; x++)
         {
-            return false;
+            for (int y = posY; y < posY + height; y++)
+            {
+                if (PositionCheck(x, y) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+                {
+                    return false;
+                }
+            }
         }
+        //if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
-        posX += width - 1;
-        posY += height - 1;
+        //posX += width - 1;
+        //posY += height - 1;
 
-        if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
-        {
-            return false;
-        }
+        //if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
         return true;
     }
