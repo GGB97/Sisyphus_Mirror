@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -37,6 +38,8 @@ public class InventoryController : MonoBehaviour
     InventoryHighlight inventoryHighlight;
 
     public Sprite[] slotSprites; //슬롯의 스프라이트 배열
+    public BlockColor[] blockColors;//등급의 색깔 배열
+    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>(); 
     public int addCount = 6;//추가 칸 개수
 
     public Vector2 startPosition;//처음 위치
@@ -52,6 +55,7 @@ public class InventoryController : MonoBehaviour
             Destroy(gameObject);
         }
         inventoryHighlight = GetComponent<InventoryHighlight>();
+        BlockColorDictionaryInit();
     }
     private void Start()
     {
@@ -86,7 +90,13 @@ public class InventoryController : MonoBehaviour
         //    LeftMouseButtonPress();
         //}
     }
-
+    public void BlockColorDictionaryInit()
+    {
+        foreach (var blockColor in blockColors)
+        {
+            BlockColorDictionary[blockColor.Grade] = blockColor;
+        }
+    }
     private void RotateItem()
     {
         if (selectedItem == null) { return; }

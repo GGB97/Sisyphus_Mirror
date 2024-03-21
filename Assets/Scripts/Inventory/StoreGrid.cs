@@ -13,7 +13,7 @@ public class StoreGrid : ItemGrid
     }
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
     {
-        Image image = null;
+        //Image image = null;
         for (int x = 0; x < gridWidth; x++)//중앙 바꾸기
         {
             for (int y = 0; y < gridHeight; y++)
