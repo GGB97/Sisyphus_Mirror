@@ -10,6 +10,8 @@ public class StoreGrid : ItemGrid
         base.Start();
         CreateBaseBlock(4, 4);
         maxCount = 2;
+
+        InventoryController.Instance.OnStoreReroll();
     }
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
     {
