@@ -54,5 +54,5 @@ public struct EnemyData
     public static readonly int ChasingPriority = 51;
     public static readonly int DefaultPriority = 50;
 
-    public static readonly float KnockBackDelayTime = 0.3f;
+    public static readonly float KnockBackDelayTime = 0.2f;
 }

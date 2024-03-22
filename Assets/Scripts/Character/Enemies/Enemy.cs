@@ -78,6 +78,9 @@ public class Enemy : CharacterBehaviour
     void Update()
     {
         stateMachine.Update();
+
+        if(DungeonManager.Instance.isStarted == false)
+            OnDieEvent?.Invoke();
     }
 
     private void FixedUpdate()

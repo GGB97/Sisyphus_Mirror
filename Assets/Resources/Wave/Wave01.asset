@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normal: 80c3c901204acb01c0d0cc016057ce0140ebd201
   elite: 717ece01
-  boss: 
+  boss: 212cd001
   maxEnemyCnt: 50
   numPerSpawn: 3
   spawnDelay: 3
+  eliteSpawnChance: 5

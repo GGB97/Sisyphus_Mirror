@@ -30,11 +30,6 @@ public class EnemySpawner : MonoBehaviour
         EnemyPooler.Instance.SetPool(waveData);
     }
 
-    private void Start()
-    {
-        StartCoroutine(SpawnStart());
-    }
-
     void SetSpawnPos()
     {
         // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
@@ -56,10 +51,11 @@ public class EnemySpawner : MonoBehaviour
         //yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
-        SpawnEnemy(new Vector3(0, 0, -10), waveData.boss);
+        if(DungeonManager.Instance.currnetstage % 5 == 0)
+            SpawnEnemy(new Vector3(0, 0, -10), waveData.boss);
         // --
 
-        while (true) // 게임 종료 검사로 변경 필요함
+        while (DungeonManager.Instance.isStarted) // 게임 종료 검사로 변경 필요함
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {
@@ -121,5 +117,10 @@ public class EnemySpawner : MonoBehaviour
         {
             enemy.isDie = true;
         }
+    }
+
+    public void GameStart()
+    {
+        StartCoroutine(SpawnStart());
     }
 }
