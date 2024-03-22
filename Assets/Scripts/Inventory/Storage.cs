@@ -14,15 +14,15 @@ public class Storage : ItemGrid
         CreateBaseBlock(4,4);
         maxCount = 2;
     }
-    public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
+    public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 변경
     {
         Image image = null;
         for (int x = 0; x < gridWidth; x++)//중앙 바꾸기
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                //image = panelSlots[x,y].GetComponent<Image>();
-                //image.enabled = false;
+                image = panelSlots[x,y].GetComponent<Image>();
+                image.enabled = false;
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }

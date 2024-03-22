@@ -70,7 +70,7 @@ public class ItemGrid : MonoBehaviour
         GridInit(width, height);
         PanelInit(width, height);
     }
-    public void AddItemToInventory(InventoryItem seletecteditem)
+    public void AddItemToInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에 넣는 기능
     {
         List<InventoryItem> itemList = null;
         if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
@@ -84,23 +84,23 @@ public class ItemGrid : MonoBehaviour
             itemList = new List<InventoryItem>() { seletecteditem };
             inventory.Add(seletecteditem.itemData.itemType, itemList);
         }
-        //ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+        ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         Debug.Log($"아이템 추가 - {seletecteditem.itemData.itemIcon.name}");
     }
-    public void SubtractItemFromInventory(InventoryItem seletecteditem)
+    public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
     {
         if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
         {
             inventory[seletecteditem.itemData.itemType].Remove(seletecteditem);
             Debug.Log($"아이템 빼기 - {seletecteditem.itemData.itemIcon.name}");
-            //ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+            ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         }
         else//키가 존재하지 않다면
         {
             Debug.Log($"아이템이 존재하지 않습니다.");
         }
     }
-    public void AddCurrentCount(int num)
+    public void AddCurrentCount(int num)//현재 Grid에 있는 아이템의 수를 num 만큼 증가시킨다.
     {
         currentCount += num;
     }
@@ -124,14 +124,14 @@ public class ItemGrid : MonoBehaviour
                     go.transform.SetParent(inventoryPanel.transform);
                     panelSlots[x, y] = go; //해당하는 칸에 넣음
                     //panelSlots[x, y].ChangeSlotState(PanelSlotState.Null);
-                    panelSlots[x, y].SetPosition(x, y);
+                    panelSlots[x, y].SetPosition(x, y);//제거 고려
                     //parentGrid.inventoryItemSlot[x,y].panelSlot = panelSlots[x, y];
                 }
             }
             
         }
     }
-    public void SetGridSize(int width, int height)
+    public void SetGridSize(int width, int height) //그리드의 사이즈를 설정
     {
         gridSizeWidth = width;
         gridSizeHeight = height;
@@ -153,7 +153,7 @@ public class ItemGrid : MonoBehaviour
     //    screenPosition.y = rectTransform.position.y - gridPosition.y * TileSizeHeight + TileSizeHeight / 2;
     //    return screenPosition;
     //}
-    public bool CheckMaxCount()
+    public bool CheckMaxCount()//현재 Grid에 들어있는 아이템의 카운트를 체크
     {
         if (maxCount > currentCount)
             return false;
@@ -187,7 +187,7 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)//좌표에 설치
+    public void PlaceItem(InventoryItem inventoryItem, int posX, int posY)//좌표에 아이템 설치
     {
         RectTransform rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(this.rectTransform); //현재 그리드를 자신의 부모로 설정
@@ -242,7 +242,7 @@ public class ItemGrid : MonoBehaviour
 
         return true; 
     }
-    private bool CheckAvailableSpace(int posX, int posY, int width, int height)//설치할 수 있는지 체크 
+    private bool CheckAvailableSpace(int posX, int posY, int width, int height)//인벤토리 공간에 아이템을 설치할 수 있는지 체크 
     {
         for (int x = 0; x < width; x++)
         {
@@ -269,7 +269,7 @@ public class ItemGrid : MonoBehaviour
         return toReturn;
     }
 
-    private void CleanGridReference(InventoryItem item)//아이템의 정보로 차지하는 공간만큼 초기화
+    private void CleanGridReference(InventoryItem item)//아이템의 정보로 차지하는 공간 만큼 초기화
     {
         for (int ix = 0; ix < item.WIDTH; ix++)
         {
@@ -281,7 +281,20 @@ public class ItemGrid : MonoBehaviour
         }
     }
 
-    bool PositionCheck(int posX, int posY) //grid 안에 있는지 확인 후 bool 값 리턴
+    bool PositionCheck(int posX, int posY) //Grid 안에 있고 바닥이 비었는지 체크 후 bool 값 리턴
+    {
+        if (GridPositionCheck(posX, posY) == false)
+        {    
+            return false;
+        }
+
+        if (!panelSlots[posX, posY].CompareState(PanelSlotState.Empty))//비어있는지 체크
+        {
+            return false;
+        }
+        return true;
+    }
+    public bool GridPositionCheck(int posX, int posY)//Grid 안에 있는지 체크 
     {
         if (posX < 0 || posY < 0)
         {
@@ -292,29 +305,37 @@ public class ItemGrid : MonoBehaviour
         {
             return false;
         }
-        if (!panelSlots[posX, posY].CompareState(PanelSlotState.Empty))//비어있는지 체크
-        {
-            return false;
-        }
+
         return true;
     }
 
-    public bool BoundryCheck(int posX, int posY, int width, int height)//Grid 안에 물체가 포함되는지 확인
+
+    public bool BoundryCheck(int posX, int posY, int width, int height)//Grid 안에 아이템이 포함될 수 있는지 체크
     {
-        if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        for (int x = posX; x < posX + width; x++)
         {
-            return false;
+            for (int y = posY; y < posY + height; y++)
+            {
+                if (PositionCheck(x, y) == false) //해당 칸에 놓을 수 없다면
+                {
+                    return false;
+                }
+            }
         }
+        //if (PositionCheck(posX, posY) == false) //물체의 첫 칸의 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
-        posX += width - 1;
-        posY += height - 1;
+        //posX += width - 1;
+        //posY += height - 1;
 
-        if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
-        {
-            return false;
-        }
+        //if (PositionCheck(posX, posY) == false) //물체의 우하단 위치가 grid안에 없다면
+        //{
+        //    return false;
+        //}
 
-        return true;
+        return true;//놓을 수 있다면 
     }
 
     public InventoryItem GetItem(int x, int y)//해당 칸의 아이템 정보

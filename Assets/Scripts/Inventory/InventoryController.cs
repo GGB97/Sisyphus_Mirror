@@ -29,8 +29,10 @@ public class InventoryController : MonoBehaviour
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
     [SerializeField] Transform canvasTransform;
+
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드
+
 
     InventoryHighlight inventoryHighlight;
 
@@ -98,9 +100,9 @@ public class InventoryController : MonoBehaviour
         SelectedItemGrid = playerInventoryGrid;
         playerInventoryGrid.ShowRandomAddableSlot();
     }
-    private void InsertRandomItem()
+    private void InsertRandomItem()//아이템 랜덤 생성 후 배치
     {
-        if (selectedItemGrid == null) { return; }
+        if (selectedItemGrid != playerInventoryGrid) { return; }
 
         CreateRandomItem();//아이템 생성
         InventoryItem itemToInsert = selectedItem;
@@ -108,12 +110,14 @@ public class InventoryController : MonoBehaviour
         InsertItem(itemToInsert);
     }
 
-    private void InsertItem(InventoryItem itemToInsert)
+    private void InsertItem(InventoryItem itemToInsert)//인벤토리에 아이템 배치
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
         if (posOnGrid == null)//설치 불가능 이면 return
         {
+            Destroy(itemToInsert.gameObject);
+            Debug.Log("삭제완료");
             return;
         }
 
@@ -205,7 +209,7 @@ public class InventoryController : MonoBehaviour
     public void LeftMouseButtonPut()//마우스 뗀 순간
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
-        if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem 유지
+        if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem은 유지
         {
             ItemGrid temp = SelectedItemGrid;//마우스 위치의 Grid 임시 저장.
             SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
@@ -213,7 +217,7 @@ public class InventoryController : MonoBehaviour
             selectedItem.SetRotation(startRotation);//처음 회전 값으로 설정 width와 height에 영향을 주므로 먼저 실행되어야 한다.
             Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
 
-            PlaceItem(tileGridStartPosition);//시작 위치에 설치
+            PlaceItem(tileGridStartPosition);//시작 위치에 다시 설치
             SelectedItemGrid.AddCurrentCount(1);
 
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
@@ -267,14 +271,23 @@ public class InventoryController : MonoBehaviour
     {
         if (SelectedItemGrid != previousItemGird)//다른 곳에 설치했을 때
         {
-            previousItemGird.SubtractItemFromInventory(selectedItem);
-            selectedItemGrid.AddItemToInventory(selectedItem);
-            selectedItemGrid.AddCurrentCount(1);
+            if (previousItemGird == playerInventoryGrid)//이동 전이 플레이어 인벤토리라면
+            {
+                previousItemGird.SubtractItemFromInventory(selectedItem);//인벤토리에서 아이템 빼기
+            }
+            if (selectedItemGrid == playerInventoryGrid)//이동 후가 플레이어 인벤토리라면
+            {
+                selectedItemGrid.AddItemToInventory(selectedItem);//인벤토리에 집어 넣기
+            }
+            //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
+            //selectedItemGrid.AddItemToInventory(selectedItem);
+            //selectedItemGrid.AddCurrentCount(1);
         }
-        else//제자리서 들었다 놓았을 때
-        {
-            selectedItemGrid.AddCurrentCount(1);
-        }
+        //else//제자리서 들었다 놓았을 때 //원래 이거였던 것
+        //{
+        //    selectedItemGrid.AddCurrentCount(1);
+        //}
+        selectedItemGrid.AddCurrentCount(1);//현재 선택된 Grid의 Count를 증가 (Pick UP 할 때 -1을 하므로)
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
@@ -327,5 +340,9 @@ public class InventoryController : MonoBehaviour
             }
         }
         Debug.Log($"소지한 아이템 수 : {num}");
+    }
+    public void AddBigInventory() //실험용 넓은 판대기 적용
+    {
+        playerInventoryGrid.AddBigInventory();
     }
 }

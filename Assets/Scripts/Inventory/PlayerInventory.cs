@@ -35,7 +35,7 @@ public class PlayerInventory : ItemGrid
     {
         //isSetting = true;// 설정을 한 번 한 것으로 설정
         currentAddSlot = 0;//현재 추가 슬롯
-        for (int i = 0; i < minAddSlot; i++)//추가 되어야할 칸이 최소 5개
+        for (int i = 0; i < 10; i++)//추가 되어야할 칸이 최소 5개
         {
             foreach (PanelSlot go in addableSlotList)
             {
@@ -57,20 +57,26 @@ public class PlayerInventory : ItemGrid
         {
             x = panelSlot.posX + vector.x;
             y = panelSlot.posY + vector.y;
-            if (panelSlots[x, y].CompareState(PanelSlotState.Null))//옆이 널일 때만 List에 넣음
+            if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
             {
-                addPositionArr.Add(new Vector2Int(x, y));
+                if (panelSlots[x, y].CompareState(PanelSlotState.Null)|| panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 널일 때만 List에 넣음
+                {
+                    addPositionArr.Add(new Vector2Int(x, y));
+                }
             }
         }
-        if (addPositionArr.Count > 0) // 칸 변경
+        if (addPositionArr.Count > 0) // 자신 주위에 null 또는 add 블럭인지
         {
             int rnd;
             foreach (var addPosition in addPositionArr)
             {
+                if (panelSlots[addPosition.x, addPosition.y].CompareState(PanelSlotState.Add))//add 블럭이면 건너 뛴다.
+                    continue;
+
                 if (currentAddSlot >= minAddSlot)
                     break;
 
-                rnd = Random.Range(0, 3);
+                rnd = Random.Range(0, 4);
                 if (rnd == 0) //당첨되면
                 {
                     x = addPosition.x;
@@ -94,6 +100,7 @@ public class PlayerInventory : ItemGrid
             foreach (var slot in subtractSlotList)
             {
                 addableSlotList.Remove(slot);
+                Debug.Log($"[{slot.posX},{slot.posY}");
             }
             subtractSlotList.Clear();
         }
@@ -110,6 +117,11 @@ public class PlayerInventory : ItemGrid
         AddToAddableSlotList(panelSlots[tileGridPosition.x, tileGridPosition.y]);//AddList에 추가.
         ClearToClearSlotList();//Clear 초기화
         SubtractToAddableSlotList();
+        //foreach (var slot in addableSlotList)
+        //{
+        //    Debug.Log($"[{slot.posX},{slot.posY}");
+        //}
+        Debug.Log($"총 개수 : {addableSlotList.Count}");
         //isSetting = false;
         InventoryController.Instance.addCount -= 1;
         if (InventoryController.Instance.addCount > 0)
@@ -124,5 +136,16 @@ public class PlayerInventory : ItemGrid
             panelSlot.ChangeSlotState(PanelSlotState.Null);//안에 들어있던 것들 null로 변경
         }
         clearSlotList.Clear();//리스트 참조 초기화
+    }
+
+    public void AddBigInventory()
+    {
+        for (int x = 2; x < gridSizeWidth - 2; x++)
+        {
+            for (int y = 2; y < gridSizeHeight - 2; y++)
+            {
+                panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+            }
+        }
     }
 }
