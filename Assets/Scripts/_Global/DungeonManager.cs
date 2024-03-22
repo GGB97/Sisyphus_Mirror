@@ -48,7 +48,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             timeText = System.Array.Find(arr, x => x.name == TimeTextName);
 
             Debug.Log("찾기 성공");
-            inventoryUI.SetActive(false);
+            //inventoryUI.SetActive(false);
         }
     }
     

@@ -186,6 +186,24 @@ public class InventoryController : MonoBehaviour
         ItemSO weaponData = GetRandomWeaponItem();
         inventoryItem.Set(weaponData);//아이템 설정
     }
+    private void CreateItemWithId(int id) //아이템 랜덤 생성
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        selectedItem = inventoryItem;//선택한 아이템 설정
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
+        rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
+
+        //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
+        ItemSO weaponData = GetRandomWeaponItem(id);
+        inventoryItem.Set(weaponData);//아이템 설정
+    }
+    public ItemSO GetRandomWeaponItem(int id)//랜덤한 아이템 반환 
+    {
+        WeaponData weaponData = DataBase.Weapon.Get(id);
+        return weaponData;
+    }
     public ItemSO GetRandomWeaponItem()//랜덤한 아이템 반환 
     {
         int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
@@ -445,10 +463,11 @@ public class InventoryController : MonoBehaviour
 
     public void AddStartWeapon(ItemSO item)
     {
-        InventoryItem weapon = new InventoryItem();
-        weapon.Set(item);
-        
         selectedItemGrid = playerInventoryGrid;
-        InsertItem(weapon);
+
+        CreateItemWithId(item.Id);
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
     }
 }
