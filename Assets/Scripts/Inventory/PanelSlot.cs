@@ -36,7 +36,7 @@ public class PanelSlot : MonoBehaviour , IPointerClickHandler
     {
         if ((PanelSlotState)num == PanelSlotState.Full)//바닥을 채워야 하면
         {
-            ItemGrade itemGrade = inventoryController.SelectedItemGrid.inventoryItemSlot[posX, posY].itemData.itemGrade;
+            ItemGrade itemGrade = inventoryController.SelectedItemGrid.inventoryItemSlot[posX, posY].itemSO.Grade;
             ChangeBlockColor(itemGrade);
         }
         else
