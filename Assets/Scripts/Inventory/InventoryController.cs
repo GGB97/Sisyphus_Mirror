@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -44,6 +45,9 @@ public class InventoryController : MonoBehaviour
 
     public Vector2 startPosition;//처음 위치
     public float startRotation;
+
+    [SerializeField] TextMeshProUGUI _itemCost;
+
     private void Awake()
     {
         if (Instance == null)
@@ -414,6 +418,8 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        // ItemData에 Item 가격 추가하는 것 건의하기.
+        _itemCost.text = DataBase.Weapon.Get(itemToInsert.itemData.id).Price.ToString();
 
         storeGrid.AddStoreStock(itemToInsert);
     }
