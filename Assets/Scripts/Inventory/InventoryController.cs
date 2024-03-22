@@ -61,7 +61,6 @@ public class InventoryController : MonoBehaviour
     {
         //SelectedItemGrid = itemGrid;
         //SelectedItemGrid.ShowRandomAddableSlot();
-        InsertRandomStoreItem();
     }
     private void Update()
     {
