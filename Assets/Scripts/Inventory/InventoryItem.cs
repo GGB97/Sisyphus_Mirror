@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public ItemData itemData;//아이템 가로,세로,스프라이트 정보
+    public ItemSO itemSO;//아이템 가로,세로,스프라이트 정보
 
     public int HEIGHT
     {
@@ -14,11 +14,11 @@ public class InventoryItem : MonoBehaviour
         {
             if (((int)rotationDegree / 90) % 2 == 1) //90 , 270
             {
-                return itemData.width;
+                return itemSO.IconWidth;
             }
             else
             {
-                return itemData.height;
+                return itemSO.IconHeight;
             }
         }
     }
@@ -28,11 +28,11 @@ public class InventoryItem : MonoBehaviour
         {
             if (((int)rotationDegree / 90) % 2 == 1) //90 , 270
             {
-                return itemData.height;
+                return itemSO.IconHeight;
             }
             else
             {
-                return itemData.width;
+                return itemSO.IconWidth;
             }
         }
     }
@@ -42,24 +42,26 @@ public class InventoryItem : MonoBehaviour
 
     public float rotationDegree = 0; //회전 정도
 
-    public void Set(ItemSO weaponData) //아이템 생성할 때 아이템 설정
+    public void Set(ItemSO itemSO) //아이템 생성할 때 아이템 설정
     {
-        ItemData itemData = new ItemData();
+        this.itemSO = itemSO;
 
-        itemData.width = weaponData.IconWidth;
-        itemData.height = weaponData.IconHeight;
-        itemData.itemIcon = weaponData.Sprite;
-        itemData.id = weaponData.Id;
-        itemData.itemType = weaponData.ItemType;
-        itemData.itemGrade = weaponData.Grade;
+        //ItemData itemData = new ItemData();
 
-        this.itemData = itemData; //아이템 데이터를 매개변수로 설정
+        //itemData.width = weaponData.IconWidth;
+        //itemData.height = weaponData.IconHeight;
+        //itemData.itemIcon = weaponData.Sprite;
+        //itemData.id = weaponData.Id;
+        //itemData.itemType = weaponData.ItemType;
+        //itemData.itemGrade = weaponData.Grade;
 
-        GetComponent<Image>().sprite = itemData.itemIcon; //이미지 변경
+        //this.itemSO = itemData; //아이템 데이터를 매개변수로 설정
+
+        GetComponent<Image>().sprite = itemSO.Sprite; //이미지 변경
 
         Vector2 size = new Vector2();
-        size.x = itemData.width * ItemGrid.TileSizeWidth; //아이템의 가로 길이
-        size.y = itemData.height * ItemGrid.TileSizeHeight;//아이템의 세로 길이
+        size.x = itemSO.IconWidth * ItemGrid.TileSizeWidth; //아이템의 가로 길이
+        size.y = itemSO.IconHeight * ItemGrid.TileSizeHeight;//아이템의 세로 길이
         GetComponent<RectTransform>().sizeDelta = size;//아이템 사이즈 설정
         rotationDegree = GetComponent<RectTransform>().rotation.z;
     }
