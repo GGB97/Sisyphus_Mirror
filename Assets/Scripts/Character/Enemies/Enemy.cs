@@ -96,8 +96,8 @@ public class Enemy : CharacterBehaviour
         //OverrideAnimator = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         //Animator.runtimeAnimatorController = OverrideAnimator;
         #endregion
-        Animator.SetFloat(EnemyAnimationData.AttackSpeedParameterHash, animAttackSpeed); // 각 객체의 속도별로 Animation의 속도를 조절하기 위해서
-        Animator.SetFloat(EnemyAnimationData.MoveSpeedParameterHash, animMoveSpeed); // 현재 프로젝트에서는 필요 없을 것 같지만 그냥 해보고싶었음.
+        Animator.SetFloat(EnemyAnimData.AttackSpeedParameterHash, animAttackSpeed); // 각 객체의 속도별로 Animation의 속도를 조절하기 위해서
+        Animator.SetFloat(EnemyAnimData.MoveSpeedParameterHash, animMoveSpeed); // 현재 프로젝트에서는 필요 없을 것 같지만 그냥 해보고싶었음.
 
         Agent.stoppingDistance = Info.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
         Agent.angularSpeed = 240f;
@@ -123,10 +123,13 @@ public class Enemy : CharacterBehaviour
         }
     }
 
-    public void OnChildTriggerEnter(Collider other)
+    public void OnChildTriggerEnter(Collider other, SkillType type)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        //Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
+        if(type == SkillType.AutoAttack)
+            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+        else if (type == SkillType.Skill01)
+            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     void ChangeDieState()
@@ -156,15 +159,15 @@ public class Enemy : CharacterBehaviour
         //Debug.Log("Attack End");
     }
 
-    public void RangedAttack(int prfabNum, int posNum)
+    public void RangedAttack(int num)
     {
         //GameObject go = Instantiate(_projectilePrefabs[prfabNum],
         //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
 
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-            (int)_projectileTag[prfabNum],
-            _rangeAttackPos[posNum].transform.position,
-            _rangeAttackPos[posNum].transform.rotation);
+            (int)_projectileTag[num],
+            _rangeAttackPos[num].transform.position,
+            _rangeAttackPos[num].transform.rotation);
 
         Vector3 directionToTarget = target.position - transform.position;
         directionToTarget.y = 0f;

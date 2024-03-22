@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct EnemyAnimationData
+public struct EnemyAnimData
 {
     //private static string idleParameterName = "Idle";
     //private static string moveParameterName = "Move";
@@ -16,7 +16,9 @@ public struct EnemyAnimationData
     public static readonly int MoveParameterHash = Animator.StringToHash("Move");
     public static readonly int MoveSpeedParameterHash = Animator.StringToHash("MoveSpeed");
 
-    public static readonly int AttackParameterHash = Animator.StringToHash("Attack");
+    public static readonly int AttackParameterHash = Animator.StringToHash("@Attack");
+    public static readonly int AutoAttackParameterHash = Animator.StringToHash("AutoAttack");
+    public static readonly int Skill01ParameterHash = Animator.StringToHash("Skill01");
     public static readonly int AttackSpeedParameterHash = Animator.StringToHash("AttackSpeed");
 
     public static readonly int HitParameterHash = Animator.StringToHash("Hit");
@@ -25,7 +27,9 @@ public struct EnemyAnimationData
     #endregion
 
     #region State
-    public static readonly int AttackStateHash = Animator.StringToHash("Attack01");
+    public static readonly int AttackSubStateHash = Animator.StringToHash("@Attack");
+    public static readonly int AutoAttackStateHash = Animator.StringToHash("AutoAttack");
+    public static readonly int Skill01StateHash = Animator.StringToHash("Skill01");
     public static readonly int HitStateHash = Animator.StringToHash("GetHit");
     #endregion
 

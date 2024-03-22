@@ -131,4 +131,21 @@ public class EnemyBaseState : IState
         // 바라보는 방향 수정
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime); // 보간
     }
+
+    protected virtual void ChangeAttackState()
+    {
+        if(enemy.Info.rank == EnemyRank.Boss)
+        {
+            int rand = Random.Range(0, 10);
+            if(rand < 3)
+                stateMachine.ChangeState(stateMachine.Skill01State);
+            else
+                stateMachine.ChangeState(stateMachine.AttackState);
+
+        }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.MoveParameterHash);
+        StartAnimation(EnemyAnimData.MoveParameterHash);
 
         agent.speed = curStat.moveSpeed;
         agent.isStopped = false;
@@ -41,7 +41,7 @@ public class EnemyChasingState : EnemyBaseState
         {
             if (TargetOnFront() && IsAttackReady()) // 타겟이 정면에 있고 공격이 가능한 상태면
             {
-                stateMachine.ChangeState(stateMachine.AttackState);
+                ChangeAttackState();
                 return;
             }
             else // 아니라면 idle로 전환해서 target을 바라보게
@@ -62,7 +62,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.MoveParameterHash);
+        StopAnimation(EnemyAnimData.MoveParameterHash);
 
         agent.isStopped = true; // 추적을 멈추기 위해서
         agent.avoidancePriority = EnemyData.DefaultPriority;
