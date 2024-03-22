@@ -30,4 +30,12 @@ public class MakeEnemyID : MonoBehaviour
         ID += (int)element * 100;
         ID += (int)size * 1;
     }
+
+    public void TimeScale()
+    {
+        if(Time.timeScale < 1f)
+            Time.timeScale = 1f;
+        else
+            Time.timeScale = 0.2f;
+    }
 }

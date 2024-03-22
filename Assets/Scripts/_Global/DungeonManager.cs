@@ -84,18 +84,22 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         else
         {
-            timeLimit = 5f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
         stageText.text = String.Format("Stage : "+ currnetstage.ToString());
 
-        isStarted = true; 
+        isStarted = true;
+        EnemySpawner.Instance.GameStart();
     }
     public void EndStage()//스테이지 끝나면 호출
     {
         isStarted = false;
         //모든 동작 멈추고
+        EnemySpawner.Instance.SpawnStop();
+        EnemySpawner.Instance.FindAllEnemiesAndDie();
+
         Invoke("OpenInventory",1f);//인벤토리 열기
     }
     public void OpenInventory()
