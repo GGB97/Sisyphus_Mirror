@@ -47,6 +47,12 @@ public class WeaponDB
     {
         return idList.Count;
     }
+
+    public List<int> ReturnAllWeaponID()
+    {
+        return idList;
+    }
+
     public IEnumerator WeaponDBEnumerator()
     {
         return _weapons.GetEnumerator();

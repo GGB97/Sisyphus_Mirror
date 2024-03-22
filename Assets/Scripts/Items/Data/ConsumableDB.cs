@@ -47,6 +47,12 @@ public class ConsumableDB : MonoBehaviour
     {
         return idList.Count;
     }
+
+    public List<int> ReturnAllConsumableID()
+    {
+        return idList;
+    }
+
     public IEnumerator ConsumableEnumerator()
     {
         return _consumable.GetEnumerator();
