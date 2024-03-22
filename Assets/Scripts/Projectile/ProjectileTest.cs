@@ -78,8 +78,8 @@ public class ProjectileTest : MonoBehaviour
         {
             // 데미지 처리 예정
             Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
-            HealthSystem _healthSystem = other.gameObject.GetComponent<HealthSystem>();
-            if (_healthSystem != null)
+
+            if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
                 _healthSystem.TakeDamage(_value);
             }

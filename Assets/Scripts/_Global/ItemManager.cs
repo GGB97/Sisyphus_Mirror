@@ -39,14 +39,17 @@ public class ItemManager : MonoBehaviour
         Player = PlayerTransform.GetComponent<Player>();
         _playerStats = Player.Data;
         init();
+        ItemInit();
     }
 
     private void init()
     {
         // 전체 아이템 ID 저장
-        weaponIDs = DataBase.Weapon.ReturnAllWeaponID();
-        EquipmentsIDs = DataBase.Equipments.ReturnAllEquipmentsID();
-        ConsumableIDs = DataBase.Consumable.ReturnAllConsumableID();
+        //weaponIDs = DataBase.Weapon.ReturnAllWeaponID();
+        //EquipmentsIDs = DataBase.Equipments.ReturnAllEquipmentsID();
+        //ConsumableIDs = DataBase.Consumable.ReturnAllConsumableID();
+        OnEquip(_playerStats.startItemID, ItemType.Weapon);
+        InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(_playerStats.startItemID));
     }
 
     public void UpdateItemList()

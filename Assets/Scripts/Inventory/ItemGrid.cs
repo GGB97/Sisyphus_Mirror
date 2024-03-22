@@ -84,7 +84,7 @@ public class ItemGrid : MonoBehaviour
             itemList = new List<InventoryItem>() { seletecteditem };
             inventory.Add(seletecteditem.itemSO.ItemType, itemList);
         }
-        //ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+        ItemManager.Instance.OnEquip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
         Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
@@ -93,7 +93,7 @@ public class ItemGrid : MonoBehaviour
         {
             inventory[seletecteditem.itemSO.ItemType].Remove(seletecteditem);
             Debug.Log($"아이템 빼기 - {seletecteditem.itemSO.Sprite.name}");
-            //ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+            ItemManager.Instance.OnUnequip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
         }
         else//키가 존재하지 않다면
         {

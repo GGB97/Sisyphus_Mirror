@@ -442,4 +442,13 @@ public class InventoryController : MonoBehaviour
     { 
         nextStage();
     }
+
+    public void AddStartWeapon(ItemSO item)
+    {
+        InventoryItem weapon = new InventoryItem();
+        weapon.Set(item);
+        
+        selectedItemGrid = playerInventoryGrid;
+        InsertItem(weapon);
+    }
 }
