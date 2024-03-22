@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -45,6 +46,9 @@ public class InventoryController : MonoBehaviour
 
     public Vector2 startPosition;//처음 위치
     public float startRotation;
+
+    [SerializeField] TextMeshProUGUI _itemCost;
+
     private void Awake()
     {
         if (Instance == null)
@@ -263,6 +267,10 @@ public class InventoryController : MonoBehaviour
     }
     private bool DragPlaceItem(Vector2Int tileGridPosition) //물체를 설치할 수 있는지 체크 후 설치
     {
+        // 변경점.
+        // 설치하려는 ItemGrid가 상점일 경우 false
+        if(selectedItemGrid == storeGrid) return false;
+
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
@@ -289,6 +297,13 @@ public class InventoryController : MonoBehaviour
             if (selectedItemGrid == playerInventoryGrid)//이동 후가 플레이어 인벤토리라면
             {
                 selectedItemGrid.AddItemToInventory(selectedItem);//인벤토리에 집어 넣기
+            }
+            // 변경점.
+            // 상점 → 플레이어 인벤토리로 이동 시
+            if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
+            {
+                // 상점에 저장된 아이템 GameObject 초기화
+                storeGrid.currentStoreItem = null;
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
             //selectedItemGrid.AddItemToInventory(selectedItem);
@@ -404,19 +419,25 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        // ItemData에 Item 가격 추가하는 것 건의하기.
+        _itemCost.text = DataBase.Weapon.Get(itemToInsert.itemData.id).Price.ToString();
 
-        //if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
-        //{
-        //    playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
-        //    selectedItemGrid.AddCurrentCount(1);
-        //}
+        storeGrid.AddStoreStock(itemToInsert);
     }
 
     public void OnStoreReroll()
     {
-
+        RemoveStoreStock();
         InsertRandomStoreItem();
     }
+
+    public void RemoveStoreStock()
+    {
+        if (storeGrid.currentStoreItem == null) return;
+
+        storeGrid.ResetPanelStates();
+    }
+    
     public void OnClickNextStageButton()
     { 
         nextStage();
