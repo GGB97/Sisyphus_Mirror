@@ -420,7 +420,7 @@ public class InventoryController : MonoBehaviour
 
         selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         // ItemData에 Item 가격 추가하는 것 건의하기.
-        _itemCost.text = DataBase.Weapon.Get(itemToInsert.itemData.id).Price.ToString();
+        _itemCost.text = itemToInsert.itemSO.Price.ToString();
 
         storeGrid.AddStoreStock(itemToInsert);
     }
