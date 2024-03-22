@@ -12,6 +12,7 @@ public class EnemyDieState : EnemyBaseState
     {
         base.Enter();
 
+        enemy.isDie = true;
         StartAnimation(EnemyAnimData.DieParameterHash);
 
         EnemySpawner.Instance.DecrementEnemyCnt(); // 죽었으니까 currentEnemyCnt 감소

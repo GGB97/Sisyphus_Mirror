@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -137,6 +138,7 @@ public class Enemy : CharacterBehaviour
 
     void ChangeDieState()
     {
+        isDie = true;
         stateMachine.ChangeState(stateMachine.DieState);
     }
 

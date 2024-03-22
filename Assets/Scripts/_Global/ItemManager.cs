@@ -19,13 +19,15 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] PlayerBaseData _playerStats;
 
-    [HideInInspector] public List<int> weaponIDs = new List<int>();
-    [HideInInspector] public List<int> EquipmentsIDs = new List<int>();
-    [HideInInspector] public List<int> ConsumableIDs = new List<int>();
+    //[HideInInspector] public List<int> weaponIDs = new List<int>();
+    //[HideInInspector] public List<int> EquipmentsIDs = new List<int>();
+    //[HideInInspector] public List<int> ConsumableIDs = new List<int>();
 
     private List<WeaponData> _ownWeapons = new List<WeaponData>();
     private List<EquipmentsData> _ownEquipments = new List<EquipmentsData>();
     private List<ConsumableData> _ownConsumable = new List<ConsumableData>();
+
+    public List<GameObject> weaponPrefabs = new List<GameObject>();
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InventoryController.Instance.nextStage += RemoveAllWeapons;
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         _playerStats = Player.Data;
@@ -81,6 +84,7 @@ public class ItemManager : MonoBehaviour
         {
             case ItemType.Weapon:
                 //_ownWeapons.Find(x => x.Id == id);
+                Debug.Log("Unequip");
                 _ownWeapons.Remove(_ownWeapons.Find(x => x.Id == id));
                 break;
             case ItemType.Consumable:
@@ -103,7 +107,8 @@ public class ItemManager : MonoBehaviour
     {
         foreach(var weapon in _ownWeapons)
         {
-            Instantiate(weapon.Prefab, weaponPivot);
+            GameObject go = Instantiate(weapon.Prefab, weaponPivot);
+            weaponPrefabs.Add(go);
             _playerStats.meleeAtk += weapon.PhysicalAtk;
             _playerStats.magicAtk += weapon.MagicAtk;
             //_playerStats.attackSpeed += weapon.AtkSpeed;
@@ -111,6 +116,24 @@ public class ItemManager : MonoBehaviour
             _playerStats.critDamage += weapon.CritDamage;
             //_playerStats.attackRange += weapon.Range;
             _playerStats.lifeSteal += weapon.LifeSteal;
+        }
+    }
+
+    public void RemoveAllWeapons()
+    {
+        foreach(var weapon in weaponPrefabs)
+        {
+            Destroy(weapon);
+        }
+        foreach (var weapon in _ownWeapons)
+        {
+            _playerStats.meleeAtk -= weapon.PhysicalAtk;
+            _playerStats.magicAtk -= weapon.MagicAtk;
+            //_playerStats.attackSpeed += weapon.AtkSpeed;
+            _playerStats.critRate -= weapon.CritRate;
+            _playerStats.critDamage -= weapon.CritDamage;
+            //_playerStats.attackRange += weapon.Range;
+            _playerStats.lifeSteal -= weapon.LifeSteal;
         }
     }
 
