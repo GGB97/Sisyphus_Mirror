@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: WaveTest
   m_EditorClassIdentifier: 
   normal: 6057ce0101decf01207fd701
-  elite: 
-  boss: 
-  maxEnemyCnt: 50
+  elite: 717ece01
+  boss: 212cd001
+  maxEnemyCnt: 0
   numPerSpawn: 5
   spawnDelay: 3
+  eliteSpawnChance: 5

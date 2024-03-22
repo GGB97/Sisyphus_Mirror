@@ -30,16 +30,11 @@ public class EnemySpawner : MonoBehaviour
         EnemyPooler.Instance.SetPool(waveData);
     }
 
-    private void Start()
-    {
-        StartCoroutine(SpawnStart());
-    }
-
     void SetSpawnPos()
     {
         // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
-        float width = 23f * plane.transform.localScale.x;
-        float length = 23f * plane.transform.localScale.z;
+        float width = 45f * plane.transform.localScale.x;
+        float length = 45f * plane.transform.localScale.z;
 
         // 좌측 하단과 우측 상단 좌표 계산
         bottomLeft = plane.transform.position + new Vector3(-width / 2, 0, -length / 2);
@@ -53,12 +48,14 @@ public class EnemySpawner : MonoBehaviour
 
         SetSpawnPos();
 
-        yield return delay;
+        //yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
+        if(DungeonManager.Instance.currnetstage % 5 == 0)
+            SpawnEnemy(new Vector3(0, 0, -10), waveData.boss);
         // --
 
-        while (true) // 게임 종료 검사로 변경 필요함
+        while (DungeonManager.Instance.isStarted) // 게임 종료 검사로 변경 필요함
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {
@@ -72,9 +69,9 @@ public class EnemySpawner : MonoBehaviour
                     // 특정 확률에 의해 Normal/Elite 생성
                     float randomValue = Random.Range(0f, 100f);
                     if (randomValue < waveData.eliteSpawnChance)
-                        SpawnElite(pos);
+                        SpawnEnemy(pos, waveData.elite);
                     else
-                        SpawnNormal(pos);
+                        SpawnEnemy(pos, waveData.normal);
 
                     if (currentEnemyCnt >= maxEnemyCnt)
                         break;
@@ -89,16 +86,10 @@ public class EnemySpawner : MonoBehaviour
         return new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
     }
 
-    void SpawnNormal(Vector3 pos)
+    void SpawnEnemy(Vector3 pos , int[] enemyID)
     {
-        int rand = Random.Range(0, waveData.normal.Length);
-        EnemyPooler.Instance.SpawnFromPool(waveData.normal[rand], pos, Quaternion.identity);
-        currentEnemyCnt++;
-    }
-    void SpawnElite(Vector3 pos)
-    {
-        int rand = Random.Range(0, waveData.elite.Length);
-        EnemyPooler.Instance.SpawnFromPool(waveData.elite[rand], pos, Quaternion.identity);
+        int rand = Random.Range(0, enemyID.Length);
+        EnemyPooler.Instance.SpawnFromPool(enemyID[rand], pos, Quaternion.identity);
         currentEnemyCnt++;
     }
 
@@ -126,5 +117,10 @@ public class EnemySpawner : MonoBehaviour
         {
             enemy.isDie = true;
         }
+    }
+
+    public void GameStart()
+    {
+        StartCoroutine(SpawnStart());
     }
 }
