@@ -14,7 +14,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.MoveParameterHash);
+        StartAnimation(EnemyAnimData.MoveParameterHash);
 
         agent.speed = curStat.moveSpeed;
         agent.isStopped = false;
@@ -62,7 +62,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.MoveParameterHash);
+        StopAnimation(EnemyAnimData.MoveParameterHash);
 
         agent.isStopped = true; // 추적을 멈추기 위해서
         agent.avoidancePriority = EnemyData.DefaultPriority;

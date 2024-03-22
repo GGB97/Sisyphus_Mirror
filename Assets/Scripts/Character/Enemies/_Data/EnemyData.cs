@@ -33,7 +33,8 @@ public enum EnemySize // 기본 3~5종류에 특수한 개체가 있을 경우 �
 {
     Small,
     Medium,
-    Large
+    Large,
+    Boss
 }
 
 public struct EnemyData

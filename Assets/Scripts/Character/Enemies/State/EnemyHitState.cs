@@ -12,7 +12,7 @@ public class EnemyHitState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.HitParameterHash);
+        StartAnimation(EnemyAnimData.HitParameterHash);
         enemy.knockbackDelay = 0f;
     }
 
@@ -38,17 +38,17 @@ public class EnemyHitState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.HitParameterHash);
+        StopAnimation(EnemyAnimData.HitParameterHash);
         enemy.isHit = false;
     }
 
     protected bool IsTakingHit()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.shortNameHash == EnemyAnimationData.HitStateHash)
+        if (stateInfo.shortNameHash == EnemyAnimData.HitStateHash)
         {
             // 애니메이션이 어느정도 진행되었을때만.
-            return !(stateInfo.shortNameHash == EnemyAnimationData.HitStateHash);
+            return !(stateInfo.shortNameHash == EnemyAnimData.HitStateHash);
         }
         return false;
     }

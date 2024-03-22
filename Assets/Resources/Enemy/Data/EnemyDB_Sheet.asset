@@ -230,9 +230,31 @@ MonoBehaviour:
     type: 4
     rank: 0
     element: 0
-    size: 1
+    size: 2
     rotationSpeed: 3
     attackAngle: 30
+  - health: 0
+    maxHealth: 700
+    attackRange: 6
+    meleeAtk: 10
+    magicAtk: 0
+    def: 7
+    attackSpeed: 0.5
+    moveSpeed: 4
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
+    id: 30420001
+    prefabPath: Enemy/Prefabs/Boss/Enemy_Orc_Boss
+    type: 4
+    rank: 2
+    element: 0
+    size: 3
+    rotationSpeed: 4
+    attackAngle: 20
   - health: 0
     maxHealth: 20
     attackRange: 2

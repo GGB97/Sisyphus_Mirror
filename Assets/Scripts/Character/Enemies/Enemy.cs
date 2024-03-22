@@ -96,8 +96,8 @@ public class Enemy : CharacterBehaviour
         //OverrideAnimator = new AnimatorOverrideController(Animator.runtimeAnimatorController);
         //Animator.runtimeAnimatorController = OverrideAnimator;
         #endregion
-        Animator.SetFloat(EnemyAnimationData.AttackSpeedParameterHash, animAttackSpeed); // 각 객체의 속도별로 Animation의 속도를 조절하기 위해서
-        Animator.SetFloat(EnemyAnimationData.MoveSpeedParameterHash, animMoveSpeed); // 현재 프로젝트에서는 필요 없을 것 같지만 그냥 해보고싶었음.
+        Animator.SetFloat(EnemyAnimData.AttackSpeedParameterHash, animAttackSpeed); // 각 객체의 속도별로 Animation의 속도를 조절하기 위해서
+        Animator.SetFloat(EnemyAnimData.MoveSpeedParameterHash, animMoveSpeed); // 현재 프로젝트에서는 필요 없을 것 같지만 그냥 해보고싶었음.
 
         Agent.stoppingDistance = Info.attackRange - .2f; // 사거리보다 살짝 더 들어가게끔 하지 않으면 멈춰서 이상한짓함
         Agent.angularSpeed = 240f;

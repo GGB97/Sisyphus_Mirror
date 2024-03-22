@@ -12,7 +12,7 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.IdleParameterHash);
+        StartAnimation(EnemyAnimData.IdleParameterHash);
     }
 
     public override void Update()
@@ -50,6 +50,6 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.IdleParameterHash);
+        StopAnimation(EnemyAnimData.IdleParameterHash);
     }
 }

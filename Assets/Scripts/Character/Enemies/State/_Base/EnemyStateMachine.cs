@@ -9,7 +9,7 @@ public class EnemyStateMachine : StateMachine
     // States
     public EnemyIdleState IdleState { get; private set; }
     public EnemyChasingState ChasingState { get; private set; }
-    public EnemyAttackState AttackState { get; private set; }
+    public EnemyAutoAttackState AttackState { get; private set; }
     public EnemyHitState HitState { get; private set; }
     public EnemyDieState DieState { get; private set; }
 
