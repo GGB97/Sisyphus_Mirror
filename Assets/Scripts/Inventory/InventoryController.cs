@@ -323,7 +323,7 @@ public class InventoryController : MonoBehaviour
         //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
-            Debug.Log($"현재 아이템 : {selectedItem.itemData.itemIcon.name}");
+            Debug.Log($"현재 아이템 : {selectedItem.itemSO.Sprite.name}");
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
             rectTransform.SetAsLastSibling();
@@ -345,7 +345,7 @@ public class InventoryController : MonoBehaviour
             {
                 if (item != null)
                 {
-                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+                    Debug.Log($"{itemType.Key} - {item.itemSO.Sprite.name}");
                     num++;
                 }
             }

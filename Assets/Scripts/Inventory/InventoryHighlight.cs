@@ -13,8 +13,8 @@ public class InventoryHighlight : MonoBehaviour
     public void SetSize(InventoryItem targetItem)//하이라이트의 사이즈를 아이템의 사이즈로 설정
     {
         Vector2 size = new Vector2();
-        size.x = targetItem.itemData.width * ItemGrid.TileSizeWidth;
-        size.y = targetItem.itemData.height * ItemGrid.TileSizeHeight;
+        size.x = targetItem.itemSO.IconWidth * ItemGrid.TileSizeWidth;
+        size.y = targetItem.itemSO.IconHeight * ItemGrid.TileSizeHeight;
         highlighter.sizeDelta = size;
     }
 
