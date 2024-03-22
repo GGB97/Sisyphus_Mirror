@@ -8,5 +8,6 @@ public class ItemData
     public int height = 1;
     public int id = 0000;
     public ItemType itemType;
+    public ItemGrade itemGrade;
     public Sprite itemIcon;
 }
