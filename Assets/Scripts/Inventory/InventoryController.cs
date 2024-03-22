@@ -2,11 +2,14 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class InventoryController : MonoBehaviour
 {
+    public event Action nextStage;
     private static InventoryController instance;
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
@@ -32,15 +35,20 @@ public class InventoryController : MonoBehaviour
 
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드
-
+    public StoreGrid storeGrid;     // 상점 그리드
 
     InventoryHighlight inventoryHighlight;
 
     public Sprite[] slotSprites; //슬롯의 스프라이트 배열
+    public BlockColor[] blockColors;//등급의 색깔 배열
+    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>(); 
     public int addCount = 6;//추가 칸 개수
 
     public Vector2 startPosition;//처음 위치
     public float startRotation;
+
+    [SerializeField] TextMeshProUGUI _itemCost;
+
     private void Awake()
     {
         if (Instance == null)
@@ -52,6 +60,7 @@ public class InventoryController : MonoBehaviour
             Destroy(gameObject);
         }
         inventoryHighlight = GetComponent<InventoryHighlight>();
+        BlockColorDictionaryInit();
     }
     private void Start()
     {
@@ -86,7 +95,13 @@ public class InventoryController : MonoBehaviour
         //    LeftMouseButtonPress();
         //}
     }
-
+    public void BlockColorDictionaryInit()
+    {
+        foreach (var blockColor in blockColors)
+        {
+            BlockColorDictionary[blockColor.Grade] = blockColor;
+        }
+    }
     private void RotateItem()
     {
         if (selectedItem == null) { return; }
@@ -252,6 +267,10 @@ public class InventoryController : MonoBehaviour
     }
     private bool DragPlaceItem(Vector2Int tileGridPosition) //물체를 설치할 수 있는지 체크 후 설치
     {
+        // 변경점.
+        // 설치하려는 ItemGrid가 상점일 경우 false
+        if(selectedItemGrid == storeGrid) return false;
+
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
@@ -278,6 +297,13 @@ public class InventoryController : MonoBehaviour
             if (selectedItemGrid == playerInventoryGrid)//이동 후가 플레이어 인벤토리라면
             {
                 selectedItemGrid.AddItemToInventory(selectedItem);//인벤토리에 집어 넣기
+            }
+            // 변경점.
+            // 상점 → 플레이어 인벤토리로 이동 시
+            if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
+            {
+                // 상점에 저장된 아이템 GameObject 초기화
+                storeGrid.currentStoreItem = null;
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
             //selectedItemGrid.AddItemToInventory(selectedItem);
@@ -312,7 +338,7 @@ public class InventoryController : MonoBehaviour
         //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
         if (selectedItem != null)
         {
-            Debug.Log($"현재 아이템 : {selectedItem.itemData.itemIcon.name}");
+            Debug.Log($"현재 아이템 : {selectedItem.itemSO.Sprite.name}");
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
             rectTransform.SetAsLastSibling();
@@ -334,7 +360,7 @@ public class InventoryController : MonoBehaviour
             {
                 if (item != null)
                 {
-                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
+                    Debug.Log($"{itemType.Key} - {item.itemSO.Sprite.name}");
                     num++;
                 }
             }
@@ -344,5 +370,76 @@ public class InventoryController : MonoBehaviour
     public void AddBigInventory() //실험용 넓은 판대기 적용
     {
         playerInventoryGrid.AddBigInventory();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 상점
+    private void CreateRandomStoreItem() //아이템 랜덤 생성
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        selectedItem = inventoryItem;//선택한 아이템 설정
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
+        rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
+
+        //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
+        //ItemSO weaponData = GetRandomStoreItem();
+        ItemSO itemData = GetRandomStoreItem();
+        inventoryItem.Set(itemData);//아이템 설정
+    }
+
+    public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
+    {
+        int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
+        selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
+        WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
+        return weaponData;
+    }
+
+    private void InsertRandomStoreItem()//아이템 랜덤 생성 후 배치
+    {
+        selectedItemGrid = storeGrid;
+
+        CreateRandomStoreItem();//아이템 생성
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertStoreItem(itemToInsert);
+    }
+
+    private void InsertStoreItem(InventoryItem itemToInsert)//인벤토리에 아이템 배치
+    {
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null)//설치 불가능 이면 return
+        {
+            Destroy(itemToInsert.gameObject);
+            Debug.Log("삭제완료");
+            return;
+        }
+
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        // ItemData에 Item 가격 추가하는 것 건의하기.
+        _itemCost.text = itemToInsert.itemSO.Price.ToString();
+
+        storeGrid.AddStoreStock(itemToInsert);
+    }
+
+    public void OnStoreReroll()
+    {
+        RemoveStoreStock();
+        InsertRandomStoreItem();
+    }
+
+    public void RemoveStoreStock()
+    {
+        if (storeGrid.currentStoreItem == null) return;
+
+        storeGrid.ResetPanelStates();
+    }
+    
+    public void OnClickNextStageButton()
+    { 
+        nextStage();
     }
 }

@@ -73,27 +73,27 @@ public class ItemGrid : MonoBehaviour
     public void AddItemToInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에 넣는 기능
     {
         List<InventoryItem> itemList = null;
-        if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
+        if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
-            itemList = inventory[seletecteditem.itemData.itemType];
+            itemList = inventory[seletecteditem.itemSO.ItemType];
             itemList.Add(seletecteditem);
-            inventory[seletecteditem.itemData.itemType] = itemList;
+            inventory[seletecteditem.itemSO.ItemType] = itemList;
         }
         else//키가 존재하지 않다면
         {
             itemList = new List<InventoryItem>() { seletecteditem };
-            inventory.Add(seletecteditem.itemData.itemType, itemList);
+            inventory.Add(seletecteditem.itemSO.ItemType, itemList);
         }
-        ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
-        Debug.Log($"아이템 추가 - {seletecteditem.itemData.itemIcon.name}");
+        //ItemManager.Instance.OnEquip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+        Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
     {
-        if (inventory.ContainsKey(seletecteditem.itemData.itemType))//키가 존재하다면
+        if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
-            inventory[seletecteditem.itemData.itemType].Remove(seletecteditem);
-            Debug.Log($"아이템 빼기 - {seletecteditem.itemData.itemIcon.name}");
-            ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
+            inventory[seletecteditem.itemSO.ItemType].Remove(seletecteditem);
+            Debug.Log($"아이템 빼기 - {seletecteditem.itemSO.Sprite.name}");
+            //ItemManager.Instance.OnUnequip(seletecteditem.itemData.id, seletecteditem.itemData.itemType);
         }
         else//키가 존재하지 않다면
         {

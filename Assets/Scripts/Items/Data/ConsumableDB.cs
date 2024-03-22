@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumableDB : MonoBehaviour
+public class ConsumableDB
 {
     private Dictionary<int, ConsumableData> _consumable = new Dictionary<int, ConsumableData>();
     private List<int> idList = new List<int>(); //변경점
@@ -47,6 +47,12 @@ public class ConsumableDB : MonoBehaviour
     {
         return idList.Count;
     }
+
+    public List<int> ReturnAllConsumableID()
+    {
+        return idList;
+    }
+
     public IEnumerator ConsumableEnumerator()
     {
         return _consumable.GetEnumerator();
