@@ -35,6 +35,8 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
+        InventoryController.Instance.nextStage += CloseInventory;
+
         if (inventoryUI == null && stageUI == null)
         {
             Debug.Log("찾기 실패");
@@ -78,11 +80,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         currnetstage += 1;
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
-            timeLimit = 60f;//상수로 따로 나중에 빼두면 좋음
+            timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 5f;//상수로 따로 나중에 빼두면 좋음
+            timeLimit = 5f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
