@@ -34,7 +34,7 @@ public class RangeWeapon : MonoBehaviour
 
         if (_coolDown <= 0 && canAttack)
         {
-            Debug.Log("Range Attack");
+            //Debug.Log("Range Attack");
             canAttack = false;
             Target.Clear();
 

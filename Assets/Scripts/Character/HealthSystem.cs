@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
     {
         stat.health -= value;
 
-        Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
+        //Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
 
         if(stat.health <= 0)
         {

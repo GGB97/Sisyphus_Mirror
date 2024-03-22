@@ -71,10 +71,10 @@ public class InventoryController : MonoBehaviour
     {
         ItemIconDrag();
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InsertRandomItem();
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    //InsertRandomItem();
+        //}
         if (Input.GetKeyDown(KeyCode.R))
         {
             RotateItem();

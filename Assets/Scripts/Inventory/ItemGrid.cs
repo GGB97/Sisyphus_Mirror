@@ -75,6 +75,7 @@ public class ItemGrid : MonoBehaviour
         List<InventoryItem> itemList = null;
         if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
+            Debug.Log($"{seletecteditem.itemSO.Name}");
             itemList = inventory[seletecteditem.itemSO.ItemType];
             itemList.Add(seletecteditem);
             inventory[seletecteditem.itemSO.ItemType] = itemList;

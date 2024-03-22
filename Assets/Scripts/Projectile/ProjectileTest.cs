@@ -77,7 +77,7 @@ public class ProjectileTest : MonoBehaviour
         if (isContained)
         {
             // 데미지 처리 예정
-            Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
+            //Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
 
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
