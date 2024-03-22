@@ -61,6 +61,7 @@ public class InventoryController : MonoBehaviour
     {
         //SelectedItemGrid = itemGrid;
         //SelectedItemGrid.ShowRandomAddableSlot();
+        InsertRandomStoreItem();
     }
     private void Update()
     {
@@ -368,8 +369,9 @@ public class InventoryController : MonoBehaviour
         rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
 
         //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
-        ItemSO weaponData = GetRandomStoreItem();
-        inventoryItem.Set(weaponData);//아이템 설정
+        //ItemSO weaponData = GetRandomStoreItem();
+        ItemSO itemData = GetRandomStoreItem();
+        inventoryItem.Set(itemData);//아이템 설정
     }
 
     public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
@@ -378,5 +380,41 @@ public class InventoryController : MonoBehaviour
         selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
         WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
         return weaponData;
+    }
+
+    private void InsertRandomStoreItem()//아이템 랜덤 생성 후 배치
+    {
+        selectedItemGrid = storeGrid;
+
+        CreateRandomStoreItem();//아이템 생성
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertStoreItem(itemToInsert);
+    }
+
+    private void InsertStoreItem(InventoryItem itemToInsert)//인벤토리에 아이템 배치
+    {
+        Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
+
+        if (posOnGrid == null)//설치 불가능 이면 return
+        {
+            Destroy(itemToInsert.gameObject);
+            Debug.Log("삭제완료");
+            return;
+        }
+
+        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+
+        //if (selectedItemGrid == playerInventoryGrid) //메서드화 필요 //플레이어 인벤토리에 데이터 저장하기
+        //{
+        //    playerInventoryGrid.AddItemToInventory(itemToInsert);//아이템 추가.
+        //    selectedItemGrid.AddCurrentCount(1);
+        //}
+    }
+
+    public void OnStoreReroll()
+    {
+
+        InsertRandomStoreItem();
     }
 }
