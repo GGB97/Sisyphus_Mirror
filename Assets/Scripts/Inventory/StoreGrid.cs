@@ -1,14 +1,17 @@
+using System;
 using UnityEngine.UI;
 
 public class StoreGrid : ItemGrid
 {
-    //public Dictionary<ItemType, List<InventoryItem>> storage = new Dictionary<ItemType, List<InventoryItem>>();//창고 아이템
+    public InventoryItem currentStoreItem;
+    int gridWidth = 4;
+    int gridHeight = 4;
 
     protected override void Start()
     {
-        SetGridSize(4, 4);//그리드 4,4설정
+        SetGridSize(gridWidth, gridHeight);//그리드 4,4설정
         base.Start();
-        CreateBaseBlock(4, 4);
+        CreateBaseBlock(gridWidth, gridHeight);
         maxCount = 2;
 
         InventoryController.Instance.OnStoreReroll();
@@ -25,5 +28,23 @@ public class StoreGrid : ItemGrid
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
+    }
+
+    public void AddStoreStock(InventoryItem item)
+    {
+        currentStoreItem = item;
+    }
+
+    public void ResetPanelStates()
+    {
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridHeight; y++)
+            {
+                panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+            }
+        }
+        Array.Clear(inventoryItemSlot, 0, gridSizeWidth);
+        Destroy(currentStoreItem.gameObject);
     }
 }
