@@ -37,6 +37,12 @@ public enum EnemySize // 기본 3~5종류에 특수한 개체가 있을 경우 �
     Boss
 }
 
+public enum SkillType
+{
+    AutoAttack,
+    Skill01
+}
+
 public struct EnemyData
 {
     public static readonly float[] ChasingDelay = { 

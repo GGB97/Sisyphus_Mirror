@@ -41,7 +41,7 @@ public class EnemyChasingState : EnemyBaseState
         {
             if (TargetOnFront() && IsAttackReady()) // 타겟이 정면에 있고 공격이 가능한 상태면
             {
-                stateMachine.ChangeState(stateMachine.AttackState);
+                ChangeAttackState();
                 return;
             }
             else // 아니라면 idle로 전환해서 target을 바라보게

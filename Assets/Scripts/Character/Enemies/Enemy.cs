@@ -123,10 +123,13 @@ public class Enemy : CharacterBehaviour
         }
     }
 
-    public void OnChildTriggerEnter(Collider other)
+    public void OnChildTriggerEnter(Collider other, SkillType type)
     {
         //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        //Debug.Log($"OnChildTriggerEnter : {gameObject.name} -> Attack : {other.gameObject.name}");
+        if(type == SkillType.AutoAttack)
+            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+        else if (type == SkillType.Skill01)
+            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     void ChangeDieState()
@@ -156,15 +159,15 @@ public class Enemy : CharacterBehaviour
         //Debug.Log("Attack End");
     }
 
-    public void RangedAttack(int prfabNum, int posNum)
+    public void RangedAttack(int num)
     {
         //GameObject go = Instantiate(_projectilePrefabs[prfabNum],
         //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
 
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-            (int)_projectileTag[prfabNum],
-            _rangeAttackPos[posNum].transform.position,
-            _rangeAttackPos[posNum].transform.rotation);
+            (int)_projectileTag[num],
+            _rangeAttackPos[num].transform.position,
+            _rangeAttackPos[num].transform.rotation);
 
         Vector3 directionToTarget = target.position - transform.position;
         directionToTarget.y = 0f;

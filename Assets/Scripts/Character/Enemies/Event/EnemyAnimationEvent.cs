@@ -11,18 +11,18 @@ public class EnemyAnimationEvent : MonoBehaviour
         enemy = GetComponentInParent<Enemy>();
     }
 
-    public void AttackStart()
+    public void AttackStart(int index)
     {
-        enemy.AttackStart(0);
+        enemy.AttackStart(index);
     }
 
-    public void AttackEnd()
+    public void AttackEnd(int index)
     {
-        enemy.AttackEnd(0);
+        enemy.AttackEnd(index);
     }
 
-    public void Shoot()
+    public void Shoot(int index)
     {
-        enemy.RangedAttack(0, 0);
+        enemy.RangedAttack(index);
     }
 }

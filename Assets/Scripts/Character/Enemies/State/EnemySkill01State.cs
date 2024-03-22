@@ -13,6 +13,7 @@ public class EnemySkill01State : EnemyAttackState
         base.Enter();
 
         StartAnimation(EnemyAnimData.Skill01ParameterHash);
+        enemy.attackDelay = 0;
     }
 
     public override void Update()
@@ -42,7 +43,7 @@ public class EnemySkill01State : EnemyAttackState
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.shortNameHash == EnemyAnimData.Skill01StateHash)
         {
-            // Attack애니메이션이 어느정도 진행되었을때만.
+            // 애니메이션이 어느정도 진행되었을때만.
             return !(stateInfo.normalizedTime > 0.98f);
         }
 
