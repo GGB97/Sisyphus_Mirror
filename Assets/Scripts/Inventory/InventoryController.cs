@@ -33,7 +33,7 @@ public class InventoryController : MonoBehaviour
 
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드
-
+    public StoreGrid storeGrid;     // 상점 그리드
 
     InventoryHighlight inventoryHighlight;
 
@@ -354,5 +354,29 @@ public class InventoryController : MonoBehaviour
     public void AddBigInventory() //실험용 넓은 판대기 적용
     {
         playerInventoryGrid.AddBigInventory();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 상점
+    private void CreateRandomStoreItem() //아이템 랜덤 생성
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        selectedItem = inventoryItem;//선택한 아이템 설정
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
+        rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
+
+        //int selectedItemId = UnityEngine.Random.Range(0, items.Count);//랜덤한 수
+        ItemSO weaponData = GetRandomStoreItem();
+        inventoryItem.Set(weaponData);//아이템 설정
+    }
+
+    public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
+    {
+        int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
+        selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
+        WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
+        return weaponData;
     }
 }

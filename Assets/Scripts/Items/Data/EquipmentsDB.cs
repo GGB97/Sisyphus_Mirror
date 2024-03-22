@@ -49,6 +49,11 @@ public class EquipmentsDB
         return idList.Count;
     }
 
+    public List<int> ReturnAllEquipmentsID()
+    {
+        return idList;
+    }
+
     public IEnumerator EquipmentsDBEnumerator()
     {
         return _equipments.GetEnumerator();
