@@ -22,9 +22,9 @@ public class PlayerInventory : ItemGrid
 
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
     {
-        for (int x = gridWidth / 2 - 1; x <= gridWidth / 2; x++)//중앙 바꾸기
+        for (int x = gridWidth / 2 - 2; x <= gridWidth / 2; x++)//중앙 바꾸기
         {
-            for (int y = gridHeight / 2 - 1; y <= gridHeight / 2; y++)
+            for (int y = gridHeight / 2 - 2; y <= gridHeight / 2; y++)
             {
                 addableSlotList.Add(panelSlots[x, y]);//생성 시 리스트에 추가
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);

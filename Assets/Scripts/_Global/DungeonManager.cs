@@ -48,7 +48,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             timeText = System.Array.Find(arr, x => x.name == TimeTextName);
 
             Debug.Log("찾기 성공");
-            inventoryUI.SetActive(false);
+            //inventoryUI.SetActive(false);
         }
     }
     
@@ -105,7 +105,9 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public void OpenInventory()
     {
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드
+
         inventoryUI.SetActive(true);
+        InventoryController.Instance.OnStoreReroll();
     }
     public void CloseInventory()
     {

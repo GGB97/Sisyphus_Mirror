@@ -103,6 +103,11 @@ public class MeleeWeapon : MonoBehaviour
         }
 
         int random = Random.Range(0, colliders.Length);
+        if (Target[random].GetComponent<Enemy>().isDie)
+        {
+            Target.RemoveAt(random);
+            return;
+        }
         _targetPos = Target[random].position;
         // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
         _targetPos.y = (Vector3.up * 1.0f).y;

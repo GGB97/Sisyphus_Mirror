@@ -22,6 +22,9 @@ public class Player : CharacterBehaviour
 
     public float hitDelay;
 
+    public event Action<float, float> PlayerHealthChange;
+    public float health;
+
     private void Awake()
     {
         AnimationData.Initialize();
@@ -33,12 +36,14 @@ public class Player : CharacterBehaviour
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
 
-        stateMachine = new PlayerStateMachine(this);
+        stateMachine = new PlayerStateMachine(this);  
     }
 
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
+        //health = currentStat.maxHealth;
+        currentStat.Init();
 
         isDie = false;
         isHit = false;
@@ -66,6 +71,7 @@ public class Player : CharacterBehaviour
     void ChangeHitState()
     {
         stateMachine.ChangeState(stateMachine.hitState);
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
     }
 
     public void InvokeEvent(Action action)

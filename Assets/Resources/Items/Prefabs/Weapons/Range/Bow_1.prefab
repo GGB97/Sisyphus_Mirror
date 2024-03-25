@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3680837262391604208}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -1, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8839151847106888427}
@@ -257,11 +257,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponPivot: {fileID: 8839151847106888427}
+  _weaponContainer: {fileID: 0}
   Target: []
   _animator: {fileID: 0}
   id: 10121011
   weaponData:
     _id: 0
+    _itemType: 0
     _name: 
     _description: 
     _spritePath: 
@@ -270,14 +272,15 @@ MonoBehaviour:
     _prefabPath: 
     _price: 0
     _grade: 0
-    _atk: 0
-    _atkRate: 0
+    _physicalAtk: 0
+    _magicAtk: 0
+    _atkSpeed: 0
     _critRate: 0
     _critDamage: 0
     _range: 0
     _lifeSteal: 0
     _type: 0
-    _projectileTag: 
+    _projectileID: 0
     _numberOfProjectile: 0
   canAttack: 0
 --- !u!1 &3847757567172513798

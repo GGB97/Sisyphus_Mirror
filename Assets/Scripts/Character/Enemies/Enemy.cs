@@ -1,12 +1,7 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : CharacterBehaviour
 {
@@ -137,6 +132,7 @@ public class Enemy : CharacterBehaviour
 
     void ChangeDieState()
     {
+        isDie = true;
         stateMachine.ChangeState(stateMachine.DieState);
     }
 
