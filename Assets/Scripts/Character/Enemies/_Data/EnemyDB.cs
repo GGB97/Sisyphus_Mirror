@@ -9,7 +9,7 @@ public class EnemyDB
 
     public EnemyDB()
     {
-        var res = Resources.Load<EnemyDB_Sheet>(EnemyData.DBPath);
+        var res = Resources.Load<EnemyDB_Sheet>(DBPath.EnemyDB);
         var enemySO = Object.Instantiate(res);
         var entities = enemySO.Entities;
 

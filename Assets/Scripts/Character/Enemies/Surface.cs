@@ -4,6 +4,7 @@ using Unity.AI.Navigation;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
+using static ObjectPoolManager;
 
 public class Surface : MonoBehaviour
 {
@@ -17,14 +18,11 @@ public class Surface : MonoBehaviour
         {
             _nms[i] = gameObject.AddComponent<NavMeshSurface>();
             _nms[i].agentTypeID = NavMesh.GetSettingsByIndex((int)enemyTypes[i]).agentTypeID; // AgentType을 가져옴
-            LayerMask includeLayer = LayerData.Default | LayerData.Water; // bake할 레이어(맵 구성되고 변경 예정
+            LayerMask includeLayer = LayerData.Terrain; // bake할 레이어
             _nms[i].layerMask = includeLayer;
         }
-    }
 
-    void Start()
-    {
-        foreach(var nms in _nms)
+        foreach (var nms in _nms)
         {
             nms.BuildNavMesh(); // Bake
         }

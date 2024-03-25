@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponDB
 {
     private Dictionary<int, WeaponData> _weapons = new Dictionary<int, WeaponData>();
+    private List<int> idList = new List<int>(); //변경점
 
     public WeaponDB()
     {
@@ -20,8 +21,12 @@ public class WeaponDB
         {
             var weapon = entities[i];
 
-            if(_weapons.ContainsKey(weapon.Id)) _weapons[weapon.Id] = weapon;
-            else _weapons.Add(weapon.Id, weapon);
+            if (_weapons.ContainsKey(weapon.Id)) _weapons[weapon.Id] = weapon;
+            else
+            { 
+                _weapons.Add(weapon.Id, weapon);
+                idList.Add(weapon.Id); //변경점
+            } 
         }
     }
 
@@ -30,6 +35,22 @@ public class WeaponDB
         if(_weapons.ContainsKey(id)) return _weapons[id];
 
         return null;
+    }
+    public int GetItemId(int index) //변경점
+    {
+        if (index < 0 && index < idList.Count) //index가 유효하지 않다면
+            return 9999;
+
+        return idList[index];
+    }
+    public int GetItemIdCount()//변경점
+    {
+        return idList.Count;
+    }
+
+    public List<int> ReturnAllWeaponID()
+    {
+        return idList;
     }
 
     public IEnumerator WeaponDBEnumerator()

@@ -13,6 +13,7 @@ public enum PanelSlotState
 }
 public class PanelSlot : MonoBehaviour , IPointerClickHandler
 {
+    private InventoryController inventoryController;
     public PanelSlotState state = PanelSlotState.Null;
     Image image;
     public int posX;
@@ -20,6 +21,11 @@ public class PanelSlot : MonoBehaviour , IPointerClickHandler
     private void Awake()
     {
         image = GetComponent<Image>();
+        inventoryController = InventoryController.Instance;
+    }
+    private void Start()
+    {
+        
     }
     public void ChangeSlotState(PanelSlotState changeState)//slot의 상태 변경하기
     {
@@ -28,7 +34,24 @@ public class PanelSlot : MonoBehaviour , IPointerClickHandler
     }
     private void ChangeSlotSprite(int num)//상태에 맞는 스프라이트 변경
     {
-        image.sprite = InventoryController.Instance.slotSprites[num];
+        if ((PanelSlotState)num == PanelSlotState.Full)//바닥을 채워야 하면
+        {
+            ItemGrade itemGrade = inventoryController.SelectedItemGrid.inventoryItemSlot[posX, posY].itemSO.Grade;
+            ChangeBlockColor(itemGrade);
+        }
+        else
+        {
+            ResetBlockColor();
+        }
+        image.sprite = inventoryController.slotSprites[num];
+    }
+    public void ChangeBlockColor(ItemGrade itemGrade)
+    {
+        image.color = inventoryController.BlockColorDictionary[itemGrade].color;
+    }
+    public void ResetBlockColor()
+    {
+        image.color = Color.white;
     }
     public bool CompareState(PanelSlotState compareState) //상태 비교하기
     {
@@ -45,7 +68,7 @@ public class PanelSlot : MonoBehaviour , IPointerClickHandler
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                InventoryController.Instance.SelectedItemGrid.CreateAddSlot();
+                InventoryController.Instance.playerInventoryGrid.CreateAddSlot();
             }
         }
     }

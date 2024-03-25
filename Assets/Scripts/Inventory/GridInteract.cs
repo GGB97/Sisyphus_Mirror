@@ -10,16 +10,18 @@ public class GridInteract : MonoBehaviour,IPointerEnterHandler,IPointerExitHandl
 
     void Start()
     {
-        inventoryController = FindObjectOfType<InventoryController>();
+        inventoryController = InventoryController.Instance;
         ItemGrid = GetComponent<ItemGrid>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         inventoryController.SelectedItemGrid = ItemGrid;
+        //Debug.Log($"Enter Grid :{this.name}");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        inventoryController.SelectedItemGrid = null;
+        //inventoryController.SelectedItemGrid = null;
+        //Debug.Log($"Exit Grid :{this.name}");
     }
 }

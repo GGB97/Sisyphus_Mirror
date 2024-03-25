@@ -7,16 +7,18 @@ using UnityEngine;
 public class PlayerBaseData : CharacterBase
 {
     [Header("AddInfo")]
-    public float dashRange;
-    public float dashRate;
+    //public float dashRange;
+    //public float dashRate;
 
-    public float critRate;
-    public float critDamage;
+    //public float critRate;
+    //public float critDamage;
 
-    public float lifeSteal;
+    //public float lifeSteal;
 
-    //public int LV;
-    //public float EXP;
-    //public float maxEXP;
+    public int LV;
+    public float EXP;
+    public float maxEXP;
+
+    public int startItemID;
 
 }

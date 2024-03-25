@@ -12,11 +12,14 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Enter();
 
-        StartAnimation(EnemyAnimationData.IdleParameterHash);
+        StartAnimation(EnemyAnimData.IdleParameterHash);
     }
 
     public override void Update()
     {
+        if (enemy.IsSpawning)
+            return;
+
         base.Update();
 
         if (enemy.target == null)
@@ -25,7 +28,7 @@ public class EnemyIdleState : EnemyBaseState
         // 공격이 가능하다면
         if (CanAttack())
         {
-            stateMachine.ChangeState(stateMachine.AttackState);
+            ChangeAttackState();
             return;
         }
 
@@ -47,8 +50,6 @@ public class EnemyIdleState : EnemyBaseState
     {
         base.Exit();
 
-        StopAnimation(EnemyAnimationData.IdleParameterHash);
+        StopAnimation(EnemyAnimData.IdleParameterHash);
     }
-
-    
 }

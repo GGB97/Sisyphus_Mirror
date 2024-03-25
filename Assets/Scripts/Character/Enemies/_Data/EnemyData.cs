@@ -13,7 +13,8 @@ public enum EnemyType // 종족
     Bat,
     Dragon,
     MonsterPlant,
-    EvilMage
+    EvilMage,
+    Worm
 }
 
 public enum EnemyRank // 등급
@@ -32,13 +33,18 @@ public enum EnemySize // 기본 3~5종류에 특수한 개체가 있을 경우 �
 {
     Small,
     Medium,
-    Large
+    Large,
+    Boss
+}
+
+public enum SkillType
+{
+    AutoAttack,
+    Skill01
 }
 
 public struct EnemyData
 {
-    public static readonly string DBPath = "Enemy/Data/EnemyDB_Sheet";
-
     public static readonly float[] ChasingDelay = { 
         0.2f, // Normal
         0.1f, // Elite
@@ -48,5 +54,5 @@ public struct EnemyData
     public static readonly int ChasingPriority = 51;
     public static readonly int DefaultPriority = 50;
 
-    public static readonly float KnockBackDelayTime = 0.3f;
+    public static readonly float KnockBackDelayTime = 0.2f;
 }

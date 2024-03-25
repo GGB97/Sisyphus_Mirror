@@ -15,7 +15,6 @@ public class EnemyBaseState : IState
 
     protected Animator animator;
     protected NavMeshAgent agent;
-    protected CharacterController controller;
 
     public EnemyBaseState(EnemyStateMachine enemyStateMachine)
     {
@@ -27,8 +26,6 @@ public class EnemyBaseState : IState
 
         animator = enemy.Animator;
         agent = enemy.Agent;
-        controller = enemy.Controller;
-
     }
 
     public virtual void Enter()
@@ -53,6 +50,8 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
+        
+
         UpdateTime();
 
         if (enemy.isDie)
@@ -100,8 +99,6 @@ public class EnemyBaseState : IState
 
     protected bool TargetInRange()
     {
-
-
         return (Vector3.Distance(enemy.target.position, enemy.transform.position) <= curStat.attackRange);
     }
 
@@ -133,5 +130,22 @@ public class EnemyBaseState : IState
 
         // 바라보는 방향 수정
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime); // 보간
+    }
+
+    protected virtual void ChangeAttackState()
+    {
+        if(enemy.Info.rank == EnemyRank.Boss)
+        {
+            int rand = Random.Range(0, 10);
+            if(rand < 3)
+                stateMachine.ChangeState(stateMachine.Skill01State);
+            else
+                stateMachine.ChangeState(stateMachine.AttackState);
+
+        }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+        }
     }
 }

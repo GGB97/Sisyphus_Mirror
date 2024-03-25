@@ -2,16 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerBaseState : IState
 {
+    protected Player player;
     protected PlayerStateMachine stateMachine;
     protected PlayerBaseData playerData;
+    protected Status curState;
     
     public PlayerBaseState(PlayerStateMachine playerstateMachine)
     {
         stateMachine = playerstateMachine;
+        player = playerstateMachine.Player;
         playerData = playerstateMachine.Player.Data;
+        curState = player.currentStat;
     }
 
     public virtual void Enter()
@@ -38,6 +43,16 @@ public class PlayerBaseState : IState
     {
         Move();
         stateMachine.DashCoolTime += Time.deltaTime;
+
+        if (player.isDie)
+        {
+            player.InvokeEvent(player.OnDieEvent);
+        }
+
+        if (player.isHit)
+        {
+            player.InvokeEvent(player.OnHitEvent);
+        }
     }
 
 
@@ -57,7 +72,7 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (stateMachine.DashCoolTime > 1)
+        if (stateMachine.DashCoolTime > player.currentStat.dashCoolTime)
         {
             stateMachine.ChangeState(stateMachine.dashState);
         }
@@ -90,14 +105,8 @@ public class PlayerBaseState : IState
     protected Vector3 GetMovementDirection()  // x와 z축으로만 움직이도록 방향 설정
     {
 
-        Vector3 forward = stateMachine.MainCameraTransform.forward;
-        Vector3 right = stateMachine.MainCameraTransform.right;
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
+        Vector3 forward = new Vector3(0, 0, 1);       // stateMachine.MainCameraTransform.forward;
+        Vector3 right = new Vector3(1, 0, 0);      // stateMachine.MainCameraTransform.right;
 
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
@@ -106,19 +115,21 @@ public class PlayerBaseState : IState
     {
         if(movementDirection != Vector3.zero)
         {
-            //stateMachine.PlayerTransform.LookAt(stateMachine.PlayerTransform.position + movementDirection);
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, 1f );
         }
     }
 
-    //private void Move(Vector3 movementDirection)
+    //private void OnTriggerEnter(Collider other)
     //{
-    //    float movementSpeed = playerData.moveSpeed;
-    //    stateMachine.Player.Controller.Move(
-    //        (movementDirection * movementSpeed) * Time.deltaTime
-    //        );
+    //    if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
+    //    {
+    //        player.HealthSystem.TakeDamage(10f);   
+    //        stateMachine.ChangeState(stateMachine.hitState);
+    //    }
     //}
+
+
 
     protected void StartAnimation(int animationHash)
     {
@@ -128,5 +139,15 @@ public class PlayerBaseState : IState
     protected void StopAnimation(int animationHash)
     {
         stateMachine.Player.Animator.SetBool(animationHash, false);
+    }
+
+    public void GetEXP(int exp)
+    {
+        playerData.EXP += exp;
+        if(playerData.EXP >= playerData.maxEXP )
+        {
+            playerData.EXP = 0;
+            playerData.LV += 1;
+        }
     }
 }

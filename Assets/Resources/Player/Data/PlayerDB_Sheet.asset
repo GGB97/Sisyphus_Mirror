@@ -15,31 +15,41 @@ MonoBehaviour:
   Entities:
   - health: 0
     maxHealth: 60
-    attackRange: 1
+    attackRange: 0
     meleeAtk: 3
     magicAtk: 0
     def: 2
-    attackSpeed: 10
+    attackSpeed: 0
     moveSpeed: 5
-    id: 21234567
-    prefabPath: 
+    knockbackPower: 0
     dashRange: 0.2
-    dashRate: 1
+    dashCoolTime: 1
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    id: 21234567
+    prefabPath: 
+    LV: 1
+    EXP: 0
+    maxEXP: 100
+    startItemID: 10111011
   - health: 0
     maxHealth: 50
-    attackRange: 1
-    meleeAtk: 2
+    attackRange: 0
+    meleeAtk: 3
     magicAtk: 0
     def: 0
-    attackSpeed: 15
+    attackSpeed: 20
     moveSpeed: 5
-    id: 20000002
-    prefabPath: 
+    knockbackPower: 0
     dashRange: 0.2
-    dashRate: 1
+    dashCoolTime: 1
     critRate: 5
     critDamage: 0
     lifeSteal: 0
+    id: 20000002
+    prefabPath: 
+    LV: 1
+    EXP: 0
+    maxEXP: 100
+    startItemID: 10121011

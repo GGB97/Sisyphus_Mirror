@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class RangeWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _weaponPivot;
+    [SerializeField] private Transform _weaponContainer;
 
     public List<Transform> Target = new List<Transform>();
 
@@ -24,8 +23,19 @@ public class RangeWeapon : MonoBehaviour
         weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
 
+        _weaponContainer = transform.parent;
+        transform.position = GetRandomPosition();
+
         _coolDown = 0f;
         canAttack = true;
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        float x = Random.Range(-1f, 1f);
+        float z = Random.Range(-1f, 1f);
+
+        return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
     }
 
     private void Update()
@@ -39,14 +49,20 @@ public class RangeWeapon : MonoBehaviour
 
             DetectEnemyInRange();
 
-            _coolDown = weaponData.AtkRate;
+            _coolDown = weaponData.AtkSpeed;
         }
     }
 
     public void DetectEnemyInRange()
     {
+        Target.Clear();
+
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, weaponData.Range, 1 << 7);
-        if (colliders.Length == 0) return;
+        if (colliders.Length == 0)
+        {
+            canAttack = true;
+            return;
+        }
 
         foreach (Collider collider in colliders)
         {
@@ -55,6 +71,15 @@ public class RangeWeapon : MonoBehaviour
         }
 
         int random = Random.Range(0, colliders.Length);
+        if (Target[random].GetComponent<Enemy>().isDie)
+        {
+            Target.RemoveAt(random);
+            Target.Clear();
+            canAttack = true;
+
+            return;
+        }
+
         RotateWeapon(Target[random].position);
     }
 
@@ -71,7 +96,7 @@ public class RangeWeapon : MonoBehaviour
     void Attack()
     {
         _animator.SetTrigger("Attack");     // 추후에 수정
-        _animator.SetFloat("AttackSpeed", 1 + weaponData.AtkRate);
+        _animator.SetFloat("AttackSpeed", 1 + weaponData.AtkSpeed);
         Shot();
 
         canAttack = true;
@@ -79,7 +104,15 @@ public class RangeWeapon : MonoBehaviour
 
     void Shot()
     {
-        ObjectPoolManager.Instance.SpawnFromPool("Arrow", _weaponPivot.position, _weaponPivot.rotation);
+        GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
+        ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
+        _projectile.AddTarget(LayerData.Enemy);
+        _projectile.AddExcludeLayer(LayerData.Player);
+        _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
+
+        float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
+        _projectile.SetValue(value);
+        _projectile.SetVelocity(1f); // 속도 배율 설정
 
         if (weaponData.NumberOfProjectile > 1)
         {
@@ -90,7 +123,13 @@ public class RangeWeapon : MonoBehaviour
                 float randomRot = Random.Range(_weaponPivot.rotation.y - .1f, _weaponPivot.rotation.y + .1f);
                 Quaternion rot = _weaponPivot.rotation;
                 rot.y = randomRot;
-                ObjectPoolManager.Instance.SpawnFromPool("Arrow", _weaponPivot.position, rot);
+                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
+
+                ProjectileTest projectile = go.GetComponent<ProjectileTest>();
+                projectile.AddTarget(LayerData.Enemy);
+
+                projectile.SetValue(value);
+                projectile.SetVelocity(1f); // 속도 배율 설정
             }
         }
     }
