@@ -77,10 +77,10 @@ public class Enemy : CharacterBehaviour
 
     void Update()
     {
-        stateMachine.Update();
+        //if (DungeonManager.Instance.isStarted == false)
+        //    OnDieEvent?.Invoke();
 
-        if(DungeonManager.Instance.isStarted == false)
-            OnDieEvent?.Invoke();
+        stateMachine.Update();
     }
 
     private void FixedUpdate()
@@ -126,15 +126,6 @@ public class Enemy : CharacterBehaviour
         }
     }
 
-    public void OnChildTriggerEnter(Collider other, SkillType type)
-    {
-        //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        if(type == SkillType.AutoAttack)
-            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
-        else if (type == SkillType.Skill01)
-            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
-    }
-
     void ChangeDieState()
     {
         stateMachine.ChangeState(stateMachine.DieState);
@@ -148,6 +139,15 @@ public class Enemy : CharacterBehaviour
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
+    }
+
+    public void OnChildTriggerEnter(Collider other, SkillType type)
+    {
+        //이곳에서 자식 콜라이더의 트리거 충돌 처리
+        if(type == SkillType.AutoAttack)
+            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+        else if (type == SkillType.Skill01)
+            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
     }
 
     public void AttackStart(int num)
