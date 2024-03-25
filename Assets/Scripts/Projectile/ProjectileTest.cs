@@ -79,11 +79,12 @@ public class ProjectileTest : MonoBehaviour
             // 데미지 처리 예정
             //Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
 
-            if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+            if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
                 _healthSystem.TakeDamage(_value);
             }
         }
+        else return;
         OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
 
