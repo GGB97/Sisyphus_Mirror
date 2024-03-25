@@ -31,8 +31,8 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(float value)
     {
         stat.health -= value;
-
-        Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
+        if (gameObject.tag.Equals("Player"))
+            Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
 
         if(stat.health <= 0)
         {

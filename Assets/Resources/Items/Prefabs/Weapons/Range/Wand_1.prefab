@@ -57,17 +57,17 @@ PrefabInstance:
     - target: {fileID: 7637911665730740839, guid: af3e1859fd1294d4f95d562b68ebf2a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.277
-      objectReference: {fileID: 0}
-    - target: {fileID: 7637911665730740839, guid: af3e1859fd1294d4f95d562b68ebf2a8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7637911665730740839, guid: af3e1859fd1294d4f95d562b68ebf2a8,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637911665730740839, guid: af3e1859fd1294d4f95d562b68ebf2a8,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.151
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7637911665730740839, guid: af3e1859fd1294d4f95d562b68ebf2a8,
         type: 3}
@@ -146,11 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponPivot: {fileID: 8255068039278082811}
+  _weaponContainer: {fileID: 0}
   Target: []
   _animator: {fileID: 0}
   id: 10122011
   weaponData:
     _id: 0
+    _itemType: 0
     _name: 
     _description: 
     _spritePath: 
@@ -159,14 +161,15 @@ MonoBehaviour:
     _prefabPath: 
     _price: 0
     _grade: 0
-    _atk: 0
-    _atkRate: 0
+    _physicalAtk: 0
+    _magicAtk: 0
+    _atkSpeed: 0
     _critRate: 0
     _critDamage: 0
     _range: 0
     _lifeSteal: 0
     _type: 0
-    _projectileTag: 
+    _projectileID: 0
     _numberOfProjectile: 0
   canAttack: 0
 --- !u!95 &1183220334792651143

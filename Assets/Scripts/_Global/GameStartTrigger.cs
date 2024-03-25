@@ -6,7 +6,7 @@ public class GameStartTrigger : MonoBehaviour
 {
     private void Start()
     {
-        DungeonManager.Instance.SetStageAndStart();
+        DungeonManager.Instance.OpenInventory();
         Destroy(this.gameObject);
     }
 }

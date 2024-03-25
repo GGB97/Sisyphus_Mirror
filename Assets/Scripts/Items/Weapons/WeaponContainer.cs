@@ -11,8 +11,5 @@ public class WeaponContainer : MonoBehaviour
         transform.parent = Player;
     }
 
-    public Transform ReturnWeaponContainer()
-    {
-        return transform;
-    }
+    
 }

@@ -22,10 +22,20 @@ public class RangeWeapon : MonoBehaviour
     {
         weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
+
         _weaponContainer = transform.parent;
+        transform.position = GetRandomPosition();
 
         _coolDown = 0f;
         canAttack = true;
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        float x = Random.Range(-1f, 1f);
+        float z = Random.Range(-1f, 1f);
+
+        return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
     }
 
     private void Update()
@@ -34,7 +44,6 @@ public class RangeWeapon : MonoBehaviour
 
         if (_coolDown <= 0 && canAttack)
         {
-            Debug.Log("Range Attack");
             canAttack = false;
             Target.Clear();
 
@@ -62,6 +71,15 @@ public class RangeWeapon : MonoBehaviour
         }
 
         int random = Random.Range(0, colliders.Length);
+        if (Target[random].GetComponent<Enemy>().isDie)
+        {
+            Target.RemoveAt(random);
+            Target.Clear();
+            canAttack = true;
+
+            return;
+        }
+
         RotateWeapon(Target[random].position);
     }
 
