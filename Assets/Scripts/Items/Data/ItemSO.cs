@@ -28,6 +28,7 @@ public class ItemSO
     [SerializeField] protected int _iconHeight;
     [SerializeField] protected string _prefabPath;
     [SerializeField] protected int _price;
+    [SerializeField] protected float _weight;
     [SerializeField] protected ItemGrade _grade;
 
     public int Id => _id;
@@ -39,6 +40,7 @@ public class ItemSO
     public int IconHeight => _iconHeight;
     public string PrefabPath => _prefabPath;
     public int Price => _price;
+    public float Weight => _weight;
     public ItemGrade Grade => _grade;
 
     private Sprite _sprite;
