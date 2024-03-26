@@ -32,7 +32,7 @@ public class InventoryController : MonoBehaviour
 
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
-    [SerializeField] Transform canvasTransform;
+    public Transform canvasTransform;
 
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드

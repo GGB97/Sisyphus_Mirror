@@ -100,6 +100,7 @@ MonoBehaviour:
     _iconHeight: 0
     _prefabPath: 
     _price: 0
+    _weight: 0
     _grade: 0
   onGridPositionX: 0
   onGridPositionY: 0
@@ -116,3 +117,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01db93370f5381b41a841376233b98de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTime: 0.3

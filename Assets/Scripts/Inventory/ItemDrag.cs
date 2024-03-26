@@ -9,6 +9,10 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     private InventoryController inventoryController;
     Image image;
     ItemDescription itemDesription;
+    public float hoverTime = 0.2f;
+    public bool isHovering;
+    private Coroutine displayCoroutine;
+
     private void Awake()
     {
         inventoryController = InventoryController.Instance;
@@ -41,29 +45,55 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (inventoryController.selectedItem != null)
+        {
+            return;
+        }
+
         if (itemDesription == null)
         {
-            itemDesription = InventoryController.Instance.itemDescriptionUI.GetComponent<ItemDescription>();
+            itemDesription = inventoryController.itemDescriptionUI.GetComponent<ItemDescription>();
+            if (itemDesription == null)
+                return;
         }
-        itemDesription.currentItem = GetComponent<InventoryItem>();
-        itemDesription.gameObject.SetActive(true);
-        //itemDesription.SetTransform();
+        isHovering = true;
+        displayCoroutine = StartCoroutine(WaitSecondsOnUI());//아이템 이미지 위에서 hover시간 만큼 기다리기
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (itemDesription != null)
-        { 
-            itemDesription.gameObject.SetActive(false);
-            itemDesription.currentItem = null;
-        }
+        ExitUI();
     }
+
+
     private void OnDestroy()//삭제될 때 실행
     {
+        ExitUI();
+    }
+    IEnumerator WaitSecondsOnUI()//시간 기다리고 UI 띄우기
+    {
+        yield return new WaitForSeconds(hoverTime); // 일정 시간 동안 대기
+        if (isHovering) // 만약 마우스가 아직 아이템 위에 있는 경우
+        {
+            itemDesription.currentItem = GetComponent<InventoryItem>();
+            itemDesription.gameObject.SetActive(true);
+            itemDesription.SetTransform();
+            //itemDesription.transform.SetParent(this.transform);
+            itemDesription.transform.SetAsLastSibling();
+            Debug.Log("호출");
+        }
+    }
+    public  void ExitUI()
+    {
         if (itemDesription != null)
-        { 
+        {
             itemDesription.gameObject.SetActive(false);
-            itemDesription.currentItem = null;
+            itemDesription.SetCurrentItemNull();
+        }
+        isHovering = false; // 마우스가 아이템 위에 없음을 표시
+        if (displayCoroutine != null)
+        {
+            StopCoroutine(displayCoroutine); // 딜레이 후 UI 표시 코루틴 중지
         }
     }
 }
