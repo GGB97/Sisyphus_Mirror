@@ -22,6 +22,7 @@ MonoBehaviour:
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
     _price: 24
+    _weight: 10
     _grade: 0
     _physicalAtk: 20
     _magicAtk: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
     _price: 28
+    _weight: 10
     _grade: 1
     _physicalAtk: 25
     _magicAtk: 0
@@ -62,6 +64,7 @@ MonoBehaviour:
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
     _price: 32
+    _weight: 10
     _grade: 2
     _physicalAtk: 30
     _magicAtk: 0
@@ -82,6 +85,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
     _price: 35
+    _weight: 15
     _grade: 0
     _physicalAtk: 30
     _magicAtk: 0
@@ -102,6 +106,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Spear_1
     _price: 30
+    _weight: 15
     _grade: 0
     _physicalAtk: 20
     _magicAtk: 0
@@ -122,6 +127,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
     _price: 35
+    _weight: 10
     _grade: 0
     _physicalAtk: 30
     _magicAtk: 0
@@ -142,6 +148,7 @@ MonoBehaviour:
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
     _price: 35
+    _weight: 15
     _grade: 0
     _physicalAtk: 0
     _magicAtk: 20
