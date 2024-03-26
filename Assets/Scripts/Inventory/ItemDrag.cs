@@ -47,7 +47,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         }
         itemDesription.currentItem = GetComponent<InventoryItem>();
         itemDesription.gameObject.SetActive(true);
-        itemDesription.SetTransform();
+        //itemDesription.SetTransform();
     }
 
     public void OnPointerExit(PointerEventData eventData)
