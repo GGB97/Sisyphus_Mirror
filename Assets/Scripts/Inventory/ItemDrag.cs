@@ -7,8 +7,14 @@ using UnityEngine.UI;
 public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private InventoryController inventoryController;
-    Image image;
-    ItemDescription itemDesription;
+    private Image image;
+    private ItemDescription itemDesription;
+
+    public float hoverTime = 0.2f;
+    public bool isHovering;
+    public bool isPressed = false;
+    private Coroutine displayCoroutine;
+
     private void Awake()
     {
         inventoryController = InventoryController.Instance;
@@ -16,6 +22,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerDown(PointerEventData eventData) //마우스를 누른 순간 실행
     {
+        if (isPressed == true)
+            return;
+
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
             Debug.Log("Click Down");
@@ -25,8 +34,11 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         }
         else if (eventData.button == PointerEventData.InputButton.Right)//오른쪽 눌렀을 때
         {
-            if(inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)
-                inventoryController.SellItemButton();
+            isPressed = true;
+            if(itemDesription != null)
+                itemDesription.RightClick();
+            //if(inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)
+            //inventoryController.SellItemButton(); 아이템 삭제
         }
     }
 
@@ -41,29 +53,58 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (inventoryController.selectedItem != null)
+        {
+            return;
+        }
+
         if (itemDesription == null)
         {
-            itemDesription = InventoryController.Instance.itemDescriptionUI.GetComponent<ItemDescription>();
+            itemDesription = inventoryController.itemDescriptionUI.GetComponent<ItemDescription>();
+            if (itemDesription == null)
+                return;
         }
-        itemDesription.currentItem = GetComponent<InventoryItem>();
-        itemDesription.gameObject.SetActive(true);
-        //itemDesription.SetTransform();
+        isHovering = true;
+        displayCoroutine = StartCoroutine(WaitSecondsOnUI());//아이템 이미지 위에서 hover시간 만큼 기다리기
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (itemDesription != null)
-        { 
-            itemDesription.gameObject.SetActive(false);
-            itemDesription.currentItem = null;
-        }
+        ExitUI();
     }
+
+
     private void OnDestroy()//삭제될 때 실행
     {
-        if (itemDesription != null)
-        { 
-            itemDesription.gameObject.SetActive(false);
-            itemDesription.currentItem = null;
+        ExitUI();
+    }
+    IEnumerator WaitSecondsOnUI()//시간 기다리고 UI 띄우기
+    {
+        yield return new WaitForSeconds(hoverTime); // 일정 시간 동안 대기
+        if (isHovering) // 만약 마우스가 아직 아이템 위에 있는 경우
+        {
+            itemDesription.currentItem = GetComponent<InventoryItem>();
+            itemDesription.gameObject.SetActive(true);
+            itemDesription.SetTransform();
+            //itemDesription.transform.SetParent(this.transform);
+            itemDesription.transform.SetAsLastSibling();
+            Debug.Log("호출");
+        }
+    }
+    public  void ExitUI()
+    {
+        if (isPressed == false)
+        {
+            if (itemDesription != null)
+            {
+                itemDesription.gameObject.SetActive(false);
+                itemDesription.SetCurrentItemNull();
+            }
+            isHovering = false; // 마우스가 아이템 위에 없음을 표시
+            if (displayCoroutine != null)
+            {
+                StopCoroutine(displayCoroutine); // 딜레이 후 UI 표시 코루틴 중지
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ public class InventoryController : MonoBehaviour
 
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
-    [SerializeField] Transform canvasTransform;
+    public Transform canvasTransform;
 
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드
@@ -472,15 +472,22 @@ public class InventoryController : MonoBehaviour
         InsertItem(itemToInsert);
     }
 
-    internal void SellItemButton()
+    internal void SellItemButton(InventoryItem currentItem)
     {
-        Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
-        PickUpItem(tileGridPosition);
+        Vector2Int gridPosition = new Vector2Int(currentItem.onGridPositionX, currentItem.onGridPositionY);
+        PickUpItem(gridPosition);
+        //Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
+        //PickUpItem(tileGridPosition);
         if (selectedItem == null) 
             return;
         playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
         Destroy(selectedItem.gameObject);
         selectedItem = null;
         SelectedItemGrid.AddCurrentCount(-1);
+
+        ItemDescription itemDescription = itemDescriptionUI.GetComponent<ItemDescription>();
+
+        if(itemDescription != null)
+            itemDescription.ExitExplnationUI();
     }
 }
