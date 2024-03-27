@@ -42,14 +42,35 @@ public class StoreGrid : ItemGrid
         }
 
         if (panelSlots[0, 0].CompareState(PanelSlotState.Empty))
+        {
             PlaceItem(item, 0, 0);
+            InventoryController.Instance.itemCost[0].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[0].text = item.itemSO.Price.ToString();
+        }
         else if (panelSlots[0, 7].CompareState(PanelSlotState.Empty))
+        {
             PlaceItem(item, 0, 7);
+            InventoryController.Instance.itemCost[1].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[1].text = item.itemSO.Price.ToString();
+        }
         else if (panelSlots[3, 3].CompareState(PanelSlotState.Empty))
+        {
             PlaceItem(item, 3, 3);
+            InventoryController.Instance.itemCost[2].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[2].text = item.itemSO.Price.ToString();
+        }
         else if (panelSlots[7, 0].CompareState(PanelSlotState.Empty))
+        {
             PlaceItem(item, 7, 0);
-        else PlaceItem(item, 7, 7);
+            InventoryController.Instance.itemCost[3].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[3].text = item.itemSO.Price.ToString();
+        }
+        else
+        {
+            PlaceItem(item, 7, 7);
+            InventoryController.Instance.itemCost[4].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[4].text = item.itemSO.Price.ToString();
+        }
     }
 
     public void ClearEmptySolts()
@@ -91,5 +112,13 @@ public class StoreGrid : ItemGrid
             Destroy(item.gameObject);
         }
         currentStoreItem.Clear();
+    }
+
+    public Vector3 SetTransform(InventoryItem item)
+    {
+        RectTransform newtransform = item.gameObject.GetComponent<RectTransform>();
+        float posX = TileSizeWidth * item.itemSO.IconWidth / 4;
+        float posY = TileSizeHeight * item.itemSO.IconHeight / 2;
+        return newtransform.position + new Vector3(posX - (TileSizeWidth * item.itemSO.IconWidth / 2), posY - TileSizeHeight * item.itemSO.IconHeight - TileSizeHeight, 0);
     }
 }
