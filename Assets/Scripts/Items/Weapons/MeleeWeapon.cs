@@ -29,6 +29,8 @@ public class MeleeWeapon : MonoBehaviour
         _weaponData = DataBase.Weapon.Get(id);
         _weaponPivot = transform.parent;
 
+        transform.position = GetRandomPosition();
+
         _effect.SetActive(false);
         _isMoving = false;
         _canAttack = true;
@@ -82,6 +84,14 @@ public class MeleeWeapon : MonoBehaviour
                 Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
             }
         }
+    }
+
+    private Vector3 GetRandomPosition()
+    {
+        float x = Random.Range(-1f, 1f);
+        float z = Random.Range(-1f, 1f);
+
+        return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
     }
 
     void SetCanAttack()
