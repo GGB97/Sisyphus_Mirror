@@ -5,11 +5,16 @@ using UnityEngine.EventSystems;
 
 public class RightClickPanel : MonoBehaviour, IPointerDownHandler
 {
+    private InventoryController inventoryController;
     private ItemDescription itemDescription;
 
+    private void Awake()
+    {
+        inventoryController = InventoryController.Instance;
+    }
     private void OnEnable()
     {
-        itemDescription = InventoryController.Instance.itemDescriptionUI.GetComponent<ItemDescription>();
+        itemDescription = inventoryController.itemDescriptionUI.GetComponent<ItemDescription>();
     }
     public void OnPointerDown(PointerEventData eventData)//바닥을 클릭 했을 때
     {
