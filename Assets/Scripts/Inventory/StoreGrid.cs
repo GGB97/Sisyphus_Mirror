@@ -1,15 +1,17 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class StoreGrid : ItemGrid
 {
-    public InventoryItem currentStoreItem;
-    int gridWidth = 4;
-    int gridHeight = 4;
+    public List<InventoryItem> currentStoreItem = new List<InventoryItem>();
+    int gridWidth = 10;
+    int gridHeight = 10;
 
     protected override void Start()
     {
-        SetGridSize(gridWidth, gridHeight);//그리드 4,4설정
+        SetGridSize(gridWidth, gridHeight);
         base.Start();
         CreateBaseBlock(gridWidth, gridHeight);
 
@@ -23,7 +25,8 @@ public class StoreGrid : ItemGrid
             for (int y = 0; y < gridHeight; y++)
             {
                 image = panelSlots[x, y].GetComponent<Image>();
-                
+                image.color = new Color(0, 0, 0, 0f);
+
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
@@ -31,8 +34,28 @@ public class StoreGrid : ItemGrid
 
     public void AddStoreStock(InventoryItem item)
     {
-        currentStoreItem = item;
+        currentStoreItem.Add(item);
+
+        foreach (var items in currentStoreItem)
+        {
+            Debug.Log(items.name);
+        }
+
+        if (panelSlots[0, 0].CompareState(PanelSlotState.Empty))
+            PlaceItem(item, 0, 0);
+        else if (panelSlots[0, 7].CompareState(PanelSlotState.Empty))
+            PlaceItem(item, 0, 7);
+        else if (panelSlots[3, 3].CompareState(PanelSlotState.Empty))
+            PlaceItem(item, 3, 3);
+        else if (panelSlots[7, 0].CompareState(PanelSlotState.Empty))
+            PlaceItem(item, 7, 0);
+        else PlaceItem(item, 7, 7);
+    }
+
+    public void ClearEmptySolts()
+    {
         Image image = null;
+
         for (int x = 0; x < gridWidth; x++)//중앙 바꾸기
         {
             for (int y = 0; y < gridHeight; y++)
@@ -40,12 +63,13 @@ public class StoreGrid : ItemGrid
                 if (panelSlots[x, y].CompareState(PanelSlotState.Empty))
                 {
                     image = panelSlots[x, y].GetComponent<Image>();
-                    image.color = new UnityEngine.Color(0, 0, 0, 0f);
+                    image.color = new Color(0, 0, 0, 0f);
                 }
             }
         }
+
         image = inventoryPanel.GetComponent<Image>();
-        image.color = new UnityEngine.Color(0, 0, 0, 0f);
+        image.color = new Color(0, 0, 0, 0f);
     }
 
     public void ResetPanelStates()
@@ -58,6 +82,12 @@ public class StoreGrid : ItemGrid
             }
         }
         Array.Clear(inventoryItemSlot, 0, gridSizeWidth);
-        Destroy(currentStoreItem.gameObject);
+        
+        foreach(var item in currentStoreItem)
+        {
+            if(item == null) continue;
+            Destroy(item.gameObject);
+        }
+        currentStoreItem.Clear();
     }
 }

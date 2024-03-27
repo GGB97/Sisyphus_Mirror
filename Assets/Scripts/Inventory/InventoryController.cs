@@ -171,7 +171,7 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.SetSize(selectedItem);//사이즈 지정
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
         }
-        
+
     }
 
     private void CreateRandomItem() //아이템 랜덤 생성
@@ -426,7 +426,7 @@ public class InventoryController : MonoBehaviour
         InsertStoreItem(itemToInsert);
     }
 
-    private void InsertStoreItem(InventoryItem itemToInsert)//인벤토리에 아이템 배치
+    private void InsertStoreItem(InventoryItem itemToInsert)//상점에 아이템 배치
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
@@ -437,7 +437,7 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        //selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         // ItemData에 Item 가격 추가하는 것 건의하기.
         _itemCost.text = itemToInsert.itemSO.Price.ToString();
 
@@ -447,7 +447,11 @@ public class InventoryController : MonoBehaviour
     public void OnStoreReroll()
     {
         RemoveStoreStock();
-        InsertRandomStoreItem();
+
+        for (int i = 0; i < 5; ++i)
+            InsertRandomStoreItem();
+
+        storeGrid.ClearEmptySolts();
     }
 
     public void RemoveStoreStock()
