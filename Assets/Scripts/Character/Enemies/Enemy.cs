@@ -44,6 +44,19 @@ public class Enemy : CharacterBehaviour
 
         stateMachine = new(this);
 
+        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
+        {
+            case EnemyRank.Normal:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Elite:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Boss:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+                break;
+        }
+
         Init();
     }
 
@@ -51,6 +64,7 @@ public class Enemy : CharacterBehaviour
     {
         stateMachine.ChangeState(stateMachine.IdleState);
         StartSpawn();
+        Init();
     }
 
     private void OnDisable()
@@ -106,19 +120,6 @@ public class Enemy : CharacterBehaviour
         chasingDelay = 10f; // 그냥 초기값 설정
         attackDelay = 10f;
         knockbackDelay = 10f;
-
-        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
-        {
-            case EnemyRank.Normal:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
-                break;
-            case EnemyRank.Elite:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
-                break;
-            case EnemyRank.Boss:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-                break;
-        }
     }
 
     void ChangeDieState()
@@ -187,7 +188,7 @@ public class Enemy : CharacterBehaviour
     void StartSpawn()
     {
         IsSpawning = true;
-
+        Collider.enabled = false;
         #region Renderer.sharedMaterial
         // shared를 사용하면 해당 mat을 사용하는 모든 객체들이 변경되어야 하지만 실제로 사용해보니까 그렇게 되지는 않았음.
         // 하지만 shared를 사용하게되면 다른때에 갑자기 다 바뀔수도 있을거 같아서 채택하지 않음.
@@ -218,13 +219,12 @@ public class Enemy : CharacterBehaviour
             renderer.material = _baseMat;
         }
         SpawnEnd();
-
-        Init();
     }
 
     void SpawnEnd()
     {
         IsSpawning = false;
+        Collider.enabled = true;
     }
 
     void InvokeOnDieFadeOut()
