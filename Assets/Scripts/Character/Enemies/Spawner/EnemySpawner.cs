@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -24,19 +25,18 @@ public class EnemySpawner : MonoBehaviour
 
         maxEnemyCnt = waveData.maxEnemyCnt;
         currentEnemyCnt = 0;
-        plane = transform;
         EnemyPooler.Instance.SetPool(waveData);
     }
 
     void SetSpawnPos()
     {
         // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
-        float width = 45f * plane.transform.localScale.x;
-        float length = 45f * plane.transform.localScale.z;
+        float width = 45f;
+        float length = 45f;
 
         // 좌측 하단과 우측 상단 좌표 계산
-        bottomLeft = plane.transform.position + new Vector3(-width / 2, 0, -length / 2);
-        topRight = plane.transform.position + new Vector3(width / 2, 0, length / 2);
+        bottomLeft = new Vector3(-width / 2, 0, -length / 2);
+        topRight = new Vector3(width / 2, 0, length / 2);
     }
 
     IEnumerator SpawnStart()
@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
         //yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
-        if(DungeonManager.Instance.currnetstage % 5 == 0)
+        if(DungeonManager.Instance.currnetstage % 1 == 0)
             SpawnEnemy(new Vector3(0, 0, -10), waveData.boss);
         // --
 
@@ -81,6 +81,11 @@ public class EnemySpawner : MonoBehaviour
 
     Vector3 GetSpawnPos()
     {
+        //NavMeshHit hit;
+        //// NavMesh 상에서 무작위 위치를 가져옵니다.
+        //NavMesh.SamplePosition(Vector3.zero, out hit, 45f, NavMesh.AllAreas);
+        //return hit.position;
+
         return new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
     }
 
