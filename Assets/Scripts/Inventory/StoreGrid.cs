@@ -83,7 +83,7 @@ public class StoreGrid : ItemGrid
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
-        Array.Clear(inventoryItemSlot, 0, gridSizeWidth);
+        Array.Clear(inventoryItemSlot, 0, inventoryItemSlot.Length);
         
         foreach(var item in currentStoreItem)
         {

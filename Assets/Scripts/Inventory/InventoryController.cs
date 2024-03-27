@@ -322,7 +322,11 @@ public class InventoryController : MonoBehaviour
             if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
-                storeGrid.currentStoreItem = null;
+                //storeGrid.currentStoreItem = null;
+                for(int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
+                {
+                    if (storeGrid.currentStoreItem[i] == selectedItem) storeGrid.currentStoreItem[i] = null;
+                }
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
             //selectedItemGrid.AddItemToInventory(selectedItem);
