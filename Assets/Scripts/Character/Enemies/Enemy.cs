@@ -19,10 +19,6 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
-    Renderer[] _enemyRenderer; // 투명도 조절을 위한 mat 
-    [SerializeField] Material _baseMat; // 원래 mat저장해두기 위한 용도.
-    [SerializeField] Material _spawnMat;
-
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
@@ -39,8 +35,6 @@ public class Enemy : CharacterBehaviour
         Collider = GetComponent<Collider>();
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
-
-        _enemyRenderer = GetComponentsInChildren<Renderer>();
 
         stateMachine = new(this);
 
@@ -77,7 +71,7 @@ public class Enemy : CharacterBehaviour
         //stateMachine.ChangeState(stateMachine.IdleState);
 
         OnDieEvent += ChangeDieState;
-        OnDieEvent += InvokeOnDieFadeOut;
+        OnDieEvent += InvokeOnDieActiveFalse;
 
         OnHitEvent += ChangeHitState;
 
@@ -140,11 +134,21 @@ public class Enemy : CharacterBehaviour
 
     public void OnChildTriggerEnter(Collider other, SkillType type)
     {
-        //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        if(type == SkillType.AutoAttack)
-            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
-        else if (type == SkillType.Skill01)
-            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
+        if (other.gameObject.layer == target.gameObject.layer)
+        {
+            HealthSystem hs = other.GetComponent<HealthSystem>();
+            //이곳에서 자식 콜라이더의 트리거 충돌 처리
+            if (type == SkillType.AutoAttack)
+            {
+                Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+                hs.TakeDamage(currentStat.meleeAtk);
+            }
+            else if (type == SkillType.Skill01)
+            {
+                Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
+                hs.TakeDamage(currentStat.meleeAtk * 0.4f);
+            }
+        }
     }
 
     public void AttackStart(int num)
@@ -187,38 +191,7 @@ public class Enemy : CharacterBehaviour
 
     void StartSpawn()
     {
-        IsSpawning = true;
-        Collider.enabled = false;
-        #region Renderer.sharedMaterial
-        // shared를 사용하면 해당 mat을 사용하는 모든 객체들이 변경되어야 하지만 실제로 사용해보니까 그렇게 되지는 않았음.
-        // 하지만 shared를 사용하게되면 다른때에 갑자기 다 바뀔수도 있을거 같아서 채택하지 않음.
-        // GPT피셜 : Unity의 렌더링 시스템과 최적화 메커니즘으로 인해 실제 동작은 다소 복잡하고, 예상과 다를 수 있습니다
-        // 라고 하기는 하는데 잘 모르겠다..
-        //_enemyRenderer.sharedMaterial = _spawnMat; 
-        #endregion
-        Color tempColor = _spawnMat.color;
-        tempColor.a = 0;
-        _spawnMat.color = tempColor;
-
-        for (int i = 0; i < _enemyRenderer.Length; i++)
-        {
-            _enemyRenderer[i].material = _spawnMat;
-
-            if (i == _enemyRenderer.Length - 1)
-                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(SpawnComplete);
-            else
-                _enemyRenderer[i].material.DOFade(1, 1);
-        }
-    }
-
-    void SpawnComplete()
-    {
-        //_enemyRenderer.sharedMaterial = _baseMat;
-        foreach (var renderer in _enemyRenderer)
-        {
-            renderer.material = _baseMat;
-        }
-        SpawnEnd();
+        Invoke(nameof(SpawnEnd), 1f);
     }
 
     void SpawnEnd()
@@ -227,27 +200,9 @@ public class Enemy : CharacterBehaviour
         Collider.enabled = true;
     }
 
-    void InvokeOnDieFadeOut()
+    void InvokeOnDieActiveFalse()
     {
-        Invoke(nameof(OnDieFadeOut), 1.5f);
-    }
-
-    void OnDieFadeOut()
-    {
-        Color tempColor = _spawnMat.color;
-        tempColor.a = 1;
-        _spawnMat.color = tempColor;
-
-
-        for (int i = 0; i < _enemyRenderer.Length; i++)
-        {
-            _enemyRenderer[i].material = _spawnMat;
-
-            if (i == _enemyRenderer.Length - 1)
-                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(ActiveFalse);
-            else
-                _enemyRenderer[i].material.DOFade(1, 1);
-        }
+        Invoke(nameof(ActiveFalse), 1.5f);
     }
 
     void ActiveFalse()
