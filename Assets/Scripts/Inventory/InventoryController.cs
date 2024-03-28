@@ -48,7 +48,7 @@ public class InventoryController : MonoBehaviour
     public Vector2 startPosition;//처음 위치
     public float startRotation;
 
-    [SerializeField] TextMeshProUGUI _itemCost;
+    [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
 
     private void Awake()
     {
@@ -322,7 +322,10 @@ public class InventoryController : MonoBehaviour
             if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
-                storeGrid.currentStoreItem = null;
+                for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
+                {
+                    if (storeGrid.currentStoreItem[i] == selectedItem) storeGrid.currentStoreItem[i] = null;
+                }
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
             //selectedItemGrid.AddItemToInventory(selectedItem);
@@ -439,7 +442,7 @@ public class InventoryController : MonoBehaviour
 
         //selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         // ItemData에 Item 가격 추가하는 것 건의하기.
-        _itemCost.text = itemToInsert.itemSO.Price.ToString();
+        //_itemCost.text = itemToInsert.itemSO.Price.ToString();
 
         storeGrid.AddStoreStock(itemToInsert);
     }
