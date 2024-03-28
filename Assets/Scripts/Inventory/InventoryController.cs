@@ -13,7 +13,8 @@ public class InventoryController : MonoBehaviour
     private static InventoryController instance;
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
-    [HideInInspector]
+    //[HideInInspector]
+    [SerializeField]
     private ItemGrid selectedItemGrid; //현재 그리드 정보
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid; 
