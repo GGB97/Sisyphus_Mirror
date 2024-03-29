@@ -26,7 +26,7 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 2
     _magicAtk: 0
     _def: 0
     _atkSpeed: -1
@@ -47,7 +47,7 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 1
     _magicAtk: 0
     _def: 0
     _atkSpeed: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     _grade: 0
     _type: 0
     _health: 5
-    _meleeAtk: 0
+    _physicalAtk: 0
     _magicAtk: 0
     _def: 3
     _atkSpeed: -1
@@ -89,7 +89,7 @@ MonoBehaviour:
     _grade: 0
     _type: 0
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 3
     _magicAtk: 0
     _def: -2
     _atkSpeed: 2
