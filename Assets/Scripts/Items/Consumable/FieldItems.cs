@@ -3,7 +3,8 @@ using UnityEngine;
 public enum FieldItemType
 {
     Heart,
-    Shield
+    Shield,
+    Gold
 }
 
 public class FieldItems : MonoBehaviour
@@ -12,16 +13,18 @@ public class FieldItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
+        if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
             switch (_type)
             {
                 case FieldItemType.Heart:
                     // TODO : 플레이어 체력 회복하기
-                    
+
                     break;
                 case FieldItemType.Shield:
                     // TODO : 플레이어 무적?
+                    break;
+                case FieldItemType.Gold:
                     break;
             }
         }

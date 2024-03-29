@@ -72,6 +72,7 @@ public class Enemy : CharacterBehaviour
 
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeOnDieActiveFalse;
+        OnDieEvent += DropGold;
 
         OnHitEvent += ChangeHitState;
 
@@ -80,8 +81,8 @@ public class Enemy : CharacterBehaviour
 
     void Update()
     {
-        //if (DungeonManager.Instance.isStarted == false)
-        //    OnDieEvent?.Invoke();
+        if (DungeonManager.Instance.isStarted == false)
+            DeSpawn();
 
         stateMachine.Update();
     }
@@ -200,6 +201,11 @@ public class Enemy : CharacterBehaviour
         Collider.enabled = true;
     }
 
+    void DeSpawn()
+    {
+        gameObject.SetActive(false);
+    }
+
     void InvokeOnDieActiveFalse()
     {
         Invoke(nameof(ActiveFalse), 1.5f);
@@ -208,5 +214,10 @@ public class Enemy : CharacterBehaviour
     void ActiveFalse()
     {
         gameObject.SetActive(false);
+    }
+
+    void DropGold()
+    {
+
     }
 }
