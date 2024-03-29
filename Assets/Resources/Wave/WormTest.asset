@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3068749537da8ce4c89bc39e3bf7f554, type: 3}
-  m_Name: WaveTest
+  m_Name: WormTest
   m_EditorClassIdentifier: 
-  normal: 6057ce0101decf01e171d401e071d40180f8d501207fd701c005d901
+  normal: c005d901
   elite: 717ece01
   boss: 212cd001
   maxEnemyCnt: 20
