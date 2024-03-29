@@ -1,40 +1,72 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    private InventoryController inventoryController;
     public InventoryItem currentItem;
     public RectTransform rectTransform;
-    public GameObject RightClickPanel;
+    public GameObject rightClickPanel;
+    private Transform canvasTransform;
+    public GameObject buttonPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI nameText;
+    [SerializeField]
+    private TextMeshProUGUI descriptionText;
+    [SerializeField]
+    private TextMeshProUGUI sellButtonText;
+
+    public Button sellButton;
+    public Button combineButton;
+    public Button putOutSideButton;
+    public Button exitButton;
 
     public bool isHovering = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        inventoryController = InventoryController.Instance;
+        canvasTransform = inventoryController.canvasTransform;
     }
-    public void SetTransform(float x = 0f, float y = 0f)
+    public void SetTransform(float x = 0f, float y = 0f)//위치 설정
     {
         RectTransform newtransform = currentItem.gameObject.GetComponent<RectTransform>();
-        float posX = ItemGrid.TileSizeWidth * currentItem.itemSO.IconWidth / 2;
-        float posY = ItemGrid.TileSizeHeight * currentItem.itemSO.IconHeight / 2;
+        float posX;
+        float posY;
+
+        if (newtransform.position.y > 0.5f * Screen.height)//스크린 중간 보다 위에 있을 때
+        {
+            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+            posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
+        }
+        else
+        {
+            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+            posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
+        }
+      
         rectTransform.position = newtransform.position + new Vector3(x + posX, y + posY, 0);
+        UISettingsAvailable();
     }
-    public void SetCurrentItemNull()
+    public void SetCurrentItemNull()//아이템 null 초기화
     {
         currentItem = null;
     }
     public void RightClick()//아이템 위에서 우클릭 했을 시 실행
     {
-        RightClickPanel.SetActive(true);//패널 ON
-        transform.SetParent(InventoryController.Instance.canvasTransform);//
+        rightClickPanel.SetActive(true);//패널 ON
+        transform.SetParent(canvasTransform);//
         transform.SetAsLastSibling();
     }
     public void ExitExplnationUI()//우클릭 UI를 끌 때 실행
     {
-        RightClickPanel.SetActive(false);
+        rightClickPanel.SetActive(false);
         if (currentItem == null)//아이템이 삭제된 후에 실행됐을 때
         {
             
@@ -66,6 +98,27 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void ClickSellItemButton()
     {
-        InventoryController.Instance.SellItemButton(currentItem);
+        inventoryController.SellItemButton(currentItem);
+    }
+    public void SetDescriptionText()//설명 적기
+    {
+        nameText.text = currentItem.itemSO.Name;
+
+        if(buttonPanel.activeSelf == true)
+            sellButtonText.text = string.Format("팔기 : "+ currentItem.itemSO.Price + " G");
+    }
+    public void UISettingsAvailable()//버튼 UI를 표시할지 정하고 설명 적기
+    {
+        ItemGrid currentGrid = inventoryController.SelectedItemGrid;
+        if (currentGrid == inventoryController.storeGrid || currentGrid == inventoryController.storageGrid)
+        {
+            buttonPanel.SetActive(false);
+        }
+        else if (currentGrid == inventoryController.playerInventoryGrid)
+        {
+            buttonPanel.SetActive(true);
+        }
+
+        SetDescriptionText();
     }
 }

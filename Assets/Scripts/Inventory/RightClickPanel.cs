@@ -11,10 +11,11 @@ public class RightClickPanel : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         inventoryController = InventoryController.Instance;
+        itemDescription = inventoryController.itemDescriptionUI.GetComponent<ItemDescription>();
     }
     private void OnEnable()
     {
-        itemDescription = inventoryController.itemDescriptionUI.GetComponent<ItemDescription>();
+        
     }
     public void OnPointerDown(PointerEventData eventData)//바닥을 클릭 했을 때
     {
