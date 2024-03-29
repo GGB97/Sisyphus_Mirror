@@ -17,6 +17,9 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public GameObject buttonPanel;
 
     [SerializeField]
+    private float sellPercent = 0.5f;
+
+    [SerializeField]
     private TextMeshProUGUI nameText;
     [SerializeField]
     private TextMeshProUGUI descriptionText;
@@ -109,7 +112,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         descriptionText.text = sb.ToString();//설명 부분
 
         if (buttonPanel.activeSelf == true)
-            sellButtonText.text = string.Format("팔기 : "+ currentItem.itemSO.Price + " G");
+            sellButtonText.text = string.Format($"팔기 : {(int)(currentItem.itemSO.Price * sellPercent)} G");
         sb = null; //null로 만들면서 메모리 해제 대상이 됨
     }
     public void UISettingsAvailable()//버튼 UI를 표시할지 정하고 설명 적기
