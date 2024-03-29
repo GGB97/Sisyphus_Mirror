@@ -32,7 +32,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
             inventoryController.startPosition = transform.position; ;//시작 위치 지정
             inventoryController.LeftMouseButtonPress();
         }
-        else if (eventData.button == PointerEventData.InputButton.Right)//오른쪽 눌렀을 때
+        else if (eventData.button == PointerEventData.InputButton.Right && inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)//오른쪽 눌렀을 때
         {
             isPressed = true;
             if(itemDesription != null)
@@ -66,11 +66,13 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         }
         isHovering = true;
         displayCoroutine = StartCoroutine(WaitSecondsOnUI());//아이템 이미지 위에서 hover시간 만큼 기다리기
+        Debug.Log("Enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ExitUI();
+        Debug.Log("Exit");
     }
 
 

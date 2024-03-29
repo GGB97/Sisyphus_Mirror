@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7852037713842474213}
   - component: {fileID: 2748098918407299940}
   - component: {fileID: 5563305409534948711}
+  - component: {fileID: 433681527721520427}
   m_Layer: 0
   m_Name: Axe_1
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 7787022839945824422}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4390626425023368147
 MeshFilter:
@@ -110,6 +111,7 @@ MonoBehaviour:
     _iconHeight: 0
     _prefabPath: 
     _price: 0
+    _weight: 0
     _grade: 0
     _physicalAtk: 0
     _magicAtk: 0
@@ -196,6 +198,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &433681527721520427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999748106215116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09be5cafb10332a40b841eb00e4b97e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFloating: 1
+  floatSpeed: 0.005
+  floatRate: 1
 --- !u!1 &6038284373842108189
 GameObject:
   m_ObjectHideFlags: 0
