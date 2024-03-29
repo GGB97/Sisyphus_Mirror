@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void SetTransform(float x = 0f, float y = 0f)//위치 설정
     {
-        UISettingsAvailable();
+        UISettingsAvailable();//각 상황에 맞는 UI 크기 조절
         Canvas.ForceUpdateCanvases();//정보 최신화
         RectTransform newtransform = currentItem.gameObject.GetComponent<RectTransform>();
         float posX;
@@ -53,7 +54,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
         }
       
-        rectTransform.position = newtransform.position + new Vector3(x + posX, y + posY, 0);
+        rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
     }
     public void SetCurrentItemNull()//아이템 null 초기화
     {
@@ -103,10 +104,13 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void SetDescriptionText()//설명 적기
     {
-        nameText.text = currentItem.itemSO.Name;
+        nameText.text = currentItem.itemSO.Name;//이름 부분
+        StringBuilder sb = currentItem.itemSO.SetExplantion(currentItem.itemSO);//설명 부분
+        descriptionText.text = sb.ToString();//설명 부분
 
-        if(buttonPanel.activeSelf == true)
+        if (buttonPanel.activeSelf == true)
             sellButtonText.text = string.Format("팔기 : "+ currentItem.itemSO.Price + " G");
+        sb = null; //null로 만들면서 메모리 해제 대상이 됨
     }
     public void UISettingsAvailable()//버튼 UI를 표시할지 정하고 설명 적기
     {
@@ -115,11 +119,11 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             buttonPanel.SetActive(false);
         }
-        else if (currentGrid == inventoryController.playerInventoryGrid)
+        else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
             buttonPanel.SetActive(true);
         }
 
-        SetDescriptionText();
+        SetDescriptionText();//설명 적기
     }
 }

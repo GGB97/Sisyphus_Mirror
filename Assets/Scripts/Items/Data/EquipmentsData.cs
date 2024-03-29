@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 public enum EquipmentType
@@ -31,4 +32,46 @@ public class EquipmentsData : ItemSO
     public float CritRate => _critRate;
     public float CritDamage => _critDamage;
     public float LifeSteal => _lifeSteal;
+    public override StringBuilder SetExplantion(ItemSO itemSO)
+    {
+        StringBuilder sb = base.SetExplantion(itemSO);
+        if (Health != 0)
+        {
+            Utilities.AddText(sb, nameof(Health), Health);
+        }
+        if (MeleeAtk != 0)
+        {
+            Utilities.AddText(sb, nameof(MeleeAtk), MeleeAtk);
+        }
+        if (MagicAtk != 0)
+        {
+            Utilities.AddText(sb, nameof(MagicAtk), MagicAtk);
+        }
+        if (Def != 0)
+        {
+            Utilities.AddText(sb, nameof(Def), Def);
+        }
+        if (AtkSpeed != 0)
+        {
+            Utilities.AddText(sb, nameof(AtkSpeed), AtkSpeed);
+        }
+        if (MoveSpeed != 0)
+        {
+            Utilities.AddText(sb, nameof(MoveSpeed), MoveSpeed);
+        }
+        if (CritRate != 0)
+        {
+            Utilities.AddText(sb, nameof(CritRate), CritRate);
+        }
+        if (CritDamage != 0)
+        {
+            Utilities.AddText(sb, nameof(CritDamage), CritDamage);
+        }
+        if (LifeSteal != 0)
+        {
+            Utilities.AddText(sb, nameof(LifeSteal), LifeSteal);
+        }
+
+        return sb;
+    }
 }

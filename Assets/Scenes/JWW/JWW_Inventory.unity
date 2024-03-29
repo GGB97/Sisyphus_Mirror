@@ -2986,7 +2986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Description
+  m_text: '<color=red>Description</color>
 
 '
   m_isRightToLeft: 0
@@ -4305,7 +4305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -265.02234}
+  m_AnchoredPosition: {x: 200, y: -192.73026}
   m_SizeDelta: {x: 363.2376, y: 52.2921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815529924
@@ -5504,7 +5504,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 866, y: 759}
-  m_SizeDelta: {x: 400, y: 591.1684}
+  m_SizeDelta: {x: 400, y: 518.8763}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1044723788
 MonoBehaviour:
@@ -7669,8 +7669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -430.5842}
-  m_SizeDelta: {x: 400, y: 321.1684}
+  m_AnchoredPosition: {x: 200, y: -394.43814}
+  m_SizeDelta: {x: 400, y: 248.87628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416451162
 MonoBehaviour:
