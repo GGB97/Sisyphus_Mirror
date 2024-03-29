@@ -414,10 +414,31 @@ public class InventoryController : MonoBehaviour
 
     public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
     {
-        int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
-        selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
-        WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
-        return weaponData;
+        int random = UnityEngine.Random.Range(0, 3);
+        int selectedItemId;
+        ItemSO itemData;
+
+        switch (random)
+        {
+            case 0:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Consumable.GetItemIdCount());
+                selectedItemId = DataBase.Consumable.GetItemId(selectedItemId); //랜덤으로 아이템 정보 가져오기
+                itemData = DataBase.Consumable.Get(selectedItemId);
+                break;
+            case 1:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Equipments.GetItemIdCount());
+                selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
+                itemData = DataBase.Equipments.Get(selectedItemId);
+                break;
+            default:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
+                selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
+                itemData = DataBase.Weapon.Get(selectedItemId);
+                break;
+        }
+        
+        //WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
+        return itemData;
     }
 
     private void InsertRandomStoreItem()//아이템 랜덤 생성 후 배치

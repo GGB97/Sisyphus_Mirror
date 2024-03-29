@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 4239047246719826643}
   - component: {fileID: 875582591984009813}
   - component: {fileID: 713909036505050881}
+  - component: {fileID: 7306316685237021643}
   m_Layer: 0
   m_Name: Bow_1
   m_TagString: Untagged
@@ -212,7 +213,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3680837262391604208}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -222,7 +223,7 @@ Transform:
   - {fileID: 6125326252726253681}
   m_Father: {fileID: 0}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &875582591984009813
 Animator:
   serializedVersion: 5
@@ -271,6 +272,7 @@ MonoBehaviour:
     _iconHeight: 0
     _prefabPath: 
     _price: 0
+    _weight: 0
     _grade: 0
     _physicalAtk: 0
     _magicAtk: 0
@@ -283,6 +285,21 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
   canAttack: 0
+--- !u!114 &7306316685237021643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680837262391604208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09be5cafb10332a40b841eb00e4b97e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFloating: 1
+  floatSpeed: 0.005
+  floatRate: 1
 --- !u!1 &3847757567172513798
 GameObject:
   m_ObjectHideFlags: 0

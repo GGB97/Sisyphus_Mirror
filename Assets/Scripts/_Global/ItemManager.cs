@@ -19,10 +19,6 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] PlayerBaseData _playerStats;
 
-    //[HideInInspector] public List<int> weaponIDs = new List<int>();
-    //[HideInInspector] public List<int> EquipmentsIDs = new List<int>();
-    //[HideInInspector] public List<int> ConsumableIDs = new List<int>();
-
     private List<WeaponData> _ownWeapons = new List<WeaponData>();
     private List<EquipmentsData> _ownEquipments = new List<EquipmentsData>();
     private List<ConsumableData> _ownConsumable = new List<ConsumableData>();
@@ -47,19 +43,7 @@ public class ItemManager : MonoBehaviour
 
     private void init()
     {
-        // 전체 아이템 ID 저장
-        //weaponIDs = DataBase.Weapon.ReturnAllWeaponID();
-        //EquipmentsIDs = DataBase.Equipments.ReturnAllEquipmentsID();
-        //ConsumableIDs = DataBase.Consumable.ReturnAllConsumableID();
         InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(_playerStats.startItemID));
-    }
-
-    public void UpdateItemList()
-    {
-
-        // ownItems = InventoryController.Instance.인벤토리아이템
-        // 인벤토리에서 넘어온 아이템 리스트 가지고 Itemtype에 따라 분류?
-        // foreach(WeaponData weapon in ownItems[ItemType.Weapon]) 이런 식으로 하면 될듯?
     }
 
     public void OnEquip(int id, ItemType itemType)
@@ -116,6 +100,15 @@ public class ItemManager : MonoBehaviour
             _playerStats.critDamage += weapon.CritDamage;
             //_playerStats.attackRange += weapon.Range;
             _playerStats.lifeSteal += weapon.LifeSteal;
+        }
+    }
+
+    public void EquipmentsInit()
+    {
+        // TODO : 플레이어의 스탯 Status를 수정하기 -> 기범님께 방법을 여쭈어볼 것
+        foreach (var equipment in _ownEquipments)
+        {
+            
         }
     }
 
