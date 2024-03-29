@@ -36,6 +36,8 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void SetTransform(float x = 0f, float y = 0f)//위치 설정
     {
+        UISettingsAvailable();
+        Canvas.ForceUpdateCanvases();//정보 최신화
         RectTransform newtransform = currentItem.gameObject.GetComponent<RectTransform>();
         float posX;
         float posY;
@@ -52,7 +54,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
       
         rectTransform.position = newtransform.position + new Vector3(x + posX, y + posY, 0);
-        UISettingsAvailable();
     }
     public void SetCurrentItemNull()//아이템 null 초기화
     {
