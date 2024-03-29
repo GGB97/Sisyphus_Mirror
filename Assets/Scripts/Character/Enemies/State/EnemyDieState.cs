@@ -19,11 +19,6 @@ public class EnemyDieState : EnemyBaseState
         EnemySpawner.Instance.DecrementEnemyCnt(); // 죽었으니까 currentEnemyCnt 감소
     }
 
-    public override void Update()
-    {
-
-    }
-
     public override void Exit()
     {
         base.Exit();

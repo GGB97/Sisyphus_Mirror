@@ -179,6 +179,7 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
   isDie: 0
+  isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
   target: {fileID: 0}
@@ -222,8 +223,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
-  _baseMat: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
-  _spawnMat: {fileID: 2100000, guid: a7a5b04131a7e6840a850e37c3f5da0c, type: 2}
+  renderer: {fileID: 5239577603611756580}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
@@ -874,6 +874,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3109857909551086197}
   m_SourcePrefab: {fileID: 100100000, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+--- !u!137 &5239577603611756580 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6285209290510499372, guid: 67ddb690e8bc43439efb218ba32a3d45,
+    type: 3}
+  m_PrefabInstance: {fileID: 2274094187765036552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5239577603614447898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6285209290496798482, guid: 67ddb690e8bc43439efb218ba32a3d45,

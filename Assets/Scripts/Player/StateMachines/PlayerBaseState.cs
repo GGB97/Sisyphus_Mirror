@@ -44,11 +44,6 @@ public class PlayerBaseState : IState
         Move();
         stateMachine.DashCoolTime += Time.deltaTime;
 
-        if (player.isDie)
-        {
-            player.InvokeEvent(player.OnDieEvent);
-        }
-
         if (player.isHit)
         {
             player.InvokeEvent(player.OnHitEvent);

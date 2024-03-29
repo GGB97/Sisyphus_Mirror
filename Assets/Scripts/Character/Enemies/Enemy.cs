@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class Enemy : CharacterBehaviour
 {
@@ -19,6 +20,11 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
+
+    Transform renderTransform;
+    public Renderer enemyRenderer;
+    Color _baseColor;
+
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
     public float animMoveSpeed = 1f;
@@ -28,6 +34,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
 
+    public Action deSpawnEvent;
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -35,6 +43,8 @@ public class Enemy : CharacterBehaviour
         Collider = GetComponent<Collider>();
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
+
+        renderTransform = transform.GetChild(0);
 
         stateMachine = new(this);
 
@@ -56,13 +66,15 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
-        stateMachine.ChangeState(stateMachine.IdleState);
         StartSpawn();
+
+        stateMachine.ChangeState(stateMachine.IdleState);
         Init();
     }
 
     private void OnDisable()
     {
+        target = null;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -71,18 +83,29 @@ public class Enemy : CharacterBehaviour
         //stateMachine.ChangeState(stateMachine.IdleState);
 
         OnDieEvent += ChangeDieState;
-        OnDieEvent += InvokeOnDieActiveFalse;
+        OnDieEvent += InvokeActiveFalse;
         OnDieEvent += DropGold;
 
         OnHitEvent += ChangeHitState;
+
+        deSpawnEvent += ChangeDieState;
+        deSpawnEvent += InvokeActiveFalse;
 
         target = EnemySpawner.Instance.target; // 임시
     }
 
     void Update()
     {
-        if (DungeonManager.Instance.isStarted == false)
-            DeSpawn();
+        if (isDieTrigger)
+        {
+            if (isDie)
+            {
+                OnDieEvent?.Invoke();
+                isDieTrigger = false;
+                return;
+            }
+        }
+
 
         stateMachine.Update();
     }
@@ -112,6 +135,8 @@ public class Enemy : CharacterBehaviour
         isDie = false;
         isHit = false;
 
+        isDieTrigger = false;
+
         chasingDelay = 10f; // 그냥 초기값 설정
         attackDelay = 10f;
         knockbackDelay = 10f;
@@ -119,7 +144,6 @@ public class Enemy : CharacterBehaviour
 
     void ChangeDieState()
     {
-        isDie = true;
         stateMachine.ChangeState(stateMachine.DieState);
     }
 
@@ -192,7 +216,11 @@ public class Enemy : CharacterBehaviour
 
     void StartSpawn()
     {
-        Invoke(nameof(SpawnEnd), 1f);
+        IsSpawning = true;
+        Collider.enabled = false;
+
+        renderTransform.localPosition += Vector3.down * Agent.height;
+        renderTransform.DOLocalMoveY(0, 1f).OnComplete(SpawnEnd);
     }
 
     void SpawnEnd()
@@ -201,12 +229,12 @@ public class Enemy : CharacterBehaviour
         Collider.enabled = true;
     }
 
-    void DeSpawn()
+    public void DeSpawn()
     {
-        gameObject.SetActive(false);
+        deSpawnEvent?.Invoke();
     }
 
-    void InvokeOnDieActiveFalse()
+    void InvokeActiveFalse()
     {
         Invoke(nameof(ActiveFalse), 1.5f);
     }
@@ -218,6 +246,16 @@ public class Enemy : CharacterBehaviour
 
     void DropGold()
     {
+        GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
+        Instantiate(gold, transform.position, Quaternion.identity);
+    }
 
+    public void HitFade()
+    {
+        if (enemyRenderer == null)
+            return;
+
+        enemyRenderer.material.color = Color.red;
+        enemyRenderer.material.DOColor(_baseColor, 0.1f).OnComplete(() => { isHit = false; });
     }
 }

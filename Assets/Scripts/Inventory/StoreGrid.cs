@@ -38,7 +38,7 @@ public class StoreGrid : ItemGrid
 
         foreach (var items in currentStoreItem)
         {
-            Debug.Log(items.name);
+            //Debug.Log(items.name);
         }
 
         if (panelSlots[0, 0].CompareState(PanelSlotState.Empty))

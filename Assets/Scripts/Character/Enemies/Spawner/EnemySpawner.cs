@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
         SetSpawnPos();
 
-        //yield return delay;
+        yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
         if(DungeonManager.Instance.currnetstage % 1 == 0)
@@ -112,13 +112,13 @@ public class EnemySpawner : MonoBehaviour
         currentEnemyCnt--;
     }
 
-    public void FindAllEnemiesAndDie() // Test용
+    public void FindAllEnemiesDeSpawn() // Test용
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         foreach (Enemy enemy in enemies)
         {
-            enemy.isDie = true;
+            enemy.DeSpawn();
         }
     }
 

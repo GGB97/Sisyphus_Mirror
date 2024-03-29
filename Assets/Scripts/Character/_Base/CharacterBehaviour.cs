@@ -10,6 +10,7 @@ public class CharacterBehaviour : MonoBehaviour
     public Status currentStat; // Base + Modifier 가 적용된 진짜 스탯들
 
     public bool isDie;
+    public bool isDieTrigger;
     public Action OnDieEvent;
 
     public bool isHit;

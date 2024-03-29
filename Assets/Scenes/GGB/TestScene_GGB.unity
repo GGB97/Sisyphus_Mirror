@@ -1892,7 +1892,7 @@ PrefabInstance:
         type: 3}
       propertyPath: waveData
       value: 
-      objectReference: {fileID: 11400000, guid: 123aeeb837e87024aaddc976371f89cf,
+      objectReference: {fileID: 11400000, guid: eec5a0ac54d92294f895f836de030225,
         type: 2}
     - target: {fileID: 7972535320003654992, guid: 2cc866c89e5dd944a87f1bc00757ed5a,
         type: 3}
@@ -4229,17 +4229,17 @@ PrefabInstance:
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4483657
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8648331
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
@@ -4524,7 +4524,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
   rectTransform: {fileID: 0}
-  RightClickPanel: {fileID: 1906776162}
+  rightClickPanel: {fileID: 0}
+  buttonPanel: {fileID: 0}
+  nameText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  sellButtonText: {fileID: 0}
+  sellButton: {fileID: 0}
+  combineButton: {fileID: 0}
+  putOutSideButton: {fileID: 0}
+  exitButton: {fileID: 0}
   isHovering: 0
 --- !u!114 &1031864732
 MonoBehaviour:
@@ -4604,7 +4612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077808284}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0.4483657, y: 13, z: -14.135167}
+  m_LocalPosition: {x: 0, y: 12, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5826,7 +5834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424313702}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0.4483657, y: 13, z: -14.135167}
+  m_LocalPosition: {x: 0, y: 12, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7991,6 +7999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7f90c566ee346419ff031a87bf2928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedItemGrid: {fileID: 0}
   previousItemGird: {fileID: 0}
   selectedItem: {fileID: 0}
   itemDescriptionUI: {fileID: 1031864727}
