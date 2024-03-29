@@ -99,8 +99,8 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         {
             if (itemDesription != null)
             {
-                itemDesription.gameObject.SetActive(false);
                 itemDesription.SetCurrentItemNull();
+                itemDesription.gameObject.SetActive(false);
             }
             isHovering = false; // 마우스가 아이템 위에 없음을 표시
             if (displayCoroutine != null)

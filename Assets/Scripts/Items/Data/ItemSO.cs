@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using UnityEngine;
 
 public enum ItemType
@@ -61,5 +62,11 @@ public class ItemSO
             if(_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
             return _prefab;
         }
+    }
+    public virtual StringBuilder SetExplantion(ItemSO itemSO)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"{itemSO.Description}\n");//설명 적기
+        return sb;
     }
 }
