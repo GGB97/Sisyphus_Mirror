@@ -112,13 +112,13 @@ public class EnemySpawner : MonoBehaviour
         currentEnemyCnt--;
     }
 
-    public void FindAllEnemiesAndDie() // Test용
+    public void FindAllEnemiesDeSpawn() // Test용
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
 
         foreach (Enemy enemy in enemies)
         {
-            enemy.isDie = true;
+            enemy.DeSpawn();
         }
     }
 

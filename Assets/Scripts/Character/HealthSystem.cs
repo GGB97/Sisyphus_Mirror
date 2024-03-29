@@ -54,6 +54,7 @@ public class HealthSystem : MonoBehaviour
         {
             stat.health = 0;
             character.isDie = true;
+            character.isDieTrigger = true;
         }
         else
         {

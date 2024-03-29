@@ -249,6 +249,7 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
   isDie: 0
+  isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
   target: {fileID: 0}
@@ -292,6 +293,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+  enemyRenderer: {fileID: 0}
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
