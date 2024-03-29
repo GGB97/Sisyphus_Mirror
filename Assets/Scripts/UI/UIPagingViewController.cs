@@ -26,7 +26,7 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
     private Vector2 destPosition;             // 최종적인 스크롤 위치
     private Vector2 initialPosition;          // 자동 스크롤을 시작할 때의 스크롤 위치
     private AnimationCurve animationCurve;    // 자동 스크롤에 관련된 애니메이션 커브
-    private int prevPageIndex = 0;            // 이전 페이지의 인덱스
+    public int prevPageIndex = 0;            // 이전 페이지의 인덱스
     private Rect currentViewRect;             // 스크롤 뷰의 사각형 크기
 
 
@@ -141,5 +141,11 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
         int paddingH = Mathf.RoundToInt((currentViewRect.width - grid.cellSize.x) / 2f);
         int paddingV = Mathf.RoundToInt((currentViewRect.height - grid.cellSize.y) / 2f);
         grid.padding = new RectOffset(paddingH, paddingH, paddingV, paddingV);
+    }
+
+    public void SelectButton()
+    {
+        PlayerManager.instance.ChangePlayer(prevPageIndex);
+        gameObject.SetActive(false);
     }
 }

@@ -203,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177284364072251648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.17, y: 0, z: 0.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -284,6 +284,7 @@ MonoBehaviour:
     LV: 0
     EXP: 0
     maxEXP: 0
+    startItemID: 0
   modifire:
     health: 0
     maxHealth: 0
@@ -307,6 +308,7 @@ MonoBehaviour:
     dieParameterName: Die
   HealthSystem: {fileID: 0}
   hitDelay: 0
+  health: 0
 --- !u!114 &9096970910352448780
 MonoBehaviour:
   m_ObjectHideFlags: 0
