@@ -8,7 +8,6 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private WeaponData _weaponData;
 
     [SerializeField] private Animator _animator;
-    //[SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] GameObject _effect;
 
     public List<Transform> Target = new List<Transform>();
@@ -16,6 +15,8 @@ public class MeleeWeapon : MonoBehaviour
 
     [SerializeField] private int id;
     [SerializeField] Vector3 _targetPos;
+
+    private WeaponIdleAnimation _idleAnimation;
 
     bool _isMoving;
     bool _canAttack;
@@ -26,6 +27,8 @@ public class MeleeWeapon : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _idleAnimation = GetComponent<WeaponIdleAnimation>();
+
         _weaponData = DataBase.Weapon.Get(id);
         _weaponPivot = transform.parent;
 
@@ -34,6 +37,7 @@ public class MeleeWeapon : MonoBehaviour
         _effect.SetActive(false);
         _isMoving = false;
         _canAttack = true;
+        _idleAnimation.isFloating = true;
     }
 
     private void Update()
@@ -82,6 +86,7 @@ public class MeleeWeapon : MonoBehaviour
                 //Debug.Log("Melee Attack End");
                 Target.Clear();
                 Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
+                _idleAnimation.isFloating = true;
             }
         }
     }
@@ -123,6 +128,7 @@ public class MeleeWeapon : MonoBehaviour
         _targetPos.y = (Vector3.up * 1.0f).y;
 
         transform.parent = null;
+        _idleAnimation.isFloating = false;
         _timeStartedMoving = Time.time;
         _isMoving = true;
     }
