@@ -65,7 +65,7 @@ public class ItemSO
     }
     public virtual StringBuilder SetExplantion(ItemSO itemSO)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(300);
         sb.Append($"{itemSO.Description}\n");//설명 적기
         return sb;
     }
