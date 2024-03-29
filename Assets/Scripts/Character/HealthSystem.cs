@@ -67,23 +67,24 @@ public class HealthSystem : MonoBehaviour
     void ShowDamage(float value) // Player는 지금 DamageCanvas가 없음
     {
         TMP_Text text = textQueue.Dequeue();
+        
+        text.text = value.ToString();
+        // 데미지 타입별로 색상 조절해도 괜찮을듯
 
         text.gameObject.SetActive(true);
-        text.text = value.ToString();
-
-        // 데미지 타입별로 색상 조절해도 괜찮을듯
 
         text.DOFade(0, 1);
         text.transform.DOLocalMoveY(0.5f, 1).OnComplete(()=>
         {
             OnShowDamageComplete(text);
         });
-
-        textQueue.Enqueue(text);
     }
     void OnShowDamageComplete(TMP_Text text)
     {
-        text.transform.localPosition = Vector3.zero;
         text.gameObject.SetActive(false);
+        text.color = Color.white;
+        text.transform.localPosition = Vector3.zero;
+
+        textQueue.Enqueue(text);
     }
 }

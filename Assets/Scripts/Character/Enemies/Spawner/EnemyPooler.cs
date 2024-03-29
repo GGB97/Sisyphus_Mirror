@@ -25,7 +25,7 @@ public class EnemyPooler : MonoBehaviour
                 GameObject go = new GameObject(typeName);
                 _instance = go.AddComponent<EnemyPooler>();
 
-                //Instantiate(go);
+                go.transform.SetParent(EnemySpawner.Instance.transform);
             }
 
             return _instance;

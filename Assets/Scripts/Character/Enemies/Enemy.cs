@@ -20,6 +20,8 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
+
+    Transform renderTransform;
     public Renderer enemyRenderer;
     Color _baseColor;
 
@@ -42,6 +44,8 @@ public class Enemy : CharacterBehaviour
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
 
+        renderTransform = transform.GetChild(0);
+
         stateMachine = new(this);
 
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
@@ -62,13 +66,15 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
-        stateMachine.ChangeState(stateMachine.IdleState);
         StartSpawn();
+
+        stateMachine.ChangeState(stateMachine.IdleState);
         Init();
     }
 
     private void OnDisable()
     {
+        target = null;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -210,7 +216,11 @@ public class Enemy : CharacterBehaviour
 
     void StartSpawn()
     {
-        Invoke(nameof(SpawnEnd), 1f);
+        IsSpawning = true;
+        Collider.enabled = false;
+
+        renderTransform.localPosition += Vector3.down * Agent.height;
+        renderTransform.DOLocalMoveY(0, 1f).OnComplete(SpawnEnd);
     }
 
     void SpawnEnd()
