@@ -104,7 +104,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         //    itemDrag.ExitUI();
         //}
     }
-    public void ClickSellItemButton()
+    public void ClickSellItemButton()//아이템 판매 버튼
     {
         inventoryController.SellItemButton(currentItem);
     }

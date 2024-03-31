@@ -35,8 +35,17 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         else if (eventData.button == PointerEventData.InputButton.Right && inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)//오른쪽 눌렀을 때
         {
             isPressed = true;
-            if(itemDesription != null)
+            if (itemDesription != null)
+            {
+                if (displayCoroutine != null)
+                {
+                    StopCoroutine(displayCoroutine); // 딜레이 후 UI 표시 코루틴 중지
+                }
+                itemDesription.currentItem = GetComponent<InventoryItem>();
+                itemDesription.gameObject.SetActive(true);
+                itemDesription.SetTransform();
                 itemDesription.RightClick();
+            }
             //if(inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)
             //inventoryController.SellItemButton(); 아이템 삭제
         }
@@ -88,7 +97,6 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
             itemDesription.currentItem = GetComponent<InventoryItem>();
             itemDesription.gameObject.SetActive(true);
             itemDesription.SetTransform();
-            //itemDesription.transform.SetParent(this.transform);
             itemDesription.transform.SetAsLastSibling();
             Debug.Log("호출");
         }
