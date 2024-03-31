@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +11,10 @@ using UnityEngine.UI;
 public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private InventoryController inventoryController;
+    private Transform canvasTransform;
     public InventoryItem currentItem;
     public RectTransform rectTransform;
     public GameObject rightClickPanel;
-    private Transform canvasTransform;
     public GameObject buttonPanel;
 
     [SerializeField]
@@ -21,6 +22,8 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     [SerializeField]
     private TextMeshProUGUI nameText;
+    [SerializeField]
+    private TextMeshProUGUI gradeText;
     [SerializeField]
     private TextMeshProUGUI descriptionText;
     [SerializeField]
@@ -108,6 +111,9 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetDescriptionText()//설명 적기
     {
         nameText.text = currentItem.itemSO.Name;//이름 부분
+        gradeText.text = string.Format($"등급{(int)currentItem.itemSO.Grade + 1}");
+        gradeText.color = inventoryController.BlockColorDictionary[currentItem.itemSO.Grade].color;
+        //gradeText.color = Utilities.HexColor(inventoryController.BlockColorDictionary[currentItem.itemSO.Grade].color);
         StringBuilder sb = currentItem.itemSO.SetExplantion(currentItem.itemSO);//설명 부분
         descriptionText.text = sb.ToString();//설명 부분
 
@@ -124,9 +130,22 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
+            if (inventoryController.CheckInventoryToStorage(currentItem) == true)
+            {
+                putOutSideButton.interactable = true;
+            }
+            else
+            {
+                putOutSideButton.interactable = false;
+            }
             buttonPanel.SetActive(true);
         }
 
         SetDescriptionText();//설명 적기
+    }
+    public void ClickPutOutSideButton()
+    {
+        inventoryController.MoveInventoryToStorage(currentItem);
+        ExitExplnationUI();
     }
 }

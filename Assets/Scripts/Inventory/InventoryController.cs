@@ -394,6 +394,25 @@ public class InventoryController : MonoBehaviour
     {
         playerInventoryGrid.AddBigInventory();
     }
+    public bool CheckInventoryToStorage(InventoryItem currentItem) //인벤토리에서 창고로 이동이 가능한지 확인
+    {
+        Vector2Int? storagePosition = storageGrid.FindSpaceForObject(currentItem);//창고에 자리가 있는지 확인
+        if (storagePosition == null)
+            return false;
+        else
+            return true;
+    }
+    public void MoveInventoryToStorage(InventoryItem currentItem) //인벤토리 아이템을 창고로 이동
+    {
+        Vector2Int itemPosition = GetTileGridPosition(new Vector2(currentItem.transform.position.x, currentItem.transform.position.y));
+        PickUpItem(itemPosition);
+        SelectedItemGrid.AddCurrentCount(-1);
+
+        selectedItemGrid = storageGrid;
+        Vector2Int? storagePosition = storageGrid.FindSpaceForObject(currentItem);
+        PlaceItem(storagePosition.Value);
+        SelectedItemGrid.AddCurrentCount(1);
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
@@ -519,4 +538,5 @@ public class InventoryController : MonoBehaviour
         if(itemDescription != null)
             itemDescription.ExitExplnationUI();
     }
+
 }
