@@ -1,0 +1,34 @@
+{
+    "name": "ObjectInput",
+    "maps": [
+        {
+            "name": "Interaction",
+            "id": "fcc56286-c49d-42d5-bcee-7b1120e7bbe6",
+            "actions": [
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "a1a074e5-bbc8-4d1c-b9a3-c0981c808c76",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e436d71d-60fe-41c0-8d47-ae5a343d9d1e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

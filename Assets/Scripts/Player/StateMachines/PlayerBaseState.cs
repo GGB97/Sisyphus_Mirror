@@ -115,17 +115,6 @@ public class PlayerBaseState : IState
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
-    //    {
-    //        player.HealthSystem.TakeDamage(10f);   
-    //        stateMachine.ChangeState(stateMachine.hitState);
-    //    }
-    //}
-
-
-
     protected void StartAnimation(int animationHash)
     {
         stateMachine.Player.Animator.SetBool(animationHash, true);
