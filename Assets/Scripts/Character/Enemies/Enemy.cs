@@ -84,7 +84,7 @@ public class Enemy : CharacterBehaviour
 
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeActiveFalse;
-        OnDieEvent += DropGold;
+        OnDieEvent += DropItem;
 
         OnHitEvent += ChangeHitState;
 
@@ -246,7 +246,7 @@ public class Enemy : CharacterBehaviour
 
     }
 
-    void DropGold()
+    void DropItem()
     {
         GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
         Instantiate(gold, transform.position, Quaternion.identity);
