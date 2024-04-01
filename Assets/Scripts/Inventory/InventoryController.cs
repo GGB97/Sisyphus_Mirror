@@ -440,23 +440,23 @@ public class InventoryController : MonoBehaviour
     }
     public void CombineWeaponItem(InventoryItem currentItem)
     {
-        int posX = currentItem.onGridPositionX;
-        int posY = currentItem.onGridPositionY;
+        int posX = currentItem.onGridPositionX;//처음 위치
+        int posY = currentItem.onGridPositionY;//처음 위치
         int nextId = currentItem.itemSO.Id + 1;//다음 등급 id
-        float startRotation = currentItem.rotationDegree;
+        float startRotation = currentItem.rotationDegree;//처음 회전 상태
 
-        //아이템 3개 삭제
+        //현재 아이템 삭제 후 같은 id 아이템 두 개 삭제
         playerInventoryGrid.DeleteSameItem(currentItem);
 
-        //아이템 생성
+        //다음 등급 아이템 생성
         InventoryItem nextItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
-        ItemSO itemData = DataBase.Weapon.Get(nextId);
-        nextItem.Set(itemData);
-        nextItem.SetRotation(startRotation);
+        ItemSO itemData = DataBase.Weapon.Get(nextId);//데이터베이스에서 다음 무기 정보 가져 옴
+        nextItem.Set(itemData);//아이템 정보 적용
+        nextItem.SetRotation(startRotation);//회전 적용
 
         selectedItem = nextItem;
-        PlaceItem(new Vector2Int(posX, posY));
-        playerInventoryGrid.AddItemToInventory(nextItem);
+        PlaceItem(new Vector2Int(posX, posY));//처음 위치에 설치
+        playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
         playerInventoryGrid.AddCurrentCount(1);
     }
     public bool CheckUpgradableItem(int targetid)

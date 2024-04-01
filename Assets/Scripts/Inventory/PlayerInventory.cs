@@ -206,21 +206,21 @@ public class PlayerInventory : ItemGrid
     public void DeleteSameItem(InventoryItem currentItem)
     {
         int itemId = currentItem.itemSO.Id;
-        DeleteItem(currentItem);//자신 삭제
-        SetCombineList(itemId);
+        DeleteItem(currentItem);//현재 아이템 삭제
+        SetCombineList(itemId);//같은 id 아이템을 찾아서 List에 넣음
 
-        foreach (var item in combineList)//아이템 골라서 빼기
+        foreach (var item in combineList)//List에서 하나씩 꺼내서 삭제
         {
             DeleteItem(item);
         }
 
-        ResetCombineList();
+        ResetCombineList();//리스트 초기화
     }
     public void DeleteItem(InventoryItem item)
     {
-        PickUpItem(item.onGridPositionX, item.onGridPositionY);//있던 자리 null 처리
-        SubtractItemFromInventory(item);//빼고
-        Destroy(item.gameObject);
+        PickUpItem(item.onGridPositionX, item.onGridPositionY);//아이템이 있던 자리 null로 변경
+        SubtractItemFromInventory(item);//플레이어 인벤토리에서 빼기
+        Destroy(item.gameObject);//게임 오브젝트 삭제 (화면에 시각적으로 보이는 아이템)
         AddCurrentCount(-1);//카운트 감소
     }
     public void ResetCombineList()
