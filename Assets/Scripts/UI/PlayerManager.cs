@@ -23,6 +23,6 @@ public class PlayerManager : MonoBehaviour
     public void ChangePlayer(int index)
     {
         Destroy(currentPlayer);
-        currentPlayer = Instantiate(players[index], transform );
+        currentPlayer = Instantiate(players[index], transform);
     }
 }
