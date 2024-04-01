@@ -84,14 +84,12 @@ public class Enemy : CharacterBehaviour
 
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeActiveFalse;
-        OnDieEvent += DropGold;
+        OnDieEvent += DropItem;
 
         OnHitEvent += ChangeHitState;
 
         deSpawnEvent += ChangeDieState;
         deSpawnEvent += InvokeActiveFalse;
-
-        target = EnemySpawner.Instance.target; // 임시
     }
 
     void Update()
@@ -140,6 +138,8 @@ public class Enemy : CharacterBehaviour
         chasingDelay = 10f; // 그냥 초기값 설정
         attackDelay = 10f;
         knockbackDelay = 10f;
+
+        target = EnemySpawner.Instance.target; // 임시
     }
 
     void ChangeDieState()
@@ -236,15 +236,17 @@ public class Enemy : CharacterBehaviour
 
     void InvokeActiveFalse()
     {
-        Invoke(nameof(ActiveFalse), 1.5f);
+
+        Invoke(nameof(ActiveFalse), 3f);
     }
 
     void ActiveFalse()
     {
-        gameObject.SetActive(false);
+        renderTransform.DOLocalMoveY(-Agent.height, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
+
     }
 
-    void DropGold()
+    void DropItem()
     {
         GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
         Instantiate(gold, transform.position, Quaternion.identity);

@@ -16,7 +16,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 3
+    meleeAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -82,7 +82,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.7
-    meleeAtk: 3
+    meleeAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -148,7 +148,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 3
+    meleeAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -172,7 +172,7 @@ MonoBehaviour:
     attackRange: 2.3
     meleeAtk: 3
     magicAtk: 0
-    def: 3
+    def: 4
     attackSpeed: 0.5
     moveSpeed: 2
     knockbackPower: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 3
-    meleeAtk: 3
+    meleeAtk: 4
     magicAtk: 0
-    def: 3
+    def: 4
     attackSpeed: 0.5
     moveSpeed: 2
     knockbackPower: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 2
-    meleeAtk: 3
+    meleeAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -282,7 +282,7 @@ MonoBehaviour:
     attackRange: 3
     meleeAtk: 3
     magicAtk: 0
-    def: 3
+    def: 4
     attackSpeed: 0.5
     moveSpeed: 2
     knockbackPower: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
     attackRange: 2.5
     meleeAtk: 3
     magicAtk: 0
-    def: 3
+    def: 6
     attackSpeed: 0.5
     moveSpeed: 2
     knockbackPower: 0
@@ -347,8 +347,8 @@ MonoBehaviour:
     maxHealth: 30
     attackRange: 10
     meleeAtk: 0
-    magicAtk: 3
-    def: 3
+    magicAtk: 4
+    def: 2
     attackSpeed: 0.3
     moveSpeed: 2
     knockbackPower: 0
