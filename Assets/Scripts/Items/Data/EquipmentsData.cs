@@ -13,7 +13,7 @@ public class EquipmentsData : ItemSO
     [field: Header("Stats")]
     [SerializeField] EquipmentType _type;
     [SerializeField] float _health;
-    [SerializeField] float _meleeAtk;
+    [SerializeField] float _physicalAtk;
     [SerializeField] float _magicAtk;
     [SerializeField] float _def;
     [SerializeField] float _atkSpeed;
@@ -24,7 +24,7 @@ public class EquipmentsData : ItemSO
 
     public EquipmentType EquipmentType => _type;
     public float Health => _health;
-    public float MeleeAtk => _meleeAtk;
+    public float PhysicalAtk => _physicalAtk;
     public float MagicAtk => _magicAtk;
     public float Def => _def;
     public float AtkSpeed => _atkSpeed;
@@ -39,9 +39,9 @@ public class EquipmentsData : ItemSO
         {
             Utilities.AddText(sb, nameof(Health), Health);
         }
-        if (MeleeAtk != 0)
+        if (PhysicalAtk != 0)
         {
-            Utilities.AddText(sb, nameof(MeleeAtk), MeleeAtk);
+            Utilities.AddText(sb, nameof(PhysicalAtk), PhysicalAtk);
         }
         if (MagicAtk != 0)
         {

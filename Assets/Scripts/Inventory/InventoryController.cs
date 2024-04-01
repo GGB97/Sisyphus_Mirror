@@ -414,7 +414,7 @@ public class InventoryController : MonoBehaviour
 
     public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
     {
-        int random = UnityEngine.Random.Range(0, 3);
+        int random = UnityEngine.Random.Range(0, 4);
         int selectedItemId;
         ItemSO itemData;
 

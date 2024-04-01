@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public interface IEquipable
 {
@@ -18,12 +19,15 @@ public class ItemManager : MonoBehaviour
     public Transform weaponPivot;
 
     [SerializeField] PlayerBaseData _playerStats;
+    [SerializeField] Status _modifier = new Status();
 
     private List<WeaponData> _ownWeapons = new List<WeaponData>();
     private List<EquipmentsData> _ownEquipments = new List<EquipmentsData>();
     private List<ConsumableData> _ownConsumable = new List<ConsumableData>();
 
     public List<GameObject> weaponPrefabs = new List<GameObject>();
+
+    public float itemWeight = 0;
 
     private void Awake()
     {
@@ -33,7 +37,7 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InventoryController.Instance.nextStage += RemoveAllWeapons;
+        InventoryController.Instance.nextStage += RemoveAllItems;
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         _playerStats = Player.Data;
@@ -82,9 +86,12 @@ public class ItemManager : MonoBehaviour
 
     public void ItemInit()
     {
+        ResetModifierStat();
         // 스테이지 시작 시 호출되어 플레이어 스탯, 아이템 생성 등 처리하기
         WeaponInit();
-        SetPlayerStats();
+        EquipmentsInit();
+
+        _playerStats.InitStatus(_playerStats, _modifier);
     }
 
     public void WeaponInit()
@@ -93,13 +100,24 @@ public class ItemManager : MonoBehaviour
         {
             GameObject go = Instantiate(weapon.Prefab, weaponPivot);
             weaponPrefabs.Add(go);
-            _playerStats.meleeAtk += weapon.PhysicalAtk;
-            _playerStats.magicAtk += weapon.MagicAtk;
-            //_playerStats.attackSpeed += weapon.AtkSpeed;
-            _playerStats.critRate += weapon.CritRate;
-            _playerStats.critDamage += weapon.CritDamage;
-            //_playerStats.attackRange += weapon.Range;
-            _playerStats.lifeSteal += weapon.LifeSteal;
+          
+            _modifier.meleeAtk += weapon.PhysicalAtk;
+            _modifier.magicAtk += weapon.MagicAtk;
+
+            _modifier.attackSpeed += weapon.AtkSpeed;
+
+            //_modifier.knockbackPower = 0;
+            //_modifier.dashRange = 0;
+            //_modifier.dashCoolTime = 0;
+
+            _modifier.critRate += weapon.CritRate;
+            _modifier.critDamage += weapon.CritDamage;
+
+            //_modifier.attackRange += weapon.Range;
+
+            _modifier.lifeSteal += weapon.LifeSteal;
+
+            itemWeight += weapon.Weight;
         }
     }
 
@@ -108,33 +126,92 @@ public class ItemManager : MonoBehaviour
         // TODO : 플레이어의 스탯 Status를 수정하기 -> 기범님께 방법을 여쭈어볼 것
         foreach (var equipment in _ownEquipments)
         {
-            
+            _modifier.maxHealth += equipment.Health;
+
+            _modifier.meleeAtk += equipment.PhysicalAtk;
+            _modifier.magicAtk += equipment.MagicAtk;
+
+            _modifier.def += equipment.Def;
+
+            _modifier.attackSpeed += equipment.AtkSpeed;
+            _modifier.moveSpeed += equipment.MoveSpeed;
+
+            _modifier.critRate += equipment.CritRate;
+            _modifier.critDamage += equipment.CritDamage;
+
+            _modifier.lifeSteal += equipment.LifeSteal;
+
+            itemWeight += equipment.Weight;
         }
+
+        _modifier.maxHealth -= itemWeight / 10;
     }
 
-    public void RemoveAllWeapons()
+    public void RemoveAllItems()
     {
         foreach(var weapon in weaponPrefabs)
         {
             Destroy(weapon);
         }
-        foreach (var weapon in _ownWeapons)
-        {
-            _playerStats.meleeAtk -= weapon.PhysicalAtk;
-            _playerStats.magicAtk -= weapon.MagicAtk;
-            //_playerStats.attackSpeed += weapon.AtkSpeed;
-            _playerStats.critRate -= weapon.CritRate;
-            _playerStats.critDamage -= weapon.CritDamage;
-            //_playerStats.attackRange += weapon.Range;
-            _playerStats.lifeSteal -= weapon.LifeSteal;
-        }
+        //foreach (var weapon in _ownWeapons)
+        //{
+        //    _playerStats.meleeAtk -= weapon.PhysicalAtk;
+        //    _playerStats.magicAtk -= weapon.MagicAtk;
+        //    //_playerStats.attackSpeed += weapon.AtkSpeed;
+        //    _playerStats.critRate -= weapon.CritRate;
+        //    _playerStats.critDamage -= weapon.CritDamage;
+        //    //_playerStats.attackRange += weapon.Range;
+        //    _playerStats.lifeSteal -= weapon.LifeSteal;
+        //}
+
+        ResetPlayerStat();
     }
 
-    public void SetPlayerStats()
+    public void ResetModifierStat()
     {
-        foreach(var equipment in _ownEquipments)
-        {
+        _modifier.maxHealth = 0;
+        _modifier.attackRange = 0;
+        _modifier.meleeAtk = 0;
+        _modifier.magicAtk = 0;
 
-        }
+        _modifier.def = 0;
+
+        _modifier.attackSpeed = 0;
+        _modifier.moveSpeed = 0;
+
+        _modifier.knockbackPower = 0;
+        _modifier.dashRange = 0;
+        _modifier.dashCoolTime = 0;
+
+        _modifier.critRate = 0;
+        _modifier.critDamage = 0;
+
+        _modifier.lifeSteal = 0;
+
+        itemWeight = 0;
+    }
+
+    private void ResetPlayerStat()
+    {
+        _modifier.maxHealth = -_modifier.maxHealth;
+        _modifier.attackRange = -_modifier.attackRange;
+        _modifier.meleeAtk = -_modifier.meleeAtk;
+        _modifier.magicAtk = -_modifier.magicAtk;
+
+        _modifier.def = -_modifier.def;
+
+        _modifier.attackSpeed =- _modifier.attackSpeed;
+        _modifier.moveSpeed = -_modifier.moveSpeed;
+
+        _modifier.knockbackPower = -_modifier.knockbackPower;
+        _modifier.dashRange = -_modifier.dashRange;
+        _modifier.dashCoolTime = -_modifier.dashCoolTime;
+
+        _modifier.critRate = -_modifier.critRate;
+        _modifier.critDamage = -_modifier.critDamage;
+
+        _modifier.lifeSteal = -_modifier.lifeSteal;
+
+        _playerStats.InitStatus(_playerStats, _modifier);
     }
 }

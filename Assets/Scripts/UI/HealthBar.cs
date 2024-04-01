@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     {
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         _player.PlayerHealthChange += UpdateHealthBar;
-        _healthText.text = $"{_player.Data.maxHealth} / {_player.Data.maxHealth}";
+        _healthText.text = $"{_player.currentStat.health} / {_player.currentStat.maxHealth}";
     }
 
     // Update is called once per frame
