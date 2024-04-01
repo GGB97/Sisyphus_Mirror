@@ -27,6 +27,8 @@ public class ItemManager : MonoBehaviour
 
     public List<GameObject> weaponPrefabs = new List<GameObject>();
 
+    public float itemWeight = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -114,6 +116,8 @@ public class ItemManager : MonoBehaviour
             //_modifier.attackRange += weapon.Range;
 
             _modifier.lifeSteal += weapon.LifeSteal;
+
+            itemWeight += weapon.Weight;
         }
     }
 
@@ -136,7 +140,11 @@ public class ItemManager : MonoBehaviour
             _modifier.critDamage += equipment.CritDamage;
 
             _modifier.lifeSteal += equipment.LifeSteal;
+
+            itemWeight += equipment.Weight;
         }
+
+        _modifier.maxHealth -= itemWeight / 10;
     }
 
     public void RemoveAllItems()
@@ -179,6 +187,8 @@ public class ItemManager : MonoBehaviour
         _modifier.critDamage = 0;
 
         _modifier.lifeSteal = 0;
+
+        itemWeight = 0;
     }
 
     private void ResetPlayerStat()
