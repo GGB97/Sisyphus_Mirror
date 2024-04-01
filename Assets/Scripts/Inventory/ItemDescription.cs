@@ -34,7 +34,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Button putOutSideButton;
     public Button exitButton;
 
-    public bool isHovering = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -92,23 +91,18 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         //transform.SetParent(InventoryController.Instance.canvasTransform);//호버되면 독립적인 객체로 존재
-        isHovering = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isHovering = false;
         //ItemDrag itemDrag = currentItem.GetComponent<ItemDrag>();
         //if (itemDrag != null)
         //{
         //    itemDrag.ExitUI();
         //}
     }
-    public void ClickSellItemButton()//아이템 판매 버튼
-    {
-        inventoryController.SellItemButton(currentItem);
-    }
-    public void SetDescriptionText()//설명 적기
+   
+    private void SetDescriptionText()//설명 적기
     {
         nameText.text = currentItem.itemSO.Name;//이름 부분
         gradeText.text = string.Format($"등급{(int)currentItem.itemSO.Grade + 1}");
@@ -143,9 +137,17 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         SetDescriptionText();//설명 적기
     }
-    public void ClickPutOutSideButton()
+    public void ClickSellItemButton()//아이템 판매 버튼
     {
-        inventoryController.MoveInventoryToStorage(currentItem);
-        ExitExplnationUI();
+        inventoryController.SellItemButton(currentItem);//아이템 판매
+    }
+    public void ClickPutOutSideButton()//빼두기 버튼
+    {
+        inventoryController.MoveInventoryToStorage(currentItem);//인벤토리에서 창고로 이동
+        ExitExplnationUI();//툴팁 닫기
+    }
+    public void ClickCombineButton()//업그레이드 버튼
+    {
+        //inventoryController.
     }
 }

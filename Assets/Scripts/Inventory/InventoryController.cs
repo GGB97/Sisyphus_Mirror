@@ -157,6 +157,10 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.Show(false);
             return;
         }
+        if (selectedItemGrid.CheckMaxCount() == true)
+        {
+            return;
+        }
 
         if (selectedItem == null) //선택한 것이 아무것도 없으면
         {

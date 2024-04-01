@@ -6923,7 +6923,23 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 0
     startItemID: 0
+  _modifier:
+    health: 0
+    maxHealth: 0
+    attackRange: 0
+    meleeAtk: 0
+    magicAtk: 0
+    def: 0
+    attackSpeed: 0
+    moveSpeed: 0
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
   weaponPrefabs: []
+  itemWeight: 0
 --- !u!4 &1232350829
 Transform:
   m_ObjectHideFlags: 0
