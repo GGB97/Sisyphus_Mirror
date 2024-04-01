@@ -90,9 +90,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c22f55281e166d449f564501cc4989a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 0}
+  itemSO:
+    _id: 0
+    _itemType: 0
+    _name: 
+    _description: 
+    _spritePath: 
+    _iconWidth: 0
+    _iconHeight: 0
+    _prefabPath: 
+    _price: 0
+    _weight: 0
+    _grade: 0
   onGridPositionX: 0
   onGridPositionY: 0
+  rotationDegree: 0
 --- !u!114 &-1091478420002878752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,3 +117,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01db93370f5381b41a841376233b98de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverTime: 0.3

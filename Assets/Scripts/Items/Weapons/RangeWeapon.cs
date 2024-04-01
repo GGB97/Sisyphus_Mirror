@@ -66,7 +66,7 @@ public class RangeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log($"Detect : {collider.name}");
+            //Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
 

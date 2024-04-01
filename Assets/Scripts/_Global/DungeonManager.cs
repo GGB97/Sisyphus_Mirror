@@ -47,7 +47,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             stageText = System.Array.Find(arr, x => x.name == stageTextName);
             timeText = System.Array.Find(arr, x => x.name == TimeTextName);
 
-            Debug.Log("찾기 성공");
+            //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
     }
@@ -98,7 +98,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         isStarted = false;
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
-        EnemySpawner.Instance.FindAllEnemiesAndDie();
+        EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
         Invoke("OpenInventory",1f);//인벤토리 열기
     }

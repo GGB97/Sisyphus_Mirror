@@ -11,5 +11,11 @@ public class WeaponContainer : MonoBehaviour
         transform.parent = Player;
     }
 
-    
+    public Vector3 ReturnRandomPosition()
+    {
+        float x = transform.position.x + Random.Range(-1, 1f);
+        float z = transform.position.z + Random.Range(-1, 1f);
+
+        return new Vector3(x, transform.position.y, z);
+    }
 }

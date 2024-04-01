@@ -78,22 +78,5 @@ public class Player : CharacterBehaviour
     {
         action?.Invoke();
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (LayerData.Enemy == (1 <<)
-    //    {
-            
-    //        if(isHit)
-    //        {
-    //            stateMachine.ChangeState(stateMachine.hitState);
-    //        }
-    //        if(isDie)
-    //        {
-    //            stateMachine.ChangeState(stateMachine.dieState);
-    //        }
-    //    }
-    //}
-
     
 }

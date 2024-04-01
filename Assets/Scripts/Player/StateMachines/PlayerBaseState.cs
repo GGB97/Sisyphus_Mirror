@@ -44,11 +44,6 @@ public class PlayerBaseState : IState
         Move();
         stateMachine.DashCoolTime += Time.deltaTime;
 
-        if (player.isDie)
-        {
-            player.InvokeEvent(player.OnDieEvent);
-        }
-
         if (player.isHit)
         {
             player.InvokeEvent(player.OnHitEvent);
@@ -119,17 +114,6 @@ public class PlayerBaseState : IState
             stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, 1f );
         }
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer > 6 /*&& player.hitDelay > 0.5f*/)
-    //    {
-    //        player.HealthSystem.TakeDamage(10f);   
-    //        stateMachine.ChangeState(stateMachine.hitState);
-    //    }
-    //}
-
-
 
     protected void StartAnimation(int animationHash)
     {

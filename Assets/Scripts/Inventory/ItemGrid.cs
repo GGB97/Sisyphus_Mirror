@@ -86,7 +86,7 @@ public class ItemGrid : MonoBehaviour
             inventory.Add(seletecteditem.itemSO.ItemType, itemList);
         }
         ItemManager.Instance.OnEquip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
-        Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
+        //Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
     {
@@ -245,6 +245,11 @@ public class ItemGrid : MonoBehaviour
     }
     private bool CheckAvailableSpace(int posX, int posY, int width, int height)//인벤토리 공간에 아이템을 설치할 수 있는지 체크 
     {
+        if (CheckMaxCount() == true)//최대를 넘겼는지 확인
+        {
+            return false;
+        }
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)

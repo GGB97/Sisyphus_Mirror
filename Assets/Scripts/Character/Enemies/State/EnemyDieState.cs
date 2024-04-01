@@ -12,15 +12,11 @@ public class EnemyDieState : EnemyBaseState
     {
         base.Enter();
 
-        enemy.isDie = true;
         StartAnimation(EnemyAnimData.DieParameterHash);
+        enemy.isDie = true;
+        enemy.Collider.enabled = false;
 
         EnemySpawner.Instance.DecrementEnemyCnt(); // 죽었으니까 currentEnemyCnt 감소
-    }
-
-    public override void Update()
-    {
-
     }
 
     public override void Exit()
@@ -29,5 +25,6 @@ public class EnemyDieState : EnemyBaseState
 
         StopAnimation(EnemyAnimData.DieParameterHash);
         enemy.isDie = false;
+        enemy.Collider.enabled = true;
     }
 }

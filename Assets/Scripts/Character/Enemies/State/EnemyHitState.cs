@@ -20,11 +20,6 @@ public class EnemyHitState : EnemyBaseState
     {
         UpdateTime();
 
-        if (enemy.isDie)
-        {
-            enemy.InvokeEvent(enemy.OnDieEvent);
-        }
-
         if (enemy.knockbackDelay >= EnemyData.KnockBackDelayTime)
         {
             if (IsTakingHit() == false)

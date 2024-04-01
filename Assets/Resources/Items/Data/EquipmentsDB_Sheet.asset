@@ -22,10 +22,11 @@ MonoBehaviour:
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_1
     _price: 24
+    _weight: 5
     _grade: 0
     _type: 1
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 2
     _magicAtk: 0
     _def: 0
     _atkSpeed: -1
@@ -42,10 +43,11 @@ MonoBehaviour:
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_2
     _price: 24
+    _weight: 2
     _grade: 0
     _type: 1
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 1
     _magicAtk: 0
     _def: 0
     _atkSpeed: 1
@@ -62,10 +64,11 @@ MonoBehaviour:
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Equipments/Armor_1
     _price: 32
+    _weight: 7
     _grade: 0
     _type: 0
     _health: 5
-    _meleeAtk: 0
+    _physicalAtk: 0
     _magicAtk: 0
     _def: 3
     _atkSpeed: -1
@@ -82,10 +85,11 @@ MonoBehaviour:
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Armor_2
     _price: 34
+    _weight: 7
     _grade: 0
     _type: 0
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 3
     _magicAtk: 0
     _def: -2
     _atkSpeed: 2

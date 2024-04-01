@@ -13,13 +13,14 @@ public class InventoryController : MonoBehaviour
     private static InventoryController instance;
     public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
-    [HideInInspector]
+    //[HideInInspector]
+    [SerializeField]
     private ItemGrid selectedItemGrid; //현재 그리드 정보
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid; 
         set { 
             selectedItemGrid = value;
-            //inventoryHighlight.SetParent(selectedItemGrid);
+            inventoryHighlight.SetParent(selectedItemGrid);
         } 
     }
     [SerializeField]
@@ -28,16 +29,18 @@ public class InventoryController : MonoBehaviour
     public InventoryItem selectedItem;//현재 선택된 아이템
     InventoryItem overlapitem;
     RectTransform rectTransform;//선택된 아이템의 트랜스폼
+    public GameObject itemDescriptionUI;//아이템 설명 UI 창
 
     //[SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab; //아이템 프리팹
-    [SerializeField] Transform canvasTransform;
+    public Transform canvasTransform;
 
     public PlayerInventory playerInventoryGrid;//인벤토리 그리드
     public Storage storageGrid;//창고 그리드
-    public StoreGrid storeGrid;     // 상점 그리드
+    public StoreGrid storeGrid;// 상점 그리드
 
-    InventoryHighlight inventoryHighlight;
+    [SerializeField]
+    private InventoryHighlight inventoryHighlight;
 
     public Sprite[] slotSprites; //슬롯의 스프라이트 배열
     public BlockColor[] blockColors;//등급의 색깔 배열
@@ -47,7 +50,7 @@ public class InventoryController : MonoBehaviour
     public Vector2 startPosition;//처음 위치
     public float startRotation;
 
-    [SerializeField] TextMeshProUGUI _itemCost;
+    [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
 
     private void Awake()
     {
@@ -59,7 +62,7 @@ public class InventoryController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        inventoryHighlight = GetComponent<InventoryHighlight>();
+        //inventoryHighlight = GetComponent<InventoryHighlight>();
         BlockColorDictionaryInit();
     }
     private void Start()
@@ -83,12 +86,12 @@ public class InventoryController : MonoBehaviour
         {
             PrintAllPlayerInventory();
         }
-        //if (selectedItemGrid == null) // 그리드 위에 없다면
-        //{
-        //    inventoryHighlight.Show(false); //하이라이트 끔
-        //    return;
-        //}
-        //HandleHightlight();//하이트 
+        if (selectedItemGrid == null) // 그리드 위에 없다면
+        {
+            inventoryHighlight.Show(false); //하이라이트 끔
+            return;
+        }
+        HandleHightlight();//하이라이트 
 
         //if (Input.GetMouseButtonDown(0))
         //{
@@ -149,28 +152,48 @@ public class InventoryController : MonoBehaviour
 
     private void HandleHightlight()//하이라이트 표시하기
     {
-        Vector2Int positionOnGrid = GetTileGridPosition();//Grid 상 마우스 위치 좌표
+        if (selectedItemGrid == storeGrid)
+        {
+            inventoryHighlight.Show(false);
+            return;
+        }
+
         if (selectedItem == null) //선택한 것이 아무것도 없으면
         {
-            itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x , positionOnGrid.y);// x, y에 해당하는 아이템 정보를 가져옴
-            if (itemToHighlight != null) //마우스 위치에 객체가 있다면
-            {
-                inventoryHighlight.Show(true);
-                inventoryHighlight.SetSize(itemToHighlight);
-                inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
-            }
-            else//마우스의 위치에 아무것도 없다면
-            {
-                inventoryHighlight.Show(false);//하이라이트 끔
-            }
+            inventoryHighlight.Show(false);//하이라이트 끔
+
+            //itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x , positionOnGrid.y);// x, y에 해당하는 아이템 정보를 가져옴
+            //if (itemToHighlight != null) //마우스 위치에 객체가 있다면
+            //{
+            //    inventoryHighlight.Show(true);
+            //    inventoryHighlight.SetSize(itemToHighlight);
+            //    inventoryHighlight.SetPosition(selectedItemGrid, itemToHighlight);
+            //}
+            //else//마우스의 위치에 아무것도 없다면
+            //{
+            //    inventoryHighlight.Show(false);//하이라이트 끔
+            //}
         }
         else //선택한 것이 있다면
         {
+            Vector2Int positionOnGrid = GetTileGridPosition();//Grid 상 마우스 위치 좌표
+            //if (selectedItemGrid.GridPositionCheck(positionOnGrid.x, positionOnGrid.y) == false)
+            //{
+            //    return;
+            //}
+
+            if (selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT) == false)
+            { 
+                inventoryHighlight.Show(false);
+                return;
+            }
+
             inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));//활성화
             inventoryHighlight.SetSize(selectedItem);//사이즈 지정
+            inventoryHighlight.SetImage(selectedItem);
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
         }
-        
+
     }
 
     private void CreateRandomItem() //아이템 랜덤 생성
@@ -321,7 +344,10 @@ public class InventoryController : MonoBehaviour
             if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
-                storeGrid.currentStoreItem = null;
+                for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
+                {
+                    if (storeGrid.currentStoreItem[i] == selectedItem) storeGrid.currentStoreItem[i] = null;
+                }
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
             //selectedItemGrid.AddItemToInventory(selectedItem);
@@ -389,6 +415,25 @@ public class InventoryController : MonoBehaviour
     {
         playerInventoryGrid.AddBigInventory();
     }
+    public bool CheckInventoryToStorage(InventoryItem currentItem) //인벤토리에서 창고로 이동이 가능한지 확인
+    {
+        Vector2Int? storagePosition = storageGrid.FindSpaceForObject(currentItem);//창고에 자리가 있는지 확인
+        if (storagePosition == null)
+            return false;
+        else
+            return true;
+    }
+    public void MoveInventoryToStorage(InventoryItem currentItem) //인벤토리 아이템을 창고로 이동
+    {
+        Vector2Int itemPosition = GetTileGridPosition(new Vector2(currentItem.transform.position.x, currentItem.transform.position.y));
+        PickUpItem(itemPosition);
+        selectedItemGrid.AddCurrentCount(-1);
+
+        selectedItemGrid = storageGrid;
+        Vector2Int? storagePosition = storageGrid.FindSpaceForObject(currentItem);
+        DragPlaceItem(storagePosition.Value);
+        selectedItemGrid = playerInventoryGrid;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
@@ -409,10 +454,31 @@ public class InventoryController : MonoBehaviour
 
     public ItemSO GetRandomStoreItem()//랜덤한 아이템 반환 
     {
-        int selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
-        selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);//랜덤으로 아이템 정보 가져오기
-        WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
-        return weaponData;
+        int random = UnityEngine.Random.Range(0, 4);
+        int selectedItemId;
+        ItemSO itemData;
+
+        switch (random)
+        {
+            case 0:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Consumable.GetItemIdCount());
+                selectedItemId = DataBase.Consumable.GetItemId(selectedItemId); //랜덤으로 아이템 정보 가져오기
+                itemData = DataBase.Consumable.Get(selectedItemId);
+                break;
+            case 1:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Equipments.GetItemIdCount());
+                selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
+                itemData = DataBase.Equipments.Get(selectedItemId);
+                break;
+            default:
+                selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
+                selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
+                itemData = DataBase.Weapon.Get(selectedItemId);
+                break;
+        }
+        
+        //WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
+        return itemData;
     }
 
     private void InsertRandomStoreItem()//아이템 랜덤 생성 후 배치
@@ -425,7 +491,7 @@ public class InventoryController : MonoBehaviour
         InsertStoreItem(itemToInsert);
     }
 
-    private void InsertStoreItem(InventoryItem itemToInsert)//인벤토리에 아이템 배치
+    private void InsertStoreItem(InventoryItem itemToInsert)//상점에 아이템 배치
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObject(itemToInsert);
 
@@ -436,9 +502,9 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        //selectedItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         // ItemData에 Item 가격 추가하는 것 건의하기.
-        _itemCost.text = itemToInsert.itemSO.Price.ToString();
+        //_itemCost.text = itemToInsert.itemSO.Price.ToString();
 
         storeGrid.AddStoreStock(itemToInsert);
     }
@@ -446,7 +512,11 @@ public class InventoryController : MonoBehaviour
     public void OnStoreReroll()
     {
         RemoveStoreStock();
-        InsertRandomStoreItem();
+
+        for (int i = 0; i < 5; ++i)
+            InsertRandomStoreItem();
+
+        storeGrid.ClearEmptySolts();
     }
 
     public void RemoveStoreStock()
@@ -470,4 +540,24 @@ public class InventoryController : MonoBehaviour
         selectedItem = null;
         InsertItem(itemToInsert);
     }
+
+    internal void SellItemButton(InventoryItem currentItem)
+    {
+        Vector2Int gridPosition = new Vector2Int(currentItem.onGridPositionX, currentItem.onGridPositionY);
+        PickUpItem(gridPosition);
+        //Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
+        //PickUpItem(tileGridPosition);
+        if (selectedItem == null) 
+            return;
+        playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+        Destroy(selectedItem.gameObject);
+        selectedItem = null;
+        SelectedItemGrid.AddCurrentCount(-1);
+
+        ItemDescription itemDescription = itemDescriptionUI.GetComponent<ItemDescription>();
+
+        if(itemDescription != null)
+            itemDescription.ExitExplnationUI();
+    }
+
 }

@@ -50,18 +50,16 @@ public class EnemyBaseState : IState
 
     public virtual void Update()
     {
-        
-
         UpdateTime();
 
-        if (enemy.isDie)
+        if (enemy.isHit)
         {
-            enemy.InvokeEvent(enemy.OnDieEvent);
-        }
-
-        if (enemy.isHit && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
-        {
-            enemy.InvokeEvent(enemy.OnHitEvent);
+            enemy.HitFade();
+            if (enemy.Info.rank != EnemyRank.Boss && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
+            {
+                enemy.InvokeEvent(enemy.OnHitEvent);
+                return;
+            }
         }
     }
 

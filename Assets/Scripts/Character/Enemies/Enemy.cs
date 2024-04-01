@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class Enemy : CharacterBehaviour
 {
@@ -19,9 +20,10 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
-    Renderer[] _enemyRenderer; // 투명도 조절을 위한 mat 
-    [SerializeField] Material _baseMat; // 원래 mat저장해두기 위한 용도.
-    [SerializeField] Material _spawnMat;
+
+    Transform renderTransform;
+    public Renderer enemyRenderer;
+    Color _baseColor;
 
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
@@ -32,6 +34,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
 
+    public Action deSpawnEvent;
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -40,21 +44,37 @@ public class Enemy : CharacterBehaviour
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
 
-        _enemyRenderer = GetComponentsInChildren<Renderer>();
+        renderTransform = transform.GetChild(0);
 
         stateMachine = new(this);
+
+        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
+        {
+            case EnemyRank.Normal:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Elite:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
+                break;
+            case EnemyRank.Boss:
+                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+                break;
+        }
 
         Init();
     }
 
     private void OnEnable()
     {
-        stateMachine.ChangeState(stateMachine.IdleState);
         StartSpawn();
+
+        stateMachine.ChangeState(stateMachine.IdleState);
+        Init();
     }
 
     private void OnDisable()
     {
+        target = null;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -63,19 +83,29 @@ public class Enemy : CharacterBehaviour
         //stateMachine.ChangeState(stateMachine.IdleState);
 
         OnDieEvent += ChangeDieState;
-        OnDieEvent += InvokeOnDieFadeOut;
+        OnDieEvent += InvokeActiveFalse;
+        OnDieEvent += DropItem;
 
         OnHitEvent += ChangeHitState;
 
-        target = EnemySpawner.Instance.target; // 임시
+        deSpawnEvent += ChangeDieState;
+        deSpawnEvent += InvokeActiveFalse;
     }
 
     void Update()
     {
-        stateMachine.Update();
+        if (isDieTrigger)
+        {
+            if (isDie)
+            {
+                OnDieEvent?.Invoke();
+                isDieTrigger = false;
+                return;
+            }
+        }
 
-        if(DungeonManager.Instance.isStarted == false)
-            OnDieEvent?.Invoke();
+
+        stateMachine.Update();
     }
 
     private void FixedUpdate()
@@ -103,36 +133,17 @@ public class Enemy : CharacterBehaviour
         isDie = false;
         isHit = false;
 
+        isDieTrigger = false;
+
         chasingDelay = 10f; // 그냥 초기값 설정
         attackDelay = 10f;
         knockbackDelay = 10f;
 
-        switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
-        {
-            case EnemyRank.Normal:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
-                break;
-            case EnemyRank.Elite:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
-                break;
-            case EnemyRank.Boss:
-                Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-                break;
-        }
-    }
-
-    public void OnChildTriggerEnter(Collider other, SkillType type)
-    {
-        //이곳에서 자식 콜라이더의 트리거 충돌 처리
-        if(type == SkillType.AutoAttack)
-            Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
-        else if (type == SkillType.Skill01)
-            Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
+        target = EnemySpawner.Instance.target; // 임시
     }
 
     void ChangeDieState()
     {
-        isDie = true;
         stateMachine.ChangeState(stateMachine.DieState);
     }
 
@@ -144,6 +155,25 @@ public class Enemy : CharacterBehaviour
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
+    }
+
+    public void OnChildTriggerEnter(Collider other, SkillType type)
+    {
+        if (other.gameObject.layer == target.gameObject.layer)
+        {
+            HealthSystem hs = other.GetComponent<HealthSystem>();
+            //이곳에서 자식 콜라이더의 트리거 충돌 처리
+            if (type == SkillType.AutoAttack)
+            {
+                Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+                hs.TakeDamage(currentStat.meleeAtk);
+            }
+            else if (type == SkillType.Skill01)
+            {
+                Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
+                hs.TakeDamage(currentStat.meleeAtk * 0.4f);
+            }
+        }
     }
 
     public void AttackStart(int num)
@@ -187,71 +217,47 @@ public class Enemy : CharacterBehaviour
     void StartSpawn()
     {
         IsSpawning = true;
+        Collider.enabled = false;
 
-        #region Renderer.sharedMaterial
-        // shared를 사용하면 해당 mat을 사용하는 모든 객체들이 변경되어야 하지만 실제로 사용해보니까 그렇게 되지는 않았음.
-        // 하지만 shared를 사용하게되면 다른때에 갑자기 다 바뀔수도 있을거 같아서 채택하지 않음.
-        // GPT피셜 : Unity의 렌더링 시스템과 최적화 메커니즘으로 인해 실제 동작은 다소 복잡하고, 예상과 다를 수 있습니다
-        // 라고 하기는 하는데 잘 모르겠다..
-        //_enemyRenderer.sharedMaterial = _spawnMat; 
-        #endregion
-        Color tempColor = _spawnMat.color;
-        tempColor.a = 0;
-        _spawnMat.color = tempColor;
-
-        for (int i = 0; i < _enemyRenderer.Length; i++)
-        {
-            _enemyRenderer[i].material = _spawnMat;
-
-            if (i == _enemyRenderer.Length - 1)
-                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(SpawnComplete);
-            else
-                _enemyRenderer[i].material.DOFade(1, 1);
-        }
-    }
-
-    void SpawnComplete()
-    {
-        //_enemyRenderer.sharedMaterial = _baseMat;
-        foreach (var renderer in _enemyRenderer)
-        {
-            renderer.material = _baseMat;
-        }
-        SpawnEnd();
-
-        Init();
+        renderTransform.localPosition += Vector3.down * Agent.height;
+        renderTransform.DOLocalMoveY(0, 1f).OnComplete(SpawnEnd);
     }
 
     void SpawnEnd()
     {
         IsSpawning = false;
+        Collider.enabled = true;
     }
 
-    void InvokeOnDieFadeOut()
+    public void DeSpawn()
     {
-        Invoke(nameof(OnDieFadeOut), 1.5f);
+        deSpawnEvent?.Invoke();
     }
 
-    void OnDieFadeOut()
+    void InvokeActiveFalse()
     {
-        Color tempColor = _spawnMat.color;
-        tempColor.a = 1;
-        _spawnMat.color = tempColor;
 
-
-        for (int i = 0; i < _enemyRenderer.Length; i++)
-        {
-            _enemyRenderer[i].material = _spawnMat;
-
-            if (i == _enemyRenderer.Length - 1)
-                _enemyRenderer[i].material.DOFade(1, 1).OnComplete(ActiveFalse);
-            else
-                _enemyRenderer[i].material.DOFade(1, 1);
-        }
+        Invoke(nameof(ActiveFalse), 3f);
     }
 
     void ActiveFalse()
     {
-        gameObject.SetActive(false);
+        renderTransform.DOLocalMoveY(-Agent.height, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
+
+    }
+
+    void DropItem()
+    {
+        GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
+        Instantiate(gold, transform.position, Quaternion.identity);
+    }
+
+    public void HitFade()
+    {
+        if (enemyRenderer == null)
+            return;
+
+        enemyRenderer.material.color = Color.red;
+        enemyRenderer.material.DOColor(_baseColor, 0.1f).OnComplete(() => { isHit = false; });
     }
 }

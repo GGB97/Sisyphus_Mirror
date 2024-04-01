@@ -832,6 +832,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8987629908148035415, guid: bfaaf73ee0299d2418898326c8680140,
+        type: 3}
+      propertyPath: _baseMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ac568da7528418fafca2a9973f3b34e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1815,19 +1820,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousItemGird: {fileID: 0}
   selectedItem: {fileID: 0}
+  itemDescriptionUI: {fileID: 0}
   itemPrefab: {fileID: 8428332342166559987, guid: 25942dfb2076f7841a135acea4094448,
     type: 3}
   canvasTransform: {fileID: 254792210}
   playerInventoryGrid: {fileID: 1925368487}
   storageGrid: {fileID: 1231915017}
+  storeGrid: {fileID: 0}
   slotSprites:
   - {fileID: 21300000, guid: d8080f6ef8c48ea4ba5f471321930686, type: 3}
   - {fileID: 21300000, guid: cfc1945396953e34ebda7bd467731b54, type: 3}
   - {fileID: 21300000, guid: 88f4ab6b93b71a3409012b1d04704d3c, type: 3}
   - {fileID: 21300000, guid: 2742fed9a8521504baea79615abe6550, type: 3}
+  blockColors: []
   addCount: 6
   startPosition: {x: 0, y: 0}
   startRotation: 0
+  itemCost:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1707910766
 Transform:
   m_ObjectHideFlags: 0

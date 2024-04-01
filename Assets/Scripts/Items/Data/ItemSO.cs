@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using UnityEngine;
 
 public enum ItemType
@@ -28,6 +29,7 @@ public class ItemSO
     [SerializeField] protected int _iconHeight;
     [SerializeField] protected string _prefabPath;
     [SerializeField] protected int _price;
+    [SerializeField] protected float _weight;
     [SerializeField] protected ItemGrade _grade;
 
     public int Id => _id;
@@ -39,6 +41,7 @@ public class ItemSO
     public int IconHeight => _iconHeight;
     public string PrefabPath => _prefabPath;
     public int Price => _price;
+    public float Weight => _weight;
     public ItemGrade Grade => _grade;
 
     private Sprite _sprite;
@@ -59,5 +62,11 @@ public class ItemSO
             if(_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
             return _prefab;
         }
+    }
+    public virtual StringBuilder SetExplantion(ItemSO itemSO)
+    {
+        StringBuilder sb = new StringBuilder(300);
+        sb.Append($"{itemSO.Description}\n");//설명 적기
+        return sb;
     }
 }
