@@ -245,6 +245,11 @@ public class ItemGrid : MonoBehaviour
     }
     private bool CheckAvailableSpace(int posX, int posY, int width, int height)//인벤토리 공간에 아이템을 설치할 수 있는지 체크 
     {
+        if (CheckMaxCount() == true)//최대를 넘겼는지 확인
+        {
+            return false;
+        }
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)

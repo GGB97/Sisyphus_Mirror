@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryHighlight : MonoBehaviour
 {
-    [SerializeField] RectTransform highlighter;
+    RectTransform highlighter;
+    Image image;
 
+    private void Awake()
+    {
+        highlighter = GetComponent<RectTransform>();
+        image = GetComponent<Image>();
+    }
     public void Show(bool b) //매개변수로 하이라이트를 껐다 킴
     {
         highlighter.gameObject.SetActive(b);
@@ -13,8 +21,8 @@ public class InventoryHighlight : MonoBehaviour
     public void SetSize(InventoryItem targetItem)//하이라이트의 사이즈를 아이템의 사이즈로 설정
     {
         Vector2 size = new Vector2();
-        size.x = targetItem.itemSO.IconWidth * ItemGrid.TileSizeWidth;
-        size.y = targetItem.itemSO.IconHeight * ItemGrid.TileSizeHeight;
+        size.x = targetItem.WIDTH * ItemGrid.TileSizeWidth;
+        size.y = targetItem.HEIGHT * ItemGrid.TileSizeHeight;
         highlighter.sizeDelta = size;
     }
 
@@ -37,5 +45,9 @@ public class InventoryHighlight : MonoBehaviour
     {
         Vector2 pos = targetGrid.CalculatePositionOnGrid(targetitem,posX,posY);
         highlighter.localPosition = pos;
+    }
+    public void SetImage(InventoryItem inventoryItem)
+    {
+        image.sprite = inventoryItem.itemSO.Sprite;
     }
 }
