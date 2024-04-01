@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : ItemGrid
 {
@@ -10,6 +11,7 @@ public class PlayerInventory : ItemGrid
     private List<PanelSlot> clearSlotList = new List<PanelSlot>();//지워야 하는 + 블럭 리스트
     private List<PanelSlot> subtractSlotList = new List<PanelSlot>();//더이상 추가 불가능한 블럭의 리스트
     private List<Vector2Int> fourVector = new List<Vector2Int>() { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) };
+    private List<InventoryItem> combineList = new List<InventoryItem>();
 
     // Start is called before the first frame update
     protected override void Start()
@@ -147,5 +149,82 @@ public class PlayerInventory : ItemGrid
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
+    }
+    public bool FindSameWeaponItem(int targetId)//무기 중에서 같은 id를 가지고 있는 것이 3개 이상일 경우 true 리턴
+    {
+        List<InventoryItem> weaponList = inventory[ItemType.Weapon];
+        int count = 0;
+        if (weaponList == null)
+        {
+            return false;
+        }
+        else
+        {
+            foreach (InventoryItem weapon in weaponList)
+            {
+                if (targetId == weapon.itemSO.Id)//아이디가 같은지 확인
+                {
+                    count++;
+                    if (count >= 3)
+                        break;
+                    //리스트에 따로 저장해서 나중에 한번에 접근할 수 있게 하면 좋을듯
+                }
+            }
+            if (count >= 3)//변수로 바꿔야 할 듯
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    public void SetCombineList(int targetId)//무기 중에서 같은 id를 가지고 있는 것이 3개 이상일 경우 true 리턴
+    {
+        List<InventoryItem> weaponList = inventory[ItemType.Weapon];
+        int count = 0;
+        if (weaponList == null)
+        {
+            return;
+        }
+        else
+        {
+            foreach (InventoryItem weapon in weaponList)
+            {
+                if (targetId == weapon.itemSO.Id)//아이디가 같은지 확인
+                {
+                    count++;
+                    combineList.Add(weapon);
+                    if (count >= 2)
+                        break;
+                    //리스트에 따로 저장해서 나중에 한번에 접근할 수 있게 하면 좋을듯
+                }
+            }
+        }
+    }
+    public void DeleteSameItem(InventoryItem currentItem)
+    {
+        int itemId = currentItem.itemSO.Id;
+        DeleteItem(currentItem);//자신 삭제
+        SetCombineList(itemId);
+
+        foreach (var item in combineList)//아이템 골라서 빼기
+        {
+            DeleteItem(item);
+        }
+
+        ResetCombineList();
+    }
+    public void DeleteItem(InventoryItem item)
+    {
+        PickUpItem(item.onGridPositionX, item.onGridPositionY);//있던 자리 null 처리
+        SubtractItemFromInventory(item);//빼고
+        Destroy(item.gameObject);
+        AddCurrentCount(-1);//카운트 감소
+    }
+    public void ResetCombineList()
+    {
+        combineList.Clear();
     }
 }

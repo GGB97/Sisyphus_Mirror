@@ -3261,7 +3261,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1044723788}
         m_TargetAssemblyTypeName: ItemDescription, Assembly-CSharp
-        m_MethodName: ClickSellItemButton
+        m_MethodName: ClickCombineButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5544,7 +5544,6 @@ MonoBehaviour:
   combineButton: {fileID: 491597549}
   putOutSideButton: {fileID: 912807419}
   exitButton: {fileID: 815529924}
-  isHovering: 0
 --- !u!114 &1044723790
 MonoBehaviour:
   m_ObjectHideFlags: 0

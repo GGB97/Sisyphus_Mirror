@@ -438,7 +438,34 @@ public class InventoryController : MonoBehaviour
         DragPlaceItem(storagePosition.Value);
         selectedItemGrid = playerInventoryGrid;
     }
+    public void CombineWeaponItem(InventoryItem currentItem)
+    {
+        int posX = currentItem.onGridPositionX;
+        int posY = currentItem.onGridPositionY;
+        int nextId = currentItem.itemSO.Id + 1;//다음 등급 id
+        float startRotation = currentItem.rotationDegree;
 
+        //아이템 3개 삭제
+        playerInventoryGrid.DeleteSameItem(currentItem);
+
+        //아이템 생성
+        InventoryItem nextItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        ItemSO itemData = DataBase.Weapon.Get(nextId);
+        nextItem.Set(itemData);
+        nextItem.SetRotation(startRotation);
+
+        selectedItem = nextItem;
+        PlaceItem(new Vector2Int(posX, posY));
+        playerInventoryGrid.AddItemToInventory(nextItem);
+        playerInventoryGrid.AddCurrentCount(1);
+    }
+    public bool CheckUpgradableItem(int targetid)
+    {
+        if (playerInventoryGrid.FindSameWeaponItem(targetid) == false)
+            return false;
+        else
+            return true;
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
     private void CreateRandomStoreItem() //아이템 랜덤 생성

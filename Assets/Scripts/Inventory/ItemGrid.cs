@@ -101,6 +101,7 @@ public class ItemGrid : MonoBehaviour
             Debug.Log($"아이템이 존재하지 않습니다.");
         }
     }
+    
     public void AddCurrentCount(int num)//현재 Grid에 있는 아이템의 수를 num 만큼 증가시킨다.
     {
         currentCount += num;
