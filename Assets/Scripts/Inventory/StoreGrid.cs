@@ -36,11 +36,6 @@ public class StoreGrid : ItemGrid
     {
         currentStoreItem.Add(item);
 
-        foreach (var items in currentStoreItem)
-        {
-            //Debug.Log(items.name);
-        }
-
         if (panelSlots[0, 0].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 0, 0);
@@ -81,13 +76,11 @@ public class StoreGrid : ItemGrid
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                //if (panelSlots[x, y].CompareState(PanelSlotState.Empty))
-                //{
-                //    image = panelSlots[x, y].GetComponent<Image>();
-                //    image.color = new Color(0, 0, 0, 0f);
-                //}
-                image = panelSlots[x, y].GetComponent<Image>();
-                image.color = new Color(0, 0, 0, 0f);
+                if (panelSlots[x, y].CompareState(PanelSlotState.Empty))
+                {
+                    image = panelSlots[x, y].GetComponent<Image>();
+                    image.color = new Color(0, 0, 0, 0f);
+                }
             }
         }
 
