@@ -34,6 +34,9 @@ public enum ProjectileID
 
     OrangeExplosion = 40000100,
     Poison,
+
+    // AreaAttack
+    ArearAttack_Ice = 40000200
 }
 
 public enum DamageType

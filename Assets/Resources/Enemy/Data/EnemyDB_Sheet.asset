@@ -366,12 +366,12 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 5
   - health: 0
-    maxHealth: 600
-    attackRange: 12
+    maxHealth: 100000
+    attackRange: 15
     meleeAtk: 0
     magicAtk: 10
     def: 5
-    attackSpeed: 0.5
+    attackSpeed: 0.6
     moveSpeed: 3
     knockbackPower: 0
     dashRange: 0

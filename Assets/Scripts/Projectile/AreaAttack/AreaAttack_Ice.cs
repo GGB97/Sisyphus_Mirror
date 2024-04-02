@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AreaAttack_Ice : AreaAttack
 {
-    protected override void AttackStart()
+    protected override void Attack()
     {
-        base.AttackStart();
+        base.Attack();
 
         HitCheck(0.2f);
 

@@ -29,3 +29,7 @@ MonoBehaviour:
     prefabPath: Projectile/Prefabs/Poison
     type: 1
     speed: 10
+  - id: 40000200
+    prefabPath: AreaAttack/Prefabs/AreaAttack_Ice
+    type: 1
+    speed: 0

@@ -30,8 +30,11 @@ public class AreaAttack : MonoBehaviour
     protected void OnEnable()
     {
         Init();
+    }
 
-        fill.transform.DOScale(Vector3.one, fillDuration).OnComplete(AttackStart);
+    private void OnDisable()
+    {
+        ObjectPoolManager.Instance.ReturnToPull(gameObject);
     }
 
     protected void Init()
@@ -40,7 +43,12 @@ public class AreaAttack : MonoBehaviour
         fill.transform.localScale = Vector3.zero;
     }
 
-    protected virtual void AttackStart()
+    public void AttackStart()
+    {
+        fill.transform.DOScale(Vector3.one, fillDuration).OnComplete(Attack);
+    }
+
+    protected virtual void Attack()
     {
         range.SetActive(false);
 

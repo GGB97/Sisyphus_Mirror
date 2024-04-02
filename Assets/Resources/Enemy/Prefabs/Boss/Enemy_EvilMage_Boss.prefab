@@ -164,6 +164,7 @@ MonoBehaviour:
   _rangeAttackPos:
   - {fileID: 7304681824439530632}
   _projectileTag: 645a6202
+  _areaAttackTag: c85a6202
   testAreaAttack: {fileID: 4921926378384973515, guid: 42e21765891c5b145a806472de909c2a,
     type: 3}
 --- !u!114 &4161329191314674582
@@ -1607,7 +1608,7 @@ PrefabInstance:
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}

@@ -33,10 +33,8 @@ public class Enemy : CharacterBehaviour
 
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
-
+    [SerializeField] ProjectileID[] _areaAttackTag;
     public Action deSpawnEvent;
-
-    public GameObject testAreaAttack;
 
     private void Awake()
     {
@@ -216,14 +214,12 @@ public class Enemy : CharacterBehaviour
         projectile.SetVelocity(1f); // 속도 배율 설정
     }
 
-    public void AreaAttack()
+    public void AreaAttack(int num)
     {
-        //GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
-        //(int)_projectileTag[num],
-        //_rangeAttackPos[num].transform.position,
-        //_rangeAttackPos[num].transform.rotation);
-
-        GameObject go = Instantiate(testAreaAttack, target.transform.position, Quaternion.identity);
+        GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        (int)_areaAttackTag[num],
+        target.transform.position,
+        Quaternion.identity);
 
         AreaAttack areaAttack = go.GetComponent<AreaAttack>();
 
@@ -231,6 +227,8 @@ public class Enemy : CharacterBehaviour
 
         float value = areaAttack.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
         areaAttack.SetValue(value);
+
+        areaAttack.AttackStart();
     }
 
     void StartSpawn()
