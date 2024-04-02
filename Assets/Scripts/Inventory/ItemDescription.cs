@@ -58,7 +58,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
             posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
         }
-      
+        
         rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
     }
     public void SetCurrentItemNull()//아이템 null 초기화
@@ -124,6 +124,15 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
+            if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+            {
+                combineButton.interactable = true;
+            }
+            else
+            {
+                combineButton.interactable = false;
+            }
+
             if (inventoryController.CheckInventoryToStorage(currentItem) == true)
             {
                 putOutSideButton.interactable = true;
@@ -132,6 +141,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 putOutSideButton.interactable = false;
             }
+
             buttonPanel.SetActive(true);
         }
 
@@ -148,6 +158,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void ClickCombineButton()//업그레이드 버튼
     {
-        //inventoryController.
+        inventoryController.CombineWeaponItem(currentItem);
+        ExitExplnationUI();//툴팁 닫기
     }
 }

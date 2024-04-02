@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour
 {
     public ItemSO itemSO;//아이템 가로,세로,스프라이트 정보
-
     public int HEIGHT
     {
         get

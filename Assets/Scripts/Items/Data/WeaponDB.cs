@@ -57,4 +57,15 @@ public class WeaponDB
     {
         return _weapons.GetEnumerator();
     }
+    public bool CheckItemId(int targetId)
+    {
+        foreach(var weaponId in idList) 
+        {
+            if (weaponId == targetId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
