@@ -364,7 +364,7 @@ MonoBehaviour:
     element: 0
     size: 0
     rotationSpeed: 3
-    attackAngle: 5
+    attackAngle: 10
   - health: 0
     maxHealth: 300
     attackRange: 15
@@ -385,8 +385,8 @@ MonoBehaviour:
     rank: 2
     element: 0
     size: 3
-    rotationSpeed: 4
-    attackAngle: 5
+    rotationSpeed: 5
+    attackAngle: 10
   - health: 0
     maxHealth: 100
     attackRange: 20
@@ -407,5 +407,5 @@ MonoBehaviour:
     rank: 0
     element: 0
     size: 0
-    rotationSpeed: 4
+    rotationSpeed: 6
     attackAngle: 5

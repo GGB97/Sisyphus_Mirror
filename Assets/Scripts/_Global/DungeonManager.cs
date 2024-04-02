@@ -53,12 +53,17 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //inventoryUI.SetActive(false);
         }
     }
-    
+
     private void Update()
     {
         if (isStarted == true)
         {
             UpdateTimeText();
+
+            if (isStageCompleted)
+            {
+                EndStage();
+            }
 
             if (currentTime > 0.0f)
             {
@@ -68,12 +73,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             else
             {
                 //모든 몬스터 죽기
-                if (isStageCompleted)
-                {
-                    EndStage();
-                    // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
-                    EnemySpawner.Instance.target.GetComponent<Player>().rune += 1 + (currnetstage / 10);
-                }
+                EndStage();
             }
         }
     }
@@ -97,7 +97,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
 
         currentTime = timeLimit;//시간 설정
-        stageText.text = String.Format("Stage : "+ currnetstage.ToString());
+        stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
         isStarted = true;
         EnemySpawner.Instance.GameStart();
@@ -109,7 +109,10 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
-        Invoke("OpenInventory",1f);//인벤토리 열기
+        // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
+        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
+
+        Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()
     {
@@ -128,7 +131,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     }
     public override void Init()
     {
-        
+
     }
     public void Print()
     {

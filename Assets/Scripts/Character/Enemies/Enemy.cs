@@ -91,10 +91,7 @@ public class Enemy : CharacterBehaviour
         if (Info.rank == EnemyRank.Boss)
         {
             OnDieEvent += DropRune;
-            OnDieEvent += () => 
-            {
-                DungeonManager.Instance.isStageCompleted = true;
-            };
+            OnDieEvent += ChangeComplete;
         }
 
         OnHitEvent += ChangeHitState;
@@ -262,7 +259,8 @@ public class Enemy : CharacterBehaviour
 
     public void DeSpawn()
     {
-        deSpawnEvent?.Invoke();
+        if (gameObject.activeSelf == true && isDie == false)
+            deSpawnEvent?.Invoke();
     }
 
     void InvokeActiveFalse()
@@ -283,7 +281,12 @@ public class Enemy : CharacterBehaviour
 
     void DropRune()
     {
-        _player.rune += DungeonManager.Instance.currnetstage % 5;
+        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+    }
+
+    void ChangeComplete()
+    {
+        DungeonManager.Instance.isStageCompleted = true;
     }
 
     public void HitFade()
