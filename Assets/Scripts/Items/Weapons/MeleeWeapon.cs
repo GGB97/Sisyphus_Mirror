@@ -20,7 +20,7 @@ public class MeleeWeapon : MonoBehaviour
 
     bool _isMoving;
     bool _canAttack;
-    bool _animationEnd;
+    bool _animationEnd = true;
 
     float _timeStartedMoving;
 
@@ -61,24 +61,29 @@ public class MeleeWeapon : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, _targetPos, percentageComplete);
 
             // 이동이 완료되면
-            if(percentageComplete >= .5f)
+            //if(percentageComplete >= .5f)
+            //{
+            //    _animationEnd = false;
+            //    //Debug.Log("Melee Attack");
+            //    // 공격 애니메이션 재생
+            //    _animator.SetBool("Attack", true);
+            //    _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
+            //}
+            if (percentageComplete >= 1f)
             {
+                //_effect.SetActive(true);
+                //_timeStartedMoving = Time.time;
+                //_canAttack = false;
                 _animationEnd = false;
                 //Debug.Log("Melee Attack");
                 // 공격 애니메이션 재생
-                _animator.SetTrigger("Attack");
+                _animator.SetBool("Attack", true);
                 _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
             }
-            if (percentageComplete >= 1f)
-            {
-                _effect.SetActive(true);
-                _timeStartedMoving = Time.time;
-                _canAttack = false;
-            }
         }
-        else if(_animationEnd)
+        else if(_animationEnd && !_canAttack)
         {
-            _effect.SetActive(false);
+            //_effect.SetActive(false);
 
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
             if (percentageComplete >= 1)
@@ -133,9 +138,19 @@ public class MeleeWeapon : MonoBehaviour
         _isMoving = true;
     }
 
+    void OnAnimationStart()
+    {
+        _effect.SetActive(true);
+        _timeStartedMoving = Time.time;
+        _canAttack = false;
+    }
+
     void OnAnimationEnd()
     {
+        _effect.GetComponent<TrailRenderer>().Clear();
+        _effect.SetActive(false);
         transform.parent = _weaponPivot;
+        _animator.SetBool("Attack", false);
         _animationEnd = true;
     }
 
@@ -154,6 +169,7 @@ public class MeleeWeapon : MonoBehaviour
         else
         {
             Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
+            return;
         }
     }
 }
