@@ -191,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
@@ -211,12 +211,12 @@ PrefabInstance:
     - target: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
@@ -392,6 +392,7 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
+  posY: 0
 --- !u!4 &1920681279410963662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,

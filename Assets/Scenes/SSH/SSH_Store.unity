@@ -9149,7 +9149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c5f5e7a7c4d9a4eb6f9c145fa73d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivot: {fileID: 828897718}
+  weaponContainer: {fileID: 828897718}
   _playerStats:
     health: 0
     maxHealth: 0

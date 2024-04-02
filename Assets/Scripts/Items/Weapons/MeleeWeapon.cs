@@ -12,6 +12,8 @@ public class MeleeWeapon : MonoBehaviour
 
     public List<Transform> Target = new List<Transform>();
     public Transform _weaponPivot;
+    Vector3 _weaponPosY = new Vector3(0, 1.5f, 0);
+    Vector3 _weaponPos;
 
     [SerializeField] private int id;
     [SerializeField] Vector3 _targetPos;
@@ -26,13 +28,18 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Start()
     {
+        if (transform.parent == null) Destroy(gameObject);
+
         _animator = GetComponent<Animator>();
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
 
         _weaponData = DataBase.Weapon.Get(id);
         _weaponPivot = transform.parent;
 
-        transform.position = GetRandomPosition();
+        //transform.position = GetRandomPosition();
+        _weaponPos = GetRandomPosition();
+        transform.localPosition = _weaponPos;
+        //transform.localPosition = _weaponPosY;
 
         _effect.SetActive(false);
         _isMoving = false;
@@ -86,9 +93,12 @@ public class MeleeWeapon : MonoBehaviour
             //_effect.SetActive(false);
 
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
+            //transform.localPosition = _weaponPosY;
+
             if (percentageComplete >= 1)
             {
                 //Debug.Log("Melee Attack End");
+                transform.localPosition = _weaponPos;
                 Target.Clear();
                 Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
                 _idleAnimation.isFloating = true;
@@ -101,7 +111,7 @@ public class MeleeWeapon : MonoBehaviour
         float x = Random.Range(-1f, 1f);
         float z = Random.Range(-1f, 1f);
 
-        return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        return new Vector3(transform.localPosition.x + x, transform.localPosition.y, transform.localPosition.z + z);
     }
 
     void SetCanAttack()
