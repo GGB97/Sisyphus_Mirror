@@ -7,8 +7,10 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class AreaAttack : MonoBehaviour
 {
-    [SerializeField] DamageType damageType;
-    public LayerMask target;
+    public int id;
+    ProjectileData _data;
+
+    [SerializeField] LayerMask _target;
 
     [SerializeField] protected GameObject attackParticle;
     [SerializeField] protected GameObject range;
@@ -20,11 +22,13 @@ public class AreaAttack : MonoBehaviour
 
     protected Collider[] colliders;
 
-    public DamageType GetDamageType => damageType;
+    public DamageType GetDamageType => _data.type;
 
     protected void Awake()
     {
         colliders = new Collider[3];
+
+        _data = DataBase.Projectile.Get(id);
     }
 
     protected void OnEnable()
@@ -39,7 +43,7 @@ public class AreaAttack : MonoBehaviour
 
     protected void Init()
     {
-        target = 0;
+        _target = 0;
         fill.transform.localScale = Vector3.zero;
     }
 
@@ -61,7 +65,7 @@ public class AreaAttack : MonoBehaviour
     {
         Clear();
 
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, attackRange, colliders, target);
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, attackRange, colliders, _target);
 
         for (int i = 0; i < numColliders; i++)
         {
@@ -90,7 +94,7 @@ public class AreaAttack : MonoBehaviour
 
     public void AddTarget(LayerMask layer) // 부딪히고 조건검사 해야할 Layer 추가
     {
-        target |= layer;
+        _target |= layer;
     }
 
     public void SetValue(float value)

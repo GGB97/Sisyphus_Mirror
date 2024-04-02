@@ -5016,7 +5016,7 @@ Transform:
   - {fileID: 2878327920422967488}
   - {fileID: 3874440903287756777}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &536228971109760463
 MonoBehaviour:
@@ -5030,8 +5030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb7c82582a1f004eac486cae0fec4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 1
-  target:
+  id: 40000200
+  _target:
     serializedVersion: 2
     m_Bits: 0
   attackParticle: {fileID: 3877033620733327451}
