@@ -25,4 +25,9 @@ public class EnemyAnimationEvent : MonoBehaviour
     {
         enemy.RangedAttack(index);
     }
+
+    public void AreaAttack()
+    {
+        enemy.AreaAttack();
+    }
 }

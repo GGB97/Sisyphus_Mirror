@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.Progress;
@@ -20,7 +21,6 @@ public class Enemy : CharacterBehaviour
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
-
     Transform renderTransform;
     public Renderer enemyRenderer;
     Color _baseColor;
@@ -35,6 +35,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] ProjectileID[] _projectileTag;
 
     public Action deSpawnEvent;
+
+    public GameObject testAreaAttack;
 
     private void Awake()
     {
@@ -214,6 +216,23 @@ public class Enemy : CharacterBehaviour
         projectile.SetVelocity(1f); // 속도 배율 설정
     }
 
+    public void AreaAttack()
+    {
+        //GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        //(int)_projectileTag[num],
+        //_rangeAttackPos[num].transform.position,
+        //_rangeAttackPos[num].transform.rotation);
+
+        GameObject go = Instantiate(testAreaAttack, target.transform.position, Quaternion.identity);
+
+        AreaAttack areaAttack = go.GetComponent<AreaAttack>();
+
+        areaAttack.AddTarget(LayerData.Player);
+
+        float value = areaAttack.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        areaAttack.SetValue(value);
+    }
+
     void StartSpawn()
     {
         IsSpawning = true;
@@ -243,7 +262,6 @@ public class Enemy : CharacterBehaviour
     void ActiveFalse()
     {
         renderTransform.DOLocalMoveY(-Agent.height, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
-
     }
 
     void DropItem()

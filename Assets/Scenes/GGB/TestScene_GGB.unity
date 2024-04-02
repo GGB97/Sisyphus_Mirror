@@ -4533,13 +4533,13 @@ MonoBehaviour:
   buttonPanel: {fileID: 0}
   sellPercent: 0.5
   nameText: {fileID: 0}
+  gradeText: {fileID: 0}
   descriptionText: {fileID: 0}
   sellButtonText: {fileID: 0}
   sellButton: {fileID: 0}
   combineButton: {fileID: 0}
   putOutSideButton: {fileID: 0}
   exitButton: {fileID: 0}
-  isHovering: 0
 --- !u!114 &1031864732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,13 +6012,14 @@ GameObject:
   - component: {fileID: 1429365595}
   - component: {fileID: 1429365597}
   - component: {fileID: 1429365596}
+  - component: {fileID: 1429365598}
   m_Layer: 5
   m_Name: Highlighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1429365595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6077,6 +6078,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429365594}
   m_CullTransparentMesh: 1
+--- !u!114 &1429365598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429365594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f32cc3fdd62524e9a3ac88ac3bd5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1517784679
 GameObject:
   m_ObjectHideFlags: 0
@@ -7992,7 +8005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f32cc3fdd62524e9a3ac88ac3bd5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlighter: {fileID: 1429365595}
 --- !u!114 &1978791004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8015,6 +8027,7 @@ MonoBehaviour:
   playerInventoryGrid: {fileID: 1244280343}
   storageGrid: {fileID: 828998502}
   storeGrid: {fileID: 270462524}
+  inventoryHighlight: {fileID: 1429365598}
   slotSprites:
   - {fileID: 21300000, guid: 928723c1a82ba3d4ab1fe7c10fafea0b, type: 3}
   - {fileID: 21300000, guid: c9ef5ee1bbc59d24b97fe7d7e70e3a94, type: 3}
@@ -9660,7 +9673,23 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 0
     startItemID: 0
+  _modifier:
+    health: 0
+    maxHealth: 0
+    attackRange: 0
+    meleeAtk: 0
+    magicAtk: 0
+    def: 0
+    attackSpeed: 0
+    moveSpeed: 0
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
   weaponPrefabs: []
+  itemWeight: 0
 --- !u!4 &2053098036
 Transform:
   m_ObjectHideFlags: 0
