@@ -6,21 +6,64 @@ using UnityEngine;
 
 public static class Utilities
 {
-    public static void AddText(StringBuilder sb, string name, float value)
+    public static void AddText(StringBuilder sb, string name, float value , bool isPercent = false, bool isReverse = false)
     {
         sb.Append($"{name} : ");
-        sb.Append(ChangeColorWithValue(value));
+        sb.Append(ChangeColorWithValue(value, isPercent, isReverse));
     }
-    public static string ChangeColorWithValue(float value)
+    public static string ChangeColorWithValue(float value,bool isPercent = false ,bool isReverse = false)
     {
         string str;
-        if (value > 0)
+        if (isReverse == true)
         {
-            str = string.Format($"<color=green>{value}</color>\n");
+            if (isPercent == true)
+            {
+                if (value > 0)
+                {
+                    str = string.Format($"<color=red>{value}</color> % \n");
+                }
+                else
+                {
+                    str = string.Format($"<color=green>{value}</color> % \n");
+                }
+            }
+            else
+            {
+                if (value > 0)
+                {
+                    str = string.Format($"<color=red>{value}</color>\n");
+                }
+                else
+                {
+                    str = string.Format($"<color=green>{value}</color>\n");
+                }
+            }
+
         }
         else
         {
-            str = string.Format($"<color=red>{value}</color>\n");
+            if (isPercent == true)
+            {
+                if (value > 0)
+                {
+                    str = string.Format($"<color=green>{value}</color> % \n");
+                }
+                else
+                {
+                    str = string.Format($"<color=red>{value}</color> % \n");
+                }
+            }
+            else
+            {
+                if (value > 0)
+                {
+                    str = string.Format($"<color=green>{value}</color>\n");
+                }
+                else
+                {
+                    str = string.Format($"<color=red>{value}</color>\n");
+                }
+            }
         }
         return str;
     }

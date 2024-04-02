@@ -25,31 +25,31 @@ public class ConsumableData : ItemSO
         StringBuilder sb = base.SetExplantion(itemSO);
         if (Health != 0)
         {
-            Utilities.AddText(sb, nameof(Health), Health);
+            Utilities.AddText(sb,"체력", Health);
         }
         if (MeleeAtk != 0)
         {
-            Utilities.AddText(sb, nameof(MeleeAtk), MeleeAtk);
+            Utilities.AddText(sb, "물리 공격력", MeleeAtk);
         }
         if (MagicAtk != 0)
         {
-            Utilities.AddText(sb, nameof(MagicAtk), MagicAtk);
+            Utilities.AddText(sb, "마법 공격력", MagicAtk);
         }
         if (Def != 0)
         {
-            Utilities.AddText(sb, nameof(Def), Def);
+            Utilities.AddText(sb, "방어력", Def);
         }
         if (AttackSpeed != 0)
         {
-            Utilities.AddText(sb, nameof(AttackSpeed), AttackSpeed);
+            Utilities.AddText(sb, "공격 속도", AttackSpeed, true);
         }
         if (MoveSpeed != 0)
         {
-            Utilities.AddText(sb, nameof(MoveSpeed), MoveSpeed);
+            Utilities.AddText(sb, "이동 속도", MoveSpeed,true);
         }
-        if (MoveSpeed != 0)
+        if (StageDuration != 0)
         {
-            Utilities.AddText(sb, nameof(MoveSpeed), MoveSpeed);
+            Utilities.AddText(sb, "지속 스테이지", StageDuration);
         }
 
         return sb;
