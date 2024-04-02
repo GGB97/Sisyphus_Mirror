@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Player : CharacterBehaviour
@@ -25,6 +26,8 @@ public class Player : CharacterBehaviour
     public event Action<float, float> PlayerHealthChange;
     public float health;
 
+    public int rune;
+
     private void Awake()
     {
         AnimationData.Initialize();
@@ -35,6 +38,8 @@ public class Player : CharacterBehaviour
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
+
+        rune = PlayerPrefs.GetInt(PlayerPrebsString.Rune); // 이걸 Player에? 아니면 GameManager에?
 
         stateMachine = new PlayerStateMachine(this);  
     }

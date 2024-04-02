@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -26,6 +27,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public float timeLimit = 50f;
     public float currentTime = 0f;
     public bool isStarted = false;
+    public bool isStageCompleted = false;
     public int currnetstage = 0;
 
     private void Start()
@@ -66,7 +68,12 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             else
             {
                 //모든 몬스터 죽기
-                EndStage();
+                if (isStageCompleted)
+                {
+                    EndStage();
+                    // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
+                    EnemySpawner.Instance.target.GetComponent<Player>().rune += 1 + (currnetstage / 10);
+                }
             }
         }
     }
@@ -78,6 +85,8 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
+        isStageCompleted = false;
+
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
             timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음

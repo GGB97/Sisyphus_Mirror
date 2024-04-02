@@ -24,6 +24,11 @@ public struct DBPath
     public static readonly string ProjectileDB = "Projectile/_Data/ProjectileDB_Sheet";
 }
 
+public struct PlayerPrebsString
+{
+    public static readonly string Rune = "Rune";
+}
+
 public enum ProjectileID
 {
     None,

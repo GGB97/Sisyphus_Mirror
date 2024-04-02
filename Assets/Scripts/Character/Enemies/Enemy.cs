@@ -9,6 +9,7 @@ public class Enemy : CharacterBehaviour
 {
     public EnemyStateMachine stateMachine;
     public Transform target;
+    Player _player;
 
     public bool IsSpawning { get; private set; }
     public float chasingDelay;
@@ -45,6 +46,8 @@ public class Enemy : CharacterBehaviour
         Agent = GetComponent<NavMeshAgent>();
 
         renderTransform = transform.GetChild(0);
+
+        _player = EnemySpawner.Instance.target.GetComponent<Player>();
 
         stateMachine = new(this);
 
@@ -85,11 +88,22 @@ public class Enemy : CharacterBehaviour
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeActiveFalse;
         OnDieEvent += DropItem;
+        if (Info.rank == EnemyRank.Boss)
+        {
+            OnDieEvent += DropRune;
+            OnDieEvent += () => 
+            {
+                DungeonManager.Instance.isStageCompleted = true;
+            };
+        }
 
         OnHitEvent += ChangeHitState;
 
         deSpawnEvent += ChangeDieState;
         deSpawnEvent += InvokeActiveFalse;
+
+
+
     }
 
     void Update()
@@ -253,7 +267,6 @@ public class Enemy : CharacterBehaviour
 
     void InvokeActiveFalse()
     {
-
         Invoke(nameof(ActiveFalse), 3f);
     }
 
@@ -266,6 +279,11 @@ public class Enemy : CharacterBehaviour
     {
         GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
         Instantiate(gold, transform.position, Quaternion.identity);
+    }
+
+    void DropRune()
+    {
+        _player.rune += DungeonManager.Instance.currnetstage % 5;
     }
 
     public void HitFade()
