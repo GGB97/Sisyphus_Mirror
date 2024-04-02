@@ -36,10 +36,8 @@ public class MeleeWeapon : MonoBehaviour
         _weaponData = DataBase.Weapon.Get(id);
         _weaponPivot = transform.parent;
 
-        //transform.position = GetRandomPosition();
         _weaponPos = GetRandomPosition();
         transform.localPosition = _weaponPos;
-        //transform.localPosition = _weaponPosY;
 
         _effect.SetActive(false);
         _isMoving = false;
@@ -90,15 +88,12 @@ public class MeleeWeapon : MonoBehaviour
         }
         else if(_animationEnd && !_canAttack)
         {
-            //_effect.SetActive(false);
-
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
-            //transform.localPosition = _weaponPosY;
 
             if (percentageComplete >= 1)
             {
-                //Debug.Log("Melee Attack End");
                 transform.localPosition = _weaponPos;
+
                 Target.Clear();
                 Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
                 _idleAnimation.isFloating = true;
