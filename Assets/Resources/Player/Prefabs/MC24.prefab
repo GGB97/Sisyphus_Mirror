@@ -1484,7 +1484,7 @@ Transform:
   - {fileID: 3802888745265380909}
   - {fileID: 1463022316639476521}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8416432582735861647
 Animator:
@@ -1528,8 +1528,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.6
   m_Radius: 0.5
-  m_SlopeLimit: 20
-  m_StepOffset: 0.3
+  m_SlopeLimit: 0
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -1610,6 +1610,7 @@ MonoBehaviour:
   HealthSystem: {fileID: 0}
   hitDelay: 0
   health: 0
+  rune: 0
 --- !u!114 &8266990602076534519
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -67,6 +67,7 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        
         if (stateMachine.DashCoolTime > player.currentStat.dashCoolTime)
         {
             stateMachine.ChangeState(stateMachine.dashState);
@@ -100,9 +101,9 @@ public class PlayerBaseState : IState
     protected Vector3 GetMovementDirection()  // x와 z축으로만 움직이도록 방향 설정
     {
 
-        Vector3 forward = new Vector3(0, 0, 1);       // stateMachine.MainCameraTransform.forward;
+        Vector3 forward = new Vector3(0, 0, 1);    // stateMachine.MainCameraTransform.forward;
         Vector3 right = new Vector3(1, 0, 0);      // stateMachine.MainCameraTransform.right;
-
+        
         return forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
     }
 

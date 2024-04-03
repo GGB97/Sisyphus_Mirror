@@ -30,10 +30,12 @@ public class PlayerIdleState : PlayerBaseState
             OnMove();
             return;
         }
+        
     }
 
     protected virtual void OnMove()  
     {
         stateMachine.ChangeState(stateMachine.walkState);
     }
+
 }
