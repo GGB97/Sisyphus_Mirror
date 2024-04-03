@@ -37,39 +37,39 @@ public class EquipmentsData : ItemSO
         StringBuilder sb = base.SetExplantion(itemSO);
         if (Health != 0)
         {
-            Utilities.AddText(sb, nameof(Health), Health);
+            Utilities.AddText(sb, "체력", Health);
         }
         if (PhysicalAtk != 0)
         {
-            Utilities.AddText(sb, nameof(PhysicalAtk), PhysicalAtk);
+            Utilities.AddText(sb, "물리 공격", PhysicalAtk);
         }
         if (MagicAtk != 0)
         {
-            Utilities.AddText(sb, nameof(MagicAtk), MagicAtk);
+            Utilities.AddText(sb, "마법 공격", MagicAtk);
         }
         if (Def != 0)
         {
-            Utilities.AddText(sb, nameof(Def), Def);
+            Utilities.AddText(sb, "방어력", Def);
         }
         if (AtkSpeed != 0)
         {
-            Utilities.AddText(sb, nameof(AtkSpeed), AtkSpeed);
+            Utilities.AddText(sb, "공격 속도", AtkSpeed, true);
         }
         if (MoveSpeed != 0)
         {
-            Utilities.AddText(sb, nameof(MoveSpeed), MoveSpeed);
+            Utilities.AddText(sb, "이동 속도", MoveSpeed, true);
         }
         if (CritRate != 0)
         {
-            Utilities.AddText(sb, nameof(CritRate), CritRate);
+            Utilities.AddText(sb, "치명타 확률", CritRate, true);
         }
         if (CritDamage != 0)
         {
-            Utilities.AddText(sb, nameof(CritDamage), CritDamage);
+            Utilities.AddText(sb, "치명타 데미지", CritDamage);
         }
         if (LifeSteal != 0)
         {
-            Utilities.AddText(sb, nameof(LifeSteal), LifeSteal);
+            Utilities.AddText(sb, "피해 흡혈", LifeSteal, true);
         }
 
         return sb;

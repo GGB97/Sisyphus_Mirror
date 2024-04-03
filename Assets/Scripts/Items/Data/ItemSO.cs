@@ -67,6 +67,7 @@ public class ItemSO
     {
         StringBuilder sb = new StringBuilder(300);
         sb.Append($"{itemSO.Description}\n");//설명 적기
+        Utilities.AddText(sb,"무게",itemSO.Weight,false,true);
         return sb;
     }
 }
