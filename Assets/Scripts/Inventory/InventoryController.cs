@@ -193,8 +193,9 @@ public class InventoryController : MonoBehaviour
             }
 
             inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));//활성화
-            inventoryHighlight.SetSize(selectedItem);//사이즈 지정
+            inventoryHighlight.SetOriginSize(selectedItem);//origin 사이즈 지정
             inventoryHighlight.SetImage(selectedItem);
+            inventoryHighlight.SetRotation(selectedItem);
             inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
         }
 
