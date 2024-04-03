@@ -4,7 +4,8 @@ using UnityEngine;
 public enum EquipmentType
 {
     Armor,
-    Accessories
+    Accessories,
+    Runestone
 }
 
 [System.Serializable]

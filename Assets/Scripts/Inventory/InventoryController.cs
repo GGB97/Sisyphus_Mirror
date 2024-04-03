@@ -592,4 +592,32 @@ public class InventoryController : MonoBehaviour
             itemDescription.ExitExplnationUI();
     }
 
+    public void AddRuneStone(ItemSO item)
+    {
+        selectedItemGrid = playerInventoryGrid;
+
+        CreateRuneStoneWithId(item.Id);
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
+    }
+
+    private void CreateRuneStoneWithId(int id) //아이템 랜덤 생성
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        selectedItem = inventoryItem;//선택한 아이템 설정
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
+        rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
+
+        ItemSO RuneStoneData = GetRuneStone(id);
+        inventoryItem.Set(RuneStoneData);//아이템 설정
+    }
+
+    public ItemSO GetRuneStone(int id)//랜덤한 아이템 반환 
+    {
+        EquipmentsData runeStoneData = DataBase.Equipments.Get(id);
+        return runeStoneData;
+    }
 }
