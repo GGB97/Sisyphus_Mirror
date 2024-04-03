@@ -16,7 +16,7 @@ public class ItemManager : MonoBehaviour
 
     public Transform PlayerTransform {  get; private set; }
     public Player Player { get; private set; }
-    public Transform weaponPivot;
+    public Transform weaponContainer;
 
     [SerializeField] PlayerBaseData _playerStats;
     [SerializeField] Status _modifier = new Status();
@@ -98,7 +98,7 @@ public class ItemManager : MonoBehaviour
     {
         foreach(var weapon in _ownWeapons)
         {
-            GameObject go = Instantiate(weapon.Prefab, weaponPivot);
+            GameObject go = Instantiate(weapon.Prefab, weaponContainer);
             weaponPrefabs.Add(go);
           
             _modifier.meleeAtk += weapon.PhysicalAtk;
