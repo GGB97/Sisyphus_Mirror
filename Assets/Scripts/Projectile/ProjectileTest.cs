@@ -9,7 +9,7 @@ public class ProjectileTest : MonoBehaviour
     public int id;
     ProjectileData _data;
 
-    public LayerMask target; // 부딪혀서 데미지를 줘야하는 하는 대상 Layer
+    [SerializeField] LayerMask _target; // 부딪혀서 데미지를 줘야하는 하는 대상 Layer
 
     public ParticleSystem ps;
     Collider _projectileCollider;
@@ -43,7 +43,7 @@ public class ProjectileTest : MonoBehaviour
         hitParticle.SetActive(false);
         _projectileCollider.enabled = true;
 
-        target = 0; // target 초기화
+        _target = 0; // target 초기화
         _projectileCollider.includeLayers = LayerData.Terrain; // 기본적으로 벽/바닥에는 부딪히고 사라져야 하니까
         _projectileCollider.excludeLayers = LayerData.Projectile; // 투사체간의 충돌로 지워지지 않게 하기 위해 초기값으로
 
@@ -73,7 +73,7 @@ public class ProjectileTest : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         int hitLayer = 1 << other.gameObject.layer;
-        bool isContained = (hitLayer & target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
+        bool isContained = (hitLayer & _target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
         if (isContained)
         {
             // 데미지 처리 예정
@@ -107,8 +107,8 @@ public class ProjectileTest : MonoBehaviour
 
     public void AddTarget(LayerMask layer) // 부딪히고 조건검사 해야할 Layer 추가
     {
-        target |= layer;
-        _projectileCollider.includeLayers |= target;
+        _target |= layer;
+        _projectileCollider.includeLayers |= _target;
     }
     
     public void AddExcludeLayer(LayerMask layer) // 부딪히지 않아야할 Layer 추가

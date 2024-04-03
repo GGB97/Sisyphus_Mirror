@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -26,6 +27,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public float timeLimit = 50f;
     public float currentTime = 0f;
     public bool isStarted = false;
+    public bool isStageCompleted = false;
     public int currnetstage = 0;
 
     private void Start()
@@ -51,12 +53,17 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //inventoryUI.SetActive(false);
         }
     }
-    
+
     private void Update()
     {
         if (isStarted == true)
         {
             UpdateTimeText();
+
+            if (isStageCompleted)
+            {
+                EndStage();
+            }
 
             if (currentTime > 0.0f)
             {
@@ -78,17 +85,19 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
+        isStageCompleted = false;
+
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
             timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 30f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
-        stageText.text = String.Format("Stage : "+ currnetstage.ToString());
+        stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
         isStarted = true;
         EnemySpawner.Instance.GameStart();
@@ -100,7 +109,10 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
-        Invoke("OpenInventory",1f);//인벤토리 열기
+        // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
+        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
+
+        Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()
     {
@@ -119,7 +131,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     }
     public override void Init()
     {
-        
+
     }
     public void Print()
     {

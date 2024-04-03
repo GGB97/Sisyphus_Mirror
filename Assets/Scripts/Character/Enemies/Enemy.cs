@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.Progress;
@@ -8,6 +9,7 @@ public class Enemy : CharacterBehaviour
 {
     public EnemyStateMachine stateMachine;
     public Transform target;
+    Player _player;
 
     public bool IsSpawning { get; private set; }
     public float chasingDelay;
@@ -19,7 +21,6 @@ public class Enemy : CharacterBehaviour
     public Collider Collider { get; private set; }
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
-
 
     Transform renderTransform;
     public Renderer enemyRenderer;
@@ -33,7 +34,7 @@ public class Enemy : CharacterBehaviour
 
     [SerializeField] Transform[] _rangeAttackPos;
     [SerializeField] ProjectileID[] _projectileTag;
-
+    [SerializeField] ProjectileID[] _areaAttackTag;
     public Action deSpawnEvent;
 
     private void Awake()
@@ -45,6 +46,8 @@ public class Enemy : CharacterBehaviour
         Agent = GetComponent<NavMeshAgent>();
 
         renderTransform = transform.GetChild(0);
+
+        _player = EnemySpawner.Instance.target.GetComponent<Player>();
 
         stateMachine = new(this);
 
@@ -85,11 +88,19 @@ public class Enemy : CharacterBehaviour
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeActiveFalse;
         OnDieEvent += DropItem;
+        if (Info.rank == EnemyRank.Boss)
+        {
+            OnDieEvent += DropRune;
+            OnDieEvent += ChangeComplete;
+        }
 
         OnHitEvent += ChangeHitState;
 
         deSpawnEvent += ChangeDieState;
         deSpawnEvent += InvokeActiveFalse;
+
+
+
     }
 
     void Update()
@@ -214,6 +225,23 @@ public class Enemy : CharacterBehaviour
         projectile.SetVelocity(1f); // 속도 배율 설정
     }
 
+    public void AreaAttack(int num)
+    {
+        GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        (int)_areaAttackTag[num],
+        target.transform.position,
+        Quaternion.identity);
+
+        AreaAttack areaAttack = go.GetComponent<AreaAttack>();
+
+        areaAttack.AddTarget(LayerData.Player);
+
+        float value = areaAttack.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        areaAttack.SetValue(value);
+
+        areaAttack.AttackStart();
+    }
+
     void StartSpawn()
     {
         IsSpawning = true;
@@ -231,25 +259,34 @@ public class Enemy : CharacterBehaviour
 
     public void DeSpawn()
     {
-        deSpawnEvent?.Invoke();
+        if (gameObject.activeSelf == true && isDie == false)
+            deSpawnEvent?.Invoke();
     }
 
     void InvokeActiveFalse()
     {
-
         Invoke(nameof(ActiveFalse), 3f);
     }
 
     void ActiveFalse()
     {
         renderTransform.DOLocalMoveY(-Agent.height, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
-
     }
 
     void DropItem()
     {
         GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
         Instantiate(gold, transform.position, Quaternion.identity);
+    }
+
+    void DropRune()
+    {
+        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+    }
+
+    void ChangeComplete()
+    {
+        DungeonManager.Instance.isStageCompleted = true;
     }
 
     public void HitFade()

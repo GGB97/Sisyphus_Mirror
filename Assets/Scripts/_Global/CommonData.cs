@@ -24,6 +24,11 @@ public struct DBPath
     public static readonly string ProjectileDB = "Projectile/_Data/ProjectileDB_Sheet";
 }
 
+public struct PlayerPrebsString
+{
+    public static readonly string Rune = "Rune";
+}
+
 public enum ProjectileID
 {
     None,
@@ -34,6 +39,9 @@ public enum ProjectileID
 
     OrangeExplosion = 40000100,
     Poison,
+
+    // AreaAttack
+    ArearAttack_Ice = 40000200
 }
 
 public enum DamageType
