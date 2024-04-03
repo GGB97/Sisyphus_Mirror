@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyInfo : CharacterBase
 {
     [Header("Enemy Info")]
-    public string test;
     public EnemyType type; // 종족
     public EnemyRank rank; // 등급
     public EnemyElement element; // 속성

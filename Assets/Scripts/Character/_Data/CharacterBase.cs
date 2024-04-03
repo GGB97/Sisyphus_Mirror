@@ -29,7 +29,7 @@ public class Status
     public float maxHealth;
 
     public float attackRange;
-    public float meleeAtk;
+    public float physicalAtk;
     public float magicAtk;
 
     public float def;
@@ -62,7 +62,7 @@ public class Status
         health = maxHealth;
 
         attackRange = baseStat.attackRange + modifier.attackRange;
-        meleeAtk = baseStat.meleeAtk + modifier.meleeAtk;
+        physicalAtk = baseStat.physicalAtk + modifier.physicalAtk;
         magicAtk = baseStat.magicAtk + modifier.magicAtk;
 
         def = baseStat.def + modifier.def;
