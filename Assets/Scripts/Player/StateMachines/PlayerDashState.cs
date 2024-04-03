@@ -9,18 +9,22 @@ public class PlayerDashState : PlayerBaseState
     }
 
     private Vector3 movementDirection;
+    private float dashTime = 0;
     public override void Enter()
     {
         stateMachine.MovementSpeedModifier = 3f;            
         movementDirection = GetMovementDirection();         // 대시 이동할 방향 
-        stateMachine.DashRange = curState.dashRange;      // 대시 지속시간 초기화
+        dashTime = curState.dashRange;                      // 대시 지속시간 초기화
+        player.Controller.detectCollisions = false;
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
+        
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.Controller.detectCollisions = true;
         stateMachine.DashCoolTime = 0;
         StopAnimation(stateMachine.Player.AnimationData.DashParameterHash);
 
@@ -29,10 +33,10 @@ public class PlayerDashState : PlayerBaseState
     public override void Update() // 대시 이동 정해진 방향으로 일정 시간 동안 이동
     {
         
-        stateMachine.DashRange -= Time.deltaTime;  // 대시 지속 시간
-        if (stateMachine.DashRange > 0)
+        dashTime -= Time.deltaTime;  // 대시 지속 시간
+        if (dashTime > 0)
         {
-            float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+            float movementSpeed = curState.moveSpeed * stateMachine.MovementSpeedModifier;
             stateMachine.Player.Controller.Move(
                 (movementDirection * movementSpeed) * Time.deltaTime
                 );

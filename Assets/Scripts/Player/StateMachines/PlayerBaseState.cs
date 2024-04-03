@@ -91,7 +91,7 @@ public class PlayerBaseState : IState
     {
         Vector3 movementDirection = GetMovementDirection();
         Rotate(movementDirection);
-        float movementSpeed = stateMachine.MovementSpeed * stateMachine.MovementSpeedModifier;
+        float movementSpeed = curState.moveSpeed * stateMachine.MovementSpeedModifier;
         stateMachine.Player.Controller.Move(
             (movementDirection * movementSpeed) * Time.deltaTime
             );

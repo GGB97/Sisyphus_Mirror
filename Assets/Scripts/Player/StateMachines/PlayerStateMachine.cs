@@ -14,13 +14,10 @@ public class PlayerStateMachine : StateMachine
     
     
     public Vector2 MovementInput { get; set; }
-    public float MovementSpeed { get; private set; }        // 기본 이동 속도
-    public float MovementSpeedModifier = 1f;                // 상태에 따른 이동속도 결정
-    public float DashRange;                                 // 대시 지속 시간
-    public float DashCoolTime = 0f;                              // 대시 쿨타임
     
-
-    public Transform MainCameraTransform { get; set; }          
+    public float MovementSpeedModifier = 1f;                // 상태에 따른 이동속도 결정
+    public float DashCoolTime = 0f;                         // 대시 쿨타임
+           
 
     public PlayerStateMachine(Player player)
     {
@@ -31,12 +28,6 @@ public class PlayerStateMachine : StateMachine
         dashState = new PlayerDashState(this);
         hitState = new PlayerHitState(this);
         dieState = new PlayerDieState(this);
-        
 
-        MainCameraTransform = Camera.main.transform;
-
-        MovementSpeed = player.currentStat.moveSpeed;
-        DashRange = player.Data.dashRange;
-        
     }
 }

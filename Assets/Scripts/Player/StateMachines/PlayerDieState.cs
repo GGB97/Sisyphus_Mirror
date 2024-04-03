@@ -13,12 +13,14 @@ public class PlayerDieState : PlayerBaseState
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DieParameterHash);
         player.enabled = false;
+        GameManager.Instance.isGameover = true;
     }
 
     public override void Exit()
     {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.DieParameterHash);
+        player.enabled = true;
     }
 
 
