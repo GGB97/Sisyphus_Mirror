@@ -146,13 +146,21 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
-            if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+            if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
-                combineButton.interactable = true;
+                combineButton.gameObject.SetActive(true);
+                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+                {
+                    combineButton.interactable = true;
+                }
+                else
+                {
+                    combineButton.interactable = false;
+                }
             }
             else
             {
-                combineButton.interactable = false;
+                combineButton.gameObject.SetActive(false);
             }
 
             if (inventoryController.CheckInventoryToStorage(currentItem) == true)
