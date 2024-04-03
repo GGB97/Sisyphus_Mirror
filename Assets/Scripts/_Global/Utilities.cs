@@ -14,9 +14,9 @@ public static class Utilities
     public static string ChangeColorWithValue(float value,bool isPercent = false ,bool isReverse = false)
     {
         string str;
-        if (isReverse == true)
+        if (isReverse == true)//값이 리버스 되어야 하는지 ( = 플레이어한테 이로운지 헤로운지)
         {
-            if (isPercent == true)
+            if (isPercent == true)//값이 %로 표현되어야 하는지
             {
                 if (value > 0)
                 {
