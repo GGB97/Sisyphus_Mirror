@@ -33,4 +33,5 @@ public class PlayerWalkState : PlayerBaseState
 
         base.OnMoveCanceled(context);
     }    
+
 }

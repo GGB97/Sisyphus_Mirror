@@ -12,12 +12,12 @@ public class PlayerDashState : PlayerBaseState
     private float dashTime = 0;
     public override void Enter()
     {
-        stateMachine.MovementSpeedModifier = 3f;            
-        movementDirection = GetMovementDirection();         // 대시 이동할 방향 
+        movementDirection = stateMachine.Player.transform.TransformDirection(Vector3.forward);     // 대시 이동할 방향 로컬좌표를 이용해 바라보는 방향으로 대시
         dashTime = curState.dashRange;                      // 대시 지속시간 초기화
         player.Controller.detectCollisions = false;
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
+        stateMachine.MovementSpeedModifier = 3f;
         
     }
 
