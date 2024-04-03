@@ -47,19 +47,41 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         RectTransform newtransform = currentItem.gameObject.GetComponent<RectTransform>();
         float posX;
         float posY;
+        float distance;
 
-        if (newtransform.position.y > 0.5f * Screen.height)//스크린 중간 보다 위에 있을 때
-        {
-            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-            posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
-        }
-        else
-        {
-            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-            posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
-        }
-        
-        rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
+        posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+        posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
+        Vector2 newPos = newtransform.position + new Vector3(posX + x, posY + y, 0);
+        distance = newPos.y - rectTransform.sizeDelta.y; //좌하단의 좌표
+        if (distance < 0)
+            newPos += new Vector2(0, -distance);
+
+        rectTransform.position = newPos;
+        //if (newtransform.position.y > 0.5f * Screen.height)//스크린 중간 보다 위에 있을 때
+        //{
+        //    posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+        //    posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
+
+        //    distance = posY - rectTransform.sizeDelta.y;
+        //    if (distance < 0)
+        //    {
+        //        posY += -distance;
+        //    }
+        //}
+        //else
+        //{
+        //    posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+        //    posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
+
+        //    distance = posY;
+        //    if (distance > Screen.height)
+        //    {
+        //        distance = Screen.height - distance;
+        //        posY += distance;
+        //    }
+        //}
+
+        //rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
     }
     public void SetCurrentItemNull()//아이템 null 초기화
     {
