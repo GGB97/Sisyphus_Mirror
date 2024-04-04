@@ -75,7 +75,7 @@ public class InventoryController : MonoBehaviour
     {
         //SelectedItemGrid = itemGrid;
         //SelectedItemGrid.ShowRandomAddableSlot();
-        player = GameManager.Instance.Player;
+        //player = GameManager.Instance.Player;
     }
     private void Update()
     {
