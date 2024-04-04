@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         currentPlayer = Instantiate(players[0]);
+        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
 
         vcam.Follow = currentPlayer.transform;
         vcam.LookAt = currentPlayer.transform;
@@ -25,9 +26,9 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangePlayer(int index)
     {
-        
         Destroy(currentPlayer);
         currentPlayer = Instantiate(players[index]);
+        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
 
         vcam.Follow = currentPlayer.transform;
         vcam.LookAt = currentPlayer.transform;

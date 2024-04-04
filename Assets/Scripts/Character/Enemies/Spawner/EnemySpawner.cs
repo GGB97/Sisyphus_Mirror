@@ -28,6 +28,11 @@ public class EnemySpawner : MonoBehaviour
         EnemyPooler.Instance.SetPool(waveData);
     }
 
+    private void Start()
+    {
+        target = GameManager.Instance.Player.transform;
+    }
+
     void SetSpawnPos()
     {
         // Plane의 스케일을 기준으로 실제 크기 계산 Plane은 기본 10x10 크기
