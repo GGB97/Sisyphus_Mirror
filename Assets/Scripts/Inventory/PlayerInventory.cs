@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PlayerInventory : ItemGrid
 {
@@ -12,25 +11,95 @@ public class PlayerInventory : ItemGrid
     private List<PanelSlot> subtractSlotList = new List<PanelSlot>();//더이상 추가 불가능한 블럭의 리스트
     private List<Vector2Int> fourVector = new List<Vector2Int>() { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) };
     private List<InventoryItem> combineList = new List<InventoryItem>();
+    private Vector2Int blockStartPosition = new Vector2Int(4, 4);
 
     // Start is called before the first frame update
     protected override void Start()
     {
         SetGridSize(10, 10);//그리드 설정
         base.Start();
-        CreateBaseBlock(gridSizeWidth, gridSizeHeight);
+        //CreateBaseBlock(gridSizeWidth, gridSizeHeight);
         maxCount = 100;
+        CreateRandomBaseBlock();
     }
 
-    public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
+    public int CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
     {
-        for (int x = gridWidth / 2 - 2; x <= gridWidth / 2; x++)//중앙 바꾸기
+        int count = 0;
+        for (int x = gridWidth / 2 - 1; x <= gridWidth / 2; x++)//중앙 바꾸기
         {
-            for (int y = gridHeight / 2 - 2; y <= gridHeight / 2; y++)
+            for (int y = gridHeight / 2 - 1; y <= gridHeight / 2; y++)
             {
                 addableSlotList.Add(panelSlots[x, y]);//생성 시 리스트에 추가
                 panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+                count++;
             }
+        }
+        return count;
+    }
+    public void CreateRandomBaseBlock(int itemId = 10113011)//중앙에 block 추가 
+    {
+        int baseCount = CreateBaseBlock(gridSizeWidth, gridSizeHeight);
+        int count = GameManager.Instance.Player.Data.startInventory;// 칸 수 설정
+        count -= baseCount;
+
+        if (count <= 0)
+            return;
+
+        ItemSO item = DataBase.Weapon.Get(itemId);//id 에 해당하는 무기 정보
+        int itemWidth = item.IconWidth; //가로
+        int itemHeight = item.IconHeight;//세로
+
+        for (int x = 0; x < itemWidth; x++)
+        {
+            for (int y = 0; y < itemHeight; y++)
+            {
+                if (panelSlots[blockStartPosition.x + x, blockStartPosition.y + y].CompareState(PanelSlotState.Null) == true)
+                {
+                    addableSlotList.Add(panelSlots[blockStartPosition.x + x, blockStartPosition.y + y]);//생성 시 리스트에 추가
+                    panelSlots[blockStartPosition.x + x, blockStartPosition.y + y].ChangeSlotState(PanelSlotState.Empty);
+                    count--;
+                }
+            }
+        }
+        if (count > 0)
+        {
+            //랜덤 칸 증가
+            for (int i = 0; i < count; i++)
+            { 
+                RandomAddbleSlot();//칸 추가
+            }
+        }
+        ItemManager.Instance.init();
+        //스타트 아이템 배치
+        //룬 스톤 배치
+    }
+    public void RandomAddbleSlot()//랜덤 칸 확장
+    {
+        int rnd;
+        int listCount = 0;
+        int x;
+        int y;
+
+        foreach (PanelSlot go in addableSlotList)
+        {
+            listCount += CheckFourPosition(go);//clear에 넣음
+        }
+
+        if (listCount > 0)//추가할 요소가 있을 때만
+        {
+            rnd = Random.Range(0, listCount);//리스트 요소(좌표)를 하나 선택
+            x = clearSlotList[rnd].posX;
+            y = clearSlotList[rnd].posY;
+
+            addableSlotList.Add(panelSlots[x, y]);//생성 시 리스트에 추가
+            panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);//해당 칸 Empty로 변경
+            clearSlotList.RemoveAt(rnd);//해당 인덱스 정보 삭제 후
+            foreach (PanelSlot go in clearSlotList)
+            {
+                go.ChangeSlotState(PanelSlotState.Null);
+            }
+            ClearToClearSlotList();//Clear 초기화 
         }
     }
     public void ShowRandomAddableSlot()
@@ -50,6 +119,27 @@ public class PlayerInventory : ItemGrid
                 break;
         }
     }
+    public int CheckFourPosition(PanelSlot panelSlot)
+    {
+        int x;
+        int y;
+        int count = 0;
+        foreach (var vector in fourVector)
+        {
+            x = panelSlot.posX + vector.x;
+            y = panelSlot.posY + vector.y;
+            if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
+            {
+                if (panelSlots[x, y].CompareState(PanelSlotState.Null))//옆이 Null일 때만 List에 넣음
+                {
+                    panelSlots[x, y].ChangeSlotState(PanelSlotState.Add);
+                    clearSlotList.Add(panelSlots[x, y]);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
     public void ShowAddableSlot(PanelSlot panelSlot, ref int currentAddSlot)
     {
         List<Vector2Int> addPositionArr = new List<Vector2Int>();//추가 가능한 칸의 좌표 배열
@@ -61,7 +151,7 @@ public class PlayerInventory : ItemGrid
             y = panelSlot.posY + vector.y;
             if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
             {
-                if (panelSlots[x, y].CompareState(PanelSlotState.Null)|| panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 널일 때만 List에 넣음
+                if (panelSlots[x, y].CompareState(PanelSlotState.Null)|| panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 Null과 Add일 때만 List에 넣음
                 {
                     addPositionArr.Add(new Vector2Int(x, y));
                 }
