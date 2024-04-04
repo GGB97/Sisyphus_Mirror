@@ -5489,6 +5489,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1045640207}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1045640211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 779668603036715083, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+    type: 3}
+  m_PrefabInstance: {fileID: 1045640207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e51171e37d8a4ba6942085b29b481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1046574019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6736,7 +6748,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -6757,7 +6769,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -7452,8 +7464,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55e5de7f1954ffa46be62ee4bb41e5df, type: 2}
   - {fileID: 11400000, guid: 46334cc144a25ec4cbcb6e511d94d043, type: 2}
   addCount: 6
+  blocksPerLevel: 2
   startPosition: {x: 0, y: 0}
   startRotation: 0
+  player: {fileID: 1045640211}
+  prevLevel: 1
+  isAdding: 0
   itemCost:
   - {fileID: 1597498715}
   - {fileID: 1137396150}
@@ -8861,7 +8877,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1387423373}
         m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
-        m_MethodName: StartButton
+        m_MethodName: AddBlock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
