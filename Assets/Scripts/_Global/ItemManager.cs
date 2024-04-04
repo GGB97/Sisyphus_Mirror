@@ -156,6 +156,7 @@ public class ItemManager : MonoBehaviour
         }
 
         ResetPlayerStat();
+        ItemInit();
     }
 
     public void ResetModifierStat()

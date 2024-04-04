@@ -7571,7 +7571,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1298409235}
         m_TargetAssemblyTypeName: InventoryController, Assembly-CSharp
-        m_MethodName: StartButton
+        m_MethodName: AddBlock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7832,6 +7832,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078759872}
   m_CullTransparentMesh: 1
+--- !u!114 &1115693427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 779668603036715083, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+    type: 3}
+  m_PrefabInstance: {fileID: 109229745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e51171e37d8a4ba6942085b29b481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130437407
 GameObject:
   m_ObjectHideFlags: 0
@@ -8591,8 +8603,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55e5de7f1954ffa46be62ee4bb41e5df, type: 2}
   - {fileID: 11400000, guid: 46334cc144a25ec4cbcb6e511d94d043, type: 2}
   addCount: 6
+  blocksPerLevel: 2
   startPosition: {x: 0, y: 0}
   startRotation: 0
+  player: {fileID: 1115693427}
+  prevLevel: 1
+  isAdding: 0
   itemCost:
   - {fileID: 2124110127}
   - {fileID: 1875696936}
