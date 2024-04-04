@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181bde3081cb4ee469f43c476544eaf8, type: 3}
+  m_Name: PlayerUpgradeDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 50000000
+    _name: "\uBB3C\uB9AC \uACF5\uACA9\uB825 \uC99D\uAC00"
+    _desc: "\uACF5\uACA9\uB825 #N \uC99D\uAC00"
+    _type: 0
+    _target: 1234
+    _count: 50
+    _upgradeType: 0
+    _maxGrade: 3
+    _reward: 5
+    _currentGrade: 0
+    _cost_1: 50
+    _cost_2: 100
+    _cost_3: 150
+    _cost_4: 0
+    _cost_5: 0
+    _modifier_1: 5
+    _modifier_2: 10
+    _modifier_3: 15
+    _modifier_4: 0
+    _modifier_5: 0

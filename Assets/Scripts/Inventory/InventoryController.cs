@@ -46,9 +46,15 @@ public class InventoryController : MonoBehaviour
     public BlockColor[] blockColors;//등급의 색깔 배열
     public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>(); 
     public int addCount = 6;//추가 칸 개수
+    [SerializeField]
+    private int blocksPerLevel = 2;//레벨 당 추가할 블록 수
 
     public Vector2 startPosition;//처음 위치
-    public float startRotation;
+    public float startRotation;//처음 회전상태
+
+    public Player player;
+    public int prevLevel = 1;//플레이어의 이전 레벨
+    public bool isAdding = false;//칸 추가 중인지 
 
     [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
 
@@ -72,7 +78,10 @@ public class InventoryController : MonoBehaviour
     }
     private void Update()
     {
-        ItemIconDrag();
+        if (isAdding == true)//추가 중이면 아무 동작 하지 않겠다.
+            return;
+
+        ItemIconDrag();//아이콘 드래그
 
         //if (Input.GetKeyDown(KeyCode.W))
         //{
@@ -91,7 +100,7 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.Show(false); //하이라이트 끔
             return;
         }
-        HandleHightlight();//하이라이트 
+        HandleHightlight();//하이라이트 표시
 
         //if (Input.GetMouseButtonDown(0))
         //{
@@ -112,11 +121,17 @@ public class InventoryController : MonoBehaviour
         selectedItem.Rotate();
     }
 
-    public void StartButton()//칸 확장 기능
+    public void AddBlock()//칸 확장 기능
     {
-        addCount = 6;
-        SelectedItemGrid = playerInventoryGrid;
-        playerInventoryGrid.ShowRandomAddableSlot();
+        //플레이어 레벨에 맞게 addCount 변경
+        int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
+        addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
+        Debug.Log($"추가할 칸 수 : {addCount}");
+        if (addCount != 0)//추가할 블록이 있다면 실행
+        { 
+            SelectedItemGrid = playerInventoryGrid;
+            playerInventoryGrid.ShowRandomAddableSlot();
+        }
     }
     private void InsertRandomItem()//아이템 랜덤 생성 후 배치
     {
@@ -439,7 +454,7 @@ public class InventoryController : MonoBehaviour
         DragPlaceItem(storagePosition.Value);
         selectedItemGrid = playerInventoryGrid;
     }
-    public void CombineWeaponItem(InventoryItem currentItem)
+    public void CombineWeaponItem(InventoryItem currentItem)// 무기 업그레이드
     {
         int posX = currentItem.onGridPositionX;//처음 위치
         int posY = currentItem.onGridPositionY;//처음 위치
@@ -460,12 +475,29 @@ public class InventoryController : MonoBehaviour
         playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
         playerInventoryGrid.AddCurrentCount(1);
     }
-    public bool CheckUpgradableItem(int targetid)
+    public bool CheckUpgradableItem(int targetid)//인벤토리에서 무기 업그레이드가 가능한지 체크
     {
         if (playerInventoryGrid.FindSameWeaponItem(targetid) == false)
             return false;
         else
             return true;
+    }
+    public int LevelCounting()
+    {
+        int currentLevel = player.Data.LV;//현재 레벨을 가져옴
+        int count = currentLevel - prevLevel;
+        prevLevel = currentLevel;
+        if (count > 0)
+        {
+            isAdding = true;
+            return count;
+            //블럭 추가 실행
+        }
+        else
+        {
+            isAdding = false;
+            return 0;
+        }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
