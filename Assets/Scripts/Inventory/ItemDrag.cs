@@ -22,6 +22,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerDown(PointerEventData eventData) //마우스를 누른 순간 실행
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (isPressed == true)
             return;
 
@@ -53,6 +56,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
 
     public void OnPointerUp(PointerEventData eventData)//손을 뗐을 때 실행
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
             image.raycastTarget = true;
@@ -62,6 +68,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (inventoryController.selectedItem != null)
         {
             return;
@@ -80,6 +89,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         ExitUI();
         Debug.Log("Exit");
     }

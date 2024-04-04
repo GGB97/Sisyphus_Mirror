@@ -130,6 +130,10 @@ public class PlayerInventory : ItemGrid
         {
             ShowRandomAddableSlot();
         }
+        else
+        {
+            InventoryController.Instance.isAdding = false;
+        }
     }
     public void ClearToClearSlotList()
     {
