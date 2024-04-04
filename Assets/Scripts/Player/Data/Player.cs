@@ -90,5 +90,14 @@ public class Player : CharacterBehaviour
     {
         action?.Invoke();
     }
-    
+
+    public void GetEXP(int exp)
+    {
+        Data.EXP += exp;
+        if (Data.EXP >= Data.maxEXP)
+        {
+            Data.EXP = 0;
+            Data.LV ++;
+        }
+    }
 }

@@ -126,13 +126,13 @@ public class PlayerBaseState : IState
         stateMachine.Player.Animator.SetBool(animationHash, false);
     }
 
-    public void GetEXP(int exp)
-    {
-        playerData.EXP += exp;
-        if(playerData.EXP >= playerData.maxEXP )
-        {
-            playerData.EXP = 0;
-            playerData.LV += 1;
-        }
-    }
+    //public void GetEXP(int exp)
+    //{
+    //    playerData.EXP += exp;
+    //    if(playerData.EXP >= playerData.maxEXP )
+    //    {
+    //        playerData.EXP = 0;
+    //        playerData.LV ++;
+    //    }
+    //}
 }
