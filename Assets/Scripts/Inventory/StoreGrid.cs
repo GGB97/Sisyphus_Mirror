@@ -36,34 +36,34 @@ public class StoreGrid : ItemGrid
     {
         currentStoreItem.Add(item);
 
-        if (panelSlots[0, 0].CompareState(PanelSlotState.Empty))
+        if (panelSlots[1, 1].CompareState(PanelSlotState.Empty))
         {
-            PlaceItem(item, 0, 0);
-            InventoryController.Instance.itemCost[0].transform.position = SetTransform(item);
+            PlaceItem(item, 1, 1);
+            InventoryController.Instance.itemCost[0].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[0].text = item.itemSO.Price.ToString();
         }
-        else if (panelSlots[0, 7].CompareState(PanelSlotState.Empty))
+        else if (panelSlots[1, 7].CompareState(PanelSlotState.Empty))
         {
-            PlaceItem(item, 0, 7);
-            InventoryController.Instance.itemCost[1].transform.position = SetTransform(item);
+            PlaceItem(item, 1, 7);
+            InventoryController.Instance.itemCost[1].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[1].text = item.itemSO.Price.ToString();
         }
-        else if (panelSlots[3, 3].CompareState(PanelSlotState.Empty))
+        else if (panelSlots[4, 4].CompareState(PanelSlotState.Empty))
         {
-            PlaceItem(item, 3, 3);
-            InventoryController.Instance.itemCost[2].transform.position = SetTransform(item);
+            PlaceItem(item, 4, 4);
+            InventoryController.Instance.itemCost[2].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[2].text = item.itemSO.Price.ToString();
         }
-        else if (panelSlots[7, 0].CompareState(PanelSlotState.Empty))
+        else if (panelSlots[7, 1].CompareState(PanelSlotState.Empty))
         {
-            PlaceItem(item, 7, 0);
-            InventoryController.Instance.itemCost[3].transform.position = SetTransform(item);
+            PlaceItem(item, 7, 1);
+            InventoryController.Instance.itemCost[3].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[3].text = item.itemSO.Price.ToString();
         }
         else
         {
             PlaceItem(item, 7, 7);
-            InventoryController.Instance.itemCost[4].transform.position = SetTransform(item);
+            InventoryController.Instance.itemCost[4].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[4].text = item.itemSO.Price.ToString();
         }
     }
@@ -112,6 +112,6 @@ public class StoreGrid : ItemGrid
         RectTransform newtransform = item.gameObject.GetComponent<RectTransform>();
         float posX = TileSizeWidth * item.itemSO.IconWidth / 4;
         float posY = TileSizeHeight * item.itemSO.IconHeight / 2;
-        return newtransform.position + new Vector3(posX - (TileSizeWidth * item.itemSO.IconWidth / 2), posY - TileSizeHeight * item.itemSO.IconHeight - TileSizeHeight, 0);
+        return newtransform.position + new Vector3(posX - (TileSizeWidth * item.itemSO.IconWidth / 4), posY - TileSizeHeight * item.itemSO.IconHeight - TileSizeHeight, 0);
     }
 }
