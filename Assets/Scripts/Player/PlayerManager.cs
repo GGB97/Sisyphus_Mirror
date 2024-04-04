@@ -8,11 +8,11 @@ public class PlayerManager : SingletoneBase<PlayerManager>
 
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
-
+    
     [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {
-      
+        
     }
 
     private void Start()
@@ -25,6 +25,7 @@ public class PlayerManager : SingletoneBase<PlayerManager>
 
     public void ChangePlayer(int index)
     {
+        
         Destroy(currentPlayer);
         currentPlayer = Instantiate(players[index]);
 

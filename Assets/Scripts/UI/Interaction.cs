@@ -8,14 +8,13 @@ using System;
 
 public class Interaction : MonoBehaviour
 {
-    public GameObject InteractionInfo;
-    public GameObject OpenUI;
-    private bool onInteract = false;
+    public GameObject InteractionInfo;      // 상호작용할 오브젝트 정보
+    public GameObject OpenUI;               // 상호작용시 나올 UI
+    private bool onInteract = false;        // 상호작용할 거리에 있는지 확인
 
 
     public void OnInteraction()
     {
-        Debug.Log("eeeee");
         if (onInteract == true)
         {
             OpenUI.SetActive(true);
@@ -28,8 +27,7 @@ public class Interaction : MonoBehaviour
         if(LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
             InteractionInfo.SetActive(true);
-            onInteract = true;
-            Debug.Log(onInteract);
+            onInteract = true;            
         }
     }
 
