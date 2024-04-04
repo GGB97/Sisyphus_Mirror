@@ -12,7 +12,7 @@ public class RuneUI : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameManager.Instance.Player;
         _player.PlayerRuneChange += UpdateRune;
         UpdateRune();
     }
