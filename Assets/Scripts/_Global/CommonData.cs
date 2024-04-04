@@ -22,6 +22,7 @@ public struct DBPath
 {
     public static readonly string EnemyDB = "Enemy/Data/EnemyDB_Sheet";
     public static readonly string ProjectileDB = "Projectile/_Data/ProjectileDB_Sheet";
+    public static readonly string PlayerUpgradeDB = "Task/Upgrade/Data/PlayerUpgradeDB_Sheet";
 }
 
 public struct PlayerPrebsString
@@ -49,3 +50,15 @@ public enum DamageType
     Physical,
     Magic
 }
+
+#region Task
+public enum TaskType
+{
+    Upgrade
+}
+
+public enum UpgradeType
+{
+    PhysicalAtk
+}
+#endregion

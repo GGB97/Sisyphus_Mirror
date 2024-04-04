@@ -15,7 +15,7 @@ MonoBehaviour:
   normal: 6057ce0101decf01e171d401e071d40180f8d501207fd701c005d901
   elite: 717ece01
   boss: 43cdd701
-  maxEnemyCnt: 50
-  numPerSpawn: 5
+  maxEnemyCnt: 100
+  numPerSpawn: 10
   spawnDelay: 2
   eliteSpawnChance: 5

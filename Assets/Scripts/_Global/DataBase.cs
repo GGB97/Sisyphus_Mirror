@@ -9,7 +9,8 @@ public class DataBase : SingletoneBase<DataBase>
     [SerializeField] EquipmentsDB _equipments;
     [SerializeField] ConsumableDB _consumable;
     [SerializeField] PlayerDB _player;
-    [SerializeField] ProjectileDB _Projectile; 
+    [SerializeField] ProjectileDB _Projectile;
+    [SerializeField] PlayerUpgradeDB _PlayerUpgrade;
 
     public static EnemyDB EnemyStats
     {
@@ -74,6 +75,17 @@ public class DataBase : SingletoneBase<DataBase>
                 Instance._Projectile = new ProjectileDB();
 
             return Instance._Projectile;
+        }
+    }
+
+    public static PlayerUpgradeDB PlayerUpgrade
+    {
+        get
+        {
+            if (Instance._PlayerUpgrade == null)
+                Instance._PlayerUpgrade = new PlayerUpgradeDB();
+
+            return Instance._PlayerUpgrade;
         }
     }
 }
