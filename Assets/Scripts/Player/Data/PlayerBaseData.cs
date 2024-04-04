@@ -20,5 +20,5 @@ public class PlayerBaseData : CharacterBase
     public float maxEXP;
 
     public int startItemID;
-
+    public int startInventory;
 }

@@ -145,7 +145,7 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
 
     public void SelectButton()
     {
-        Debug.Log(prevPageIndex);
+      //  Debug.Log(prevPageIndex);
         PlayerManager.Instance.ChangePlayer(prevPageIndex);
         gameObject.SetActive(false);
     }
