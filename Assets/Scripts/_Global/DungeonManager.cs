@@ -110,7 +110,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
         // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
-        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
+        GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
         Invoke("OpenInventory", 1f);//인벤토리 열기
     }
