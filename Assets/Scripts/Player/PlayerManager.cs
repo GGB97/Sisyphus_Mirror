@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : SingletoneBase<PlayerManager>
+public class PlayerManager : MonoBehaviour
 {
-
+    public static PlayerManager Instance;
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
     
     [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {
-        
+        Instance = this;
     }
 
     private void Start()
