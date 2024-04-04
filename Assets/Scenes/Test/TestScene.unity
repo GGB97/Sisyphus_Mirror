@@ -671,20 +671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1039058670938535752, guid: 893321a39c3a8b64ebca7770db307908,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2673227611137731941, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_Name
       value: Inventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 2673227611137731941, guid: 893321a39c3a8b64ebca7770db307908,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4886152320439362227, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
@@ -821,6 +811,8 @@ MonoBehaviour:
   - id: 40000100
     size: 5
   - id: 40000101
+    size: 5
+  - id: 40000200
     size: 5
   _spawnObjects: []
 --- !u!4 &250687861
