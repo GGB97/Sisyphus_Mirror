@@ -154,16 +154,6 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(weapon);
         }
-        //foreach (var weapon in _ownWeapons)
-        //{
-        //    _playerStats.meleeAtk -= weapon.PhysicalAtk;
-        //    _playerStats.magicAtk -= weapon.MagicAtk;
-        //    //_playerStats.attackSpeed += weapon.AtkSpeed;
-        //    _playerStats.critRate -= weapon.CritRate;
-        //    _playerStats.critDamage -= weapon.CritDamage;
-        //    //_playerStats.attackRange += weapon.Range;
-        //    _playerStats.lifeSteal -= weapon.LifeSteal;
-        //}
 
         ResetPlayerStat();
     }

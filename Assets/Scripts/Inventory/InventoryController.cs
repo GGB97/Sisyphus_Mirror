@@ -498,7 +498,7 @@ public class InventoryController : MonoBehaviour
                 itemData = DataBase.Consumable.Get(selectedItemId);
                 break;
             case 1:
-                selectedItemId = UnityEngine.Random.Range(0, DataBase.Equipments.GetItemIdCount());
+                selectedItemId = UnityEngine.Random.Range(1, DataBase.Equipments.GetItemIdCount()); // 룬스톤을 제외한 나머지 Equipments 범위에서 ID 가져오기
                 selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
                 itemData = DataBase.Equipments.Get(selectedItemId);
                 break;
