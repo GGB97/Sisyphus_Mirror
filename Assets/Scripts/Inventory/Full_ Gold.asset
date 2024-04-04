@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f181361d2397b41baf00f62eaeca00, type: 3}
   m_Name: Full_ Gold
   m_EditorClassIdentifier: 
-  color: {r: 0.654902, g: 0.39215687, b: 0.23529412, a: 1}
+  Grade: 3
+  color: {r: 1, g: 0.83137256, b: 0.3254902, a: 1}

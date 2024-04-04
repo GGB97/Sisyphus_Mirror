@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -676,6 +676,23 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1971782839}
+    - target: {fileID: 1039058670938535752, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: blockColors.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039058670938535752, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: blockColors.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cbdea3adbd0e1d4e8146922c88d55b2,
+        type: 2}
+    - target: {fileID: 1039058670938535752, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: slotSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: c9ef5ee1bbc59d24b97fe7d7e70e3a94,
+        type: 3}
     - target: {fileID: 2673227611137731941, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_Name
@@ -1024,6 +1041,7 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 0
     startItemID: 0
+    startInventory: 0
   _modifier:
     health: 0
     maxHealth: 0
