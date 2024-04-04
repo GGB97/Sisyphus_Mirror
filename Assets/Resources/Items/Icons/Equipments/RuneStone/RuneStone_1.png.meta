@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 83ea0f288e5c367408d92ad6ff9e1e9b
+guid: f544becabcd96834ab1fe59b9e81d805
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: 0
+    aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -63,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DescriptionBar_3_0
+      name: RuneStone_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 28
-        width: 1005
-        height: 465
+        x: 1355
+        y: 98
+        width: 1083
+        height: 1524
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fd32de3e1cb6e74f942a3ea9e17c969
-      internalID: -632565019
+      spriteID: edfacbc417aba6842aa6e1cae5f91ba8
+      internalID: -2031038965
       vertices: []
       indices: 
       edges: []
@@ -133,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 591822612590e0e44a9a2f105e7e0ab5
+    spriteID: c585ec73773d2d04293111dad8419293
     internalID: 0
     vertices: []
     indices: 
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DescriptionBar_3_0: -632565019
+      RuneStone_1: -2031038965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

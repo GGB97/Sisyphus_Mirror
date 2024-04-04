@@ -59,6 +59,7 @@ public class ItemSO
     {
         get
         {
+            if (_prefabPath.Equals("None")) return null;
             if(_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
             return _prefab;
         }
