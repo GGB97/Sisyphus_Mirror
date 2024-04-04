@@ -26,11 +26,13 @@ public class EnemySpawner : MonoBehaviour
         maxEnemyCnt = waveData.maxEnemyCnt;
         currentEnemyCnt = 0;
         EnemyPooler.Instance.SetPool(waveData);
+
+        target = GameManager.Instance.Player.transform;
     }
 
     private void Start()
     {
-        //target = GameManager.Instance.Player.transform;
+        target = GameManager.Instance.Player.transform;
     }
 
     void SetSpawnPos()

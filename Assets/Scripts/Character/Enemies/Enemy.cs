@@ -47,8 +47,6 @@ public class Enemy : CharacterBehaviour
 
         renderTransform = transform.GetChild(0);
 
-        _player = EnemySpawner.Instance.target.GetComponent<Player>();
-
         stateMachine = new(this);
 
         switch (Info.rank) // 등급별로 동적 장애물 회피 성능을 조절해서 최적화?
@@ -63,8 +61,6 @@ public class Enemy : CharacterBehaviour
                 Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
                 break;
         }
-
-        Init();
     }
 
     private void OnEnable()
@@ -281,7 +277,7 @@ public class Enemy : CharacterBehaviour
 
     void DropRune()
     {
-        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+        GameManager.Instance.Player.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
     }
 
     void ChangeComplete()
