@@ -33,6 +33,7 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 100
     startItemID: 10113011
+    startInventory: 6
   - health: 0
     maxHealth: 50
     attackRange: 0
@@ -53,3 +54,4 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 100
     startItemID: 10112011
+    startInventory: 6
