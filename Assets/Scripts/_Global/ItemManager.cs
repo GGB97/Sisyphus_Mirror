@@ -102,7 +102,7 @@ public class ItemManager : MonoBehaviour
             GameObject go = Instantiate(weapon.Prefab, weaponContainer);
             weaponPrefabs.Add(go);
           
-            _modifier.meleeAtk += weapon.PhysicalAtk;
+            _modifier.physicalAtk += weapon.PhysicalAtk;
             _modifier.magicAtk += weapon.MagicAtk;
 
             _modifier.attackSpeed += weapon.AtkSpeed;
@@ -129,7 +129,7 @@ public class ItemManager : MonoBehaviour
         {
             _modifier.maxHealth += equipment.Health;
 
-            _modifier.meleeAtk += equipment.PhysicalAtk;
+            _modifier.physicalAtk += equipment.PhysicalAtk;
             _modifier.magicAtk += equipment.MagicAtk;
 
             _modifier.def += equipment.Def;
@@ -172,7 +172,7 @@ public class ItemManager : MonoBehaviour
     {
         _modifier.maxHealth = 0;
         _modifier.attackRange = 0;
-        _modifier.meleeAtk = 0;
+        _modifier.physicalAtk = 0;
         _modifier.magicAtk = 0;
 
         _modifier.def = 0;
@@ -196,7 +196,7 @@ public class ItemManager : MonoBehaviour
     {
         _modifier.maxHealth = -_modifier.maxHealth;
         _modifier.attackRange = -_modifier.attackRange;
-        _modifier.meleeAtk = -_modifier.meleeAtk;
+        _modifier.physicalAtk = -_modifier.physicalAtk;
         _modifier.magicAtk = -_modifier.magicAtk;
 
         _modifier.def = -_modifier.def;

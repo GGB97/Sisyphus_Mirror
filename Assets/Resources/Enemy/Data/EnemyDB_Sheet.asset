@@ -16,7 +16,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 2
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -29,7 +29,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Slime_Normal
-    test: 1,2,3,4
     type: 0
     rank: 0
     element: 0
@@ -39,7 +38,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 1.6
-    meleeAtk: 5
+    physicalAtk: 5
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
@@ -52,7 +51,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30010001
     prefabPath: 
-    test: 
     type: 0
     rank: 1
     element: 0
@@ -62,7 +60,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 700
     attackRange: 1.6
-    meleeAtk: 7
+    physicalAtk: 7
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -75,7 +73,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30020001
     prefabPath: 
-    test: 
     type: 0
     rank: 2
     element: 0
@@ -85,7 +82,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.7
-    meleeAtk: 2
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -98,7 +95,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30100000
     prefabPath: Enemy/Prefabs/Normal/Enemy_TurtleShell_Normal
-    test: 
     type: 1
     rank: 0
     element: 0
@@ -108,7 +104,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 1.7
-    meleeAtk: 3
+    physicalAtk: 3
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -121,7 +117,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30110001
     prefabPath: 
-    test: 
     type: 1
     rank: 1
     element: 0
@@ -131,7 +126,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 700
     attackRange: 1.7
-    meleeAtk: 7
+    physicalAtk: 7
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -144,7 +139,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30120001
     prefabPath: 
-    test: 
     type: 1
     rank: 2
     element: 0
@@ -154,7 +148,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 2
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -167,7 +161,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30200000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Spider_Normal
-    test: 
     type: 2
     rank: 0
     element: 0
@@ -177,7 +170,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 30
     attackRange: 2.3
-    meleeAtk: 3
+    physicalAtk: 3
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -190,7 +183,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30300000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Skeleton_Normal
-    test: 
     type: 3
     rank: 0
     element: 0
@@ -200,7 +192,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 100
     attackRange: 4
-    meleeAtk: 6
+    physicalAtk: 6
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
@@ -213,7 +205,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30310001
     prefabPath: Enemy/Prefabs/Elite/Enemy_Skeleton_Elite
-    test: 
     type: 3
     rank: 1
     element: 0
@@ -223,7 +214,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 3
-    meleeAtk: 4
+    physicalAtk: 4
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -236,7 +227,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30400001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
-    test: 
     type: 4
     rank: 0
     element: 0
@@ -246,7 +236,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 100000
     attackRange: 6
-    meleeAtk: 10
+    physicalAtk: 10
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -259,7 +249,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30420001
     prefabPath: Enemy/Prefabs/Boss/Enemy_Orc_Boss
-    test: 
     type: 4
     rank: 2
     element: 0
@@ -269,7 +258,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 2
-    meleeAtk: 2
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -282,7 +271,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30600000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Bat_Normal
-    test: 
     type: 6
     rank: 0
     element: 0
@@ -292,7 +280,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 3
-    meleeAtk: 3
+    physicalAtk: 3
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -305,7 +293,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30700000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Dragon_Normal
-    test: 
     type: 7
     rank: 0
     element: 0
@@ -315,7 +302,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 50
     attackRange: 2.5
-    meleeAtk: 3
+    physicalAtk: 3
     magicAtk: 0
     def: 6
     attackSpeed: 0.5
@@ -328,7 +315,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30700001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
-    test: 
     type: 5
     rank: 0
     element: 0
@@ -338,7 +324,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 30
     attackRange: 2
-    meleeAtk: 3
+    physicalAtk: 3
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -351,7 +337,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30800000
     prefabPath: Enemy/Prefabs/Normal/Enemy_MonsterPlant_Normal
-    test: 
     type: 8
     rank: 0
     element: 0
@@ -361,7 +346,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 30
     attackRange: 10
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 4
     def: 2
     attackSpeed: 0.3
@@ -374,7 +359,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30900000
     prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage_Normal
-    test: 
     type: 9
     rank: 0
     element: 0
@@ -384,7 +368,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 300
     attackRange: 15
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 10
     def: 5
     attackSpeed: 0.6
@@ -397,7 +381,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 30920003
     prefabPath: Enemy/Prefabs/Boss/Enemy_EvilMage_Boss
-    test: 
     type: 9
     rank: 2
     element: 0
@@ -407,7 +390,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 100
     attackRange: 20
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 5
     def: 5
     attackSpeed: 0.5
@@ -420,7 +403,6 @@ MonoBehaviour:
     lifeSteal: 0
     id: 31000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Worm_Normal
-    test: 
     type: 10
     rank: 0
     element: 0

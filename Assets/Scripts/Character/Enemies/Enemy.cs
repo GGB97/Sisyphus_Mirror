@@ -177,12 +177,12 @@ public class Enemy : CharacterBehaviour
             if (type == SkillType.AutoAttack)
             {
                 Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
-                hs.TakeDamage(currentStat.meleeAtk);
+                hs.TakeDamage(currentStat.physicalAtk);
             }
             else if (type == SkillType.Skill01)
             {
                 Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
-                hs.TakeDamage(currentStat.meleeAtk * 0.4f);
+                hs.TakeDamage(currentStat.physicalAtk * 0.4f);
             }
         }
     }
@@ -218,7 +218,7 @@ public class Enemy : CharacterBehaviour
         projectile.AddTarget(LayerData.Player); // Player를 맞춰야함
         projectile.AddExcludeLayer(LayerData.Enemy); // Enemy는 충돌하지 않게 설정
 
-        float value = projectile.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        float value = projectile.GetDamageType == DamageType.Physical ? currentStat.physicalAtk : currentStat.magicAtk;
         projectile.SetValue(value);
 
         //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
@@ -236,7 +236,7 @@ public class Enemy : CharacterBehaviour
 
         areaAttack.AddTarget(LayerData.Player);
 
-        float value = areaAttack.GetDamageType == DamageType.Physical ? currentStat.meleeAtk : currentStat.magicAtk;
+        float value = areaAttack.GetDamageType == DamageType.Physical ? currentStat.physicalAtk : currentStat.magicAtk;
         areaAttack.SetValue(value);
 
         areaAttack.AttackStart();
