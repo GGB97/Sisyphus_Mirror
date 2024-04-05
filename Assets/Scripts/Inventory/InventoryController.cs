@@ -484,12 +484,17 @@ public class InventoryController : MonoBehaviour
     }
     public void UseConsumableItem(InventoryItem currentItem)
     {
-        ConsumableData itemSO = new ConsumableData();
-        itemSO = currentItem.itemSO as ConsumableData;
-        if (itemSO != null)
+        //InventoryItem consumableItem = new InventoryItem();
+        //consumableItem.Set(currentItem.itemSO);
+        //ConsumableData consumableData = consumableItem.itemSO as ConsumableData;
+        ConsumableData consumableData = currentItem.itemSO as ConsumableData;
+
+        if (consumableData != null)
         {
             playerInventoryGrid.PickUpItem(currentItem.onGridPositionX,currentItem.onGridPositionY);
-            ItemManager.Instance.UseConsumable(itemSO);
+            SelectedItemGrid.AddCurrentCount(-1);
+
+            ItemManager.Instance.UseConsumable(consumableData);
             playerInventoryGrid.SubtractItemFromInventory(currentItem);
             Destroy(currentItem.gameObject);
         }
