@@ -31,11 +31,19 @@ public class RuneStoneUI : MonoBehaviour
 
     List<PlayerStatType> _selectedStatus = new List<PlayerStatType>();
 
+    //[Header("RuneStoneSlider")]
+    //[SerializeField] Slider _runeStoneSlider;
+    //bool _enabled = false;
+    //public float sliderRate = 0.05f;
+
     // Start is called before the first frame update
     void Start()
     {
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
+
+        //_slider.value = 0;
+        //_enabled = false;
     }
 
     // Update is called once per frame

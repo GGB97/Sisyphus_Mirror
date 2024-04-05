@@ -320,6 +320,7 @@ public class ItemManager : MonoBehaviour
         _playerStats.InitStatus(_playerStats, _modifier);
     }
 
+    // 사용 아이템 사용 시 호출해주세요!
     public void UseConsumable(ConsumableData consumable)
     {
         _usedConsumable.Add(consumable);
@@ -327,6 +328,7 @@ public class ItemManager : MonoBehaviour
         ModifyPlayerStat(consumable, true);
     }
 
+    // 아이템의 지속 시간을 갱신 및 남은 지속 시간 체크
     private void SetConsumableDuration()
     {
         if(_usedConsumable.Count != 0)
