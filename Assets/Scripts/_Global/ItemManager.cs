@@ -29,6 +29,7 @@ public class ItemManager : MonoBehaviour
     private EquipmentsData _tempEquipments;
     //private ConsumableData _tempConsumable;
     private List<ConsumableData> _usedConsumable = new List<ConsumableData>();
+    private List<int> _consumableStageDuration = new List<int>();
 
     public List<GameObject> weaponPrefabs = new List<GameObject>();
 
@@ -43,7 +44,7 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         InventoryController.Instance.nextStage += RemoveAllItems;
-        InventoryController.Instance.nextStage += SetConsumableDuration;
+        DungeonManager.Instance.OnStageEnd += SetConsumableDuration;
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         //Player = GameManager.Instance.Player;
@@ -323,7 +324,11 @@ public class ItemManager : MonoBehaviour
     // 사용 아이템 사용 시 호출해주세요!
     public void UseConsumable(ConsumableData consumable)
     {
-        _usedConsumable.Add(consumable);
+        if (consumable.StageDuration != 0)
+        {
+            _usedConsumable.Add(consumable);
+            _consumableStageDuration.Add(consumable.StageDuration);
+        }
 
         ModifyPlayerStat(consumable, true);
     }
@@ -333,14 +338,23 @@ public class ItemManager : MonoBehaviour
     {
         if(_usedConsumable.Count != 0)
         {
-            foreach(var consumable in _usedConsumable)
-            {
-                int Duration = consumable.SetDuration();
+            //foreach (ConsumableData consumable in _usedConsumable)
+            //{
+            //    int Duration = consumable.SetDuration();
 
-                if (Duration <= 0)
+            //    if (Duration <= 0)
+            //    {
+            //        ModifyPlayerStat(consumable, false);
+            //        _usedConsumable.Remove(consumable);
+            //    }
+            //}
+            for (int i = _usedConsumable.Count - 1; i >= 0; --i)
+            {
+                _consumableStageDuration[i]--;
+                if (_consumableStageDuration[i] <= 0)
                 {
-                    ModifyPlayerStat(consumable, false);
-                    _usedConsumable.Remove(consumable);
+                    ModifyPlayerStat(_usedConsumable[i], false);
+                    _usedConsumable.RemoveAt(i);
                 }
             }
         }
