@@ -25,7 +25,7 @@ MonoBehaviour:
     _weight: 3
     _grade: 0
     _health: 20
-    _meleeAtk: 0
+    _physicalAtk: 0
     _magicAtk: 0
     _def: 0
     _attackSpeed: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
     _weight: 3
     _grade: 0
     _health: 0
-    _meleeAtk: 0
+    _physicalAtk: 0
     _magicAtk: 0
     _def: 0
     _attackSpeed: 0

@@ -794,7 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 800
+  m_MinHeight: 700
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -4024,14 +4024,6 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
-    id: 0
-    prefabPath: 
-    LV: 0
-    EXP: 0
-    maxEXP: 0
-    Gold: 0
-    startItemID: 0
-    startInventory: 0
   _modifier:
     health: 0
     maxHealth: 0
