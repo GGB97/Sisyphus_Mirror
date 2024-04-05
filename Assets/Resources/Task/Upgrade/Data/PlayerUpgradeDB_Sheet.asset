@@ -19,7 +19,7 @@ MonoBehaviour:
     _type: 0
     _target: 1234
     _count: 0
-    _upgradeType: 0
+    _upgradeType: 50000000
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
     _type: 0
     _target: 1234
     _count: 0
-    _upgradeType: 1
+    _upgradeType: 50000001
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
@@ -54,4 +54,46 @@ MonoBehaviour:
     _modifier_3: 15
     _modifier_4: 20
     _modifier_5: 25
+    _costModifiers: []
+  - _id: 50000002
+    _name: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
+    _desc: "\uCCB4\uB825 #N \uC99D\uAC00"
+    _type: 0
+    _target: 1234
+    _count: 0
+    _upgradeType: 50000002
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 50
+    _cost_2: 100
+    _cost_3: 150
+    _cost_4: 200
+    _cost_5: 250
+    _modifier_1: 10
+    _modifier_2: 20
+    _modifier_3: 30
+    _modifier_4: 40
+    _modifier_5: 50
+    _costModifiers: []
+  - _id: 50000003
+    _name: "\uC2DC\uC791 \uACE8\uB4DC \uC99D\uAC00"
+    _desc: "\uACE8\uB4DC #N \uC99D\uAC00"
+    _type: 0
+    _target: 1234
+    _count: 0
+    _upgradeType: 50000003
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 50
+    _cost_2: 100
+    _cost_3: 150
+    _cost_4: 200
+    _cost_5: 250
+    _modifier_1: 30
+    _modifier_2: 60
+    _modifier_3: 90
+    _modifier_4: 120
+    _modifier_5: 150
     _costModifiers: []

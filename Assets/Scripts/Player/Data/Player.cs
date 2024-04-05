@@ -100,4 +100,13 @@ public class Player : CharacterBehaviour
             Data.LV++;
         }
     }
+
+    public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.
+    {
+        modifire.physicalAtk += DataBase.PlayerUpgrade.Get((int)UpgradeType.PhysicalAtk).Reward;
+        modifire.magicAtk += DataBase.PlayerUpgrade.Get((int)UpgradeType.MagicAtk).Reward;
+
+        modifire.maxHealth += DataBase.PlayerUpgrade.Get((int)UpgradeType.MaxHP).Reward;
+        Data.Gold += (int)DataBase.PlayerUpgrade.Get((int)UpgradeType.StartGold).Reward;
+    }
 }

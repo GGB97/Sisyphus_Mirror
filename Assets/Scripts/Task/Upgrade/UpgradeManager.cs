@@ -1,5 +1,7 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -22,7 +24,7 @@ public class UpgradeManager : MonoBehaviour
     }
 
     Player _player;
-    UpgradeUI _upgradeUI;
+    [SerializeField] UpgradeUI _upgradeUI;
 
     private void Awake()
     {
@@ -33,14 +35,13 @@ public class UpgradeManager : MonoBehaviour
     {
         if (_upgradeUI == null)
         {
-            _upgradeUI = Instantiate(Resources.Load<UpgradeUI>("Task/Upgrade/PlayerUpgradeCanvas"));
+            GameObject go = Instantiate(Resources.Load<GameObject>("Task/Upgrade/PlayerUpgradeCanvas"));
+            _upgradeUI = go.GetComponentInChildren<UpgradeUI>();
         }
-        else if (_upgradeUI.enabled == false)
+        else if (_upgradeUI.gameObject.activeSelf == false)
         {
-            _upgradeUI.enabled = true;
+            _upgradeUI.gameObject.SetActive(true);
         }
-
-        _upgradeUI.UpdateSlots();
     }
 
     public void CloseUI()
@@ -48,7 +49,7 @@ public class UpgradeManager : MonoBehaviour
         if (_upgradeUI == null)
             return;
 
-        _upgradeUI.enabled = false;
+        _upgradeUI.CloseUI();
     }
 
     public bool Upgrade(UpgradeSlot_UI slot)

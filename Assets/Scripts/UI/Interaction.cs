@@ -10,7 +10,7 @@ public class Interaction : MonoBehaviour
 {
     public GameObject InteractionInfo;      // 상호작용할 오브젝트 정보
     public GameObject OpenUI;               // 상호작용시 나올 UI
-    private bool onInteract = false;        // 상호작용할 거리에 있는지 확인
+    [SerializeField] private bool onInteract = false;        // 상호작용할 거리에 있는지 확인
 
 
     public void OnInteraction()

@@ -54,7 +54,9 @@ public enum TaskType
 
 public enum UpgradeType
 {
-    PhysicalAtk,
-    MagicAtk
+    PhysicalAtk = 50000000,
+    MagicAtk = 50000001,
+    MaxHP = 50000002,
+    StartGold = 50000003,
 }
 #endregion
