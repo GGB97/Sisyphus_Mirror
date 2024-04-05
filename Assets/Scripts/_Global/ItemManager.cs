@@ -268,7 +268,7 @@ public class ItemManager : MonoBehaviour
             Destroy(weapon);
         }
 
-        ResetPlayerStat();
+        //ResetPlayerStat();
         ItemInit();
     }
 
@@ -342,5 +342,11 @@ public class ItemManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        InventoryController.Instance.nextStage -= RemoveAllItems;
+        InventoryController.Instance.nextStage -= SetConsumableDuration;
     }
 }
