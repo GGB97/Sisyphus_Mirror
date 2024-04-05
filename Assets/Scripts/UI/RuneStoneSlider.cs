@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ public class RuneStoneSlider : MonoBehaviour
     {
         if (_enabled)
         {
-            _slider.value += (sliderRate * Time.deltaTime * 30);
+            _slider.value += (sliderRate);
 
             if (_slider.value >= 1)
             {
@@ -34,15 +35,12 @@ public class RuneStoneSlider : MonoBehaviour
                 sliderRate = -sliderRate;
             }
         }
-        else
-        {
-            return;
-        }
     }
 
     public void OnClickConfirmButton()
     {
         _enabled = _enabled == true ? false : true;
+
         Debug.Log(_slider.value);
     }
 }

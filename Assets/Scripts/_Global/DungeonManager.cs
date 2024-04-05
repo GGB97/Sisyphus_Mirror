@@ -30,6 +30,8 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
+    public event Action OnStageEnd;
+
     private void Start()
     {
     }
@@ -112,12 +114,13 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
+        OnStageEnd?.Invoke();
         Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()
     {
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드
-
+   
         inventoryUI.SetActive(true);
         InventoryController.Instance.AddBlock();
         InventoryStats.Instance.UpdateStatsPanel();
