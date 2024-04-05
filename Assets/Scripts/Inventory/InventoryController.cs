@@ -491,7 +491,7 @@ public class InventoryController : MonoBehaviour
     }
     public int LevelCounting()
     {
-        int currentLevel = player.Data.LV;//현재 레벨을 가져옴
+        int currentLevel = GameManager.Instance.Player.Data.LV;//현재 레벨을 가져옴
         int count = currentLevel - prevLevel;
         prevLevel = currentLevel;
         if (count > 0)
@@ -582,6 +582,9 @@ public class InventoryController : MonoBehaviour
 
     public void OnStoreReroll()
     {
+        if (isAdding == true)
+            return;
+
         RemoveStoreStock();
 
         for (int i = 0; i < 5; ++i)
@@ -598,7 +601,10 @@ public class InventoryController : MonoBehaviour
     }
     
     public void OnClickNextStageButton()
-    { 
+    {
+        if (isAdding == true)
+            return;
+
         nextStage();
     }
 

@@ -140,6 +140,32 @@ public class PlayerInventory : ItemGrid
         }
         return count;
     }
+    public void newAddableList()
+    {
+        List<Vector2Int> addPositionArr = new List<Vector2Int>();//추가 가능한 칸의 좌표 배열
+        int x;
+        int y;
+        foreach (var slot in addableSlotList)
+        {
+            foreach (var vector in fourVector)
+            {
+                x = slot.posX + vector.x;
+                y = slot.posY + vector.y;
+                if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
+                {
+                    if (panelSlots[x, y].CompareState(PanelSlotState.Null) || panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 Null과 Add일 때만 List에 넣음
+                    {
+                        addPositionArr.Add(new Vector2Int(x,y));
+                    }
+                }
+            }
+
+            if (addPositionArr.Count == 0)
+                subtractSlotList.Add(slot);
+
+            addPositionArr.Clear();
+        }
+    }
     public void ShowAddableSlot(PanelSlot panelSlot, ref int currentAddSlot)
     {
         List<Vector2Int> addPositionArr = new List<Vector2Int>();//추가 가능한 칸의 좌표 배열
@@ -182,7 +208,7 @@ public class PlayerInventory : ItemGrid
         }
         else
         {
-            subtractSlotList.Add(panelSlot);
+            //subtractSlotList.Add(panelSlot);
         }
     }
     public void SubtractToAddableSlotList()
@@ -192,7 +218,7 @@ public class PlayerInventory : ItemGrid
             foreach (var slot in subtractSlotList)
             {
                 addableSlotList.Remove(slot);
-                Debug.Log($"[{slot.posX},{slot.posY}");
+                //Debug.Log($"뺀 칸의 정보 : {slot.posX},{slot.posY}");
             }
             subtractSlotList.Clear();
         }
@@ -206,17 +232,22 @@ public class PlayerInventory : ItemGrid
     {
         Vector2Int tileGridPosition = GetTileGridPosition(Input.mousePosition);//클릭했을 때의 마우스 좌표
         panelSlots[tileGridPosition.x, tileGridPosition.y].ChangeSlotState(PanelSlotState.Empty);//Add를 Empty로 변경
-        AddToAddableSlotList(panelSlots[tileGridPosition.x, tileGridPosition.y]);//AddList에 추가.
+        AddToAddableSlotList(panelSlots[tileGridPosition.x, tileGridPosition.y]);//AddList에 추가 및 clear에서 삭제
+        newAddableList();//추카할 수 있는 칸들의 리스트를 최신화
         ClearToClearSlotList();//Clear 초기화
-        SubtractToAddableSlotList();
+        SubtractToAddableSlotList();//더이상 추가 못하는 칸은 빼버린다.
         //foreach (var slot in addableSlotList)
         //{
         //    Debug.Log($"[{slot.posX},{slot.posY}");
         //}
-        Debug.Log($"총 개수 : {addableSlotList.Count}");
+        Debug.Log($"추가 가능 총 개수 : {addableSlotList.Count}");
+        //foreach (var slot in addableSlotList)
+        //{
+        //    Debug.Log($"가능 칸 정보 : {slot.posX},{slot.posY}");
+        //}
         //isSetting = false;
         InventoryController.Instance.addCount -= 1;
-        if (InventoryController.Instance.addCount > 0)
+        if (InventoryController.Instance.addCount > 0 && addableSlotList.Count > 0 )
         {
             ShowRandomAddableSlot();
         }
