@@ -368,7 +368,7 @@ public class InventoryController : MonoBehaviour
             }
             // 변경점.
             // 상점 → 플레이어 인벤토리로 이동 시
-            if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
+            if(previousItemGird == storeGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
                 for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
@@ -481,6 +481,18 @@ public class InventoryController : MonoBehaviour
         PlaceItem(new Vector2Int(posX, posY));//처음 위치에 설치
         playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
         playerInventoryGrid.AddCurrentCount(1);
+    }
+    public void UseConsumableItem(InventoryItem currentItem)
+    {
+        ConsumableData itemSO = currentItem.itemSO as ConsumableData;
+        if (itemSO != null)
+        {
+            playerInventoryGrid.PickUpItem(currentItem.onGridPositionX,currentItem.onGridPositionY);
+            ItemManager.Instance.UseConsumable(itemSO);
+            playerInventoryGrid.SubtractItemFromInventory(currentItem);
+            
+        }
+
     }
     public bool CheckUpgradableItem(int targetid)//인벤토리에서 무기 업그레이드가 가능한지 체크
     {
@@ -665,4 +677,6 @@ public class InventoryController : MonoBehaviour
         EquipmentsData runeStoneData = DataBase.Equipments.Get(id);
         return runeStoneData;
     }
+
+    
 }

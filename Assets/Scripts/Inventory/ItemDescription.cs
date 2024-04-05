@@ -33,6 +33,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Button combineButton;
     public Button putOutSideButton;
     public Button exitButton;
+    public Button useButton;
 
     private void Awake()
     {
@@ -155,7 +156,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 sellButton.gameObject.SetActive(true);
                 putOutSideButton.gameObject.SetActive(true);
-            }
+            } 
 
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
@@ -172,6 +173,15 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             else
             {
                 combineButton.gameObject.SetActive(false);
+            }
+
+            if (currentItem.itemSO.ItemType == ItemType.Consumable)
+            {
+                useButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                useButton.gameObject.SetActive(false);
             }
 
             if (putOutSideButton.gameObject.activeSelf == true)//빼두기가 활성화 되어 있을 때
@@ -204,5 +214,10 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         inventoryController.CombineWeaponItem(currentItem);
         ExitExplnationUI();//툴팁 닫기
+    }
+    public void ClickUseButton()
+    {
+        inventoryController.UseConsumableItem(currentItem);
+        ExitExplnationUI();
     }
 }
