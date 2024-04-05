@@ -25,11 +25,6 @@ public struct DBPath
     public static readonly string PlayerUpgradeDB = "Task/Upgrade/Data/PlayerUpgradeDB_Sheet";
 }
 
-public struct PlayerPrebsString
-{
-    public static readonly string Rune = "Rune";
-}
-
 public enum ProjectileID
 {
     None,
@@ -59,6 +54,7 @@ public enum TaskType
 
 public enum UpgradeType
 {
-    PhysicalAtk
+    PhysicalAtk,
+    MagicAtk
 }
 #endregion

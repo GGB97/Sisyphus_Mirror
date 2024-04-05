@@ -7,11 +7,11 @@ using UnityEngine;
 public class Player : CharacterBehaviour
 {
     [field: Header("References")]
-    [field: SerializeField] public PlayerBaseData Data {  get; private set; }
+    [field: SerializeField] public PlayerBaseData Data { get; private set; }
     public Status modifire;
 
     [field: Header("Animations")]
-    [field: SerializeField] public PlayerAnimationData AnimationData {  get; private set; }
+    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
@@ -24,10 +24,10 @@ public class Player : CharacterBehaviour
     public float hitDelay;
 
     public event Action<float, float> PlayerHealthChange;
-    public event Action PlayerRuneChange;
     public float health;
 
     public int rune;
+    public event Action PlayerRuneChange;
 
     private void Awake()
     {
@@ -40,9 +40,9 @@ public class Player : CharacterBehaviour
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
 
-        rune = PlayerPrefs.GetInt(PlayerPrebsString.Rune); // 이걸 Player에? 아니면 GameManager에?
+        rune = 10000; // 나중에 저장해야함.
 
-        stateMachine = new PlayerStateMachine(this);  
+        stateMachine = new PlayerStateMachine(this);
     }
 
     private void Start()
@@ -97,7 +97,7 @@ public class Player : CharacterBehaviour
         if (Data.EXP >= Data.maxEXP)
         {
             Data.EXP = 0;
-            Data.LV ++;
+            Data.LV++;
         }
     }
 }
