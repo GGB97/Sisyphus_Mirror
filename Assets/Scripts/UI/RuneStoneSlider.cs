@@ -8,7 +8,6 @@ public class RuneStoneSlider : MonoBehaviour
     [SerializeField] Slider _slider;
 
     bool _enabled = true;
-    public float sliderValue;
     public float sliderRate = 0.05f;
 
     // Start is called before the first frame update
@@ -16,7 +15,6 @@ public class RuneStoneSlider : MonoBehaviour
     {
         _slider = GetComponent<Slider>();
         _slider.value = 0;
-        sliderValue = 0;
     }
 
     // Update is called once per frame
@@ -25,6 +23,7 @@ public class RuneStoneSlider : MonoBehaviour
         if (_enabled)
         {
             _slider.value += (sliderRate * Time.deltaTime * 30);
+
             if (_slider.value >= 1)
             {
                 _slider.value = 1;
