@@ -93,7 +93,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         else
         {
-            timeLimit = 30f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
@@ -119,6 +119,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드
 
         inventoryUI.SetActive(true);
+        InventoryController.Instance.AddBlock();
         InventoryController.Instance.OnStoreReroll();
     }
     public void CloseInventory()
