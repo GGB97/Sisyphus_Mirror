@@ -44,7 +44,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float value)
+    public void TakeDamage(float value, DamageType type)
     {
         stat.health -= value;
         //if (gameObject.tag.Equals("Player"))
@@ -61,20 +61,33 @@ public class HealthSystem : MonoBehaviour
             character.isHit = true;
         }
 
-        ShowDamage(value);
+        if (value == 0)
+            return;
+
+        ShowDamage(value, type);
     }
 
-    void ShowDamage(float value) // Player는 지금 DamageCanvas가 없음
+    void ShowDamage(float value, DamageType type) // Player는 지금 DamageCanvas가 없음
     {
         TMP_Text text = textQueue.Dequeue();
-        
         text.text = value.ToString();
-        // 데미지 타입별로 색상 조절해도 괜찮을듯
+
+
+        // 데미지 타입별로 색상 조절
+        switch (type)
+        {
+            case DamageType.Physical:
+                text.color = Color.yellow;
+                break;
+            case DamageType.Magic:
+                text.color = new Color(153f/255f, 204f/255f, 255f/255f);
+                break;
+        }
 
         text.gameObject.SetActive(true);
 
         text.DOFade(0, 1);
-        text.transform.DOLocalMoveY(0.5f, 1).OnComplete(()=>
+        text.transform.DOLocalMoveY(0.5f, 1).OnComplete(() =>
         {
             OnShowDamageComplete(text);
         });

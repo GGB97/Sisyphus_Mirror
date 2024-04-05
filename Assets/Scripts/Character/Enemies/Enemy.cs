@@ -176,12 +176,12 @@ public class Enemy : CharacterBehaviour
             if (type == SkillType.AutoAttack)
             {
                 Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
-                hs.TakeDamage(currentStat.physicalAtk);
+                hs.TakeDamage(currentStat.physicalAtk, DamageType.Physical);
             }
             else if (type == SkillType.Skill01)
             {
                 Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
-                hs.TakeDamage(currentStat.physicalAtk * 0.4f);
+                hs.TakeDamage(currentStat.physicalAtk * 0.4f, DamageType.Physical);
             }
         }
     }

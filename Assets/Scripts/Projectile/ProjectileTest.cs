@@ -67,7 +67,7 @@ public class ProjectileTest : MonoBehaviour
         }
         // TODO : 발사체 이동 처리
         // 속도가 점점 느려지게 하려면 AddForce의 ForceMode.Impulse를 사용하거나 _velodity를 조건을 통해 점점 낮추면 될듯
-        _rb.velocity = gameObject.transform.forward * (_data.speed * _velocity); 
+        _rb.velocity = gameObject.transform.forward * (_data.speed * _velocity);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,7 +81,7 @@ public class ProjectileTest : MonoBehaviour
 
             if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
-                _healthSystem.TakeDamage(_value);
+                _healthSystem.TakeDamage(_value, _data.type);
             }
         }
         else return;
@@ -110,7 +110,7 @@ public class ProjectileTest : MonoBehaviour
         _target |= layer;
         _projectileCollider.includeLayers |= _target;
     }
-    
+
     public void AddExcludeLayer(LayerMask layer) // 부딪히지 않아야할 Layer 추가
     {
         _projectileCollider.excludeLayers |= layer;
