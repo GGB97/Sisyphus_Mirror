@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletoneBase<GameManager>
 {
     public bool isGameover = false;
+    public GameObject GameOverUI;
     //private int _playerID;
     //[SerializeField] private Player _player;
     //[SerializeField] private GameObject _playerPrefab;
@@ -31,6 +32,7 @@ public class GameManager : SingletoneBase<GameManager>
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
         EditorApplication.isPaused = true;
+        GameOverUI.SetActive(true);
     }
 
     //public void SetPlayer(Player newPlayer)
