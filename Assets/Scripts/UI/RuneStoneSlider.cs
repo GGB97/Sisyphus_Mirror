@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,7 @@ public class RuneStoneSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
 
-    bool _enabled = true;
+    bool _enabled = false;
     public float sliderRate = 0.05f;
 
     // Start is called before the first frame update
@@ -15,6 +13,7 @@ public class RuneStoneSlider : MonoBehaviour
     {
         _slider = GetComponent<Slider>();
         _slider.value = 0;
+        _enabled = false;
     }
 
     // Update is called once per frame
