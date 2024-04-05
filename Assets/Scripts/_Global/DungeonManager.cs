@@ -120,6 +120,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         inventoryUI.SetActive(true);
         InventoryController.Instance.AddBlock();
+        InventoryStats.Instance.UpdateStatsPanel();
         InventoryController.Instance.OnStoreReroll();
     }
     public void CloseInventory()
