@@ -7,22 +7,23 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletoneBase<GameManager>
 {
     public bool isGameover = false;
-    public GameObject GameOverUI;
-    //private int _playerID;
-    //[SerializeField] private Player _player;
-    //[SerializeField] private GameObject _playerPrefab;
-    //public Player Player
-    //{
-    //    get
-    //    {
-    //        if (_player == null)
-    //        {
-    //            _player = Instantiate(Resources.Load<Player>(DataBase.Player.Get(_playerID).prefabPath));
-    //        }
-    //        return _player;
-    //    }
-    //    private set { _player = value; }
-    //}
+    [SerializeField] private int _playerID;
+    [SerializeField] private Player _player;
+
+    public Player Player
+    {
+        get
+        {
+            if (_player == null)
+            {
+                _player = FindAnyObjectByType<Player>();
+                if(_player == null)
+                    _player = Instantiate(Resources.Load<Player>(DataBase.Player.Get(_playerID).prefabPath));
+            }
+            return _player;
+        }
+        private set { _player = value; }
+    }
 
     public void Gameover()
     {
@@ -32,12 +33,11 @@ public class GameManager : SingletoneBase<GameManager>
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
         EditorApplication.isPaused = true;
-        GameOverUI.SetActive(true);
     }
 
-    //public void SetPlayer(Player newPlayer)
-    //{
-    //    Player = newPlayer;
-    //    _playerID = Player.Data.id;
-    //}
+    public void SetPlayer(Player newPlayer)
+    {
+        Player = newPlayer;
+        _playerID = Player.Data.id;
+    }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EquipmentsDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
-  - _id: 10121011
+  - _id: 10112011
     _itemType: 1
     _name: RuneStone
     _description: "\uB8EC\uC2A4\uD1A4"
@@ -23,7 +23,7 @@ MonoBehaviour:
     _prefabPath: None
     _price: 0
     _weight: 5
-    _grade: 2
+    _grade: 3
     _type: 2
     _health: 0
     _physicalAtk: 0

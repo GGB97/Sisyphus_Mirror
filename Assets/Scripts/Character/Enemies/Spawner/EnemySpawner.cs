@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance; // 필요하지 않게될 수 있음.
-    public Transform target; // 나중에 GameManager 같은데서 들고있으면 거기서 가져오게 하면 될듯
+    Transform target; // 나중에 GameManager 같은데서 들고있으면 거기서 가져오게 하면 될듯
 
     // 등장 가능 몬스터 설정해야함.
     [SerializeField] WaveSO waveData; // 장비 아이템에 의해 몬스터 수량같은게 조절될 가능성도 있을 수 있음
@@ -26,11 +26,13 @@ public class EnemySpawner : MonoBehaviour
         maxEnemyCnt = waveData.maxEnemyCnt;
         currentEnemyCnt = 0;
         EnemyPooler.Instance.SetPool(waveData);
+
+        target = GameManager.Instance.Player.transform;
     }
 
     private void Start()
     {
-        //target = GameManager.Instance.Player.transform;
+        target = GameManager.Instance.Player.transform;
     }
 
     void SetSpawnPos()

@@ -3,6 +3,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.Progress;
 
 public class Enemy : CharacterBehaviour
@@ -47,7 +48,7 @@ public class Enemy : CharacterBehaviour
 
         renderTransform = transform.GetChild(0);
 
-        _player = EnemySpawner.Instance.target.GetComponent<Player>();
+        _player = GameManager.Instance.Player;
 
         stateMachine = new(this);
 
@@ -63,8 +64,6 @@ public class Enemy : CharacterBehaviour
                 Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
                 break;
         }
-
-        Init();
     }
 
     private void OnEnable()
@@ -150,7 +149,7 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
-        target = EnemySpawner.Instance.target; // 임시
+        target = GameManager.Instance.Player.transform;
     }
 
     void ChangeDieState()
@@ -277,11 +276,13 @@ public class Enemy : CharacterBehaviour
     {
         GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
         Instantiate(gold, transform.position, Quaternion.identity);
+
+        _player.GetEXP(10);
     }
 
     void DropRune()
     {
-        EnemySpawner.Instance.target.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+        GameManager.Instance.Player.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
     }
 
     void ChangeComplete()

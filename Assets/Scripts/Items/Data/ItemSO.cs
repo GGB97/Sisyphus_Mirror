@@ -13,7 +13,8 @@ public enum ItemGrade
 {
     Normal,
     Rare,
-    Unique
+    Unique,
+    RuneStone
 }
 
 [Serializable]
