@@ -18,12 +18,17 @@ public class ItemManager : MonoBehaviour
     public Player Player { get; private set; }
     public Transform weaponContainer;
 
-    [SerializeField] PlayerBaseData _playerStats;
+    [SerializeField] Status _playerStats;
     [SerializeField] Status _modifier = new Status();
 
     private List<WeaponData> _ownWeapons = new List<WeaponData>();
     private List<EquipmentsData> _ownEquipments = new List<EquipmentsData>();
     private List<ConsumableData> _ownConsumable = new List<ConsumableData>();
+
+    private WeaponData _tempWeapon;
+    private EquipmentsData _tempEquipments;
+    //private ConsumableData _tempConsumable;
+    private List<ConsumableData> _usedConsumable = new List<ConsumableData>();
 
     public List<GameObject> weaponPrefabs = new List<GameObject>();
 
@@ -38,16 +43,17 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         InventoryController.Instance.nextStage += RemoveAllItems;
+        InventoryController.Instance.nextStage += SetConsumableDuration;
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         //Player = GameManager.Instance.Player;
-        _playerStats = Player.Data;
+        _playerStats = Player.currentStat;
         //init();
     }
 
     public void init()
     {
-        InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(_playerStats.startItemID));
+        InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(Player.Data.startItemID));
         //InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(_playerStats.startItemID));
         InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(10112011));
 
@@ -59,13 +65,17 @@ public class ItemManager : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                _ownWeapons.Add(DataBase.Weapon.Get(id));
+                _tempWeapon = DataBase.Weapon.Get(id);
+                _ownWeapons.Add(_tempWeapon);
+                ModifyPlayerStat(_tempWeapon, true);
                 break;
             case ItemType.Consumable:
                 _ownConsumable.Add(DataBase.Consumable.Get(id));
                 break;
             case ItemType.Equipments:
-                _ownEquipments.Add(DataBase.Equipments.Get(id));
+                _tempEquipments = DataBase.Equipments.Get(id);
+                _ownEquipments.Add(_tempEquipments);
+                ModifyPlayerStat(_tempEquipments, true);
                 break;
         }
     }
@@ -75,15 +85,18 @@ public class ItemManager : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                //_ownWeapons.Find(x => x.Id == id);
                 Debug.Log("Unequip");
-                _ownWeapons.Remove(_ownWeapons.Find(x => x.Id == id));
+                _tempWeapon = _ownWeapons.Find(x => x.Id == id);
+                _ownWeapons.Remove(_tempWeapon);
+                ModifyPlayerStat(_tempWeapon, false);
                 break;
             case ItemType.Consumable:
                 _ownConsumable.Remove(_ownConsumable.Find(x => x.Id == id));
                 break;
             case ItemType.Equipments:
-                _ownEquipments.Remove(_ownEquipments.Find(x => x.Id == id));
+                _tempEquipments = _ownEquipments.Find(x => x.Id == id);
+                _ownEquipments.Remove(_tempEquipments);
+                ModifyPlayerStat(_tempEquipments, false);
                 break;
         }
     }
@@ -93,42 +106,55 @@ public class ItemManager : MonoBehaviour
         ResetModifierStat();
         // 스테이지 시작 시 호출되어 플레이어 스탯, 아이템 생성 등 처리하기
         WeaponInit();
-        EquipmentsInit();
+        //EquipmentsInit();
+        //_modifier.maxHealth -= itemWeight / 10;
+        Player.currentStat.maxHealth -= itemWeight / 10;
+        if (Player.currentStat.maxHealth <= 0) Player.currentStat.maxHealth = 1;
 
-        _playerStats.InitStatus(_playerStats, _modifier);
+        //_playerStats.InitStatus(_playerStats, _modifier);
     }
 
-    public void WeaponInit()
+    public void ModifyPlayerStat(WeaponData weapon, bool isEquip)
     {
-        foreach(var weapon in _ownWeapons)
+        ResetModifierStat();
+
+        if (isEquip)
         {
-            GameObject go = Instantiate(weapon.Prefab, weaponContainer);
-            weaponPrefabs.Add(go);
-          
             _modifier.physicalAtk += weapon.PhysicalAtk;
             _modifier.magicAtk += weapon.MagicAtk;
 
             _modifier.attackSpeed += weapon.AtkSpeed;
 
-            //_modifier.knockbackPower = 0;
-            //_modifier.dashRange = 0;
-            //_modifier.dashCoolTime = 0;
-
             _modifier.critRate += weapon.CritRate;
             _modifier.critDamage += weapon.CritDamage;
-
-            //_modifier.attackRange += weapon.Range;
 
             _modifier.lifeSteal += weapon.LifeSteal;
 
             itemWeight += weapon.Weight;
         }
+        else
+        {
+            _modifier.physicalAtk -= weapon.PhysicalAtk;
+            _modifier.magicAtk -= weapon.MagicAtk;
+
+            _modifier.attackSpeed -= weapon.AtkSpeed;
+
+            _modifier.critRate -= weapon.CritRate;
+            _modifier.critDamage -= weapon.CritDamage;
+
+            _modifier.lifeSteal -= weapon.LifeSteal;
+
+            itemWeight -= weapon.Weight;
+        }
+
+        _playerStats.InitStatus(Player.currentStat, _modifier);
     }
 
-    public void EquipmentsInit()
+    public void ModifyPlayerStat(EquipmentsData equipment, bool isEquip)
     {
-        // TODO : 플레이어의 스탯 Status를 수정하기 -> 기범님께 방법을 여쭈어볼 것
-        foreach (var equipment in _ownEquipments)
+        ResetModifierStat();
+
+        if (isEquip)
         {
             _modifier.maxHealth += equipment.Health;
 
@@ -147,9 +173,93 @@ public class ItemManager : MonoBehaviour
 
             itemWeight += equipment.Weight;
         }
+        else
+        {
+            _modifier.maxHealth -= equipment.Health;
 
-        _modifier.maxHealth -= itemWeight / 10;
+            _modifier.physicalAtk -= equipment.PhysicalAtk;
+            _modifier.magicAtk -= equipment.MagicAtk;
+
+            _modifier.def -= equipment.Def;
+
+            _modifier.attackSpeed -= equipment.AtkSpeed;
+            _modifier.moveSpeed -= equipment.MoveSpeed;
+
+            _modifier.critRate -= equipment.CritRate;
+            _modifier.critDamage -= equipment.CritDamage;
+
+            _modifier.lifeSteal -= equipment.LifeSteal;
+
+            itemWeight -= equipment.Weight;
+        }
+
+        _playerStats.InitStatus(Player.currentStat, _modifier);
     }
+
+    public void ModifyPlayerStat(ConsumableData consumable, bool isUsed)
+    {
+        ResetModifierStat();
+
+        if (isUsed)
+        {
+            _modifier.health += consumable.Health;
+            _modifier.physicalAtk += consumable.PhysicalAtk;
+            _modifier.magicAtk += consumable.MagicAtk;
+
+            _modifier.def += consumable.Def;
+
+            _modifier.attackSpeed += consumable.AttackSpeed;
+            _modifier.moveSpeed += consumable.MoveSpeed;
+        }
+        else
+        {
+            _modifier.health -= consumable.Health;
+            _modifier.physicalAtk -= consumable.PhysicalAtk;
+            _modifier.magicAtk -= consumable.MagicAtk;
+
+            _modifier.def -= consumable.Def;
+
+            _modifier.attackSpeed -= consumable.AttackSpeed;
+            _modifier.moveSpeed -= consumable.MoveSpeed;
+        }
+
+        _playerStats.InitStatus(Player.currentStat, _modifier);
+    }
+
+    public void WeaponInit()
+    {
+        foreach(var weapon in _ownWeapons)
+        {
+            GameObject go = Instantiate(weapon.Prefab, weaponContainer);
+            weaponPrefabs.Add(go);
+        }
+    }
+
+    //public void EquipmentsInit()
+    //{
+    //    // TODO : 플레이어의 스탯 Status를 수정하기 -> 기범님께 방법을 여쭈어볼 것
+    //    foreach (var equipment in _ownEquipments)
+    //    {
+    //        _modifier.maxHealth += equipment.Health;
+
+    //        _modifier.physicalAtk += equipment.PhysicalAtk;
+    //        _modifier.magicAtk += equipment.MagicAtk;
+
+    //        _modifier.def += equipment.Def;
+
+    //        _modifier.attackSpeed += equipment.AtkSpeed;
+    //        _modifier.moveSpeed += equipment.MoveSpeed;
+
+    //        _modifier.critRate += equipment.CritRate;
+    //        _modifier.critDamage += equipment.CritDamage;
+
+    //        _modifier.lifeSteal += equipment.LifeSteal;
+
+    //        itemWeight += equipment.Weight;
+    //    }
+
+    //    _modifier.maxHealth -= itemWeight / 10;
+    //}
 
     public void RemoveAllItems()
     {
@@ -208,5 +318,29 @@ public class ItemManager : MonoBehaviour
         _modifier.lifeSteal = -_modifier.lifeSteal;
 
         _playerStats.InitStatus(_playerStats, _modifier);
+    }
+
+    public void UseConsumable(ConsumableData consumable)
+    {
+        _usedConsumable.Add(consumable);
+
+        ModifyPlayerStat(consumable, true);
+    }
+
+    private void SetConsumableDuration()
+    {
+        if(_usedConsumable.Count != 0)
+        {
+            foreach(var consumable in _usedConsumable)
+            {
+                int Duration = consumable.SetDuration();
+
+                if (Duration <= 0)
+                {
+                    ModifyPlayerStat(consumable, false);
+                    _usedConsumable.Remove(consumable);
+                }
+            }
+        }
     }
 }
