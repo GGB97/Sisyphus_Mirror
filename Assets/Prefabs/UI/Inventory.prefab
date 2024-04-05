@@ -2281,6 +2281,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f206a51fd5318f2499a83abe896c6fa0, type: 2}
   - {fileID: 11400000, guid: 55e5de7f1954ffa46be62ee4bb41e5df, type: 2}
   - {fileID: 11400000, guid: 46334cc144a25ec4cbcb6e511d94d043, type: 2}
+  - {fileID: 11400000, guid: 4cbdea3adbd0e1d4e8146922c88d55b2, type: 2}
   addCount: 6
   blocksPerLevel: 2
   startPosition: {x: 0, y: 0}
