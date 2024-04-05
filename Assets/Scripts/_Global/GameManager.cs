@@ -39,5 +39,6 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
+        InventoryStats.Instance.UpdateStatsPanel();
     }
 }
