@@ -146,6 +146,17 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
+            if (currentItem.itemSO.Price == 0)//가격이 0이면 버튼 비활성화
+            {
+                sellButton.gameObject.SetActive(false);
+                putOutSideButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                sellButton.gameObject.SetActive(true);
+                putOutSideButton.gameObject.SetActive(true);
+            }
+
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
                 combineButton.gameObject.SetActive(true);
@@ -163,14 +174,17 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 combineButton.gameObject.SetActive(false);
             }
 
-            if (inventoryController.CheckInventoryToStorage(currentItem) == true)
+            if (putOutSideButton.gameObject.activeSelf == true)//빼두기가 활성화 되어 있을 때
             {
-                putOutSideButton.interactable = true;
-            }
-            else
-            {
-                putOutSideButton.interactable = false;
-            }
+                if (inventoryController.CheckInventoryToStorage(currentItem) == true)
+                {
+                    putOutSideButton.interactable = true;
+                }
+                else
+                {
+                    putOutSideButton.interactable = false;
+                }
+            } 
 
             buttonPanel.SetActive(true);
         }

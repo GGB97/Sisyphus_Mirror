@@ -42,13 +42,14 @@ public class ItemManager : MonoBehaviour
         Player = PlayerTransform.GetComponent<Player>();
         //Player = GameManager.Instance.Player;
         _playerStats = Player.Data;
-        init();
+        //init();
     }
 
-    private void init()
+    public void init()
     {
         InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(_playerStats.startItemID));
-        InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(_playerStats.startItemID));
+        //InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(_playerStats.startItemID));
+        InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(10112011));
 
         ItemInit();
     }
