@@ -208,6 +208,11 @@ public class InventoryController : MonoBehaviour
                 return;
             }
 
+            if (selectedItemGrid != playerInventoryGrid && selectedItem.itemSO.Price == 0) return;//인벤토리가 아니고 룬 스톤이면 표시 x
+
+            if (selectedItemGrid.CheckMaxCount() == true)//선택된 그리드가 꽉찬 상태라면 하이라이트 표시 x
+                return;
+
             inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));//활성화
             inventoryHighlight.SetOriginSize(selectedItem);//origin 사이즈 지정
             inventoryHighlight.SetImage(selectedItem);
@@ -332,6 +337,7 @@ public class InventoryController : MonoBehaviour
         // 변경점.
         // 설치하려는 ItemGrid가 상점일 경우 false
         if(selectedItemGrid == storeGrid) return false;
+        if(selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
 
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
