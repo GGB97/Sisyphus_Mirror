@@ -168,7 +168,7 @@ public class MeleeWeapon : MonoBehaviour
             //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
-                _healthSystem.TakeDamage(_weaponData.PhysicalAtk);
+                _healthSystem.TakeDamage(_weaponData.PhysicalAtk, DamageType.Physical);
             }
         }
         else

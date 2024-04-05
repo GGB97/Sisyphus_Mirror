@@ -71,7 +71,7 @@ public class AreaAttack : MonoBehaviour
         {
             // 여기서 공격
             HealthSystem hs = colliders[i].GetComponent<HealthSystem>();
-            hs.TakeDamage(_value * coefficient);
+            hs.TakeDamage(_value * coefficient, _data.type);
         }
     }
 

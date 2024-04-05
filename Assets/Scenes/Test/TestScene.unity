@@ -671,20 +671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1039058670938535752, guid: 893321a39c3a8b64ebca7770db307908,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2673227611137731941, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_Name
       value: Inventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 2673227611137731941, guid: 893321a39c3a8b64ebca7770db307908,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4886152320439362227, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
@@ -821,6 +811,8 @@ MonoBehaviour:
   - id: 40000100
     size: 5
   - id: 40000101
+    size: 5
+  - id: 40000200
     size: 5
   _spawnObjects: []
 --- !u!4 &250687861
@@ -1023,6 +1015,7 @@ MonoBehaviour:
     LV: 0
     EXP: 0
     maxEXP: 0
+    Gold: 0
     startItemID: 0
     startInventory: 0
   _modifier:
@@ -6710,6 +6703,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1826466474119709598, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_RootOrder
@@ -6765,13 +6763,64 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3245671121787786552, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3342418616916109957, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471824958489756148, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374821280405858292, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500948228851644391, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6919155842573984563, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7017455484426267299, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118108587491951095, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8586087605610373109, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_Name
       value: MC24
       objectReference: {fileID: 0}
+    - target: {fileID: 8785447158615819925, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217231752989840295, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6500948228851644391, guid: ccf4b84dcc2ec2e4ea478df8dd367460, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccf4b84dcc2ec2e4ea478df8dd367460, type: 3}

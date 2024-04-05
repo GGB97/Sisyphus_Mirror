@@ -17,5 +17,5 @@ public class GameTask
     public string Desc => _desc;
     public TaskType Type => _type;
     public int Target => _target;
-    public int Count => _count;
+    public virtual int Count => _count;
 }
