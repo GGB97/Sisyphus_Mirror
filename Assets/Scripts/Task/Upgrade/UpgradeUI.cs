@@ -1,16 +1,20 @@
 using DG.Tweening;
+using DG.Tweening.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeUI : MonoBehaviour
+public class UpgradeUI : UI_Base
 {
     [SerializeField] GameObject _content;
     UpgradeSlot_UI[] _slots;
     [SerializeField] Button _resetBtn;
 
-    public UpgradeSlot_UI[] Slots 
+    Tween _openTween;
+    Tween _closeTween;
+
+    public UpgradeSlot_UI[] Slots
     {
         get
         {
@@ -30,8 +34,10 @@ public class UpgradeUI : MonoBehaviour
 
     private void OnEnable()
     {
+        _closeTween.Kill();
+
         transform.localPosition = new Vector3(-1345, 0f, 0f);
-        transform.DOLocalMoveX(-577, 1f).SetEase(Ease.OutQuart);
+        _openTween = transform.DOLocalMoveX(-577, 1f).SetEase(Ease.OutQuart);
 
         UpdateSlots();
     }
@@ -43,17 +49,22 @@ public class UpgradeUI : MonoBehaviour
 
     private void Start()
     {
-        _resetBtn.onClick.AddListener(() => 
+        _resetBtn.onClick.AddListener(() =>
         {
             UpgradeManager.Instance.Refund();
         });
     }
 
-    public void CloseUI()
+    public override void CloseUI()
     {
-        gameObject.transform.DOLocalMoveX(-1345, 0.5f).SetEase(Ease.OutQuart).OnComplete(() =>
+        if (gameObject.activeSelf == false)
+            return;
+
+        _openTween.Kill();
+
+        _closeTween = transform.DOLocalMoveX(-1345, 0.5f).SetEase(Ease.OutQuart).OnComplete(() =>
         {
-            if(transform.localPosition.x <= -1340)
+            if (transform.localPosition.x <= -1340)
                 gameObject.SetActive(false);
         });
     }

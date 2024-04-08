@@ -9,7 +9,7 @@ using System;
 [RequireComponent(typeof(RectTransform))]  //해당 컴포넌트를 자동으로 추가해줌
 [RequireComponent(typeof(ScrollRect))]
 
-public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDragHandler
+public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] protected GameObject gbj_ContentRoot = null;
 
