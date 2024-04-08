@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,6 +20,20 @@ public class EnemySpawner : MonoBehaviour
     Vector3 bottomLeft;
     Vector3 topRight;
 
+    private struct size
+    {
+        public float radius;
+        public float height;
+
+        public void Init(float radius, float height)
+        {
+            this.radius = radius;
+            this.height = height;
+        }
+    }
+    size[] _size = new size[(int)EnemySize.Boss + 1];
+    LayerMask _targetLayer;
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +43,12 @@ public class EnemySpawner : MonoBehaviour
         EnemyPooler.Instance.SetPool(waveData);
 
         target = GameManager.Instance.Player.transform;
+        _targetLayer = LayerData.Player | LayerData.Enemy;
+
+        _size[(int)EnemySize.Small].Init(0.5f, 1.4f);
+        _size[(int)EnemySize.Medium].Init(1f, 2f);
+        _size[(int)EnemySize.Large].Init(1f, 2.5f);
+        _size[(int)EnemySize.Boss].Init(2f, 4f);
     }
 
     private void Start()
@@ -56,8 +77,8 @@ public class EnemySpawner : MonoBehaviour
         yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
-        if(DungeonManager.Instance.currnetstage % 1 == 0)
-            SpawnEnemy(new Vector3(0, 0, -10), waveData.boss);
+        if (DungeonManager.Instance.currnetstage % 1 == 0)
+            SpawnEnemy(waveData.boss);
         // --
 
         while (DungeonManager.Instance.isStarted) // 게임 종료 검사로 변경 필요함
@@ -66,17 +87,12 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < spawnCnt; i++)
                 {
-                    Vector3 pos = GetSpawnPos(); // Enemy가 생성될 위치
-
-                    // 여기서 pos의 위치에 Spawn이 가능한지 검사 필요성이 생긴다면 추가 예정
-                    // --
-
-                    // 특정 확률에 의해 Normal/Elite 생성
+                    // 특정 확률에 의해 Normal/Elite 결정
                     float randomValue = Random.Range(0f, 100f);
                     if (randomValue < waveData.eliteSpawnChance)
-                        SpawnEnemy(pos, waveData.elite);
+                        SpawnEnemy(waveData.elite);
                     else
-                        SpawnEnemy(pos, waveData.normal);
+                        SpawnEnemy(waveData.normal);
 
                     if (currentEnemyCnt >= maxEnemyCnt)
                         break;
@@ -86,21 +102,46 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector3 GetSpawnPos()
+    bool GetSpawnPos(int id, ref Vector3 randomPos)
     {
-        //NavMeshHit hit;
-        //// NavMesh 상에서 무작위 위치를 가져옵니다.
-        //NavMesh.SamplePosition(Vector3.zero, out hit, 45f, NavMesh.AllAreas);
-        //return hit.position;
+        int cnt = 0;
+        while (true)
+        {
+            if (cnt >= 100)
+            {
+                Debug.Log("Can't Spawn");
+                return false;
+            }
 
-        return new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
+            randomPos = new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
+            //유효성 검사
+            EnemySize size = DataBase.EnemyStats.Get(id).size;
+            Vector3 yVector = new Vector3(0, _size[(int)size].height / 2, 0);
+
+            Collider[] colliders = Physics.OverlapSphere(randomPos + yVector, _size[(int)size].radius, _targetLayer);
+            if (colliders.Length == 0)
+            {
+                return true;
+            }
+            else
+            {
+                Debug.Log("Can't use this Position");
+            }
+            ++cnt;
+        }
     }
 
-    void SpawnEnemy(Vector3 pos , int[] enemyID)
+    void SpawnEnemy(int[] enemyID)
     {
         int rand = Random.Range(0, enemyID.Length);
-        EnemyPooler.Instance.SpawnFromPool(enemyID[rand], pos, Quaternion.identity);
-        currentEnemyCnt++;
+        Vector3 pos = Vector3.zero;
+        bool isSpawn = GetSpawnPos(enemyID[rand], ref pos);
+
+        if (isSpawn)
+        {
+            EnemyPooler.Instance.SpawnFromPool(enemyID[rand], pos, Quaternion.identity);
+            currentEnemyCnt++;
+        }
     }
 
     public void SpawnStop() // 스테이지 종료될때 호출하면 될듯
