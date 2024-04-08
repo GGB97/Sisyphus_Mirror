@@ -1,7 +1,3 @@
-using DG.Tweening.Core.Easing;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -89,5 +85,25 @@ public class UpgradeManager : MonoBehaviour
             return false;
         }
 
+    }
+
+    public void Refund()
+    {
+        UpgradeSlot_UI[] slots = _upgradeUI.Slots;
+
+        foreach (var item in slots)
+        {
+            UpgradeData data = DataBase.PlayerUpgrade.Get(item.id);
+
+            int cost = 0;
+            for (int i = 0; i <= data.CurrentGrade; i++)
+            {
+                cost += data.CostModifiers[i].Cost;
+            }
+            GameManager.Instance.Player.ChangeRune(cost);
+
+            data.Reset();
+            item.UpdateUI(data);
+        }
     }
 }
