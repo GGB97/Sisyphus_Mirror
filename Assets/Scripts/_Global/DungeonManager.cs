@@ -26,9 +26,6 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public event Action OnStageEnd;
 
-    private void Start()
-    {
-    }
     private void Awake()
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
@@ -89,7 +86,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         else
         {
-            timeLimit = 100f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정

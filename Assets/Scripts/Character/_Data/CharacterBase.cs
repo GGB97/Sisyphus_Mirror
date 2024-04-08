@@ -36,8 +36,8 @@ public class Status
     public float moveSpeed;
 
     public float knockbackPower;
-    public float dashRange;
-    public float dashCoolTime;
+    public float dashRange; // ?
+    public float dashCoolTime; // ?
 
     public float critRate;
     public float critDamage;
@@ -76,5 +76,29 @@ public class Status
         critDamage = baseStat.critDamage + modifier.critDamage;
 
         lifeSteal = baseStat.lifeSteal + modifier.lifeSteal;
+    }
+
+    public void Init_EnemyModifier(Status baseStat, EnemyRank rank)
+    {
+        #region 제곱적 증가 예시
+        // base = 100, 스테이지당 증가량 = 2
+        // 실 적용 증가량 = 증가량 * (현재 층수^2)
+        // [102, 108, 118, 132, 150, 172, 198, 228, 262, 300] (1~10 스테이지 기준)
+        #endregion
+
+        int stage = DungeonManager.Instance.currnetstage;
+
+        switch (rank)
+        {
+            case EnemyRank.Boss: // 보스는 처음엔 기본으로 그다음부터 N퍼센트만큼
+                maxHealth = baseStat.maxHealth * (stage / 5 * EnemyStageModifier.bossMaxHealth);
+                break;
+            default:
+                maxHealth = EnemyStageModifier.maxHealth * (stage * stage);
+                break;
+        }
+
+        physicalAtk = EnemyStageModifier.physicalAtk * (stage * stage);
+        magicAtk = EnemyStageModifier.magicAtk * (stage * stage);
     }
 }

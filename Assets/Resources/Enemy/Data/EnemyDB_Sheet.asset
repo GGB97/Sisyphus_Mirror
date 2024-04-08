@@ -234,7 +234,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 30
   - health: 0
-    maxHealth: 100000
+    maxHealth: 700
     attackRange: 6
     physicalAtk: 10
     magicAtk: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
     rotationSpeed: 3
     attackAngle: 10
   - health: 0
-    maxHealth: 300
+    maxHealth: 500
     attackRange: 15
     physicalAtk: 0
     magicAtk: 10

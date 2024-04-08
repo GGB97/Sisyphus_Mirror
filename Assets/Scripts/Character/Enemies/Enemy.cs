@@ -119,6 +119,7 @@ public class Enemy : CharacterBehaviour
 
     void Init()
     {
+        modifier.Init_EnemyModifier(Info, Info.rank);
         currentStat.InitStatus(Info, modifier);
 
         #region AnimatorOverrideController 으로 시도했던것
