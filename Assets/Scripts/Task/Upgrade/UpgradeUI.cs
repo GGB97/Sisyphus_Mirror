@@ -24,6 +24,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void Awake()
     {
+        UpgradeManager.Instance.SetUpdate(this);
         _slots = GetComponentsInChildren<UpgradeSlot_UI>();
     }
 

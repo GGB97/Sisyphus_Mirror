@@ -12,9 +12,17 @@ public class Interaction : MonoBehaviour
     public GameObject OpenUI;               // 상호작용시 나올 UI
     [SerializeField] private bool onInteract = false;        // 상호작용할 거리에 있는지 확인
 
+    UnityEngine.InputSystem.PlayerInput input;
+
+    private void Awake()
+    {
+        input = GetComponent<UnityEngine.InputSystem.PlayerInput>();
+        input.enabled = false;
+    }
 
     public void OnInteraction()
     {
+        Debug.Log($"{gameObject.name} is Try Interaction");
         if (onInteract == true)
         {
             OpenUI.SetActive(true);
@@ -24,10 +32,11 @@ public class Interaction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
+        if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
             InteractionInfo.SetActive(true);
-            onInteract = true;            
+            onInteract = true;
+            input.enabled = true;
         }
     }
 
@@ -37,6 +46,7 @@ public class Interaction : MonoBehaviour
         {
             InteractionInfo.SetActive(false);
             onInteract = false;
+            input.enabled = false;
         }
     }
 }

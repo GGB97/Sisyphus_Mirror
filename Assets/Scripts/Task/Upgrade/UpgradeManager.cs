@@ -27,6 +27,11 @@ public class UpgradeManager : MonoBehaviour
         _player = GameManager.Instance.Player;
     }
 
+    public void SetUpdate(UpgradeUI ui)
+    {
+        _upgradeUI = ui;
+    }
+
     public void OnpenUI()
     {
         if (_upgradeUI == null)
