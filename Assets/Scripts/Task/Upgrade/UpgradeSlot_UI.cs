@@ -47,9 +47,4 @@ public class UpgradeSlot_UI : MonoBehaviour
             _confirm.gameObject.SetActive(true);
         }
     }
-
-    public void Reset()
-    {
-        DataBase.PlayerUpgrade.Get(id).Reset();
-    }
 }

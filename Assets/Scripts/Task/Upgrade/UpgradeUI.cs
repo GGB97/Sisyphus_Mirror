@@ -9,6 +9,19 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] GameObject _content;
     UpgradeSlot_UI[] _slots;
     [SerializeField] Button _resetBtn;
+
+    public UpgradeSlot_UI[] Slots 
+    {
+        get
+        {
+            if (_slots == null)
+            {
+                _slots = GetComponentsInChildren<UpgradeSlot_UI>();
+            }
+            return _slots;
+        }
+    }
+
     private void Awake()
     {
         _slots = GetComponentsInChildren<UpgradeSlot_UI>();
@@ -29,7 +42,10 @@ public class UpgradeUI : MonoBehaviour
 
     private void Start()
     {
-        _resetBtn.onClick.AddListener(ResetAll);
+        _resetBtn.onClick.AddListener(() => 
+        {
+            UpgradeManager.Instance.Refund();
+        });
     }
 
     public void CloseUI()
@@ -47,17 +63,6 @@ public class UpgradeUI : MonoBehaviour
         {
             UpgradeData data = DataBase.PlayerUpgrade.Get(item.id);
 
-            item.UpdateUI(data);
-        }
-    }
-
-    public void ResetAll()
-    {
-        foreach (var item in _slots)
-        {
-            UpgradeData data = DataBase.PlayerUpgrade.Get(item.id);
-
-            item.Reset();
             item.UpdateUI(data);
         }
     }
