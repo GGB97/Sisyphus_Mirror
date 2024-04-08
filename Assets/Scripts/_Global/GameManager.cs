@@ -65,7 +65,7 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-        InventoryStats.Instance?.UpdateStatsPanel(); // 에러 문구 뜨길래 ?붙혀서 널체크
+        InventoryStats.Instance?.UpdateStatsPanel();
     }
 
     public void Retry()
