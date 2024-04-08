@@ -1,7 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -107,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
         int cnt = 0;
         while (true)
         {
-            if (cnt >= 100)
+            if (cnt >= 100) // 무한루프 방지
             {
                 Debug.Log("Can't Spawn");
                 return false;
@@ -116,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
             randomPos = new Vector3(Random.Range(bottomLeft.x, topRight.x), 0, Random.Range(bottomLeft.z, topRight.z));
             //유효성 검사
             EnemySize size = DataBase.EnemyStats.Get(id).size;
-            Vector3 yVector = new Vector3(0, _size[(int)size].height / 2, 0);
+            Vector3 yVector = new(0, _size[(int)size].height / 2, 0);
 
             Collider[] colliders = Physics.OverlapSphere(randomPos + yVector, _size[(int)size].radius, _targetLayer);
             if (colliders.Length == 0)

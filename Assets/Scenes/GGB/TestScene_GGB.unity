@@ -6740,6 +6740,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1593840394934638901, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593840394934638901, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593840394934638901, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593840394934638901, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374099021866910240, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3234663185547158930, guid: ccf4b84dcc2ec2e4ea478df8dd367460,
         type: 3}
       propertyPath: m_RootOrder
