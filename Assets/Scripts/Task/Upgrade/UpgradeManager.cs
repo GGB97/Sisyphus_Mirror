@@ -68,7 +68,7 @@ public class UpgradeManager : MonoBehaviour
                 PlayerPrefs.SetInt($"Upgrade_{data.UpgradeType}", data.CurrentGrade + 1); // 데이터 저장 구현시 변경
                 _player.ChangeRune(-data.Count);
 
-                Debug.Log($"Upgrade (current : {data.CurrentGrade})");
+                //Debug.Log($"Upgrade (current : {data.CurrentGrade})");
 
                 slot.UpdateUI(data);
 
@@ -77,7 +77,7 @@ public class UpgradeManager : MonoBehaviour
             else
             {
                 // 업그레이드 불가
-                Debug.Log($"Can't Upgrade / current : {data.CurrentGrade}");
+                //Debug.Log($"Can't Upgrade / current : {data.CurrentGrade}");
 
                 return false;
             }
@@ -85,7 +85,7 @@ public class UpgradeManager : MonoBehaviour
         else
         {
             // 업그레이드 불가
-            Debug.Log($"Can't Upgrade / current : {data.CurrentGrade}");
+            //Debug.Log($"Can't Upgrade / current : {data.CurrentGrade}");
 
             return false;
         }

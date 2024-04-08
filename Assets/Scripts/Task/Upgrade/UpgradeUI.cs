@@ -9,7 +9,7 @@ public class UpgradeUI : UI_Base
 {
     [SerializeField] GameObject _content;
     UpgradeSlot_UI[] _slots;
-    [SerializeField] Button _resetBtn;
+    [SerializeField] Button _refundBtn;
 
     Tween _openTween;
     Tween _closeTween;
@@ -36,10 +36,10 @@ public class UpgradeUI : UI_Base
     {
         _closeTween.Kill();
 
+        UpdateSlots();
         transform.localPosition = new Vector3(-1345, 0f, 0f);
         _openTween = transform.DOLocalMoveX(-577, 1f).SetEase(Ease.OutQuart);
 
-        UpdateSlots();
     }
 
     private void OnDisable()
@@ -49,7 +49,7 @@ public class UpgradeUI : UI_Base
 
     private void Start()
     {
-        _resetBtn.onClick.AddListener(() =>
+        _refundBtn.onClick.AddListener(() =>
         {
             UpgradeManager.Instance.Refund();
         });

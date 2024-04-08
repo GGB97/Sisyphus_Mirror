@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCD08\uAE30\uD654"
+  m_text: "\uBC18\uD658"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6151a5fee968a484fa6910aea8d62ae3, type: 2}
   m_sharedMaterial: {fileID: 2991598357047004314, guid: 6151a5fee968a484fa6910aea8d62ae3,
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1066736397425828572}
   - component: {fileID: 5789214588759314250}
   m_Layer: 5
-  m_Name: Reset_Btn
+  m_Name: Refund_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 8723978321658960014}
-  _resetBtn: {fileID: 5789214588759314250}
+  _refundBtn: {fileID: 5789214588759314250}
 --- !u!1 &4552624995442489967
 GameObject:
   m_ObjectHideFlags: 0

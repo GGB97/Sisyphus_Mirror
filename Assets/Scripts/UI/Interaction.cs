@@ -22,7 +22,7 @@ public class Interaction : MonoBehaviour
 
     public void OnInteraction()
     {
-        Debug.Log($"{gameObject.name} is Try Interaction");
+        //Debug.Log($"{gameObject.name} is Try Interaction");
         if (onInteract == true)
         {
             OpenUI.gameObject.SetActive(true);
