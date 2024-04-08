@@ -35,7 +35,7 @@ public enum ProjectileID
     Poison,
 
     // AreaAttack
-    ArearAttack_Ice = 40000200
+    AreaAttack_Ice = 40000200
 }
 
 public enum DamageType

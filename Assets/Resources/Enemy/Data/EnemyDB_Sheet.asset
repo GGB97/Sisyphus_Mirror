@@ -236,7 +236,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 700
     attackRange: 6
-    physicalAtk: 10
+    physicalAtk: 12
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
