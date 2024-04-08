@@ -1,10 +1,7 @@
 using DG.Tweening;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.Progress;
 
 public class Enemy : CharacterBehaviour
 {
@@ -97,9 +94,6 @@ public class Enemy : CharacterBehaviour
 
         deSpawnEvent += ChangeDieState;
         deSpawnEvent += InvokeActiveFalse;
-
-
-
     }
 
     void Update()
@@ -200,9 +194,6 @@ public class Enemy : CharacterBehaviour
 
     public void RangedAttack(int num)
     {
-        //GameObject go = Instantiate(_projectilePrefabs[prfabNum],
-        //    _rangeAttackPos[posNum].transform.position, transform.rotation); // 이걸 오브젝트풀에서 가져오게 하면될듯
-
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
             (int)_projectileTag[num],
             _rangeAttackPos[num].transform.position,
@@ -220,7 +211,6 @@ public class Enemy : CharacterBehaviour
         float value = projectile.GetDamageType == DamageType.Physical ? currentStat.physicalAtk : currentStat.magicAtk;
         projectile.SetValue(value);
 
-        //projectile.rb.AddForce(directionToTarget * 10f, ForceMode.Impulse);
         projectile.SetVelocity(1f); // 속도 배율 설정
     }
 
@@ -244,7 +234,7 @@ public class Enemy : CharacterBehaviour
     void StartSpawn()
     {
         IsSpawning = true;
-        Collider.enabled = false;
+        //Collider.enabled = false;
 
         renderTransform.localPosition += Vector3.down * Agent.height;
         renderTransform.DOLocalMoveY(0, 1f).OnComplete(SpawnEnd);
@@ -253,7 +243,7 @@ public class Enemy : CharacterBehaviour
     void SpawnEnd()
     {
         IsSpawning = false;
-        Collider.enabled = true;
+        //Collider.enabled = true;
     }
 
     public void DeSpawn()
