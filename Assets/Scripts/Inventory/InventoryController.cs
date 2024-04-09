@@ -11,17 +11,19 @@ public class InventoryController : MonoBehaviour
 {
     public event Action nextStage;
     private static InventoryController instance;
-    public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
+    public static InventoryController Instance { get { return instance; } private set { instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
     //[HideInInspector]
     [SerializeField]
     private ItemGrid selectedItemGrid; //현재 그리드 정보
-    public ItemGrid SelectedItemGrid { 
-        get => selectedItemGrid; 
-        set { 
+    public ItemGrid SelectedItemGrid
+    {
+        get => selectedItemGrid;
+        set
+        {
             selectedItemGrid = value;
             inventoryHighlight.SetParent(selectedItemGrid);
-        } 
+        }
     }
     [SerializeField]
     private ItemGrid previousItemGird;//이전 그리드 정보
@@ -46,7 +48,7 @@ public class InventoryController : MonoBehaviour
 
     public Sprite[] slotSprites; //슬롯의 스프라이트 배열
     public BlockColor[] blockColors;//등급의 색깔 배열
-    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>(); 
+    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>();
     public int addCount = 6;//추가 칸 개수
     [SerializeField]
     private int blocksPerLevel = 2;//레벨 당 추가할 블록 수
@@ -78,6 +80,7 @@ public class InventoryController : MonoBehaviour
         //SelectedItemGrid = itemGrid;
         //SelectedItemGrid.ShowRandomAddableSlot();
         player = GameManager.Instance.Player;
+        InventoryStats.Instance?.UpdateStatsPanel();
     }
     private void Update()
     {
@@ -140,7 +143,7 @@ public class InventoryController : MonoBehaviour
         }
 
         if (addCount != 0)//추가할 블록이 있다면 실행
-        { 
+        {
             SelectedItemGrid = playerInventoryGrid;
             playerInventoryGrid.ShowRandomAddableSlot();
         }
@@ -214,7 +217,7 @@ public class InventoryController : MonoBehaviour
             //}
 
             if (selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT) == false)
-            { 
+            {
                 inventoryHighlight.Show(false);
                 return;
             }
@@ -228,7 +231,7 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.SetOriginSize(selectedItem);//origin 사이즈 지정
             inventoryHighlight.SetImage(selectedItem);
             inventoryHighlight.SetRotation(selectedItem);
-            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
+            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y); //위치 지정
         }
 
     }
@@ -347,8 +350,8 @@ public class InventoryController : MonoBehaviour
     {
         // 변경점.
         // 설치하려는 ItemGrid가 상점일 경우 false
-        if(selectedItemGrid == storeGrid) return false;
-        if(selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
+        if (selectedItemGrid == storeGrid) return false;
+        if (selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
 
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
@@ -379,7 +382,7 @@ public class InventoryController : MonoBehaviour
             }
             // 변경점.
             // 상점 → 플레이어 인벤토리로 이동 시
-            if(previousItemGird == storeGrid)
+            if (previousItemGird == storeGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
                 for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
@@ -399,7 +402,7 @@ public class InventoryController : MonoBehaviour
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
-        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y,ref overlapitem); //설치할 수 있으면 바로 설치
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
             selectedItem = null; //선택을 초기화
@@ -502,7 +505,7 @@ public class InventoryController : MonoBehaviour
 
         if (consumableData != null)
         {
-            playerInventoryGrid.PickUpItem(currentItem.onGridPositionX,currentItem.onGridPositionY);
+            playerInventoryGrid.PickUpItem(currentItem.onGridPositionX, currentItem.onGridPositionY);
             SelectedItemGrid.AddCurrentCount(-1);
 
             ItemManager.Instance.UseConsumable(consumableData);
@@ -576,7 +579,7 @@ public class InventoryController : MonoBehaviour
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
         }
-        
+
         //WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
         return itemData;
     }
@@ -628,7 +631,7 @@ public class InventoryController : MonoBehaviour
 
         storeGrid.ResetPanelStates();
     }
-    
+
     public void OnClickNextStageButton()
     {
         if (isAdding == true)
@@ -653,7 +656,7 @@ public class InventoryController : MonoBehaviour
         PickUpItem(gridPosition);
         //Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         //PickUpItem(tileGridPosition);
-        if (selectedItem == null) 
+        if (selectedItem == null)
             return;
         playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
         Destroy(selectedItem.gameObject);
@@ -662,7 +665,7 @@ public class InventoryController : MonoBehaviour
 
         ItemDescription itemDescription = itemDescriptionUI.GetComponent<ItemDescription>();
 
-        if(itemDescription != null)
+        if (itemDescription != null)
             itemDescription.ExitExplnationUI();
     }
 
@@ -695,5 +698,5 @@ public class InventoryController : MonoBehaviour
         return runeStoneData;
     }
 
-    
+
 }

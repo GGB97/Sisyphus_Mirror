@@ -32,25 +32,19 @@ public class GameManager : SingletoneBase<GameManager>
             {
                 _player = FindAnyObjectByType<Player>();
                 if(_player == null)
+                {
                     _player = Instantiate(Resources.Load<Player>(DataBase.Player.Get(_playerID).prefabPath));
+                }
             }
             return _player;
         }
         private set { _player = value; }
     }
 
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //    DontDestroyOnLoad(gameObject);
-    //}
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
@@ -83,7 +77,7 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-        InventoryStats.Instance?.UpdateStatsPanel();
+        //InventoryStats.Instance?.UpdateStatsPanel();
     }
 
     public void Retry()

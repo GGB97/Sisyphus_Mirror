@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
+
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
     
@@ -16,18 +17,13 @@ public class PlayerManager : MonoBehaviour
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+
+        currentPlayer = Instantiate(players[0]);
+        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
     }
 
     private void Start()
     {
-        currentPlayer = Instantiate(players[0]);
-        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
-
         vcam.Follow = currentPlayer.transform;
         vcam.LookAt = currentPlayer.transform;
     }
