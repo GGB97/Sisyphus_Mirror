@@ -11,7 +11,7 @@ public class CanvasRotaiton : MonoBehaviour
         main = Camera.main;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         LookTarget();
     }
@@ -19,7 +19,7 @@ public class CanvasRotaiton : MonoBehaviour
     protected Quaternion LookTargetPos() // 바라볼 방향 계산
     {
         Vector3 directionToLookAt = transform.position - main.transform.position;
-        directionToLookAt.x = 0;
+        directionToLookAt.y = 0;
 
         return Quaternion.LookRotation(directionToLookAt);
     }
