@@ -101,7 +101,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -165,8 +165,6 @@ MonoBehaviour:
   - {fileID: 7304681824439530632}
   _projectileTag: 645a6202
   _areaAttackTag: c85a6202
-  testAreaAttack: {fileID: 4921926378384973515, guid: 42e21765891c5b145a806472de909c2a,
-    type: 3}
 --- !u!114 &4161329191314674582
 MonoBehaviour:
   m_ObjectHideFlags: 0

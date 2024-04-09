@@ -1,9 +1,7 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -80,7 +78,7 @@ public class HealthSystem : MonoBehaviour
                 text.color = Color.yellow;
                 break;
             case DamageType.Magic:
-                text.color = new Color(153f/255f, 204f/255f, 255f/255f);
+                text.color = new Color(175f/255f, 50f/255f, 207f/255f);
                 break;
         }
 

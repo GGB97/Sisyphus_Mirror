@@ -521,6 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionInfo: {fileID: 4384400702572403157}
   OpenUI: {fileID: 0}
+  onInteract: 0
 --- !u!114 &2670418216137044343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,6 +1561,7 @@ GameObject:
   - component: {fileID: 4804100102722329104}
   - component: {fileID: 1249391615805000665}
   - component: {fileID: 856160897791640762}
+  - component: {fileID: 4521393776001517107}
   m_Layer: 0
   m_Name: UpgradeStatus
   m_TagString: Untagged
@@ -1620,6 +1622,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractionInfo: {fileID: 7080416955179364477}
   OpenUI: {fileID: 0}
+  onInteract: 0
+--- !u!114 &4521393776001517107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8462144713283711077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: db079a2248cb1b849a34326e7997ac0a,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Interaction
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &5971014518632635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4921,6 +4955,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4128694557500216, guid: 040a969b5fca6814faf65cb7baa170e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65031575609570906, guid: 040a969b5fca6814faf65cb7baa170e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65479305082234682, guid: 040a969b5fca6814faf65cb7baa170e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65744670613211438, guid: 040a969b5fca6814faf65cb7baa170e0,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199998719565916052, guid: 040a969b5fca6814faf65cb7baa170e0,

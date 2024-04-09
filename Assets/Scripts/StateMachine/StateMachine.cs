@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class StateMachine
 {
     protected IState currentState;
