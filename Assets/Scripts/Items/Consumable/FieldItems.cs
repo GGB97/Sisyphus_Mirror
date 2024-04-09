@@ -12,6 +12,11 @@ public class FieldItems : MonoBehaviour
     [SerializeField] FieldItemType _type;
     float _value;
 
+    private void OnDisable()
+    {
+        FieldItemsPooler.Instance.ReturnToPull(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))

@@ -67,4 +67,6 @@ public struct EnemyStageModifier
 
     public static readonly float physicalAtk = 0.1f;
     public static readonly float magicAtk = 0.1f;
+
+    public static readonly int gold = 1;
 }

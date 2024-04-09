@@ -35,6 +35,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 1.6
@@ -57,6 +58,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 700
     attackRange: 1.6
@@ -79,6 +81,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 20
     attackRange: 1.7
@@ -101,6 +104,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 1.7
@@ -123,6 +127,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 700
     attackRange: 1.7
@@ -145,6 +150,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 20
     attackRange: 1.6
@@ -167,6 +173,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 2.3
@@ -189,6 +196,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 100
     attackRange: 4
@@ -211,6 +219,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 4
     attackAngle: 20
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 3
@@ -233,6 +242,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 700
     attackRange: 6
@@ -255,6 +265,7 @@ MonoBehaviour:
     size: 3
     rotationSpeed: 4
     attackAngle: 20
+    gold: 100
   - health: 0
     maxHealth: 20
     attackRange: 2
@@ -277,6 +288,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 3
@@ -299,6 +311,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 2.5
@@ -321,6 +334,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 2
@@ -343,6 +357,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 10
@@ -365,6 +380,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 10
+    gold: 5
   - health: 0
     maxHealth: 500
     attackRange: 15
@@ -387,6 +403,7 @@ MonoBehaviour:
     size: 3
     rotationSpeed: 5
     attackAngle: 10
+    gold: 100
   - health: 0
     maxHealth: 100
     attackRange: 20
@@ -409,3 +426,4 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 6
     attackAngle: 5
+    gold: 5

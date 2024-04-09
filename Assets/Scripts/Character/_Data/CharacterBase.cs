@@ -78,7 +78,7 @@ public class Status
         lifeSteal = baseStat.lifeSteal + modifier.lifeSteal;
     }
 
-    public void Init_EnemyModifier(Status baseStat, EnemyRank rank)
+    public virtual void Init_EnemyModifier(Status baseStat, EnemyRank rank)
     {
         #region 제곱적 증가 예시
         // base = 100, 스테이지당 증가량 = 2

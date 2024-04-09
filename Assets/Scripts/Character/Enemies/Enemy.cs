@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,6 +35,8 @@ public class Enemy : CharacterBehaviour
     [SerializeField] ProjectileID[] _projectileTag;
     [SerializeField] ProjectileID[] _areaAttackTag;
     public Action deSpawnEvent;
+
+    [SerializeField] int dropGoldValue;
 
     private void Awake()
     {
@@ -84,6 +87,7 @@ public class Enemy : CharacterBehaviour
         OnDieEvent += ChangeDieState;
         OnDieEvent += InvokeActiveFalse;
         OnDieEvent += DropItem;
+        OnDieEvent += DropExp;
         if (Info.rank == EnemyRank.Boss)
         {
             OnDieEvent += DropRune;
@@ -121,6 +125,8 @@ public class Enemy : CharacterBehaviour
     {
         modifier.Init_EnemyModifier(Info, Info.rank);
         currentStat.InitStatus(Info, modifier);
+        
+        dropGoldValue = Info.gold + ((DungeonManager.Instance.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
 
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.
@@ -265,15 +271,22 @@ public class Enemy : CharacterBehaviour
 
     void DropItem()
     {
-        GameObject gold = Resources.Load<GameObject>("Items/Prefabs/Consumable/FieldItems/Gold");
-        Instantiate(gold, transform.position, Quaternion.identity);
+        FieldItems go = FieldItemsPooler.Instance.SpawnFromPool(
+            FieldItemType.Gold.ToString(),
+            transform.position,
+            Quaternion.identity).GetComponent<FieldItems>();
 
-        _player.GetEXP(10);
+        go.SetValue(dropGoldValue);
     }
 
     void DropRune()
     {
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+    }
+
+    void DropExp()
+    {
+        _player.GetEXP(10);
     }
 
     void ChangeComplete()
