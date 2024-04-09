@@ -16,7 +16,7 @@ MonoBehaviour:
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 0
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -35,10 +35,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 1.6
-    meleeAtk: 0
+    physicalAtk: 5
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
@@ -57,10 +58,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 700
     attackRange: 1.6
-    meleeAtk: 0
+    physicalAtk: 7
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -79,10 +81,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 20
     attackRange: 1.7
-    meleeAtk: 0
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -101,10 +104,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 1.7
-    meleeAtk: 0
+    physicalAtk: 3
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -123,10 +127,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 700
     attackRange: 1.7
-    meleeAtk: 0
+    physicalAtk: 7
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -145,10 +150,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 20
     attackRange: 1.6
-    meleeAtk: 0
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -167,10 +173,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 2.3
-    meleeAtk: 0
+    physicalAtk: 3
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -189,10 +196,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 100
     attackRange: 4
-    meleeAtk: 0
+    physicalAtk: 6
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
@@ -211,10 +219,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 4
     attackAngle: 20
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 3
-    meleeAtk: 0
+    physicalAtk: 4
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -230,13 +239,14 @@ MonoBehaviour:
     type: 4
     rank: 0
     element: 0
-    size: 2
+    size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
-    maxHealth: 100000
+    maxHealth: 700
     attackRange: 6
-    meleeAtk: 0
+    physicalAtk: 12
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
@@ -255,10 +265,11 @@ MonoBehaviour:
     size: 3
     rotationSpeed: 4
     attackAngle: 20
+    gold: 100
   - health: 0
     maxHealth: 20
     attackRange: 2
-    meleeAtk: 0
+    physicalAtk: 2
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -277,10 +288,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 3
-    meleeAtk: 0
+    physicalAtk: 3
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
@@ -299,10 +311,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 50
     attackRange: 2.5
-    meleeAtk: 0
+    physicalAtk: 3
     magicAtk: 0
     def: 6
     attackSpeed: 0.5
@@ -321,10 +334,11 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 2
-    meleeAtk: 0
+    physicalAtk: 3
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
@@ -343,10 +357,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
+    gold: 5
   - health: 0
     maxHealth: 30
     attackRange: 10
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 4
     def: 2
     attackSpeed: 0.3
@@ -365,10 +380,11 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 10
+    gold: 5
   - health: 0
-    maxHealth: 300
+    maxHealth: 500
     attackRange: 15
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 10
     def: 5
     attackSpeed: 0.6
@@ -387,10 +403,11 @@ MonoBehaviour:
     size: 3
     rotationSpeed: 5
     attackAngle: 10
+    gold: 100
   - health: 0
     maxHealth: 100
     attackRange: 20
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 5
     def: 5
     attackSpeed: 0.5
@@ -409,3 +426,4 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 6
     attackAngle: 5
+    gold: 5

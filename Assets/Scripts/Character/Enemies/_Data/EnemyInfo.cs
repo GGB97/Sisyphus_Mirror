@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,6 +11,8 @@ public class EnemyInfo : CharacterBase
 
     public float rotationSpeed;
     public float attackAngle;
+
+    public int gold; // 드랍할 골드의 양
 
     public EnemyInfo()
     {
