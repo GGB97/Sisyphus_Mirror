@@ -59,6 +59,7 @@ public class FieldItems : MonoBehaviour
         SetValue();
         Debug.Log($"Player Get '{_value}' Gold");
         GameManager.Instance.Player.Data.Gold += _value;
+        GameManager.Instance.totalGold += _value;
     }
 
     void Magnet()

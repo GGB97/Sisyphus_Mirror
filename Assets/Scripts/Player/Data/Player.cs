@@ -99,6 +99,7 @@ public class Player : CharacterBehaviour
             Data.EXP = 0;
             Data.LV++;
         }
+        GameManager.Instance.killenemys++;
     }
 
     public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.

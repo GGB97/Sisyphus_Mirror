@@ -28,7 +28,7 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
     id: 21234567
-    prefabPath: 
+    prefabPath: Player/Prefabs/MC01
     LV: 1
     EXP: 0
     maxEXP: 100

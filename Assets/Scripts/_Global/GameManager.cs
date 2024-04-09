@@ -5,9 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : SingletoneBase<GameManager>
+public class GameManager : MonoBehaviour
 {
-    //public static GameManager Instance;
+    public static GameManager Instance;
 
     public bool isGameover = false;
     [SerializeField] private int _playerID;
@@ -15,10 +15,10 @@ public class GameManager : SingletoneBase<GameManager>
 
     public GameObject gameoverUI;
 
-    [SerializeField] private TextMeshPro floorText;
-    [SerializeField] private TextMeshPro levelText;
-    [SerializeField] private TextMeshPro killText;
-    [SerializeField] private TextMeshPro goldText;
+    [SerializeField] private TextMeshProUGUI floorText;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI killText;
+    [SerializeField] private TextMeshProUGUI goldText;
 
     public int currentFloor;
     public int currentLevel;
@@ -43,20 +43,20 @@ public class GameManager : SingletoneBase<GameManager>
 
     private void Awake()
     {
-        //if(Instance == null)
-        //{
-        //    Instance = this;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-        //DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        if(Player.isDie)
+        if (isGameover)
         {
             Gameover();
         }
@@ -64,35 +64,36 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void Gameover()
     {
-       // if (Player.isDie)
-       // {
-            DungeonManager.Instance.isStarted = false;
+        Time.timeScale = 0;
+        DungeonManager.Instance.isStarted = false;
 
-            EnemySpawner.Instance.SpawnStop();
-            EnemySpawner.Instance.FindAllEnemiesDeSpawn();
+        EnemySpawner.Instance.SpawnStop();
+        EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
-            EditorApplication.isPaused = true;
-            gameoverUI.SetActive(true);
+        gameoverUI.SetActive(true);
 
-            //currentFloor = DungeonManager.Instance.currnetstage;
-            //currentLevel = Player.Data.LV;
+        currentFloor = DungeonManager.Instance.currnetstage;
+        currentLevel = Player.Data.LV;
 
-            //floorText.text = currentFloor.ToString();
-            //levelText.text = currentLevel.ToString();
-            //killText.text = killenemys.ToString();
-            //goldText.text = totalGold.ToString();
-       // }
+        floorText.text = currentFloor.ToString();
+        levelText.text = currentLevel.ToString();
+        killText.text = killenemys.ToString();
+        goldText.text = totalGold.ToString();
     }
 
     public void SetPlayer(Player newPlayer)
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-       // InventoryStats.Instance.UpdateStatsPanel();
+        InventoryStats.Instance.UpdateStatsPanel();
     }
 
     public void Retry()
     {
+        Time.timeScale = 1;
+        isGameover = false;
         SceneManager.LoadScene(1);
+        killenemys = 0;
+        totalGold = 0;
     }
 }

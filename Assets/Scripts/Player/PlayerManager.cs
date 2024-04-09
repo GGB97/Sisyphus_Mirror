@@ -12,7 +12,15 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
