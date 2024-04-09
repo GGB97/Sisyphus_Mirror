@@ -26,6 +26,9 @@ public class Player : CharacterBehaviour
     public int rune;
     public event Action PlayerRuneChange;
 
+    public event Action PlayerGoldChange;
+    public float magnetDistance = 3;
+
     private void Awake()
     {
         AnimationData.Initialize();

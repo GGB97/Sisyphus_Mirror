@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletoneBase<GameManager>
 {
+    //public static GameManager Instance;
+
     public bool isGameover = false;
     [SerializeField] private int _playerID;
     [SerializeField] private Player _player;
@@ -39,6 +41,27 @@ public class GameManager : SingletoneBase<GameManager>
         private set { _player = value; }
     }
 
+    private void Awake()
+    {
+        //if(Instance == null)
+        //{
+        //    Instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+        //DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if(Player.isDie)
+        {
+            Gameover();
+        }
+    }
+
     public void Gameover()
     {
        // if (Player.isDie)
@@ -51,13 +74,13 @@ public class GameManager : SingletoneBase<GameManager>
             EditorApplication.isPaused = true;
             gameoverUI.SetActive(true);
 
-            currentFloor = DungeonManager.Instance.currnetstage;
-            currentLevel = Player.Data.LV;
+            //currentFloor = DungeonManager.Instance.currnetstage;
+            //currentLevel = Player.Data.LV;
 
-            floorText.text = currentFloor.ToString();
-            levelText.text = currentLevel.ToString();
-            killText.text = killenemys.ToString();
-            goldText.text = totalGold.ToString();
+            //floorText.text = currentFloor.ToString();
+            //levelText.text = currentLevel.ToString();
+            //killText.text = killenemys.ToString();
+            //goldText.text = totalGold.ToString();
        // }
     }
 
@@ -65,7 +88,7 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-        InventoryStats.Instance.UpdateStatsPanel();
+       // InventoryStats.Instance.UpdateStatsPanel();
     }
 
     public void Retry()

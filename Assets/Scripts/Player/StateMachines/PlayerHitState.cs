@@ -14,6 +14,7 @@ public class PlayerHitState : PlayerBaseState
         player.hitDelay = 0;
         StartAnimation(stateMachine.Player.AnimationData.HitParameterHash);
         //Debug.Log("damage");
+      //  player.Controller.detectCollisions = false;
     }
 
     public override void Exit()
@@ -21,6 +22,7 @@ public class PlayerHitState : PlayerBaseState
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.HitParameterHash);
         player.isHit = false;
+    //    player.Controller.detectCollisions = true;
     }
 
     public override void Update()
@@ -33,7 +35,7 @@ public class PlayerHitState : PlayerBaseState
         }
         if(player.currentStat.health <= 0)
         {
-          //  stateMachine.ChangeState(stateMachine.dieState);
+            stateMachine.ChangeState(stateMachine.dieState);
         }
     }
 }

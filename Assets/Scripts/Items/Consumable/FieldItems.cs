@@ -10,7 +10,11 @@ public enum FieldItemType
 public class FieldItems : MonoBehaviour
 {
     [SerializeField] FieldItemType _type;
-    float _value;
+    int _value;
+
+    public float moveSpeed = 10f;
+    public float magnetDistance;
+    private Transform player;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,13 +37,37 @@ public class FieldItems : MonoBehaviour
         }
     }
 
-    public void SetValue(float value)
+    private void Start()
     {
-        _value = value;
+        player = GameManager.Instance.Player.transform;
+        magnetDistance = GameManager.Instance.Player.magnetDistance;
+    }
+
+    private void Update()
+    {
+        Magnet();
+    }
+
+
+    public void SetValue()
+    {
+        _value = Random.Range(1, 3);
     }
 
     void PlayerGetGole()
     {
+        SetValue();
         Debug.Log($"Player Get '{_value}' Gold");
+        GameManager.Instance.Player.Data.Gold += _value;
+    }
+
+    void Magnet()
+    {
+        float distance = Vector3.Distance(transform.position, player.position);
+
+        if(distance <= magnetDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        }
     }
 }

@@ -18,7 +18,7 @@ public class PlayerDashState : PlayerBaseState
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DashParameterHash);
         stateMachine.MovementSpeedModifier = 3f;
-        
+        player.Input.enabled = false;
     }
 
     public override void Exit()
@@ -27,7 +27,7 @@ public class PlayerDashState : PlayerBaseState
         player.Controller.detectCollisions = true;
         stateMachine.DashCoolTime = 0;
         StopAnimation(stateMachine.Player.AnimationData.DashParameterHash);
-
+        player.Input.enabled = true;
     }
 
     public override void Update() // 대시 이동 정해진 방향으로 일정 시간 동안 이동
