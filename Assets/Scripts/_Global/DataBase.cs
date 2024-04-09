@@ -10,6 +10,7 @@ public class DataBase : SingletoneBase<DataBase>
     [SerializeField] ProjectileDB _Projectile;
     [SerializeField] PlayerUpgradeDB _PlayerUpgrade;
     [SerializeField] TutorialDB _tutorial;
+    [SerializeField] QuestDB _quest;
 
     public static EnemyDB EnemyStats
     {
@@ -96,6 +97,16 @@ public class DataBase : SingletoneBase<DataBase>
                 Instance._tutorial = new TutorialDB();
 
             return Instance._tutorial;
+        }
+    }
+    public static QuestDB Quest
+    {
+        get
+        {
+            if (Instance._quest == null)
+                Instance._quest = new QuestDB();
+
+            return Instance._quest;
         }
     }
 }
