@@ -5,9 +5,9 @@ using Constants;
 
 public class Quest
 {
-    private int _questId;
-    private int _questProgress;
-    private QuestState _questState;
+    [SerializeField]private int _questId;
+    [SerializeField]private int _questProgress;
+    [SerializeField]private QuestState _questState;
 
     public int QuestId { get => _questId; private set => _questId = value; }
     public int QuestProgress { get => _questProgress; private set => _questProgress = value; }
