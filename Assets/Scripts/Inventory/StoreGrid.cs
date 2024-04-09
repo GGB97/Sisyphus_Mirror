@@ -40,31 +40,31 @@ public class StoreGrid : ItemGrid
         {
             PlaceItem(item, 1, 1);
             InventoryController.Instance.itemCost[0].transform.parent.position = SetTransform(item);
-            InventoryController.Instance.itemCost[0].text = item.itemSO.Price.ToString();
+            InventoryController.Instance.itemCost[0].text = (item.itemSO.Price.ToString() + "<color=yellow> G</color>");
         }
         else if (panelSlots[1, 7].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 1, 7);
             InventoryController.Instance.itemCost[1].transform.parent.position = SetTransform(item);
-            InventoryController.Instance.itemCost[1].text = item.itemSO.Price.ToString();
+            InventoryController.Instance.itemCost[1].text = (item.itemSO.Price.ToString() + "<color=yellow> G</color>");
         }
         else if (panelSlots[4, 4].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 4, 4);
             InventoryController.Instance.itemCost[2].transform.parent.position = SetTransform(item);
-            InventoryController.Instance.itemCost[2].text = item.itemSO.Price.ToString();
+            InventoryController.Instance.itemCost[2].text = (item.itemSO.Price.ToString() + "<color=yellow> G</color>");
         }
         else if (panelSlots[7, 1].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 7, 1);
             InventoryController.Instance.itemCost[3].transform.parent.position = SetTransform(item);
-            InventoryController.Instance.itemCost[3].text = item.itemSO.Price.ToString();
+            InventoryController.Instance.itemCost[3].text = (item.itemSO.Price.ToString() + "<color=yellow> G</color>");
         }
         else
         {
             PlaceItem(item, 7, 7);
             InventoryController.Instance.itemCost[4].transform.parent.position = SetTransform(item);
-            InventoryController.Instance.itemCost[4].text = item.itemSO.Price.ToString();
+            InventoryController.Instance.itemCost[4].text = (item.itemSO.Price.ToString() + "<color=yellow> G</color>");
         }
     }
 
