@@ -54,14 +54,14 @@ public class FieldItems : MonoBehaviour
     }
 
 
-    public void SetValue()
+    public void SetValue(int index)
     {
-        _value = Random.Range(1, 3);
+        _value = index;
     }
 
     void PlayerGetGole()
     {
-        SetValue();
+        //SetValue();
         Debug.Log($"Player Get '{_value}' Gold");
         GameManager.Instance.Player.Data.Gold += _value;
         GameManager.Instance.totalGold += _value;
