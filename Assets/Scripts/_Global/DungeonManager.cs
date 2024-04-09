@@ -1,12 +1,6 @@
-using DG.Tweening;
-using JetBrains.Annotations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -32,9 +26,6 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public event Action OnStageEnd;
 
-    private void Start()
-    {
-    }
     private void Awake()
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);

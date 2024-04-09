@@ -49,6 +49,7 @@ public class RuneStoneUI : MonoBehaviour
         _enabled = false;
 
         _runStoneConfirmButtonText.text = "Start";
+        _playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
     }
 
     // Update is called once per frame
@@ -224,6 +225,7 @@ public class RuneStoneUI : MonoBehaviour
         _playerStatus.InitStatus(_playerStatus, _modifier);
         if(_playerStatusUI.TryGetComponent<InventoryStats>(out InventoryStats inventoryStats))
         {
+            Debug.Log("Status");
             inventoryStats.UpdateStatsPanel();
         }
     }

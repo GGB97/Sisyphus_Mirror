@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CommonData
@@ -23,6 +21,7 @@ public struct DBPath
     public static readonly string EnemyDB = "Enemy/Data/EnemyDB_Sheet";
     public static readonly string ProjectileDB = "Projectile/_Data/ProjectileDB_Sheet";
     public static readonly string PlayerUpgradeDB = "Task/Upgrade/Data/PlayerUpgradeDB_Sheet";
+    public static readonly string QuestDB = "Quest/QuestSO";
 }
 
 public enum ProjectileID
@@ -37,7 +36,7 @@ public enum ProjectileID
     Poison,
 
     // AreaAttack
-    ArearAttack_Ice = 40000200
+    AreaAttack_Ice = 40000200
 }
 
 public enum DamageType
@@ -60,3 +59,15 @@ public enum UpgradeType
     StartGold = 50000003,
 }
 #endregion
+
+
+public struct EnemyStageModifier
+{
+    public static readonly int maxHealth = 1;
+    public static readonly float bossMaxHealth = 0.5f;
+
+    public static readonly float physicalAtk = 0.1f;
+    public static readonly float magicAtk = 0.1f;
+
+    public static readonly int gold = 1;
+}

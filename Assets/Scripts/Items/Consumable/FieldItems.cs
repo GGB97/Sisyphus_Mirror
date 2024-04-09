@@ -16,6 +16,11 @@ public class FieldItems : MonoBehaviour
     public float magnetDistance;
     private Transform player;
 
+    private void OnDisable()
+    {
+        FieldItemsPooler.Instance.ReturnToPull(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))

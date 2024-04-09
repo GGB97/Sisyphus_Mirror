@@ -104,6 +104,8 @@ public class PlayerInventory : ItemGrid
     }
     public void ShowRandomAddableSlot()
     {
+        int addCount = InventoryController.Instance.addCount;
+        InventoryController.Instance.addBlockDescription.SetText(addCount);
         //isSetting = true;// 설정을 한 번 한 것으로 설정
         currentAddSlot = 0;//현재 추가 슬롯
         for (int i = 0; i < 10; i++)//추가 되어야할 칸이 최소 5개
@@ -253,6 +255,7 @@ public class PlayerInventory : ItemGrid
         }
         else
         {
+            InventoryController.Instance.addBlockDescription.Active(false);
             InventoryController.Instance.isAdding = false;
         }
     }

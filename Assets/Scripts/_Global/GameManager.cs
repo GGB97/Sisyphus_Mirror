@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -85,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-        InventoryStats.Instance.UpdateStatsPanel();
+        InventoryStats.Instance?.UpdateStatsPanel();
     }
 
     public void Retry()

@@ -39,6 +39,8 @@ public class InventoryController : MonoBehaviour
     public Storage storageGrid;//창고 그리드
     public StoreGrid storeGrid;// 상점 그리드
 
+    public AddBlockDescription addBlockDescription;
+
     [SerializeField]
     private InventoryHighlight inventoryHighlight;
 
@@ -128,6 +130,15 @@ public class InventoryController : MonoBehaviour
         int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
         addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
         Debug.Log($"추가할 칸 수 : {addCount}");
+        if (addCount != 0)
+        {
+            addBlockDescription.Active(true);
+        }
+        else
+        {
+            addBlockDescription.Active(false);
+        }
+
         if (addCount != 0)//추가할 블록이 있다면 실행
         { 
             SelectedItemGrid = playerInventoryGrid;

@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.AI.Navigation;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
-using static ObjectPoolManager;
 
 public class Surface : MonoBehaviour
 {
