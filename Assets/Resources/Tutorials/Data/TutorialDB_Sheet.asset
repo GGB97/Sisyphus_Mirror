@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7684b6bc7c0ebd54db8147cc1431a386, type: 3}
+  m_Name: TutorialDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 60001011
+    _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 1"
+    _tutorialText: "<color=\"yellow\">\uB8EC\uC2A4\uD1A4 \uAC15\uD654 \uAE30\uB2A5</color>\uB294
+      \uC774\uBC88 \uD0D0\uD5D8\uB3D9\uC548 \uD50C\uB808\uC774\uC5B4\uC758 \uB2A5\uB825\uCE58\uC5D0
+      \uBCC0\uD654\uB97C \uC904 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uB8EC\uC2A4\uD1A4
+      \uAC15\uD654 \uAE30\uD68C\uB294 <color=\"yellow\">\uC5D8\uB9AC\uD2B8 \uBAAC\uC2A4\uD130,
+      \uBCF4\uC2A4 \uBAAC\uC2A4\uD130\uB97C \uC4F0\uB7EC\uD2B8\uB9AC\uBA74</color>
+      \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/RuneStone/RuneStone_1
+    _hasNextPage: 1
+    _nextPageId: 0
+  - _id: 60001012
+    _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 2"
+    _tutorialText: "<color=\"yellow\">\uAC15\uD654\uD558\uACE0 \uC2F6\uC740 \uC2A4\uD0EF</color>\uC744
+      \uB20C\uB7EC \uCD94\uAC00\uD558\uC138\uC694. \uC2A4\uD0EF\uC774 \uCD94\uAC00\uB418\uBA74
+      \uAC15\uD654 \uAE30\uD68C\uAC00 1\uD68C \uC18C\uBAA8\uB429\uB2C8\uB2E4.\n<color=\"yellow\">\uCD94\uAC00\uB41C
+      \uC2A4\uD0EF\uC744 \uB20C\uB7EC</color> \uAC15\uD654\uD560 \uC2A4\uD0EF\uC5D0\uC11C
+      \uC81C\uAC70\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/RuneStone/RuneStone_2
+    _hasNextPage: 1
+    _nextPageId: 0
+  - _id: 60001013
+    _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 3"
+    _tutorialText: "<color=\"yellow\">Start \uBC84\uD2BC\uC744 \uB20C\uB7EC \uC2A4\uD0EF\uC744
+      \uAC15\uD654</color>\uD574\uBCF4\uC138\uC694!\n\uB2E4\uB9CC, \uAC8C\uC774\uC9C0\uC758
+      \uC0C9\uC5D0 \uB530\uB77C \uAC15\uD654 \uC815\uB3C4\uC5D0 \uCC28\uC774\uAC00
+      \uBC1C\uC0DD\uD558\uAC8C \uB429\uB2C8\uB2E4.\n<color=\"red\">\uBE68\uAC04 \uAC8C\uC774\uC9C0\uC5D0
+      \uBA48\uCD94\uBA74</color> \uB514\uBA54\uB9AC\uD2B8\uAC00 \uBC1C\uC0DD\uD558\uAC8C
+      \uB429\uB2C8\uB2E4. \uC8FC\uC758\uD558\uC138\uC694!"
+    _imagePath: Tutorials/Image/RuneStone/RuneStone_3
+    _hasNextPage: 1
+    _nextPageId: 0
+  - _id: 60001014
+    _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 4"
+    _tutorialText: "<color=\"yellow\">Stop \uBC84\uD2BC\uC744 \uB20C\uB7EC</color>
+      \uAC15\uD654\uB97C \uC644\uB8CC\uD558\uC138\uC694!\n\uC67C\uCABD\uC758 \uC2A4\uD0EF\uCC3D\uC744
+      \uD1B5\uD574 \uAC15\uD654\uB41C \uC2A4\uD0EF\uC744 \uD655\uC778\uD560 \uC218
+      \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/RuneStone/RuneStone_4
+    _hasNextPage: 0
+    _nextPageId: 0
