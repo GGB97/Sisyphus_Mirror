@@ -26,6 +26,7 @@ public class Player : CharacterBehaviour
     public int rune;
     public event Action PlayerRuneChange;
 
+    public int gold;
     public event Action PlayerGoldChange;
     public float magnetDistance = 3;
 
@@ -84,6 +85,12 @@ public class Player : CharacterBehaviour
     {
         rune += value;
         PlayerRuneChange?.Invoke();
+    }
+
+    public void ChangeGold(int value)
+    {
+        Data.Gold += value;
+        PlayerGoldChange?.Invoke();
     }
 
     public void InvokeEvent(Action action)

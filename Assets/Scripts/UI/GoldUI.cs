@@ -12,7 +12,7 @@ public class GoldUI : MonoBehaviour
     void Start()
     {
         _player = GameManager.Instance.Player;
-        _player.PlayerRuneChange += UpdateGold;
+        _player.PlayerGoldChange += UpdateGold;
         UpdateGold();
     }
 
