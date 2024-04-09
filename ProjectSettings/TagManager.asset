@@ -6,6 +6,7 @@ TagManager:
   tags:
   - inventoryUI
   - stageUI
+  - gameoverUI
   layers:
   - Default
   - TransparentFX
