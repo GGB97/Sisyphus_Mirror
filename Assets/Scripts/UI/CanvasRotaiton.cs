@@ -13,22 +13,11 @@ public class CanvasRotaiton : MonoBehaviour
 
     void FixedUpdate()
     {
-        LookTarget();
+        LookCamera();
     }
 
-    protected Quaternion LookTargetPos() // 바라볼 방향 계산
+    void LookCamera()
     {
-        Vector3 directionToLookAt = transform.position - main.transform.position;
-        directionToLookAt.y = 0;
-
-        return Quaternion.LookRotation(directionToLookAt);
-    }
-
-    void LookTarget() // 대상을 즉시 바라봄
-    {
-        Quaternion targetRotation = LookTargetPos();
-
-        // 바라보는 방향 수정
-        transform.rotation = targetRotation;
+        transform.rotation = main.transform.rotation;
     }
 }

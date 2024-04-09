@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 853110527569835247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2851377490772629388}
@@ -57,8 +57,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1
+  m_Radius: 0.8
+  m_Height: 0.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0.3}
 --- !u!195 &1571019749224645199
@@ -100,7 +100,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -141,11 +141,12 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 0
     attackAngle: 0
+    gold: 0
   modifier:
     health: 0
     maxHealth: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -163,6 +164,8 @@ MonoBehaviour:
   - {fileID: 4624558264866454204}
   _rangeAttackPos: []
   _projectileTag: 
+  _areaAttackTag: 
+  dropGoldValue: 0
 --- !u!114 &8455117203742401955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +768,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611543388551136099, guid: a7d06dfb21da417b9d7b1e04350feec1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611543388551136099, guid: a7d06dfb21da417b9d7b1e04350feec1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611543388551136099, guid: a7d06dfb21da417b9d7b1e04350feec1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5611543388551136099, guid: a7d06dfb21da417b9d7b1e04350feec1,
         type: 3}
