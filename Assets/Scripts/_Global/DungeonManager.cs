@@ -30,7 +30,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
-        InventoryController.Instance.nextStage += CloseInventory;
+        //InventoryController.Instance.nextStage += CloseInventory;
 
         if (inventoryUI == null && stageUI == null)
         {
@@ -45,6 +45,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
+    }
+
+    private void Start()
+    {
+        InventoryController.Instance.nextStage += CloseInventory;
     }
 
     private void Update()

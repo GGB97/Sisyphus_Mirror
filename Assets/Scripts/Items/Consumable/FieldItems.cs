@@ -35,8 +35,7 @@ public class FieldItems : MonoBehaviour
                     // TODO : 플레이어 무적?
                     break;
                 case FieldItemType.Gold:
-                    PlayerGetGole();
-                    Destroy(gameObject); // 이 아이템들도 오브젝트 풀로 관리?
+                    PlayerGetGold();
                     break;
             }
         }
@@ -59,12 +58,14 @@ public class FieldItems : MonoBehaviour
         _value = index;
     }
 
-    void PlayerGetGole()
+    void PlayerGetGold()
     {
         //SetValue();
         Debug.Log($"Player Get '{_value}' Gold");
-        GameManager.Instance.Player.Data.Gold += _value;
+        GameManager.Instance.Player.ChangeGold( _value );
         GameManager.Instance.totalGold += _value;
+        
+        gameObject.SetActive(false);
     }
 
     void Magnet()
