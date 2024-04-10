@@ -1,9 +1,5 @@
 using UnityEngine;
-
-public enum TutorialType
-{
-
-}
+using UnityEngine.UI;
 
 [System.Serializable]
 public class TutorialData
@@ -23,14 +19,14 @@ public class TutorialData
     public bool hasNextPage => _hasNextPage;
     public int NextPageId => _nextPageId;
 
-    private Sprite _tutorialImage;
-    public Sprite TutorialImage
+    private Image _tutorialImage;
+    public Image TutorialImage
     {
         get
         {
             if (_tutorialImage == null)
             {
-                _tutorialImage = Resources.Load<Sprite>(_imagePath);
+                _tutorialImage = Resources.Load<Image>(_imagePath);
             }
             return _tutorialImage;
         }
