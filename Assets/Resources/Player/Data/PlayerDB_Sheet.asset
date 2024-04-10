@@ -33,6 +33,7 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 100
     Gold: 0
+    Weight: 0
     startItemID: 10113011
     startInventory: 10
   - health: 0
@@ -55,5 +56,6 @@ MonoBehaviour:
     EXP: 0
     maxEXP: 100
     Gold: 0
+    Weight: 0
     startItemID: 10112011
     startInventory: 10
