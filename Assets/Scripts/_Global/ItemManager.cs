@@ -334,7 +334,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // 아이템의 지속 시간을 갱신 및 남은 지속 시간 체크
-    private void SetConsumableDuration()
+    private void SetConsumableDuration(int index)
     {
         if(_usedConsumable.Count != 0)
         {
@@ -363,6 +363,6 @@ public class ItemManager : MonoBehaviour
     private void OnDestroy()
     {
         InventoryController.Instance.nextStage -= RemoveAllItems;
-        InventoryController.Instance.nextStage -= SetConsumableDuration;
+        DungeonManager.Instance.OnStageEnd -= SetConsumableDuration;
     }
 }

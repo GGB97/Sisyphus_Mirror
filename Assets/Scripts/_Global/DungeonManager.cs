@@ -24,7 +24,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
-    public event Action OnStageEnd;
+    public event Action<int> OnStageEnd;
 
     private void Awake()
     {
@@ -110,7 +110,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
-        OnStageEnd?.Invoke();
+        OnStageEnd?.Invoke(currnetstage);
         Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()
