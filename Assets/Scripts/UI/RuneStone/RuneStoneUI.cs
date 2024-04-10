@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,9 +18,11 @@ public enum PlayerStatType
 
 public class RuneStoneUI : MonoBehaviour
 {
-    int leftAttemptCount;
+    [SerializeField] int _tutorialId;
+
     int _selectedStatCounter = 0;
-    DungeonManager dungeonManager;
+    DungeonManager _dungeonManager;
+    [SerializeField] GameObject _runeStoneUI;
 
     [SerializeField] Image _selectedStatPanel;
     [SerializeField] GameObject _selectedStatPrefab;
@@ -49,13 +50,14 @@ public class RuneStoneUI : MonoBehaviour
     {
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
-        dungeonManager = DungeonManager.Instance;
+        _dungeonManager = DungeonManager.Instance;
 
         _remainChance = 0;
 
-        //DungeonManager.Instance.OnStageEnd += CheckCurrentStage;
-        dungeonManager.OnStageEnd += CheckCurrentStage;
-        gameObject.SetActive(false);
+        _dungeonManager.OnStageEnd += CheckCurrentStage;
+        _playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
+
+        _runeStoneUI.SetActive(false);
 
         //_runeStoneSlider.value = 0f;
         //_enabled = false;
@@ -63,18 +65,6 @@ public class RuneStoneUI : MonoBehaviour
         //_runStoneConfirmButtonText.text = "Start";
         //_remainChance = 1;
         //_remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
-        //_playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
-    }
-
-    private void OnEnable()
-    {
-        _runeStoneSlider.value = 0f;
-        _enabled = false;
-
-        _runStoneConfirmButtonText.text = "Start";
-        
-        _remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
-        _playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
     }
 
     // Update is called once per frame
@@ -102,7 +92,17 @@ public class RuneStoneUI : MonoBehaviour
         if(stage % 5 == 0)
         {
             _remainChance++;
-            gameObject.SetActive(true);
+            _runeStoneUI.SetActive(true);
+
+            _runeStoneSlider.value = 0f;
+            _enabled = false;
+
+            _runStoneConfirmButtonText.text = "Start";
+
+            _remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
+            //_playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
+
+            if (TutorialManager.Instance.tutorialFlag == 0 && DungeonManager.Instance.currnetstage != 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
         }
     }
 
@@ -265,9 +265,9 @@ public class RuneStoneUI : MonoBehaviour
         }
     }
 
-    private void OnDestory()
+    private void OnDisable()
     {
         //DungeonManager.Instance.OnStageEnd -= CheckCurrentStage;
-        dungeonManager.OnStageEnd -= CheckCurrentStage;
+        _dungeonManager.OnStageEnd -= CheckCurrentStage;
     }
 }

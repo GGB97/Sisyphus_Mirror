@@ -19,14 +19,14 @@ public class TutorialData
     public bool hasNextPage => _hasNextPage;
     public int NextPageId => _nextPageId;
 
-    private Image _tutorialImage;
-    public Image TutorialImage
+    private Sprite _tutorialImage;
+    public Sprite TutorialImage
     {
         get
         {
             if (_tutorialImage == null)
             {
-                _tutorialImage = Resources.Load<Image>(_imagePath);
+                _tutorialImage = Resources.Load<Sprite>(_imagePath);
             }
             return _tutorialImage;
         }

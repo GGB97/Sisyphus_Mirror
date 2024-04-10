@@ -14,7 +14,7 @@ public class TutorialPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        
     }
 
     // Update is called once per frame
@@ -24,18 +24,23 @@ public class TutorialPopup : MonoBehaviour
         {
             if (tutorial != null && tutorial.hasNextPage)
             {
+                Debug.Log(tutorial.NextPageId);
                 SetTutorialPopup(tutorial.NextPageId);
             }
             else Destroy(gameObject);
+            Time.timeScale = 1.0f;
         }
     }
 
     public void SetTutorialPopup(int id)
     {
+        gameObject.SetActive(true);
+        Time.timeScale = 0;
+
         tutorial = DataBase.Tutorial.Get(id);
         if (tutorial != null)
         {
-            _tutorialImage = tutorial.TutorialImage;
+            _tutorialImage.sprite = tutorial.TutorialImage;
             _tutorialName.text = tutorial.TutorialName;
             _tutorialText.text = tutorial.TutorialText;
         }

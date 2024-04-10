@@ -6,6 +6,7 @@ using UnityEngine;
 public class TutorialManager : SingletoneBase<TutorialManager>
 {
     [SerializeField] GameObject _tutorialUI;
+    
     public int tutorialFlag;
 
     // Start is called before the first frame update
@@ -24,13 +25,14 @@ public class TutorialManager : SingletoneBase<TutorialManager>
         
     }
 
-    public void TutorialPopup(int id)
+    public void PopupTutorial(int id)
     {
-        TutorialPopup tutorial;
-        if(tutorialFlag == 0)
+        if (tutorialFlag == 0)
         {
-            tutorial = Instantiate(_tutorialUI).GetComponent<TutorialPopup>();
-            tutorial.SetTutorialPopup(id);
+            Debug.Log("PopupTutorial");
+            if (_tutorialUI == null)
+                _tutorialUI = Instantiate(Resources.Load("Tutorials/Prefabs/_Tutorials") as GameObject);
+            _tutorialUI.GetComponent<TutorialPopup>().SetTutorialPopup(id);
         }
     }
 }
