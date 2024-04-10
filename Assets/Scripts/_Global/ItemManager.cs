@@ -360,7 +360,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         InventoryController.Instance.nextStage -= RemoveAllItems;
         DungeonManager.Instance.OnStageEnd -= SetConsumableDuration;
