@@ -18,7 +18,7 @@ public class Quest
         _questProgress = 0;
         _questState = QuestState.Wait;
     }
-    public Quest(int questId, int questProgress, QuestState questState)
+    public Quest(int questId, int questProgress = 0 , QuestState questState = QuestState.Wait)
     {
         _questId = questId;
         _questProgress = questProgress;
