@@ -3,6 +3,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Constants;
 
 public class Enemy : CharacterBehaviour
 {
@@ -106,6 +107,7 @@ public class Enemy : CharacterBehaviour
         {
             if (isDie)
             {
+                QuestManager.Instance.NotifyQuest(QuestType.KillMonster, 30, 1);
                 OnDieEvent?.Invoke();
                 isDieTrigger = false;
                 return;

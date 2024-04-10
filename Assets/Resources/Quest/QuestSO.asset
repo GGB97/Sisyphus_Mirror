@@ -17,7 +17,7 @@ MonoBehaviour:
     _name: "\uCD08\uBCF4\uC790"
     _description: "\uBAAC\uC2A4\uD130 10 \uB9C8\uB9AC \uCC98\uCE58"
     _type: 0
-    _target: 30000000
+    _target: 30
     _count: 10
     _exp: 0
     _gold: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     _name: "\uC219\uB828\uC790"
     _description: "\uBAAC\uC2A4\uD130 100 \uB9C8\uB9AC \uCC98\uCE58"
     _type: 0
-    _target: 30000000
+    _target: 30
     _count: 100
     _exp: 0
     _gold: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
     _name: "\uACE0\uC218"
     _description: "\uBAAC\uC2A4\uD130 500 \uB9C8\uB9AC \uCC98\uCE58"
     _type: 0
-    _target: 30000000
+    _target: 30
     _count: 500
     _exp: 0
     _gold: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     _name: "\uD559\uC0B4\uC790"
     _description: "\uBAAC\uC2A4\uD130 1000 \uB9C8\uB9AC \uCC98\uCE58"
     _type: 0
-    _target: 30000000
+    _target: 30
     _count: 1000
     _exp: 0
     _gold: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
   - _id: 200
     _name: "\uB274\uBE44V"
     _description: "\uC2A4\uD14C\uC774\uC9C0 5 \uCE35 \uD074\uB9AC\uC5B4"
-    _type: 0
-    _target: 30000000
-    _count: 10
+    _type: 2
+    _target: 10
+    _count: 2
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
     _description: "\uC2A4\uD14C\uC774\uC9C0 10 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
     _target: 10
-    _count: 1
+    _count: 3
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
     _name: "\uB274\uBE44lll"
     _description: "\uC2A4\uD14C\uC774\uC9C0 15 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
-    _target: 15
-    _count: 1
+    _target: 10
+    _count: 4
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -115,8 +115,8 @@ MonoBehaviour:
     _name: "\uB274\uBE44ll"
     _description: "\uC2A4\uD14C\uC774\uC9C0 20 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
-    _target: 20
-    _count: 1
+    _target: 10
+    _count: 20
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -129,8 +129,8 @@ MonoBehaviour:
     _name: "\uB274\uBE44l"
     _description: "\uC2A4\uD14C\uC774\uC9C0 25 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
-    _target: 25
-    _count: 1
+    _target: 10
+    _count: 25
     _exp: 0
     _gold: 0
     _reward_1: 0

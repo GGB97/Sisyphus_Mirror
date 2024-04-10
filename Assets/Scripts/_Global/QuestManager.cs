@@ -17,6 +17,10 @@ public class QuestManager : SingletoneBase<QuestManager>
 
     private int[] startQuestId = new int[] {100,200};//시작할 때 등록할 퀘스트들
 
+    private void Start()
+    {
+        StartQuestSetting();
+    }
     public void SubsrcipbeQuest(int questId)//등록
     {
         var questData = DataBase.Quest.Get(questId);//퀘스트 목록에서 id에 해당하는 퀘스트 정보 가져옴

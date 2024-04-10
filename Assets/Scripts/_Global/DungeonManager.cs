@@ -1,6 +1,8 @@
+using Constants;
 using System;
 using TMPro;
 using UnityEngine;
+using Constants;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -83,6 +85,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
+        QuestManager.Instance.NotifyQuest(QuestType.StageClear,10,1);//스테이지 입장 시 카운트 증가
         isStageCompleted = false;
 
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
@@ -91,7 +94,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         else
         {
-            timeLimit = 100f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
