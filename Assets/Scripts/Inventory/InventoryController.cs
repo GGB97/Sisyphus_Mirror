@@ -61,8 +61,12 @@ public class InventoryController : MonoBehaviour
     public int prevLevel = 1;//플레이어의 이전 레벨
     public bool isAdding = false;//칸 추가 중인지 
 
+    [Header("Store")]
     [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
     [SerializeField] TextMeshProUGUI _playerGoldText;
+    [SerializeField] int _rerollCost;
+    [SerializeField] int _tempRerollCost;
+    [SerializeField] TextMeshProUGUI _rerollCostText;
 
     private void Awake()
     {
@@ -83,8 +87,16 @@ public class InventoryController : MonoBehaviour
         //SelectedItemGrid.ShowRandomAddableSlot();
         player = GameManager.Instance.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
-        
+
+        _rerollCost = 5;
+        _tempRerollCost = _rerollCost;
         SetPlayerGoldText();    // 플레이어 골드 텍스트 표시하기
+        SetRerollButtonText();
+    }
+
+    private void OnEnable()
+    {
+        SetRerollButtonText();
     }
 
     private void Update()
@@ -637,6 +649,28 @@ public class InventoryController : MonoBehaviour
         storeGrid.ClearEmptySolts();
     }
 
+    public void OnClickStoreReroll()
+    {
+        if (_tempRerollCost > player.Data.Gold) return;
+        OnStoreReroll();
+
+        player.Data.Gold -= _tempRerollCost;
+        _tempRerollCost = (int)(_tempRerollCost * 1.4f);
+        
+        SetPlayerGoldText();
+        SetRerollButtonText();
+    }
+
+    public void SetRerollButtonText()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("Reroll ");
+
+        sb.Append($"<color=\"yellow\">-{_tempRerollCost.ToString()} G</color>");
+
+        _rerollCostText.text = sb.ToString();
+    }
+
     public void RemoveStoreStock()
     {
         if (storeGrid.currentStoreItem == null) return;
@@ -650,6 +684,8 @@ public class InventoryController : MonoBehaviour
             return;
 
         nextStage();
+        _rerollCost = (int)(_rerollCost * 1.4f);
+        _tempRerollCost = _rerollCost;
     }
 
     public void AddStartWeapon(ItemSO item)
