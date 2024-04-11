@@ -2,6 +2,7 @@ using Constants;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class QuestManager : SingletoneBase<QuestManager>
@@ -16,6 +17,10 @@ public class QuestManager : SingletoneBase<QuestManager>
 
     private int[] startQuestId = new int[] {100,200};//시작할 때 등록할 퀘스트들
 
+    private void Start()
+    {
+        StartQuestSetting();
+    }
     public void SubsrcipbeQuest(int questId)//등록
     {
         var questData = DataBase.Quest.Get(questId);//퀘스트 목록에서 id에 해당하는 퀘스트 정보 가져옴
@@ -46,12 +51,12 @@ public class QuestManager : SingletoneBase<QuestManager>
             QuestUpdate(quest.Id, count);//id 에 해당하는 퀘스트를 count만큼 업데이트 한다.
         }
     }
-    public void QuestStart(int questId)//퀘스트 시작
+    public void QuestStart(int questId, int progress = 0)//퀘스트 시작
     {
         if (IsClear(questId))//해당 id 퀘스트가 클리어인지 확인 = 이미 클리어 한 퀘스트인지 확인
             return;
 
-        var quest = new Quest(questId);//id에 해당하는 새로운 퀘스트 생성
+        var quest = new Quest(questId, progress);//id에 해당하는 새로운 퀘스트 생성
         quest.Start();//상태 시작으로 변경
 
         if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
@@ -86,7 +91,8 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         if (CheckNextQuest(questId))//다음 퀘스트가 있는지 체크
         {//있다면
-            QuestStart(questId + 1);//다음 퀘스트 등록
+            int progress = _ongoingQuests[questId].QuestProgress;//진행도 유지
+            QuestStart(questId + 1, progress);//다음 퀘스트 등록
         }
 
         _ongoingQuests[questId].Complete();//상태를 클리어 상태로 전환

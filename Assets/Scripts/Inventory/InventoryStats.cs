@@ -40,6 +40,7 @@ public class InventoryStats : MonoBehaviour
         Utilities.AddText(sb, "치명타 확률", playerStats.critRate, true, false);
         Utilities.AddText(sb, "치명타 데미지", playerStats.critDamage);
         Utilities.AddText(sb, "피해 흡혈", playerStats.lifeSteal, true, false);
+        Utilities.AddText(sb, "무게", playerStats.weight, false, true);
         statsText.text = sb.ToString();
         sb = null;
     }

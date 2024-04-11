@@ -135,6 +135,7 @@ public class ItemManager : MonoBehaviour
             _modifier.critDamage += weapon.CritDamage;
 
             _modifier.lifeSteal += weapon.LifeSteal;
+            _modifier.weight += weapon.Weight;
 
             itemWeight += weapon.Weight;
         }
@@ -149,6 +150,7 @@ public class ItemManager : MonoBehaviour
             _modifier.critDamage -= weapon.CritDamage;
 
             _modifier.lifeSteal -= weapon.LifeSteal;
+            _modifier.weight -= weapon.Weight;
 
             itemWeight -= weapon.Weight;
         }
@@ -176,6 +178,7 @@ public class ItemManager : MonoBehaviour
             _modifier.critDamage += equipment.CritDamage;
 
             _modifier.lifeSteal += equipment.LifeSteal;
+            _modifier.weight += equipment.Weight;
 
             itemWeight += equipment.Weight;
         }
@@ -195,6 +198,7 @@ public class ItemManager : MonoBehaviour
             _modifier.critDamage -= equipment.CritDamage;
 
             _modifier.lifeSteal -= equipment.LifeSteal;
+            _modifier.weight -= equipment.Weight;
 
             itemWeight -= equipment.Weight;
         }
@@ -216,6 +220,9 @@ public class ItemManager : MonoBehaviour
 
             _modifier.attackSpeed += consumable.AttackSpeed;
             _modifier.moveSpeed += consumable.MoveSpeed;
+            _modifier.weight += consumable.Weight;
+
+            itemWeight += consumable.Weight;
         }
         else
         {
@@ -227,6 +234,10 @@ public class ItemManager : MonoBehaviour
 
             _modifier.attackSpeed -= consumable.AttackSpeed;
             _modifier.moveSpeed -= consumable.MoveSpeed;
+            _modifier.weight -= consumable.Weight;
+
+            itemWeight -= consumable.Weight;
+
         }
 
         _playerStats.InitStatus(Player.currentStat, _modifier);
@@ -298,6 +309,7 @@ public class ItemManager : MonoBehaviour
         _modifier.critDamage = 0;
 
         _modifier.lifeSteal = 0;
+        _modifier.weight = 0;
 
         itemWeight = 0;
     }
@@ -322,6 +334,8 @@ public class ItemManager : MonoBehaviour
         _modifier.critDamage = -_modifier.critDamage;
 
         _modifier.lifeSteal = -_modifier.lifeSteal;
+        _modifier.weight = -_modifier.weight;
+
 
         _playerStats.InitStatus(_playerStats, _modifier);
     }

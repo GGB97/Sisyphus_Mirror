@@ -969,6 +969,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearQuestUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2580414090672447778, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1074,26 +1099,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3033703207656492455, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3033703207656492455, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3033703207656492455, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3033703207656492455, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1102,6 +1107,11 @@ PrefabInstance:
     - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
         type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
@@ -4018,6 +4028,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
   _modifier:
     health: 0
     maxHealth: 0
@@ -4033,6 +4044,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
   weaponPrefabs: []
   itemWeight: 0
 --- !u!4 &1232350829

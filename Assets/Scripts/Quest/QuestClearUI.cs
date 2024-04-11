@@ -2,11 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class QuestClearUI : MonoBehaviour
 {
     Vector2 endPosition;//시작 위치
     Vector2 startPosition;
+
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI descriptionText;
+
+    Queue<QuestData> achievementQueue = new Queue<QuestData>();
+    private bool isAnimating = false;//ui가 보여지는 중인지
+    private IEnumerator currentCoroutine;//현재 실행 중인 코루틴
+
     private void Awake()
     {
         //startPosition = transform.position;
@@ -15,9 +24,43 @@ public class QuestClearUI : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine("OpenUi");
+        QuestManager.Instance.OnQuestClearCallback += AddClearQuestData;
     }
 
+    private void ShowAchievementUI()//UI 보이기
+    {
+        StartCoroutine("OpenUi");
+    }
+    public void AddClearQuestData(int questId)
+    {
+        QuestData questData = DataBase.Quest.Get(questId);
+        achievementQueue.Enqueue(questData); // 업적을 큐에 추가
+
+        if (!isAnimating) // 애니메이션이 진행 중이 아니라면
+        {
+            StartCoroutine(ShowAllAchievement()); // 업적을 표시하는 코루틴 시작
+        }
+    }
+    public void SetUIDescription(QuestData questData)
+    {
+        nameText.text = questData.Name;
+        descriptionText.text = questData.Description;
+    }
+    public IEnumerator ShowAllAchievement()
+    {
+        isAnimating = true;
+
+        while (achievementQueue.Count > 0)
+        {
+            QuestData questData = achievementQueue.Dequeue(); // 큐에서 업적을 가져옴
+
+            // UI에 업적을 표시하고 애니메이션 진행
+            SetUIDescription(questData);
+            ShowAchievementUI();
+            yield return new WaitForSeconds(4.7f);
+        }
+
+    }
     public QuestClearUI()
     {
         startPosition = new Vector2(1895f, -275f);
@@ -29,7 +72,7 @@ public class QuestClearUI : MonoBehaviour
     {
         transform.DOMove(endPosition, 1.5f);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         yield return StartCoroutine("CloseUi");
     }
@@ -37,6 +80,7 @@ public class QuestClearUI : MonoBehaviour
     {
         transform.DOMove(startPosition, 1.5f);
 
-        yield return null;
+        yield return new WaitForSeconds(1.6f);
+        isAnimating = false;
     }
 }

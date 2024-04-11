@@ -19,6 +19,7 @@ public class PlayerBaseData : CharacterBase
     public float EXP;
     public float maxEXP;
     public int Gold;
+    public int Weight;
 
     public int startItemID;
     public int startInventory;
