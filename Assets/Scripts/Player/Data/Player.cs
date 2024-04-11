@@ -118,4 +118,11 @@ public class Player : CharacterBehaviour
         modifire.maxHealth += DataBase.PlayerUpgrade.Get((int)UpgradeType.MaxHP).Reward;
         Data.Gold += (int)DataBase.PlayerUpgrade.Get((int)UpgradeType.StartGold).Reward;
     }
+
+    public void playerReset()
+    {
+        Data.LV = 1;
+        Data.Gold = 0;
+        Data.EXP = 0;
+    }
 }
