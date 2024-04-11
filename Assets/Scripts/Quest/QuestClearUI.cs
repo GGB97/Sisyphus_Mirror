@@ -6,6 +6,8 @@ using TMPro;
 
 public class QuestClearUI : MonoBehaviour
 {
+    QuestManager _questManager;
+
     Vector2 endPosition;//시작 위치
     Vector2 startPosition;
 
@@ -24,7 +26,8 @@ public class QuestClearUI : MonoBehaviour
     }
     void Start()
     {
-        QuestManager.Instance.OnQuestClearCallback += AddClearQuestData;
+        _questManager = QuestManager.Instance;
+        _questManager.OnQuestClearCallback += AddClearQuestData;
     }
 
     private void ShowAchievementUI()//UI 보이기
@@ -82,5 +85,10 @@ public class QuestClearUI : MonoBehaviour
 
         yield return new WaitForSeconds(1.6f);
         isAnimating = false;
+    }
+
+    private void OnDestroy()
+    {
+        _questManager.OnQuestClearCallback -= AddClearQuestData;
     }
 }

@@ -47,7 +47,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Update()
     {
-        if(Target.Count == 0 && _canAttack)
+        if(Target.Count == 0 && _canAttack && DungeonManager.Instance.gameState == GameState.Playing)
         {
             DetectEnemyInRange();
         }
