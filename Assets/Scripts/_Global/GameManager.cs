@@ -14,7 +14,7 @@ public class GameManager : SingletoneBase<GameManager>
     public int killenemys;
     public int totalGold;
 
-    public Action onGamoverEvent;
+    public Action onGameOverEvent;
 
     public Player Player
     {
@@ -53,7 +53,7 @@ public class GameManager : SingletoneBase<GameManager>
         DungeonManager.Instance.gameState = GameState.Fail;
 
         EnemySpawner.Instance.SpawnStop();
-        onGamoverEvent?.Invoke();
+        onGameOverEvent?.Invoke();
 
         GameOverUI.Show();
     }

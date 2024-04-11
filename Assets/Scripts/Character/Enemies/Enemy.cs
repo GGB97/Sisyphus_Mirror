@@ -75,13 +75,17 @@ public class Enemy : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
 
-        GameManager.Instance.onGamoverEvent += ChangeVictory;
+        EnemySpawner.Instance.onEnemiesDeSpawn += DeSpawn;
+        GameManager.Instance.onGameOverEvent += ChangeVictory;
     }
 
     private void OnDisable()
     {
         target = null;
-        GameManager.Instance.onGamoverEvent -= ChangeVictory;
+
+        EnemySpawner.Instance.onEnemiesDeSpawn -= DeSpawn;
+        GameManager.Instance.onGameOverEvent -= ChangeVictory;
+
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
