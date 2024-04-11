@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnStart()
     {
         Init();
-
+        Debug.Log("호출");
         WaitForSeconds delay = new(waveData.spawnDelay);
 
         SetSpawnPos();

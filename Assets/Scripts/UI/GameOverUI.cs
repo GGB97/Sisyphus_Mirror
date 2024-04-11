@@ -9,7 +9,10 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI recordText;
 
-
+    private void Awake()
+    {
+        GameManager.Instance.GameOverUI = this;
+    }
     private void Start()
     {
         gameObject.SetActive(false);

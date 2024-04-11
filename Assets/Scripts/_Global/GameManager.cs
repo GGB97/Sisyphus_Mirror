@@ -35,23 +35,18 @@ public class GameManager : SingletoneBase<GameManager>
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(scene.name);
+        //Debug.Log(scene.name);
 
-        if (GameOverUI == null)
-        {
-            GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
-        }
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+        //if (GameOverUI == null)
+        //{
+        //    GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        //}
+    } 
 
     public void Gameover()
     {
@@ -72,6 +67,7 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void Retry()
     {
+        Destroy(DungeonManager.Instance.gameObject);
         SceneManager.LoadScene(1);
 
         killenemys = 0;

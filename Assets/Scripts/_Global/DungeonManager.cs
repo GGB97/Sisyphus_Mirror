@@ -32,9 +32,8 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
     }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
@@ -55,6 +54,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         if(InventoryController.Instance != null)
             InventoryController.Instance.nextStage += CloseInventory;
+
     }
     private void Update()
     {
