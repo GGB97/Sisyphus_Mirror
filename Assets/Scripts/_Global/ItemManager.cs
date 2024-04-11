@@ -14,6 +14,8 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
 
+    DungeonManager _dungeonManager;
+
     public Transform PlayerTransform {  get; private set; }
     public Player Player { get; private set; }
     public Transform weaponContainer;
@@ -44,7 +46,10 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         InventoryController.Instance.nextStage += RemoveAllItems;
-        DungeonManager.Instance.OnStageEnd += SetConsumableDuration;
+
+        _dungeonManager = DungeonManager.Instance;
+        _dungeonManager.OnStageEnd += SetConsumableDuration;
+
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         //Player = GameManager.Instance.Player;
@@ -348,7 +353,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // 아이템의 지속 시간을 갱신 및 남은 지속 시간 체크
-    private void SetConsumableDuration()
+    private void SetConsumableDuration(int index)
     {
         if(_usedConsumable.Count != 0)
         {
@@ -374,9 +379,9 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         InventoryController.Instance.nextStage -= RemoveAllItems;
-        InventoryController.Instance.nextStage -= SetConsumableDuration;
+        _dungeonManager.OnStageEnd -= SetConsumableDuration;
     }
 }

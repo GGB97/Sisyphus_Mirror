@@ -12,6 +12,7 @@ public class GoldUI : MonoBehaviour
     void Start()
     {
         _player = GameManager.Instance.Player;
+        InventoryController.Instance.nextStage += UpdateGold;
         _player.PlayerGoldChange += UpdateGold;
         UpdateGold();
     }

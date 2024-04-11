@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,11 +18,18 @@ public enum PlayerStatType
 
 public class RuneStoneUI : MonoBehaviour
 {
-    int leftAttemptCount;
+    [SerializeField] int _tutorialId;
+
     int _selectedStatCounter = 0;
+    DungeonManager _dungeonManager;
+    [SerializeField] GameObject _runeStoneUI;
 
     [SerializeField] Image _selectedStatPanel;
     [SerializeField] GameObject _selectedStatPrefab;
+
+    [Header("Upgrade Chances")]
+    [SerializeField] TextMeshProUGUI _remainChanceText;
+    int _remainChance = 1;
 
     [Header("Player")]
     [SerializeField] Player _player;
@@ -44,12 +50,21 @@ public class RuneStoneUI : MonoBehaviour
     {
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
+        _dungeonManager = DungeonManager.Instance;
 
-        _runeStoneSlider.value = 0f;
-        _enabled = false;
+        _remainChance = 0;
 
-        _runStoneConfirmButtonText.text = "Start";
+        _dungeonManager.OnStageEnd += CheckCurrentStage;
         _playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
+
+        _runeStoneUI.SetActive(false);
+
+        //_runeStoneSlider.value = 0f;
+        //_enabled = false;
+
+        //_runStoneConfirmButtonText.text = "Start";
+        //_remainChance = 1;
+        //_remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
     }
 
     // Update is called once per frame
@@ -72,14 +87,34 @@ public class RuneStoneUI : MonoBehaviour
         }
     }
 
+    void CheckCurrentStage(int stage)
+    {
+        if(stage % 5 == 0)
+        {
+            _remainChance++;
+            _runeStoneUI.SetActive(true);
+
+            _runeStoneSlider.value = 0f;
+            _enabled = false;
+
+            _runStoneConfirmButtonText.text = "Start";
+
+            _remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
+            //_playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
+
+            if (TutorialManager.Instance.tutorialFlag == 0 && DungeonManager.Instance.currnetstage != 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
+        }
+    }
+
     public void OnClickStatPlusButton(int index)
     {
-        if(_selectedStatCounter >= 6)
+        if(_selectedStatCounter >= 6 || _selectedStatCounter > _remainChance)
         {
             return;
         }
 
         _selectedStatCounter++;
+        _remainChanceText.text = (_remainChance - _selectedStatCounter).ToString() + ($"<color=\"yellow\"> 회</color>");
         GameObject go = Instantiate(_selectedStatPrefab, _selectedStatPanel.transform);
         
         if(go.TryGetComponent<Button>(out Button _button))
@@ -228,5 +263,11 @@ public class RuneStoneUI : MonoBehaviour
             Debug.Log("Status");
             inventoryStats.UpdateStatsPanel();
         }
+    }
+
+    private void OnDisable()
+    {
+        //DungeonManager.Instance.OnStageEnd -= CheckCurrentStage;
+        _dungeonManager.OnStageEnd -= CheckCurrentStage;
     }
 }

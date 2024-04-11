@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml;
 using TMPro;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class InventoryController : MonoBehaviour
     public bool isAdding = false;//칸 추가 중인지 
 
     [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
+    [SerializeField] TextMeshProUGUI _playerGoldText;
 
     private void Awake()
     {
@@ -81,6 +83,8 @@ public class InventoryController : MonoBehaviour
         //SelectedItemGrid.ShowRandomAddableSlot();
         player = GameManager.Instance.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
+        
+        SetPlayerGoldText();    // 플레이어 골드 텍스트 표시하기
     }
     private void Update()
     {
@@ -352,6 +356,7 @@ public class InventoryController : MonoBehaviour
         // 설치하려는 ItemGrid가 상점일 경우 false
         if (selectedItemGrid == storeGrid) return false;
         if (selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
+        if (selectedItem.itemSO.Price > player.Data.Gold) return false;     // 선택한 아이템의 가격이 현재 소지 중인 골드보다 클 경우 false
 
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
@@ -387,7 +392,13 @@ public class InventoryController : MonoBehaviour
                 // 상점에 저장된 아이템 GameObject 초기화
                 for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
                 {
-                    if (storeGrid.currentStoreItem[i] == selectedItem) storeGrid.currentStoreItem[i] = null;
+                    if (storeGrid.currentStoreItem[i] == selectedItem)
+                    {
+                        storeGrid.currentStoreItem[i] = null;
+                        // 아이템 구매 시 플레이어 골드 차감하기
+                        player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price < 0 ? 0 : player.Data.Gold - selectedItem.itemSO.Price;
+                        SetPlayerGoldText();
+                    }
                 }
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
@@ -659,6 +670,11 @@ public class InventoryController : MonoBehaviour
         if (selectedItem == null)
             return;
         playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+
+        // 변경점 : 아이템 판매 시 플레이어 골드에 반영
+        player.Data.Gold += selectedItem.itemSO.Price / 2;
+        SetPlayerGoldText();    // 플레이어 골드 Text 최신화
+
         Destroy(selectedItem.gameObject);
         selectedItem = null;
         SelectedItemGrid.AddCurrentCount(-1);
@@ -698,5 +714,16 @@ public class InventoryController : MonoBehaviour
         return runeStoneData;
     }
 
+    // 현재 소지 중인 골드로 Text 최신화
+    void SetPlayerGoldText()
+    {
+        //_playerGoldText.text = player.Data.Gold.ToString();
+        StringBuilder sb = new StringBuilder();
+        sb.Append("골드 : ");
 
+        sb.Append(player.Data.Gold.ToString());
+        sb.Append("<color=\"yellow\"> G</color>");
+
+        _playerGoldText.text = sb.ToString();
+    }
 }

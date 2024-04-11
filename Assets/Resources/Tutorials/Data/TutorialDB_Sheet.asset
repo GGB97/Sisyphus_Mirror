@@ -23,7 +23,7 @@ MonoBehaviour:
       \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     _imagePath: Tutorials/Image/RuneStone/RuneStone_1
     _hasNextPage: 1
-    _nextPageId: 0
+    _nextPageId: 60001012
   - _id: 60001012
     _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 2"
     _tutorialText: "<color=\"yellow\">\uAC15\uD654\uD558\uACE0 \uC2F6\uC740 \uC2A4\uD0EF</color>\uC744
@@ -33,7 +33,7 @@ MonoBehaviour:
       \uC81C\uAC70\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     _imagePath: Tutorials/Image/RuneStone/RuneStone_2
     _hasNextPage: 1
-    _nextPageId: 0
+    _nextPageId: 60001013
   - _id: 60001013
     _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 3"
     _tutorialText: "<color=\"yellow\">Start \uBC84\uD2BC\uC744 \uB20C\uB7EC \uC2A4\uD0EF\uC744
@@ -44,7 +44,7 @@ MonoBehaviour:
       \uB429\uB2C8\uB2E4. \uC8FC\uC758\uD558\uC138\uC694!"
     _imagePath: Tutorials/Image/RuneStone/RuneStone_3
     _hasNextPage: 1
-    _nextPageId: 0
+    _nextPageId: 60001014
   - _id: 60001014
     _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 4"
     _tutorialText: "<color=\"yellow\">Stop \uBC84\uD2BC\uC744 \uB20C\uB7EC</color>

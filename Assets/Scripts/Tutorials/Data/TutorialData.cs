@@ -1,9 +1,5 @@
 using UnityEngine;
-
-public enum TutorialType
-{
-
-}
+using UnityEngine.UI;
 
 [System.Serializable]
 public class TutorialData

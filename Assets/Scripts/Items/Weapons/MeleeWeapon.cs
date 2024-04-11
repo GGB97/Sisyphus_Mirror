@@ -47,7 +47,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Update()
     {
-        if(Target.Count == 0)
+        if(Target.Count == 0 && _canAttack)
         {
             DetectEnemyInRange();
         }
@@ -62,9 +62,17 @@ public class MeleeWeapon : MonoBehaviour
 
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
+            // 무기 방향 회전
+            Vector3 dir = _targetPos - transform.position;
+            dir.y = 0;
+            Quaternion rot = Quaternion.LookRotation(dir.normalized);
+            transform.rotation = rot;
+
+            _targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
+
             // 근접 공격 이동
             transform.position = Vector3.Lerp(transform.position, _targetPos, percentageComplete);
-
+            
             // 이동이 완료되면
             //if(percentageComplete >= .5f)
             //{
@@ -134,8 +142,10 @@ public class MeleeWeapon : MonoBehaviour
             return;
         }
         _targetPos = Target[random].position;
+
         // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
         _targetPos.y = (Vector3.up * 1.0f).y;
+
 
         transform.parent = null;
         _idleAnimation.isFloating = false;
