@@ -55,7 +55,7 @@ public class RuneStoneUI : MonoBehaviour
         _remainChance = 0;
 
         _dungeonManager.OnStageEnd += CheckCurrentStage;
-        _playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
+        _playerStatusUI.GetComponent<RuneStonePlayerStat>().UpdateStatsPanel();
 
         _runeStoneUI.SetActive(false);
 
@@ -161,6 +161,7 @@ public class RuneStoneUI : MonoBehaviour
     public void OnClickExitButton()
     {
         gameObject.SetActive(false);
+        InventoryStats.Instance.UpdateStatsPanel();
     }
 
     // 선택된 스탯들 눌러서 없애기
@@ -258,10 +259,10 @@ public class RuneStoneUI : MonoBehaviour
             }
         }
         _playerStatus.InitStatus(_playerStatus, _modifier);
-        if(_playerStatusUI.TryGetComponent<InventoryStats>(out InventoryStats inventoryStats))
+        if(_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
             Debug.Log("Status");
-            inventoryStats.UpdateStatsPanel();
+            playerStats.UpdateStatsPanel();
         }
     }
 

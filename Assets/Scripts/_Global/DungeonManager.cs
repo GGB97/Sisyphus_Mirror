@@ -111,7 +111,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
-        EnemySpawner.Instance.FindAllEnemiesDeSpawn();
+        EnemySpawner.Instance.AllEnemiesDeSpawn();
 
         // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));

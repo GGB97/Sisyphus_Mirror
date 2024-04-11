@@ -48,7 +48,10 @@ public class PlayerBaseState : IState
         {
             player.InvokeEvent(player.OnHitEvent);
         }
-        if(player.currentStat.health <= 0) stateMachine.ChangeState(stateMachine.dieState);
+        if(player.currentStat.health <= 0)
+        {
+            player.ChangeDieState();
+        }
     }
 
 

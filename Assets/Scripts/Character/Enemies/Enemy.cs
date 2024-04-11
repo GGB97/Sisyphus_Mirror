@@ -39,6 +39,8 @@ public class Enemy : CharacterBehaviour
 
     [SerializeField] int dropGoldValue;
 
+    GameManager _gameManager;
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -49,7 +51,8 @@ public class Enemy : CharacterBehaviour
 
         renderTransform = transform.GetChild(0);
 
-        _player = GameManager.Instance.Player;
+        _gameManager = GameManager.Instance;
+        _player = _gameManager.Player;
 
         stateMachine = new(this);
 
@@ -75,13 +78,17 @@ public class Enemy : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
 
-        GameManager.Instance.onGamoverEvent += ChangeVictory;
+        EnemySpawner.Instance.onEnemiesDeSpawn += DeSpawn;
+        _gameManager.onGameOverEvent += ChangeVictory;
     }
 
     private void OnDisable()
     {
         target = null;
-        GameManager.Instance.onGamoverEvent -= ChangeVictory;
+
+        EnemySpawner.Instance.onEnemiesDeSpawn -= DeSpawn;
+
+        _gameManager.onGameOverEvent -= ChangeVictory;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -156,7 +163,7 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
-        target = GameManager.Instance.Player.transform;
+        target = _gameManager.Player.transform;
     }
 
     void ChangeDieState()

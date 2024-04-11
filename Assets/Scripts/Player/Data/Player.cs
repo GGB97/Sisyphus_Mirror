@@ -70,7 +70,7 @@ public class Player : CharacterBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    void ChangeDieState()
+    public void ChangeDieState()
     {
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.dieState);
