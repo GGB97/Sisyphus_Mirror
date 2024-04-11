@@ -33,6 +33,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);

@@ -72,13 +72,14 @@ public class Player : CharacterBehaviour
 
     void ChangeDieState()
     {
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.dieState);
     }
 
     void ChangeHitState()
     {
-        stateMachine.ChangeState(stateMachine.hitState);
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+        stateMachine.ChangeState(stateMachine.hitState);
     }
 
     public void ChangeRune(int value)

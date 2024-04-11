@@ -73,6 +73,10 @@ public class GameManager : SingletoneBase<GameManager>
 
         killenemys = 0;
         totalGold = 0;
-        
+    }
+
+    private void OnApplicationQuit()
+    {
+        SceneManager.sceneLoaded -= DungeonManager.Instance.OnSceneLoaded;
     }
 }
