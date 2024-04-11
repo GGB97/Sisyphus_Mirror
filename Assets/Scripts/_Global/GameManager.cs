@@ -32,14 +32,6 @@ public class GameManager : SingletoneBase<GameManager>
         private set { _player = value; }
     }
 
-    private void Awake()
-    {
-        if(GameOverUI == null)
-        {
-            GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
-        }
-    }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -49,7 +41,10 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Debug.Log(scene.name);
 
-        GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        if (GameOverUI == null)
+        {
+            GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        }
     }
 
     private void OnDisable()
