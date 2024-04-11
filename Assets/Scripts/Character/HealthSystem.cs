@@ -68,7 +68,8 @@ public class HealthSystem : MonoBehaviour
     void ShowDamage(float value, DamageType type) // Player는 지금 DamageCanvas가 없음
     {
         TMP_Text text = textQueue.Dequeue();
-        text.text = value.ToString();
+        if(text != null)
+            text.text = value.ToString();
 
 
         // 데미지 타입별로 색상 조절

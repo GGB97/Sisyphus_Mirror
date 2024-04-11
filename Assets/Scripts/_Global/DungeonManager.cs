@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using Constants;
+using UnityEngine.SceneManagement;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -30,6 +31,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     private void Awake()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
         //InventoryController.Instance.nextStage += CloseInventory;
@@ -47,13 +53,9 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
+        if(InventoryController.Instance != null)
+            InventoryController.Instance.nextStage += CloseInventory;
     }
-
-    private void Start()
-    {
-        InventoryController.Instance.nextStage += CloseInventory;
-    }
-
     private void Update()
     {
         if (isStarted == true)
@@ -85,7 +87,6 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
-        QuestManager.Instance.NotifyQuest(QuestType.StageClear,10,1);//스테이지 입장 시 카운트 증가
         isStageCompleted = false;
 
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
@@ -114,6 +115,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
         OnStageEnd?.Invoke(currnetstage);
+        QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
         Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()
