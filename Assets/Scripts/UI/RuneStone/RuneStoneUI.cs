@@ -259,10 +259,10 @@ public class RuneStoneUI : MonoBehaviour
             }
         }
         _playerStatus.InitStatus(_playerStatus, _modifier);
-        if(_playerStatusUI.TryGetComponent<InventoryStats>(out InventoryStats inventoryStats))
+        if(_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
             Debug.Log("Status");
-            inventoryStats.UpdateStatsPanel();
+            playerStats.UpdateStatsPanel();
         }
     }
 

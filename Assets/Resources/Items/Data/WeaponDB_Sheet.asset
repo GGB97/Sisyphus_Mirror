@@ -29,7 +29,7 @@ MonoBehaviour:
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
-    _range: 3
+    _range: 5
     _lifeSteal: 1
     _type: 0
     _projectileID: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
-    _range: 3
+    _range: 5
     _lifeSteal: 3
     _type: 0
     _projectileID: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
-    _range: 3
+    _range: 5
     _lifeSteal: 5
     _type: 0
     _projectileID: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
-    _range: 3
+    _range: 5
     _lifeSteal: 1
     _type: 0
     _projectileID: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
     _atkSpeed: 0.7
     _critRate: 1
     _critDamage: 1
-    _range: 3
+    _range: 5
     _lifeSteal: 1
     _type: 0
     _projectileID: 0
