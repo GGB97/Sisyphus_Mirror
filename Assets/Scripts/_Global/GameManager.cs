@@ -67,6 +67,7 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void Retry()
     {
+        SceneManager.sceneLoaded -= DungeonManager.Instance.OnSceneLoaded;
         Destroy(DungeonManager.Instance.gameObject);
         SceneManager.LoadScene(1);
 
