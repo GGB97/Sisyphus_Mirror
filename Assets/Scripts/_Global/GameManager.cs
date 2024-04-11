@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -5,21 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletoneBase<GameManager>
 {
-    //public static GameManager Instance;
-
-    public bool isGameover = false;
     [SerializeField] private int _playerID;
     [SerializeField] private Player _player;
 
-    public GameObject gameoverUI;
+    public GameOverUI GameOverUI;
 
-    [SerializeField] private TextMeshProUGUI floorText;
-    [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private TextMeshProUGUI killText;
-    [SerializeField] private TextMeshProUGUI goldText;
-
-    public int currentFloor;
-    public int currentLevel;
     public int killenemys;
     public int totalGold;
 
@@ -41,51 +32,47 @@ public class GameManager : SingletoneBase<GameManager>
         private set { _player = value; }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Update()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (isGameover)
-        {
-            Gameover();
-        }
+        Debug.Log(scene.name);
+
+        GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void Gameover()
     {
-        Time.timeScale = 0;
         DungeonManager.Instance.isStarted = false;
 
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
-        gameoverUI.SetActive(true);
+        GameOverUI.Show();
 
-        currentFloor = DungeonManager.Instance.currnetstage;
-        currentLevel = Player.Data.LV;
-
-        floorText.text = currentFloor.ToString();
-        levelText.text = currentLevel.ToString();
-        killText.text = killenemys.ToString();
-        goldText.text = totalGold.ToString();
     }
 
     public void SetPlayer(Player newPlayer)
     {
         Player = newPlayer;
         _playerID = Player.Data.id;
-        //InventoryStats.Instance?.UpdateStatsPanel();
+        InventoryStats.Instance?.UpdateStatsPanel();
     }
 
     public void Retry()
     {
-        Time.timeScale = 1;
-        isGameover = false;
         SceneManager.LoadScene(1);
+
         killenemys = 0;
         totalGold = 0;
+        
     }
 }
