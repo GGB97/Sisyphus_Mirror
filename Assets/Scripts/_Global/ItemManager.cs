@@ -14,6 +14,8 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
 
+    DungeonManager _dungeonManager;
+
     public Transform PlayerTransform {  get; private set; }
     public Player Player { get; private set; }
     public Transform weaponContainer;
@@ -44,7 +46,10 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         InventoryController.Instance.nextStage += RemoveAllItems;
-        DungeonManager.Instance.OnStageEnd += SetConsumableDuration;
+
+        _dungeonManager = DungeonManager.Instance;
+        _dungeonManager.OnStageEnd += SetConsumableDuration;
+
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
         //Player = GameManager.Instance.Player;
@@ -363,6 +368,6 @@ public class ItemManager : MonoBehaviour
     private void OnDisable()
     {
         InventoryController.Instance.nextStage -= RemoveAllItems;
-        DungeonManager.Instance.OnStageEnd -= SetConsumableDuration;
+        _dungeonManager.OnStageEnd -= SetConsumableDuration;
     }
 }
