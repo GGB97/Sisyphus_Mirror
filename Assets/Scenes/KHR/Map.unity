@@ -501,7 +501,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OpenUI
       value: 
-      objectReference: {fileID: 1588297477}
+      objectReference: {fileID: 2374247533887540968}
     - target: {fileID: 4190080357179820696, guid: fdc416bfb10aba9429f30fc5983e59e4,
         type: 3}
       propertyPath: m_text
@@ -772,12 +772,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1588297477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7472419222203562679, guid: d09fee69b0267234c9afd22b9a0e18b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2374247533887540967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1890275397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1275,18 @@ PrefabInstance:
       addedObject: {fileID: 1002668664}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09fee69b0267234c9afd22b9a0e18b3, type: 3}
+--- !u!114 &2374247533887540968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2015027820014117830, guid: d09fee69b0267234c9afd22b9a0e18b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2374247533887540967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da344cccdf122a745a1f87f445c6196c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3228595919570934515
 PrefabInstance:
   m_ObjectHideFlags: 0
