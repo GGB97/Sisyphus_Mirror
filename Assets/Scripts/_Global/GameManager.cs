@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletoneBase<GameManager>
 {
-    [SerializeField] private int _playerID;
+    [SerializeField] private int _playerID = 20000002;
     [SerializeField] private Player _player;
 
     public GameOverUI GameOverUI;
@@ -30,6 +30,14 @@ public class GameManager : SingletoneBase<GameManager>
             return _player;
         }
         private set { _player = value; }
+    }
+
+    private void Awake()
+    {
+        if(GameOverUI == null)
+        {
+            GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        }
     }
 
     private void OnEnable()

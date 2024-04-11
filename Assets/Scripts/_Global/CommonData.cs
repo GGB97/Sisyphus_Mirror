@@ -24,6 +24,14 @@ public struct DBPath
     public static readonly string QuestDB = "Quest/QuestSO";
 }
 
+public enum GameState
+{
+    Ready,
+    Playing, 
+    Fail,
+    Clear
+}
+
 public enum ProjectileID
 {
     None,
