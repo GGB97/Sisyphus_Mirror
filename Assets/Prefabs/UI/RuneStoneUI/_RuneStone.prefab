@@ -1237,6 +1237,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
   _playerStatusUI: {fileID: 6098931977359669802}
   _runeStoneSlider: {fileID: 4587139320422377583}
   _runStoneConfirmButtonText: {fileID: 5322658300999183893}
@@ -3716,9 +3717,9 @@ GameObject:
   - component: {fileID: 5972036582411109821}
   - component: {fileID: 1035385392242132282}
   - component: {fileID: 1977351523586401541}
-  - component: {fileID: 774227956731336961}
   - component: {fileID: 2088582332903433671}
   - component: {fileID: 1908596268645453230}
+  - component: {fileID: 2977447160505648276}
   m_Layer: 5
   m_Name: PlayerStatsPanel
   m_TagString: Untagged
@@ -3811,19 +3812,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &774227956731336961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6098931977359669802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d95a6723aeb102e409f8c78b58deb45a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statsText: {fileID: 136868672814822934}
 --- !u!114 &2088582332903433671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3858,6 +3846,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &2977447160505648276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098931977359669802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239048738e4a11048a127f72c4d24c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsText: {fileID: 136868672814822934}
 --- !u!1 &6189954149305969475
 GameObject:
   m_ObjectHideFlags: 0
