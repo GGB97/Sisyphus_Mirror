@@ -32,6 +32,12 @@ public enum GameState
     Clear
 }
 
+public struct StageTimeLimit
+{
+    public static readonly float Normal = 10;
+    public static readonly float Boss = 60;
+}
+
 public enum ProjectileID
 {
     None,

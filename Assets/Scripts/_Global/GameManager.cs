@@ -65,7 +65,6 @@ public class GameManager : SingletoneBase<GameManager>
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
 
         GameOverUI.Show();
-
     }
 
     public void SetPlayer(Player newPlayer)

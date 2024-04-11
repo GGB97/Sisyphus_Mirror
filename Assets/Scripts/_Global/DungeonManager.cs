@@ -90,11 +90,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
-            timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Boss;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 30f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Normal;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
