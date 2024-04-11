@@ -71,6 +71,7 @@ public class Enemy : CharacterBehaviour
     {
         StartSpawn();
 
+        Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
 
@@ -308,6 +309,7 @@ public class Enemy : CharacterBehaviour
     void ChangeVictory()
     {
         target = null;
+        Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 1f);
         stateMachine.ChangeState(stateMachine.IdleState);
     }
 }
