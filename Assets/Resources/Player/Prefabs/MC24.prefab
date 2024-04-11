@@ -1486,7 +1486,7 @@ Transform:
   - {fileID: 1463022316639476521}
   - {fileID: 2374099021866910240}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8416432582735861647
 Animator:
@@ -1587,7 +1587,9 @@ MonoBehaviour:
     LV: 0
     EXP: 0
     maxEXP: 0
+    Gold: 0
     startItemID: 0
+    startInventory: 0
   modifire:
     health: 0
     maxHealth: 0
@@ -1613,6 +1615,8 @@ MonoBehaviour:
   hitDelay: 0
   health: 0
   rune: 0
+  gold: 0
+  magnetDistance: 3
 --- !u!114 &8266990602076534519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,7 +2539,7 @@ PrefabInstance:
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}

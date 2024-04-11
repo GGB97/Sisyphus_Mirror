@@ -43,6 +43,7 @@ public class Status
     public float critDamage;
 
     public float lifeSteal;
+    public float weight;
 
     public Status()
     {
@@ -76,6 +77,7 @@ public class Status
         critDamage = baseStat.critDamage + modifier.critDamage;
 
         lifeSteal = baseStat.lifeSteal + modifier.lifeSteal;
+        weight = baseStat.weight + modifier.weight;
     }
 
     public virtual void Init_EnemyModifier(Status baseStat, EnemyRank rank)
