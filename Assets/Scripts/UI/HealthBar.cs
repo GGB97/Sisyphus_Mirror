@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
     void UpdateHealthBar(float maxHealth, float health)
     {
-        _healthText.text = $"{health} / {maxHealth}";
+        _healthText.text = $"{(int)health} / {maxHealth}";
         _healthBar.fillAmount = health / maxHealth;
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   Entities:
   - _id: 60001011
     _tutorialName: "\uB8EC\uC2A4\uD1A4 \uAC15\uD654 - 1"
-    _tutorialText: "<color=\"yellow\">\uB8EC\uC2A4\uD1A4 \uAC15\uD654 \uAE30\uB2A5</color>\uB294
+    _tutorialText: "<color=\"yellow\">\uB8EC\uC2A4\uD1A4 \uAC15\uD654 \uAE30\uB2A5</color>\uC740
       \uC774\uBC88 \uD0D0\uD5D8\uB3D9\uC548 \uD50C\uB808\uC774\uC5B4\uC758 \uB2A5\uB825\uCE58\uC5D0
       \uBCC0\uD654\uB97C \uC904 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uB8EC\uC2A4\uD1A4
       \uAC15\uD654 \uAE30\uD68C\uB294 <color=\"yellow\">\uC5D8\uB9AC\uD2B8 \uBAAC\uC2A4\uD130,

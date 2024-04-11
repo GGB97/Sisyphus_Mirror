@@ -42,7 +42,7 @@ public class RangeWeapon : MonoBehaviour
     {
         _coolDown -= Time.deltaTime;
 
-        if (_coolDown <= 0 && canAttack)
+        if (_coolDown <= 0 && canAttack && DungeonManager.Instance.gameState == GameState.Playing)
         {
             canAttack = false;
             Target.Clear();
