@@ -26,9 +26,9 @@ public class Player : CharacterBehaviour
     public int rune;
     public event Action PlayerRuneChange;
 
-    public int gold;
     public event Action PlayerGoldChange;
-    public float magnetDistance = 3;
+
+    public float magnetDistance;
 
     private void Awake()
     {
@@ -44,6 +44,16 @@ public class Player : CharacterBehaviour
         rune = 10000; // 나중에 저장해야함.
 
         stateMachine = new PlayerStateMachine(this);
+    }
+
+    private void OnEnable()
+    {
+        DungeonManager.Instance.OnStageEnd += StageClearGetitem;
+    }
+
+    private void OnDisable()
+    {
+        DungeonManager.Instance.OnStageEnd -= StageClearGetitem;
     }
 
     private void Start()
@@ -117,5 +127,10 @@ public class Player : CharacterBehaviour
 
         modifire.maxHealth += DataBase.PlayerUpgrade.Get((int)UpgradeType.MaxHP).Reward;
         Data.Gold += (int)DataBase.PlayerUpgrade.Get((int)UpgradeType.StartGold).Reward;
+    }
+
+    void StageClearGetitem(int dump)
+    {
+        magnetDistance = 100;
     }
 }
