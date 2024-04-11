@@ -86,6 +86,7 @@ public class InventoryController : MonoBehaviour
         
         SetPlayerGoldText();    // 플레이어 골드 텍스트 표시하기
     }
+
     private void Update()
     {
         if (isAdding == true)//추가 중이면 아무 동작 하지 않겠다.
@@ -715,8 +716,10 @@ public class InventoryController : MonoBehaviour
     }
 
     // 현재 소지 중인 골드로 Text 최신화
-    void SetPlayerGoldText()
+    public void SetPlayerGoldText()
     {
+        if (player == null || _playerGoldText == null) return;
+
         //_playerGoldText.text = player.Data.Gold.ToString();
         StringBuilder sb = new StringBuilder();
         sb.Append("골드 : ");
