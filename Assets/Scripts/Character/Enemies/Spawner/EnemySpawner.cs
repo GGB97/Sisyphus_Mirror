@@ -8,11 +8,12 @@ public class EnemySpawner : MonoBehaviour
 
     // 등장 가능 몬스터 설정해야함.
     [SerializeField] WaveSO waveData; // 장비 아이템에 의해 몬스터 수량같은게 조절될 가능성도 있을 수 있음
-                                      // 그럼 enemy스탯 관리하듯이 하면 될듯 
+    WaveSO stageModifier;                   // 그럼 enemy스탯 관리하듯이 하면 될듯 
 
     // 최대 몬스터 수?
     [SerializeField] int maxEnemyCnt;
     [SerializeField] int currentEnemyCnt;
+    [SerializeField] int numPerSpawn;
 
     [SerializeField] Transform plane;
     Vector3 bottomLeft;
@@ -36,8 +37,8 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
 
-        maxEnemyCnt = waveData.maxEnemyCnt;
-        currentEnemyCnt = 0;
+        stageModifier = new();
+
         EnemyPooler.Instance.SetPool(waveData);
 
         target = GameManager.Instance.Player.transform;
@@ -47,11 +48,32 @@ public class EnemySpawner : MonoBehaviour
         _size[(int)EnemySize.Medium].Init(1f, 2f);
         _size[(int)EnemySize.Large].Init(1f, 2.5f);
         _size[(int)EnemySize.Boss].Init(2f, 4f);
+
+        Init();
     }
 
     private void Start()
     {
         target = GameManager.Instance.Player.transform;
+    }
+
+    void Init()
+    {
+        stageModifier.ModifierInit();
+
+        maxEnemyCnt = waveData.maxEnemyCnt + stageModifier.maxEnemyCnt;
+        if (maxEnemyCnt > 100)
+        {
+            maxEnemyCnt = 100;
+        }
+
+        numPerSpawn = waveData.numPerSpawn + stageModifier.numPerSpawn;
+        if (numPerSpawn > (int)(maxEnemyCnt * 0.2f))
+        {
+            numPerSpawn = (int)(maxEnemyCnt * 0.2f);
+        }
+
+        currentEnemyCnt = 0;
     }
 
     void SetSpawnPos()
@@ -67,7 +89,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnStart()
     {
-        int spawnCnt = waveData.numPerSpawn;
+        Init();
+
         WaitForSeconds delay = new(waveData.spawnDelay);
 
         SetSpawnPos();
@@ -75,15 +98,15 @@ public class EnemySpawner : MonoBehaviour
         yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
-        if (DungeonManager.Instance.currnetstage % 5 == 0)
+        if (DungeonManager.Instance.currnetstage % 1 == 0)
             SpawnEnemy(waveData.boss);
         // --
 
-        while (DungeonManager.Instance.isStarted) // 게임 종료 검사로 변경 필요함
+        while (DungeonManager.Instance.gameState == GameState.Playing)
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {
-                for (int i = 0; i < spawnCnt; i++)
+                for (int i = 0; i < numPerSpawn; i++)
                 {
                     // 특정 확률에 의해 Normal/Elite 결정
                     float randomValue = Random.Range(0f, 100f);
@@ -123,7 +146,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Can't use this Position");
+                //Debug.Log("Can't use this Position");
             }
             ++cnt;
         }
@@ -167,7 +190,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.DeSpawn();
         }
     }
-
     public void GameStart()
     {
         StartCoroutine(SpawnStart());

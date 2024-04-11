@@ -23,7 +23,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public float timeLimit = 50f;
     public float currentTime = 0f;
-    public bool isStarted = false;
+    public GameState gameState;
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
@@ -58,13 +58,13 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     }
     private void Update()
     {
-        if (isStarted == true)
+        if (gameState == GameState.Playing)
         {
             UpdateTimeText();
 
             if (isStageCompleted)
             {
-                EndStage();
+                StageClear();
             }
 
             if (currentTime > 0.0f)
@@ -75,7 +75,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             else
             {
                 //모든 몬스터 죽기
-                EndStage();
+                StageClear();
             }
         }
     }
@@ -91,22 +91,23 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
-            timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Boss;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 30f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Normal;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
         stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
-        isStarted = true;
+        gameState = GameState.Playing;
         EnemySpawner.Instance.GameStart();
     }
-    public void EndStage()//스테이지 끝나면 호출
+    public void StageClear()//스테이지 끝나면 호출
     {
-        isStarted = false;
+        gameState = GameState.Clear;
+
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
