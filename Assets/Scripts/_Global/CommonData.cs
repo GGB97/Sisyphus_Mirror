@@ -24,6 +24,20 @@ public struct DBPath
     public static readonly string QuestDB = "Quest/QuestSO";
 }
 
+public enum GameState
+{
+    Ready,
+    Playing, 
+    Fail,
+    Clear
+}
+
+public struct StageTimeLimit
+{
+    public static readonly float Normal = 30;
+    public static readonly float Boss = 60;
+}
+
 public enum ProjectileID
 {
     None,

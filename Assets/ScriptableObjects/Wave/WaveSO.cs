@@ -20,4 +20,12 @@ public class WaveSO : ScriptableObject
     {
         return normal.Length + elite.Length + boss.Length;
     }
+
+    public void ModifierInit()
+    {
+        int stage = DungeonManager.Instance.currnetstage;
+
+        maxEnemyCnt = (stage / 3) * 2;
+        numPerSpawn = stage / 3;
+    }
 }

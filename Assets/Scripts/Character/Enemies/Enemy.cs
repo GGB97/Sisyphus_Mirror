@@ -71,13 +71,17 @@ public class Enemy : CharacterBehaviour
     {
         StartSpawn();
 
+        Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
+
+        GameManager.Instance.onGamoverEvent += ChangeVictory;
     }
 
     private void OnDisable()
     {
         target = null;
+        GameManager.Instance.onGamoverEvent -= ChangeVictory;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -172,13 +176,16 @@ public class Enemy : CharacterBehaviour
 
     public void OnChildTriggerEnter(Collider other, SkillType type)
     {
+        if (target == null)
+            return;
+
         if (other.gameObject.layer == target.gameObject.layer)
         {
             HealthSystem hs = other.GetComponent<HealthSystem>();
             //이곳에서 자식 콜라이더의 트리거 충돌 처리
             if (type == SkillType.AutoAttack)
             {
-                Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+                //Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
                 hs.TakeDamage(currentStat.physicalAtk, DamageType.Physical);
             }
             else if (type == SkillType.Skill01)
@@ -203,6 +210,9 @@ public class Enemy : CharacterBehaviour
 
     public void RangedAttack(int num)
     {
+        if (target == null)
+            return;
+
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
             (int)_projectileTag[num],
             _rangeAttackPos[num].transform.position,
@@ -296,12 +306,10 @@ public class Enemy : CharacterBehaviour
         DungeonManager.Instance.isStageCompleted = true;
     }
 
-    public void HitFade()
+    void ChangeVictory()
     {
-        if (enemyRenderer == null)
-            return;
-
-        enemyRenderer.material.color = Color.red;
-        enemyRenderer.material.DOColor(_baseColor, 0.1f).OnComplete(() => { isHit = false; });
+        target = null;
+        Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 1f);
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 }

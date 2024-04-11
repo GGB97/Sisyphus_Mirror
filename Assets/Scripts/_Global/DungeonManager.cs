@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using Constants;
+using UnityEngine.SceneManagement;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -22,13 +23,18 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public float timeLimit = 50f;
     public float currentTime = 0f;
-    public bool isStarted = false;
+    public GameState gameState;
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
     public event Action<int> OnStageEnd;
 
     private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
@@ -47,22 +53,18 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
+        if(InventoryController.Instance != null)
+            InventoryController.Instance.nextStage += CloseInventory;
     }
-
-    private void Start()
-    {
-        InventoryController.Instance.nextStage += CloseInventory;
-    }
-
     private void Update()
     {
-        if (isStarted == true)
+        if (gameState == GameState.Playing)
         {
             UpdateTimeText();
 
             if (isStageCompleted)
             {
-                EndStage();
+                StageClear();
             }
 
             if (currentTime > 0.0f)
@@ -73,7 +75,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             else
             {
                 //모든 몬스터 죽기
-                EndStage();
+                StageClear();
             }
         }
     }
@@ -85,27 +87,27 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
-        QuestManager.Instance.NotifyQuest(QuestType.StageClear,10,1);//스테이지 입장 시 카운트 증가
         isStageCompleted = false;
 
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
-            timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Boss;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Normal;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
         stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
-        isStarted = true;
+        gameState = GameState.Playing;
         EnemySpawner.Instance.GameStart();
     }
-    public void EndStage()//스테이지 끝나면 호출
+    public void StageClear()//스테이지 끝나면 호출
     {
-        isStarted = false;
+        gameState = GameState.Clear;
+
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
@@ -114,6 +116,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
         OnStageEnd?.Invoke(currnetstage);
+        QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
         Invoke("OpenInventory", 1f);//인벤토리 열기
     }
     public void OpenInventory()

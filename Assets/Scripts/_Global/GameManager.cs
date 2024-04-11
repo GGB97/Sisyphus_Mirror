@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletoneBase<GameManager>
 {
-    [SerializeField] private int _playerID;
+    [SerializeField] private int _playerID = 20000002;
     [SerializeField] private Player _player;
 
     public GameOverUI GameOverUI;
@@ -14,6 +14,7 @@ public class GameManager : SingletoneBase<GameManager>
     public int killenemys;
     public int totalGold;
 
+    public Action onGamoverEvent;
 
     public Player Player
     {
@@ -41,7 +42,10 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Debug.Log(scene.name);
 
-        GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        if (GameOverUI == null)
+        {
+            GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
+        }
     }
 
     private void OnDisable()
@@ -51,13 +55,12 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void Gameover()
     {
-        DungeonManager.Instance.isStarted = false;
+        DungeonManager.Instance.gameState = GameState.Fail;
 
         EnemySpawner.Instance.SpawnStop();
-        EnemySpawner.Instance.FindAllEnemiesDeSpawn();
+        onGamoverEvent?.Invoke();
 
         GameOverUI.Show();
-
     }
 
     public void SetPlayer(Player newPlayer)

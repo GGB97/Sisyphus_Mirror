@@ -369,7 +369,7 @@ public class InventoryController : MonoBehaviour
         // 설치하려는 ItemGrid가 상점일 경우 false
         if (selectedItemGrid == storeGrid) return false;
         if (selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
-        if (selectedItem.itemSO.Price > player.Data.Gold) return false;     // 선택한 아이템의 가격이 현재 소지 중인 골드보다 클 경우 false
+        if (selectedItem.itemSO.Price > player.Data.Gold && previousItemGird == storeGrid) return false;     // 선택한 아이템의 가격이 현재 소지 중인 골드보다 클 경우 false
 
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
