@@ -79,7 +79,7 @@ public class Enemy : CharacterBehaviour
         Init();
 
         EnemySpawner.Instance.onEnemiesDeSpawn += DeSpawn;
-        _gameManager.onGamoverEvent += ChangeVictory;
+        _gameManager.onGameOverEvent += ChangeVictory;
     }
 
     private void OnDisable()
@@ -88,7 +88,7 @@ public class Enemy : CharacterBehaviour
 
         EnemySpawner.Instance.onEnemiesDeSpawn -= DeSpawn;
 
-        _gameManager.onGamoverEvent -= ChangeVictory;
+        _gameManager.onGameOverEvent -= ChangeVictory;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
