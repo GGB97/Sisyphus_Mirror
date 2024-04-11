@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -31,10 +32,23 @@ public class GameManager : SingletoneBase<GameManager>
         private set { _player = value; }
     }
 
-    private void Awake()
+    private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log(scene.name);
+
         GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
     }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     public void Gameover()
     {
         DungeonManager.Instance.isStarted = false;
