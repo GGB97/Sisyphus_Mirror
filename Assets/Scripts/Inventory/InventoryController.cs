@@ -68,6 +68,8 @@ public class InventoryController : MonoBehaviour
     [SerializeField] int _tempRerollCost;
     [SerializeField] TextMeshProUGUI _rerollCostText;
 
+    [SerializeField] int _tutorialId;
+
     private void Awake()
     {
         if (Instance == null)
@@ -97,6 +99,7 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
+        if(TutorialManager.Instance.tutorialFlag == 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
     }
 
     private void Update()
