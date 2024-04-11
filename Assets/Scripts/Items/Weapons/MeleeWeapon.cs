@@ -63,12 +63,15 @@ public class MeleeWeapon : MonoBehaviour
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
             // 무기 방향 회전
-            Vector3 dir = _targetPos - transform.position;
+            Vector3 dir = transform.position - _targetPos;
             dir.y = 0;
             Quaternion rot = Quaternion.LookRotation(dir.normalized);
             transform.rotation = rot;
 
-            _targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
+            dir = _targetPos - transform.position;
+            dir.y = 0;
+            //_targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
+            _targetPos = new Vector3(_targetPos.x - (0.1f * dir.normalized.x), _targetPos.y - (0.1f * dir.normalized.y), _targetPos.z - (0.1f * dir.normalized.z));
 
             // 근접 공격 이동
             transform.position = Vector3.Lerp(transform.position, _targetPos, percentageComplete);

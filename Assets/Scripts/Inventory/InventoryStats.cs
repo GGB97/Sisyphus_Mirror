@@ -43,5 +43,7 @@ public class InventoryStats : MonoBehaviour
         Utilities.AddText(sb, "무게", playerStats.weight, false, true);
         statsText.text = sb.ToString();
         sb = null;
+
+        InventoryController.Instance.SetPlayerGoldText();
     }
 }
