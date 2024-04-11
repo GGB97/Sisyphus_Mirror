@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
@@ -12,7 +14,8 @@ public class PlayerStateMachine : StateMachine
     public PlayerHitState hitState { get; }
     public PlayerDieState dieState { get; }
     
-    
+    public Transform CameraTransform { get; set; }
+
     public Vector2 MovementInput { get; set; }
     
     public float MovementSpeedModifier = 1f;                // 상태에 따른 이동속도 결정
@@ -29,5 +32,6 @@ public class PlayerStateMachine : StateMachine
         hitState = new PlayerHitState(this);
         dieState = new PlayerDieState(this);
 
+        CameraTransform = Camera.main.transform;
     }
 }
