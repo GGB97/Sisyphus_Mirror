@@ -95,7 +95,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         }
         else
         {
-            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = 30f;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정

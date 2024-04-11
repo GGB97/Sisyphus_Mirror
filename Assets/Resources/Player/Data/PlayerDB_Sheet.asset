@@ -27,6 +27,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 21234567
     prefabPath: Player/Prefabs/MC01
     LV: 1
@@ -50,6 +51,7 @@ MonoBehaviour:
     critRate: 5
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 20000002
     prefabPath: Player/Prefabs/MC24
     LV: 1

@@ -178,7 +178,7 @@ public class Enemy : CharacterBehaviour
             //이곳에서 자식 콜라이더의 트리거 충돌 처리
             if (type == SkillType.AutoAttack)
             {
-                Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
+                //Debug.Log($"AA : {gameObject.name} -> Attack : {other.gameObject.name}");
                 hs.TakeDamage(currentStat.physicalAtk, DamageType.Physical);
             }
             else if (type == SkillType.Skill01)

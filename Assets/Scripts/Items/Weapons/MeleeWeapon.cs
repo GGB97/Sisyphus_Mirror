@@ -176,7 +176,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (LayerData.Enemy == (1 << other.gameObject.layer | LayerData.Enemy))
         {
-            Debug.Log("Monster TakeDamage");
+            //Debug.Log("Monster TakeDamage");
             //HealthSystem _healthSystem = other.gameObject.GetComponent<HealthSystem>();
             //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
@@ -186,7 +186,7 @@ public class MeleeWeapon : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
+            //Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
             return;
         }
     }
