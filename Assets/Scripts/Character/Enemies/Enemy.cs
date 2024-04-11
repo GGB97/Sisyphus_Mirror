@@ -73,11 +73,14 @@ public class Enemy : CharacterBehaviour
 
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
+
+        GameManager.Instance.onGamoverEvent += ChangeVictory;
     }
 
     private void OnDisable()
     {
         target = null;
+        GameManager.Instance.onGamoverEvent -= ChangeVictory;
         EnemyPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -172,6 +175,9 @@ public class Enemy : CharacterBehaviour
 
     public void OnChildTriggerEnter(Collider other, SkillType type)
     {
+        if (target == null)
+            return;
+
         if (other.gameObject.layer == target.gameObject.layer)
         {
             HealthSystem hs = other.GetComponent<HealthSystem>();
@@ -203,6 +209,9 @@ public class Enemy : CharacterBehaviour
 
     public void RangedAttack(int num)
     {
+        if (target == null)
+            return;
+
         GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
             (int)_projectileTag[num],
             _rangeAttackPos[num].transform.position,
@@ -296,12 +305,9 @@ public class Enemy : CharacterBehaviour
         DungeonManager.Instance.isStageCompleted = true;
     }
 
-    public void HitFade()
+    void ChangeVictory()
     {
-        if (enemyRenderer == null)
-            return;
-
-        enemyRenderer.material.color = Color.red;
-        enemyRenderer.material.DOColor(_baseColor, 0.1f).OnComplete(() => { isHit = false; });
+        target = null;
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 }

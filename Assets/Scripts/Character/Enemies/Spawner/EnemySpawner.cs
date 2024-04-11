@@ -102,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy(waveData.boss);
         // --
 
-        while (DungeonManager.Instance.isStarted) // 게임 종료 검사로 변경 필요함
+        while (DungeonManager.Instance.gameState == GameState.Playing)
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {
@@ -146,7 +146,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Can't use this Position");
+                //Debug.Log("Can't use this Position");
             }
             ++cnt;
         }

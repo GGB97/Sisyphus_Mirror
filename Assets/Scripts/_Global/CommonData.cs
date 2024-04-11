@@ -34,7 +34,7 @@ public enum GameState
 
 public struct StageTimeLimit
 {
-    public static readonly float Normal = 10;
+    public static readonly float Normal = 30;
     public static readonly float Boss = 60;
 }
 

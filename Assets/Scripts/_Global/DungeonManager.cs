@@ -2,7 +2,6 @@ using Constants;
 using System;
 using TMPro;
 using UnityEngine;
-using Constants;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -22,7 +21,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public float timeLimit = 50f;
     public float currentTime = 0f;
-    public bool isStarted = false;
+    public GameState gameState;
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
@@ -56,13 +55,13 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     private void Update()
     {
-        if (isStarted == true)
+        if (gameState == GameState.Playing)
         {
             UpdateTimeText();
 
             if (isStageCompleted)
             {
-                EndStage();
+                StageClear();
             }
 
             if (currentTime > 0.0f)
@@ -73,7 +72,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             else
             {
                 //모든 몬스터 죽기
-                EndStage();
+                StageClear();
             }
         }
     }
@@ -100,12 +99,13 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         currentTime = timeLimit;//시간 설정
         stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
-        isStarted = true;
+        gameState = GameState.Playing;
         EnemySpawner.Instance.GameStart();
     }
-    public void EndStage()//스테이지 끝나면 호출
+    public void StageClear()//스테이지 끝나면 호출
     {
-        isStarted = false;
+        gameState = GameState.Clear;
+
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
         EnemySpawner.Instance.FindAllEnemiesDeSpawn();
