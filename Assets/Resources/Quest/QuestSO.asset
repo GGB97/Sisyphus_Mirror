@@ -74,7 +74,7 @@ MonoBehaviour:
     _description: "\uC2A4\uD14C\uC774\uC9C0 5 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
     _target: 10
-    _count: 2
+    _count: 5
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
     _description: "\uC2A4\uD14C\uC774\uC9C0 10 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
     _target: 10
-    _count: 3
+    _count: 10
     _exp: 0
     _gold: 0
     _reward_1: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
     _description: "\uC2A4\uD14C\uC774\uC9C0 15 \uCE35 \uD074\uB9AC\uC5B4"
     _type: 2
     _target: 10
-    _count: 4
+    _count: 15
     _exp: 0
     _gold: 0
     _reward_1: 0
