@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     Vector3 bottomLeft;
     Vector3 topRight;
 
+    public System.Action onEnemiesDeSpawn;
+
     private struct size
     {
         public float radius;
@@ -181,14 +183,9 @@ public class EnemySpawner : MonoBehaviour
         currentEnemyCnt--;
     }
 
-    public void FindAllEnemiesDeSpawn() // Test용
+    public void AllEnemiesDeSpawn() // Test용
     {
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
-
-        foreach (Enemy enemy in enemies)
-        {
-            enemy.DeSpawn();
-        }
+        onEnemiesDeSpawn?.Invoke();
     }
     public void GameStart()
     {
