@@ -93,8 +93,6 @@ public class GameManager : SingletoneBase<GameManager>
         Destroy(Player.gameObject);
 
         this.Player.playerReset();
-        Instance.Player.playerReset();
-
 
         LoadScene(SceneName.Lobby);
 

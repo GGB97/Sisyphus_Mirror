@@ -20,6 +20,9 @@ public class PlayerBaseData : CharacterBase
     public override void Init()
     {
         base.Init();
-
+        LV = 1;
+        EXP = 0;
+        maxEXP = 100;
+        Gold = 0;
     }
 }

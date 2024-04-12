@@ -81,6 +81,7 @@ public class Player : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.idleState);
         //health = currentStat.maxHealth;
         currentStat.Init();
+        Data.Init();
 
         isDie = false;
         isHit = false;
@@ -162,5 +163,10 @@ public class Player : CharacterBehaviour
     {
         magnetDistance = 100;
 
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 }
