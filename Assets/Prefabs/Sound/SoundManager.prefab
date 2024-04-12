@@ -179,6 +179,9 @@ MonoBehaviour:
   - tag: Arrow_1
     clip: {fileID: 8300000, guid: 217d6d757a155554693f8815df5d438c, type: 3}
     volumePercent: 10
+  - tag: Drink
+    clip: {fileID: 8300000, guid: 736e77e280ced6143a90198ab55d903a, type: 3}
+    volumePercent: 100
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10
