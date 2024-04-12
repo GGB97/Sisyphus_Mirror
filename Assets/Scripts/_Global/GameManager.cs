@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -12,6 +13,7 @@ public class GameManager : SingletoneBase<GameManager>
     public GameState gameState;
 
     public GameOverUI GameOverUI;
+    public Menu Menu;
 
     public int killenemys;
     public int totalGold;
@@ -40,6 +42,13 @@ public class GameManager : SingletoneBase<GameManager>
         gameState = GameState.Lobby;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Player.Input.PlayerActions.ESC.started += OpenMenu;
+    }
+
+    public void OpenMenu(InputAction.CallbackContext context)
+    {
+        Time.timeScale = 0;
+        Menu.OpenMenu();
     }
 
     public void LoadScene(string sceneName)
@@ -92,9 +101,8 @@ public class GameManager : SingletoneBase<GameManager>
 
         Destroy(Player.gameObject);
 
-        this.Player.playerReset();
-
         gameState = GameState.Lobby;
+
         LoadScene(SceneName.Lobby);
 
         killenemys = 0;
@@ -118,5 +126,7 @@ public class GameManager : SingletoneBase<GameManager>
         base.OnApplicationQuit();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Player.Input.PlayerActions.ESC.started -= OpenMenu;
+
     }
 }

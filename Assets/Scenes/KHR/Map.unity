@@ -219,6 +219,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   gameState: 0
   GameOverUI: {fileID: 0}
+  Menu: {fileID: 0}
   killenemys: 0
   totalGold: 0
 --- !u!1 &1084630345
@@ -293,6 +294,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
+--- !u!1 &1209465212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3930568212337759809, guid: 6ec1855829848c64aaffb569d252af57,
+    type: 3}
+  m_PrefabInstance: {fileID: 8330970990770775176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1233179495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -759,6 +766,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GameExitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8773019133474459386, guid: 0ee6dd524a353aa4194166b6ef79a81a,
+        type: 3}
+      propertyPath: option
+      value: 
+      objectReference: {fileID: 1209465212}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -962,6 +974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StageUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307703479583667168, guid: 56aabbea657815c48839fa0c28b17f77,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5584226706139998072, guid: 56aabbea657815c48839fa0c28b17f77,
         type: 3}
@@ -1449,6 +1466,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5575583089408447261, guid: 0accaad528616e242b68b277cfccb5cf,
+        type: 3}
+      propertyPath: option
+      value: 
+      objectReference: {fileID: 1209465212}
     - target: {fileID: 6807709826821361403, guid: 0accaad528616e242b68b277cfccb5cf,
         type: 3}
       propertyPath: m_Name
