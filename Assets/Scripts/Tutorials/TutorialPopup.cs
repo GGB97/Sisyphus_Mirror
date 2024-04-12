@@ -28,14 +28,12 @@ public class TutorialPopup : MonoBehaviour
                 SetTutorialPopup(tutorial.NextPageId);
             }
             else Destroy(gameObject);
-            Time.timeScale = 1.0f;
         }
     }
 
     public void SetTutorialPopup(int id)
     {
         gameObject.SetActive(true);
-        Time.timeScale = 0;
 
         tutorial = DataBase.Tutorial.Get(id);
         if (tutorial != null)
