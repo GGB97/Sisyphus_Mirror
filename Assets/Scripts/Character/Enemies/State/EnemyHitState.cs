@@ -11,6 +11,7 @@ public class EnemyHitState : EnemyBaseState
 
         StartAnimation(EnemyAnimData.HitParameterHash);
         enemy.knockbackDelay = 0f;
+        SoundManager.Instance.PlayAudioClip(enemy.hitSound);
     }
 
     public override void Update()
