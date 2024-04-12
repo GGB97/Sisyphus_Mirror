@@ -91,7 +91,8 @@ public class GameManager : SingletoneBase<GameManager>
         Destroy(DungeonManager.Instance.gameObject);
 
         Destroy(Player.gameObject);
-        Instance.Player.playerReset();
+
+        this.Player.playerReset();
 
         gameState = GameState.Lobby;
         LoadScene(SceneName.Lobby);

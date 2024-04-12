@@ -1385,6 +1385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSelectUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2603919820973668422, guid: d09fee69b0267234c9afd22b9a0e18b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7472419222203562679, guid: d09fee69b0267234c9afd22b9a0e18b3,
         type: 3}
       propertyPath: m_IsActive

@@ -25,6 +25,7 @@ public class Player : CharacterBehaviour
 
     public event Action<float, float> PlayerHealthChange;
     public float health;
+    public event Action<float, float> PlayerExpChange;
 
     public int rune;
     public event Action PlayerRuneChange;
@@ -82,6 +83,7 @@ public class Player : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.idleState);
         //health = currentStat.maxHealth;
         currentStat.Init();
+        Data.Init();
 
         isDie = false;
         isHit = false;
@@ -140,6 +142,7 @@ public class Player : CharacterBehaviour
             Data.LV++;
         }
         GameManager.Instance.killenemys++;
+        PlayerExpChange?.Invoke(Data.EXP, Data.maxEXP);
     }
 
     public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.
@@ -160,6 +163,7 @@ public class Player : CharacterBehaviour
 
         SetUpgradeModifier();
     }
+
     void StageClearGetitem(int dump)
     {
         magnetDistance = 100;
@@ -168,5 +172,10 @@ public class Player : CharacterBehaviour
     void ResetMagnet()
     {
         magnetDistance = 3;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
     }
 }
