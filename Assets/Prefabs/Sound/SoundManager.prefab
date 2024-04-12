@@ -164,6 +164,24 @@ MonoBehaviour:
   - tag: die_1
     clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
     volumePercent: 10
+  - tag: Axe_1
+    clip: {fileID: 8300000, guid: 38298500ea87e3846937c49dd9ab0017, type: 3}
+    volumePercent: 10
+  - tag: Sword_1
+    clip: {fileID: 8300000, guid: a779b9c8ec2f8cf448ecd4d32503d589, type: 3}
+    volumePercent: 10
+  - tag: Bow_1
+    clip: {fileID: 8300000, guid: 66e179ca82067d24b8c5ea66fa88497c, type: 3}
+    volumePercent: 100
+  - tag: Wand_1
+    clip: {fileID: 8300000, guid: e0bf0ff52e9007840a022fa500c8df37, type: 3}
+    volumePercent: 10
+  - tag: Arrow_1
+    clip: {fileID: 8300000, guid: 217d6d757a155554693f8815df5d438c, type: 3}
+    volumePercent: 10
+  - tag: Drink
+    clip: {fileID: 8300000, guid: 736e77e280ced6143a90198ab55d903a, type: 3}
+    volumePercent: 100
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10

@@ -17,19 +17,24 @@ MonoBehaviour:
     prefabPath: Projectile/Prefabs/Arrow
     type: 0
     speed: 10
+    sfxTag: Arrow_1
   - id: 40000001
     prefabPath: Projectile/Prefabs/Cube
     type: 1
     speed: 10
+    sfxTag: Cube_1
   - id: 40000100
     prefabPath: Projectile/Prefabs/Orange Explosion
     type: 1
     speed: 10
+    sfxTag: 
   - id: 40000101
     prefabPath: Projectile/Prefabs/Poison
     type: 1
     speed: 10
+    sfxTag: 
   - id: 40000200
     prefabPath: AreaAttack/Prefabs/AreaAttack_Ice
     type: 1
     speed: 0
+    sfxTag: 
