@@ -101,6 +101,8 @@ public class GameManager : SingletoneBase<GameManager>
 
         Destroy(Player.gameObject);
 
+        gameState = GameState.Lobby;
+
         LoadScene(SceneName.Lobby);
 
         killenemys = 0;
