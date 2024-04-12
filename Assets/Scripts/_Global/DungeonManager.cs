@@ -149,13 +149,17 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         Debug.Log("게임 매니저 생성");
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnApplicationQuit()
+    protected override void OnApplicationQuit()
     {
+        base.OnApplicationQuit();
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

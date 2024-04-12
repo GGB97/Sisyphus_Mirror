@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
@@ -12,11 +11,15 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                string typeName = typeof(T).FullName;
-                GameObject go = new GameObject(typeName);
-                _instance = go.AddComponent<T>();
+                _instance = FindAnyObjectByType<T>();
+                if (_instance == null)
+                {
+                    string typeName = typeof(T).FullName;
+                    GameObject go = new(typeName);
+                    _instance = go.AddComponent<T>();
 
-                DontDestroyOnLoad(go);
+                    DontDestroyOnLoad(go);
+                }
             }
 
             return _instance;
@@ -31,6 +34,17 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 
     public virtual void Init()
     {
-        
+
+    }
+
+    protected virtual void OnDestroy()
+    {
+        _instance = null;
+    }
+
+    protected virtual void OnApplicationQuit()
+    {
+        _instance = null;
     }
 }
+

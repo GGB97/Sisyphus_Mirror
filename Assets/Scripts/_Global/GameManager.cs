@@ -89,7 +89,7 @@ public class GameManager : SingletoneBase<GameManager>
     public void Retry()
     {
         Destroy(DungeonManager.Instance.gameObject);
-        SceneManager.LoadScene(1);
+        LoadScene(SceneName.Lobby);
 
         killenemys = 0;
         totalGold = 0;
@@ -98,16 +98,19 @@ public class GameManager : SingletoneBase<GameManager>
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UIManager.Instance.FadeIn(0.5f);
-        Debug.Log("GameManager SceneLoaded Called");
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnApplicationQuit()
+    protected override void OnApplicationQuit()
     {
+        base.OnApplicationQuit();
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

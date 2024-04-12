@@ -6,6 +6,16 @@ using UnityEngine.AI;
 
 public class Enemy : CharacterBehaviour
 {
+    #region Static Instance Group
+    GameManager _gameManager;
+    DungeonManager _dungeonManager;
+    EnemySpawner _spawner;
+    EnemyPooler _enemyPooler;
+    ObjectPoolManager _objectPooler;
+    FieldItemsPooler _fieldItemsPooler;
+    QuestManager _questManager;
+    #endregion
+
     public EnemyStateMachine stateMachine;
     public Transform target;
     Player _player;
@@ -38,8 +48,6 @@ public class Enemy : CharacterBehaviour
 
     [SerializeField] int dropGoldValue;
 
-    GameManager _gameManager;
-
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -51,6 +59,12 @@ public class Enemy : CharacterBehaviour
         renderTransform = transform.GetChild(0);
 
         _gameManager = GameManager.Instance;
+        _dungeonManager = DungeonManager.Instance;
+        _spawner = EnemySpawner.Instance;
+        _enemyPooler = EnemyPooler.Instance;
+        _fieldItemsPooler = FieldItemsPooler.Instance;
+        _questManager = QuestManager.Instance;
+
         _player = _gameManager.Player;
 
         stateMachine = new(this);
@@ -77,7 +91,7 @@ public class Enemy : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.IdleState);
         Init();
 
-        EnemySpawner.Instance.onEnemiesDeSpawn += DeSpawn;
+        _spawner.onEnemiesDeSpawn += DeSpawn;
         _gameManager.onGameOverEvent += ChangeVictory;
     }
 
@@ -85,10 +99,10 @@ public class Enemy : CharacterBehaviour
     {
         target = null;
 
-        EnemySpawner.Instance.onEnemiesDeSpawn -= DeSpawn;
+        _spawner.onEnemiesDeSpawn -= DeSpawn;
 
         _gameManager.onGameOverEvent -= ChangeVictory;
-        EnemyPooler.Instance.ReturnToPull(gameObject);
+        _enemyPooler.ReturnToPull(gameObject);
     }
 
     void Start()
@@ -117,7 +131,7 @@ public class Enemy : CharacterBehaviour
         {
             if (isDie)
             {
-                QuestManager.Instance.NotifyQuest(QuestType.KillMonster, 30, 1);
+                _questManager.NotifyQuest(QuestType.KillMonster, 30, 1);
                 OnDieEvent?.Invoke();
                 isDieTrigger = false;
                 return;
@@ -137,8 +151,8 @@ public class Enemy : CharacterBehaviour
     {
         modifier.Init_EnemyModifier(Info, Info.rank);
         currentStat.InitStatus(Info, modifier);
-        
-        dropGoldValue = Info.gold + ((DungeonManager.Instance.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
+
+        dropGoldValue = Info.gold + ((_dungeonManager.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
 
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.
@@ -219,7 +233,7 @@ public class Enemy : CharacterBehaviour
         if (target == null)
             return;
 
-        GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        GameObject go = _objectPooler.SpawnFromPool(
             (int)_projectileTag[num],
             _rangeAttackPos[num].transform.position,
             _rangeAttackPos[num].transform.rotation);
@@ -241,7 +255,7 @@ public class Enemy : CharacterBehaviour
 
     public void AreaAttack(int num)
     {
-        GameObject go = ObjectPoolManager.Instance.SpawnFromPool(
+        GameObject go = _objectPooler.SpawnFromPool(
         (int)_areaAttackTag[num],
         target.transform.position,
         Quaternion.identity);
@@ -289,7 +303,7 @@ public class Enemy : CharacterBehaviour
 
     void DropItem()
     {
-        FieldItems go = FieldItemsPooler.Instance.SpawnFromPool(
+        FieldItems go = _fieldItemsPooler.SpawnFromPool(
             FieldItemType.Gold.ToString(),
             transform.position,
             Quaternion.identity).GetComponent<FieldItems>();
@@ -299,7 +313,7 @@ public class Enemy : CharacterBehaviour
 
     void DropRune()
     {
-        GameManager.Instance.Player.GetComponent<Player>().ChangeRune(DungeonManager.Instance.currnetstage % 5);
+        _player.GetComponent<Player>().ChangeRune(_dungeonManager.currnetstage % 5);
     }
 
     void DropExp()
@@ -309,7 +323,7 @@ public class Enemy : CharacterBehaviour
 
     void ChangeComplete()
     {
-        DungeonManager.Instance.isStageCompleted = true;
+        _dungeonManager.isStageCompleted = true;
     }
 
     void ChangeVictory()
