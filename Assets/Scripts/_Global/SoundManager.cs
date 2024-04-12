@@ -9,8 +9,11 @@ public struct SoundInfo
     public AudioClip clip;
     [Range(0,100)]public float volumePercent;
 }
-public class SoundManager : SingletoneBase<SoundManager>
+public class SoundManager : MonoBehaviour
 {
+    private static SoundManager instance;
+    public static SoundManager Instance { get => instance; }
+
     [Header("Background")]
     [SerializeField]
     private AudioClip backgroundClip;//배경 음악
@@ -26,17 +29,27 @@ public class SoundManager : SingletoneBase<SoundManager>
     [Header("SoundInfo")]
     public List<SoundInfo> soundEffectList; //할당할 효과음 리스트
 
-    private Dictionary<string, SoundInfo> audioDictionary = new Dictionary<string, SoundInfo>();//해당하는 효과음들을 내부적으로 저장.
+    private Dictionary<string, SoundInfo> audioDictionary;//해당하는 효과음들을 내부적으로 저장.
     private Queue<GameObject> audioQueue;//오디오 큐
 
     [SerializeField]
     private GameObject AudioSoundPrefab;
     [SerializeField]
     private float maxQueueCount = 10f;
+    private void Awake()
+    {
+        if (instance == null)
+        { 
+            instance = this;
+            Init();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);    
+    }
 
-    
     // Start is called before the first frame update
-    public override void Init()
+    public void Init()
     {
         backgroundAudioSource = GetComponent<AudioSource>();
         Initialize();
@@ -81,6 +94,7 @@ public class SoundManager : SingletoneBase<SoundManager>
                 newSoundInfo.clip = soundInfo.clip;
 
                 audioDictionary[soundInfo.tag] = newSoundInfo; //사운드 정보로 사전에 tag값에 clip을 저장.                
+                Debug.Log($"{soundInfo.tag}");
             }
         }
     }
@@ -103,6 +117,7 @@ public class SoundManager : SingletoneBase<SoundManager>
             objAudioSource.clip = audioDictionary[tag].clip;//클립 설정
             objAudioSource.volume = PercentToDegree(audioDictionary[tag].volumePercent);//볼륨 설정
             obj.gameObject.SetActive(true);//활성화
+            objAudioSource.PlayAudio();
         }
         else//없으면
         {
@@ -111,6 +126,7 @@ public class SoundManager : SingletoneBase<SoundManager>
             objAudioSource.clip = audioDictionary[tag].clip;
             objAudioSource.volume = PercentToDegree(audioDictionary[tag].volumePercent);
             newObj.gameObject.SetActive(true);//활성화
+            objAudioSource.PlayAudio();
         }
     }
     public void ReturnAudioClip(GameObject audioSourceObject)

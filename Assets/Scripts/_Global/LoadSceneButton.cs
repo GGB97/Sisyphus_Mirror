@@ -7,6 +7,6 @@ public class LoadSceneButton : MonoBehaviour
 {
     public static void LoadScene()
     {
-        SceneManager.LoadScene(1);
+        GameManager.Instance.LoadScene(SceneName.Lobby);
     }
 }

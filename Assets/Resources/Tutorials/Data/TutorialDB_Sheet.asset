@@ -54,3 +54,46 @@ MonoBehaviour:
     _imagePath: Tutorials/Image/RuneStone/RuneStone_4
     _hasNextPage: 0
     _nextPageId: 0
+  - _id: 60002011
+    _tutorialName: "\uC778\uBCA4\uD1A0\uB9AC - 1"
+    _tutorialText: "<color=\"yellow\">\uC778\uBCA4\uD1A0\uB9AC</color>\uC5D0\uC11C\uB294
+      \uC774\uBC88 \uD0D0\uD5D8\uB3D9\uC548 \uD50C\uB808\uC774\uC5B4\uC758 \uC544\uC774\uD15C\uB4E4\uC744
+      \uC800\uC7A5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/Inventory/Inventory_1
+    _hasNextPage: 1
+    _nextPageId: 60002012
+  - _id: 60002012
+    _tutorialName: "\uC778\uBCA4\uD1A0\uB9AC - 2"
+    _tutorialText: "<color=\"yellow\">\uB9C8\uC6B0\uC2A4 \uC6B0\uD074\uB9AD</color>\uC744
+      \uD1B5\uD574 \uC544\uC774\uD15C\uACFC \uC0C1\uD638\uC791\uC6A9\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4.\n<color=\"red\">R\uD0A4</color>\uB97C
+      \uD1B5\uD574 \uC544\uC774\uD15C\uC758 \uD68C\uC804\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/Inventory/Inventory_2
+    _hasNextPage: 1
+    _nextPageId: 60002013
+  - _id: 60002013
+    _tutorialName: "\uC778\uBCA4\uD1A0\uB9AC - 3"
+    _tutorialText: "<color=\"yellow\">\uAC19\uC740 \uB4F1\uAE09\uC758 \uC544\uC774\uD15C
+      3\uAC1C</color>\uB97C \uD569\uCCD0 \uB2E4\uC74C \uB4F1\uAE09\uC73C\uB85C <color=\"yellow\">\uC5C5\uADF8\uB808\uC774\uB4DC</color>\uB97C
+      \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/Inventory/Inventory_3
+    _hasNextPage: 1
+    _nextPageId: 60002014
+  - _id: 60002014
+    _tutorialName: "\uCC3D\uACE0"
+    _tutorialText: "\uC544\uC774\uD15C\uC744 \uC815\uB9AC\uD560 \uB54C <color=\"yellow\">\uC784\uC2DC\uB85C
+      \uC544\uC774\uD15C\uC744 \uC124\uCE58</color>\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uCC3D\uACE0\uC5D0
+      \uC544\uC774\uD15C\uC774 \uC788\uC744 \uACBD\uC6B0 \uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0\uB85C
+      \uB118\uC5B4\uAC00\uC9C0 \uBABB\uD558\uB2C8 \uC8FC\uC758\uD558\uC138\uC694!"
+    _imagePath: Tutorials/Image/Inventory/Storage_1
+    _hasNextPage: 1
+    _nextPageId: 60002015
+  - _id: 60002015
+    _tutorialName: "\uC0C1\uC810"
+    _tutorialText: "\uC0C1\uC810\uC5D0\uC11C\uB294 <color=\"yellow\">\uBB34\uAE30,
+      \uC7A5\uC2E0\uAD6C, \uC18C\uBAA8 \uC544\uC774\uD15C</color>\uC744 \uAD6C\uB9E4\uD560
+      \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uC0C8\uB85C \uACE0\uCE68\uC744 \uD1B5\uD574
+      \uC0C1\uC810\uC758 \uC544\uC774\uD15C\uC744 \uCD08\uAE30\uD654\uD560 \uC218
+      \uC788\uC73C\uB098, <color=\"yellow\">\uACE8\uB4DC</color>\uC5D0 \uC720\uC758\uD574\uC8FC\uC138\uC694!"
+    _imagePath: Tutorials/Image/Inventory/Store_1
+    _hasNextPage: 0
+    _nextPageId: 0

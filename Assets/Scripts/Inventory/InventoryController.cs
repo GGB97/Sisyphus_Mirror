@@ -68,6 +68,8 @@ public class InventoryController : MonoBehaviour
     [SerializeField] int _tempRerollCost;
     [SerializeField] TextMeshProUGUI _rerollCostText;
 
+    [SerializeField] int _tutorialId;
+
     private void Awake()
     {
         if (Instance == null)
@@ -97,6 +99,7 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
+        if(TutorialManager.Instance.tutorialFlag == 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
     }
 
     private void Update()
@@ -149,7 +152,7 @@ public class InventoryController : MonoBehaviour
         //플레이어 레벨에 맞게 addCount 변경
         int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
         addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
-        Debug.Log($"추가할 칸 수 : {addCount}");
+        //Debug.Log($"추가할 칸 수 : {addCount}");
         if (addCount != 0)
         {
             addBlockDescription.Active(true);
@@ -683,6 +686,7 @@ public class InventoryController : MonoBehaviour
         if (isAdding == true)
             return;
 
+        OnStoreReroll();
         nextStage();
         _rerollCost = (int)(_rerollCost * 1.4f);
         _tempRerollCost = _rerollCost;

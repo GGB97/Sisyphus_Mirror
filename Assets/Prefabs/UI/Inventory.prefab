@@ -1425,7 +1425,7 @@ Transform:
   - {fileID: 3512613657997164914}
   - {fileID: 4198922562375677709}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2674368150753315868
 GameObject:
@@ -2974,6 +2974,8 @@ MonoBehaviour:
   _playerGoldText: {fileID: 3917600623554917239}
   _rerollCost: 0
   _tempRerollCost: 0
+  _rerollCostText: {fileID: 1356272887041250796}
+  _tutorialId: 60002011
 --- !u!1 &4370808969954323720
 GameObject:
   m_ObjectHideFlags: 0
