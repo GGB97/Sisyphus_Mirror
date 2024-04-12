@@ -14,8 +14,8 @@ public class PlayerBaseData : CharacterBase
     public int Gold;
     
 
-    public int startItemID;
-    public int startInventory;
+    public int _startItemID;
+    public int _startInventory;
 
     public override void Init()
     {
