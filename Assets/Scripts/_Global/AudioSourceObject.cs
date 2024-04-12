@@ -12,7 +12,7 @@ public class AudioSourceObject : MonoBehaviour
     }
     private void OnEnable()
     {
-        audioSource.PlayOneShot(clip);
+        StartCoroutine("PlayAndRetrun");
     }
 
     public IEnumerator PlayAndRetrun()
@@ -20,7 +20,12 @@ public class AudioSourceObject : MonoBehaviour
         audioSource.PlayOneShot(clip,volume);
 
         yield return new WaitForSeconds(clip.length);
-
-        yield return null;
+        Init();
+        SoundManager.Instance.ReturnAudioClip(this.gameObject);
+    }
+    public void Init()
+    {
+        clip = null;
+        volume = 0;
     }
 }

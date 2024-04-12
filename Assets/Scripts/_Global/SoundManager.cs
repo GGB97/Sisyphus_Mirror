@@ -113,6 +113,11 @@ public class SoundManager : SingletoneBase<SoundManager>
             newObj.gameObject.SetActive(true);//활성화
         }
     }
+    public void ReturnAudioClip(GameObject audioSourceObject)
+    {
+        audioQueue.Enqueue(audioSourceObject);
+        audioSourceObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
