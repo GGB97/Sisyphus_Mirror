@@ -60,10 +60,6 @@ public class Enemy : CharacterBehaviour
 
         _gameManager = GameManager.Instance;
         _dungeonManager = DungeonManager.Instance;
-        _spawner = EnemySpawner.Instance;
-        _enemyPooler = EnemyPooler.Instance;
-        _fieldItemsPooler = FieldItemsPooler.Instance;
-        _questManager = QuestManager.Instance;
 
         _player = _gameManager.Player;
 
@@ -152,6 +148,8 @@ public class Enemy : CharacterBehaviour
         modifier.Init_EnemyModifier(Info, Info.rank);
         currentStat.InitStatus(Info, modifier);
 
+        StaticInstanceInit();
+
         dropGoldValue = Info.gold + ((_dungeonManager.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
 
         #region AnimatorOverrideController 으로 시도했던것
@@ -177,6 +175,30 @@ public class Enemy : CharacterBehaviour
         knockbackDelay = 10f;
 
         target = _gameManager.Player.transform;
+    }
+
+    void StaticInstanceInit()
+    {
+        if (_gameManager == null)
+            _gameManager = GameManager.Instance;
+
+        if (_dungeonManager == null)
+            _dungeonManager = DungeonManager.Instance;
+
+        if (_spawner == null)
+            _spawner = EnemySpawner.Instance;
+
+        if (_questManager == null)
+            _questManager = QuestManager.Instance;
+
+        if (_enemyPooler == null)
+            _enemyPooler = EnemyPooler.Instance;
+
+        if (_objectPooler == null)
+            _objectPooler = ObjectPoolManager.Instance;
+
+        if (_fieldItemsPooler == null)
+            _fieldItemsPooler = FieldItemsPooler.Instance;
     }
 
     void ChangeDieState()
