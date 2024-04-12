@@ -164,6 +164,12 @@ MonoBehaviour:
   - tag: die_1
     clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
     volumePercent: 10
+  - tag: Axe_1
+    clip: {fileID: 8300000, guid: 38298500ea87e3846937c49dd9ab0017, type: 3}
+    volumePercent: 10
+  - tag: Sword_1
+    clip: {fileID: 8300000, guid: a779b9c8ec2f8cf448ecd4d32503d589, type: 3}
+    volumePercent: 10
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10
