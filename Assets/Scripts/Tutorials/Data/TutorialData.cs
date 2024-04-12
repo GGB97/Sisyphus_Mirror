@@ -1,11 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TutorialType
+{
+    RuneStone,
+    Inventory
+}
+
 [System.Serializable]
 public class TutorialData
 {
     [field: Header("Tutorial")]
     [SerializeField] int _id;
+    [SerializeField] TutorialType _tutorialType;
     [SerializeField] string _tutorialName;
     [SerializeField] string _tutorialText;
     [SerializeField] string _imagePath;
@@ -13,6 +20,7 @@ public class TutorialData
     [SerializeField] int _nextPageId;
 
     public int Id => _id;
+    public TutorialType Type => _tutorialType;
     public string TutorialName => _tutorialName;
     public string TutorialText => _tutorialText;
     public string ImagePath => _imagePath;
