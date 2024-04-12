@@ -174,8 +174,4 @@ public class Player : CharacterBehaviour
         magnetDistance = 3;
     }
 
-    public void Pause()
-    {
-        Time.timeScale = 0;
-    }
 }
