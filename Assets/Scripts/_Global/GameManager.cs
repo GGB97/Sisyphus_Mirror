@@ -1,6 +1,4 @@
 using System;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,21 +30,6 @@ public class GameManager : SingletoneBase<GameManager>
         }
         private set { _player = value; }
     }
-
-    private void OnEnable()
-    {
-        //SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        //Debug.Log(scene.name);
-
-        //if (GameOverUI == null)
-        //{
-        //    GameOverUI = GameObject.FindObjectOfType<GameOverUI>();
-        //}
-    } 
 
     public void Gameover()
     {

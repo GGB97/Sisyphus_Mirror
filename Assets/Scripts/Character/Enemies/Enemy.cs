@@ -1,9 +1,8 @@
+using Constants;
 using DG.Tweening;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using Constants;
 
 public class Enemy : CharacterBehaviour
 {

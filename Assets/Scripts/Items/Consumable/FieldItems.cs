@@ -13,7 +13,6 @@ public class FieldItems : MonoBehaviour
     int _value;
 
     public float moveSpeed = 10f;
-    public float magnetDistance;
     private Transform player;
 
     private void OnDisable()
@@ -44,7 +43,6 @@ public class FieldItems : MonoBehaviour
     private void Start()
     {
         player = GameManager.Instance.Player.transform;
-        magnetDistance = GameManager.Instance.Player.magnetDistance;
     }
 
     private void Update()
@@ -70,6 +68,7 @@ public class FieldItems : MonoBehaviour
 
     void Magnet()
     {
+        float magnetDistance = GameManager.Instance.Player.magnetDistance;
         float distance = Vector3.Distance(transform.position, player.position);
 
         if(distance <= magnetDistance)
