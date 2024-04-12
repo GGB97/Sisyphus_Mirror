@@ -20,9 +20,13 @@ public class FieldItemsPooler : MonoBehaviour
         {
             if (_instance == null)
             {
-                string typeName = typeof(FieldItemsPooler).FullName;
-                GameObject go = new GameObject(typeName);
-                _instance = go.AddComponent<FieldItemsPooler>();
+                _instance = FindAnyObjectByType<FieldItemsPooler>();
+                if (_instance == null)
+                {
+                    string typeName = typeof(FieldItemsPooler).FullName;
+                    GameObject go = new GameObject(typeName);
+                    _instance = go.AddComponent<FieldItemsPooler>();
+                }
             }
 
             return _instance;

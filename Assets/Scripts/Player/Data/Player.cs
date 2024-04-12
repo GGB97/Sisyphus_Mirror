@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Player : CharacterBehaviour
 {
+    GameManager _gameManager;
+    DungeonManager _dungeonManager;
+
     [field: Header("References")]
     [field: SerializeField] public PlayerBaseData Data { get; private set; }
     public Status modifire;
@@ -32,6 +35,8 @@ public class Player : CharacterBehaviour
 
     private void Awake()
     {
+        _gameManager = GameManager.Instance;
+
         AnimationData.Initialize();
         Data = DataBase.Player.Get(id);
         currentStat.InitStatus(Data, modifire);
@@ -48,12 +53,26 @@ public class Player : CharacterBehaviour
 
     private void OnEnable()
     {
-        DungeonManager.Instance.OnStageEnd += StageClearGetitem;
+        if (_gameManager.gameState == GameState.Dungeon)
+        {
+            if (_dungeonManager == null)
+            {
+                _dungeonManager = DungeonManager.Instance;
+            }
+
+            _dungeonManager.OnStageEnd += StageClearGetitem;
+        }
     }
 
     private void OnDisable()
     {
-        DungeonManager.Instance.OnStageEnd -= StageClearGetitem;
+        if (_gameManager.gameState == GameState.Dungeon)
+        {
+            if (_dungeonManager != null)
+            {
+                _dungeonManager.OnStageEnd -= StageClearGetitem;
+            }
+        }
     }
 
     private void Start()

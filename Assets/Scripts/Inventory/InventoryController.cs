@@ -152,7 +152,7 @@ public class InventoryController : MonoBehaviour
         //플레이어 레벨에 맞게 addCount 변경
         int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
         addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
-        Debug.Log($"추가할 칸 수 : {addCount}");
+        //Debug.Log($"추가할 칸 수 : {addCount}");
         if (addCount != 0)
         {
             addBlockDescription.Active(true);
