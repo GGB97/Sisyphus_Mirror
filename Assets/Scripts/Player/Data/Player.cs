@@ -60,6 +60,7 @@ public class Player : CharacterBehaviour
                 _dungeonManager = DungeonManager.Instance;
             }
 
+            _dungeonManager.OnStageStart += ResetMagnet;
             _dungeonManager.OnStageEnd += StageClearGetitem;
         }
     }
@@ -70,6 +71,7 @@ public class Player : CharacterBehaviour
         {
             if (_dungeonManager != null)
             {
+                _dungeonManager.OnStageStart -= ResetMagnet;
                 _dungeonManager.OnStageEnd -= StageClearGetitem;
             }
         }
@@ -155,10 +157,16 @@ public class Player : CharacterBehaviour
         Data.LV = 1;
         Data.Gold = 0;
         Data.EXP = 0;
+
+        SetUpgradeModifier();
     }
     void StageClearGetitem(int dump)
     {
         magnetDistance = 100;
+    }
 
+    void ResetMagnet()
+    {
+        magnetDistance = 3;
     }
 }
