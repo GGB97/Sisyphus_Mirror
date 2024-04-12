@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameManager.Instance.Player; //GameObject.FindWithTag("Player").GetComponent<Player>();
         _player.PlayerHealthChange += UpdateHealthBar;
         _healthText.text = $"{_player.currentStat.health} / {_player.currentStat.maxHealth}";
     }
