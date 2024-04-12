@@ -22,6 +22,7 @@ public class Player : CharacterBehaviour
 
     public event Action<float, float> PlayerHealthChange;
     public float health;
+    public event Action<float, float> PlayerExpChange;
 
     public int rune;
     public event Action PlayerRuneChange;
@@ -118,6 +119,7 @@ public class Player : CharacterBehaviour
             Data.LV++;
         }
         GameManager.Instance.killenemys++;
+        PlayerExpChange?.Invoke(Data.EXP, Data.maxEXP);
     }
 
     public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.
@@ -135,6 +137,7 @@ public class Player : CharacterBehaviour
         Data.LV = 1;
         Data.Gold = 0;
         Data.EXP = 0;
+    }
 
     void StageClearGetitem(int dump)
     {

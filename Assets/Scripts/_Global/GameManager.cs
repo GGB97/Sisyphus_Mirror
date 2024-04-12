@@ -54,7 +54,7 @@ public class GameManager : SingletoneBase<GameManager>
         Destroy(DungeonManager.Instance.gameObject);
         Destroy(Player.gameObject);
         SceneManager.LoadScene(1);
-        Instance.Player.playerReset();
+        this.Player.playerReset();
 
         killenemys = 0;
         totalGold = 0;

@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5098281897254209996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8773019133474459386}
+        m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
+        m_MethodName: ExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &70630799874436757
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +525,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7487077577428491956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8773019133474459386}
+        m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
+        m_MethodName: OptionButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3974838525395759088
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,7 +686,6 @@ GameObject:
   - component: {fileID: 7828732175364683269}
   - component: {fileID: 5592660969726430897}
   - component: {fileID: 5520218992239315325}
-  - component: {fileID: 8935923469787266451}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -773,9 +796,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8935923469787266451}
-        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 8773019133474459386}
+        m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
+        m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -785,18 +808,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8935923469787266451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5365030784906185288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9008bed8ceacb14baf9a4678fd33504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8347689107519957538
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +820,7 @@ GameObject:
   - component: {fileID: 1657107227535132958}
   - component: {fileID: 4973074972334822055}
   - component: {fileID: 7087834271094133397}
+  - component: {fileID: 8773019133474459386}
   m_Layer: 5
   m_Name: StartUI
   m_TagString: Untagged
@@ -834,7 +846,7 @@ RectTransform:
   - {fileID: 5174646763475254726}
   - {fileID: 6643147766473477254}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -904,6 +916,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8773019133474459386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347689107519957538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1afd8aa494b2424db8ef471f5d1d0d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obtion: {fileID: 0}
 --- !u!1 &8785500977375710220
 GameObject:
   m_ObjectHideFlags: 0

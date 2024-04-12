@@ -8,14 +8,18 @@ public class PlayerBaseData : CharacterBase
 {
     [Header("AddInfo")]
 
-    public int LV = 0;
-    public float EXP = 0;
-    public float maxEXP = 100;
-    public int Gold = 0;
-    public int Weight = 0;
+    public int LV;
+    public float EXP;
+    public float maxEXP;
+    public int Gold;
+    
 
     public int startItemID;
     public int startInventory;
 
+    public override void Init()
+    {
+        base.Init();
 
+    }
 }
