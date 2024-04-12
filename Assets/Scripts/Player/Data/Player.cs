@@ -46,7 +46,7 @@ public class Player : CharacterBehaviour
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
 
-        rune = 10000; // 나중에 저장해야함.
+        rune = PlayerPrefs.GetInt("Rune"); // 나중에 저장해야함.
 
         stateMachine = new PlayerStateMachine(this);
     }
@@ -114,6 +114,7 @@ public class Player : CharacterBehaviour
     public void ChangeRune(int value)
     {
         rune += value;
+        PlayerPrefs.SetInt("Rune", rune);
         PlayerRuneChange?.Invoke();
     }
 
