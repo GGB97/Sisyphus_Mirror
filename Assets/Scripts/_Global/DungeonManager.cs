@@ -1,9 +1,10 @@
 using Constants;
+using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
-using Constants;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -56,6 +57,15 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         if(InventoryController.Instance != null)
             InventoryController.Instance.nextStage += CloseInventory;
 
+
+        GameObject go = Instantiate(Resources.Load<GameObject>("UI/Fade_Canvas"));
+        Image image = go.GetComponentInChildren<Image>();
+
+        image.color = new Color(0, 0, 0, 1);
+        image.DOFade(0, 0.5f).OnComplete(() => 
+        { 
+            Destroy(go);
+        });
     }
     private void Update()
     {
