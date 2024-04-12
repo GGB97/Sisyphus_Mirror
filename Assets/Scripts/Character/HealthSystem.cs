@@ -68,7 +68,7 @@ public class HealthSystem : MonoBehaviour
     void ShowDamage(float value, DamageType type) // Player는 지금 DamageCanvas가 없음
     {
         TMP_Text text = textQueue.Dequeue();
-        if(text != null)
+        if (text != null)
             text.text = value.ToString();
 
 
@@ -79,7 +79,7 @@ public class HealthSystem : MonoBehaviour
                 text.color = Color.yellow;
                 break;
             case DamageType.Magic:
-                text.color = new Color(175f/255f, 50f/255f, 207f/255f);
+                text.color = new Color(175f / 255f, 50f / 255f, 207f / 255f);
                 break;
         }
 

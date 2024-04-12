@@ -44,10 +44,12 @@ public class TutorialManager : SingletoneBase<TutorialManager>
             case TutorialType.RuneStone:
                 runestoneTutorialFlag = 1;
                 // TODO : PlayerPrefs에 반영시키기
+                PlayerPrefs.SetInt("runestoneTutorialFlag", runestoneTutorialFlag);
                 break;
             case TutorialType.Inventory:
                 inventoryTutorialFlag = 1;
                 // TODO : PlayerPrefs에 반영시키기
+                PlayerPrefs.SetInt("inventoryTutorialFlag", inventoryTutorialFlag);
                 break;
         }
     }

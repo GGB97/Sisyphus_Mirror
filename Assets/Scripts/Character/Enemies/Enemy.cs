@@ -48,6 +48,10 @@ public class Enemy : CharacterBehaviour
 
     [SerializeField] int dropGoldValue;
 
+    [Header("Sound Tag")]
+    public string hitSound = "hit20";
+    public string dieSound = "die_1";
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);

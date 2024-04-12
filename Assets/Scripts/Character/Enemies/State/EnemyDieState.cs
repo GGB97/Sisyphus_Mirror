@@ -9,10 +9,14 @@ public class EnemyDieState : EnemyBaseState
         base.Enter();
 
         StartAnimation(EnemyAnimData.DieParameterHash);
-        enemy.isDie = true;
         enemy.Collider.enabled = false;
 
         EnemySpawner.Instance.DecrementEnemyCnt(); // 죽었으니까 currentEnemyCnt 감소
+
+        if(enemy.isDie == true)
+        {
+            SoundManager.Instance.PlayAudioClip(enemy.dieSound);
+        }
     }
 
     public override void Exit()
