@@ -4,7 +4,6 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 {
     // 프로퍼티
     private static T _instance;
-
     public static T Instance
     {
         get
@@ -25,7 +24,6 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
             return _instance;
         }
     }
-
 
     void Awake()
     {
