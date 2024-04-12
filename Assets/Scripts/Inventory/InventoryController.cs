@@ -686,6 +686,7 @@ public class InventoryController : MonoBehaviour
         if (isAdding == true)
             return;
 
+        OnStoreReroll();
         nextStage();
         _rerollCost = (int)(_rerollCost * 1.4f);
         _tempRerollCost = _rerollCost;
