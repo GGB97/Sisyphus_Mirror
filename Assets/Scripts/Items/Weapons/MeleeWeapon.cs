@@ -181,7 +181,8 @@ public class MeleeWeapon : MonoBehaviour
             //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
-                _healthSystem.TakeDamage(_weaponData.PhysicalAtk, DamageType.Physical);
+
+                _healthSystem.TakeDamage(SetAttackDamage(), DamageType.Physical);
             }
         }
         else
@@ -189,5 +190,20 @@ public class MeleeWeapon : MonoBehaviour
             //Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
             return;
         }
+    }
+
+    private float SetAttackDamage()
+    {
+        float damage = 0;
+        Status _player = GameManager.Instance.Player.currentStat;
+
+        if (_weaponData.PhysicalAtk != 0)
+            damage = _player.physicalAtk;
+        else damage = _player.magicAtk;
+
+        float random = UnityEngine.Random.Range(1, 101);
+        if (_player.critRate > random) damage += (damage * _player.critDamage);
+
+        return damage;
     }
 }
