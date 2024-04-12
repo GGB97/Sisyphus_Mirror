@@ -1782,6 +1782,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8656775792185888620, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5760,6 +5765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _RuneStone
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012637794665593903, guid: 2b9daf9c1e8f12448ac7ae73c63f6583,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2302964994185510635, guid: 2b9daf9c1e8f12448ac7ae73c63f6583,
         type: 3}
