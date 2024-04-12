@@ -99,7 +99,7 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
-        if(TutorialManager.Instance.tutorialFlag == 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
+        if(TutorialManager.Instance.inventoryTutorialFlag == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
     }
 
     private void Update()
