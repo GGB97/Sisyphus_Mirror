@@ -26,17 +26,19 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
+
+    public event Action OnStageStart;
     public event Action<int> OnStageEnd;
 
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        OnStageStart += ResetPlayerPos;
     }
 
     public override void Init()
     {
-        GameManager.Instance.gameState = GameState.Dungeon;
-
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
         //InventoryController.Instance.nextStage += CloseInventory;
@@ -109,6 +111,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
         gameState = DungeonState.Playing;
+        OnStageStart?.Invoke();
         EnemySpawner.Instance.GameStart();
     }
     public void StageClear()//스테이지 끝나면 호출
@@ -154,6 +157,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         SetStageAndStart();//스테이지 생성 시작
         //플레이어 위치 조정
         //맵을 동적으로 구워야 하면 적용
+    }
+
+    void ResetPlayerPos()
+    {
+        GameManager.Instance.Player.transform.position = Vector3.zero;
     }
 
     public void Print()

@@ -59,7 +59,7 @@ public class ItemManager : MonoBehaviour
 
     public void init()
     {
-        InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(Player.Data.startItemID));
+        InventoryController.Instance.AddStartWeapon(DataBase.Weapon.Get(Player.Data._startItemID));
         //InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(_playerStats.startItemID));
         InventoryController.Instance.AddRuneStone(DataBase.Equipments.Get(10112011));
 
