@@ -166,8 +166,4 @@ public class Player : CharacterBehaviour
 
     }
 
-    public void Pause()
-    {
-        Time.timeScale = 0;
-    }
 }
