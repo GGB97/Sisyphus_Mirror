@@ -112,6 +112,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 0
     prefabPath: 
     type: 0
@@ -158,6 +160,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
   enemyRenderer: {fileID: 0}
   animAttackSpeed: 1
   animMoveSpeed: 1
@@ -180,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCanvas: {fileID: 2086489072980365022}
+  hitSoundTag: hit20
 --- !u!1 &1371084417138996174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1612,7 @@ PrefabInstance:
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}

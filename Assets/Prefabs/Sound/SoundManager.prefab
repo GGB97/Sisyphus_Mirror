@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -155,6 +155,15 @@ MonoBehaviour:
   - tag: Attack
     clip: {fileID: 8300000, guid: 702a84257ebd5bd4899f1dfaca5f52fd, type: 3}
     volumePercent: 50
+  - tag: AreaAttack_Ice
+    clip: {fileID: 8300000, guid: 54916f2406bc54140b7d77b744922dbf, type: 3}
+    volumePercent: 5
+  - tag: hit20
+    clip: {fileID: 8300000, guid: 3dc12580ed80d4b40ad4ba22295fe110, type: 3}
+    volumePercent: 1
+  - tag: die_1
+    clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
+    volumePercent: 10
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10
