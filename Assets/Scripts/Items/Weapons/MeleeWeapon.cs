@@ -139,7 +139,7 @@ public class MeleeWeapon : MonoBehaviour
         }
 
         int random = Random.Range(0, colliders.Length);
-        if (Target[random].GetComponent<Enemy>().isDie && Target[random].GetComponent<Enemy>().IsSpawning)
+        if (Target[random].GetComponent<Enemy>().isDie || Target[random].GetComponent<Enemy>().IsSpawning)
         {
             Target.Clear();
             return;
