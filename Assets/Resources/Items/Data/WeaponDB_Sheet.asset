@@ -66,7 +66,7 @@ MonoBehaviour:
     _price: 32
     _weight: 10
     _grade: 2
-    _physicalAtk: 30
+    _physicalAtk: 40
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -84,16 +84,58 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
-    _price: 35
+    _price: 28
     _weight: 15
     _grade: 0
-    _physicalAtk: 30
+    _physicalAtk: 15
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
     _range: 5
     _lifeSteal: 1
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+  - _id: 10112012
+    _itemType: 0
+    _name: Sword
+    _description: "\uCE7C"
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
+    _price: 48
+    _weight: 15
+    _grade: 1
+    _physicalAtk: 30
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 3
+    _critDamage: 3
+    _range: 5
+    _lifeSteal: 3
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+  - _id: 10112013
+    _itemType: 0
+    _name: Sword
+    _description: "\uCE7C"
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
+    _price: 68
+    _weight: 15
+    _grade: 2
+    _physicalAtk: 50
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 5
+    _critDamage: 5
+    _range: 5
+    _lifeSteal: 5
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
@@ -129,7 +171,7 @@ MonoBehaviour:
     _price: 35
     _weight: 10
     _grade: 0
-    _physicalAtk: 30
+    _physicalAtk: 20
     _magicAtk: 0
     _atkSpeed: 0.7
     _critRate: 5
@@ -139,6 +181,48 @@ MonoBehaviour:
     _type: 1
     _projectileID: 40000000
     _numberOfProjectile: 1
+  - _id: 10121012
+    _itemType: 0
+    _name: Bow
+    _description: "\uD65C."
+    _spritePath: Items/Icons/Weapons/Range/Bow_1
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
+    _price: 55
+    _weight: 10
+    _grade: 1
+    _physicalAtk: 25
+    _magicAtk: 0
+    _atkSpeed: 0.6
+    _critRate: 5
+    _critDamage: 2
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000000
+    _numberOfProjectile: 2
+  - _id: 10121013
+    _itemType: 0
+    _name: Bow
+    _description: "\uD65C."
+    _spritePath: Items/Icons/Weapons/Range/Bow_1
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
+    _price: 85
+    _weight: 10
+    _grade: 2
+    _physicalAtk: 30
+    _magicAtk: 0
+    _atkSpeed: 0.5
+    _critRate: 5
+    _critDamage: 3
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000000
+    _numberOfProjectile: 3
   - _id: 10122011
     _itemType: 0
     _name: Wand
@@ -152,6 +236,48 @@ MonoBehaviour:
     _grade: 0
     _physicalAtk: 0
     _magicAtk: 20
+    _atkSpeed: 1
+    _critRate: 5
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000001
+    _numberOfProjectile: 3
+  - _id: 10122012
+    _itemType: 0
+    _name: Wand
+    _description: "\uC644\uB4DC"
+    _spritePath: Items/Icons/Weapons/Range/Wand_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
+    _price: 60
+    _weight: 15
+    _grade: 1
+    _physicalAtk: 0
+    _magicAtk: 35
+    _atkSpeed: 1
+    _critRate: 5
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000001
+    _numberOfProjectile: 3
+  - _id: 10122013
+    _itemType: 0
+    _name: Wand
+    _description: "\uC644\uB4DC"
+    _spritePath: Items/Icons/Weapons/Range/Wand_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
+    _price: 90
+    _weight: 15
+    _grade: 2
+    _physicalAtk: 0
+    _magicAtk: 50
     _atkSpeed: 1
     _critRate: 5
     _critDamage: 1
