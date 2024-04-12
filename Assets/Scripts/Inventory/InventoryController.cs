@@ -99,7 +99,7 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
-        if(TutorialManager.Instance.tutorialFlag == 0) TutorialManager.Instance.PopupTutorial(_tutorialId);
+        if (TutorialManager.Instance.inventoryTutorialFlag == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
     }
 
     private void Update()
@@ -659,7 +659,7 @@ public class InventoryController : MonoBehaviour
 
         player.Data.Gold -= _tempRerollCost;
         _tempRerollCost = (int)(_tempRerollCost * 1.4f);
-        
+
         SetPlayerGoldText();
         SetRerollButtonText();
     }
@@ -681,15 +681,21 @@ public class InventoryController : MonoBehaviour
         storeGrid.ResetPanelStates();
     }
 
+
     public void OnClickNextStageButton()
     {
         if (isAdding == true)
             return;
 
-        OnStoreReroll();
-        nextStage();
-        _rerollCost = (int)(_rerollCost * 1.4f);
-        _tempRerollCost = _rerollCost;
+        UIManager.Instance.FadeOut(0.5f, () =>
+        {
+            OnStoreReroll();
+            nextStage();
+            _rerollCost = (int)(_rerollCost * 1.4f);
+            _tempRerollCost = _rerollCost;
+
+            UIManager.Instance.FadeIn(0.5f);
+        });
     }
 
     public void AddStartWeapon(ItemSO item)

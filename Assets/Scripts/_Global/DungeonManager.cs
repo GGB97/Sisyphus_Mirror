@@ -124,8 +124,20 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         OnStageEnd?.Invoke(currnetstage);
         QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
-        Invoke("OpenInventory", 1f);//인벤토리 열기
+
+        Invoke(nameof(InvokeInventory), 1f);
+        //Invoke("OpenInventory", 1f);//인벤토리 열기
     }
+
+    void InvokeInventory()
+    {
+        UIManager.Instance.FadeOut(0.5f, () =>
+        {
+            OpenInventory();
+            UIManager.Instance.FadeIn(0.5f);
+        });
+    }
+
     public void OpenInventory()
     {
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드

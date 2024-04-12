@@ -110,7 +110,8 @@ public class RangeWeapon : MonoBehaviour
         _projectile.AddExcludeLayer(LayerData.Player);
         _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
 
-        float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
+        //float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
+        float value = SetAttackDamage();
         _projectile.SetValue(value);
         _projectile.SetVelocity(1f); // 속도 배율 설정
 
@@ -132,5 +133,19 @@ public class RangeWeapon : MonoBehaviour
                 projectile.SetVelocity(1f); // 속도 배율 설정
             }
         }
+    }
+    private float SetAttackDamage()
+    {
+        float damage = 0;
+        Status _player = GameManager.Instance.Player.currentStat;
+
+        if (weaponData.PhysicalAtk != 0)
+            damage = _player.physicalAtk;
+        else damage = _player.magicAtk;
+
+        float random = UnityEngine.Random.Range(1, 101);
+        if (_player.critRate > random) damage += (damage * _player.critDamage);
+
+        return damage;
     }
 }
