@@ -135,7 +135,7 @@ public class Player : CharacterBehaviour
         Data.LV = 1;
         Data.Gold = 0;
         Data.EXP = 0;
-
+    }
     void StageClearGetitem(int dump)
     {
         magnetDistance = 100;

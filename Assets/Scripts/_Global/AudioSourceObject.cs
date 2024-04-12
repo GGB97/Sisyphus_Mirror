@@ -9,23 +9,24 @@ public class AudioSourceObject : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        Init();
     }
-    private void OnEnable()
-    {
-        StartCoroutine("PlayAndRetrun");
-    }
-
-    public IEnumerator PlayAndRetrun()
+    private IEnumerator PlayAndRetrun()
     {
         audioSource.PlayOneShot(clip,volume);
 
         yield return new WaitForSeconds(clip.length);
         Init();
         SoundManager.Instance.ReturnAudioClip(this.gameObject);
+        yield return null;
     }
     public void Init()
     {
         clip = null;
         volume = 0;
+    }
+    public void PlayAudio()
+    {
+        StartCoroutine("PlayAndRetrun");
     }
 }
