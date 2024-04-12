@@ -104,7 +104,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy(waveData.boss);
         // --
 
-        while (DungeonManager.Instance.gameState == GameState.Playing)
+        while (DungeonManager.Instance.gameState == DungeonState.Playing)
         {
             if (currentEnemyCnt < maxEnemyCnt)
             {

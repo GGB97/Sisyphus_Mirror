@@ -1,10 +1,8 @@
 using Constants;
-using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class DungeonManager : SingletoneBase<DungeonManager>
 {
@@ -24,7 +22,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public float timeLimit = 50f;
     public float currentTime = 0f;
-    public GameState gameState;
+    public DungeonState gameState;
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
@@ -35,8 +33,10 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public override void Init()
     {
+        GameManager.Instance.gameState = GameState.Dungeon;
+
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
         //InventoryController.Instance.nextStage += CloseInventory;
@@ -54,22 +54,18 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
-        if(InventoryController.Instance != null)
+        if (InventoryController.Instance != null)
             InventoryController.Instance.nextStage += CloseInventory;
-
-
-        GameObject go = Instantiate(Resources.Load<GameObject>("UI/Fade_Canvas"));
-        Image image = go.GetComponentInChildren<Image>();
-
-        image.color = new Color(0, 0, 0, 1);
-        image.DOFade(0, 0.5f).OnComplete(() => 
-        { 
-            Destroy(go);
-        });
     }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Init();
+    }
+
     private void Update()
     {
-        if (gameState == GameState.Playing)
+        if (gameState == DungeonState.Playing)
         {
             UpdateTimeText();
 
@@ -112,12 +108,12 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         currentTime = timeLimit;//시간 설정
         stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
-        gameState = GameState.Playing;
+        gameState = DungeonState.Playing;
         EnemySpawner.Instance.GameStart();
     }
     public void StageClear()//스테이지 끝나면 호출
     {
-        gameState = GameState.Clear;
+        gameState = DungeonState.Clear;
 
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
@@ -133,7 +129,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public void OpenInventory()
     {
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드
-   
+
         inventoryUI.SetActive(true);
         InventoryController.Instance.AddBlock();
         InventoryStats.Instance.UpdateStatsPanel();
@@ -147,12 +143,19 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         //플레이어 위치 조정
         //맵을 동적으로 구워야 하면 적용
     }
-    public override void Init()
-    {
 
-    }
     public void Print()
     {
         Debug.Log("게임 매니저 생성");
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

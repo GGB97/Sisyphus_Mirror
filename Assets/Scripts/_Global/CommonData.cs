@@ -24,7 +24,20 @@ public struct DBPath
     public static readonly string QuestDB = "Quest/QuestSO";
 }
 
+public struct SceneName
+{
+    public static readonly string Start = "StartTestScene";
+    public static readonly string Lobby = "TestLobby";
+    public static readonly string Dungeon = "TestScene";
+}
+
 public enum GameState
+{
+    Lobby,
+    Dungeon
+}
+
+public enum DungeonState
 {
     Ready,
     Playing, 

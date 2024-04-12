@@ -48,12 +48,14 @@ public class Player : CharacterBehaviour
 
     private void OnEnable()
     {
-        DungeonManager.Instance.OnStageEnd += StageClearGetitem;
+        if (GameManager.Instance.gameState == GameState.Dungeon)
+            DungeonManager.Instance.OnStageEnd += StageClearGetitem;
     }
 
     private void OnDisable()
     {
-        DungeonManager.Instance.OnStageEnd -= StageClearGetitem;
+        if (GameManager.Instance.gameState == GameState.Dungeon)
+            DungeonManager.Instance.OnStageEnd -= StageClearGetitem;
     }
 
     private void Start()
