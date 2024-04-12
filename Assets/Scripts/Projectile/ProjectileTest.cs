@@ -22,6 +22,7 @@ public class ProjectileTest : MonoBehaviour
     float _duration;
 
     public DamageType GetDamageType => _data.type;
+    public string sfxTag => _data.sfxTag;
 
     private void Awake()
     {
