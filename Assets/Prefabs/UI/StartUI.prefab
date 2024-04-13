@@ -799,10 +799,10 @@ MonoBehaviour:
       - m_Target: {fileID: 8773019133474459386}
         m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
         m_MethodName: StartButton
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 5520218992239315325}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -846,7 +846,7 @@ RectTransform:
   - {fileID: 5174646763475254726}
   - {fileID: 6643147766473477254}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1afd8aa494b2424db8ef471f5d1d0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obtion: {fileID: 0}
+  option: {fileID: 0}
 --- !u!1 &8785500977375710220
 GameObject:
   m_ObjectHideFlags: 0

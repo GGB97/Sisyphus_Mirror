@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartUI : MonoBehaviour
 {
     [SerializeField] private GameObject option;
-    public void StartButton()
+    public void StartButton(Button btn)
     {
-        SceneManager.LoadScene(1);
+        GameManager.Instance.LoadScene(SceneName.Lobby);
+        btn.enabled = false;
     }
 
     public void OptionButton()
