@@ -90,6 +90,7 @@ public class RangeWeapon : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
 
         transform.rotation = rot;
+        SoundManager.Instance.PlayAudioClip(weaponData.SfxTag);
         Attack();
     }
 
@@ -106,6 +107,7 @@ public class RangeWeapon : MonoBehaviour
     {
         GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
         ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
+        if (_projectile.sfxTag != null) SoundManager.Instance.PlayAudioClip(_projectile.sfxTag);
         _projectile.AddTarget(LayerData.Enemy);
         _projectile.AddExcludeLayer(LayerData.Player);
         _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
@@ -124,7 +126,7 @@ public class RangeWeapon : MonoBehaviour
                 float randomRot = Random.Range(_weaponPivot.rotation.y - .1f, _weaponPivot.rotation.y + .1f);
                 Quaternion rot = _weaponPivot.rotation;
                 rot.y = randomRot;
-                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
+                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, rot);
 
                 ProjectileTest projectile = go.GetComponent<ProjectileTest>();
                 projectile.AddTarget(LayerData.Enemy);

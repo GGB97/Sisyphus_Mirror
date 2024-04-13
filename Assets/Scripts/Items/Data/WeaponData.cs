@@ -25,6 +25,9 @@ public class WeaponData : ItemSO
     [SerializeField] private ProjectileID _projectileID;
     [SerializeField] private int _numberOfProjectile;
 
+    [field: Header("SFX")]
+    [SerializeField] private string _sfxTag;
+
     public float PhysicalAtk => _physicalAtk;
     public float MagicAtk => _magicAtk;
     public float AtkSpeed => _atkSpeed;
@@ -36,6 +39,9 @@ public class WeaponData : ItemSO
 
     public ProjectileID ProjectileID => _projectileID;
     public int NumberOfProjectile => _numberOfProjectile;
+
+    public string SfxTag => _sfxTag;    // 공격 시 효과음
+
     public override StringBuilder SetExplantion(ItemSO itemSO)
     {
         StringBuilder sb = base.SetExplantion(itemSO);

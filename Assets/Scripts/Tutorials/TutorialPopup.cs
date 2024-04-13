@@ -14,20 +14,23 @@ public class TutorialPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (gameObject.activeSelf)
         {
-            if (tutorial != null && tutorial.hasNextPage)
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(tutorial.NextPageId);
-                SetTutorialPopup(tutorial.NextPageId);
+                if (tutorial != null && tutorial.hasNextPage)
+                {
+                    Debug.Log(tutorial.NextPageId);
+                    SetTutorialPopup(tutorial.NextPageId);
+                }
+                else Destroy(gameObject);
             }
-            else Destroy(gameObject);
         }
     }
 

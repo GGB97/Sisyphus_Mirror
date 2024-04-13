@@ -218,6 +218,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void ClickUseButton()
     {
         inventoryController.UseConsumableItem(currentItem);
+        SoundManager.Instance.PlayAudioClip("Drink");
         ExitExplnationUI();
     }
 }
