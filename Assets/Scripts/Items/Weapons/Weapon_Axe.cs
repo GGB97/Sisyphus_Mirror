@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon_Axe : MonoBehaviour
 {
+    [SerializeField] string _sfxTag;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class Weapon_Axe : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayerSFX()
+    {
+        SoundManager.Instance.PlayAudioClip(_sfxTag);
     }
 }

@@ -159,6 +159,7 @@ public class MeleeWeapon : MonoBehaviour
     void OnAnimationStart()
     {
         _effect.SetActive(true);
+        SoundManager.Instance.PlayAudioClip(_weaponData.SfxTag);
         _timeStartedMoving = Time.time;
         _canAttack = false;
     }
