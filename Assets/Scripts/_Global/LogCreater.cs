@@ -12,7 +12,12 @@ public class LogCreator : SingletoneBase<LogCreator>
     void saveLog(string logString, string stackTrace, LogType type)
     {
         string currentTime = DateTime.Now.ToString(("MM-dd HH:mm:ss"));
-        writer.WriteLine($"[{currentTime}] - {logString}");
+        string logEntry = $"[{currentTime}] - {logString}";
+        if (type == LogType.Error || type == LogType.Exception)
+        {
+            logEntry += $"\nStackTrace: {stackTrace}";
+        }
+        writer.WriteLine(logEntry);
     }
 
     void Awake()
