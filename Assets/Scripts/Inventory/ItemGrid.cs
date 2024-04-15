@@ -36,8 +36,8 @@ public class ItemGrid : MonoBehaviour
 
     RectTransform rectTransform;//UI 그리드의 트랜스 폼
 
-    protected int gridSizeWidth = 10;//가로 길이
-    protected int gridSizeHeight = 10; // 세로 길이
+    [SerializeField] protected int gridSizeWidth = 10;//가로 길이
+    [SerializeField] protected int gridSizeHeight = 10; // 세로 길이
 
     protected Vector2 mousePositionOnTheGrid; //그리드 왼쪽 상단에서 마우스의 위치 값
     protected Vector2Int tileGridPosition = new Vector2Int(); //그리드 위에서의 좌표
@@ -56,13 +56,14 @@ public class ItemGrid : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
     protected virtual void Start()
     {
-        Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
+        //Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
 
-    private void Init(int width, int height)//그리드 초기 생성
+    protected void Init(int width, int height)//그리드 초기 생성
     {
         inventoryPanel = GetComponentInChildren<InventoryPanel>();
         GridInit(width, height);

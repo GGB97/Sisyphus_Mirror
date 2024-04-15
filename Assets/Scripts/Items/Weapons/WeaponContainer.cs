@@ -5,7 +5,7 @@ public class WeaponContainer : MonoBehaviour
     public Transform Player { get; private set; }
 
     // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         transform.parent = Player;
