@@ -292,3 +292,21 @@ Parameter name: _unity_self
 [15:20:05] Enter
 [15:20:05] Exit
 [15:20:07] 기록 종료
+[15:26:40] 기록 시작
+[15:26:52] 기록 종료
+[15:44:15] 기록 시작
+[15:44:20] Asset 'Player Animator Controller': Transition 'GetHit02_NoWeapon -> RollFWD_Battle_RM_NoWeapon' in state 'GetHit02_NoWeapon' doesn't have an Exit Time or any condition, transition will be ignored
+[15:44:31] 기록 종료
+[15:44:35] 기록 시작
+[15:46:38] 기록 종료
+[15:46:39] 기록 시작
+[15:49:08] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
+[15:49:08] 기록 종료
+[15:49:51] 기록 시작
+[15:54:13] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
+[15:54:13] 기록 종료
+[15:54:20] 기록 시작
+[15:54:30] 기록 종료
+[15:54:37] 기록 시작
+[15:59:28] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
+[15:59:28] 기록 종료
