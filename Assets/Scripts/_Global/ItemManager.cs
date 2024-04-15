@@ -249,6 +249,11 @@ public class ItemManager : MonoBehaviour
         foreach(var weapon in _ownWeapons)
         {
             GameObject go = Instantiate(weapon.Prefab, weaponContainer);
+            if (go.TryGetComponent<MeleeWeapon>(out MeleeWeapon _weapon))
+            {
+                _weapon.Init(weapon.Id);
+            }
+            else go.GetComponent<RangeWeapon>().Init(weapon.Id);
             weaponPrefabs.Add(go);
         }
     }
