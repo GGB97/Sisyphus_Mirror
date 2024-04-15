@@ -20,9 +20,11 @@ public class SoundManager : MonoBehaviour
     private AudioSource backgroundAudioSource;//배경 음악 오디오 소스
 
     [SerializeField]
-    [Range(0, 100f)] private float bgmVolumePercent; //브금 0 ~ 100 조절
+    [Range(0, 100f)] public float bgmVolumePercent; //브금 0 ~ 100 조절
     [SerializeField]
-    [Range(0.0f,1.0f)]private float maxBgmVolume = 0.5f; //최대 브금 0 ~ 1크기
+    [Range(0.0f,1.0f)]public float maxBgmVolume = 0.5f; //최대 브금 0 ~ 1크기
+    [SerializeField]
+    [Range(0, 100f)] public float sfxVolumePercent;
     [SerializeField]
     private bool isPlayingBgm = true;
 
@@ -116,7 +118,7 @@ public class SoundManager : MonoBehaviour
             GameObject obj = audioQueue.Dequeue();//큐에서 꺼낸다.
             AudioSourceObject objAudioSource = obj.GetComponent<AudioSourceObject>();//소리객체의 스크립트 가져옴
             objAudioSource.clip = audioDictionary[tag].clip;//클립 설정
-            objAudioSource.volume = PercentToDegree(audioDictionary[tag].volumePercent);//볼륨 설정
+            objAudioSource.volume = PercentToDegree(sfxVolumePercent) * maxBgmVolume;//audioDictionary[tag].volumePercent);//볼륨 설정
             obj.gameObject.SetActive(true);//활성화
             objAudioSource.PlayAudio();
         }
@@ -125,7 +127,7 @@ public class SoundManager : MonoBehaviour
             GameObject newObj = CreateSoundObject();//새로 생성한다.
             AudioSourceObject objAudioSource = newObj.GetComponent<AudioSourceObject>();
             objAudioSource.clip = audioDictionary[tag].clip;
-            objAudioSource.volume = PercentToDegree(audioDictionary[tag].volumePercent);
+            objAudioSource.volume = PercentToDegree(sfxVolumePercent) * maxBgmVolume;//audioDictionary[tag].volumePercent);
             newObj.gameObject.SetActive(true);//활성화
             objAudioSource.PlayAudio();
         }

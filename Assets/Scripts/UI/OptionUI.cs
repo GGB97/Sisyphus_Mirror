@@ -14,12 +14,13 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bgmVolumeText;
     [SerializeField] private TextMeshProUGUI sfxVolumeText;
 
-    //private void Start()
-    //{
-    //    maxVolume.value = SoundManager.Instance.maxBgmVolume;
-    //    bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
-    //    sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
-    //}
+    private void Start()
+    {
+        maxVolume.value = SoundManager.Instance.maxBgmVolume;
+        bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
+        sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
+        
+    }
 
     public void MenuExitButton()
     {
@@ -30,17 +31,20 @@ public class OptionUI : MonoBehaviour
     {
         maxVolume.value = volume;
         maxVolumeText.text = volume.ToString("N2");
+        SoundManager.Instance.maxBgmVolume = volume;
     }
 
     public void BgmVolumeChange(float volume)
     {
         bgmVolume.value = volume;
         bgmVolumeText.text = volume.ToString("N1");
+        SoundManager.Instance.bgmVolumePercent = volume;
     }
 
     public void SfxVolumeChange(float volume)
     {
         sfxVolume.value = volume;
         sfxVolumeText.text = volume.ToString("N1");
+        SoundManager.Instance.sfxVolumePercent = volume;
     }
 }
