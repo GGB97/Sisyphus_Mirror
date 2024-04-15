@@ -24,9 +24,11 @@ public class Weapon_Sword : MonoBehaviour
     {
         Vector3 dir = transform.position - _weapon.targetPos;
         dir.y = 0;
-        Quaternion rot = Quaternion.LookRotation(dir.normalized);
-        transform.rotation = rot;
-
+        if(dir != Vector3.zero)
+        {
+            Quaternion rot = Quaternion.LookRotation(dir.normalized);
+            transform.rotation = rot;
+        }
         if (transform.rotation.x < 0) rotSpeed = -rotSpeed;
 
         _isAttack = true;
