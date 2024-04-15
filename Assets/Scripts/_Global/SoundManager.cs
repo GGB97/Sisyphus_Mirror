@@ -100,7 +100,8 @@ public class SoundManager : MonoBehaviour
     }
     void Start()
     {        
-        //backgroundAudioSource.clip = backgroundClip;
+        backgroundAudioSource.clip = backgroundClip;
+        backgroundAudioSource.Play();
     }
     public void PlayAudioClip(string tag)//tag값으로 오디오 재생
     {

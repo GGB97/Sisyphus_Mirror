@@ -698,6 +698,7 @@ public class InventoryController : MonoBehaviour
             nextStage();
             _rerollCost = (int)(_rerollCost * 1.4f);
             _tempRerollCost = _rerollCost;
+            SetRerollButtonText();
 
             UIManager.Instance.FadeIn(0.5f);
         });
