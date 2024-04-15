@@ -70,7 +70,7 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] int _tutorialId;
 
-    public string putDownItemSoundTag = "putDownItem";
+    public string putDownItemSoundTag = "PutDownItem";
     public string PurchaseSoundTag = "Purchase";
 
     private void Awake()

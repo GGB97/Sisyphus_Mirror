@@ -23,11 +23,11 @@ MonoBehaviour:
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
-    _cost_1: 50
-    _cost_2: 100
-    _cost_3: 150
-    _cost_4: 200
-    _cost_5: 250
+    _cost_1: 20
+    _cost_2: 40
+    _cost_3: 60
+    _cost_4: 80
+    _cost_5: 100
     _modifier_1: 5
     _modifier_2: 10
     _modifier_3: 15
@@ -44,11 +44,11 @@ MonoBehaviour:
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
-    _cost_1: 50
-    _cost_2: 100
-    _cost_3: 150
-    _cost_4: 200
-    _cost_5: 250
+    _cost_1: 20
+    _cost_2: 40
+    _cost_3: 60
+    _cost_4: 80
+    _cost_5: 100
     _modifier_1: 5
     _modifier_2: 10
     _modifier_3: 15
@@ -65,11 +65,11 @@ MonoBehaviour:
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
-    _cost_1: 50
-    _cost_2: 100
-    _cost_3: 150
-    _cost_4: 200
-    _cost_5: 250
+    _cost_1: 20
+    _cost_2: 40
+    _cost_3: 60
+    _cost_4: 80
+    _cost_5: 100
     _modifier_1: 10
     _modifier_2: 20
     _modifier_3: 30
@@ -86,11 +86,11 @@ MonoBehaviour:
     _maxGrade: 5
     _reward: 0
     _currentGrade: 0
-    _cost_1: 50
-    _cost_2: 100
-    _cost_3: 150
-    _cost_4: 200
-    _cost_5: 250
+    _cost_1: 20
+    _cost_2: 40
+    _cost_3: 60
+    _cost_4: 80
+    _cost_5: 100
     _modifier_1: 30
     _modifier_2: 60
     _modifier_3: 90
