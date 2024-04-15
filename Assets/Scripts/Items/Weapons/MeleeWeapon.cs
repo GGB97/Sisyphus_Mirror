@@ -12,6 +12,7 @@ public class MeleeWeapon : MonoBehaviour
     Status _playerStatus;
 
     [SerializeField] private Animator _animator;
+    [SerializeField] Collider _collider;
     [SerializeField] GameObject _effect;
 
     public List<Transform> Target = new List<Transform>();
@@ -35,6 +36,9 @@ public class MeleeWeapon : MonoBehaviour
         if (transform.parent == null) Destroy(gameObject);
 
         _animator = GetComponent<Animator>();
+        _collider = GetComponent<Collider>();
+        _collider.enabled = false;
+
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
 
         //atkSpeed = _weaponData.AtkSpeed;
@@ -174,6 +178,8 @@ public class MeleeWeapon : MonoBehaviour
     void OnAnimationStart()
     {
         _effect.SetActive(true);
+        _collider.enabled = true;
+
         SoundManager.Instance.PlayAudioClip(_weaponData.SfxTag);
         _timeStartedMoving = Time.time;
         _canAttack = false;
@@ -181,6 +187,7 @@ public class MeleeWeapon : MonoBehaviour
 
     void OnAnimationEnd()
     {
+        _collider.enabled = false;
         _effect.GetComponent<TrailRenderer>().Clear();
         _effect.SetActive(false);
         transform.rotation = Quaternion.Euler(-180, 0, 0);
