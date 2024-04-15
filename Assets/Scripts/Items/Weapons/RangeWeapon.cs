@@ -20,7 +20,6 @@ public class RangeWeapon : MonoBehaviour
 
     void Start()
     {
-        weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
 
         _weaponContainer = transform.parent;
@@ -28,6 +27,11 @@ public class RangeWeapon : MonoBehaviour
 
         _coolDown = 0f;
         canAttack = true;
+    }
+
+    public void Init(int id)
+    {
+        weaponData = DataBase.Weapon.Get(id);
     }
 
     private Vector3 GetRandomPosition()

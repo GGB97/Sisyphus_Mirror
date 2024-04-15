@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Weapon_Sword : MonoBehaviour
 {
-    float rotSpeed = 500f;
+    float rotSpeed = 500;
+    float atkSpeed;
     bool _isAttack = false;
 
     [SerializeField] MeleeWeapon _weapon;
@@ -12,26 +13,24 @@ public class Weapon_Sword : MonoBehaviour
     private void Start()
     {
         _weapon = GetComponent<MeleeWeapon>();
-        rotSpeed += rotSpeed * _weapon.atkSpeed;
     }
 
     private void Update()
     {
         if (_isAttack)
-            transform.Rotate(new Vector3(transform.rotation.x + rotSpeed * Time.deltaTime, transform.rotation.y + rotSpeed * Time.deltaTime, transform.rotation.z));
+        {
+            Vector3 dir = transform.position - _weapon.targetPos;
+            dir.y = 0;
+            if (dir != Vector3.zero)
+            {
+                Quaternion rot = Quaternion.LookRotation(dir.normalized);
+                transform.rotation = rot;
+            }
+        }
     }
 
     public void AttackAnimation()
     {
-        Vector3 dir = transform.position - _weapon.targetPos;
-        dir.y = 0;
-        if(dir != Vector3.zero)
-        {
-            Quaternion rot = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = rot;
-        }
-        if (transform.rotation.x < 0) rotSpeed = -rotSpeed;
-
         _isAttack = true;
     }
 
