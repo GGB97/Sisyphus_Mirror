@@ -19,6 +19,7 @@ public class GameManager : SingletoneBase<GameManager>
     public int totalGold;
 
     public Action onGameOverEvent;
+    
 
     public Player Player
     {
@@ -42,10 +43,10 @@ public class GameManager : SingletoneBase<GameManager>
         gameState = GameState.Lobby;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Player.Input.PlayerActions.ESC.started += OpenMenu;
+        
     }
 
-    public void OpenMenu(InputAction.CallbackContext context)
+    public void OpenMenu()
     {
         Time.timeScale = 0;
         Menu.OpenMenu();
@@ -99,7 +100,7 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Destroy(DungeonManager.Instance.gameObject);
 
-        Destroy(Player.gameObject);
+        _player.playerReset();
 
         killenemys = 0;
         totalGold = 0;
@@ -118,6 +119,7 @@ public class GameManager : SingletoneBase<GameManager>
         base.OnDestroy();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        
     }
 
     protected override void OnApplicationQuit()
@@ -125,7 +127,5 @@ public class GameManager : SingletoneBase<GameManager>
         base.OnApplicationQuit();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        Player.Input.PlayerActions.ESC.started -= OpenMenu;
-
     }
 }

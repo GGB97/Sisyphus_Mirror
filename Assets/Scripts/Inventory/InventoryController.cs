@@ -70,7 +70,9 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] int _tutorialId;
 
-    public string putDownItemTag = "putDownItem";
+    public string putDownItemSoundTag = "putDownItem";
+    public string PurchaseSoundTag = "Purchase";
+
     private void Awake()
     {
         if (Instance == null)
@@ -339,7 +341,7 @@ public class InventoryController : MonoBehaviour
 
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
-        SoundManager.Instance.PlayAudioClip(putDownItemTag);
+        SoundManager.Instance.PlayAudioClip(putDownItemSoundTag);
     }
     //private Vector2 GridToScreenPosition(Vector2Int gridPosition) //그리드 좌표를 스크린 좌표로 변환
     //{
@@ -664,6 +666,7 @@ public class InventoryController : MonoBehaviour
 
         SetPlayerGoldText();
         SetRerollButtonText();
+        SoundManager.Instance.PlayAudioClip(PurchaseSoundTag);
     }
 
     public void SetRerollButtonText()
