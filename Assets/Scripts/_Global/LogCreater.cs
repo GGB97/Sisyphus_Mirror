@@ -16,7 +16,7 @@ public class LogCreator : SingletoneBase<LogCreator>
 
     void Awake()
     {
-        writer = new StreamWriter("Assets/Log/mylog.txt", append: true);
+        writer = new StreamWriter(DBPath.LogPath, append: true);
         Application.logMessageReceived += saveLog;
 
         DontDestroyOnLoad(this);
