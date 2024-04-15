@@ -138,12 +138,18 @@ public class Player : CharacterBehaviour
         Data.EXP += exp;
         if (Data.EXP >= Data.maxEXP)
         {
-            Data.EXP = 0;
-            Data.LV++;
-            Data.maxEXP = Data._maxEXP + ((Data.LV - 1) * 10);
+            LevelUp();
         }
         GameManager.Instance.killenemys++;
         PlayerExpChange?.Invoke(Data.EXP, Data.maxEXP);
+    }
+
+    public void LevelUp()
+    {
+        Data.EXP = Data.EXP - Data.maxEXP;
+        Data.LV++;
+        Data.maxEXP = Data._maxEXP + ((Data.LV - 1) * 10);
+        currentStat.maxHealth = currentStat.maxHealth + 2;
     }
 
     public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.
