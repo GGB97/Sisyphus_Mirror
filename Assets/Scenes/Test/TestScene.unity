@@ -550,6 +550,11 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
     weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   _modifier:
     health: 0
     maxHealth: 0
@@ -566,6 +571,11 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
     weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   weaponPrefabs: []
   itemWeight: 0
 --- !u!4 &407806786
@@ -719,6 +729,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 472646877921343943, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: gridSizeWidth
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 472646877921343943, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: gridSizeHeight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 598892611018540074, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -842,6 +862,11 @@ PrefabInstance:
     - target: {fileID: 5001576231231000988, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656775792185888620, guid: 893321a39c3a8b64ebca7770db307908,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

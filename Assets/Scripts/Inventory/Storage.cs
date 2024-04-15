@@ -9,9 +9,7 @@ public class Storage : ItemGrid
   
     protected override void Start()
     {
-        SetGridSize(4, 4);//그리드 4,4설정
-        base.Start();
-        CreateBaseBlock(4,4);
+        CreateBaseBlock(gridSizeWidth, gridSizeWidth);
         maxCount = 2;
     }
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 변경
