@@ -37,7 +37,7 @@ public class PlayerInventory : ItemGrid
         }
         return count;
     }
-    public void CreateRandomBaseBlock(int itemId = 10113011)//중앙에 block 추가 
+    public void CreateRandomBaseBlock(int itemId = 10111011)//중앙에 block 추가 
     {
         int baseCount = CreateBaseBlock(gridSizeWidth, gridSizeHeight);
         int count = GameManager.Instance.Player.Data._startInventory;// 칸 수 설정
