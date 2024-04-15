@@ -116,6 +116,7 @@ public class ItemManager : MonoBehaviour
         //_modifier.maxHealth -= itemWeight / 10;
         Player.currentStat.maxHealth -= itemWeight / 10;
         if (Player.currentStat.maxHealth <= 0) Player.currentStat.maxHealth = 1;
+        Player.HealthChange();
 
         //_playerStats.InitStatus(_playerStats, _modifier);
     }
@@ -252,32 +253,6 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    //public void EquipmentsInit()
-    //{
-    //    // TODO : 플레이어의 스탯 Status를 수정하기 -> 기범님께 방법을 여쭈어볼 것
-    //    foreach (var equipment in _ownEquipments)
-    //    {
-    //        _modifier.maxHealth += equipment.Health;
-
-    //        _modifier.physicalAtk += equipment.PhysicalAtk;
-    //        _modifier.magicAtk += equipment.MagicAtk;
-
-    //        _modifier.def += equipment.Def;
-
-    //        _modifier.attackSpeed += equipment.AtkSpeed;
-    //        _modifier.moveSpeed += equipment.MoveSpeed;
-
-    //        _modifier.critRate += equipment.CritRate;
-    //        _modifier.critDamage += equipment.CritDamage;
-
-    //        _modifier.lifeSteal += equipment.LifeSteal;
-
-    //        itemWeight += equipment.Weight;
-    //    }
-
-    //    _modifier.maxHealth -= itemWeight / 10;
-    //}
-
     public void RemoveAllItems()
     {
         foreach(var weapon in weaponPrefabs)
@@ -357,16 +332,6 @@ public class ItemManager : MonoBehaviour
     {
         if(_usedConsumable.Count != 0)
         {
-            //foreach (ConsumableData consumable in _usedConsumable)
-            //{
-            //    int Duration = consumable.SetDuration();
-
-            //    if (Duration <= 0)
-            //    {
-            //        ModifyPlayerStat(consumable, false);
-            //        _usedConsumable.Remove(consumable);
-            //    }
-            //}
             for (int i = _usedConsumable.Count - 1; i >= 0; --i)
             {
                 _consumableStageDuration[i]--;

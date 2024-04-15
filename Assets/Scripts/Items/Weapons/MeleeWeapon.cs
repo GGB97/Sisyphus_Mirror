@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private WeaponData _weaponData;
+    Player _player;
+    Status _playerStatus;
 
     [SerializeField] private Animator _animator;
     [SerializeField] GameObject _effect;
@@ -43,6 +45,9 @@ public class MeleeWeapon : MonoBehaviour
         _isMoving = false;
         _canAttack = true;
         _idleAnimation.isFloating = true;
+
+        _player = GameManager.Instance.Player;
+        _playerStatus = _player.currentStat;
     }
 
     private void Update()
@@ -182,8 +187,17 @@ public class MeleeWeapon : MonoBehaviour
             //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
+                _healthSystem.TakeDamage(SetAttackDamage(), _weaponData.PhysicalAtk != 0 ? DamageType.Physical : DamageType.Magic);
 
-                _healthSystem.TakeDamage(SetAttackDamage(), DamageType.Physical);
+                if(_weaponData.LifeSteal != 0)
+                {
+                    int random = Random.Range(0, 101);
+                    if (_playerStatus.lifeSteal >= random)
+                    {
+                        _playerStatus.health++;
+                        _player.HealthChange();
+                    }
+                }
             }
         }
         else
@@ -196,14 +210,13 @@ public class MeleeWeapon : MonoBehaviour
     private float SetAttackDamage()
     {
         float damage = 0;
-        Status _player = GameManager.Instance.Player.currentStat;
 
         if (_weaponData.PhysicalAtk != 0)
-            damage = _player.physicalAtk;
-        else damage = _player.magicAtk;
+            damage = _playerStatus.physicalAtk;
+        else damage = _playerStatus.magicAtk;
 
         float random = UnityEngine.Random.Range(1, 101);
-        if (_player.critRate > random) damage += (damage * _player.critDamage);
+        if (_playerStatus.critRate > random) damage += (damage * _playerStatus.critDamage);
 
         return damage;
     }
