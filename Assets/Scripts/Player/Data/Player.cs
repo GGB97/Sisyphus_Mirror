@@ -83,6 +83,7 @@ public class Player : CharacterBehaviour
         stateMachine.ChangeState(stateMachine.idleState);
         //health = currentStat.maxHealth;
         currentStat.Init();
+        Data.Init();
 
         isDie = false;
         isHit = false;
@@ -139,7 +140,7 @@ public class Player : CharacterBehaviour
         {
             Data.EXP = 0;
             Data.LV++;
-            Data.maxEXP += Data.LV * 10;
+            Data.maxEXP = Data._maxEXP + ((Data.LV - 1) * 10);
         }
         GameManager.Instance.killenemys++;
         PlayerExpChange?.Invoke(Data.EXP, Data.maxEXP);
