@@ -142,8 +142,9 @@ public class RangeWeapon : MonoBehaviour
         Status _player = GameManager.Instance.Player.currentStat;
 
         if (weaponData.PhysicalAtk != 0)
-            damage = _player.physicalAtk;
-        else damage = _player.magicAtk;
+            damage = weaponData.PhysicalAtk + _player.physicalAtk;
+        else
+            damage = weaponData.MagicAtk + _player.magicAtk;
 
         float random = UnityEngine.Random.Range(1, 101);
         if (_player.critRate > random) damage += (damage * _player.critDamage);
