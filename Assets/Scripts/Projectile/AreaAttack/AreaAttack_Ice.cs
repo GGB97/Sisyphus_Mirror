@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-
 public class AreaAttack_Ice : AreaAttack
 {
     protected override void Attack()

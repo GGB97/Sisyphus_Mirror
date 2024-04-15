@@ -113,7 +113,7 @@ public class EnemyPooler : MonoBehaviour
         _pools = new Pool[cnt];
 
         // Normal 세팅
-        for(int i =0; i< waveData.normal.Length; i++)
+        for (int i = 0; i < waveData.normal.Length; i++)
         {
             _pools[i].id = waveData.normal[i];
             _pools[i].size = waveData.maxEnemyCnt / waveData.normal.Length + 5;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,7 +65,7 @@ public class PlayerInventory : ItemGrid
         {
             //랜덤 칸 증가
             for (int i = 0; i < count; i++)
-            { 
+            {
                 RandomAddbleSlot();//칸 추가
             }
         }
@@ -157,7 +156,7 @@ public class PlayerInventory : ItemGrid
                 {
                     if (panelSlots[x, y].CompareState(PanelSlotState.Null) || panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 Null과 Add일 때만 List에 넣음
                     {
-                        addPositionArr.Add(new Vector2Int(x,y));
+                        addPositionArr.Add(new Vector2Int(x, y));
                     }
                 }
             }
@@ -179,7 +178,7 @@ public class PlayerInventory : ItemGrid
             y = panelSlot.posY + vector.y;
             if (GridPositionCheck(x, y) == true)//x,y가 Grid 안에 있는지 체크
             {
-                if (panelSlots[x, y].CompareState(PanelSlotState.Null)|| panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 Null과 Add일 때만 List에 넣음
+                if (panelSlots[x, y].CompareState(PanelSlotState.Null) || panelSlots[x, y].CompareState(PanelSlotState.Add))//옆이 Null과 Add일 때만 List에 넣음
                 {
                     addPositionArr.Add(new Vector2Int(x, y));
                 }
@@ -249,7 +248,7 @@ public class PlayerInventory : ItemGrid
         //}
         //isSetting = false;
         InventoryController.Instance.addCount -= 1;
-        if (InventoryController.Instance.addCount > 0 && addableSlotList.Count > 0 )
+        if (InventoryController.Instance.addCount > 0 && addableSlotList.Count > 0)
         {
             ShowRandomAddableSlot();
         }

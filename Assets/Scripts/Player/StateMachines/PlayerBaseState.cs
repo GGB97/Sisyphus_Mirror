@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerBaseState : IState
 {
@@ -10,7 +6,7 @@ public class PlayerBaseState : IState
     protected PlayerStateMachine stateMachine;
     protected PlayerBaseData playerData;
     protected Status curState;
-    
+
     public PlayerBaseState(PlayerStateMachine playerstateMachine)
     {
         stateMachine = playerstateMachine;
@@ -36,7 +32,7 @@ public class PlayerBaseState : IState
 
     public virtual void PhysicsUpdate()
     {
-        
+
     }
 
     public virtual void Update()
@@ -48,7 +44,7 @@ public class PlayerBaseState : IState
         {
             player.InvokeEvent(player.OnHitEvent);
         }
-        if(player.currentStat.health <= 0)
+        if (player.currentStat.health <= 0)
         {
             player.ChangeDieState();
         }
@@ -79,7 +75,7 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        
+
         if (stateMachine.DashCoolTime > player.currentStat.dashCoolTime)
         {
             stateMachine.ChangeState(stateMachine.dashState);
@@ -90,10 +86,10 @@ public class PlayerBaseState : IState
 
     protected virtual void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        
+
     }
 
-    
+
 
     private void ReadMovementInput()
     {
@@ -113,8 +109,8 @@ public class PlayerBaseState : IState
     protected Vector3 GetMovementDirection()  // x와 z축으로만 움직이도록 방향 설정
     {
 
-        Vector3 forward =  stateMachine.CameraTransform.forward;
-        Vector3 right =  stateMachine.CameraTransform.right;
+        Vector3 forward = stateMachine.CameraTransform.forward;
+        Vector3 right = stateMachine.CameraTransform.right;
 
         forward.y = 0;
         right.y = 0;
@@ -127,10 +123,10 @@ public class PlayerBaseState : IState
 
     private void Rotate(Vector3 movementDirection)
     {
-        if(movementDirection != Vector3.zero)
+        if (movementDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, 1f );
+            stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, 1f);
         }
     }
 

@@ -1,5 +1,4 @@
 using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
-    
+
     [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {

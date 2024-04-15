@@ -1,8 +1,6 @@
 using Constants;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class QuestManager : SingletoneBase<QuestManager>
@@ -12,10 +10,10 @@ public class QuestManager : SingletoneBase<QuestManager>
     private Dictionary<QuestType, List<QuestData>> _subscribeQuests = new Dictionary<QuestType, List<QuestData>>();//퀘스트 참조 베이스 데이터 집합
 
     public event Action<int> OnQuestStartCallback;//콜백
-    public event Action<int,int> OnQuestUpdateCallback;
+    public event Action<int, int> OnQuestUpdateCallback;
     public event Action<int> OnQuestClearCallback;
 
-    private int[] startQuestId = new int[] {100,200};//시작할 때 등록할 퀘스트들
+    private int[] startQuestId = new int[] { 100, 200 };//시작할 때 등록할 퀘스트들
 
     private void Start()
     {
@@ -25,7 +23,7 @@ public class QuestManager : SingletoneBase<QuestManager>
     {
         var questData = DataBase.Quest.Get(questId);//퀘스트 목록에서 id에 해당하는 퀘스트 정보 가져옴
 
-        if (_subscribeQuests.ContainsKey(questData.Type)==false)//구독한 퀘스트 사전에 타입이 존재하는지 확인
+        if (_subscribeQuests.ContainsKey(questData.Type) == false)//구독한 퀘스트 사전에 타입이 존재하는지 확인
             _subscribeQuests[questData.Type] = new List<QuestData>();//해당 타입이 없으면 새로운 List 생성
 
         _subscribeQuests[questData.Type].Add(questData);//해당하는 타입에 퀘스트 정보 추가
@@ -39,7 +37,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         _subscribeQuests[questData.Type].Remove(questData);//해당하는 타입 List 에서 해당 퀘스트 정보 삭제
     }
-    public void NotifyQuest(QuestType type,int target,int count)//어떤 퀘스트 , 누구를 잡았고 ,얼만큼 실  행했는지
+    public void NotifyQuest(QuestType type, int target, int count)//어떤 퀘스트 , 누구를 잡았고 ,얼만큼 실  행했는지
     {
         if (_subscribeQuests.ContainsKey(type) == false)//구독한 것 중에서 타입이 없다면 리턴
             return;
@@ -70,14 +68,14 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         OnQuestStartCallback?.Invoke(questId);
     }
-    public void QuestUpdate(int questId,int amount)//퀘스트 업데이트
+    public void QuestUpdate(int questId, int amount)//퀘스트 업데이트
     {
         if (_ongoingQuests.ContainsKey(questId) == false)//진행 중인 사전에 존재하는지 확인
             return;
 
         var questData = DataBase.Quest.Get(questId);//id에 해당하는 퀘스트를 가져옴 
 
-        int currentCount =  _ongoingQuests[questId].Update(amount);//진행 중인 퀘스트를 count만큼 업데이트
+        int currentCount = _ongoingQuests[questId].Update(amount);//진행 중인 퀘스트를 count만큼 업데이트
 
         OnQuestUpdateCallback?.Invoke(questId, amount);
 
@@ -107,7 +105,7 @@ public class QuestManager : SingletoneBase<QuestManager>
     }
 
     public bool IsClear(int id)//클리어에 있는지 확인
-    { 
+    {
         return _completeQuests.Contains(id);
     }
     public void StartQuestSetting()//처음 시작했을 때 기본 퀘스트 등록
@@ -122,8 +120,8 @@ public class QuestManager : SingletoneBase<QuestManager>
         Debug.Log($"현재 진행 중인 퀘스트 목록 : ");
         foreach (var questList in _subscribeQuests)
         {
-            foreach(var questId in questList.Value)
-            Debug.Log($"{questId.Name}");
+            foreach (var questId in questList.Value)
+                Debug.Log($"{questId.Name}");
         }
     }
 

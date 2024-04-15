@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public struct SoundInfo
 {
     public string tag;
     public AudioClip clip;
-    [Range(0,100)]public float volumePercent;
+    [Range(0, 100)] public float volumePercent;
 }
 public class SoundManager : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     [Range(0, 100f)] public float bgmVolumePercent; //브금 0 ~ 100 조절
     [SerializeField]
-    [Range(0.0f,1.0f)]public float maxBgmVolume = 0.5f; //최대 브금 0 ~ 1크기
+    [Range(0.0f, 1.0f)] public float maxBgmVolume = 0.5f; //최대 브금 0 ~ 1크기
     [SerializeField]
     [Range(0, 100f)] public float sfxVolumePercent;
     [SerializeField]
@@ -41,13 +40,13 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        { 
+        {
             instance = this;
             Init();
             DontDestroyOnLoad(gameObject);
         }
         else
-            Destroy(gameObject);    
+            Destroy(gameObject);
     }
 
     // Start is called before the first frame update
@@ -101,7 +100,7 @@ public class SoundManager : MonoBehaviour
         }
     }
     void Start()
-    {        
+    {
         backgroundAudioSource.clip = backgroundClip;
         backgroundAudioSource.Play();
     }

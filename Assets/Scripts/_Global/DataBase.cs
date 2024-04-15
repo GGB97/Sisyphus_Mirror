@@ -27,7 +27,7 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if(Instance._weapon == null)
+            if (Instance._weapon == null)
                 Instance._weapon = new WeaponDB();
 
             return Instance._weapon;
@@ -60,7 +60,7 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if( Instance._player == null)
+            if (Instance._player == null)
                 Instance._player = new PlayerDB();
 
             return Instance._player;

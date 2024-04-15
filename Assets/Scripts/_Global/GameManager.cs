@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : SingletoneBase<GameManager>
 {
@@ -19,7 +17,7 @@ public class GameManager : SingletoneBase<GameManager>
     public int totalGold;
 
     public Action onGameOverEvent;
-    
+
 
     public Player Player
     {
@@ -28,7 +26,7 @@ public class GameManager : SingletoneBase<GameManager>
             if (_player == null)
             {
                 _player = FindAnyObjectByType<Player>();
-                if(_player == null)
+                if (_player == null)
                 {
                     _player = Instantiate(Resources.Load<Player>(DataBase.Player.Get(_playerID).prefabPath));
                 }
@@ -43,7 +41,7 @@ public class GameManager : SingletoneBase<GameManager>
         gameState = GameState.Lobby;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+
     }
 
     public void OpenMenu()
@@ -121,7 +119,7 @@ public class GameManager : SingletoneBase<GameManager>
         base.OnDestroy();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        
+
     }
 
     protected override void OnApplicationQuit()

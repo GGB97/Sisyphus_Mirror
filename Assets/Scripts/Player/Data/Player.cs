@@ -183,7 +183,7 @@ public class Player : CharacterBehaviour
 
     public void HealthChange()
     {
-        if(currentStat.health > currentStat.maxHealth) currentStat.health = currentStat.maxHealth;
+        if (currentStat.health > currentStat.maxHealth) currentStat.health = currentStat.maxHealth;
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +17,7 @@ public class OptionUI : MonoBehaviour
         maxVolume.value = SoundManager.Instance.maxBgmVolume * 100f;
         bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
         sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
-        
+
     }
 
     public void MenuExitButton()
@@ -31,7 +29,7 @@ public class OptionUI : MonoBehaviour
     {
         maxVolume.value = volume;
         maxVolumeText.text = volume.ToString("N0");
-        SoundManager.Instance.maxBgmVolume = Mathf.Clamp((volume / 100),0,2);
+        SoundManager.Instance.maxBgmVolume = Mathf.Clamp((volume / 100), 0, 2);
     }
 
     public void BgmVolumeChange(float volume)

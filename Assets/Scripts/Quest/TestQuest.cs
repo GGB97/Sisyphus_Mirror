@@ -1,6 +1,4 @@
 using Constants;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestQuest : MonoBehaviour
@@ -16,7 +14,7 @@ public class TestQuest : MonoBehaviour
 
     public void TestUpdate()
     {
-        QuestManager.Instance.NotifyQuest(type,target,count);
+        QuestManager.Instance.NotifyQuest(type, target, count);
     }
     public void Print()
     {

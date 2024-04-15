@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -22,7 +19,7 @@ public class Projectile : MonoBehaviour
     private void Update()
     {
         _duration -= Time.deltaTime;
-        if(_duration <= 0)
+        if (_duration <= 0)
         {
             // TODO : Object Pooling
             gameObject.SetActive(false);

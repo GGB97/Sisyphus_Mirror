@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class QuestDB
 {
-    private Dictionary<int, QuestData> _quest = new ();
-    
+    private Dictionary<int, QuestData> _quest = new();
+
     public QuestDB()
     {
         var res = Resources.Load<QuestSO>(DBPath.QuestDB);
         var questSo = Object.Instantiate(res);
         var entities = questSo.Sheet1;
-        
-        if(entities == null || entities.Count <= 0)
+
+        if (entities == null || entities.Count <= 0)
             return;
 
         var entityCount = entities.Count;
         for (int i = 0; i < entityCount; i++)
         {
             var quest = entities[i];
-            
+
             if (_quest.ContainsKey(quest.Id))
                 _quest[quest.Id] = quest;
             else
@@ -32,8 +31,8 @@ public class QuestDB
     {
         if (_quest.ContainsKey(id))
             return _quest[id];
-        
-        
+
+
         return null;
     }
 

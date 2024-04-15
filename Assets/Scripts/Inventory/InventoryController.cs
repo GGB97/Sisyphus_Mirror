@@ -1,12 +1,8 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class InventoryController : MonoBehaviour
 {
@@ -610,11 +606,12 @@ public class InventoryController : MonoBehaviour
                 random = UnityEngine.Random.Range(0, 10);
                 selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
 
-                if (random < 6) 
+                if (random < 6)
                 {
                     if (selectedItemId % 10 == 2) selectedItemId -= 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 2;
-                }else if(random >= 6 && random < 9)
+                }
+                else if (random >= 6 && random < 9)
                 {
                     if (selectedItemId % 10 == 1) selectedItemId += 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 1;
@@ -624,7 +621,7 @@ public class InventoryController : MonoBehaviour
                     if (selectedItemId % 10 == 1) selectedItemId += 2;
                     else if (selectedItemId % 10 == 2) selectedItemId += 1;
                 }
-                    
+
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
         }

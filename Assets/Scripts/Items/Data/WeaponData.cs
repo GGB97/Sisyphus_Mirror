@@ -47,7 +47,7 @@ public class WeaponData : ItemSO
         StringBuilder sb = base.SetExplantion(itemSO);
         if (PhysicalAtk != 0)
         {
-            Utilities.AddText(sb,"물리 공격력", PhysicalAtk);
+            Utilities.AddText(sb, "물리 공격력", PhysicalAtk);
         }
         if (MagicAtk != 0)
         {
@@ -55,11 +55,11 @@ public class WeaponData : ItemSO
         }
         if (AtkSpeed != 0)
         {
-            Utilities.AddText(sb, "공격 속도", AtkSpeed,true);
+            Utilities.AddText(sb, "공격 속도", AtkSpeed, true);
         }
         if (CritRate != 0)
         {
-            Utilities.AddText(sb, "치명타 확률", CritRate,true);
+            Utilities.AddText(sb, "치명타 확률", CritRate, true);
         }
         if (CritDamage != 0)
         {
@@ -67,7 +67,7 @@ public class WeaponData : ItemSO
         }
         if (Range != 0)
         {
-            Utilities.AddText(sb, "공격 범위", Range,true);
+            Utilities.AddText(sb, "공격 범위", Range, true);
         }
         if (LifeSteal != 0)
         {

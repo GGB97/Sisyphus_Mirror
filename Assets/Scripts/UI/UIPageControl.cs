@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +19,7 @@ public class UIPageControl : MonoBehaviour
         {
             // 페이지 인디케이터 수가 지정된 페이지 수보다 적으면
             // 복사 원본 페이지 인디케이터로부터 새로운 페이지 인디케이터를 작성
-            for (int i = list_Toggle.Count; i <number; i++)
+            for (int i = list_Toggle.Count; i < number; i++)
             {
                 Toggle indicator = Instantiate(toggle_Base) as Toggle;
                 indicator.gameObject.SetActive(true);
@@ -30,7 +29,7 @@ public class UIPageControl : MonoBehaviour
                 list_Toggle.Add(indicator);
             }
         }
-        else if(list_Toggle.Count > number)
+        else if (list_Toggle.Count > number)
         {
             // 페이지 인디케이터 수가 지정된 페이지 수보다 많으면 삭제
             for (int i = list_Toggle.Count - 1; i >= number; i--)

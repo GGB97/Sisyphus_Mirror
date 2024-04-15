@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HS_ProjectileMover : MonoBehaviour
@@ -65,7 +64,7 @@ public class HS_ProjectileMover : MonoBehaviour
                     Destroy(flashInstance, flashPsParts.main.duration);
                 }
             }
-            
+
             StartCoroutine(nameof(LateCall));
         }
     }
@@ -127,7 +126,7 @@ public class HS_ProjectileMover : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator LateCall()
     {
         yield return new WaitForSeconds(dissableAfterTime);

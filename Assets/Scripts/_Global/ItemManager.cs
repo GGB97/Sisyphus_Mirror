@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public interface IEquipable
 {
@@ -16,7 +13,7 @@ public class ItemManager : MonoBehaviour
 
     DungeonManager _dungeonManager;
 
-    public Transform PlayerTransform {  get; private set; }
+    public Transform PlayerTransform { get; private set; }
     public Player Player { get; private set; }
     public Transform weaponContainer;
 
@@ -246,7 +243,7 @@ public class ItemManager : MonoBehaviour
 
     public void WeaponInit()
     {
-        foreach(var weapon in _ownWeapons)
+        foreach (var weapon in _ownWeapons)
         {
             GameObject go = Instantiate(weapon.Prefab, weaponContainer);
             if (go.TryGetComponent<MeleeWeapon>(out MeleeWeapon _weapon))
@@ -260,7 +257,7 @@ public class ItemManager : MonoBehaviour
 
     public void RemoveAllItems()
     {
-        foreach(var weapon in weaponPrefabs)
+        foreach (var weapon in weaponPrefabs)
         {
             Destroy(weapon);
         }
@@ -303,7 +300,7 @@ public class ItemManager : MonoBehaviour
 
         _modifier.def = -_modifier.def;
 
-        _modifier.attackSpeed =- _modifier.attackSpeed;
+        _modifier.attackSpeed = -_modifier.attackSpeed;
         _modifier.moveSpeed = -_modifier.moveSpeed;
 
         _modifier.knockbackPower = -_modifier.knockbackPower;
@@ -335,7 +332,7 @@ public class ItemManager : MonoBehaviour
     // 아이템의 지속 시간을 갱신 및 남은 지속 시간 체크
     private void SetConsumableDuration(int index)
     {
-        if(_usedConsumable.Count != 0)
+        if (_usedConsumable.Count != 0)
         {
             for (int i = _usedConsumable.Count - 1; i >= 0; --i)
             {

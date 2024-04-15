@@ -13,7 +13,7 @@ public class EnemyDieState : EnemyBaseState
 
         EnemySpawner.Instance.DecrementEnemyCnt(); // 죽었으니까 currentEnemyCnt 감소
 
-        if(enemy.isDie == true)
+        if (enemy.isDie == true)
         {
             SoundManager.Instance.PlayAudioClip(enemy.dieSound);
         }

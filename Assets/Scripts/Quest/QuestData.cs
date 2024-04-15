@@ -1,8 +1,7 @@
+using Constants;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Constants;
 
 [Serializable]
 public class QuestData
@@ -40,16 +39,16 @@ public class QuestData
             if (_rewardList == null)
             {
                 _rewardList = new List<Reward>();
-                CheckReward(_reward_1,_rewardCount_1);
-                CheckReward(_reward_2,_rewardCount_2);
-                CheckReward(_reward_3,_rewardCount_3);
+                CheckReward(_reward_1, _rewardCount_1);
+                CheckReward(_reward_2, _rewardCount_2);
+                CheckReward(_reward_3, _rewardCount_3);
             }
 
             return _rewardList;
         }
     }
 
-    private void CheckReward(int rewardId,int rewardCount)
+    private void CheckReward(int rewardId, int rewardCount)
     {
         if (rewardId != 0)
             _rewardList.Add(new Reward(rewardId, rewardCount));

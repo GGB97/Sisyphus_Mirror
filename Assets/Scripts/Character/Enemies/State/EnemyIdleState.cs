@@ -39,7 +39,7 @@ public class EnemyIdleState : EnemyBaseState
         {
             LookTargetSlerp();
         }
-            
+
     }
 
     public override void Exit()

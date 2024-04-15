@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -99,7 +95,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         rightClickPanel.SetActive(false);
         if (currentItem == null)//아이템이 삭제된 후에 실행됐을 때
         {
-            
+
         }
         else
         {
@@ -109,7 +105,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 itemDrag.isPressed = false;
                 itemDrag.ExitUI();
             }
-        } 
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -124,7 +120,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         //    itemDrag.ExitUI();
         //}
     }
-   
+
     private void SetDescriptionText()//설명 적기
     {
         nameText.text = currentItem.itemSO.Name;//이름 부분
@@ -156,7 +152,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 sellButton.gameObject.SetActive(true);
                 putOutSideButton.gameObject.SetActive(true);
-            } 
+            }
 
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
@@ -194,7 +190,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 {
                     putOutSideButton.interactable = false;
                 }
-            } 
+            }
 
             buttonPanel.SetActive(true);
         }

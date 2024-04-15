@@ -13,7 +13,7 @@ public class AudioSourceObject : MonoBehaviour
     }
     private IEnumerator PlayAndRetrun()
     {
-        audioSource.PlayOneShot(clip,volume);
+        audioSource.PlayOneShot(clip, volume);
 
         yield return new WaitForSeconds(clip.length);
         Init();

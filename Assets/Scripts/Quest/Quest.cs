@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Constants;
+using UnityEngine;
 
 public class Quest
 {
-    [SerializeField]private int _questId;
-    [SerializeField]private int _questProgress;
-    [SerializeField]private QuestState _questState;
+    [SerializeField] private int _questId;
+    [SerializeField] private int _questProgress;
+    [SerializeField] private QuestState _questState;
 
     public int QuestId { get => _questId; private set => _questId = value; }
     public int QuestProgress { get => _questProgress; private set => _questProgress = value; }
@@ -18,7 +16,7 @@ public class Quest
         _questProgress = 0;
         _questState = QuestState.Wait;
     }
-    public Quest(int questId, int questProgress = 0 , QuestState questState = QuestState.Wait)
+    public Quest(int questId, int questProgress = 0, QuestState questState = QuestState.Wait)
     {
         _questId = questId;
         _questProgress = questProgress;
@@ -29,7 +27,7 @@ public class Quest
         _questState = QuestState.Progress;
     }
     public int Update(int amount)
-    { 
+    {
         _questProgress += amount;
         return _questProgress;
     }

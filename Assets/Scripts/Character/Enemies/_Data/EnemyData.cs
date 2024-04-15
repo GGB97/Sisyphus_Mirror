@@ -41,7 +41,7 @@ public enum SkillType
 
 public struct EnemyData
 {
-    public static readonly float[] ChasingDelay = { 
+    public static readonly float[] ChasingDelay = {
         0.2f, // Normal
         0.1f, // Elite
         0.05f  // Boss

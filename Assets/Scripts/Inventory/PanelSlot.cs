@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,7 +9,7 @@ public enum PanelSlotState
     Add,
     Null,
 }
-public class PanelSlot : MonoBehaviour , IPointerClickHandler
+public class PanelSlot : MonoBehaviour, IPointerClickHandler
 {
     private InventoryController inventoryController;
     public PanelSlotState state = PanelSlotState.Null;
@@ -25,7 +23,7 @@ public class PanelSlot : MonoBehaviour , IPointerClickHandler
     }
     private void Start()
     {
-        
+
     }
     public void ChangeSlotState(PanelSlotState changeState)//slot의 상태 변경하기
     {

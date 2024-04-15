@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -63,7 +61,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void Update()
     {
-        if(Target.Count == 0 && _canAttack && DungeonManager.Instance.gameState == DungeonState.Playing)
+        if (Target.Count == 0 && _canAttack && DungeonManager.Instance.gameState == DungeonState.Playing)
         {
             DetectEnemyInRange();
         }
@@ -93,7 +91,7 @@ public class MeleeWeapon : MonoBehaviour
 
             // 근접 공격 이동
             transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
-            
+
             // 이동이 완료되면
             //if(percentageComplete >= .5f)
             //{
@@ -115,7 +113,7 @@ public class MeleeWeapon : MonoBehaviour
                 _animator.SetFloat("AttackSpeed", 1 * _weaponData.AtkSpeed);
             }
         }
-        else if(_animationEnd && !_canAttack)
+        else if (_animationEnd && !_canAttack)
         {
             transform.rotation = Quaternion.Euler(-180, 0, 0);
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
@@ -200,11 +198,11 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (LayerData.Enemy == (1 << other.gameObject.layer | LayerData.Enemy))
         {
-            if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+            if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
                 _healthSystem.TakeDamage(SetAttackDamage(), _weaponData.PhysicalAtk != 0 ? DamageType.Physical : DamageType.Magic);
 
-                if(_weaponData.LifeSteal != 0)
+                if (_weaponData.LifeSteal != 0)
                 {
                     int random = Random.Range(0, 101);
                     if (_playerStatus.lifeSteal >= random)

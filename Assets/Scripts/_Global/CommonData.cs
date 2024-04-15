@@ -42,7 +42,7 @@ public enum GameState
 public enum DungeonState
 {
     Ready,
-    Playing, 
+    Playing,
     Fail,
     Clear
 }

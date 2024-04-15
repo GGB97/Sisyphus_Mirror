@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -22,7 +20,7 @@ public class ScreenShot : MonoBehaviour
     public void ClickScreenShot()
     {
         DirectoryInfo dir = new DirectoryInfo(path);
-        if (!dir.Exists) 
+        if (!dir.Exists)
         {
             Directory.CreateDirectory(path);
         }

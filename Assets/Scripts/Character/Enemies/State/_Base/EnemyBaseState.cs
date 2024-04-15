@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class EnemyBaseState : IState
 {
@@ -131,10 +127,10 @@ public class EnemyBaseState : IState
 
     protected virtual void ChangeAttackState()
     {
-        if(enemy.Info.rank == EnemyRank.Boss)
+        if (enemy.Info.rank == EnemyRank.Boss)
         {
             int rand = Random.Range(0, 10);
-            if(rand < 3)
+            if (rand < 3)
                 stateMachine.ChangeState(stateMachine.Skill01State);
             else
                 stateMachine.ChangeState(stateMachine.AttackState);

@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 
 public static class Utilities
 {
-    public static void AddText(StringBuilder sb, string name, float value , bool isPercent = false, bool isReverse = false)
+    public static void AddText(StringBuilder sb, string name, float value, bool isPercent = false, bool isReverse = false)
     {
         sb.Append($"{name} : ");
         sb.Append(ChangeColorWithValue(value, isPercent, isReverse));
     }
-    public static string ChangeColorWithValue(float value,bool isPercent = false ,bool isReverse = false)
+    public static string ChangeColorWithValue(float value, bool isPercent = false, bool isReverse = false)
     {
         string str;
         if (isReverse == true)//값이 리버스 되어야 하는지 ( = 플레이어한테 이로운지 헤로운지)

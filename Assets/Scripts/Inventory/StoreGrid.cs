@@ -100,10 +100,10 @@ public class StoreGrid : ItemGrid
             }
         }
         Array.Clear(inventoryItemSlot, 0, inventoryItemSlot.Length);
-        
-        foreach(var item in currentStoreItem)
+
+        foreach (var item in currentStoreItem)
         {
-            if(item == null) continue;
+            if (item == null) continue;
             Destroy(item.gameObject);
         }
         currentStoreItem.Clear();

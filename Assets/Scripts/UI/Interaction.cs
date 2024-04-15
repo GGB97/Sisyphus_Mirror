@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.InputSystem;
-using System;
 
 public class Interaction : MonoBehaviour
 {
@@ -23,7 +17,7 @@ public class Interaction : MonoBehaviour
     {
         input = GetComponent<UnityEngine.InputSystem.PlayerInput>();
         input.enabled = false;
-        
+
     }
 
 

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputSettings;
 
 public class ItemGrid : MonoBehaviour
 {
@@ -103,7 +101,7 @@ public class ItemGrid : MonoBehaviour
             Debug.Log($"아이템이 존재하지 않습니다.");
         }
     }
-    
+
     public void AddCurrentCount(int num)//현재 Grid에 있는 아이템의 수를 num 만큼 증가시킨다.
     {
         currentCount += num;
@@ -132,7 +130,7 @@ public class ItemGrid : MonoBehaviour
                     //parentGrid.inventoryItemSlot[x,y].panelSlot = panelSlots[x, y];
                 }
             }
-            
+
         }
     }
     public void SetGridSize(int width, int height) //그리드의 사이즈를 설정
@@ -164,7 +162,7 @@ public class ItemGrid : MonoBehaviour
         else
             return true;
     }
-    public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
+    public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
         if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
         {
@@ -185,7 +183,7 @@ public class ItemGrid : MonoBehaviour
         {
             return false;
         }
-        
+
         PlaceItem(inventoryItem, posX, posY);//새로운 아이템 놓기
 
         return true;
@@ -236,7 +234,7 @@ public class ItemGrid : MonoBehaviour
                     else
                     {
                         if (overlapitem != inventoryItemSlot[posX + x, posY + y]) //같은 아이템이 아니라면
-                        { 
+                        {
                             return false; //아니면 false
                         }
                     }
@@ -244,7 +242,7 @@ public class ItemGrid : MonoBehaviour
             }
         }
 
-        return true; 
+        return true;
     }
     private bool CheckAvailableSpace(int posX, int posY, int width, int height)//인벤토리 공간에 아이템을 설치할 수 있는지 체크 
     {
@@ -258,7 +256,7 @@ public class ItemGrid : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 if (inventoryItemSlot[posX + x, posY + y] != null || !panelSlots[posX + x, posY + y].CompareState(PanelSlotState.Empty)) //물체의 크기만큼 바닥과 설치할 공간이 있는지 확인
-                {    
+                {
                     return false; //아니면 false
                 }
             }
@@ -293,7 +291,7 @@ public class ItemGrid : MonoBehaviour
     bool PositionCheck(int posX, int posY) //Grid 안에 있고 바닥이 비었는지 체크 후 bool 값 리턴
     {
         if (GridPositionCheck(posX, posY) == false)
-        {    
+        {
             return false;
         }
 
@@ -354,8 +352,8 @@ public class ItemGrid : MonoBehaviour
 
     public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)//전체 배열에서 아이템을 설치할 수 있는지 체크
     {
-        int height = gridSizeHeight - itemToInsert.HEIGHT +1;
-        int width = gridSizeWidth - itemToInsert.WIDTH +1;
+        int height = gridSizeHeight - itemToInsert.HEIGHT + 1;
+        int width = gridSizeWidth - itemToInsert.WIDTH + 1;
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)

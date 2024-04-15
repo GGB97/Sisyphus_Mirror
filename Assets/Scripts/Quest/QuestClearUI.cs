@@ -1,8 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
 using TMPro;
+using UnityEngine;
 
 public class QuestClearUI : MonoBehaviour
 {
@@ -79,7 +79,7 @@ public class QuestClearUI : MonoBehaviour
 
         yield return StartCoroutine("CloseUi");
     }
-    public IEnumerator CloseUi() 
+    public IEnumerator CloseUi()
     {
         transform.DOMove(startPosition, 1.5f);
 

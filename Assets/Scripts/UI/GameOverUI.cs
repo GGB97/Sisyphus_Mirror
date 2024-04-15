@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -20,14 +17,14 @@ public class GameOverUI : MonoBehaviour
 
     public void Show()
     {
-        
+
         gameObject.SetActive(true);
         UpdateTextUI();
     }
 
     public void OnClickRetry()
     {
-        
+
         GameManager.Instance.Retry();
     }
 

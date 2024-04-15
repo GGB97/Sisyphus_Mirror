@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDashState : PlayerBaseState
@@ -32,7 +30,7 @@ public class PlayerDashState : PlayerBaseState
 
     public override void Update() // 대시 이동 정해진 방향으로 일정 시간 동안 이동
     {
-        
+
         dashTime -= Time.deltaTime;  // 대시 지속 시간
         if (dashTime > 0)
         {

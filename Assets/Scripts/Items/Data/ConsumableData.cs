@@ -31,7 +31,7 @@ public class ConsumableData : ItemSO
         StringBuilder sb = base.SetExplantion(itemSO);
         if (Health != 0)
         {
-            Utilities.AddText(sb,"체력", Health);
+            Utilities.AddText(sb, "체력", Health);
         }
         if (_physicalAtk != 0)
         {
@@ -51,7 +51,7 @@ public class ConsumableData : ItemSO
         }
         if (MoveSpeed != 0)
         {
-            Utilities.AddText(sb, "이동 속도", MoveSpeed,true);
+            Utilities.AddText(sb, "이동 속도", MoveSpeed, true);
         }
         if (StageDuration != 0)
         {

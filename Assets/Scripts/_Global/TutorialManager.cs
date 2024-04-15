@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialManager : SingletoneBase<TutorialManager>
@@ -30,7 +27,7 @@ public class TutorialManager : SingletoneBase<TutorialManager>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PopupTutorial(TutorialType type, int id)

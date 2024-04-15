@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -93,7 +92,7 @@ public class RuneStoneUI : MonoBehaviour
 
     void CheckCurrentStage(int stage)
     {
-        if(stage % 5 == 0)
+        if (stage % 5 == 0)
         {
             Debug.Log("룬스톤 스테이지 체크");
             _remainChance++;
@@ -115,7 +114,7 @@ public class RuneStoneUI : MonoBehaviour
 
     public void OnClickStatPlusButton(int index)
     {
-        if(_selectedStatCounter >= 6 || _selectedStatCounter > _remainChance)
+        if (_selectedStatCounter >= 6 || _selectedStatCounter > _remainChance)
         {
             return;
         }
@@ -123,8 +122,8 @@ public class RuneStoneUI : MonoBehaviour
         _selectedStatCounter++;
         _remainChanceText.text = (_remainChance - _selectedStatCounter).ToString() + ($"<color=\"yellow\"> 회</color>");
         GameObject go = Instantiate(_selectedStatPrefab, _selectedStatPanel.transform);
-        
-        if(go.TryGetComponent<Button>(out Button _button))
+
+        if (go.TryGetComponent<Button>(out Button _button))
         {
             _selectedStatusButtons.Add(_button);
             _button.onClick.AddListener(() => OnClickSelectedStatButton(_selectedStatusButtons.Count - 1));
@@ -227,7 +226,7 @@ public class RuneStoneUI : MonoBehaviour
             bonusMin = 1;
             bonusMax = 4;
         }
-        else if(_runeStoneSlider.value >= 0.33f && _runeStoneSlider.value <= 0.66f)
+        else if (_runeStoneSlider.value >= 0.33f && _runeStoneSlider.value <= 0.66f)
         {
             Debug.Log("노랑");
             bonusMin = 1;
@@ -288,7 +287,7 @@ public class RuneStoneUI : MonoBehaviour
             }
         }
         _playerStatus.InitStatus(_playerStatus, _modifier);
-        if(_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
+        if (_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
             Debug.Log("Status");
             playerStats.UpdateStatsPanel();

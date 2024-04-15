@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryPanel : MonoBehaviour
-{ 
+{
     //[SerializeField] GameObject panelSlotPrefab; //판텔 슬롯의 프리팹
     //public ItemGrid parentGrid; //부모 Grid
 
@@ -110,6 +107,6 @@ public class InventoryPanel : MonoBehaviour
     //}
     public void ClearclearSlotList()
     {
-        
+
     }
 }

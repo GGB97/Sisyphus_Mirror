@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -36,7 +33,7 @@ public class Menu : MonoBehaviour
 
     public void GameEnd()
     {
-        if(GameManager.Instance.gameState == GameState.Dungeon)
+        if (GameManager.Instance.gameState == GameState.Dungeon)
         {
             GameManager.Instance.Retry();
         }

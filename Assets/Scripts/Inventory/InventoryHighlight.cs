@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,9 +48,9 @@ public class InventoryHighlight : MonoBehaviour
         highlighter.SetParent(targetGrid.GetComponent<RectTransform>());
     }
 
-    public void SetPosition(ItemGrid targetGrid, InventoryItem targetitem,int posX,int posY) //
+    public void SetPosition(ItemGrid targetGrid, InventoryItem targetitem, int posX, int posY) //
     {
-        Vector2 pos = targetGrid.CalculatePositionOnGrid(targetitem,posX,posY);
+        Vector2 pos = targetGrid.CalculatePositionOnGrid(targetitem, posX, posY);
         highlighter.localPosition = pos;
     }
     public void SetImage(InventoryItem inventoryItem)

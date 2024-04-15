@@ -26,7 +26,7 @@ public class FieldItems : MonoBehaviour
         {
             switch (_type)
             {
-                case FieldItemType.Heart:   
+                case FieldItemType.Heart:
                     // TODO : 플레이어 체력 회복하기
 
                     break;
@@ -60,9 +60,9 @@ public class FieldItems : MonoBehaviour
     {
         //SetValue();
         //Debug.Log($"Player Get '{_value}' Gold");
-        GameManager.Instance.Player.ChangeGold( _value );
+        GameManager.Instance.Player.ChangeGold(_value);
         GameManager.Instance.totalGold += _value;
-        
+
         gameObject.SetActive(false);
     }
 
@@ -71,7 +71,7 @@ public class FieldItems : MonoBehaviour
         float magnetDistance = GameManager.Instance.Player.magnetDistance;
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if(distance <= magnetDistance)
+        if (distance <= magnetDistance)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
