@@ -100,7 +100,7 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Destroy(DungeonManager.Instance.gameObject);
 
-        Destroy(Player.gameObject);
+        _player.playerReset();
 
         gameState = GameState.Lobby;
 
