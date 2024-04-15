@@ -24,8 +24,8 @@ public class Menu : MonoBehaviour
 
     public void Continue()
     {
-        gameObject.SetActive(false);
         Time.timeScale = 1.0f;
+        gameObject.SetActive(false);
     }
 
     public void Option()
@@ -35,13 +35,13 @@ public class Menu : MonoBehaviour
 
     public void GameEnd()
     {
-        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if(sceneIndex == 2)
+        if(GameManager.Instance.gameState == GameState.Dungeon)
         {
             GameManager.Instance.Retry();
-
         }
         else
+        {
             Application.Quit();
+        }
     }
 }

@@ -16,9 +16,17 @@ public class Interaction : MonoBehaviour
 
     private void Awake()
     {
+        init();
+    }
+
+    public void init()
+    {
         input = GetComponent<UnityEngine.InputSystem.PlayerInput>();
         input.enabled = false;
+        
     }
+
+
 
     public void OnInteraction()
     {
@@ -39,6 +47,7 @@ public class Interaction : MonoBehaviour
     {
         if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
+            InteractionInfo.transform.forward = Camera.main.transform.forward;
             InteractionInfo.SetActive(true);
             onInteract = true;
             input.enabled = true;

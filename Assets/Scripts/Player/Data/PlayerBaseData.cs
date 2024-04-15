@@ -6,23 +6,17 @@ using UnityEngine;
 [Serializable]
 public class PlayerBaseData : CharacterBase
 {
-    [Header("AddInfo")]
-
+    public int Gold;
     public int LV;
     public float EXP;
     public float maxEXP;
-    public int Gold;
-    
-
-    public int _startItemID;
-    public int _startInventory;
 
     public override void Init()
     {
         base.Init();
-        LV = 1;
-        EXP = 0;
-        maxEXP = 100;
+        LV = _lv;
+        EXP = _exp;
+        maxEXP = _maxEXP;
         Gold = 0;
     }
 }

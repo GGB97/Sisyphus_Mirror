@@ -45,6 +45,13 @@ public class Status
     public float lifeSteal;
     public float weight;
 
+    public int _lv;
+    public float _exp;
+    public float _maxEXP;
+
+    public int _startItemID;
+    public int _startInventory;
+
     public Status()
     {
         Init();

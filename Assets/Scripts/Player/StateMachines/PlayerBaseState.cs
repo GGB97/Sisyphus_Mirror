@@ -60,13 +60,21 @@ public class PlayerBaseState : IState
         PlayerInput input = stateMachine.Player.Input;
         input.PlayerActions.Move.canceled += OnMoveCanceled;
         input.PlayerActions.Dash.started += OnDashStarted;
+        input.PlayerActions.ESC.started += ESCstarted;
     }
+
 
     protected virtual void RemoveInputActionCallback()
     {
         PlayerInput input = stateMachine.Player.Input;
         input.PlayerActions.Move.canceled -= OnMoveCanceled;
         input.PlayerActions.Dash.started -= OnDashStarted;
+        input.PlayerActions.ESC.started -= ESCstarted;
+    }
+
+    private void ESCstarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        GameManager.Instance.OpenMenu();
     }
 
     protected virtual void OnDashStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
