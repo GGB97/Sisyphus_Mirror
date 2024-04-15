@@ -24,7 +24,7 @@ MonoBehaviour:
     _price: 24
     _weight: 10
     _grade: 0
-    _physicalAtk: 20
+    _physicalAtk: 30
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
     _price: 28
     _weight: 10
     _grade: 1
-    _physicalAtk: 25
+    _physicalAtk: 35
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     _price: 32
     _weight: 10
     _grade: 2
-    _physicalAtk: 40
+    _physicalAtk: 45
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
     _price: 28
     _weight: 15
     _grade: 0
-    _physicalAtk: 15
+    _physicalAtk: 30
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -112,7 +112,7 @@ MonoBehaviour:
     _price: 48
     _weight: 15
     _grade: 1
-    _physicalAtk: 30
+    _physicalAtk: 40
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 3
@@ -178,8 +178,8 @@ MonoBehaviour:
     _price: 35
     _weight: 10
     _grade: 0
-    _physicalAtk: 20
-    _magicAtk: 0
+    _physicalAtk: 0
+    _magicAtk: 20
     _atkSpeed: 0.7
     _critRate: 5
     _critDamage: 1
@@ -200,8 +200,8 @@ MonoBehaviour:
     _price: 55
     _weight: 10
     _grade: 1
-    _physicalAtk: 25
-    _magicAtk: 0
+    _physicalAtk: 0
+    _magicAtk: 25
     _atkSpeed: 0.6
     _critRate: 5
     _critDamage: 2
@@ -222,8 +222,8 @@ MonoBehaviour:
     _price: 85
     _weight: 10
     _grade: 2
-    _physicalAtk: 30
-    _magicAtk: 0
+    _physicalAtk: 0
+    _magicAtk: 30
     _atkSpeed: 0.5
     _critRate: 5
     _critDamage: 3
