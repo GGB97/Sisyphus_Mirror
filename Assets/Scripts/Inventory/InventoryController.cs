@@ -679,7 +679,7 @@ public class InventoryController : MonoBehaviour
         OnStoreReroll();
 
         player.Data.Gold -= _tempRerollCost;
-        _tempRerollCost = (int)(_tempRerollCost * 1.4f);
+        _tempRerollCost = (int)Math.Round(_tempRerollCost * 1.4f);
 
         SetPlayerGoldText();
         SetRerollButtonText();
@@ -713,7 +713,7 @@ public class InventoryController : MonoBehaviour
         {
             OnStoreReroll();
             nextStage();
-            _rerollCost = (int)(_rerollCost * 1.4f);
+            _rerollCost = (int)Math.Round(_rerollCost * 1.4f);
             _tempRerollCost = _rerollCost;
             SetRerollButtonText();
 
