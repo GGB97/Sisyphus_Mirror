@@ -658,7 +658,7 @@ public class InventoryController : MonoBehaviour
 
     public void OnClickStoreReroll()
     {
-        if (_tempRerollCost > player.Data.Gold) return;
+        if (_tempRerollCost > player.Data.Gold || isAdding) return;
         OnStoreReroll();
 
         player.Data.Gold -= _tempRerollCost;

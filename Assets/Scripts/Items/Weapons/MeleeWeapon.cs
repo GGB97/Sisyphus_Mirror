@@ -18,7 +18,7 @@ public class MeleeWeapon : MonoBehaviour
     Vector3 _weaponPos;
 
     [SerializeField] private int id;
-    [SerializeField] Vector3 _targetPos;
+    [SerializeField] public Vector3 targetPos;
 
     private WeaponIdleAnimation _idleAnimation;
 
@@ -68,18 +68,18 @@ public class MeleeWeapon : MonoBehaviour
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
             // 무기 방향 회전
-            Vector3 dir = transform.position - _targetPos;
+            Vector3 dir = transform.position - targetPos;
             dir.y = 0;
             //Quaternion rot = Quaternion.LookRotation(dir.normalized);
             //transform.rotation = rot;
 
-            dir = _targetPos - transform.position;
+            dir = targetPos - transform.position;
             dir.y = 0;
             //_targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
-            _targetPos = new Vector3(_targetPos.x - (0.1f * dir.normalized.x), _targetPos.y - (0.1f * dir.normalized.y), _targetPos.z - (0.1f * dir.normalized.z));
+            targetPos = new Vector3(targetPos.x - (0.1f * dir.normalized.x), targetPos.y - (0.1f * dir.normalized.y), targetPos.z - (0.1f * dir.normalized.z));
 
             // 근접 공격 이동
-            transform.position = Vector3.Lerp(transform.position, _targetPos, percentageComplete);
+            transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
             
             // 이동이 완료되면
             //if(percentageComplete >= .5f)
@@ -149,10 +149,10 @@ public class MeleeWeapon : MonoBehaviour
             Target.Clear();
             return;
         }
-        _targetPos = Target[random].position;
+        targetPos = Target[random].position;
 
         // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
-        _targetPos.y = (Vector3.up * 1.0f).y;
+        targetPos.y = (Vector3.up * 1.0f).y;
 
 
         transform.parent = null;
