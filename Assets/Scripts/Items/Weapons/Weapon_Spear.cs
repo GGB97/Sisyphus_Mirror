@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,12 @@ public class Weapon_Spear : MonoBehaviour
             Vector3 dir = transform.position - _weapon.targetPos;
             dir.y = 0;
             Quaternion rot = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = rot;
+            float x = rot.x < 0 ? -1 : 1;
+            float z = rot.z < 0 ? -1 : 1;
 
-            transform.Translate(dir * moveSpeed);
+            transform.Rotate(90 * x, rot.y, rot.z);
+
+            transform.position = Vector3.Lerp(transform.position, dir, moveSpeed * Time.deltaTime);
         }
     }
 
@@ -39,6 +43,6 @@ public class Weapon_Spear : MonoBehaviour
     {
         _isAttack = false;
         transform.position = _positon;
-        transform.rotation = Quaternion.Euler(-180, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }

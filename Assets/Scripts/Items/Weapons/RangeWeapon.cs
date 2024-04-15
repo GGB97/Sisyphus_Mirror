@@ -150,8 +150,10 @@ public class RangeWeapon : MonoBehaviour
         else
             damage = weaponData.MagicAtk + _player.magicAtk;
 
+        damage /= weaponData.NumberOfProjectile;
+
         float random = UnityEngine.Random.Range(1, 101);
-        if (_player.critRate > random) damage += (damage * _player.critDamage);
+        if (_player.critRate > random) damage = (damage * _player.critDamage / 10);
 
         return damage;
     }
