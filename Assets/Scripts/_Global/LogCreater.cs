@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO; /* StreamWriter */
 using System; /* DateTime */
+using System.IO; /* StreamWriter */
+using UnityEngine;
 
 public class LogCreator : SingletoneBase<LogCreator>
 {
+    DateTime startTime;
+    DateTime endTime;
+
     StreamWriter writer;
 
     void saveLog(string logString, string stackTrace, LogType type)
     {
-        string currentTime = DateTime.Now.ToString(("HH:mm:ss"));
-        writer.WriteLine($"[{currentTime}] {logString}");
+        string currentTime = DateTime.Now.ToString(("MM-dd HH:mm:ss"));
+        writer.WriteLine($"[{currentTime}] - {logString}");
     }
 
     void Awake()
@@ -21,12 +22,17 @@ public class LogCreator : SingletoneBase<LogCreator>
 
         DontDestroyOnLoad(this);
 
+        startTime = DateTime.Now;
         Debug.Log("기록 시작");
     }
 
     void OnDisable()
     {
-        Debug.Log("기록 종료");
+        endTime = DateTime.Now;
+        TimeSpan playTime = startTime - endTime;
+        int min = Mathf.Abs(playTime.Minutes);
+        int sec = Mathf.Abs(playTime.Seconds);
+        Debug.Log($"기록 종료 / 플레이 시간 : {min}분 {sec}초");
 
         Application.logMessageReceived -= saveLog;
 

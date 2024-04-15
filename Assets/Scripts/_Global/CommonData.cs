@@ -23,7 +23,7 @@ public struct DBPath
     public static readonly string PlayerUpgradeDB = "Task/Upgrade/Data/PlayerUpgradeDB_Sheet";
     public static readonly string QuestDB = "Quest/QuestSO";
 
-    public static readonly string LogPath = "Assets/Log/mylog.txt";
+    public static readonly string LogPath = "mylog.txt";
 }
 
 public struct SceneName
