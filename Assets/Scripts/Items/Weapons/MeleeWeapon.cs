@@ -182,9 +182,6 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (LayerData.Enemy == (1 << other.gameObject.layer | LayerData.Enemy))
         {
-            //Debug.Log("Monster TakeDamage");
-            //HealthSystem _healthSystem = other.gameObject.GetComponent<HealthSystem>();
-            //_healthSystem.TakeDamage(_weaponData.PhysicalAtk);
             if(other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
                 _healthSystem.TakeDamage(SetAttackDamage(), _weaponData.PhysicalAtk != 0 ? DamageType.Physical : DamageType.Magic);
@@ -209,11 +206,11 @@ public class MeleeWeapon : MonoBehaviour
 
     private float SetAttackDamage()
     {
-        float damage = 0;
+        float damage = _weaponData.PhysicalAtk != 0 ? _weaponData.PhysicalAtk : _weaponData.MagicAtk;
 
         if (_weaponData.PhysicalAtk != 0)
-            damage = _playerStatus.physicalAtk;
-        else damage = _playerStatus.magicAtk;
+            damage += _playerStatus.physicalAtk;
+        else damage += _playerStatus.magicAtk;
 
         float random = UnityEngine.Random.Range(1, 101);
         if (_playerStatus.critRate > random) damage += (damage * _playerStatus.critDamage);

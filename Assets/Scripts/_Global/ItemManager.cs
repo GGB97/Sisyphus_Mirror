@@ -127,10 +127,10 @@ public class ItemManager : MonoBehaviour
 
         if (isEquip)
         {
-            _modifier.physicalAtk += weapon.PhysicalAtk;
-            _modifier.magicAtk += weapon.MagicAtk;
+            //_modifier.physicalAtk += weapon.PhysicalAtk;
+            //_modifier.magicAtk += weapon.MagicAtk;
 
-            _modifier.attackSpeed += weapon.AtkSpeed;
+            //_modifier.attackSpeed += weapon.AtkSpeed;
 
             _modifier.critRate += weapon.CritRate;
             _modifier.critDamage += weapon.CritDamage;
@@ -142,10 +142,10 @@ public class ItemManager : MonoBehaviour
         }
         else
         {
-            _modifier.physicalAtk -= weapon.PhysicalAtk;
-            _modifier.magicAtk -= weapon.MagicAtk;
+            //_modifier.physicalAtk -= weapon.PhysicalAtk;
+            //_modifier.magicAtk -= weapon.MagicAtk;
 
-            _modifier.attackSpeed -= weapon.AtkSpeed;
+            //_modifier.attackSpeed -= weapon.AtkSpeed;
 
             _modifier.critRate -= weapon.CritRate;
             _modifier.critDamage -= weapon.CritDamage;
