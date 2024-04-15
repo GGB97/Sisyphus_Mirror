@@ -1,0 +1,60 @@
+[14:19:35] 기록 시작
+[14:19:39] 퀘스트 시작 : 초보자
+[14:19:39] 퀘스트 시작 : 뉴비V
+[14:19:47] Look rotation viewing vector is zero
+[14:19:48] Look rotation viewing vector is zero
+[14:19:49] Look rotation viewing vector is zero
+[14:19:52] Look rotation viewing vector is zero
+[14:19:53] Look rotation viewing vector is zero
+[14:19:54] Look rotation viewing vector is zero
+[14:19:55] Look rotation viewing vector is zero
+[14:19:57] Look rotation viewing vector is zero
+[14:19:58] Look rotation viewing vector is zero
+[14:19:59] Look rotation viewing vector is zero
+[14:20:00] Look rotation viewing vector is zero
+[14:20:01] 퀘스트 시작 : 숙련자
+[14:20:01] 퀘스트 완료 : 초보자
+[14:20:01] Look rotation viewing vector is zero
+[14:20:02] Look rotation viewing vector is zero
+[14:20:03] Look rotation viewing vector is zero
+[14:20:05] Look rotation viewing vector is zero
+[14:20:06] Look rotation viewing vector is zero
+[14:20:07] Look rotation viewing vector is zero
+[14:20:08] Look rotation viewing vector is zero
+[14:20:09] Look rotation viewing vector is zero
+[14:20:10] Look rotation viewing vector is zero
+[14:20:11] Look rotation viewing vector is zero
+[14:20:12] Look rotation viewing vector is zero
+[14:20:13] Look rotation viewing vector is zero
+[14:20:17] 추가 가능 총 개수 : 10
+[14:20:18] 추가 가능 총 개수 : 10
+[14:20:18] 추가 가능 총 개수 : 10
+[14:20:19] 추가 가능 총 개수 : 11
+[14:20:19] Enter
+[14:20:19] Exit
+[14:20:24] Look rotation viewing vector is zero
+[14:20:25] Look rotation viewing vector is zero
+[14:20:28] 찾기 실패
+[14:20:28] <color=#0099bc><b>DOTWEEN ► </b></color>Target or field is missing/null () ► The object of type 'Transform' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+
+  at (wrapper managed-to-native) UnityEngine.Transform.get_localPosition_Injected(UnityEngine.Transform,UnityEngine.Vector3&)
+  at UnityEngine.Transform.get_localPosition () [0x00000] in <c2d036c16ca64e0eb93703a3b13e733a>:0 
+  at DG.Tweening.ShortcutExtensions+<>c__DisplayClass38_0.<DOLocalMoveY>b__0 () [0x00000] in D:\DG\_Develop\__UNITY_ASSETS\_Demigiant\__DOTween\_DOTween.Assembly\DOTween\ShortcutExtensions.cs:548 
+  at (wrapper delegate-invoke) DG.Tweening.Core.DOGetter`1[UnityEngine.Vector3].invoke_T()
+  at DG.Tweening.Plugins.Vector3Plugin.EvaluateAndApply (DG.Tweening.Plugins.Options.VectorOptions options, DG.Tweening.Tween t, System.Boolean isRelative, DG.Tweening.Core.DOGetter`1[T] getter, DG.Tweening.Core.DOSetter`1[T] setter, System.Single elapsed, UnityEngine.Vector3 startValue, UnityEngine.Vector3 changeValue, System.Single duration, System.Boolean usingInversePosition, System.Int32 newCompletedSteps, DG.Tweening.Core.Enums.UpdateNotice updateNotice) [0x0011e] in D:\DG\_Develop\__UNITY_ASSETS\_Demigiant\__DOTween\_DOTween.Assembly\DOTween\Plugins\Vector3Plugin.cs:139 
+  at DG.Tweening.Core.TweenerCore`3[T1,T2,TPlugOptions].ApplyTween (System.Single prevPosition, System.Int32 prevCompletedLoops, System.Int32 newCompletedSteps, System.Boolean useInversePosition, DG.Tweening.Core.Enums.UpdateMode updateMode, DG.Tweening.Core.Enums.UpdateNotice updateNotice) [0x00030] in D:\DG\_Develop\__UNITY_ASSETS\_Demigiant\__DOTween\_DOTween.Assembly\DOTween\Core\TweenerCore.cs:261 
+
+
+[14:20:38] Look rotation viewing vector is zero
+[14:20:39] Look rotation viewing vector is zero
+[14:20:40] Look rotation viewing vector is zero
+[14:20:41] Look rotation viewing vector is zero
+[14:20:43] Look rotation viewing vector is zero
+[14:20:44] Look rotation viewing vector is zero
+[14:20:45] Look rotation viewing vector is zero
+[14:20:46] Look rotation viewing vector is zero
+[14:20:47] Look rotation viewing vector is zero
+[14:20:48] <color=#ff7337><color=#0099bc><b>DOTWEEN ► </b></color> SAFE MODE ►</color> DOTween's safe mode captured 1 errors. This is usually ok (it's what safe mode is there for) but if your game is encountering issues you should set Log Behaviour to Default in DOTween Utility Panel in order to get detailed warnings when an error is captured (consider that these errors are always on the user side).
+- 1 missing target or field errors
+[14:20:48] 기록 종료

@@ -18,4 +18,4 @@ MonoBehaviour:
   maxEnemyCnt: 30
   numPerSpawn: 4
   spawnDelay: 2
-  eliteSpawnChance: 5
+  eliteSpawnChance: 2
