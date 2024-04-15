@@ -261,6 +261,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4274242506524462440}
+    - targetCorrespondingSourceObject: {fileID: 7325771415998630784, guid: 949ce6572c25a5446b035cac76c74aa4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5392874303803855112}
   m_SourcePrefab: {fileID: 100100000, guid: 949ce6572c25a5446b035cac76c74aa4, type: 3}
 --- !u!1 &1291532391725719156 stripped
 GameObject:
@@ -350,6 +354,7 @@ MonoBehaviour:
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
+    _sfxTag: 
   _animator: {fileID: 0}
   _effect: {fileID: 2316877866652130393}
   Target: []
@@ -392,6 +397,18 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
+--- !u!114 &5392874303803855112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291532391725719156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10437aaa27c5f41a27a776da04413d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1920681279410963662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7989824334958907706, guid: 949ce6572c25a5446b035cac76c74aa4,
