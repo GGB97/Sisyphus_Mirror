@@ -174,4 +174,9 @@ public class Player : CharacterBehaviour
         magnetDistance = 3;
     }
 
+    public void HealthChange()
+    {
+        if(currentStat.health > currentStat.maxHealth) currentStat.health = currentStat.maxHealth;
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+    }
 }
