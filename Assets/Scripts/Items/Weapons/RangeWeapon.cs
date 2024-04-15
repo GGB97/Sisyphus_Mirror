@@ -32,8 +32,8 @@ public class RangeWeapon : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
-        float x = Random.Range(-1f, 1f);
-        float z = Random.Range(-1f, 1f);
+        float x = Random.Range(-1.5f, -1f);
+        float z = Random.Range(-1.5f, -1f);
 
         return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
     }
