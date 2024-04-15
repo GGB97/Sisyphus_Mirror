@@ -156,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 7325771415998630784, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
       propertyPath: m_Name
-      value: Sword_1
+      value: Sword_1_Rare
       objectReference: {fileID: 0}
     - target: {fileID: 7325771415998630784, guid: 949ce6572c25a5446b035cac76c74aa4,
         type: 3}
@@ -360,7 +360,7 @@ MonoBehaviour:
   _effect: {fileID: 2316877866652130393}
   Target: []
   _weaponPivot: {fileID: 0}
-  id: 10112011
+  id: 10112012
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!95 &8241241260356718107
 Animator:

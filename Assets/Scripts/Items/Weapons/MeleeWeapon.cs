@@ -37,8 +37,7 @@ public class MeleeWeapon : MonoBehaviour
         _animator = GetComponent<Animator>();
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
 
-        _weaponData = DataBase.Weapon.Get(id);
-        atkSpeed = _weaponData.AtkSpeed;
+        //atkSpeed = _weaponData.AtkSpeed;
         _weaponPivot = transform.parent;
 
         _weaponPos = GetRandomPosition();
@@ -51,6 +50,11 @@ public class MeleeWeapon : MonoBehaviour
 
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
+    }
+
+    public void Init(int id)
+    {
+        _weaponData = DataBase.Weapon.Get(id);
     }
 
     private void Update()
@@ -70,6 +74,8 @@ public class MeleeWeapon : MonoBehaviour
 
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
+            _animationEnd = false;
+
             // 무기 방향 회전
             Vector3 dir = transform.position - targetPos;
             dir.y = 0;
@@ -79,7 +85,7 @@ public class MeleeWeapon : MonoBehaviour
             dir = targetPos - transform.position;
             dir.y = 0;
             //_targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
-            targetPos = new Vector3(targetPos.x - (0.1f * dir.normalized.x), targetPos.y - (0.1f * dir.normalized.y), targetPos.z - (0.1f * dir.normalized.z));
+            targetPos = new Vector3(targetPos.x - (0.3f * dir.normalized.x), targetPos.y - (0.3f * dir.normalized.y), targetPos.z - (0.3f * dir.normalized.z));
 
             // 근접 공격 이동
             transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
@@ -102,11 +108,12 @@ public class MeleeWeapon : MonoBehaviour
                 //Debug.Log("Melee Attack");
                 // 공격 애니메이션 재생
                 _animator.SetBool("Attack", true);
-                _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
+                _animator.SetFloat("AttackSpeed", 1 * _weaponData.AtkSpeed);
             }
         }
         else if(_animationEnd && !_canAttack)
         {
+            transform.rotation = Quaternion.Euler(-180, 0, 0);
             transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
 
             if (percentageComplete >= 1)
@@ -176,6 +183,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         _effect.GetComponent<TrailRenderer>().Clear();
         _effect.SetActive(false);
+        transform.rotation = Quaternion.Euler(-180, 0, 0);
         transform.parent = _weaponPivot;
         _animator.SetBool("Attack", false);
         _animationEnd = true;
@@ -216,7 +224,7 @@ public class MeleeWeapon : MonoBehaviour
         else damage += _playerStatus.magicAtk;
 
         float random = UnityEngine.Random.Range(1, 101);
-        if (_playerStatus.critRate > random) damage += (damage * _playerStatus.critDamage);
+        if (_playerStatus.critRate > random) damage += (damage * _playerStatus.critDamage / 10);
 
         return damage;
     }
