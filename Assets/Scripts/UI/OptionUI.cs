@@ -36,15 +36,15 @@ public class OptionUI : MonoBehaviour
 
     public void BgmVolumeChange(float volume)
     {
-        bgmVolume.value = volume;
-        bgmVolumeText.text = volume.ToString("N1");
+        bgmVolume.value = Mathf.Ceil(volume);
+        bgmVolumeText.text = Mathf.Ceil(volume).ToString();
         SoundManager.Instance.bgmVolumePercent = volume;
     }
 
     public void SfxVolumeChange(float volume)
     {
-        sfxVolume.value = volume;
-        sfxVolumeText.text = volume.ToString("N1");
+        sfxVolume.value = Mathf.Ceil(volume);
+        sfxVolumeText.text = Mathf.Ceil(volume).ToString();
         SoundManager.Instance.sfxVolumePercent = volume;
     }
 }
