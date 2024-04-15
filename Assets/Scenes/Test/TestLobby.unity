@@ -1246,10 +1246,40 @@ PrefabInstance:
       propertyPath: OpenUI
       value: 
       objectReference: {fileID: 1417256464}
+    - target: {fileID: 3005628474230706312, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583482499687692435, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190080357179820696, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190080357179820696, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5413262870559512989, guid: fdc416bfb10aba9429f30fc5983e59e4,
         type: 3}
       propertyPath: m_Name
       value: Lobby
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403939769233613431, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403939769233613431, guid: fdc416bfb10aba9429f30fc5983e59e4,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8462144713283711077, guid: fdc416bfb10aba9429f30fc5983e59e4,
         type: 3}

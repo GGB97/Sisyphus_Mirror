@@ -14,12 +14,13 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bgmVolumeText;
     [SerializeField] private TextMeshProUGUI sfxVolumeText;
 
-    //private void Start()
-    //{
-    //    maxVolume.value = SoundManager.Instance.maxBgmVolume;
-    //    bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
-    //    sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
-    //}
+    private void Start()
+    {
+        maxVolume.value = SoundManager.Instance.maxBgmVolume * 100f;
+        bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
+        sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
+        
+    }
 
     public void MenuExitButton()
     {
@@ -29,18 +30,21 @@ public class OptionUI : MonoBehaviour
     public void MaxVolumeChange(float volume)
     {
         maxVolume.value = volume;
-        maxVolumeText.text = volume.ToString("N2");
+        maxVolumeText.text = volume.ToString("N0");
+        SoundManager.Instance.maxBgmVolume = Mathf.Clamp((volume / 100),0,2);
     }
 
     public void BgmVolumeChange(float volume)
     {
-        bgmVolume.value = volume;
-        bgmVolumeText.text = volume.ToString("N1");
+        bgmVolume.value = Mathf.Ceil(volume);
+        bgmVolumeText.text = Mathf.Ceil(volume).ToString();
+        SoundManager.Instance.bgmVolumePercent = volume;
     }
 
     public void SfxVolumeChange(float volume)
     {
-        sfxVolume.value = volume;
-        sfxVolumeText.text = volume.ToString("N1");
+        sfxVolume.value = Mathf.Ceil(volume);
+        sfxVolumeText.text = Mathf.Ceil(volume).ToString();
+        SoundManager.Instance.sfxVolumePercent = volume;
     }
 }

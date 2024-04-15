@@ -48,8 +48,10 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void OpenMenu()
     {
-        Time.timeScale = 0;
-        Menu.OpenMenu();
+        if (Menu.gameObject.activeSelf == true)
+            Menu.Continue();
+        else
+            Menu.OpenMenu();
     }
 
     public void LoadScene(string sceneName)
