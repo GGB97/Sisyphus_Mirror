@@ -112,7 +112,6 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
             itemDesription.gameObject.SetActive(true);
             itemDesription.SetTransform();
             itemDesription.transform.SetAsLastSibling();
-            Debug.Log("호출");
         }
     }
     public  void ExitUI()

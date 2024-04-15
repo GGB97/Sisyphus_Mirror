@@ -117,6 +117,7 @@ public class Enemy : CharacterBehaviour
         {
             OnDieEvent += DropRune;
             OnDieEvent += ChangeComplete;
+            OnDieEvent += () => { _spawner.arriveBoss = false; };
         }
 
         OnHitEvent += ChangeHitState;

@@ -81,6 +81,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
                 currentTime -= Time.deltaTime;//시간 빼기
                 currentTime = Mathf.Clamp(currentTime, 0.00f, timeLimit);
             }
+            else if (currentTime <= 0 && EnemySpawner.Instance.arriveBoss == true)
+            {
+                // 끝
+                GameManager.Instance.Gameover();
+            }
             else
             {
                 //모든 몬스터 죽기

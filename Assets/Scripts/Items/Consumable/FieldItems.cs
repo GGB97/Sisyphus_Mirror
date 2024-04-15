@@ -12,7 +12,7 @@ public class FieldItems : MonoBehaviour
     [SerializeField] FieldItemType _type;
     int _value;
 
-    public float moveSpeed = 10f;
+    public float moveSpeed = 20f;
     private Transform player;
 
     private void OnDisable()

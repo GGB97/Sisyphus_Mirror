@@ -11,9 +11,9 @@ public class StartUI : MonoBehaviour , ClickButton
     [SerializeField] private GameObject option;
     public void StartButton(Button btn)
     {
-        GameManager.Instance.LoadScene(SceneName.Lobby);
         btn.enabled = false;
         PlaySound();
+        GameManager.Instance.LoadScene(SceneName.Lobby);
     }
 
     public void OptionButton()
