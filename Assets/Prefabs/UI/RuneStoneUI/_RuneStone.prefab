@@ -1240,8 +1240,9 @@ MonoBehaviour:
     weight: 0
   _playerStatusUI: {fileID: 6098931977359669802}
   _runeStoneSlider: {fileID: 4587139320422377583}
-  _runStoneConfirmButtonText: {fileID: 5322658300999183893}
+  _runeStoneConfirmButtonText: {fileID: 5322658300999183893}
   _enabled: 0
+  _isUpdate: 0
   sliderRate: 0.05
 --- !u!225 &1063082308453890572
 CanvasGroup:
@@ -2423,18 +2424,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4287843742087128046}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5546512946962262321}
-  m_Father: {fileID: 9024556385017610487}
+  m_Father: {fileID: 6089315925478370707}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: -50, y: 120}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3370629007859211164
@@ -3277,6 +3278,7 @@ RectTransform:
   - {fileID: 9024556385017610487}
   - {fileID: 1822065768819664295}
   - {fileID: 1464811287279707746}
+  - {fileID: 6181163638020576629}
   m_Father: {fileID: 5806347395979653713}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3645,7 +3647,6 @@ RectTransform:
   m_Children:
   - {fileID: 8230910864698944502}
   - {fileID: 4865028616111183084}
-  - {fileID: 6181163638020576629}
   m_Father: {fileID: 6089315925478370707}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
