@@ -65,7 +65,6 @@ public class Status
     public void InitStatus(Status baseStat, Status modifier)
     {
         maxHealth = baseStat.maxHealth + modifier.maxHealth;
-        health = maxHealth;
 
         attackRange = baseStat.attackRange + modifier.attackRange;
         physicalAtk = baseStat.physicalAtk + modifier.physicalAtk;
@@ -85,6 +84,11 @@ public class Status
 
         lifeSteal = baseStat.lifeSteal + modifier.lifeSteal;
         weight = baseStat.weight + modifier.weight;
+    }
+
+    public void SyncHealth()
+    {
+        health = maxHealth;
     }
 
     public virtual void Init_EnemyModifier(Status baseStat, EnemyRank rank)

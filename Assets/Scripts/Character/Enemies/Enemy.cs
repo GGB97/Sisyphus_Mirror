@@ -152,6 +152,7 @@ public class Enemy : CharacterBehaviour
     {
         modifier.Init_EnemyModifier(Info, Info.rank);
         currentStat.InitStatus(Info, modifier);
+        currentStat.SyncHealth();
 
         StaticInstanceInit();
 
