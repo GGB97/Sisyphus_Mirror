@@ -50,7 +50,6 @@ public class GameManager : SingletoneBase<GameManager>
     {
         Time.timeScale = 0;
         Menu.OpenMenu();
-        Debug.Log("누름");
     }
 
     public void LoadScene(string sceneName)
