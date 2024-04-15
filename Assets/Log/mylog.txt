@@ -310,3 +310,115 @@ Parameter name: _unity_self
 [15:54:37] 기록 시작
 [15:59:28] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
 [15:59:28] 기록 종료
+[16:02:42] 기록 시작
+[16:02:49] 퀘스트 시작 : 초보자
+[16:02:49] 퀘스트 시작 : 뉴비V
+[16:13:16] 퀘스트 시작 : 숙련자
+[16:13:16] 퀘스트 완료 : 초보자
+[16:13:35] 추가 가능 총 개수 : 11
+[16:13:36] 추가 가능 총 개수 : 11
+[16:13:37] 추가 가능 총 개수 : 11
+[16:13:37] 추가 가능 총 개수 : 12
+[16:13:40] Enter
+[16:13:40] Click Down
+[16:13:40] 현재 아이템 : Armor_1
+[16:13:41] Exit
+[16:13:42] Click Up
+[16:13:42] Helm of Valor
+[16:13:42] tag는 존재하지 않는 오디오 입니다.
+[16:13:42] Enter
+[16:13:42] Exit
+[16:13:44] Enter
+[16:13:45] Exit
+[16:13:45] 현재 아이템 : Armor_1
+[16:13:45] 아이템 빼기 - Armor_1
+[16:13:46] Enter
+[16:13:46] Exit
+[16:13:46] Enter
+[16:13:47] Exit
+[16:13:47] Enter
+[16:13:47] Click Down
+[16:13:47] 현재 아이템 : Spear_1
+[16:13:47] Exit
+[16:13:48] Click Up
+[16:13:48] Spear
+[16:13:48] tag는 존재하지 않는 오디오 입니다.
+[16:13:48] Enter
+[16:13:48] Exit
+[16:13:48] Enter
+[16:13:48] Exit
+[16:13:48] Enter
+[16:13:48] Exit
+[16:13:48] Enter
+[16:13:48] Click Down
+[16:13:48] 현재 아이템 : Wand_1
+[16:13:48] Exit
+[16:13:49] Exit
+[16:13:49] Click Up
+[16:13:49] Wand
+[16:13:49] tag는 존재하지 않는 오디오 입니다.
+[16:13:49] Enter
+[16:13:49] Exit
+[16:13:49] Enter
+[16:13:49] Exit
+[16:13:51] Enter
+[16:13:51] Exit
+[16:13:51] Enter
+[16:13:51] Exit
+[16:13:51] Enter
+[16:13:51] Click Down
+[16:13:51] 현재 아이템 : Spear_1
+[16:13:51] Exit
+[16:13:51] Click Up
+[16:13:51] tag는 존재하지 않는 오디오 입니다.
+[16:13:51] Enter
+[16:13:52] Click Down
+[16:13:52] 현재 아이템 : Spear_1
+[16:13:52] Exit
+[16:13:52] Click Up
+[16:13:52] tag는 존재하지 않는 오디오 입니다.
+[16:13:52] Enter
+[16:13:52] Click Down
+[16:13:52] 현재 아이템 : Spear_1
+[16:13:52] Exit
+[16:13:52] Click Up
+[16:13:52] tag는 존재하지 않는 오디오 입니다.
+[16:13:53] Enter
+[16:13:53] Click Down
+[16:13:53] 현재 아이템 : Spear_1
+[16:13:53] Exit
+[16:13:53] Click Up
+[16:13:53] tag는 존재하지 않는 오디오 입니다.
+[16:13:53] Enter
+[16:13:53] Exit
+[16:13:59] 기록 종료
+[16:14:01] 기록 시작
+[16:14:04] 기록 종료
+[16:14:06] 기록 시작
+[16:14:23] 기록 종료
+[16:15:41] 기록 시작
+[16:15:49] 기록 종료
+[16:16:24] 기록 시작
+[16:17:09] 기록 종료
+[16:19:21] 기록 시작
+[16:19:24] 기록 종료
+[16:19:27] 기록 시작
+[16:19:35] 기록 종료
+[16:20:27] 기록 시작
+[16:20:31] 기록 종료
+[16:22:06] 기록 시작
+[16:22:13] 기록 종료
+[16:22:18] 기록 시작
+[16:23:50] 기록 종료
+[16:23:51] 기록 시작
+[16:25:09] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
+[16:25:09] 기록 종료
+[16:25:17] 기록 시작
+[16:25:49] 기록 종료
+[16:29:24] 기록 시작
+[16:30:26] Assets\Externals\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs(15,18): warning CS0414: The field 'AnimationScript.goingUp' is assigned but its value is never used
+[16:30:26] 기록 종료
+[16:31:04] 기록 시작
+[16:31:19] 기록 종료
+[16:31:25] 기록 시작
+[16:31:34] 기록 종료

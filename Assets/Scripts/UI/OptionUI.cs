@@ -16,7 +16,7 @@ public class OptionUI : MonoBehaviour
 
     private void Start()
     {
-        maxVolume.value = SoundManager.Instance.maxBgmVolume;
+        maxVolume.value = SoundManager.Instance.maxBgmVolume * 100f;
         bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
         sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
         
@@ -30,21 +30,21 @@ public class OptionUI : MonoBehaviour
     public void MaxVolumeChange(float volume)
     {
         maxVolume.value = volume;
-        maxVolumeText.text = volume.ToString("N2");
-        SoundManager.Instance.maxBgmVolume = volume;
+        maxVolumeText.text = volume.ToString("N0");
+        SoundManager.Instance.maxBgmVolume = Mathf.Clamp((volume / 100),0,2);
     }
 
     public void BgmVolumeChange(float volume)
     {
         bgmVolume.value = volume;
-        bgmVolumeText.text = volume.ToString("N1");
+        bgmVolumeText.text = volume.ToString("N0");
         SoundManager.Instance.bgmVolumePercent = volume;
     }
 
     public void SfxVolumeChange(float volume)
     {
         sfxVolume.value = volume;
-        sfxVolumeText.text = volume.ToString("N1");
+        sfxVolumeText.text = volume.ToString("N0");
         SoundManager.Instance.sfxVolumePercent = volume;
     }
 }

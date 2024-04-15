@@ -47,7 +47,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.489
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundClip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
-  bgmVolumePercent: 50
-  maxBgmVolume: 0.5
-  sfxVolumePercent: 50
+  bgmVolumePercent: 20
+  maxBgmVolume: 0.2
+  sfxVolumePercent: 20
   isPlayingBgm: 1
   soundEffectList:
   - tag: 
