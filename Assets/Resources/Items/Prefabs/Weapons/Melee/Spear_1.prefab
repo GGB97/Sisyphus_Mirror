@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 8677793313344697308, guid: 3e4b9b98f281bde4b9752c026d7d2a8a,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8677793313344697308, guid: 3e4b9b98f281bde4b9752c026d7d2a8a,
         type: 3}
@@ -246,6 +246,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 619801973684448081}
+    - targetCorrespondingSourceObject: {fileID: 8297433327189354854, guid: 3e4b9b98f281bde4b9752c026d7d2a8a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2492471600537210745}
   m_SourcePrefab: {fileID: 100100000, guid: 3e4b9b98f281bde4b9752c026d7d2a8a, type: 3}
 --- !u!4 &3826280892565803649 stripped
 Transform:
@@ -293,12 +297,13 @@ MonoBehaviour:
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
+    _sfxTag: 
   _animator: {fileID: 0}
   _effect: {fileID: 338137084713893939}
   Target: []
   _weaponPivot: {fileID: 0}
   id: 10113011
-  _targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!65 &-7885994950836837013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -383,3 +388,16 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
+--- !u!114 &2492471600537210745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4490791002466912315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063d5b415b980d04d80cc9ab2b2119c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 7566630205667324981}

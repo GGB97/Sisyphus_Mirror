@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class MeleeWeapon : MonoBehaviour
 {
     [SerializeField] private WeaponData _weaponData;
+    public float atkSpeed;
+
     Player _player;
     Status _playerStatus;
 
@@ -36,6 +38,7 @@ public class MeleeWeapon : MonoBehaviour
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
 
         _weaponData = DataBase.Weapon.Get(id);
+        atkSpeed = _weaponData.AtkSpeed;
         _weaponPivot = transform.parent;
 
         _weaponPos = GetRandomPosition();

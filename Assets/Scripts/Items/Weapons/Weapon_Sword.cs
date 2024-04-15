@@ -12,6 +12,7 @@ public class Weapon_Sword : MonoBehaviour
     private void Start()
     {
         _weapon = GetComponent<MeleeWeapon>();
+        rotSpeed += rotSpeed * _weapon.atkSpeed;
     }
 
     private void Update()
