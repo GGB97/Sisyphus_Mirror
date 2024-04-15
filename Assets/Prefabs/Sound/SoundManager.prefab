@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -142,8 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundClip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
-  bgmVolumePercent: 26.4
-  maxBgmVolume: 0.104
+  bgmVolumePercent: 50
+  maxBgmVolume: 0.5
+  sfxVolumePercent: 50
   isPlayingBgm: 1
   soundEffectList:
   - tag: 
