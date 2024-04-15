@@ -70,7 +70,7 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] int _tutorialId;
 
-    public string putDownItemSoundTag = "putDownItem";
+    public string putDownItemSoundTag = "PutDownItem";
     public string PurchaseSoundTag = "Purchase";
 
     private void Awake()
@@ -416,7 +416,8 @@ public class InventoryController : MonoBehaviour
                     {
                         storeGrid.currentStoreItem[i] = null;
                         // 아이템 구매 시 플레이어 골드 차감하기
-                        player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price < 0 ? 0 : player.Data.Gold - selectedItem.itemSO.Price;
+                        int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
+                        player.Data.Gold = player.Data.Gold - (selectedItem.itemSO.Price * 1.1f) < 0 ? 0 : (int)(player.Data.Gold - (selectedItem.itemSO.Price + 1.1f * currentStage));
                         SetPlayerGoldText();
                     }
                 }
