@@ -102,17 +102,15 @@ public class GameManager : SingletoneBase<GameManager>
 
         _player.playerReset();
 
-        gameState = GameState.Lobby;
-
-        LoadScene(SceneName.Lobby);
-
         killenemys = 0;
         totalGold = 0;
+
+        gameState = GameState.Lobby;
+        LoadScene(SceneName.Lobby);
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("asd");
         UIManager.Instance.FadeIn(0.5f);
     }
 

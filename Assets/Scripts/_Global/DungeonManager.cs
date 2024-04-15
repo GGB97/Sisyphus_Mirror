@@ -81,6 +81,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
                 currentTime -= Time.deltaTime;//시간 빼기
                 currentTime = Mathf.Clamp(currentTime, 0.00f, timeLimit);
             }
+            else if (currentTime <= 0 && EnemySpawner.Instance.arriveBoss == true)
+            {
+                // 끝
+                GameManager.Instance.Gameover();
+            }
             else
             {
                 //모든 몬스터 죽기
@@ -128,7 +133,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         OnStageEnd?.Invoke(currnetstage);
         QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
 
-        Invoke(nameof(InvokeInventory), 1f);
+        Invoke(nameof(InvokeInventory), 2f);
         //Invoke("OpenInventory", 1f);//인벤토리 열기
     }
 

@@ -21,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
 
     public System.Action onEnemiesDeSpawn;
 
+    public bool arriveBoss;
+
     private struct size
     {
         public float radius;
@@ -39,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Instance = this;
 
-        stageModifier = new();
+        stageModifier = ScriptableObject.CreateInstance<WaveSO>();
 
         EnemyPooler.Instance.SetPool(waveData);
 
@@ -61,6 +63,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Init()
     {
+        arriveBoss = false;
+
         stageModifier.ModifierInit();
 
         maxEnemyCnt = waveData.maxEnemyCnt + stageModifier.maxEnemyCnt;
@@ -99,8 +103,11 @@ public class EnemySpawner : MonoBehaviour
         yield return delay;
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
-        if (DungeonManager.Instance.currnetstage % 1 == 0)
+        if (DungeonManager.Instance.currnetstage % 5 == 0)
+        {
+            arriveBoss = true;
             SpawnEnemy(waveData.boss);
+        }
         // --
 
         while (DungeonManager.Instance.gameState == DungeonState.Playing)

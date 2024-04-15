@@ -70,8 +70,8 @@ public class MeleeWeapon : MonoBehaviour
             // 무기 방향 회전
             Vector3 dir = transform.position - targetPos;
             dir.y = 0;
-            Quaternion rot = Quaternion.LookRotation(dir.normalized);
-            transform.rotation = rot;
+            //Quaternion rot = Quaternion.LookRotation(dir.normalized);
+            //transform.rotation = rot;
 
             dir = targetPos - transform.position;
             dir.y = 0;

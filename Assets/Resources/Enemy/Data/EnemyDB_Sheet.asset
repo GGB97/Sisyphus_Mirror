@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - health: 0
-    maxHealth: 20
+    maxHealth: 10
     attackRange: 1.6
     physicalAtk: 2
     magicAtk: 0
@@ -27,6 +27,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Slime_Normal
     type: 0
@@ -35,7 +36,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
     maxHealth: 50
     attackRange: 1.6
@@ -50,6 +51,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30010001
     prefabPath: 
     type: 0
@@ -58,7 +60,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 0
   - health: 0
     maxHealth: 700
     attackRange: 1.6
@@ -73,6 +75,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30020001
     prefabPath: 
     type: 0
@@ -81,9 +84,9 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 0
   - health: 0
-    maxHealth: 20
+    maxHealth: 10
     attackRange: 1.7
     physicalAtk: 2
     magicAtk: 0
@@ -96,6 +99,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30100000
     prefabPath: Enemy/Prefabs/Normal/Enemy_TurtleShell_Normal
     type: 1
@@ -104,7 +108,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
     maxHealth: 50
     attackRange: 1.7
@@ -119,6 +123,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30110001
     prefabPath: 
     type: 1
@@ -127,7 +132,7 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 0
   - health: 0
     maxHealth: 700
     attackRange: 1.7
@@ -142,6 +147,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30120001
     prefabPath: 
     type: 1
@@ -150,9 +156,9 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 0
   - health: 0
-    maxHealth: 20
+    maxHealth: 10
     attackRange: 1.6
     physicalAtk: 2
     magicAtk: 0
@@ -165,6 +171,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30200000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Spider_Normal
     type: 2
@@ -173,9 +180,9 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
-    maxHealth: 30
+    maxHealth: 14
     attackRange: 2.3
     physicalAtk: 3
     magicAtk: 0
@@ -188,6 +195,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30300000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Skeleton_Normal
     type: 3
@@ -196,7 +204,7 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 3
   - health: 0
     maxHealth: 100
     attackRange: 4
@@ -211,6 +219,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30310001
     prefabPath: Enemy/Prefabs/Elite/Enemy_Skeleton_Elite
     type: 3
@@ -219,9 +228,9 @@ MonoBehaviour:
     size: 1
     rotationSpeed: 4
     attackAngle: 20
-    gold: 5
+    gold: 10
   - health: 0
-    maxHealth: 50
+    maxHealth: 20
     attackRange: 3
     physicalAtk: 4
     magicAtk: 0
@@ -234,6 +243,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30400001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Orc_Normal
     type: 4
@@ -244,7 +254,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 5
   - health: 0
-    maxHealth: 700
+    maxHealth: 1000
     attackRange: 6
     physicalAtk: 12
     magicAtk: 0
@@ -257,6 +267,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30420001
     prefabPath: Enemy/Prefabs/Boss/Enemy_Orc_Boss
     type: 4
@@ -267,7 +278,7 @@ MonoBehaviour:
     attackAngle: 20
     gold: 100
   - health: 0
-    maxHealth: 20
+    maxHealth: 14
     attackRange: 2
     physicalAtk: 2
     magicAtk: 0
@@ -280,6 +291,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30600000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Bat_Normal
     type: 6
@@ -288,9 +300,9 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
-    maxHealth: 50
+    maxHealth: 14
     attackRange: 3
     physicalAtk: 3
     magicAtk: 0
@@ -303,6 +315,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30700000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Dragon_Normal
     type: 7
@@ -311,9 +324,9 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
-    maxHealth: 50
+    maxHealth: 30
     attackRange: 2.5
     physicalAtk: 3
     magicAtk: 0
@@ -326,6 +339,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30700001
     prefabPath: Enemy/Prefabs/Normal/Enemy_Golem_Normal
     type: 5
@@ -336,7 +350,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 5
   - health: 0
-    maxHealth: 30
+    maxHealth: 14
     attackRange: 2
     physicalAtk: 3
     magicAtk: 0
@@ -349,6 +363,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30800000
     prefabPath: Enemy/Prefabs/Normal/Enemy_MonsterPlant_Normal
     type: 8
@@ -357,9 +372,9 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 30
-    gold: 5
+    gold: 2
   - health: 0
-    maxHealth: 30
+    maxHealth: 14
     attackRange: 10
     physicalAtk: 0
     magicAtk: 4
@@ -372,6 +387,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30900000
     prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage_Normal
     type: 9
@@ -380,9 +396,9 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 3
     attackAngle: 10
-    gold: 5
+    gold: 4
   - health: 0
-    maxHealth: 500
+    maxHealth: 1000
     attackRange: 15
     physicalAtk: 0
     magicAtk: 10
@@ -395,6 +411,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 30920003
     prefabPath: Enemy/Prefabs/Boss/Enemy_EvilMage_Boss
     type: 9
@@ -405,7 +422,7 @@ MonoBehaviour:
     attackAngle: 10
     gold: 100
   - health: 0
-    maxHealth: 100
+    maxHealth: 45
     attackRange: 20
     physicalAtk: 0
     magicAtk: 5
@@ -418,6 +435,7 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
     id: 31000000
     prefabPath: Enemy/Prefabs/Normal/Enemy_Worm_Normal
     type: 10
