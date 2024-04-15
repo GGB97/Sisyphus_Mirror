@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -41,9 +42,12 @@ public class RuneStoneUI : MonoBehaviour
 
     [Header("RuneStoneSlider")]
     [SerializeField] Slider _runeStoneSlider;
-    [SerializeField] TextMeshProUGUI _runStoneConfirmButtonText;
+    [SerializeField] TextMeshProUGUI _runeStoneConfirmButtonText;
     [SerializeField] bool _enabled = false;
+    [SerializeField] bool _isUpdate = false;
     public float sliderRate = 0.05f;
+
+    bool _isTried = false;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +74,7 @@ public class RuneStoneUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_enabled)
+        if (_enabled && _isUpdate)
         {
             _runeStoneSlider.value += (sliderRate * Time.deltaTime * 30);
 
@@ -97,8 +101,10 @@ public class RuneStoneUI : MonoBehaviour
 
             _runeStoneSlider.value = 0f;
             _enabled = false;
+            _isUpdate = false;
+            _isTried = false;
 
-            _runStoneConfirmButtonText.text = "Start";
+            _runeStoneConfirmButtonText.text = "Start";
 
             _remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
             //_playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
@@ -161,6 +167,16 @@ public class RuneStoneUI : MonoBehaviour
     // RuneStonUI창 닫기
     public void OnClickExitButton()
     {
+        _selectedStatus.Clear();
+
+        foreach (var button in _selectedStatusButtons)
+        {
+            button.onClick.RemoveListener(() => OnClickSelectedStatButton(_selectedStatusButtons.Count - 1));
+            Destroy(button.gameObject);
+        }
+        _selectedStatusButtons.Clear();
+        _selectedStatCounter = 0;
+
         _runeStoneUI.SetActive(false);
         InventoryStats.Instance.UpdateStatsPanel();
     }
@@ -180,14 +196,26 @@ public class RuneStoneUI : MonoBehaviour
     public void OnClickConfirmButton()
     {
         if (_selectedStatus.Count == 0) return;
+        if (_isTried)
+        {
+            OnClickExitButton();
+            return;
+        }
 
+        _isUpdate = false;
         _enabled = _enabled == true ? false : true;
         if (_enabled)
         {
-            _runStoneConfirmButtonText.text = "Stop";
+            _runeStoneConfirmButtonText.text = "Stop";
+            _isUpdate = true;
             return;
         }
-        else _runStoneConfirmButtonText.text = "Start";
+        else
+        {
+            _runeStoneConfirmButtonText.text = "Close";
+            _remainChance -= _selectedStatCounter;
+            _isTried = true;
+        }
 
         Debug.Log(_runeStoneSlider.value);
 
