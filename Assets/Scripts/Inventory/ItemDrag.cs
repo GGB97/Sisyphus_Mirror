@@ -14,6 +14,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     public bool isHovering;
     public bool isPressed = false;
     private Coroutine displayCoroutine;
+    private string putDownSoundTag = "PutDownItem";
 
     private void Awake()
     {
@@ -64,6 +65,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
             image.raycastTarget = true;
             Debug.Log("Click Up");
             inventoryController.LeftMouseButtonPut();
+            SoundManager.Instance.PlayAudioClip(putDownSoundTag);
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

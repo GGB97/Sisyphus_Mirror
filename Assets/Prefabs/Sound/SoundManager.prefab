@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -182,6 +182,12 @@ MonoBehaviour:
   - tag: Drink
     clip: {fileID: 8300000, guid: 736e77e280ced6143a90198ab55d903a, type: 3}
     volumePercent: 100
+  - tag: PutDownItem
+    clip: {fileID: 8300000, guid: 87dedf7e216c12f4fb25be04652aee31, type: 3}
+    volumePercent: 50
+  - tag: ClickButton
+    clip: {fileID: 8300000, guid: efcb67f6d0ee4e74f82bed37348bb84c, type: 3}
+    volumePercent: 50
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10
