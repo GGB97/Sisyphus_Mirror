@@ -14,7 +14,6 @@ public class StartUI : MonoBehaviour , ClickButton
         GameManager.Instance.LoadScene(SceneName.Lobby);
         btn.enabled = false;
         PlaySound();
-        SceneManager.LoadScene(1);
     }
 
     public void OptionButton()

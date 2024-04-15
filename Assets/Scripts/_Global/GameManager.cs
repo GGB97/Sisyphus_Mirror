@@ -111,6 +111,7 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("asd");
         UIManager.Instance.FadeIn(0.5f);
     }
 

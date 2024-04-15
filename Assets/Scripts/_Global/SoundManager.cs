@@ -77,7 +77,7 @@ public class SoundManager : MonoBehaviour
         for (int i = 0; i < maxQueueCount; i++)
         {
             CreateSoundObject();//객체를 만들고 큐에 넣기
-            Debug.Log("오디오 initilaize");
+            //Debug.Log("오디오 initilaize");
         }
     }
     public void InitializeDictionary()//드래그 할당한 브금을 내부 사전에 넣는 과정
@@ -94,7 +94,7 @@ public class SoundManager : MonoBehaviour
                 newSoundInfo.clip = soundInfo.clip;
 
                 audioDictionary[soundInfo.tag] = newSoundInfo; //사운드 정보로 사전에 tag값에 clip을 저장.                
-                Debug.Log($"{soundInfo.tag}");
+                //Debug.Log($"{soundInfo.tag}");
             }
         }
     }
