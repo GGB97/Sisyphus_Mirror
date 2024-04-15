@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class StartUI : MonoBehaviour
+public class StartUI : MonoBehaviour , ClickButton
 {
+    [SerializeField]
+    private string startSound = "ClickButton";
     [SerializeField] private GameObject option;
-    public void StartButton()
+    public void StartButton(Button btn)
     {
-        SceneManager.LoadScene(1);
+        GameManager.Instance.LoadScene(SceneName.Lobby);
+        btn.enabled = false;
+        PlaySound();
     }
 
     public void OptionButton()
@@ -21,4 +26,8 @@ public class StartUI : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlaySound()
+    {
+        SoundManager.Instance.PlayAudioClip(startSound);
+    }
 }
