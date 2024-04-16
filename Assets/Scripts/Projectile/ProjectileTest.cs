@@ -40,7 +40,7 @@ public class ProjectileTest : MonoBehaviour
         hitParticle.SetActive(false);
         _projectileCollider.enabled = true;
 
-        _target = 0; // target 초기화
+        _target = LayerData.Terrain; // target 초기화
         _projectileCollider.includeLayers = LayerData.Terrain; // 기본적으로 벽/바닥에는 부딪히고 사라져야 하니까
         _projectileCollider.excludeLayers = LayerData.Projectile; // 투사체간의 충돌로 지워지지 않게 하기 위해 초기값으로
 
