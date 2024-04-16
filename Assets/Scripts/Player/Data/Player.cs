@@ -174,6 +174,7 @@ public class Player : CharacterBehaviour
         Data.LV++;
         Data.maxEXP = Data._maxEXP + ((Data.LV - 1) * 10);
         currentStat.maxHealth = currentStat.maxHealth + 2;
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
     }
 
     public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.

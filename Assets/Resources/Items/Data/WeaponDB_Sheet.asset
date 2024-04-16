@@ -43,7 +43,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
-    _price: 28
+    _price: 48
     _weight: 10
     _grade: 1
     _physicalAtk: 35
@@ -65,7 +65,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
-    _price: 32
+    _price: 96
     _weight: 10
     _grade: 2
     _physicalAtk: 45
@@ -109,7 +109,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
-    _price: 48
+    _price: 56
     _weight: 15
     _grade: 1
     _physicalAtk: 40
@@ -131,7 +131,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
-    _price: 68
+    _price: 112
     _weight: 15
     _grade: 2
     _physicalAtk: 50
@@ -175,7 +175,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
-    _price: 55
+    _price: 70
     _weight: 10
     _grade: 1
     _physicalAtk: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1
-    _price: 85
+    _price: 140
     _weight: 10
     _grade: 2
     _physicalAtk: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
-    _price: 60
+    _price: 70
     _weight: 15
     _grade: 1
     _physicalAtk: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1
-    _price: 90
+    _price: 140
     _weight: 15
     _grade: 2
     _physicalAtk: 0
