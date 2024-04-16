@@ -331,13 +331,35 @@ public class Enemy : CharacterBehaviour
 
     void DropItem()
     {
+        DropFielItems(FieldItemType.Gold, dropGoldValue);
+
+        float rand = UnityEngine.Random.value;
+        Debug.Log(rand);
+        if(rand < 0.05f)
+        {
+            float rand2 = UnityEngine.Random.value;
+
+            if(rand2 > 0.5f)
+            {
+                DropFielItems(FieldItemType.Heart, 5);
+            }
+            else
+            {
+                DropFielItems(FieldItemType.Shield, 10);
+            }
+        }
+    }
+
+    void DropFielItems(FieldItemType type, int value)
+    {
         FieldItems go = _fieldItemsPooler.SpawnFromPool(
-            FieldItemType.Gold.ToString(),
+            type.ToString(),
             transform.position,
             Quaternion.identity).GetComponent<FieldItems>();
 
-        go.SetValue(dropGoldValue);
+        go.SetValue(value);
     }
+
 
     void DropRune()
     {

@@ -45,7 +45,7 @@ public class ItemManager : MonoBehaviour
         InventoryController.Instance.nextStage += RemoveAllItems;
 
         _dungeonManager = DungeonManager.Instance;
-        _dungeonManager.OnStageEnd += SetConsumableDuration;
+        _dungeonManager.OnStageClear += SetConsumableDuration;
 
         PlayerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Player = PlayerTransform.GetComponent<Player>();
@@ -349,6 +349,6 @@ public class ItemManager : MonoBehaviour
     private void OnDisable()
     {
         InventoryController.Instance.nextStage -= RemoveAllItems;
-        _dungeonManager.OnStageEnd -= SetConsumableDuration;
+        _dungeonManager.OnStageClear -= SetConsumableDuration;
     }
 }

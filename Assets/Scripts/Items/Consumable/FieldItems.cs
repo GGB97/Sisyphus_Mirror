@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum FieldItemType
 {
@@ -9,14 +10,38 @@ public enum FieldItemType
 
 public class FieldItems : MonoBehaviour
 {
+    DungeonManager _dm;
+
     [SerializeField] FieldItemType _type;
     int _value;
 
     public float moveSpeed = 20f;
-    private Transform player;
+
+    Player _player;
+    private Transform playerPos;
+
+    private void OnEnable()
+    {
+        if (_type != FieldItemType.Gold)
+        {
+            if (_dm == null)
+            {
+                _dm = DungeonManager.Instance;
+            }
+            _dm.OnStageClear += ActiveFalse;
+        }
+    }
 
     private void OnDisable()
     {
+        if (_type != FieldItemType.Gold)
+        {
+            if (_dm != null)
+            {
+                _dm.OnStageClear -= ActiveFalse;
+            }
+        }
+
         FieldItemsPooler.Instance.ReturnToPull(gameObject);
     }
 
@@ -28,10 +53,11 @@ public class FieldItems : MonoBehaviour
             {
                 case FieldItemType.Heart:
                     // TODO : 플레이어 체력 회복하기
-
+                    PlayerGetHeart();
                     break;
                 case FieldItemType.Shield:
                     // TODO : 플레이어 무적?
+                    PlayerGetShield();
                     break;
                 case FieldItemType.Gold:
                     PlayerGetGold();
@@ -42,7 +68,8 @@ public class FieldItems : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.Player.transform;
+        _player = GameManager.Instance.Player;
+        playerPos = _player.transform;
     }
 
     private void Update()
@@ -66,14 +93,31 @@ public class FieldItems : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    void PlayerGetHeart()
+    {
+        _player.HealthSystem.TakeHeal(_value, DamageType.Heal);
+
+        gameObject.SetActive(false);
+    }
+
+    void PlayerGetShield()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Magnet()
     {
         float magnetDistance = GameManager.Instance.Player.magnetDistance;
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(transform.position, playerPos.position);
 
         if (distance <= magnetDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, playerPos.position, moveSpeed * Time.deltaTime);
         }
+    }
+
+    void ActiveFalse(int dump)
+    {
+        gameObject.SetActive(false);
     }
 }

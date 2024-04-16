@@ -45,8 +45,6 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(float value, DamageType type)
     {
         stat.health -= value;
-        //if (gameObject.tag.Equals("Player"))
-        //    Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
 
         if (stat.health <= 0)
         {
@@ -65,7 +63,22 @@ public class HealthSystem : MonoBehaviour
         ShowDamage(value, type);
     }
 
-    void ShowDamage(float value, DamageType type) // Player는 지금 DamageCanvas가 없음
+    public void TakeHeal(float value, DamageType type)
+    {
+        stat.health += value;
+
+        if (stat.health > stat.maxHealth)
+        {
+            stat.health = stat.maxHealth;
+        }
+
+        if (value == 0)
+            return;
+
+        ShowDamage(value, type);
+    }
+
+    void ShowDamage(float value, DamageType type)
     {
         TMP_Text text = textQueue.Dequeue();
         if (text != null)
@@ -80,6 +93,9 @@ public class HealthSystem : MonoBehaviour
                 break;
             case DamageType.Magic:
                 text.color = new Color(175f / 255f, 50f / 255f, 207f / 255f);
+                break;
+            case DamageType.Heal:
+                text.color = Color.green;
                 break;
         }
 

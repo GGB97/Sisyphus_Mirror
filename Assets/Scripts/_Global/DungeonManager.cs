@@ -28,7 +28,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
 
     public event Action OnStageStart;
-    public event Action<int> OnStageEnd;
+    public event Action<int> OnStageClear;
 
     private void Awake()
     {
@@ -130,7 +130,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
         GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
 
-        OnStageEnd?.Invoke(currnetstage);
+        OnStageClear?.Invoke(currnetstage);
         QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
 
         Invoke(nameof(InvokeInventory), 2f);

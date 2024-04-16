@@ -71,7 +71,8 @@ public enum ProjectileID
 public enum DamageType
 {
     Physical,
-    Magic
+    Magic,
+    Heal
 }
 
 #region Task
