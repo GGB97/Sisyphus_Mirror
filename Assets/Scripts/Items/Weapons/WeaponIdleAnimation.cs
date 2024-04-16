@@ -12,7 +12,7 @@ public class WeaponIdleAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isFloating)
+        if (isFloating && Time.timeScale == 1)
         {
             floatTimer += Time.deltaTime;
 

@@ -32,9 +32,9 @@ public class HealthBar : MonoBehaviour
         _expBar.fillAmount = exp / maxExp;
     }
 
-    void UpdateShield(float value) 
+    void UpdateShield(float value)
     {
-        if(value <= 0)
+        if (value <= 0)
         {
             _shieldText.text = "";
         }

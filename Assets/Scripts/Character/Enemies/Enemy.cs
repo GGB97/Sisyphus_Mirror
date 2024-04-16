@@ -359,7 +359,7 @@ public class Enemy : CharacterBehaviour
             _itemPos = transform.position;
             _itemPos.y = 1f;
         }
-        else if(type == FieldItemType.Shield)
+        else if (type == FieldItemType.Shield)
         {
             rot = Quaternion.Euler(-30, 0, 0);
             _itemPos = transform.position;
