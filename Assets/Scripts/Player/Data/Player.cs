@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : CharacterBehaviour
@@ -26,6 +27,8 @@ public class Player : CharacterBehaviour
     public event Action<float, float> PlayerHealthChange;
     public float health;
     public event Action<float, float> PlayerExpChange;
+    public event Action<float> PlayerSheildChange;
+
 
     public int rune;
     public event Action PlayerRuneChange;
@@ -50,6 +53,8 @@ public class Player : CharacterBehaviour
         rune = PlayerPrefs.GetInt("Rune"); // 나중에 저장해야함.
 
         stateMachine = new PlayerStateMachine(this);
+
+        SetUpgradeModifier();
     }
 
     private void OnEnable()
@@ -64,6 +69,8 @@ public class Player : CharacterBehaviour
             currentStat.SyncHealth();
 
             _dungeonManager.OnStageStart += ResetMagnet;
+            _dungeonManager.OnStageStart += ResetShield;
+
             _dungeonManager.OnStageClear += StageClearGetitem;
         }
     }
@@ -75,6 +82,8 @@ public class Player : CharacterBehaviour
             if (_dungeonManager != null)
             {
                 _dungeonManager.OnStageStart -= ResetMagnet;
+                _dungeonManager.OnStageStart -= ResetShield;
+
                 _dungeonManager.OnStageClear -= StageClearGetitem;
             }
         }
@@ -83,9 +92,9 @@ public class Player : CharacterBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
-        //health = currentStat.maxHealth;
+
+        currentStat.InitStatus(Data,modifire);
         currentStat.Init();
-        Data.Init();
 
         isDie = false;
         isHit = false;
@@ -107,12 +116,14 @@ public class Player : CharacterBehaviour
 
     public void ChangeDieState()
     {
+        InvokeShieldChange();
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.dieState);
     }
 
     void ChangeHitState()
     {
+        InvokeShieldChange();
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.hitState);
     }
@@ -133,6 +144,16 @@ public class Player : CharacterBehaviour
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
+    }
+
+    public void InvokeShieldChange()
+    {
+        int maxShield = Mathf.RoundToInt(currentStat.maxHealth * 0.2f);
+        if (currentStat.shield > maxShield)
+        {
+            currentStat.shield = maxShield;
+        }
+        PlayerSheildChange?.Invoke(currentStat.shield);
     }
 
     public void GetEXP(int exp)
@@ -167,8 +188,6 @@ public class Player : CharacterBehaviour
     public void playerReset()
     {
         Data.Init();
-
-        SetUpgradeModifier();
     }
 
     void StageClearGetitem(int dump)
@@ -179,6 +198,11 @@ public class Player : CharacterBehaviour
     void ResetMagnet()
     {
         magnetDistance = 3;
+    }
+    void ResetShield()
+    {
+        currentStat.shield = 0;
+        InvokeShieldChange();
     }
 
     public void HealthChange()

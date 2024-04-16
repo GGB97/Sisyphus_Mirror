@@ -115,7 +115,7 @@ public class ItemGrid : MonoBehaviour
     }
     private void PanelInit(int width, int height)//바닥 공간 마련
     {
-        if(panelSlots == null) panelSlots = new PanelSlot[width, height];
+        if (panelSlots == null) panelSlots = new PanelSlot[width, height];
 
         if (inventoryPanel != null) //판넬이 있을 때
         {

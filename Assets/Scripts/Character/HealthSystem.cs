@@ -34,7 +34,7 @@ public class HealthSystem : MonoBehaviour
         stat.shield -= damage;
         if (stat.shield < 0)
         {
-            stat.health = stat.shield;
+            stat.health -= Mathf.Abs(stat.shield);
             stat.shield = 0;
         }
 

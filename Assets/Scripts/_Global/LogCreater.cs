@@ -5,7 +5,7 @@ using UnityEngine;
 public class LogCreator : SingletoneBase<LogCreator>
 {
     DateTime startTime;
-    DateTime endTime;
+    DateTime currentTime;
 
     StreamWriter writer;
 
@@ -33,15 +33,20 @@ public class LogCreator : SingletoneBase<LogCreator>
 
     void OnDisable()
     {
-        endTime = DateTime.Now;
-        TimeSpan playTime = startTime - endTime;
-        int min = Mathf.Abs(playTime.Minutes);
-        int sec = Mathf.Abs(playTime.Seconds);
-        Debug.Log($"기록 종료 / 플레이 시간 : {min}분 {sec}초");
+        Debug.Log($"기록 종료 / 플레이 시간 {PlayTime()}\n");
 
         Application.logMessageReceived -= saveLog;
 
         writer.Flush();
         writer.Close();
+    }
+
+    public string PlayTime()
+    {
+        currentTime = DateTime.Now;
+        TimeSpan playTime = startTime - currentTime;
+        int min = Mathf.Abs(playTime.Minutes);
+        int sec = Mathf.Abs(playTime.Seconds);
+        return $"[{min}분 {sec}초]";
     }
 }

@@ -87,7 +87,7 @@ public class FieldItems : MonoBehaviour
     {
         //SetValue();
         //Debug.Log($"Player Get '{_value}' Gold");
-        GameManager.Instance.Player.ChangeGold(_value);
+        _player.ChangeGold(_value);
         GameManager.Instance.totalGold += _value;
 
         gameObject.SetActive(false);
@@ -96,6 +96,7 @@ public class FieldItems : MonoBehaviour
     void PlayerGetHeart()
     {
         _player.HealthSystem.TakeHeal(_value, DamageType.Heal);
+        _player.HealthChange();
 
         gameObject.SetActive(false);
     }
@@ -103,6 +104,7 @@ public class FieldItems : MonoBehaviour
     void PlayerGetShield()
     {
         _player.currentStat.shield += _value;
+        _player.InvokeShieldChange();
 
         gameObject.SetActive(false);
     }

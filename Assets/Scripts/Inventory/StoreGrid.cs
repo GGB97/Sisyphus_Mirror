@@ -97,7 +97,7 @@ public class StoreGrid : ItemGrid
 
     public void ResetPanelStates()
     {
-        if(panelSlots == null || panelSlots.Length == 0) panelSlots = new PanelSlot[gridWidth, gridHeight];
+        if (panelSlots == null || panelSlots.Length == 0) panelSlots = new PanelSlot[gridWidth, gridHeight];
 
         for (int x = 0; x < gridWidth; x++)
         {

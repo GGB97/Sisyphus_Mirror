@@ -333,12 +333,11 @@ public class Enemy : CharacterBehaviour
         DropFielItems(FieldItemType.Gold, dropGoldValue);
 
         float rand = UnityEngine.Random.value;
-        Debug.Log(rand);
-        if(rand < EnemyStageModifier.fieldItemDropPer)
+        if (rand < EnemyStageModifier.fieldItemDropPer)
         {
             float rand2 = UnityEngine.Random.value;
 
-            if(rand2 > 0.5f)
+            if (rand2 > 0.5f)
             {
                 DropFielItems(FieldItemType.Heart, 5);
             }
