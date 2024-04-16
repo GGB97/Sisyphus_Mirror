@@ -609,15 +609,15 @@ public class InventoryController : MonoBehaviour
                 break;
             default:
                 selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
-                random = UnityEngine.Random.Range(0, 10);
+                random = UnityEngine.Random.Range(0, 15);
                 selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
 
-                if (random < 6)
+                if (random < 10)
                 {
                     if (selectedItemId % 10 == 2) selectedItemId -= 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 2;
                 }
-                else if (random >= 6 && random < 9)
+                else if (random >= 10 && random < 14)
                 {
                     if (selectedItemId % 10 == 1) selectedItemId += 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 1;
