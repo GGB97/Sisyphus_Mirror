@@ -30,6 +30,7 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(float value, DamageType type)
     {
         int damage = Mathf.RoundToInt(value);
+        stat = character.currentStat;
 
         stat.shield -= damage;
         if (stat.shield < 0)

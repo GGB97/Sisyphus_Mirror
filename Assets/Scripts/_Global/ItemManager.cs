@@ -26,7 +26,7 @@ public class ItemManager : MonoBehaviour
 
     private WeaponData _tempWeapon;
     private EquipmentsData _tempEquipments;
-    //private ConsumableData _tempConsumable;
+    private ConsumableData _tempConsumable;
     private List<ConsumableData> _usedConsumable = new List<ConsumableData>();
     private List<int> _consumableStageDuration = new List<int>();
 
@@ -73,7 +73,9 @@ public class ItemManager : MonoBehaviour
                 ModifyPlayerStat(_tempWeapon, true);
                 break;
             case ItemType.Consumable:
-                _ownConsumable.Add(DataBase.Consumable.Get(id));
+                _tempConsumable = DataBase.Consumable.Get(id);
+                _ownConsumable.Add(_tempConsumable);
+                ConsumableToInventory(_tempConsumable, true);
                 break;
             case ItemType.Equipments:
                 _tempEquipments = DataBase.Equipments.Get(id);
@@ -94,7 +96,9 @@ public class ItemManager : MonoBehaviour
                 ModifyPlayerStat(_tempWeapon, false);
                 break;
             case ItemType.Consumable:
-                _ownConsumable.Remove(_ownConsumable.Find(x => x.Id == id));
+                _tempConsumable = _ownConsumable.Find(x => x.Id == id);
+                _ownConsumable.Remove(_tempConsumable);
+                ConsumableToInventory(_tempConsumable, false);
                 break;
             case ItemType.Equipments:
                 _tempEquipments = _ownEquipments.Find(x => x.Id == id);
@@ -112,8 +116,7 @@ public class ItemManager : MonoBehaviour
         //EquipmentsInit();
         //_modifier.maxHealth -= itemWeight / 10;
 
-        Debug.Log("ItemInit");
-        Player.HealthChange(Mathf.FloorToInt(itemWeight / 10));
+        //Player.HealthChange(Mathf.FloorToInt(itemWeight / 10));
 
         //_playerStats.InitStatus(_playerStats, _modifier);
     }
@@ -134,6 +137,7 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal += weapon.LifeSteal;
             _modifier.weight += weapon.Weight;
+            _modifier.maxHealth -= Mathf.Round(weapon.Weight / 10);
 
             itemWeight += weapon.Weight;
         }
@@ -149,6 +153,7 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal -= weapon.LifeSteal;
             _modifier.weight -= weapon.Weight;
+            _modifier.maxHealth += Mathf.Round(weapon.Weight / 10);
 
             itemWeight -= weapon.Weight;
         }
@@ -177,6 +182,7 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal += equipment.LifeSteal;
             _modifier.weight += equipment.Weight;
+            _modifier.maxHealth -= Mathf.Round(equipment.Weight / 10);
 
             itemWeight += equipment.Weight;
         }
@@ -197,6 +203,7 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal -= equipment.LifeSteal;
             _modifier.weight -= equipment.Weight;
+            _modifier.maxHealth += Mathf.Round(equipment.Weight / 10);
 
             itemWeight -= equipment.Weight;
         }
@@ -218,9 +225,6 @@ public class ItemManager : MonoBehaviour
 
             _modifier.attackSpeed += consumable.AttackSpeed;
             _modifier.moveSpeed += consumable.MoveSpeed;
-            _modifier.weight += consumable.Weight;
-
-            itemWeight += consumable.Weight;
         }
         else
         {
@@ -232,10 +236,28 @@ public class ItemManager : MonoBehaviour
 
             _modifier.attackSpeed -= consumable.AttackSpeed;
             _modifier.moveSpeed -= consumable.MoveSpeed;
+        }
+
+        _playerStats.InitStatus(Player.currentStat, _modifier);
+    }
+
+    public void ConsumableToInventory(ConsumableData consumable, bool isAdded)
+    {
+        ResetModifierStat();
+
+        if (isAdded)
+        {
+            _modifier.weight += consumable.Weight;
+
+            itemWeight += consumable.Weight;
+            _modifier.maxHealth -= Mathf.Round(consumable.Weight / 10);
+        }
+        else
+        {
             _modifier.weight -= consumable.Weight;
 
             itemWeight -= consumable.Weight;
-
+            _modifier.maxHealth += Mathf.Round(consumable.Weight / 10);
         }
 
         _playerStats.InitStatus(Player.currentStat, _modifier);
@@ -291,31 +313,31 @@ public class ItemManager : MonoBehaviour
         itemWeight = 0;
     }
 
-    private void ResetPlayerStat()
-    {
-        _modifier.maxHealth = -_modifier.maxHealth;
-        _modifier.attackRange = -_modifier.attackRange;
-        _modifier.physicalAtk = -_modifier.physicalAtk;
-        _modifier.magicAtk = -_modifier.magicAtk;
+    //private void ResetPlayerStat()
+    //{
+    //    _modifier.maxHealth = -_modifier.maxHealth;
+    //    _modifier.attackRange = -_modifier.attackRange;
+    //    _modifier.physicalAtk = -_modifier.physicalAtk;
+    //    _modifier.magicAtk = -_modifier.magicAtk;
 
-        _modifier.def = -_modifier.def;
+    //    _modifier.def = -_modifier.def;
 
-        _modifier.attackSpeed = -_modifier.attackSpeed;
-        _modifier.moveSpeed = -_modifier.moveSpeed;
+    //    _modifier.attackSpeed = -_modifier.attackSpeed;
+    //    _modifier.moveSpeed = -_modifier.moveSpeed;
 
-        _modifier.knockbackPower = -_modifier.knockbackPower;
-        _modifier.dashRange = -_modifier.dashRange;
-        _modifier.dashCoolTime = -_modifier.dashCoolTime;
+    //    _modifier.knockbackPower = -_modifier.knockbackPower;
+    //    _modifier.dashRange = -_modifier.dashRange;
+    //    _modifier.dashCoolTime = -_modifier.dashCoolTime;
 
-        _modifier.critRate = -_modifier.critRate;
-        _modifier.critDamage = -_modifier.critDamage;
+    //    _modifier.critRate = -_modifier.critRate;
+    //    _modifier.critDamage = -_modifier.critDamage;
 
-        _modifier.lifeSteal = -_modifier.lifeSteal;
-        _modifier.weight = -_modifier.weight;
+    //    _modifier.lifeSteal = -_modifier.lifeSteal;
+    //    _modifier.weight = -_modifier.weight;
 
 
-        _playerStats.InitStatus(_playerStats, _modifier);
-    }
+    //    _playerStats.InitStatus(_playerStats, _modifier);
+    //}
 
     // 사용 아이템 사용 시 호출해주세요!
     public void UseConsumable(ConsumableData consumable)
