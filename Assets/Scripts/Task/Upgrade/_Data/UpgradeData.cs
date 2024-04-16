@@ -97,12 +97,12 @@ public class UpgradeData : GameTask
         return CostModifiers[index].Modifier.ToString();
     }
 
-    public string NextCount()
+    public int NextCount()
     {
         Check();
         int index = Index(1);
 
-        return CostModifiers[index].Cost.ToString();
+        return CostModifiers[index].Cost;
     }
 
     int Index(int modi = 0)

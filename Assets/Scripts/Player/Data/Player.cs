@@ -49,6 +49,7 @@ public class Player : CharacterBehaviour
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
 
+        PlayerPrefs.SetInt("Rune", 113); // 나중에 저장해야함.
         rune = PlayerPrefs.GetInt("Rune"); // 나중에 저장해야함.
 
         stateMachine = new PlayerStateMachine(this);

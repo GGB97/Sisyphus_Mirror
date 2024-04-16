@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandler
 {
+    UIManager _ui;
+
     [SerializeField] protected GameObject gbj_ContentRoot = null;
 
     [SerializeField] protected UIPageControl pageControl;
@@ -107,6 +109,11 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
         }
     }
 
+    private void Awake()
+    {
+        _ui = UIManager.Instance;
+    }
+
     private void Start()
     {
         UpdateView();
@@ -117,6 +124,16 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
                 pageControl.SetNumberOfPages(gbj_ContentRoot.transform.childCount);
             pageControl.SetCurrentPage(0);     // 페이지 컨트롤 표시를 초기화
         }
+    }
+
+    private void OnEnable()
+    {
+        _ui.AddActiveUI(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        _ui.RemoveActiveUI(gameObject);
     }
 
     private void Update()
