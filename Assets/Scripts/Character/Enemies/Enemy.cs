@@ -49,6 +49,8 @@ public class Enemy : CharacterBehaviour
     [Header("Sound Tag")]
     public string hitSound = "hit20";
 
+    public Action<float, float> changeHealth;
+
     private void Awake()
     {
         Info = DataBase.EnemyStats.Get(id);
@@ -90,6 +92,8 @@ public class Enemy : CharacterBehaviour
 
         _spawner.onEnemiesDeSpawn += DeSpawn;
         _gameManager.onGameOverEvent += ChangeVictory;
+
+        InvokeChangeHealth();
     }
 
     private void OnDisable()
@@ -217,6 +221,11 @@ public class Enemy : CharacterBehaviour
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
+    }
+
+    public void InvokeChangeHealth()
+    {
+        changeHealth?.Invoke(currentStat.health, currentStat.maxHealth);
     }
 
     public void OnChildTriggerEnter(Collider other, SkillType type)

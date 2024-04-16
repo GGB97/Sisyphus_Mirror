@@ -45,7 +45,7 @@ public class Status
     public float critDamage;
 
     public float lifeSteal;
-    public float weight;
+    public float weight; //
 
     public int _lv; //
     public float _exp; //

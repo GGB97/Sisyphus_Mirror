@@ -50,6 +50,7 @@ public class EnemyBaseState : IState
 
         if (enemy.isHit)
         {
+            enemy.InvokeChangeHealth();
             if (enemy.Info.rank != EnemyRank.Boss && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
             {
                 enemy.InvokeEvent(enemy.OnHitEvent);
