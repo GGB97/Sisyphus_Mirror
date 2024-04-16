@@ -102,6 +102,8 @@ public class FieldItems : MonoBehaviour
 
     void PlayerGetShield()
     {
+        _player.currentStat.shield += _value;
+
         gameObject.SetActive(false);
     }
 

@@ -334,7 +334,7 @@ public class Enemy : CharacterBehaviour
 
         float rand = UnityEngine.Random.value;
         Debug.Log(rand);
-        if(rand < 0.05f)
+        if(rand < EnemyStageModifier.fieldItemDropPer)
         {
             float rand2 = UnityEngine.Random.value;
 

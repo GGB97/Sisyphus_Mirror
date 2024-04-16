@@ -26,6 +26,8 @@ public class Status
     public float health;
     public float maxHealth;
 
+    public float shield;
+
     public float attackRange;
     public float physicalAtk;
     public float magicAtk;

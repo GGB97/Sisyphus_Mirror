@@ -27,24 +27,16 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(float value)
-    {
-        stat.health = value; // 방어력 포함해서 계산해야할듯?
-
-        if (stat.health <= 0)
-        {
-            stat.health = 0;
-            character.isDie = true;
-        }
-        else if (stat.health > stat.maxHealth)
-        {
-            stat.health -= stat.maxHealth;
-        }
-    }
-
     public void TakeDamage(float value, DamageType type)
     {
-        stat.health -= value;
+        int damage = Mathf.RoundToInt(value);
+
+        stat.shield -= damage;
+        if (stat.shield < 0)
+        {
+            stat.health = stat.shield;
+            stat.shield = 0;
+        }
 
         if (stat.health <= 0)
         {
@@ -57,10 +49,10 @@ public class HealthSystem : MonoBehaviour
             character.isHit = true;
         }
 
-        if (value == 0)
+        if (damage == 0)
             return;
 
-        ShowDamage(value, type);
+        ShowDamage(damage, type);
     }
 
     public void TakeHeal(float value, DamageType type)
