@@ -155,6 +155,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         inventoryUI.SetActive(true);
         InventoryController.Instance.AddBlock();
+        InventoryController.Instance.NextStageIsActive(true);
         InventoryStats.Instance.UpdateStatsPanel();
         //InventoryController.Instance.OnStoreReroll();
     }

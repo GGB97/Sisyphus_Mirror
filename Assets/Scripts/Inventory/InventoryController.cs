@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class InventoryController : MonoBehaviour
 
     public Vector2 startPosition;//처음 위치
     public float startRotation;//처음 회전상태
+
+    [SerializeField] Button nextStageButton;
 
     public Player player;
     public int prevLevel = 1;//플레이어의 이전 레벨
@@ -565,6 +568,10 @@ public class InventoryController : MonoBehaviour
             return 0;
         }
     }
+    public void NextStageIsActive(bool isActive)
+    {
+        nextStageButton.enabled = isActive;
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
     private void CreateRandomStoreItem() //아이템 랜덤 생성
@@ -705,6 +712,8 @@ public class InventoryController : MonoBehaviour
     {
         if (isAdding == true)
             return;
+
+        NextStageIsActive(false);
 
         UIManager.Instance.FadeOut(0.5f, () =>
         {
