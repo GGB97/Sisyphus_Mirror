@@ -35,7 +35,13 @@ public class StoreGrid : ItemGrid
     {
         currentStoreItem.Add(item);
         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
-        int price = (int)(item.itemSO.Price + 1.1f * currentStage);
+        int price = 0;
+
+        if (currentStage == 1)
+        {
+            price = item.itemSO.Price;
+        }
+        else price = Mathf.FloorToInt(item.itemSO.Price + 1.1f * currentStage);
 
         if (panelSlots[1, 1].CompareState(PanelSlotState.Empty))
         {
@@ -93,7 +99,6 @@ public class StoreGrid : ItemGrid
     {
         if(panelSlots == null || panelSlots.Length == 0) panelSlots = new PanelSlot[gridWidth, gridHeight];
 
-        Debug.Log($"PanelSolts {(panelSlots == null ? true : false)}");
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)

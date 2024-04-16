@@ -28,7 +28,8 @@ public class FieldItems : MonoBehaviour
             {
                 case FieldItemType.Heart:
                     // TODO : 플레이어 체력 회복하기
-
+                    other.GetComponent<Player>().HealthChange(5);
+                    gameObject.SetActive(false);
                     break;
                 case FieldItemType.Shield:
                     // TODO : 플레이어 무적?
