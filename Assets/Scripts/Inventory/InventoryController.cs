@@ -417,6 +417,14 @@ public class InventoryController : MonoBehaviour
                         if (currentStage == 1) player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
                         else player.Data.Gold = player.Data.Gold - (selectedItem.itemSO.Price * 1.1f) < 0 ? 0 : Mathf.FloorToInt(player.Data.Gold - (selectedItem.itemSO.Price + 1.1f * currentStage));
                         SetPlayerGoldText();
+
+                        SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
+                        Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
+
+                        SelectedItemGrid = playerInventoryGrid;
+                        storeGrid.PannelImageClear(tileGridStartPosition,selectedItem);// 판넬 투명하게 하기
+
+                        itemCost[i].transform.parent.gameObject.SetActive(false);
                     }
                 }
             }

@@ -46,30 +46,40 @@ public class StoreGrid : ItemGrid
         if (panelSlots[1, 1].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 1, 1);
+            if(InventoryController.Instance.itemCost[0].transform.parent.gameObject.activeSelf == false)
+                InventoryController.Instance.itemCost[0].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[0].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[0].text = price.ToString() + "<color=yellow> G</color>";
         }
         else if (panelSlots[1, 7].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 1, 7);
+            if (InventoryController.Instance.itemCost[1].transform.parent.gameObject.activeSelf == false)
+                InventoryController.Instance.itemCost[1].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[1].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[1].text = price.ToString() + "<color=yellow> G</color>";
         }
         else if (panelSlots[4, 4].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 4, 4);
+            if (InventoryController.Instance.itemCost[2].transform.parent.gameObject.activeSelf == false)
+                InventoryController.Instance.itemCost[2].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[2].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[2].text = price.ToString() + "<color=yellow> G</color>";
         }
         else if (panelSlots[7, 1].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 7, 1);
+            if (InventoryController.Instance.itemCost[3].transform.parent.gameObject.activeSelf == false)
+                InventoryController.Instance.itemCost[3].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[3].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[3].text = price.ToString() + "<color=yellow> G</color>";
         }
         else
         {
             PlaceItem(item, 7, 7);
+            if (InventoryController.Instance.itemCost[4].transform.parent.gameObject.activeSelf == false)
+                InventoryController.Instance.itemCost[4].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[4].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[4].text = price.ToString() + "<color=yellow> G</color>";
         }
@@ -123,5 +133,15 @@ public class StoreGrid : ItemGrid
         float posX = TileSizeWidth * item.itemSO.IconWidth / 4;
         float posY = TileSizeHeight * item.itemSO.IconHeight / 2;
         return newtransform.position + new Vector3(posX - (TileSizeWidth * item.itemSO.IconWidth / 4), posY - TileSizeHeight * item.itemSO.IconHeight - TileSizeHeight, 0);
+    }
+    public void PannelImageClear(Vector2Int itemPos, InventoryItem currentItem)
+    {
+        for (int x = 0; x < currentItem.WIDTH; x++)
+        {
+            for (int y = 0; y < currentItem.HEIGHT; y++)
+            {
+                panelSlots[itemPos.x + x, itemPos.y + y].InvinsiblePannelImage();
+            }
+        }
     }
 }

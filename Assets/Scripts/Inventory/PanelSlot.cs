@@ -70,4 +70,12 @@ public class PanelSlot : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+    public void InvinsiblePannelImage()
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+    }
+    public void visiblePannelImage()
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+    }
 }
