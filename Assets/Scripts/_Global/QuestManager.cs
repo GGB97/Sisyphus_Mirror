@@ -1,6 +1,7 @@
 using Constants;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class QuestManager : SingletoneBase<QuestManager>
@@ -14,10 +15,10 @@ public class QuestManager : SingletoneBase<QuestManager>
     public event Action<int> OnQuestClearCallback;
 
     private int[] startQuestId = new int[] { 100, 200 };//시작할 때 등록할 퀘스트들
-
-    private void Awake()
+    
+    private void OnEnable()
     {
-        StartQuestSetting();
+        FieldInit();
     }
     public void SubsrcipbeQuest(int questId)//등록
     {
@@ -135,4 +136,39 @@ public class QuestManager : SingletoneBase<QuestManager>
         else
             return true;
     }
+    public void LoadData(QuestSaveData questSaveData)
+    {
+        foreach (var quest in questSaveData.ongoingQuests)
+        {
+            QuestStart(quest.Key, quest.Value);
+        }
+        _completeQuests = questSaveData.completeQuests;
+    }
+    public QuestSaveData SaveData()
+    {
+        QuestSaveData questSaveData = new QuestSaveData();
+        foreach (var quest in _ongoingQuests)
+        {
+            var questData = DataBase.Quest.Get(quest.Key);
+            if (questData.IsStorable == true)
+            {
+                questSaveData.ongoingQuests[quest.Key] = quest.Value.QuestProgress;//id와 진행상황 저장
+            }
+            else
+            {
+                questSaveData.ongoingQuests[quest.Key] = 0;
+            }
+        }
+        questSaveData.completeQuests = _completeQuests;
+
+        return questSaveData;
+    }
+    public void FieldInit()
+    {
+        Debug.Log("퀘스트 필드 초기화");
+        _ongoingQuests.Clear();
+        _completeQuests.Clear();
+        _subscribeQuests.Clear();
+    }
+
 }

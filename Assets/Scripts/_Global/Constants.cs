@@ -1,5 +1,8 @@
+using System;
+
 namespace Constants
 {
+    [Serializable]
     public enum QuestType
     {
         KillMonster,
@@ -7,6 +10,7 @@ namespace Constants
         StageClear
     }
 
+    [Serializable]
     public enum QuestState
     {
         Wait,

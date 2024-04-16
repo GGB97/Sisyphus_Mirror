@@ -21,6 +21,7 @@ public class QuestData
     [SerializeField] private int _rewardCount_2;
     [SerializeField] private int _reward_3;
     [SerializeField] private int _rewardCount_3;
+    [SerializeField] private bool isStorable;
 
     public int Id { get => _id; }
     public string Name { get => _name; }
@@ -30,6 +31,7 @@ public class QuestData
     public int Count { get => _count; }
     public int Exp { get => _exp; }
     public int Gold { get => _gold; }
+    public bool IsStorable { get => isStorable; }
 
     private List<Reward> _rewardList;
     public List<Reward> RewardList
@@ -54,13 +56,14 @@ public class QuestData
             _rewardList.Add(new Reward(rewardId, rewardCount));
     }
 }
+[Serializable]
 public class Reward
 {
-    public int _reward { get; }
-    public int _rewardCount { get; }
+    public int reward { get; }
+    public int rewardCount { get; }
     public Reward(int rewardId, int rewardCount)
     {
-        _reward = rewardId;
-        _rewardCount = rewardCount;
+        reward = rewardId;
+        this.rewardCount = rewardCount;
     }
 }

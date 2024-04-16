@@ -19,6 +19,5 @@ public class TestQuest : MonoBehaviour
     public void Print()
     {
         QuestManager.Instance.PrintCurrentQuestList();
-        SoundManager.Instance.PlayAudioClip("gain");
     }
 }

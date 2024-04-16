@@ -2888,6 +2888,8 @@ MonoBehaviour:
   maxCount: 1
   currentCount: 0
   inventoryPanel: {fileID: 0}
+  gridSizeWidth: 10
+  gridSizeHeight: 10
   panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
     type: 3}
   currentStoreItem:
@@ -2976,7 +2978,6 @@ MonoBehaviour:
   _tempRerollCost: 0
   _rerollCostText: {fileID: 1356272887041250796}
   _tutorialId: 60002011
-  putDownItemSoundTag: putDownItem
   PurchaseSoundTag: Purchase
 --- !u!1 &4370808969954323720
 GameObject:
@@ -3866,6 +3867,8 @@ MonoBehaviour:
   maxCount: 1
   currentCount: 0
   inventoryPanel: {fileID: 0}
+  gridSizeWidth: 4
+  gridSizeHeight: 4
   panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
     type: 3}
 --- !u!1 &5446541105697384779
@@ -4628,6 +4631,8 @@ MonoBehaviour:
   maxCount: 1
   currentCount: 0
   inventoryPanel: {fileID: 0}
+  gridSizeWidth: 10
+  gridSizeHeight: 10
   panelSlotPrefab: {fileID: 6003253138450162162, guid: 1e9c2baac32a3464abfef13217f20610,
     type: 3}
 --- !u!1 &7060653573316151954
