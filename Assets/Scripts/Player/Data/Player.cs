@@ -53,6 +53,8 @@ public class Player : CharacterBehaviour
         rune = PlayerPrefs.GetInt("Rune"); // 나중에 저장해야함.
 
         stateMachine = new PlayerStateMachine(this);
+
+        SetUpgradeModifier();
     }
 
     private void OnEnable()
@@ -90,9 +92,9 @@ public class Player : CharacterBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
-        //health = currentStat.maxHealth;
+
+        currentStat.InitStatus(Data,modifire);
         currentStat.Init();
-        Data.Init();
 
         isDie = false;
         isHit = false;
@@ -186,8 +188,6 @@ public class Player : CharacterBehaviour
     public void playerReset()
     {
         Data.Init();
-
-        SetUpgradeModifier();
     }
 
     void StageClearGetitem(int dump)
