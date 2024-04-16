@@ -413,7 +413,8 @@ public class InventoryController : MonoBehaviour
                         storeGrid.currentStoreItem[i] = null;
                         // 아이템 구매 시 플레이어 골드 차감하기
                         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
-                        player.Data.Gold = player.Data.Gold - (selectedItem.itemSO.Price * 1.1f) < 0 ? 0 : (int)(player.Data.Gold - (selectedItem.itemSO.Price + 1.1f * currentStage));
+                        if (currentStage == 1) player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
+                        else player.Data.Gold = player.Data.Gold - (selectedItem.itemSO.Price * 1.1f) < 0 ? 0 : Mathf.FloorToInt(player.Data.Gold - (selectedItem.itemSO.Price + 1.1f * currentStage));
                         SetPlayerGoldText();
                     }
                 }
@@ -677,7 +678,7 @@ public class InventoryController : MonoBehaviour
         OnStoreReroll();
 
         player.Data.Gold -= _tempRerollCost;
-        _tempRerollCost = (int)Math.Round(_tempRerollCost * 1.4f);
+        _tempRerollCost = Mathf.FloorToInt(_tempRerollCost * 1.2f);
 
         SetPlayerGoldText();
         SetRerollButtonText();
@@ -711,7 +712,7 @@ public class InventoryController : MonoBehaviour
         {
             OnStoreReroll();
             nextStage();
-            _rerollCost = (int)Math.Round(_rerollCost * 1.4f);
+            _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
             _tempRerollCost = _rerollCost;
             SetRerollButtonText();
 
