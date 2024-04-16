@@ -231,6 +231,6 @@ public class MeleeWeapon : MonoBehaviour
         float random = UnityEngine.Random.Range(1, 101);
         if (_playerStatus.critRate > random) damage += (damage * _playerStatus.critDamage / 100);
 
-        return damage;
+        return Mathf.Ceil(damage);
     }
 }
