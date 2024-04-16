@@ -37,7 +37,7 @@ public class LogCreator : SingletoneBase<LogCreator>
         TimeSpan playTime = startTime - endTime;
         int min = Mathf.Abs(playTime.Minutes);
         int sec = Mathf.Abs(playTime.Seconds);
-        Debug.Log($"기록 종료 / 플레이 시간 : {min}분 {sec}초");
+        Debug.Log($"기록 종료 / 플레이 시간 : {min}분 {sec}초\n");
 
         Application.logMessageReceived -= saveLog;
 
