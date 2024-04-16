@@ -104,6 +104,16 @@ MonoBehaviour:
       \uC0C1\uC810\uC758 \uC544\uC774\uD15C\uC744 \uCD08\uAE30\uD654\uD560 \uC218
       \uC788\uC73C\uB098, <color=\"yellow\">\uACE8\uB4DC</color>\uC5D0 \uC720\uC758\uD574\uC8FC\uC138\uC694!"
     _imagePath: Tutorials/Image/Inventory/Store_1
+    _hasNextPage: 1
+    _nextPageId: 60002016
+  - _id: 60002016
+    _tutorialType: 1
+    _tutorialName: "\uC544\uC774\uD15C \uBB34\uAC8C"
+    _tutorialText: "\uC544\uC774\uD15C\uB4E4\uC740 \uACE0\uC720\uC758 <color=\"yellow\">\uBB34\uAC8C</color>\uB97C
+      \uAC00\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\n\uC778\uBCA4\uD1A0\uB9AC\uAC00
+      \uB108\uBB34 \uBB34\uAC70\uC6B0\uBA74 \uADF8\uC5D0 \uB530\uB978 <color=\"red\">\uCCB4\uB825
+      \uAC10\uC18C</color>\uAC00 \uC788\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4!"
+    _imagePath: Tutorials/Image/Inventory/ItemWeight
     _hasNextPage: 0
     _nextPageId: 0
   - _id: 60003011
