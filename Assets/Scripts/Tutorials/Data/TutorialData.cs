@@ -3,7 +3,8 @@ using UnityEngine;
 public enum TutorialType
 {
     RuneStone,
-    Inventory
+    Inventory,
+    DungeonStart
 }
 
 [System.Serializable]

@@ -18,6 +18,7 @@ public class GameManager : SingletoneBase<GameManager>
 
     public Action onGameOverEvent;
 
+    [SerializeField] int _tutorialId = 60003011;
 
     public Player Player
     {
@@ -112,6 +113,11 @@ public class GameManager : SingletoneBase<GameManager>
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UIManager.Instance.FadeIn(0.5f);
+
+        if (scene.buildIndex == 1 && PlayerPrefs.GetInt("dungeonStartTutorialFlag") == 0)
+        {
+            TutorialManager.Instance.PopupTutorial(TutorialType.DungeonStart, _tutorialId);
+        }
     }
 
     protected override void OnDestroy()

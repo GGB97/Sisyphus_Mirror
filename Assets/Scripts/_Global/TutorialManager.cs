@@ -7,6 +7,7 @@ public class TutorialManager : SingletoneBase<TutorialManager>
     [Header("Tutorial Flag")]
     public int runestoneTutorialFlag;
     public int inventoryTutorialFlag;   // 추후에 엑셀에 저장을 하던 해서 수정하기
+    public int dungeonStartTutorialFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +23,13 @@ public class TutorialManager : SingletoneBase<TutorialManager>
             inventoryTutorialFlag = PlayerPrefs.GetInt("inventoryTutorialFlag");
         }
         else inventoryTutorialFlag = 0;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (PlayerPrefs.HasKey("dungeonStartTutorialFlag"))
+        {
+            dungeonStartTutorialFlag = PlayerPrefs.GetInt("dungeonStartTutorialFlag");
+            Debug.Log(dungeonStartTutorialFlag);
+        }
+        else dungeonStartTutorialFlag = 0;
     }
 
     public void PopupTutorial(TutorialType type, int id)
@@ -47,6 +49,11 @@ public class TutorialManager : SingletoneBase<TutorialManager>
                 inventoryTutorialFlag = 1;
                 // TODO : PlayerPrefs에 반영시키기
                 PlayerPrefs.SetInt("inventoryTutorialFlag", inventoryTutorialFlag);
+                break;
+            case TutorialType.DungeonStart:
+                dungeonStartTutorialFlag = 1;
+                // TODO : PlayerPrefs에 반영시키기
+                PlayerPrefs.SetInt("dungeonStartTutorialFlag", dungeonStartTutorialFlag);
                 break;
         }
     }
