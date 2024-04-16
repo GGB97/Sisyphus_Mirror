@@ -119,13 +119,24 @@ MonoBehaviour:
   - _id: 60003011
     _tutorialType: 2
     _tutorialName: "\uB358\uC804 \uC785\uAD6C"
-    _tutorialText: "<color=\"blue\">\uB358\uC804</color>\uC5D0 \uC624\uC2E0 \uAC83\uC744
+    _tutorialText: "<color=\"red\">\uB358\uC804</color>\uC5D0 \uC624\uC2E0 \uAC83\uC744
       \uD658\uC601\uD569\uB2C8\uB2E4!\n\uC774 \uACF3\uC5D0\uC11C\uB294 <color=\"yellow\">\uCE90\uB9AD\uD130
       \uBCC0\uACBD, \uAC15\uD654, \uB358\uC804 \uC785\uC7A5</color>\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
     _imagePath: Tutorials/Image/DungeonStart/DungeonStart_1
     _hasNextPage: 1
     _nextPageId: 60003012
   - _id: 60003012
+    _tutorialType: 2
+    _tutorialName: "\uC870\uC791\uBC95"
+    _tutorialText: "<color=\"red\">WASD \uD0A4</color>\uB97C \uD1B5\uD574 \uCE90\uB9AD\uD130\uB97C
+      \uC870\uC885\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n<color=\"red\">Space \uD0A4</color>\uB97C
+      \uB20C\uB7EC \uB300\uC26C\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n<color=\"yellow\">ESC
+      \uD0A4</color>\uB97C \uB20C\uB7EC \uC77C\uC2DC \uC815\uC9C0\uB97C \uD560 \uC218
+      \uC788\uC2B5\uB2C8\uB2E4."
+    _imagePath: Tutorials/Image/DungeonStart/DungeonStart_5
+    _hasNextPage: 1
+    _nextPageId: 60003013
+  - _id: 60003013
     _tutorialType: 2
     _tutorialName: "\uC0C1\uD638 \uC791\uC6A9"
     _tutorialText: "\uC774 \uACF3\uC5D0\uC11C\uB294 <color=\"yellow\">\uD0A4\uBCF4\uB4DC
@@ -135,8 +146,8 @@ MonoBehaviour:
       \uC8FC\uC138\uC694!"
     _imagePath: Tutorials/Image/DungeonStart/DungeonStart_2
     _hasNextPage: 1
-    _nextPageId: 60003013
-  - _id: 60003013
+    _nextPageId: 60003014
+  - _id: 60003014
     _tutorialType: 2
     _tutorialName: "\uCE90\uB9AD\uD130 \uC120\uD0DD"
     _tutorialText: "<color=\"yellow\">\uC2A4\uD06C\uB864</color>\uC744 \uD1B5\uD574
@@ -145,8 +156,8 @@ MonoBehaviour:
       \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     _imagePath: Tutorials/Image/DungeonStart/DungeonStart_3
     _hasNextPage: 1
-    _nextPageId: 60003014
-  - _id: 60003014
+    _nextPageId: 60003015
+  - _id: 60003015
     _tutorialType: 2
     _tutorialName: "\uCE90\uB9AD\uD130 \uAC15\uD654"
     _tutorialText: "\uAC8C\uC784\uC744 \uD50C\uB808\uC774\uD558\uB2E4 \uC5BB\uB294
