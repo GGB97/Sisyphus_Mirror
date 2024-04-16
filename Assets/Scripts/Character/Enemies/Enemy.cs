@@ -350,10 +350,31 @@ public class Enemy : CharacterBehaviour
 
     void DropFielItems(FieldItemType type, int value)
     {
+        Quaternion rot;
+        Vector3 _itemPos;
+
+        if (type == FieldItemType.Heart)
+        {
+            rot = Quaternion.Euler(-90, 0, 0);
+            _itemPos = transform.position;
+            _itemPos.y = 1f;
+        }
+        else if(type == FieldItemType.Shield)
+        {
+            rot = Quaternion.Euler(-30, 0, 0);
+            _itemPos = transform.position;
+            _itemPos.y = 1f;
+        }
+        else
+        {
+            rot = Quaternion.identity;
+            _itemPos = transform.position;
+        }
+
         FieldItems go = _fieldItemsPooler.SpawnFromPool(
             type.ToString(),
-            transform.position,
-            Quaternion.identity).GetComponent<FieldItems>();
+            _itemPos,
+            rot).GetComponent<FieldItems>();
 
         go.SetValue(value);
     }

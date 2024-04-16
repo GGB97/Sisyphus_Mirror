@@ -94,7 +94,6 @@ public class RuneStoneUI : MonoBehaviour
     {
         if (stage % 5 == 0)
         {
-            Debug.Log("룬스톤 스테이지 체크");
             _remainChance++;
             _runeStoneUI.SetActive(true);
 
@@ -106,9 +105,8 @@ public class RuneStoneUI : MonoBehaviour
             _runeStoneConfirmButtonText.text = "Start";
 
             _remainChanceText.text = _remainChance.ToString() + ($"<color=\"yellow\"> 회</color>");
-            //_playerStatusUI.GetComponent<InventoryStats>().UpdateStatsPanel();
 
-            if (TutorialManager.Instance.runestoneTutorialFlag == 0 && DungeonManager.Instance.currnetstage != 0) TutorialManager.Instance.PopupTutorial(TutorialType.RuneStone, _tutorialId);
+            if (PlayerPrefs.GetInt("runestoneTutorialFlag") == 0 && DungeonManager.Instance.currnetstage != 0) TutorialManager.Instance.PopupTutorial(TutorialType.RuneStone, _tutorialId);
         }
     }
 
