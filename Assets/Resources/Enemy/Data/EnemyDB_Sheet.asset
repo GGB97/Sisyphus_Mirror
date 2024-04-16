@@ -15,6 +15,7 @@ MonoBehaviour:
   Entities:
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 1.6
     physicalAtk: 2
     magicAtk: 0
@@ -44,6 +45,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 50
+    shield: 0
     attackRange: 1.6
     physicalAtk: 5
     magicAtk: 0
@@ -73,6 +75,7 @@ MonoBehaviour:
     gold: 0
   - health: 0
     maxHealth: 700
+    shield: 0
     attackRange: 1.6
     physicalAtk: 7
     magicAtk: 0
@@ -102,6 +105,7 @@ MonoBehaviour:
     gold: 0
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 1.7
     physicalAtk: 2
     magicAtk: 0
@@ -131,6 +135,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 50
+    shield: 0
     attackRange: 1.7
     physicalAtk: 3
     magicAtk: 0
@@ -160,6 +165,7 @@ MonoBehaviour:
     gold: 0
   - health: 0
     maxHealth: 700
+    shield: 0
     attackRange: 1.7
     physicalAtk: 7
     magicAtk: 0
@@ -189,6 +195,7 @@ MonoBehaviour:
     gold: 0
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 1.6
     physicalAtk: 2
     magicAtk: 0
@@ -218,6 +225,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 2.3
     physicalAtk: 3
     magicAtk: 0
@@ -247,6 +255,7 @@ MonoBehaviour:
     gold: 2
   - health: 0
     maxHealth: 100
+    shield: 0
     attackRange: 4
     physicalAtk: 6
     magicAtk: 0
@@ -276,6 +285,7 @@ MonoBehaviour:
     gold: 5
   - health: 0
     maxHealth: 20
+    shield: 0
     attackRange: 3
     physicalAtk: 4
     magicAtk: 0
@@ -304,7 +314,8 @@ MonoBehaviour:
     attackAngle: 30
     gold: 2
   - health: 0
-    maxHealth: 3000
+    maxHealth: 2000
+    shield: 0
     attackRange: 6
     physicalAtk: 12
     magicAtk: 0
@@ -334,6 +345,7 @@ MonoBehaviour:
     gold: 50
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 2
     physicalAtk: 2
     magicAtk: 0
@@ -363,6 +375,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 3
     physicalAtk: 3
     magicAtk: 0
@@ -392,6 +405,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 30
+    shield: 0
     attackRange: 2.5
     physicalAtk: 3
     magicAtk: 0
@@ -421,6 +435,7 @@ MonoBehaviour:
     gold: 3
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 2
     physicalAtk: 3
     magicAtk: 0
@@ -450,6 +465,7 @@ MonoBehaviour:
     gold: 1
   - health: 0
     maxHealth: 10
+    shield: 0
     attackRange: 10
     physicalAtk: 0
     magicAtk: 4
@@ -478,7 +494,8 @@ MonoBehaviour:
     attackAngle: 10
     gold: 2
   - health: 0
-    maxHealth: 3000
+    maxHealth: 2000
+    shield: 0
     attackRange: 15
     physicalAtk: 0
     magicAtk: 10
@@ -508,6 +525,7 @@ MonoBehaviour:
     gold: 50
   - health: 0
     maxHealth: 30
+    shield: 0
     attackRange: 20
     physicalAtk: 0
     magicAtk: 5

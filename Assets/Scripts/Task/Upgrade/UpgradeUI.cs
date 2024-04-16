@@ -37,11 +37,13 @@ public class UpgradeUI : UI_Base
         transform.localPosition = new Vector3(-1345, 0f, 0f);
         _openTween = transform.DOLocalMoveX(-577, 1f).SetEase(Ease.OutQuart);
 
+        UIManager.Instance.AddActiveUI(gameObject);
     }
 
     private void OnDisable()
     {
         transform.localPosition = new Vector3(-1345, 0f, 0f);
+        UIManager.Instance.RemoveActiveUI(gameObject);
     }
 
     private void Start()
