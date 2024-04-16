@@ -50,7 +50,6 @@ public class Enemy : CharacterBehaviour
 
     [Header("Sound Tag")]
     public string hitSound = "hit20";
-    public string dieSound = "die_1";
 
     private void Awake()
     {
