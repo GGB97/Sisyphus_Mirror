@@ -111,9 +111,9 @@ public class ItemManager : MonoBehaviour
         WeaponInit();
         //EquipmentsInit();
         //_modifier.maxHealth -= itemWeight / 10;
-        Player.currentStat.maxHealth -= itemWeight / 10;
-        if (Player.currentStat.maxHealth <= 0) Player.currentStat.maxHealth = 1;
-        Player.HealthChange();
+
+        Debug.Log("ItemInit");
+        Player.HealthChange(Mathf.FloorToInt(itemWeight / 10));
 
         //_playerStats.InitStatus(_playerStats, _modifier);
     }
