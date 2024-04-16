@@ -125,7 +125,6 @@ public class Player : CharacterBehaviour
     void ChangeHitState()
     {
         InvokeShieldChange();
-        Debug.Log(currentStat.maxHealth);
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.hitState);
     }
