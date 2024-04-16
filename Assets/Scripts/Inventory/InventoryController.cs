@@ -696,7 +696,7 @@ public class InventoryController : MonoBehaviour
 
     public void RemoveStoreStock()
     {
-        if (storeGrid.currentStoreItem == null) return;
+        if (storeGrid.currentStoreItem == null || storageGrid.panelSlots == null) return;
 
         storeGrid.ResetPanelStates();
     }

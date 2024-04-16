@@ -11,7 +11,6 @@ public class StoreGrid : ItemGrid
 
     protected override void Start()
     {
-        SetGridSize(gridWidth, gridHeight);
         base.Start();
         CreateBaseBlock(gridWidth, gridHeight);
 
@@ -92,12 +91,15 @@ public class StoreGrid : ItemGrid
 
     public void ResetPanelStates()
     {
-        Debug.Log("판넬 : " + panelSlots == null ? true : false);
+        if(panelSlots == null || panelSlots.Length == 0) panelSlots = new PanelSlot[gridWidth, gridHeight];
+
+        Debug.Log($"PanelSolts {(panelSlots == null ? true : false)}");
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
+                if (panelSlots[x, y] == null) panelSlots[x, y] = new PanelSlot();
+                else panelSlots[x, y].ChangeSlotState(PanelSlotState.Empty);
             }
         }
         Array.Clear(inventoryItemSlot, 0, inventoryItemSlot.Length);

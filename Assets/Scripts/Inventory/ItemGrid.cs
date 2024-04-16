@@ -56,11 +56,11 @@ public class ItemGrid : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
+        //Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
     protected virtual void Start()
     {
-        //Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
+        Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
 
     protected void Init(int width, int height)//그리드 초기 생성
@@ -115,7 +115,7 @@ public class ItemGrid : MonoBehaviour
     }
     private void PanelInit(int width, int height)//바닥 공간 마련
     {
-        panelSlots = new PanelSlot[width, height];
+        if(panelSlots == null) panelSlots = new PanelSlot[width, height];
 
         if (inventoryPanel != null) //판넬이 있을 때
         {

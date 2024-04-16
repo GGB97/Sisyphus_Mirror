@@ -4,6 +4,7 @@ public class Storage : ItemGrid
 
     protected override void Start()
     {
+        base.Start();
         CreateBaseBlock(gridSizeWidth, gridSizeWidth);
         maxCount = 2;
     }
