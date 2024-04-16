@@ -167,6 +167,7 @@ MonoBehaviour:
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   <Info>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -225,6 +227,7 @@ MonoBehaviour:
   modifier:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -253,7 +256,6 @@ MonoBehaviour:
   _areaAttackTag: 
   dropGoldValue: 0
   hitSound: hit20
-  dieSound: die_1
 --- !u!114 &3220784710003865525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5602422058273234689, guid: 02834ea1ed1b05e4bb55bdef69877da3,
         type: 3}

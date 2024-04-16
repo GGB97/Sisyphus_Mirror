@@ -1551,6 +1551,7 @@ MonoBehaviour:
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -1563,6 +1564,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
@@ -1570,6 +1577,7 @@ MonoBehaviour:
   <Data>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -1582,17 +1590,22 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
+    Gold: 0
     LV: 0
     EXP: 0
     maxEXP: 0
-    Gold: 0
-    startItemID: 0
-    startInventory: 0
   modifire:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -1605,6 +1618,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   <AnimationData>k__BackingField:
     idleParameterName: Idle
     walkParameterName: Walk
@@ -1615,7 +1634,6 @@ MonoBehaviour:
   hitDelay: 0
   health: 0
   rune: 0
-  gold: 0
   magnetDistance: 3
 --- !u!114 &8266990602076534519
 MonoBehaviour:
@@ -2557,7 +2575,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 23968931228532704, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 6981111233291729643, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 8918627019165072777, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 2964398173806361994, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 3749034180046154054, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 4718123298853247882, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 8721231249284636493, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 3994523598516295419, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
+    - {fileID: 8678098503044257501, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02834ea1ed1b05e4bb55bdef69877da3, type: 3}

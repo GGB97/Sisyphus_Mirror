@@ -43,6 +43,7 @@ public class PlayerBaseState : IState
         if (player.isHit)
         {
             player.InvokeEvent(player.OnHitEvent);
+            player.isHit = false;
         }
         if (player.currentStat.health <= 0)
         {
