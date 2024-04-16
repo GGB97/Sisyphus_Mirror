@@ -15,7 +15,7 @@ public class EnemyDieState : EnemyBaseState
 
         if (enemy.isDie == true)
         {
-            SoundManager.Instance.PlayAudioClip(enemy.dieSound);
+            SoundManager.Instance.PlayAudioClip(enemy.hitSound);
         }
     }
 

@@ -64,7 +64,7 @@ public class Player : CharacterBehaviour
             currentStat.SyncHealth();
 
             _dungeonManager.OnStageStart += ResetMagnet;
-            _dungeonManager.OnStageEnd += StageClearGetitem;
+            _dungeonManager.OnStageClear += StageClearGetitem;
         }
     }
 
@@ -75,7 +75,7 @@ public class Player : CharacterBehaviour
             if (_dungeonManager != null)
             {
                 _dungeonManager.OnStageStart -= ResetMagnet;
-                _dungeonManager.OnStageEnd -= StageClearGetitem;
+                _dungeonManager.OnStageClear -= StageClearGetitem;
             }
         }
     }

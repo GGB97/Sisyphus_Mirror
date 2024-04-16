@@ -71,7 +71,8 @@ public enum ProjectileID
 public enum DamageType
 {
     Physical,
-    Magic
+    Magic,
+    Heal
 }
 
 #region Task
@@ -99,4 +100,6 @@ public struct EnemyStageModifier
     public static readonly float magicAtk = 0.1f;
 
     public static readonly int gold = 1;
+
+    public static readonly float fieldItemDropPer = 0.5f;
 }

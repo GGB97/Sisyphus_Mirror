@@ -57,7 +57,7 @@ public class RuneStoneUI : MonoBehaviour
 
         _remainChance = 0;
 
-        _dungeonManager.OnStageEnd += CheckCurrentStage;
+        _dungeonManager.OnStageClear += CheckCurrentStage;
         _playerStatusUI.GetComponent<RuneStonePlayerStat>().UpdateStatsPanel();
 
         _runeStoneUI.SetActive(false);
@@ -297,6 +297,6 @@ public class RuneStoneUI : MonoBehaviour
     private void OnDisable()
     {
         //DungeonManager.Instance.OnStageEnd -= CheckCurrentStage;
-        _dungeonManager.OnStageEnd -= CheckCurrentStage;
+        _dungeonManager.OnStageClear -= CheckCurrentStage;
     }
 }

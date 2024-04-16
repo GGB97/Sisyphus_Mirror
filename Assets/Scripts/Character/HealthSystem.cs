@@ -27,26 +27,16 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(float value)
-    {
-        stat.health = value; // 방어력 포함해서 계산해야할듯?
-
-        if (stat.health <= 0)
-        {
-            stat.health = 0;
-            character.isDie = true;
-        }
-        else if (stat.health > stat.maxHealth)
-        {
-            stat.health -= stat.maxHealth;
-        }
-    }
-
     public void TakeDamage(float value, DamageType type)
     {
-        stat.health -= value;
-        //if (gameObject.tag.Equals("Player"))
-        //    Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
+        int damage = Mathf.RoundToInt(value);
+
+        stat.shield -= damage;
+        if (stat.shield < 0)
+        {
+            stat.health = stat.shield;
+            stat.shield = 0;
+        }
 
         if (stat.health <= 0)
         {
@@ -59,13 +49,28 @@ public class HealthSystem : MonoBehaviour
             character.isHit = true;
         }
 
+        if (damage == 0)
+            return;
+
+        ShowDamage(damage, type);
+    }
+
+    public void TakeHeal(float value, DamageType type)
+    {
+        stat.health += value;
+
+        if (stat.health > stat.maxHealth)
+        {
+            stat.health = stat.maxHealth;
+        }
+
         if (value == 0)
             return;
 
         ShowDamage(value, type);
     }
 
-    void ShowDamage(float value, DamageType type) // Player는 지금 DamageCanvas가 없음
+    void ShowDamage(float value, DamageType type)
     {
         TMP_Text text = textQueue.Dequeue();
         if (text != null)
@@ -80,6 +85,9 @@ public class HealthSystem : MonoBehaviour
                 break;
             case DamageType.Magic:
                 text.color = new Color(175f / 255f, 50f / 255f, 207f / 255f);
+                break;
+            case DamageType.Heal:
+                text.color = Color.green;
                 break;
         }
 
