@@ -25,15 +25,13 @@ public class Enemy : CharacterBehaviour
     public float attackDelay;
 
     [field: SerializeField] public EnemyInfo Info { get; private set; }
-    public Status modifier; // 스탯 가중치 (Player의 경우 장비에 의한 가중치, Enemy의 경우 난이도/층수 에 의한 가중치)
+    public Status modifier; 
 
     public Collider Collider { get; private set; }
     public Animator Animator { get; private set; }
     public NavMeshAgent Agent { get; private set; }
 
     Transform renderTransform;
-    public Renderer enemyRenderer;
-    Color _baseColor;
 
     // 나중에 기본 속도와 추가값에 비례해서 리턴하도록 프로퍼티로 수정하면 될듯
     public float animAttackSpeed = 1f;
@@ -330,7 +328,7 @@ public class Enemy : CharacterBehaviour
 
     void DropItem()
     {
-        DropFielItems(FieldItemType.Gold, dropGoldValue);
+        DropFielItems(FieldItemType.Gold, dropGoldValue + _dungeonManager.currnetstage / 5);
 
         float rand = UnityEngine.Random.value;
         if (rand < EnemyStageModifier.fieldItemDropPer)

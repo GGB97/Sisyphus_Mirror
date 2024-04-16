@@ -21,7 +21,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 3
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
-    moveSpeed: 3
+    moveSpeed: 0
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
-    moveSpeed: 3
+    moveSpeed: 0
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
-    moveSpeed: 3
+    moveSpeed: 0
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
-    moveSpeed: 3
+    moveSpeed: 0
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 3
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 4
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 4
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     rank: 2
     element: 0
     size: 3
-    rotationSpeed: 4
+    rotationSpeed: 6
     attackAngle: 20
     gold: 50
   - health: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 4
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 4
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 6
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 3
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 3
     attackSpeed: 0.5
-    moveSpeed: 2
+    moveSpeed: 3
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
     magicAtk: 4
     def: 2
     attackSpeed: 0.3
-    moveSpeed: 2
+    moveSpeed: 3
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
     magicAtk: 10
     def: 5
     attackSpeed: 0.6
-    moveSpeed: 3
+    moveSpeed: 4
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0

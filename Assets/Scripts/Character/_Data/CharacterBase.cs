@@ -38,8 +38,8 @@ public class Status
     public float moveSpeed;
 
     public float knockbackPower;
-    public float dashRange; // ?
-    public float dashCoolTime; // ?
+    public float dashRange; //
+    public float dashCoolTime; //
 
     public float critRate;
     public float critDamage;
@@ -47,12 +47,12 @@ public class Status
     public float lifeSteal;
     public float weight;
 
-    public int _lv;
-    public float _exp;
-    public float _maxEXP;
+    public int _lv; //
+    public float _exp; //
+    public float _maxEXP; //
 
-    public int _startItemID;
-    public int _startInventory;
+    public int _startItemID; //
+    public int _startInventory; //
 
     public Status()
     {

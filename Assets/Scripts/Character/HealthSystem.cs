@@ -103,11 +103,15 @@ public class HealthSystem : MonoBehaviour
 
         text.gameObject.SetActive(true);
 
-        float rand = Random.Range(-0.2f, 0.2f);
+        float rand = Random.Range(-0.35f, 0.35f);
         text.transform.localPosition = new(rand, 0, 0);
 
-        text.DOFade(0, 1);
-        text.transform.DOLocalMoveY(0.5f, 1f).OnComplete(() =>
+        text.DOFade(0, 0.5f);
+        text.transform.DOScale(1.2f, 0.1f).OnComplete(() => 
+        {
+            text.transform.DOScale(1f, 0.1f);
+        });
+        text.transform.DOLocalMoveY(0.5f, 0.75f).OnComplete(() =>
         {
             OnShowDamageComplete(text);
         });
@@ -118,6 +122,7 @@ public class HealthSystem : MonoBehaviour
         text.color = Color.white;
         text.transform.localPosition = Vector3.zero;
         text.transform.localRotation = Quaternion.identity;
+        text.transform.localScale = Vector3.one;
 
         textQueue.Enqueue(text);
     }

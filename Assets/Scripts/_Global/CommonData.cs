@@ -101,5 +101,5 @@ public struct EnemyStageModifier
 
     public static readonly int gold = 1;
 
-    public static readonly float fieldItemDropPer = 0.5f;
+    public static readonly float fieldItemDropPer = 0.05f;
 }
