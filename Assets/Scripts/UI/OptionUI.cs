@@ -2,8 +2,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionUI : MonoBehaviour
+public class OptionUI : UI_Base
 {
+    UIManager _ui;
+
     public Slider maxVolume;
     public Slider bgmVolume;
     public Slider sfxVolume;
@@ -12,17 +14,36 @@ public class OptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bgmVolumeText;
     [SerializeField] private TextMeshProUGUI sfxVolumeText;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        _ui = UIManager.Instance;
+    }
+
+    private void OnEnable()
+    {
+        _ui.AddActiveUI(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        _ui.RemoveActiveUI(gameObject);
+    }
+
+
     private void Start()
     {
         maxVolume.value = SoundManager.Instance.maxBgmVolume * 100f;
         bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
         sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
 
+        gameObject.SetActive(false);
     }
 
-    public void MenuExitButton()
+    public override void CloseUI()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void MaxVolumeChange(float volume)

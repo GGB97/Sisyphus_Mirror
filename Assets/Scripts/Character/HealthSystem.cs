@@ -73,6 +73,15 @@ public class HealthSystem : MonoBehaviour
 
     void ShowDamage(float value, DamageType type)
     {
+        if (textQueue.Count == 0)
+        {
+            GameObject go = Instantiate(Resources.Load<GameObject>("UI/DamageText"), damageCanvas.transform);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+
+            textQueue.Enqueue(go.GetComponent<TMP_Text>());
+        }
+
         TMP_Text text = textQueue.Dequeue();
         if (text != null)
             text.text = value.ToString();
@@ -94,8 +103,11 @@ public class HealthSystem : MonoBehaviour
 
         text.gameObject.SetActive(true);
 
+        float rand = Random.Range(-0.2f, 0.2f);
+        text.transform.localPosition = new(rand, 0, 0);
+
         text.DOFade(0, 1);
-        text.transform.DOLocalMoveY(0.5f, 1).OnComplete(() =>
+        text.transform.DOLocalMoveY(0.5f, 1f).OnComplete(() =>
         {
             OnShowDamageComplete(text);
         });
@@ -105,6 +117,7 @@ public class HealthSystem : MonoBehaviour
         text.gameObject.SetActive(false);
         text.color = Color.white;
         text.transform.localPosition = Vector3.zero;
+        text.transform.localRotation = Quaternion.identity;
 
         textQueue.Enqueue(text);
     }

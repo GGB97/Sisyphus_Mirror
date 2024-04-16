@@ -47,10 +47,21 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void OpenMenu()
     {
-        if (Menu.gameObject.activeSelf == true)
-            Menu.Continue();
-        else
+        if (UIManager.Instance.CheckActiveUI())
+        {
             Menu.OpenMenu();
+        }
+
+        //if (Menu.gameObject.activeSelf == true)
+        //{
+
+        //    Menu.CloseUI();
+        //}
+        //else
+        //{
+            
+        //    Menu.OpenMenu();
+        //}
     }
 
     public void LoadScene(string sceneName)

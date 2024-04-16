@@ -1,12 +1,20 @@
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class Menu : UI_Base
 {
+    UIManager _uiManager;
     [SerializeField] private GameObject option;
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
+        _uiManager = UIManager.Instance;
         GameManager.Instance.Menu = this;
+    }
+
+    private void OnDisable()
+    {
+        _uiManager.RemoveActiveUI(gameObject);
     }
 
     private void Start()
@@ -16,11 +24,12 @@ public class Menu : MonoBehaviour
 
     public void OpenMenu()
     {
-        Time.timeScale = 0;
         gameObject.SetActive(true);
+        _uiManager.AddActiveUI(gameObject);
+        Time.timeScale = 0;
     }
 
-    public void Continue()
+    public override void CloseUI()
     {
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);

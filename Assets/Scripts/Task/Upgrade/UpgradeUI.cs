@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UpgradeUI : UI_Base
 {
+    UIManager _ui;
+
     [SerializeField] GameObject _content;
     UpgradeSlot_UI[] _slots;
     [SerializeField] Button _refundBtn;
@@ -25,6 +27,7 @@ public class UpgradeUI : UI_Base
 
     private void Awake()
     {
+        _ui = UIManager.Instance;
         UpgradeManager.Instance.SetUpdate(this);
         _slots = GetComponentsInChildren<UpgradeSlot_UI>();
     }
@@ -37,11 +40,13 @@ public class UpgradeUI : UI_Base
         transform.localPosition = new Vector3(-1345, 0f, 0f);
         _openTween = transform.DOLocalMoveX(-577, 1f).SetEase(Ease.OutQuart);
 
+        _ui.AddActiveUI(gameObject);
     }
 
     private void OnDisable()
     {
         transform.localPosition = new Vector3(-1345, 0f, 0f);
+        _ui.RemoveActiveUI(gameObject);
     }
 
     private void Start()

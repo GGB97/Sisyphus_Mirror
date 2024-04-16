@@ -26,7 +26,7 @@ public class UpgradeSlot_UI : MonoBehaviour
     {
         _title.text = data.Name;
         _desc.text = data.Desc.Replace("#N", data.NextReward());
-        _cost.text = data.NextCount();
+        _cost.text = data.NextCount().ToString();
 
         for (int i = 0; i < _currentGradeImages.Length; i++)
         {

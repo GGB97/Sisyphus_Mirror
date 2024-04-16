@@ -1,10 +1,15 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : SingletoneBase<UIManager>
 {
+    Dictionary<string, GameObject> _ui = new();
+
     Image _fadeImg;
     Image FadeImg
     {
@@ -39,5 +44,40 @@ public class UIManager : SingletoneBase<UIManager>
         {
             action?.Invoke();
         });
+    }
+
+    public void AddActiveUI(GameObject value)
+    {
+        string key = value.name;
+        if (_ui.ContainsKey(key) == false)
+        {
+            _ui.Add(key, value);
+        }
+    }
+
+    public void RemoveActiveUI(GameObject obj)
+    {
+        string key = obj.name;
+        if (_ui.ContainsKey(key))
+        {
+            _ui.Remove(key);
+        }
+    }
+
+    public bool CheckActiveUI()
+    {
+        if (_ui.Count != 0)
+        {
+            var ui = _ui.Last().Value.GetComponent<UI_Base>();
+            
+            ui.CloseUI();
+            _ui.Remove(ui.gameObject.name);
+
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

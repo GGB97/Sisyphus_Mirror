@@ -62,11 +62,12 @@ public class UpgradeManager : MonoBehaviour
         // 지금 최대 강화상태가 아니라면.
         if (data.CurrentGrade < data.MaxGrade)
         {
-            if (_player.rune >= data.Count)
+            int count = data.NextCount();
+            if (_player.rune >= count)
             {
                 // 업그레이드 가능
                 PlayerPrefs.SetInt($"Upgrade_{data.UpgradeType}", data.CurrentGrade + 1); // 데이터 저장 구현시 변경
-                _player.ChangeRune(-data.Count);
+                _player.ChangeRune(-count);
 
                 //Debug.Log($"Upgrade (current : {data.CurrentGrade})");
 
