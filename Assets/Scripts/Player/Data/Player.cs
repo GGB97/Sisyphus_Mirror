@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : CharacterBehaviour
@@ -93,7 +92,7 @@ public class Player : CharacterBehaviour
     {
         stateMachine.ChangeState(stateMachine.idleState);
 
-        currentStat.InitStatus(Data,modifire);
+        currentStat.InitStatus(Data, modifire);
         currentStat.Init();
 
         isDie = false;

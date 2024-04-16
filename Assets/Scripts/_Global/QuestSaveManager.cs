@@ -1,6 +1,4 @@
-using Constants;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -11,7 +9,7 @@ public class QuestSaveData
 {
     public Dictionary<int, int> ongoingQuests;// = new Dictionary<int, int>();//현재 진행중인 퀘스트 집합
     public HashSet<int> completeQuests; //= new HashSet<int>();//완료한 퀘스트의 id 집합
-    public QuestSaveData() 
+    public QuestSaveData()
     {
         ongoingQuests = new Dictionary<int, int>();
         completeQuests = new HashSet<int>();
@@ -32,12 +30,12 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
     public void SaveData()
     {
         saveData = QuestManager.Instance.SaveData();
-        BinaryFormatter bf = new BinaryFormatter(); 
-        MemoryStream ms = new MemoryStream(); 
-        bf.Serialize(ms, saveData); string result = Convert.ToBase64String(ms.GetBuffer()); 
+        BinaryFormatter bf = new BinaryFormatter();
+        MemoryStream ms = new MemoryStream();
+        bf.Serialize(ms, saveData); string result = Convert.ToBase64String(ms.GetBuffer());
         PlayerPrefs.SetString(dataKey, result);
 
-        Debug.Log("json 변환 "+ result);
+        Debug.Log("json 변환 " + result);
 
         // PlayerPrefs 저장
         PlayerPrefs.Save();
@@ -45,13 +43,13 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
 
     public void LoadData()
     {
-        QuestSaveData data = null; 
+        QuestSaveData data = null;
         string save = PlayerPrefs.GetString(dataKey, null);
 
         // 저장된 문자열이 있을 경우에만 처리
         if (!string.IsNullOrEmpty(save))
         {
-            var binaryFormatter = new BinaryFormatter(); 
+            var binaryFormatter = new BinaryFormatter();
             var memoryStream = new MemoryStream(Convert.FromBase64String(save));
 
             data = (QuestSaveData)binaryFormatter.Deserialize(memoryStream);
