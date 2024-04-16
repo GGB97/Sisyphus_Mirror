@@ -57,7 +57,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
         {
-            Debug.Log("퀘스트 진행중");
+            //Debug.Log("퀘스트 진행중");
             return;//이미 있으면 리턴
         }
 
@@ -165,7 +165,7 @@ public class QuestManager : SingletoneBase<QuestManager>
     }
     public void FieldInit()
     {
-        Debug.Log("퀘스트 필드 초기화");
+        //Debug.Log("퀘스트 필드 초기화");
         _ongoingQuests.Clear();
         _completeQuests.Clear();
         _subscribeQuests.Clear();

@@ -241,7 +241,7 @@ public class PlayerInventory : ItemGrid
         //{
         //    Debug.Log($"[{slot.posX},{slot.posY}");
         //}
-        Debug.Log($"추가 가능 총 개수 : {addableSlotList.Count}");
+        //Debug.Log($"추가 가능 총 개수 : {addableSlotList.Count}");
         //foreach (var slot in addableSlotList)
         //{
         //    Debug.Log($"가능 칸 정보 : {slot.posX},{slot.posY}");
