@@ -1133,7 +1133,7 @@ RectTransform:
   m_Children:
   - {fileID: 4238745209501872599}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1225,6 +1225,7 @@ MonoBehaviour:
   _playerStatus:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -1238,6 +1239,11 @@ MonoBehaviour:
     critDamage: 0
     lifeSteal: 0
     weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   _playerStatusUI: {fileID: 6098931977359669802}
   _runeStoneSlider: {fileID: 4587139320422377583}
   _runeStoneConfirmButtonText: {fileID: 5322658300999183893}
@@ -4433,7 +4439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4238745209501872599
 RectTransform:
   m_ObjectHideFlags: 0
