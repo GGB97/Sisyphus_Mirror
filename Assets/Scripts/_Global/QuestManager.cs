@@ -15,7 +15,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
     private int[] startQuestId = new int[] { 100, 200 };//시작할 때 등록할 퀘스트들
 
-    private void Start()
+    private void Awake()
     {
         StartQuestSetting();
     }
@@ -54,11 +54,14 @@ public class QuestManager : SingletoneBase<QuestManager>
         if (IsClear(questId))//해당 id 퀘스트가 클리어인지 확인 = 이미 클리어 한 퀘스트인지 확인
             return;
 
+        if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
+        {
+            Debug.Log("퀘스트 진행중");
+            return;//이미 있으면 리턴
+        }
+
         var quest = new Quest(questId, progress);//id에 해당하는 새로운 퀘스트 생성
         quest.Start();//상태 시작으로 변경
-
-        if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
-            return;//이미 있으면 리턴
 
         _ongoingQuests.Add(questId, quest);//사전에 퀘스트 추가.
 

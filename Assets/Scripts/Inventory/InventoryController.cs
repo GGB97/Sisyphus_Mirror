@@ -66,7 +66,6 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] int _tutorialId;
 
-    public string putDownItemSoundTag = "PutDownItem";
     public string PurchaseSoundTag = "Purchase";
 
     private void Awake()
@@ -337,7 +336,6 @@ public class InventoryController : MonoBehaviour
 
             SelectedItemGrid = temp;//현재 선택 Grid를 마우스 위치의 Grid로 설정
         }
-        SoundManager.Instance.PlayAudioClip(putDownItemSoundTag);
     }
     //private Vector2 GridToScreenPosition(Vector2Int gridPosition) //그리드 좌표를 스크린 좌표로 변환
     //{
