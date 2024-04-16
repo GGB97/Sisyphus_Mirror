@@ -160,7 +160,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 54916f2406bc54140b7d77b744922dbf, type: 3}
     volumePercent: 5
   - tag: hit20
-    clip: {fileID: 8300000, guid: 3dc12580ed80d4b40ad4ba22295fe110, type: 3}
+    clip: {fileID: 8300000, guid: f0076dda3a3e18648905c720fa1054f0, type: 3}
     volumePercent: 1
   - tag: die_1
     clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
