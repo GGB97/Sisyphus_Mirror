@@ -98,6 +98,8 @@ public class GameManager : SingletoneBase<GameManager>
 
     public void Retry()
     {
+        QuestSaveManager.Instance.SaveData();
+        QuestManager.Instance.FieldInit();
         Destroy(DungeonManager.Instance.gameObject);
 
         _player.playerReset();

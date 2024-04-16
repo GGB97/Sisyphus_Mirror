@@ -1,6 +1,8 @@
 using Constants;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Quest
 {
     [SerializeField] private int _questId;
@@ -35,5 +37,9 @@ public class Quest
     public void Complete()
     {
         _questState = QuestState.Complete;
+    }
+    public void ProgressClear()
+    {
+        _questProgress = 0;
     }
 }

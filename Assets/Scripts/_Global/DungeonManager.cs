@@ -56,6 +56,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             //Debug.Log("찾기 성공");
             //inventoryUI.SetActive(false);
         }
+
         if (InventoryController.Instance != null)
             InventoryController.Instance.nextStage += CloseInventory;
     }

@@ -1,6 +1,7 @@
 using Constants;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class QuestManager : SingletoneBase<QuestManager>
@@ -14,10 +15,10 @@ public class QuestManager : SingletoneBase<QuestManager>
     public event Action<int> OnQuestClearCallback;
 
     private int[] startQuestId = new int[] { 100, 200 };//시작할 때 등록할 퀘스트들
-
-    private void Start()
+    
+    private void OnEnable()
     {
-        StartQuestSetting();
+        FieldInit();
     }
     public void SubsrcipbeQuest(int questId)//등록
     {
@@ -54,11 +55,14 @@ public class QuestManager : SingletoneBase<QuestManager>
         if (IsClear(questId))//해당 id 퀘스트가 클리어인지 확인 = 이미 클리어 한 퀘스트인지 확인
             return;
 
+        if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
+        {
+            Debug.Log("퀘스트 진행중");
+            return;//이미 있으면 리턴
+        }
+
         var quest = new Quest(questId, progress);//id에 해당하는 새로운 퀘스트 생성
         quest.Start();//상태 시작으로 변경
-
-        if (_ongoingQuests.ContainsKey(questId))//진행 중인 사전에 id에 해당하는 퀘스트가 있는지 확인
-            return;//이미 있으면 리턴
 
         _ongoingQuests.Add(questId, quest);//사전에 퀘스트 추가.
 
@@ -132,4 +136,39 @@ public class QuestManager : SingletoneBase<QuestManager>
         else
             return true;
     }
+    public void LoadData(QuestSaveData questSaveData)
+    {
+        foreach (var quest in questSaveData.ongoingQuests)
+        {
+            QuestStart(quest.Key, quest.Value);
+        }
+        _completeQuests = questSaveData.completeQuests;
+    }
+    public QuestSaveData SaveData()
+    {
+        QuestSaveData questSaveData = new QuestSaveData();
+        foreach (var quest in _ongoingQuests)
+        {
+            var questData = DataBase.Quest.Get(quest.Key);
+            if (questData.IsStorable == true)
+            {
+                questSaveData.ongoingQuests[quest.Key] = quest.Value.QuestProgress;//id와 진행상황 저장
+            }
+            else
+            {
+                questSaveData.ongoingQuests[quest.Key] = 0;
+            }
+        }
+        questSaveData.completeQuests = _completeQuests;
+
+        return questSaveData;
+    }
+    public void FieldInit()
+    {
+        Debug.Log("퀘스트 필드 초기화");
+        _ongoingQuests.Clear();
+        _completeQuests.Clear();
+        _subscribeQuests.Clear();
+    }
+
 }

@@ -9,7 +9,7 @@ public class TestQuest : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        QuestManager.Instance.StartQuestSetting();
+        //QuestManager.Instance.StartQuestSetting();
     }
 
     public void TestUpdate()
@@ -19,6 +19,5 @@ public class TestQuest : MonoBehaviour
     public void Print()
     {
         QuestManager.Instance.PrintCurrentQuestList();
-        SoundManager.Instance.PlayAudioClip("gain");
     }
 }
