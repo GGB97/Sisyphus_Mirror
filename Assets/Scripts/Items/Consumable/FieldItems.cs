@@ -120,7 +120,7 @@ public class FieldItems : MonoBehaviour
         }
     }
 
-    void ActiveFalse(int dump)
+    void ActiveFalse()
     {
         gameObject.SetActive(false);
     }

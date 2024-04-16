@@ -330,7 +330,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // 아이템의 지속 시간을 갱신 및 남은 지속 시간 체크
-    private void SetConsumableDuration(int index)
+    private void SetConsumableDuration()
     {
         if (_usedConsumable.Count != 0)
         {

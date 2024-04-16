@@ -190,7 +190,7 @@ public class Player : CharacterBehaviour
         Data.Init();
     }
 
-    void StageClearGetitem(int dump)
+    void StageClearGetitem()
     {
         magnetDistance = 100;
     }
@@ -213,7 +213,8 @@ public class Player : CharacterBehaviour
 
     public void HealthChange(int _health)
     {
-        if (currentStat.health + _health > currentStat.maxHealth) currentStat.health = currentStat.maxHealth;
+        if (currentStat.health + _health > currentStat.maxHealth) 
+            currentStat.health = currentStat.maxHealth;
         else currentStat.health += _health;
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
     }
