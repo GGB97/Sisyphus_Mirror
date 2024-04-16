@@ -43,6 +43,8 @@ public class Player : CharacterBehaviour
         AnimationData.Initialize();
         Data = DataBase.Player.Get(id);
         currentStat.InitStatus(Data, modifire);
+        Data.Init();
+
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();

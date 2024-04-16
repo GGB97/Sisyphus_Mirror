@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundClip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
-  bgmVolumePercent: 9.6
-  maxBgmVolume: 0.553
-  sfxVolumePercent: 100
+  bgmVolumePercent: 10
+  maxBgmVolume: 0.4
+  sfxVolumePercent: 80
   isPlayingBgm: 1
   soundEffectList:
   - tag: 
@@ -161,7 +161,7 @@ MonoBehaviour:
     volumePercent: 5
   - tag: hit20
     clip: {fileID: 8300000, guid: f0076dda3a3e18648905c720fa1054f0, type: 3}
-    volumePercent: 1
+    volumePercent: 51
   - tag: die_1
     clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
     volumePercent: 10
@@ -185,7 +185,7 @@ MonoBehaviour:
     volumePercent: 100
   - tag: PutDownItem
     clip: {fileID: 8300000, guid: 87dedf7e216c12f4fb25be04652aee31, type: 3}
-    volumePercent: 50
+    volumePercent: 100
   - tag: ClickButton
     clip: {fileID: 8300000, guid: efcb67f6d0ee4e74f82bed37348bb84c, type: 3}
     volumePercent: 50
