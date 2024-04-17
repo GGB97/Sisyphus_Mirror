@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,6 +67,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] int _rerollCost;
     [SerializeField] int _tempRerollCost;
     [SerializeField] TextMeshProUGUI _rerollCostText;
+    public int rerollCount = 0;
 
     [SerializeField] int _tutorialId;
 
@@ -100,7 +102,12 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
+        ReSetRerollCount();
         if (PlayerPrefs.HasKey("inventoryTutorialFlag") && PlayerPrefs.GetInt("inventoryTutorialFlag") == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
+    }
+    private void OnDisable()
+    {
+        
     }
 
     private void Update()
@@ -698,6 +705,7 @@ public class InventoryController : MonoBehaviour
 
         player.Data.Gold -= _tempRerollCost;
         _tempRerollCost = Mathf.FloorToInt(_tempRerollCost * 1.2f);
+        rerollCount++;
 
         SetPlayerGoldText();
         SetRerollButtonText();
@@ -817,5 +825,9 @@ public class InventoryController : MonoBehaviour
         sb.Append("<color=\"yellow\"> G</color>");
 
         _playerGoldText.text = sb.ToString();
+    }
+    public void ReSetRerollCount()
+    {
+        rerollCount = 0;
     }
 }
