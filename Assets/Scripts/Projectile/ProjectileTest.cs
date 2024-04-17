@@ -73,9 +73,6 @@ public class ProjectileTest : MonoBehaviour
         bool isContained = (hitLayer & _target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
         if (isContained)
         {
-            // 데미지 처리 예정
-            //Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
-
             if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
                 _healthSystem.TakeDamage(_value, _data.type);
