@@ -24,7 +24,6 @@ public class TutorialPopup : MonoBehaviour
             {
                 if (tutorial != null && tutorial.hasNextPage)
                 {
-                    Debug.Log(tutorial.NextPageId);
                     SetTutorialPopup(tutorial.NextPageId);
                 }
                 else Destroy(gameObject);

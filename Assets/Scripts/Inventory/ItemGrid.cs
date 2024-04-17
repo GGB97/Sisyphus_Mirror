@@ -10,25 +10,6 @@ public class ItemGrid : MonoBehaviour
     public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
     public int maxCount = 1;
     public int currentCount = 0;
-    //public int currnetCount
-    //{
-    //    get
-    //    {
-    //        int num = 0;
-    //        foreach (var itemType in inventory)
-    //        {
-    //            foreach (var item in itemType.Value)
-    //            {
-    //                if (item != null)
-    //                {
-    //                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
-    //                    num++;
-    //                }
-    //            }
-    //        }
-    //        return num;
-    //    }
-    //}
 
     public InventoryItem[,] inventoryItemSlot;//해당칸의 아이템 정보를 담는 배열
 
@@ -74,7 +55,6 @@ public class ItemGrid : MonoBehaviour
         List<InventoryItem> itemList = null;
         if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
-            Debug.Log($"{seletecteditem.itemSO.Name}");
             itemList = inventory[seletecteditem.itemSO.ItemType];
             itemList.Add(seletecteditem);
             inventory[seletecteditem.itemSO.ItemType] = itemList;
@@ -86,20 +66,18 @@ public class ItemGrid : MonoBehaviour
         }
         ItemManager.Instance.OnEquip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
         InventoryStats.Instance.UpdateStatsPanel();
-        //Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
     {
         if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
             inventory[seletecteditem.itemSO.ItemType].Remove(seletecteditem);
-            Debug.Log($"아이템 빼기 - {seletecteditem.itemSO.Sprite.name}");
             ItemManager.Instance.OnUnequip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
             InventoryStats.Instance.UpdateStatsPanel();
         }
         else//키가 존재하지 않다면
         {
-            Debug.Log($"아이템이 존재하지 않습니다.");
+            Debug.Log($"(LogError) : 아이템이 존재하지 않습니다.");
         }
     }
 

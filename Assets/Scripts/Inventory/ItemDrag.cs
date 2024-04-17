@@ -30,7 +30,6 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
-            Debug.Log("Click Down");
             image.raycastTarget = false;
             inventoryController.startPosition = transform.position; ;//시작 위치 지정
             inventoryController.LeftMouseButtonPress();
@@ -62,7 +61,6 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
             image.raycastTarget = true;
-            Debug.Log("Click Up");
             inventoryController.LeftMouseButtonPut();
             SoundManager.Instance.PlayAudioClip(putDownSoundTag);
         }
@@ -85,7 +83,6 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         }
         isHovering = true;
         displayCoroutine = StartCoroutine(WaitSecondsOnUI());//아이템 이미지 위에서 hover시간 만큼 기다리기
-        Debug.Log("Enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -94,7 +91,6 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             return;
 
         ExitUI();
-        Debug.Log("Exit");
     }
 
 

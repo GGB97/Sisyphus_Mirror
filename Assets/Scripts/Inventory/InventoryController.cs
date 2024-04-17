@@ -153,7 +153,7 @@ public class InventoryController : MonoBehaviour
         //플레이어 레벨에 맞게 addCount 변경
         int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
         addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
-        //Debug.Log($"추가할 칸 수 : {addCount}");
+
         if (addCount != 0)
         {
             addBlockDescription.Active(true);
@@ -186,7 +186,6 @@ public class InventoryController : MonoBehaviour
         if (posOnGrid == null)//설치 불가능 이면 return
         {
             Destroy(itemToInsert.gameObject);
-            Debug.Log("삭제완료");
             return;
         }
 
@@ -458,10 +457,9 @@ public class InventoryController : MonoBehaviour
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
         previousItemGird = selectedItemGrid;//이전 그리드 설정
-        //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
+
         if (selectedItem != null)
         {
-            Debug.Log($"현재 아이템 : {selectedItem.itemSO.Sprite.name}");
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
             rectTransform.SetAsLastSibling();
@@ -483,12 +481,10 @@ public class InventoryController : MonoBehaviour
             {
                 if (item != null)
                 {
-                    Debug.Log($"{itemType.Key} - {item.itemSO.Sprite.name}");
                     num++;
                 }
             }
         }
-        Debug.Log($"소지한 아이템 수 : {num}");
     }
     public void AddBigInventory() //실험용 넓은 판대기 적용
     {
@@ -661,7 +657,6 @@ public class InventoryController : MonoBehaviour
         if (posOnGrid == null)//설치 불가능 이면 return
         {
             Destroy(itemToInsert.gameObject);
-            Debug.Log("삭제완료");
             return;
         }
 
