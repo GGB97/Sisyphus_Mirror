@@ -314,7 +314,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 2
   - health: 0
-    maxHealth: 2000
+    maxHealth: 1500
     shield: 0
     attackRange: 6
     physicalAtk: 12
@@ -494,7 +494,7 @@ MonoBehaviour:
     attackAngle: 10
     gold: 2
   - health: 0
-    maxHealth: 2000
+    maxHealth: 1500
     shield: 0
     attackRange: 15
     physicalAtk: 0

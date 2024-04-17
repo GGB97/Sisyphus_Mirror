@@ -437,7 +437,7 @@ public class InventoryController : MonoBehaviour
                         // 아이템 구매 시 플레이어 골드 차감하기
                         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
                         if (currentStage == 1) player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
-                        else player.Data.Gold = player.Data.Gold - (selectedItem.itemSO.Price * 1.1f) < 0 ? 0 : Mathf.FloorToInt(player.Data.Gold - (selectedItem.itemSO.Price + 1.1f * currentStage));
+                        else player.Data.Gold = player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage) <= 0 ? 0 : player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
                         SetPlayerGoldText();
 
                         SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정

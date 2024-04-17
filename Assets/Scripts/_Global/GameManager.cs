@@ -132,7 +132,7 @@ public class GameManager : SingletoneBase<GameManager>
         Debug.Log($"총 잡은 몬스터 수 : {killenemys}");
         Debug.Log($"총 얻은 골드 량 : {totalGold}");
 
-        Debug.Log($"현재 소지 중인 룬 조각 : {PlayerPrefs.GetInt("rune")}");
+        Debug.Log($"현재 소지 중인 룬 조각 : {PlayerPrefs.GetInt("Rune")}");
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
