@@ -136,9 +136,9 @@ public class StoreGrid : ItemGrid
     }
     public void PannelImageClear(Vector2Int itemPos, InventoryItem currentItem)
     {
-        for (int x = 0; x < currentItem.WIDTH; x++)
+        for (int x = 0; x < currentItem.itemSO.IconWidth; x++)
         {
-            for (int y = 0; y < currentItem.HEIGHT; y++)
+            for (int y = 0; y < currentItem.itemSO.IconHeight; y++)
             {
                 panelSlots[itemPos.x + x, itemPos.y + y].InvinsiblePannelImage();
             }

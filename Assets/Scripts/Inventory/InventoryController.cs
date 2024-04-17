@@ -356,6 +356,17 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
+    private Vector2Int GetTileGridPositionWithBaseItem(Vector2 putPosition,InventoryItem item)//특정 좌표의 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
+    {
+        Vector2 position = putPosition; //마우스위치에는 물체의 중심이 온다.
+
+        if (item != null) //선택 된 Grid가 있다면
+        {
+            position.x -= (item.itemSO.IconWidth - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.y += (item.itemSO.IconHeight - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
+        }
+        return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
+    }
     private Vector2Int GetTileGridPosition() //마우스의 위치를 가지고 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
     {
         Vector2 position = Input.mousePosition; //마우스위치에는 물체의 중심이 온다.
@@ -419,7 +430,7 @@ public class InventoryController : MonoBehaviour
                         SetPlayerGoldText();
 
                         SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
-                        Vector2Int tileGridStartPosition = GetTileGridPosition(startPosition); //원래의 있던 곳의 위치
+                        Vector2Int tileGridStartPosition = GetTileGridPositionWithBaseItem(startPosition,selectedItem); //원래의 있던 곳의 위치
 
                         SelectedItemGrid = playerInventoryGrid;
                         storeGrid.PannelImageClear(tileGridStartPosition,selectedItem);// 판넬 투명하게 하기
