@@ -71,7 +71,9 @@ public class Player : CharacterBehaviour
 
             _dungeonManager.OnStageStart += ResetMagnet;
             _dungeonManager.OnStageStart += ResetShield;
+            _dungeonManager.OnStageStart += UnInvincibility;
 
+            _dungeonManager.OnStageClear += Invincibility;
             _dungeonManager.OnStageClear += StageClearGetitem;
         }
     }
@@ -84,7 +86,9 @@ public class Player : CharacterBehaviour
             {
                 _dungeonManager.OnStageStart -= ResetMagnet;
                 _dungeonManager.OnStageStart -= ResetShield;
+                _dungeonManager.OnStageStart -= UnInvincibility;
 
+                _dungeonManager.OnStageClear -= Invincibility;
                 _dungeonManager.OnStageClear -= StageClearGetitem;
             }
         }
@@ -215,10 +219,20 @@ public class Player : CharacterBehaviour
 
     public void HealthChange(int _health)
     {
-        if (currentStat.health + _health > currentStat.maxHealth) 
+        if (currentStat.health + _health > currentStat.maxHealth)
             currentStat.health = currentStat.maxHealth;
         else currentStat.health += _health;
 
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+    }
+
+    void Invincibility()
+    {
+        Controller.detectCollisions = false;
+    }
+
+    void UnInvincibility()
+    {
+        Controller.detectCollisions = true;
     }
 }
