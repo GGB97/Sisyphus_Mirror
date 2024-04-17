@@ -112,12 +112,6 @@ public class ItemManager : MonoBehaviour
         ResetModifierStat();
         // 스테이지 시작 시 호출되어 플레이어 스탯, 아이템 생성 등 처리하기
         WeaponInit();
-        //EquipmentsInit();
-        //_modifier.maxHealth -= itemWeight / 10;
-
-        //Player.HealthChange(Mathf.FloorToInt(itemWeight / 10));
-
-        //_playerStats.InitStatus(_playerStats, _modifier);
     }
 
     public void ModifyPlayerStat(WeaponData weapon, bool isEquip)
@@ -283,7 +277,6 @@ public class ItemManager : MonoBehaviour
             Destroy(weapon);
         }
 
-        //ResetPlayerStat();
         ItemInit();
     }
 
@@ -311,32 +304,6 @@ public class ItemManager : MonoBehaviour
 
         itemWeight = 0;
     }
-
-    //private void ResetPlayerStat()
-    //{
-    //    _modifier.maxHealth = -_modifier.maxHealth;
-    //    _modifier.attackRange = -_modifier.attackRange;
-    //    _modifier.physicalAtk = -_modifier.physicalAtk;
-    //    _modifier.magicAtk = -_modifier.magicAtk;
-
-    //    _modifier.def = -_modifier.def;
-
-    //    _modifier.attackSpeed = -_modifier.attackSpeed;
-    //    _modifier.moveSpeed = -_modifier.moveSpeed;
-
-    //    _modifier.knockbackPower = -_modifier.knockbackPower;
-    //    _modifier.dashRange = -_modifier.dashRange;
-    //    _modifier.dashCoolTime = -_modifier.dashCoolTime;
-
-    //    _modifier.critRate = -_modifier.critRate;
-    //    _modifier.critDamage = -_modifier.critDamage;
-
-    //    _modifier.lifeSteal = -_modifier.lifeSteal;
-    //    _modifier.weight = -_modifier.weight;
-
-
-    //    _playerStats.InitStatus(_playerStats, _modifier);
-    //}
 
     // 사용 아이템 사용 시 호출해주세요!
     public void UseConsumable(ConsumableData consumable)
