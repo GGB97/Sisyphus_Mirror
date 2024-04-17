@@ -6,7 +6,6 @@ public class PlayerDieState : PlayerBaseState
 
     public override void Enter()
     {
-        base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.DieParameterHash);
         player.enabled = false;
         GameManager.Instance.Gameover();
