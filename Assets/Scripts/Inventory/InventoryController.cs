@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,10 +67,13 @@ public class InventoryController : MonoBehaviour
     [SerializeField] int _rerollCost;
     [SerializeField] int _tempRerollCost;
     [SerializeField] TextMeshProUGUI _rerollCostText;
+    public int rerollCount = 0;
 
     [SerializeField] int _tutorialId;
 
     public string PurchaseSoundTag = "Purchase";
+
+    GameManager _gameManager;
 
     private void Awake()
     {
@@ -86,9 +90,11 @@ public class InventoryController : MonoBehaviour
     }
     private void Start()
     {
-        //SelectedItemGrid = itemGrid;
-        //SelectedItemGrid.ShowRandomAddableSlot();
-        player = GameManager.Instance.Player;
+        _gameManager = GameManager.Instance;
+        _gameManager.onGameOverEvent += PrintItemList;
+        _gameManager.onGameOverEvent += PrintRerollCount;
+
+        player = _gameManager.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
 
         _rerollCost = 5;
@@ -100,7 +106,13 @@ public class InventoryController : MonoBehaviour
     private void OnEnable()
     {
         SetRerollButtonText();
+        ReSetRerollCount();
         if (PlayerPrefs.HasKey("inventoryTutorialFlag") && PlayerPrefs.GetInt("inventoryTutorialFlag") == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
+    }
+    private void OnDisable()
+    {
+        _gameManager.onGameOverEvent -= PrintItemList;
+        _gameManager.onGameOverEvent -= PrintRerollCount;
     }
 
     private void Update()
@@ -698,6 +710,7 @@ public class InventoryController : MonoBehaviour
 
         player.Data.Gold -= _tempRerollCost;
         _tempRerollCost = Mathf.FloorToInt(_tempRerollCost * 1.2f);
+        rerollCount++;
 
         SetPlayerGoldText();
         SetRerollButtonText();
@@ -818,4 +831,27 @@ public class InventoryController : MonoBehaviour
 
         _playerGoldText.text = sb.ToString();
     }
+    public void ReSetRerollCount()
+    {
+        rerollCount = 0;
+    }
+
+    private void PrintRerollCount()
+    {
+        Debug.Log($"리롤 카운트 : {rerollCount}");
+    }
+
+    void PrintItemList()
+    {
+        Debug.Log("-----------던전 종료 시 소지 중인 아이템 목록-----------");
+        foreach(var list in playerInventoryGrid.inventory)
+        {
+            foreach(var item in list.Value)
+            {
+                Debug.Log($"{item.itemSO.Name} - {item.itemSO.Grade}");
+            }
+        }
+    }
+
+   
 }
