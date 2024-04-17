@@ -25,7 +25,7 @@ public class Enemy : CharacterBehaviour
     public float attackDelay;
 
     [field: SerializeField] public EnemyInfo Info { get; private set; }
-    public Status modifier; 
+    public Status modifier;
 
     public Collider Collider { get; private set; }
     public Animator Animator { get; private set; }
@@ -394,7 +394,7 @@ public class Enemy : CharacterBehaviour
 
     void DropExp()
     {
-        _player.GetEXP(10);
+        _player.GetEXP(10 + _dungeonManager.currnetstage % 3);
     }
 
     void ChangeComplete()
