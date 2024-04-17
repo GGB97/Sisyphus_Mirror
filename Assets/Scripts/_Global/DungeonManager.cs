@@ -45,7 +45,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         if (inventoryUI == null && stageUI == null)
         {
-            Debug.LogError("(LogError) : DungeonManager에서 UI 찾기 실패");
+            //Debug.LogError("(LogError) : DungeonManager에서 UI 찾기 실패");
         }
         else
         {

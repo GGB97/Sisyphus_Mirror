@@ -9925,12 +9925,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40000100
-  target:
+  _target:
     serializedVersion: 2
     m_Bits: 0
   ps: {fileID: 8210398969040661909}
-  projectileCollider: {fileID: 0}
-  rb: {fileID: 0}
   hitParticle: {fileID: 6041572479912653028}
 --- !u!1001 &6039869643988163176
 PrefabInstance:

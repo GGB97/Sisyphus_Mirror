@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5275531165987884280}
   - component: {fileID: 7724715805898437729}
   - component: {fileID: 891664034621164740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40000101
-  target:
+  _target:
     serializedVersion: 2
     m_Bits: 0
   ps: {fileID: 4021808878633144020}

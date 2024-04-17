@@ -31,9 +31,9 @@ public class PlayerHitState : PlayerBaseState
         {
             stateMachine.ChangeState(stateMachine.idleState);
         }
-        if (player.currentStat.health <= 0)
-        {
-            stateMachine.ChangeState(stateMachine.dieState);
-        }
+        //if (player.currentStat.health <= 0)
+        //{
+        //    stateMachine.ChangeState(stateMachine.dieState);
+        //}
     }
 }
