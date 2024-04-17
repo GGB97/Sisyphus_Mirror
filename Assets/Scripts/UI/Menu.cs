@@ -50,5 +50,7 @@ public class Menu : UI_Base
         {
             Application.Quit();
         }
+        Time.timeScale = 1.0f;
+        gameObject.SetActive(false );
     }
 }
