@@ -42,7 +42,6 @@ public class GameManager : SingletoneBase<GameManager>
         gameState = GameState.Lobby;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-
     }
 
     public void OpenMenu()
@@ -96,6 +95,8 @@ public class GameManager : SingletoneBase<GameManager>
         DungeonManager.Instance.gameState = DungeonState.Fail;
 
         EnemySpawner.Instance.SpawnStop();
+
+        PrintPlayData();
         onGameOverEvent?.Invoke();
 
         GameOverUI.Show();
@@ -123,6 +124,14 @@ public class GameManager : SingletoneBase<GameManager>
         LoadScene(SceneName.Lobby);
     }
 
+    void PrintPlayData()
+    {
+        Debug.Log("-----------이번 던전의 플레이 데이터-----------");
+        Debug.Log($"던전 종료 시 플레이어 레벨 : {Player.Data.LV}");
+        Debug.Log($"총 잡은 몬스터 수 : {killenemys}");
+        Debug.Log($"총 얻은 골드 량 : {totalGold}");
+    }
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UIManager.Instance.FadeIn(0.5f);
@@ -144,6 +153,7 @@ public class GameManager : SingletoneBase<GameManager>
     protected override void OnApplicationQuit()
     {
         base.OnApplicationQuit();
+        onGameOverEvent?.Invoke();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

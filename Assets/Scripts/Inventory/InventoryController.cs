@@ -73,6 +73,8 @@ public class InventoryController : MonoBehaviour
 
     public string PurchaseSoundTag = "Purchase";
 
+    GameManager _gameManager;
+
     private void Awake()
     {
         if (Instance == null)
@@ -88,9 +90,10 @@ public class InventoryController : MonoBehaviour
     }
     private void Start()
     {
-        //SelectedItemGrid = itemGrid;
-        //SelectedItemGrid.ShowRandomAddableSlot();
-        player = GameManager.Instance.Player;
+        _gameManager = GameManager.Instance;
+        _gameManager.onGameOverEvent += PrintItemList;
+
+        player = _gameManager.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
 
         _rerollCost = 5;
@@ -829,5 +832,22 @@ public class InventoryController : MonoBehaviour
     public void ReSetRerollCount()
     {
         rerollCount = 0;
+    }
+
+    void PrintItemList()
+    {
+        Debug.Log("-----------던전 종료 시 소지 중인 아이템 목록-----------");
+        foreach(var list in playerInventoryGrid.inventory)
+        {
+            foreach(var item in list.Value)
+            {
+                Debug.Log($"{item.itemSO.Name} - {item.itemSO.Grade}");
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        _gameManager.onGameOverEvent -= PrintItemList;
     }
 }
