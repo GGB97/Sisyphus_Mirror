@@ -214,31 +214,25 @@ public class RuneStoneUI : MonoBehaviour
             _isTried = true;
         }
 
-        Debug.Log(_runeStoneSlider.value);
-
         int bonusMin = 0, bonusMax = 0;
 
         if (_runeStoneSlider.value >= 0.45f && _runeStoneSlider.value <= 0.55f)
         {
-            Debug.Log("초록");
             bonusMin = 1;
             bonusMax = 4;
         }
         else if (_runeStoneSlider.value >= 0.33f && _runeStoneSlider.value <= 0.66f)
         {
-            Debug.Log("노랑");
             bonusMin = 1;
             bonusMax = 2;
         }
         else if (_runeStoneSlider.value >= 0.2f && _runeStoneSlider.value <= 0.8f)
         {
-            Debug.Log("주황");
             bonusMin = -1;
             bonusMax = 1;
         }
         else
         {
-            Debug.Log("빨강");
             bonusMin = -2;
             bonusMax = 0;
         }
@@ -287,7 +281,6 @@ public class RuneStoneUI : MonoBehaviour
         _playerStatus.InitStatus(_playerStatus, _modifier);
         if (_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
-            Debug.Log("Status");
             playerStats.UpdateStatsPanel();
         }
     }

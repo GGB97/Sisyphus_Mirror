@@ -81,34 +81,20 @@ public class MeleeWeapon : MonoBehaviour
             // 무기 방향 회전
             Vector3 dir = transform.position - targetPos;
             dir.y = 0;
-            //Quaternion rot = Quaternion.LookRotation(dir.normalized);
-            //transform.rotation = rot;
 
             dir = targetPos - transform.position;
             dir.y = 0;
-            //_targetPos = new Vector3(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y, transform.position.z + dir.normalized.z);
+
             targetPos = new Vector3(targetPos.x - (0.3f * dir.normalized.x), targetPos.y - (0.3f * dir.normalized.y), targetPos.z - (0.3f * dir.normalized.z));
 
             // 근접 공격 이동
             transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
 
             // 이동이 완료되면
-            //if(percentageComplete >= .5f)
-            //{
-            //    _animationEnd = false;
-            //    //Debug.Log("Melee Attack");
-            //    // 공격 애니메이션 재생
-            //    _animator.SetBool("Attack", true);
-            //    _animator.SetFloat("AttackSpeed", 1 + _weaponData.AtkSpeed);
-            //}
             if (percentageComplete >= 1f)
             {
-                //_effect.SetActive(true);
-                //_timeStartedMoving = Time.time;
-                //_canAttack = false;
                 _animationEnd = false;
-                //Debug.Log("Melee Attack");
-                // 공격 애니메이션 재생
+
                 _animator.SetBool("Attack", true);
                 _animator.SetFloat("AttackSpeed", 1 * _weaponData.AtkSpeed);
             }
@@ -151,7 +137,6 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            //Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
 
@@ -215,7 +200,6 @@ public class MeleeWeapon : MonoBehaviour
         }
         else
         {
-            //Debug.Log($"Trigger failure {LayerMask.NameToLayer("Enemy")}");
             return;
         }
     }

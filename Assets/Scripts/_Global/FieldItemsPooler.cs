@@ -65,8 +65,6 @@ public class FieldItemsPooler : MonoBehaviour
         if (!poolDictionary.ContainsKey(id))
             return null;
 
-        //Debug.Log(id);
-
         // 큐에 없으면 새로 추가
         Queue<GameObject> poolQueue = poolDictionary[id];
         if (poolQueue.Count <= 0)

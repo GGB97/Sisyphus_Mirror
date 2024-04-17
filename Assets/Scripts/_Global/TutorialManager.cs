@@ -27,7 +27,6 @@ public class TutorialManager : SingletoneBase<TutorialManager>
         if (PlayerPrefs.HasKey("dungeonStartTutorialFlag"))
         {
             dungeonStartTutorialFlag = PlayerPrefs.GetInt("dungeonStartTutorialFlag");
-            Debug.Log(dungeonStartTutorialFlag);
         }
         else dungeonStartTutorialFlag = 0;
     }

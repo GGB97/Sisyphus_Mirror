@@ -138,7 +138,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (cnt >= 100) // 무한루프 방지
             {
-                Debug.Log("Can't Spawn");
+                Debug.Log("(LogError) : EnemySpanwer Can't Spawn");
                 return false;
             }
 

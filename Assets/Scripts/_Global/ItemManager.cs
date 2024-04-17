@@ -90,7 +90,6 @@ public class ItemManager : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Weapon:
-                Debug.Log("Unequip");
                 _tempWeapon = _ownWeapons.Find(x => x.Id == id);
                 _ownWeapons.Remove(_tempWeapon);
                 ModifyPlayerStat(_tempWeapon, false);

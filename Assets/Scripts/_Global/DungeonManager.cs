@@ -46,16 +46,13 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         if (inventoryUI == null && stageUI == null)
         {
-            Debug.Log("찾기 실패");
+            Debug.Log("(LogError) : DungeonManager에서 UI 찾기 실패");
         }
         else
         {
             TextMeshProUGUI[] arr = stageUI.GetComponentsInChildren<TextMeshProUGUI>();
             stageText = System.Array.Find(arr, x => x.name == stageTextName);
             timeText = System.Array.Find(arr, x => x.name == TimeTextName);
-
-            //Debug.Log("찾기 성공");
-            //inventoryUI.SetActive(false);
         }
 
         if (InventoryController.Instance != null)

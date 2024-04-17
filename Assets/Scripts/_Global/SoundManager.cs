@@ -108,7 +108,6 @@ public class SoundManager : MonoBehaviour
     {
         if (!audioDictionary.ContainsKey(tag)) //오디오 클립이 존재하는지 확인
         {
-            Debug.Log("tag는 존재하지 않는 오디오 입니다.");
             return;
         }
 

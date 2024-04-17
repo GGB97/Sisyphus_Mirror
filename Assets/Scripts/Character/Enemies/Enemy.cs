@@ -244,7 +244,7 @@ public class Enemy : CharacterBehaviour
             }
             else if (type == SkillType.Skill01)
             {
-                Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
+                //Debug.Log($"Skill : {gameObject.name} -> Attack : {other.gameObject.name}");
                 hs.TakeDamage(currentStat.physicalAtk * 0.4f, DamageType.Physical);
             }
         }

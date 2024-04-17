@@ -84,8 +84,6 @@ public class FieldItems : MonoBehaviour
 
     void PlayerGetGold()
     {
-        //SetValue();
-        //Debug.Log($"Player Get '{_value}' Gold");
         _player.ChangeGold(_value);
         GameManager.Instance.totalGold += _value;
 
