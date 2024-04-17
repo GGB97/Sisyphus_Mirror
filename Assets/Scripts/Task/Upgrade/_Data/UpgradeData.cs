@@ -85,8 +85,6 @@ public class UpgradeData : GameTask
         PlayerPrefs.SetInt($"Upgrade_{UpgradeType}", 0);
 
         int n = PlayerPrefs.GetInt($"Upgrade_{UpgradeType}");
-
-        Debug.Log($"pp reset : {n}");
     }
 
     public string NextReward()

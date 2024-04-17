@@ -66,6 +66,10 @@ public class UpgradeManager : MonoBehaviour
             if (_player.rune >= count)
             {
                 // 업그레이드 가능
+                Debug.Log($"강화 : {data.UpgradeType} / 비용 : {count}" +
+                    $"\n[등급 - {data.CurrentGrade} -> {data.CurrentGrade + 1}]" +
+                    $"\n남은 룬 : {_player.rune}");
+
                 PlayerPrefs.SetInt($"Upgrade_{data.UpgradeType}", data.CurrentGrade + 1); // 데이터 저장 구현시 변경
                 _player.ChangeRune(-count);
 
@@ -106,10 +110,12 @@ public class UpgradeManager : MonoBehaviour
             {
                 cost += data.CostModifiers[i].Cost;
             }
-            GameManager.Instance.Player.ChangeRune(cost);
+            _player.ChangeRune(cost);
 
             data.Reset();
             item.UpdateUI(data);
         }
+
+        Debug.Log($"반환 : 현재 룬 ({_player.rune})");
     }
 }
