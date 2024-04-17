@@ -76,6 +76,27 @@ MonoBehaviour:
     _critRate: 0
     _critDamage: 0
     _lifeSteal: 1
+  - _id: 10201031
+    _itemType: 1
+    _name: NerdGlass
+    _description: "\uB9C8\uBC95 \uACF5\uACA9\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Equipments/Accessories_3
+    _iconWidth: 2
+    _iconHeight: 1
+    _prefabPath: Items/Prefabs/Equipments/Accessories_3
+    _price: 28
+    _weight: 2
+    _grade: 0
+    _type: 1
+    _health: 0
+    _physicalAtk: 0
+    _magicAtk: 3
+    _def: 0
+    _atkSpeed: 1
+    _moveSpeed: 0
+    _critRate: 1
+    _critDamage: 1
+    _lifeSteal: 0
   - _id: 10202011
     _itemType: 1
     _name: Helm of Valor
