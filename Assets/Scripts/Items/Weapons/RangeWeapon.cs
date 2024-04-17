@@ -70,7 +70,6 @@ public class RangeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            //Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
 
@@ -116,7 +115,6 @@ public class RangeWeapon : MonoBehaviour
         _projectile.AddExcludeLayer(LayerData.Player);
         _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
 
-        //float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
         float value = SetAttackDamage();
         _projectile.SetValue(value);
         _projectile.SetVelocity(1f); // 속도 배율 설정
