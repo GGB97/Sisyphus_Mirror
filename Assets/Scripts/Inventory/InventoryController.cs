@@ -92,6 +92,7 @@ public class InventoryController : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         _gameManager.onGameOverEvent += PrintItemList;
+        _gameManager.onGameOverEvent += PrintRerollCount;
 
         player = _gameManager.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
@@ -110,7 +111,8 @@ public class InventoryController : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+        _gameManager.onGameOverEvent -= PrintItemList;
+        _gameManager.onGameOverEvent -= PrintRerollCount;
     }
 
     private void Update()
@@ -834,6 +836,11 @@ public class InventoryController : MonoBehaviour
         rerollCount = 0;
     }
 
+    private void PrintRerollCount()
+    {
+        Debug.Log($"리롤 카운트 : {rerollCount}");
+    }
+
     void PrintItemList()
     {
         Debug.Log("-----------던전 종료 시 소지 중인 아이템 목록-----------");
@@ -846,8 +853,5 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _gameManager.onGameOverEvent -= PrintItemList;
-    }
+   
 }
