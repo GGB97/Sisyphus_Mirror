@@ -26,7 +26,6 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     public bool isStageCompleted = false;
     public int currnetstage = 0;
 
-
     public event Action OnStageStart;
     public event Action OnStageClear;
     public event Action<int> OnClearUI;
@@ -46,7 +45,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
         if (inventoryUI == null && stageUI == null)
         {
-            Debug.Log("(LogError) : DungeonManager에서 UI 찾기 실패");
+            Debug.LogError("(LogError) : DungeonManager에서 UI 찾기 실패");
         }
         else
         {
@@ -61,6 +60,11 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(scene.buildIndex == 2 && GameManager.Instance.Player != null)
+        {
+            Debug.Log($"입장 캐릭터 : {GameManager.Instance.Player.name}");
+            LogCreator.Instance.SetTryCounter();
+        }
         Init();
     }
 
