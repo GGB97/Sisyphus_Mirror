@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6103458535843217901
 MonoBehaviour:
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2584ba9405ce64446b4759f2db1d63e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  waveData: {fileID: 0}
+  waveData: {fileID: 11400000, guid: eec5a0ac54d92294f895f836de030225, type: 2}
   maxEnemyCnt: 0
   currentEnemyCnt: 0
+  numPerSpawn: 0
   plane: {fileID: 0}
+  arriveBoss: 0

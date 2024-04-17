@@ -228,11 +228,12 @@ public class Player : CharacterBehaviour
 
     void Invincibility()
     {
-        Controller.detectCollisions = false;
+        LayerMask excludeTarget = LayerData.Enemy | LayerData.Projectile;
+        Controller.excludeLayers = excludeTarget;
     }
 
     void UnInvincibility()
     {
-        Controller.detectCollisions = true;
+        Controller.excludeLayers = 0;
     }
 }
