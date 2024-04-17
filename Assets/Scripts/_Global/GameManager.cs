@@ -127,6 +127,7 @@ public class GameManager : SingletoneBase<GameManager>
     void PrintPlayData()
     {
         Debug.Log("-----------이번 던전의 플레이 데이터-----------");
+        Debug.Log($"현재 층 수 : {DungeonManager.Instance.currnetstage}층");
         Debug.Log($"던전 종료 시 플레이어 레벨 : {Player.Data.LV}");
         Debug.Log($"총 잡은 몬스터 수 : {killenemys}");
         Debug.Log($"총 얻은 골드 량 : {totalGold}");
