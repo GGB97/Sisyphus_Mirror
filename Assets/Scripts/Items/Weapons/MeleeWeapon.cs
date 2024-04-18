@@ -39,7 +39,7 @@ public class MeleeWeapon : MonoBehaviour
 
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
 
-        //atkSpeed = _weaponData.AtkSpeed;
+        atkSpeed = _weaponData.AtkSpeed;
         _weaponPivot = transform.parent;
 
         _weaponPos = GetRandomPosition();
@@ -79,10 +79,7 @@ public class MeleeWeapon : MonoBehaviour
             _animationEnd = false;
 
             // 무기 방향 회전
-            Vector3 dir = transform.position - targetPos;
-            dir.y = 0;
-
-            dir = targetPos - transform.position;
+            Vector3 dir = targetPos - transform.position;
             dir.y = 0;
 
             targetPos = new Vector3(targetPos.x - (0.3f * dir.normalized.x), targetPos.y - (0.3f * dir.normalized.y), targetPos.z - (0.3f * dir.normalized.z));
@@ -91,7 +88,7 @@ public class MeleeWeapon : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
 
             // 이동이 완료되면
-            if (percentageComplete >= 1f)
+            if (percentageComplete >= .9f)
             {
                 _animationEnd = false;
 

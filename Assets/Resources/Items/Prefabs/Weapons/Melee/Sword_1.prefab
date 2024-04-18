@@ -357,6 +357,7 @@ MonoBehaviour:
     _sfxTag: 
   atkSpeed: 0
   _animator: {fileID: 0}
+  _collider: {fileID: 0}
   _effect: {fileID: 2316877866652130393}
   Target: []
   _weaponPivot: {fileID: 0}
