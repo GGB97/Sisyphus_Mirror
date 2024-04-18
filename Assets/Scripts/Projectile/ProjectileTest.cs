@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileTest : MonoBehaviour
@@ -6,6 +7,8 @@ public class ProjectileTest : MonoBehaviour
     protected ProjectileData _data;
 
     [SerializeField] protected LayerMask _target; // 부딪혀서 데미지를 줘야하는 하는 대상 Layer
+    protected Dictionary<int, Transform> attackedTarget = new();
+
 
     public ParticleSystem ps;
     protected Collider _projectileCollider;
@@ -45,6 +48,8 @@ public class ProjectileTest : MonoBehaviour
         _projectileCollider.excludeLayers = LayerData.Projectile; // 투사체간의 충돌로 지워지지 않게 하기 위해 초기값으로
 
         _duration = _data.duration;
+
+        attackedTarget.Clear();
     }
 
     private void OnDisable()
@@ -83,16 +88,21 @@ public class ProjectileTest : MonoBehaviour
         bool isContained = (hitLayer & _target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
         if (isContained)
         {
-            if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+            int key = other.gameObject.GetComponent<CharacterBehaviour>().GetActiveID();
+            if (attackedTarget.ContainsKey(key) == false)
             {
-                _healthSystem.TakeDamage(_value, _data.type);
+                if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+                {
+                    _healthSystem.TakeDamage(_value, _data.type);
+                    attackedTarget.Add(key, other.gameObject.transform);
+                }
             }
         }
 
         OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
 
-    void OnHit()
+    protected virtual void OnHit()
     {
         _projectileCollider.enabled = false;
         //rb.velocity = Vector3.zero;

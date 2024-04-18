@@ -36,8 +36,10 @@ public class Player : CharacterBehaviour
 
     public float magnetDistance;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _gameManager = GameManager.Instance;
 
         AnimationData.Initialize();
@@ -226,13 +228,13 @@ public class Player : CharacterBehaviour
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
     }
 
-    void Invincibility()
+    public void Invincibility()
     {
         LayerMask excludeTarget = LayerData.Enemy | LayerData.Projectile;
         Controller.excludeLayers = excludeTarget;
     }
 
-    void UnInvincibility()
+    public void UnInvincibility()
     {
         Controller.excludeLayers = 0;
     }
