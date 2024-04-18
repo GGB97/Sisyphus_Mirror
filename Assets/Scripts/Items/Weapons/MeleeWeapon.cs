@@ -51,7 +51,7 @@ public class MeleeWeapon : MonoBehaviour
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
 
-        atkSpeed += _weaponData.AtkSpeed + (_player.currentStat.attackSpeed / 100);
+        atkSpeed += 1 + ((1 - _weaponData.AtkSpeed) * 2 + (_player.currentStat.attackSpeed / 200));
     }
 
     public void Init(int id)
