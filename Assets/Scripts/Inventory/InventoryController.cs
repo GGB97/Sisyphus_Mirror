@@ -107,7 +107,7 @@ public class InventoryController : MonoBehaviour
     {
         SetRerollButtonText();
         ReSetRerollCount();
-        if (PlayerPrefs.HasKey("inventoryTutorialFlag") && PlayerPrefs.GetInt("inventoryTutorialFlag") == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
+        if (PlayerPrefs.GetInt("inventoryTutorialFlag") == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
     }
     private void OnDisable()
     {

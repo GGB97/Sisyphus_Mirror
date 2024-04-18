@@ -112,7 +112,7 @@ public class RuneStoneUI : MonoBehaviour
 
     public void OnClickStatPlusButton(int index)
     {
-        if (_selectedStatCounter >= 6 || _selectedStatCounter > _remainChance)
+        if (_selectedStatCounter >= 6 || _selectedStatCounter >= _remainChance)
         {
             return;
         }
@@ -187,6 +187,8 @@ public class RuneStoneUI : MonoBehaviour
         Destroy(_selectedStatusButtons[index].gameObject);
         _selectedStatusButtons.RemoveAt(index);
         _selectedStatCounter--;
+
+        _remainChanceText.text = (_remainChance - _selectedStatCounter).ToString() + ($"<color=\"yellow\"> 회</color>");
     }
 
     // 강화 시도
