@@ -88,7 +88,7 @@ public class ProjectileTest : MonoBehaviour
                 _healthSystem.TakeDamage(_value, _data.type);
             }
         }
-        else return;
+
         OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
 

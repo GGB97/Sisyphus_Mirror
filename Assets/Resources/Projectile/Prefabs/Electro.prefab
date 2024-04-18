@@ -19670,7 +19670,8 @@ MonoBehaviour:
     m_Bits: 0
   ps: {fileID: 5236228308305752972}
   hitParticle: {fileID: 7744239265363126417}
-  chasingInterval: 0.05
+  chasingInterval: 0.1
+  rotationSpeed: 10
 --- !u!1001 &7440580863176971693
 PrefabInstance:
   m_ObjectHideFlags: 0
