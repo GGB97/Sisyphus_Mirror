@@ -272,13 +272,9 @@ public class Enemy : CharacterBehaviour
             _rangeAttackPos[num].transform.position,
             _rangeAttackPos[num].transform.rotation);
 
-        Vector3 directionToTarget = target.position - transform.position;
-        directionToTarget.y = 0f;
-        directionToTarget.Normalize();
-
         ProjectileTest projectile = go.GetComponent<ProjectileTest>();
 
-        projectile.AddTarget(LayerData.Player); // Player를 맞춰야함
+        SetProjectileTarget(projectile);
         projectile.AddExcludeLayer(LayerData.Enemy); // Enemy는 충돌하지 않게 설정
 
         float value = projectile.GetDamageType == DamageType.Physical ? currentStat.physicalAtk : currentStat.magicAtk;
@@ -302,6 +298,18 @@ public class Enemy : CharacterBehaviour
         areaAttack.SetValue(value);
 
         areaAttack.AttackStart();
+    }
+
+    void SetProjectileTarget(ProjectileTest projectile)
+    {
+        if (projectile is Projectile_Guided)
+        {
+            projectile.AddTarget(LayerData.Player, target);
+        }
+        else
+        {
+            projectile.AddTarget(LayerData.Player); // Player를 맞춰야함
+        }
     }
 
     void StartSpawn()
@@ -337,7 +345,7 @@ public class Enemy : CharacterBehaviour
 
     void DropItem()
     {
-        DropFielItems(FieldItemType.Gold, dropGoldValue + _dungeonManager.currnetstage / 5);
+        DropFielIdtems(FieldItemType.Gold, dropGoldValue + _dungeonManager.currnetstage / 5);
 
         float rand = UnityEngine.Random.value;
         if (rand < EnemyStageModifier.fieldItemDropPer)
@@ -346,16 +354,16 @@ public class Enemy : CharacterBehaviour
 
             if (rand2 > 0.5f)
             {
-                DropFielItems(FieldItemType.Heart, 5);
+                DropFielIdtems(FieldItemType.Heart, 5);
             }
             else
             {
-                DropFielItems(FieldItemType.Shield, 10);
+                DropFielIdtems(FieldItemType.Shield, 10);
             }
         }
     }
 
-    void DropFielItems(FieldItemType type, int value)
+    void DropFielIdtems(FieldItemType type, int value)
     {
         Quaternion rot;
         Vector3 _itemPos;

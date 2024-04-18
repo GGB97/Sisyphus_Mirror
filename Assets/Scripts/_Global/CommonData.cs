@@ -62,7 +62,8 @@ public enum ProjectileID
     // -----
 
     OrangeExplosion = 40000100,
-    Poison,
+    Poison = 40000101,
+    Electro = 40000102,
 
     // AreaAttack
     AreaAttack_Ice = 40000200

@@ -123,7 +123,7 @@ public class EnemyBaseState : IState
         Quaternion targetRotation = LookTargetPos();
 
         // 바라보는 방향 수정
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime); // 보간
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime);
     }
 
     protected virtual void ChangeAttackState()

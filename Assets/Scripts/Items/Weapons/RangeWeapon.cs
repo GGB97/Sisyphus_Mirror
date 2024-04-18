@@ -7,6 +7,7 @@ public class RangeWeapon : MonoBehaviour
     [SerializeField] private Transform _weaponContainer;
 
     public List<Transform> Target = new List<Transform>();
+    Transform currentTarget;
 
     [SerializeField] private Animator _animator;
 
@@ -83,7 +84,9 @@ public class RangeWeapon : MonoBehaviour
             return;
         }
 
-        RotateWeapon(Target[random].position);
+        currentTarget = Target[random];
+
+        RotateWeapon(currentTarget.position);
     }
 
     private void RotateWeapon(Vector3 target)
@@ -111,7 +114,7 @@ public class RangeWeapon : MonoBehaviour
         GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
         ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
         if (_projectile.sfxTag != null) SoundManager.Instance.PlayAudioClip(_projectile.sfxTag);
-        _projectile.AddTarget(LayerData.Enemy);
+        SetProjectileTarget(_projectile);
         _projectile.AddExcludeLayer(LayerData.Player);
         _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
 
@@ -131,13 +134,26 @@ public class RangeWeapon : MonoBehaviour
                 GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, rot);
 
                 ProjectileTest projectile = go.GetComponent<ProjectileTest>();
-                projectile.AddTarget(LayerData.Enemy);
+                SetProjectileTarget(projectile);
 
                 projectile.SetValue(value);
                 projectile.SetVelocity(1f); // 속도 배율 설정
             }
         }
     }
+
+    void SetProjectileTarget(ProjectileTest projectile)
+    {
+        if (projectile is Projectile_Guided)
+        {
+            projectile.AddTarget(LayerData.Enemy, currentTarget);
+        }
+        else
+        {
+            projectile.AddTarget(LayerData.Enemy);
+        }
+    }
+
     private float SetAttackDamage()
     {
         float damage = 0;
