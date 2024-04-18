@@ -13,13 +13,13 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] Collider _collider;
     [SerializeField] GameObject _effect;
 
-    public List<Transform> Target = new List<Transform>();
+    public List<Enemy> Target = new List<Enemy>();
     public Transform _weaponPivot;
     Vector3 _weaponPosY = new Vector3(0, 1.5f, 0);
     Vector3 _weaponPos;
 
     [SerializeField] private int id;
-    [SerializeField] public Vector3 targetPos;
+    [SerializeField] public Enemy _target;
 
     private WeaponIdleAnimation _idleAnimation;
 
@@ -33,8 +33,6 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (transform.parent == null) Destroy(gameObject);
 
-        _animator = GetComponent<Animator>();
-        _collider = GetComponent<Collider>();
         _collider.enabled = false;
 
         _idleAnimation = GetComponent<WeaponIdleAnimation>();
@@ -52,6 +50,8 @@ public class MeleeWeapon : MonoBehaviour
 
         _player = GameManager.Instance.Player;
         _playerStatus = _player.currentStat;
+
+        atkSpeed += _weaponData.AtkSpeed + (_player.currentStat.attackSpeed / 100);
     }
 
     public void Init(int id)
@@ -72,44 +72,52 @@ public class MeleeWeapon : MonoBehaviour
         // 선형 보간 시작한 시간
         float timeSinceStarted = Time.time - _timeStartedMoving;
         // 선형 보간 진행 정도
-        float percentageComplete = timeSinceStarted / (_weaponData.AtkSpeed / 3);
+        //float percentageComplete = timeSinceStarted / (_weaponData.AtkSpeed / 3);
+        float percentageComplete = timeSinceStarted / (atkSpeed);
 
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
             _animationEnd = false;
 
             // 무기 방향 회전
-            Vector3 dir = transform.position - targetPos;
+            //Vector3 dir = transform.position - targetPos;
+            Vector3 dir = _target.transform.position - transform.position;
             dir.y = 0;
 
-            dir = targetPos - transform.position;
+            transform.rotation = Quaternion.LookRotation(dir);
+
+            dir = _target.transform.position - transform.position;
             dir.y = 0;
 
-            targetPos = new Vector3(targetPos.x - (0.3f * dir.normalized.x), targetPos.y - (0.3f * dir.normalized.y), targetPos.z - (0.3f * dir.normalized.z));
+            Vector3 targetPos = new Vector3(_target.transform.position.x - (0.3f * dir.normalized.x), _target.transform.position.y + .5f, _target.transform.position.z - (0.3f * dir.normalized.z));
 
             // 근접 공격 이동
-            transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
+            //transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
+            transform.position = Vector3.Lerp(transform.position, targetPos, atkSpeed / 5);
 
             // 이동이 완료되면
-            if (percentageComplete >= 1f)
+            if (Mathf.Abs(transform.position.x - targetPos.x) < .1f && Mathf.Abs(transform.position.z - targetPos.z) < .1f)
             {
                 _animationEnd = false;
+                _canAttack = false;
 
                 _animator.SetBool("Attack", true);
-                _animator.SetFloat("AttackSpeed", 1 * _weaponData.AtkSpeed);
+                _animator.SetFloat("AttackSpeed", atkSpeed);
             }
         }
         else if (_animationEnd && !_canAttack)
         {
-            transform.rotation = Quaternion.Euler(-180, 0, 0);
-            transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, percentageComplete);
+            transform.rotation = Quaternion.identity;
 
-            if (percentageComplete >= 1)
+            transform.position = Vector3.Lerp(transform.position, _weaponPivot.position, atkSpeed / 5);
+
+            if (Mathf.Abs(transform.position.x - _weaponPivot.position.x) < .1f && Mathf.Abs(transform.position.y - _weaponPivot.position.y) < .1f && Mathf.Abs(transform.position.z - _weaponPivot.position.z) < .1f)
             {
                 transform.localPosition = _weaponPos;
 
                 Target.Clear();
-                Invoke("SetCanAttack", _weaponData.AtkSpeed / 3);
+                //Invoke("SetCanAttack", atkSpeed);
+                _canAttack = true;
                 _idleAnimation.isFloating = true;
             }
         }
@@ -137,20 +145,18 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Target.Add(collider.transform);
+            Target.Add(collider.GetComponent<Enemy>());
         }
 
         int random = Random.Range(0, colliders.Length);
-        if (Target[random].GetComponent<Enemy>().isDie || Target[random].GetComponent<Enemy>().IsSpawning)
+        if (Target[random].isDie || Target[random].IsSpawning)
         {
             Target.Clear();
             return;
         }
-        targetPos = Target[random].position;
+        _target = Target[random];
 
         // TODO : Monster의 크기에 맞게 공격 위치 변경해주기... 가능하다면
-        targetPos.y = (Vector3.up * 1.0f).y;
-
 
         transform.parent = null;
         _idleAnimation.isFloating = false;
@@ -158,17 +164,16 @@ public class MeleeWeapon : MonoBehaviour
         _isMoving = true;
     }
 
-    void OnAnimationStart()
+    public void OnAnimationStart()
     {
         _effect.SetActive(true);
         _collider.enabled = true;
 
         SoundManager.Instance.PlayAudioClip(_weaponData.SfxTag);
         _timeStartedMoving = Time.time;
-        _canAttack = false;
     }
 
-    void OnAnimationEnd()
+    public void OnAnimationEnd()
     {
         _collider.enabled = false;
         _effect.GetComponent<TrailRenderer>().Clear();
