@@ -27,6 +27,13 @@ MonoBehaviour:
     duration: 3
     ricochetCount: 0
     sfxTag: Cube_1
+  - id: 40000002
+    prefabPath: Projectile/Prefabs/Arrow_Ricochet
+    type: 0
+    speed: 10
+    duration: 3
+    ricochetCount: 0
+    sfxTag: Arrow_1
   - id: 40000100
     prefabPath: Projectile/Prefabs/Orange Explosion
     type: 1

@@ -23,7 +23,7 @@ public class ProjectileTest : MonoBehaviour
     public DamageType GetDamageType => _data.type;
     public string sfxTag => _data.sfxTag;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _projectileCollider = GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
@@ -88,10 +88,10 @@ public class ProjectileTest : MonoBehaviour
         bool isContained = (hitLayer & _target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
         if (isContained)
         {
-            int key = other.gameObject.GetComponent<CharacterBehaviour>().GetActiveID();
-            if (attackedTarget.ContainsKey(key) == false)
+            if (other.gameObject.TryGetComponent(out HealthSystem _healthSystem))
             {
-                if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+                int key = other.gameObject.GetComponent<CharacterBehaviour>().GetActiveID();
+                if (attackedTarget.ContainsKey(key) == false)
                 {
                     _healthSystem.TakeDamage(_value, _data.type);
                     attackedTarget.Add(key, other.gameObject.transform);

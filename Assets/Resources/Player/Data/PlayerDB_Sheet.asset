@@ -15,6 +15,7 @@ MonoBehaviour:
   Entities:
   - health: 0
     maxHealth: 60
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
     maxEXP: 0
   - health: 0
     maxHealth: 50
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
