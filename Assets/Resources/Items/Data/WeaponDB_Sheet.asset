@@ -35,6 +35,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Axe_1
+    _particleID: 71000002
   - _id: 10111012
     _itemType: 0
     _name: Axe
@@ -57,6 +58,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Axe_1
+    _particleID: 71000002
   - _id: 10111013
     _itemType: 0
     _name: Axe
@@ -79,6 +81,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Axe_1
+    _particleID: 71000002
   - _id: 10112011
     _itemType: 0
     _name: Sword
@@ -101,6 +104,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Sword_1
+    _particleID: 71000001
   - _id: 10112012
     _itemType: 0
     _name: Sword
@@ -123,6 +127,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Sword_1
+    _particleID: 71000001
   - _id: 10112013
     _itemType: 0
     _name: Sword
@@ -145,6 +150,7 @@ MonoBehaviour:
     _projectileID: 0
     _numberOfProjectile: 0
     _sfxTag: Sword_1
+    _particleID: 71000001
   - _id: 10121011
     _itemType: 0
     _name: Bow
@@ -167,6 +173,7 @@ MonoBehaviour:
     _projectileID: 40000000
     _numberOfProjectile: 1
     _sfxTag: Bow_1
+    _particleID: 0
   - _id: 10121012
     _itemType: 0
     _name: Bow
@@ -189,6 +196,7 @@ MonoBehaviour:
     _projectileID: 40000000
     _numberOfProjectile: 2
     _sfxTag: Bow_1
+    _particleID: 0
   - _id: 10121013
     _itemType: 0
     _name: Bow
@@ -211,6 +219,7 @@ MonoBehaviour:
     _projectileID: 40000000
     _numberOfProjectile: 3
     _sfxTag: Bow_1
+    _particleID: 0
   - _id: 10122011
     _itemType: 0
     _name: Wand
@@ -233,6 +242,7 @@ MonoBehaviour:
     _projectileID: 40000001
     _numberOfProjectile: 3
     _sfxTag: Wand_1
+    _particleID: 0
   - _id: 10122012
     _itemType: 0
     _name: Wand
@@ -255,6 +265,7 @@ MonoBehaviour:
     _projectileID: 40000001
     _numberOfProjectile: 3
     _sfxTag: Wand_1
+    _particleID: 0
   - _id: 10122013
     _itemType: 0
     _name: Wand
@@ -277,3 +288,4 @@ MonoBehaviour:
     _projectileID: 40000001
     _numberOfProjectile: 3
     _sfxTag: Wand_1
+    _particleID: 0

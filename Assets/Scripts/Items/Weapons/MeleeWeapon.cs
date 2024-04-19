@@ -12,6 +12,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] GameObject _effect;
+    [SerializeField] ParticleSystem _hit;
 
     public List<Enemy> Target = new List<Enemy>();
     public Transform _weaponPivot;
@@ -190,7 +191,12 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
+                //_hit.Play();
+                GameObject go = ParticleObjectPool.Instance.SpawnFromPool(_weaponData.ParticleID, other.gameObject.transform.position, Quaternion.identity);
+                go.GetComponent<Particle>().PlayerPartcle();
+
                 _healthSystem.TakeDamage(SetAttackDamage(), _weaponData.PhysicalAtk != 0 ? DamageType.Physical : DamageType.Magic);
+                //Invoke("ToggleParticle", atkSpeed);
 
                 if (_weaponData.LifeSteal != 0)
                 {
@@ -208,6 +214,11 @@ public class MeleeWeapon : MonoBehaviour
             return;
         }
     }
+
+    //void ToggleParticle()
+    //{
+    //    _hit.Stop();
+    //}
 
     private float SetAttackDamage()
     {

@@ -28,6 +28,9 @@ public class WeaponData : ItemSO
     [field: Header("SFX")]
     [SerializeField] private string _sfxTag;
 
+    [field: Header("VFX")]
+    [SerializeField] int _particleID;
+
     public float PhysicalAtk => _physicalAtk;
     public float MagicAtk => _magicAtk;
     public float AtkSpeed => _atkSpeed;
@@ -41,6 +44,8 @@ public class WeaponData : ItemSO
     public int NumberOfProjectile => _numberOfProjectile;
 
     public string SfxTag => _sfxTag;    // 공격 시 효과음
+
+    public int ParticleID => _particleID;    // 공격 적중 시 발생하는 파티클
 
     public override StringBuilder SetExplantion(ItemSO itemSO)
     {

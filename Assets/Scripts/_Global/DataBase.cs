@@ -11,6 +11,7 @@ public class DataBase : SingletoneBase<DataBase>
     [SerializeField] PlayerUpgradeDB _PlayerUpgrade;
     [SerializeField] TutorialDB _tutorial;
     [SerializeField] QuestDB _quest;
+    [SerializeField] ParticleDB _particle;
 
     public static EnemyDB EnemyStats
     {
@@ -107,6 +108,17 @@ public class DataBase : SingletoneBase<DataBase>
                 Instance._quest = new QuestDB();
 
             return Instance._quest;
+        }
+    }
+
+    public static ParticleDB Particle
+    {
+        get
+        {
+            if (Instance._particle == null)
+                Instance._particle = new ParticleDB();
+
+            return Instance._particle;
         }
     }
 }
