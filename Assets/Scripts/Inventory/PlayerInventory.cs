@@ -19,7 +19,7 @@ public class PlayerInventory : ItemGrid
         base.Start();
         //CreateBaseBlock(gridSizeWidth, gridSizeHeight);
         maxCount = 100;
-        CreateRandomBaseBlock();
+        CreateRandomBaseBlock(GameManager.Instance.Player.Data._startItemID);
     }
 
     public int CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 추가
