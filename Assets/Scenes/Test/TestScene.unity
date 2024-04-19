@@ -288,6 +288,8 @@ MonoBehaviour:
     size: 5
   - id: 40000200
     size: 5
+  - id: 40000002
+    size: 5
   _spawnObjects: []
 --- !u!4 &250687861
 Transform:

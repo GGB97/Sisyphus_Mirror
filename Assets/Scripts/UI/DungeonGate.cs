@@ -7,6 +7,7 @@ public class DungeonGate : MonoBehaviour
         if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
         {
             GameManager.Instance.gameState = GameState.Dungeon;
+            GameManager.Instance.ResetActiveID();
             GameManager.Instance.LoadScene(SceneName.Dungeon);
         }
     }

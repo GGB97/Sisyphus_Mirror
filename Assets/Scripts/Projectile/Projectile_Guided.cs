@@ -8,8 +8,7 @@ public class Projectile_Guided : ProjectileTest
 
     float chasingDelay;
     [SerializeField] float chasingInterval = 0.05f; // 회전을 할 간격
-
-    Vector3 directionToTarget;
+    [SerializeField] float rotationSpeed = 10f;
 
     protected override void Init()
     {
@@ -37,8 +36,7 @@ public class Projectile_Guided : ProjectileTest
             chasingDelay = 0;
         }
 
-        _rb.velocity = gameObject.transform.forward * (_data.speed * _velocity);
-        //base.MoveToTarget();
+        base.MoveToTarget();
     }
 
     protected Quaternion LookTargetPos() // 바라볼 방향 계산
@@ -54,7 +52,7 @@ public class Projectile_Guided : ProjectileTest
         Quaternion targetRotation = LookTargetPos();
 
         // 바라보는 방향 수정
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public override void AddTarget(LayerMask layer, Transform target)

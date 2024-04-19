@@ -59,6 +59,7 @@ public enum ProjectileID
     // 에러 수정용 임시 Arrow
     Arrow = 40000000,
     Cube = 40000001,
+    Arrow_Ricochet = 40000002,
     // -----
 
     OrangeExplosion = 40000100,

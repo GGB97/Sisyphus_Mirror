@@ -51,8 +51,10 @@ public class Enemy : CharacterBehaviour
 
     public Action<float, float> changeHealth;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Info = DataBase.EnemyStats.Get(id);
 
         Collider = GetComponent<Collider>();

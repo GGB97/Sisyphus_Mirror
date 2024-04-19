@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletoneBase<GameManager>
 {
+    int activeID = 0;
+
     [SerializeField] private int _playerID = 20000002;
     [SerializeField] private Player _player;
 
@@ -158,5 +160,15 @@ public class GameManager : SingletoneBase<GameManager>
         onGameOverEvent?.Invoke();
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public int SetActiveID()
+    {
+        return activeID++;
+    }
+
+    public void ResetActiveID()
+    {
+        activeID = 0;
     }
 }
