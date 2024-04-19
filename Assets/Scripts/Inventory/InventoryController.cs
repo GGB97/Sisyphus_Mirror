@@ -433,6 +433,8 @@ public class InventoryController : MonoBehaviour
                 {
                     if (storeGrid.currentStoreItem[i] == selectedItem)
                     {
+                        ItemGrid tempGrid = SelectedItemGrid;//옮길려고 하는 Grid 저장
+
                         storeGrid.currentStoreItem[i] = null;
                         // 아이템 구매 시 플레이어 골드 차감하기
                         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
@@ -440,10 +442,10 @@ public class InventoryController : MonoBehaviour
                         else player.Data.Gold = player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage) <= 0 ? 0 : player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
                         SetPlayerGoldText();
 
-                        SelectedItemGrid = previousItemGird;//이동 전 그리드로 재설정
+                        SelectedItemGrid = previousItemGird;//이동 전 그리드로 설정
                         Vector2Int tileGridStartPosition = GetTileGridPositionWithBaseItem(startPosition,selectedItem); //원래의 있던 곳의 위치
 
-                        SelectedItemGrid = playerInventoryGrid;
+                        SelectedItemGrid = tempGrid;//현재 그리드로 재설정
                         storeGrid.PannelImageClear(tileGridStartPosition,selectedItem);// 판넬 투명하게 하기
 
                         itemCost[i].transform.parent.gameObject.SetActive(false);
