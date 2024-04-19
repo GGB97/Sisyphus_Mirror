@@ -15,18 +15,18 @@ public class Weapon_Spear : MonoBehaviour
 
     private void Update()
     {
-        if (_isAttack)
-        {
-            Vector3 dir = transform.position - _weapon.targetPos;
-            dir.y = 0;
-            Quaternion rot = Quaternion.LookRotation(dir.normalized);
-            float x = rot.x < 0 ? -1 : 1;
-            float z = rot.z < 0 ? -1 : 1;
+        //if (_isAttack)
+        //{
+        //    Vector3 dir = transform.position - _weapon.targetPos;
+        //    dir.y = 0;
+        //    Quaternion rot = Quaternion.LookRotation(dir.normalized);
+        //    float x = rot.x < 0 ? -1 : 1;
+        //    float z = rot.z < 0 ? -1 : 1;
 
-            transform.Rotate(90 * x, rot.y, rot.z);
+        //    transform.Rotate(90 * x, rot.y, rot.z);
 
-            transform.position = Vector3.Lerp(transform.position, dir, moveSpeed * Time.deltaTime);
-        }
+        //    transform.position = Vector3.Lerp(transform.position, dir, moveSpeed * Time.deltaTime);
+        //}
     }
 
     public void AttackAnimation()
