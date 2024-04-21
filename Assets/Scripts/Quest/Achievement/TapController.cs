@@ -24,7 +24,7 @@ public class TapController : MonoBehaviour
     {
         if (tabButton != null)//기존 버튼 해제
         {
-            tabButton.Unselect();
+            tabButton.Unselect();//끔
         }
 
         tabButton = button; //할당
@@ -34,6 +34,6 @@ public class TapController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        SelectedButton(transform.GetChild(0).GetComponent<TapButton>());
+        SelectedButton(transform.GetChild(0).GetComponent<TapButton>());//첫 탭칸을 가져옴
     }
 }
