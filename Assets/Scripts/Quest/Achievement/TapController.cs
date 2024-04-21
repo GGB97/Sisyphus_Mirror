@@ -32,7 +32,7 @@ public class TapController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void Start()
+    private void OnEnable()
     {
         SelectedButton(transform.GetChild(0).GetComponent<TapButton>());//첫 탭칸을 가져옴
     }
