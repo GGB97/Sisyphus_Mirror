@@ -22,7 +22,8 @@ public enum EnemyRank // 등급
 
 public enum EnemyElement // 속성?
 {
-    Default
+    Default,
+    Type1
 }
 
 public enum EnemySize // 기본 3~5종류에 특수한 개체가 있을 경우 해당 개체를 위한 사이즈 추가

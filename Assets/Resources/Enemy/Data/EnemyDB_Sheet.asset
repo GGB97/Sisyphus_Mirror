@@ -231,7 +231,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 4
+    moveSpeed: 5
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 5
     attackSpeed: 0.5
-    moveSpeed: 3
+    moveSpeed: 5
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 4
+    moveSpeed: 5
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 7
     attackSpeed: 0.5
-    moveSpeed: 4
+    moveSpeed: 7
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
     magicAtk: 0
     def: 4
     attackSpeed: 0.5
-    moveSpeed: 4
+    moveSpeed: 5
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0
@@ -494,6 +494,36 @@ MonoBehaviour:
     attackAngle: 10
     gold: 2
   - health: 0
+    maxHealth: 10
+    shield: 0
+    attackRange: 10
+    physicalAtk: 0
+    magicAtk: 4
+    def: 2
+    attackSpeed: 0.3
+    moveSpeed: 3
+    knockbackPower: 0
+    dashRange: 0
+    dashCoolTime: 0
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
+    id: 30900100
+    prefabPath: Enemy/Prefabs/Normal/Enemy_EvilMage2_Normal
+    type: 9
+    rank: 0
+    element: 1
+    size: 0
+    rotationSpeed: 3
+    attackAngle: 10
+    gold: 2
+  - health: 0
     maxHealth: 1000
     shield: 0
     attackRange: 15
@@ -501,7 +531,7 @@ MonoBehaviour:
     magicAtk: 10
     def: 5
     attackSpeed: 0.6
-    moveSpeed: 4
+    moveSpeed: 5
     knockbackPower: 0
     dashRange: 0
     dashCoolTime: 0

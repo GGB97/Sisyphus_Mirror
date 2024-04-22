@@ -2373,9 +2373,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: 0
   type: 9
-  rank: 2
-  element: 0
-  size: 3
+  rank: 0
+  element: 1
+  size: 0
 --- !u!4 &1711297252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 371465322185525832, guid: 0328fa7e34b69c948b6539dfb80b7424,

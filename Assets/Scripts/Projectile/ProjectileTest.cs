@@ -91,7 +91,7 @@ public class ProjectileTest : MonoBehaviour
             if (other.gameObject.TryGetComponent(out HealthSystem _healthSystem))
             {
                 int key = other.gameObject.GetComponent<CharacterBehaviour>().GetActiveID();
-                if (attackedTarget.ContainsKey(key) == false)
+                if (attackedTarget.ContainsKey(key) == false) // 중복검사
                 {
                     _healthSystem.TakeDamage(_value, _data.type);
                     attackedTarget.Add(key, other.gameObject.transform);
@@ -99,10 +99,10 @@ public class ProjectileTest : MonoBehaviour
             }
         }
 
-        OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
+        OnHit(other.gameObject.layer); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
 
-    protected virtual void OnHit()
+    protected virtual void OnHit(LayerMask layer)
     {
         _projectileCollider.enabled = false;
         //rb.velocity = Vector3.zero;

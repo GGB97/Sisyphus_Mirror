@@ -14,14 +14,14 @@ public class Projectile_Ricochet : ProjectileTest
     protected override void Init()
     {
         base.Init();
-        _ricochetCount = _data.ricochetCount;
+        _ricochetCount = _data.count;
     }
 
-    protected override void OnHit()
+    protected override void OnHit(LayerMask layer)
     {
         if (_ricochetCount <= 0)
         {
-            base.OnHit();
+            base.OnHit(layer);
             return;
         }
 

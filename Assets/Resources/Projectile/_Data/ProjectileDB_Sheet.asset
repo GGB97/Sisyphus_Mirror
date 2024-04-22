@@ -18,47 +18,54 @@ MonoBehaviour:
     type: 0
     speed: 10
     duration: 3
-    ricochetCount: 0
+    count: 0
     sfxTag: Arrow_1
   - id: 40000001
     prefabPath: Projectile/Prefabs/Cube
     type: 1
     speed: 10
     duration: 3
-    ricochetCount: 0
+    count: 0
     sfxTag: Cube_1
   - id: 40000002
     prefabPath: Projectile/Prefabs/Arrow_Ricochet
     type: 0
     speed: 10
     duration: 3
-    ricochetCount: 1
+    count: 1
+    sfxTag: Arrow_1
+  - id: 40000003
+    prefabPath: Projectile/Prefabs/Arrow_Penetrate
+    type: 0
+    speed: 10
+    duration: 3
+    count: 3
     sfxTag: Arrow_1
   - id: 40000100
     prefabPath: Projectile/Prefabs/Orange Explosion
     type: 1
     speed: 10
     duration: 3
-    ricochetCount: 0
+    count: 0
     sfxTag: 
   - id: 40000101
     prefabPath: Projectile/Prefabs/Poison
     type: 1
     speed: 10
     duration: 3
-    ricochetCount: 0
+    count: 0
     sfxTag: 
   - id: 40000102
     prefabPath: Projectile/Prefabs/Electro
     type: 1
     speed: 6
     duration: 5
-    ricochetCount: 0
+    count: 0
     sfxTag: 
   - id: 40000200
     prefabPath: AreaAttack/Prefabs/AreaAttack_Ice
     type: 1
     speed: 0
     duration: 0
-    ricochetCount: 0
+    count: 0
     sfxTag: 
