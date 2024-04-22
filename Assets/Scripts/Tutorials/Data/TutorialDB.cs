@@ -53,7 +53,7 @@ public class TutorialDB
     //    return idList;
     //}
 
-    public IEnumerator ConsumableEnumerator()
+    public IEnumerator TutorialEnumerator()
     {
         return _tutorials.GetEnumerator();
     }
