@@ -61,6 +61,7 @@ public enum ProjectileID
     Cube = 40000001,
     Arrow_Ricochet = 40000002,
     Arrow_Penetrate = 40000003,
+    Cube_Ricochet = 40000004,
     // -----
 
     OrangeExplosion = 40000100,
