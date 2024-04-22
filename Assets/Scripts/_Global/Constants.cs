@@ -6,8 +6,10 @@ namespace Constants
     public enum QuestType
     {
         KillMonster,
-        GetItem,
-        StageClear
+        Equip,
+        StageClear,
+        UseGold,
+        AddBlock
     }
 
     [Serializable]
