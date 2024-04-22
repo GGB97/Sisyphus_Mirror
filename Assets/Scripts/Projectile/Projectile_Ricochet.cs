@@ -14,7 +14,7 @@ public class Projectile_Ricochet : ProjectileTest
     protected override void Init()
     {
         base.Init();
-        _ricochetCount = 1;
+        _ricochetCount = _data.ricochetCount;
     }
 
     protected override void OnHit()
