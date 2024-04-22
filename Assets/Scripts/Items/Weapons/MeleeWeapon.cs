@@ -12,7 +12,6 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] GameObject _effect;
-    [SerializeField] ParticleSystem _hit;
 
     public List<Enemy> Target = new List<Enemy>();
     public Transform _weaponPivot;
