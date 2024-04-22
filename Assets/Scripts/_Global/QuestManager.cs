@@ -14,12 +14,17 @@ public class QuestManager : SingletoneBase<QuestManager>
     public event Action<int> OnQuestClearCallback;
 
     private int[] startQuestId = new int[] { 100, 200 };//시작할 때 등록할 퀘스트들
+    public List<int> dailyQuestList = new List<int>() { 310, 320, 330, 340, 350 };
 
-    private void OnEnable()
+    private void OnEnable()//꺼질일이 없어서 처음 들어올 때만 실행 로드하기 전
     {
         FieldInit();
     }
-    public void SubsrcipbeQuest(int questId)//등록
+    private void Start()
+    {
+        InvokeRepeating("StartDailyQuest", GetTimeUntilMidnight(), 86400);// 인보크 리피팅이 다시 호출되어도 덮어써서 괜찮다고 한다.게임을 껐다 켜도 적용되는 지는 아직 잘 모르겠다.
+    }
+    public void SubsrcipbeQuest(int questId)//참조 등록
     {
         var questData = DataBase.Quest.Get(questId);//퀘스트 목록에서 id에 해당하는 퀘스트 정보 가져옴
 
@@ -28,7 +33,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         _subscribeQuests[questData.Type].Add(questData);//해당하는 타입에 퀘스트 정보 추가
     }
-    public void UnsubscribeQuest(int questId)//해제
+    public void UnsubscribeQuest(int questId)//참조 해제
     {
         var questData = DataBase.Quest.Get(questId);//id에 해당하는 퀘스트 정보 가져옴
 
@@ -37,7 +42,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
         _subscribeQuests[questData.Type].Remove(questData);//해당하는 타입 List 에서 해당 퀘스트 정보 삭제
     }
-    public void NotifyQuest(QuestType type, int target, int count)//어떤 퀘스트 , 누구를 잡았고 ,얼만큼 실  행했는지
+    public void NotifyQuest(QuestType type, int target, int count)//어떤 퀘스트 , 누구를 잡았고 ,얼만큼 실행했는지
     {
         if (_subscribeQuests.ContainsKey(type) == false)//구독한 것 중에서 타입이 없다면 리턴
             return;
@@ -111,11 +116,31 @@ public class QuestManager : SingletoneBase<QuestManager>
     {
         return _completeQuests.Contains(id);
     }
-    public void StartQuestSetting()//처음 시작했을 때 기본 퀘스트 등록
+    public void StartQuestSetting()//처음 시작했을 때 기본 퀘스트 등록 일일 퀘스트 제외
     {
         foreach (var id in startQuestId)//시작 시 기본 퀘스트들 자동 등록
         {
             QuestStart(id);
+        }
+        StartDailyQuest();//일일 퀘스트 등록
+    }
+    public void StartDailyQuest()//일일 퀘스트 시작 자정될 때 호출
+    {
+        foreach (var questId in dailyQuestList)//일일 퀘스트 목록
+        {
+            if (_ongoingQuests.ContainsKey(questId) == true)//onGoing에 있다면 진행 중인거니
+            {
+                _ongoingQuests[questId].ResetQuest();//진행도 0 및 진행으로 변경
+            }
+            else if (_completeQuests.Contains(questId) == true)//클리어 한 퀘스트라면 보상 받았는지 여부X
+            {
+                _completeQuests.Remove(questId); //클리어 목록에서 제거
+                QuestStart(questId);//퀘스트 다시 시작
+            }
+            else//처음 퀘스트를 받는 거라면
+            {
+                QuestStart(questId);
+            }
         }
     }
     public void PrintCurrentQuestList()
@@ -135,7 +160,7 @@ public class QuestManager : SingletoneBase<QuestManager>
         else
             return true;
     }
-    public void LoadData(QuestSaveData questSaveData)
+    public void LoadData(QuestSaveData questSaveData)//데이터 로드
     {
         foreach (var quest in questSaveData.ongoingQuests)
         {
@@ -143,7 +168,7 @@ public class QuestManager : SingletoneBase<QuestManager>
         }
         _completeQuests = questSaveData.completeQuests;
     }
-    public QuestSaveData SaveData()
+    public QuestSaveData SaveData()//데이터 저장
     {
         QuestSaveData questSaveData = new QuestSaveData();
         foreach (var quest in _ongoingQuests)
@@ -169,5 +194,25 @@ public class QuestManager : SingletoneBase<QuestManager>
         _completeQuests.Clear();
         _subscribeQuests.Clear();
     }
+    public int? CheckQuestProgress(int questId)//퀘스트 진행도 체크
+    {
+        if (_ongoingQuests[questId] != null)//진행 중인 퀘스트라면 
+            return _ongoingQuests[questId].QuestProgress;
 
+        if (_completeQuests.Contains(questId) == true)//클리어 한 퀘스트라면
+        {
+            QuestData questData = DataBase.Quest.Get(questId);
+            return questData.Count;
+        }
+
+        return null;
+    }
+    public float GetTimeUntilMidnight()//현재 시간부터 자정까지의 시간 반환
+    {
+        System.DateTime now = System.DateTime.Now;
+        System.DateTime tomorrow = now.AddDays(1).Date;
+        System.TimeSpan timeUntilMidnight = tomorrow - now;
+        Debug.Log($"리셋까지 남은 시간(초) : {(float)timeUntilMidnight.TotalSeconds}");
+        return (float)timeUntilMidnight.TotalSeconds;
+    }
 }

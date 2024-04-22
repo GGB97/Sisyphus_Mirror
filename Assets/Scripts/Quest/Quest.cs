@@ -42,4 +42,9 @@ public class Quest
     {
         _questProgress = 0;
     }
+    public void ResetQuest()//진행중으로 변경 및 진행도 0
+    {
+        ProgressClear();
+        Start();
+    }
 }
