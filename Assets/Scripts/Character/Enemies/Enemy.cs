@@ -264,6 +264,11 @@ public class Enemy : CharacterBehaviour
         //Debug.Log("Attack End");
     }
 
+    public void ActiveMeleeRange(int index, bool active)
+    {
+        _meleeAttackColliders[index].gameObject.SetActive(active);
+    }
+
     public void RangedAttack(int num)
     {
         if (target == null)
@@ -356,11 +361,11 @@ public class Enemy : CharacterBehaviour
 
             if (rand2 > 0.5f)
             {
-                DropFielIdtems(FieldItemType.Heart, 5);
+                DropFielIdtems(FieldItemType.Heart, 10);
             }
             else
             {
-                DropFielIdtems(FieldItemType.Shield, 10);
+                DropFielIdtems(FieldItemType.Shield, 20);
             }
         }
     }
