@@ -34,7 +34,7 @@ Transform:
   - {fileID: 547355951062978871}
   - {fileID: 6400344781631321734}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8343984005669348701
 MonoBehaviour:
@@ -78,7 +78,7 @@ MonoBehaviour:
   _effect: {fileID: 2659557943162360189}
   Target: []
   _weaponPivot: {fileID: 0}
-  id: 10112011
+  id: 10112013
   _target: {fileID: 0}
 --- !u!114 &2803865358831580017
 MonoBehaviour:
@@ -417,6 +417,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2957850563263466906}
     m_Modifications:
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6017916750212627750, guid: 3ad6581d9e6a10e4987680f1483aab44,
         type: 3}
       propertyPath: m_RootOrder
@@ -430,7 +440,7 @@ PrefabInstance:
     - target: {fileID: 6017916750212627750, guid: 3ad6581d9e6a10e4987680f1483aab44,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.276
       objectReference: {fileID: 0}
     - target: {fileID: 6017916750212627750, guid: 3ad6581d9e6a10e4987680f1483aab44,
         type: 3}

@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6894293359059918965}
   - {fileID: 1474198879202426427}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3988779646628655748
 MonoBehaviour:
@@ -78,7 +78,7 @@ MonoBehaviour:
   _effect: {fileID: 7146270606915693546}
   Target: []
   _weaponPivot: {fileID: 0}
-  id: 10112011
+  id: 10112012
   _target: {fileID: 0}
 --- !u!114 &1349177936660698101
 MonoBehaviour:
@@ -476,6 +476,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338206192827492464, guid: de283b37bdd532540a43a9dabc14ffce,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338206192827492464, guid: de283b37bdd532540a43a9dabc14ffce,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338206192827492466, guid: de283b37bdd532540a43a9dabc14ffce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.312
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
