@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -106,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
         if (DungeonManager.Instance.currnetstage % 5 == 0)
         {
             arriveBoss = true;
-            SpawnEnemy(waveData.boss);
+            SpawnEnemyBoss();
         }
         // --
 
@@ -171,6 +172,15 @@ public class EnemySpawner : MonoBehaviour
             EnemyPooler.Instance.SpawnFromPool(enemyID[rand], pos, Quaternion.identity);
             currentEnemyCnt++;
         }
+    }
+
+    void SpawnEnemyBoss()
+    {
+        int rand = Random.Range(0, waveData.boss.Length);
+        Vector3 pos = new(10, 0, 10);
+
+        EnemyPooler.Instance.SpawnFromPool(waveData.boss[rand], pos, Quaternion.identity);
+        currentEnemyCnt++;
     }
 
     public void SpawnStop() // 스테이지 종료될때 호출하면 될듯

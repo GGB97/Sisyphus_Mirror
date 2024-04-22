@@ -7,7 +7,7 @@ public class ProjectileData
 
     public float speed;
     public float duration;
-    public int ricochetCount;
+    public int count;
 
     public string sfxTag;
 }

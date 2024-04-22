@@ -170,7 +170,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000002
+    _projectileID: 40000003
     _numberOfProjectile: 1
     _sfxTag: Bow_1
     _particleID: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000000
+    _projectileID: 40000003
     _numberOfProjectile: 2
     _sfxTag: Bow_1
     _particleID: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000000
+    _projectileID: 40000003
     _numberOfProjectile: 3
     _sfxTag: Bow_1
     _particleID: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000001
+    _projectileID: 40000004
     _numberOfProjectile: 3
     _sfxTag: Wand_1
     _particleID: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000001
+    _projectileID: 40000004
     _numberOfProjectile: 3
     _sfxTag: Wand_1
     _particleID: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000001
+    _projectileID: 40000004
     _numberOfProjectile: 3
     _sfxTag: Wand_1
     _particleID: 0

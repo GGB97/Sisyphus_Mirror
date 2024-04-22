@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3068749537da8ce4c89bc39e3bf7f554, type: 3}
   m_Name: WaveTest
   m_EditorClassIdentifier: 
-  normal: 80c3c901204acb01c0d0cc016057ce0101decf0140ebd201e071d401e171d40180f8d501207fd701c005d901
+  normal: 80c3c901204acb01c0d0cc016057ce0101decf0140ebd201e071d401e171d40180f8d501207fd701c005d901847fd701
   elite: 717ece01
   boss: 43cdd701212cd001
   maxEnemyCnt: 20

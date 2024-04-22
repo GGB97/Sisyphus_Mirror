@@ -11,6 +11,8 @@ public class HealthSystem : MonoBehaviour
     public Canvas damageCanvas;
     Queue<TMP_Text> textQueue;
 
+    [SerializeField] ParticleSystem Ps_Healing;
+
     private void Awake()
     {
         character = GetComponent<CharacterBehaviour>();
@@ -67,6 +69,12 @@ public class HealthSystem : MonoBehaviour
 
         if (value == 0)
             return;
+
+
+        if(Ps_Healing != null)
+        {
+            Ps_Healing.Play();
+        }
 
         ShowDamage(value, type);
     }
