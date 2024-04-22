@@ -28,6 +28,7 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
     public int prevPageIndex = 0;            // 이전 페이지의 인덱스
     private Rect currentViewRect;             // 스크롤 뷰의 사각형 크기
 
+    public ParticleSystem CharacterChangeEffect;
 
     public RectTransform CachedRectTransform
     {
@@ -161,7 +162,8 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
     {
         //  Debug.Log(prevPageIndex);
         PlayerManager.Instance.ChangePlayer(prevPageIndex);
-        gameObject.SetActive(false);
+        ExitUI();
+        CharacterChangeEffect.Play();
     }
 
     public void ExitUI()
