@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -147,8 +147,8 @@ MonoBehaviour:
   sfxVolumePercent: 30
   isPlayingBgm: 1
   soundEffectList:
-  - tag: 
-    clip: {fileID: 8300000, guid: 81bc7fdcdf94fce43b269cf3aac0c1eb, type: 3}
+  - tag: AddBlock
+    clip: {fileID: 8300000, guid: 5a6a62f5285d23b4ab559a80f5fe2a56, type: 3}
     volumePercent: 50
   - tag: 
     clip: {fileID: 8300000, guid: 3d88d7f740141a347b752b7ca982e800, type: 3}
@@ -184,7 +184,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 736e77e280ced6143a90198ab55d903a, type: 3}
     volumePercent: 100
   - tag: PutDownItem
-    clip: {fileID: 8300000, guid: 87dedf7e216c12f4fb25be04652aee31, type: 3}
+    clip: {fileID: 8300000, guid: 01cf1b3d696e732468ccf0345223bc38, type: 3}
     volumePercent: 100
   - tag: ClickButton
     clip: {fileID: 8300000, guid: efcb67f6d0ee4e74f82bed37348bb84c, type: 3}

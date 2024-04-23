@@ -161,6 +161,7 @@ public class ItemDescription : MonoBehaviour
     public void ClickSellItemButton()//아이템 판매 버튼
     {
         inventoryController.SellItemButton(currentItem);//아이템 판매
+        SoundManager.Instance.PlayAudioClip("Purchase");
     }
     public void ClickPutOutSideButton()//빼두기 버튼
     {

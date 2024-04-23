@@ -67,6 +67,7 @@ public class PanelSlot : MonoBehaviour, IPointerClickHandler
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 InventoryController.Instance.playerInventoryGrid.CreateAddSlot();
+                SoundManager.Instance.PlayAudioClip("AddBlock");
             }
         }
     }
