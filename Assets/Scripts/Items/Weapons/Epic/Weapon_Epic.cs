@@ -2,27 +2,27 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weapon_Axe_1_Epic : MonoBehaviour
+public abstract class Weapon_Epic : MonoBehaviour
 {
-    [SerializeField] MeleeWeapon _weapon;
+    [SerializeField] protected MeleeWeapon _weapon;
     public List<Enemy> Target = new List<Enemy>();
-    Enemy _target;
+    protected Enemy _target;
 
-    float _skillRate = 5;
-    float _timeSinceLastSkill = 0;
-    bool _isSkillAvailable;
+    protected float _skillRate = 5;
+    protected float _timeSinceLastSkill = 0;
+    protected bool _isSkillAvailable;
 
-    int _weaponID;
+    protected int _weaponID;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         _weaponID = _weapon.GetWeaponId();
         _timeSinceLastSkill = Time.time;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (Time.time - _timeSinceLastSkill >= _skillRate) _isSkillAvailable = true;
 
@@ -32,18 +32,7 @@ public class Weapon_Axe_1_Epic : MonoBehaviour
         }
     }
 
-    void Skill()
-    {
-        Debug.Log($"Weapon Skill {_weaponID}");
-        Axe_1_Epic_Skill skill = ParticleObjectPool.Instance.SpawnFromPool(_weaponID, _target.transform.position, Quaternion.identity).GetComponent<Axe_1_Epic_Skill>();
-        skill.OnSkillStart();
-
-        _isSkillAvailable = false;
-        _timeSinceLastSkill = Time.time;
-        Target.Clear();
-    }
-
-    public void DetectEnemyInRange()
+    void DetectEnemyInRange()
     {
         Target.Clear();
 
@@ -65,4 +54,6 @@ public class Weapon_Axe_1_Epic : MonoBehaviour
 
         Skill();
     }
+
+    protected abstract void Skill();
 }

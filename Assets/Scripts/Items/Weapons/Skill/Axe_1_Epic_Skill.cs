@@ -38,7 +38,8 @@ public class Axe_1_Epic_Skill : MonoBehaviour
 
         foreach(Collider collider in colliders)
         {
-            collider.GetComponent<HealthSystem>().TakeDamage(200, DamageType.Magic);
+            if (!collider.GetComponent<Enemy>().IsSpawning)
+                collider.GetComponent<HealthSystem>().TakeDamage(200, DamageType.Magic);
         }
         _skillStart = false;
     }
