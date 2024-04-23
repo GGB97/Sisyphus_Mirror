@@ -31,16 +31,25 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float value, DamageType type)
     {
-        int damage = Mathf.RoundToInt(value);
-        stat = character.currentStat;
+        if (character.isInvincibility)
+        {
+            // 데미지를 받지 않는 상태
+            return;
+        }
 
+        stat = character.currentStat;
+        int damage = Mathf.RoundToInt(value - (value * (stat.def * 0.01f)));
+
+        #region 보호막 데미지 처리
         stat.shield -= damage;
         if (stat.shield < 0)
         {
             stat.health -= Mathf.Abs(stat.shield);
             stat.shield = 0;
         }
+        #endregion
 
+        #region 체력 감소 처리
         if (stat.health <= 0)
         {
             stat.health = 0;
@@ -51,6 +60,7 @@ public class HealthSystem : MonoBehaviour
         {
             character.isHit = true;
         }
+        #endregion
 
         if (damage == 0)
             return;
@@ -71,7 +81,7 @@ public class HealthSystem : MonoBehaviour
             return;
 
 
-        if(Ps_Healing != null)
+        if (Ps_Healing != null)
         {
             Ps_Healing.Play();
         }
@@ -115,7 +125,7 @@ public class HealthSystem : MonoBehaviour
         text.transform.localPosition = new(rand, 0, 0);
 
         text.DOFade(0, 0.5f);
-        text.transform.DOScale(1.2f, 0.1f).OnComplete(() => 
+        text.transform.DOScale(1.2f, 0.1f).OnComplete(() =>
         {
             text.transform.DOScale(1f, 0.1f);
         });

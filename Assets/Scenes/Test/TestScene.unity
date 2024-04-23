@@ -282,23 +282,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pools:
   - id: 40000000
-    size: 5
+    size: 30
   - id: 40000001
-    size: 5
+    size: 30
   - id: 40000100
-    size: 5
+    size: 30
   - id: 40000101
-    size: 5
+    size: 30
   - id: 40000102
-    size: 5
+    size: 30
   - id: 40000200
-    size: 5
+    size: 30
   - id: 40000002
-    size: 5
+    size: 30
   - id: 40000003
-    size: 5
+    size: 30
   - id: 40000004
-    size: 5
+    size: 30
   _spawnObjects: []
 --- !u!4 &250687861
 Transform:

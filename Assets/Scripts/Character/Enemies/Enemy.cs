@@ -183,6 +183,8 @@ public class Enemy : CharacterBehaviour
         attackDelay = 10f;
         knockbackDelay = 10f;
 
+        isInvincibility = false;
+
         target = _gameManager.Player.transform;
     }
 
