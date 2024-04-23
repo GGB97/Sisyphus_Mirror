@@ -92,7 +92,7 @@ MonoBehaviour:
     _spritePath: Items/Icons/Weapons/Melee/Axe_1_Epic
     _iconWidth: 1
     _iconHeight: 2
-    _prefabPath: Items/Icons/Weapons/Melee/Axe_1_Epic
+    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Epic
     _price: 0
     _weight: 10
     _grade: 3
@@ -367,7 +367,7 @@ MonoBehaviour:
     _numberOfProjectile: 3
     _sfxTag: Wand_1
     _particleID: 0
-  - _id: 10122013
+  - _id: 10122014
     _itemType: 0
     _name: "\uB8EC\uC6E8\uC774\uBC84"
     _description: "\uB9C8\uBC95\uC5D0 \uD1B5\uB2EC\uD55C \uC790\uB9CC\uC774 \uC0AC\uC6A9\uD560

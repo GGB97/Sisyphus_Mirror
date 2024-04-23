@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2774086941403561706}
   - component: {fileID: 7512353902239615690}
   - component: {fileID: 953125788831898648}
-  - component: {fileID: 8393824523123451217}
   m_Layer: 0
   m_Name: Axe_1_Epic
   m_TagString: Untagged
@@ -123,27 +122,6 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
---- !u!95 &8393824523123451217
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152121925438791082}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 91e90689e55e4c94aa99e4420f51d65b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1850262179244702075
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +219,7 @@ Animator:
   m_GameObject: {fileID: 1850262179244702075}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d2220bcdf1685404ab7d989e355ff500, type: 2}
+  m_Controller: {fileID: 22100000, guid: 3845fd50e2040ef44a9de4ac747c6f75, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

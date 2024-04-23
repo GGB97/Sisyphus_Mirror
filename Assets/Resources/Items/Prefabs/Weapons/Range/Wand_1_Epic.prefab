@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1078095660752711064}
   - component: {fileID: 3026900893736275420}
   - component: {fileID: 417528331206964349}
+  - component: {fileID: 5845205349295261369}
   m_Layer: 0
   m_Name: Wand_1_Epic
   m_TagString: Untagged
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7deb37bc9c86d6b418648389a6381d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPivot: {fileID: 0}
+  _weaponPivot: {fileID: 1704563191445717650}
   _weaponContainer: {fileID: 0}
   Target: []
   _animator: {fileID: 0}
@@ -175,6 +176,27 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 0.5
+--- !u!95 &5845205349295261369
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144760406489050288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5669165473028642236
 PrefabInstance:
   m_ObjectHideFlags: 0
