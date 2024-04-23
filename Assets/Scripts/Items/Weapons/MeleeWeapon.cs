@@ -237,10 +237,4 @@ public class MeleeWeapon : MonoBehaviour
     {
         return id;
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(_player.transform.position, _weaponData.Range);
-    }
 }
