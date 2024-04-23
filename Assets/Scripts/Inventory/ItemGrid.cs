@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class ItemGrid : MonoBehaviour
     public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
     public int maxCount = 1;
     public int currentCount = 0;
+    public event Action currentCountEvent;
 
     public InventoryItem[,] inventoryItemSlot;//해당칸의 아이템 정보를 담는 배열
 
@@ -84,6 +86,7 @@ public class ItemGrid : MonoBehaviour
     public void AddCurrentCount(int num)//현재 Grid에 있는 아이템의 수를 num 만큼 증가시킨다.
     {
         currentCount += num;
+        currentCountEvent?.Invoke();
     }
     private void GridInit(int width, int height)//Gird 공간 마련
     {
