@@ -158,6 +158,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         InventoryController.Instance.AddBlock();
         InventoryController.Instance.NextStageIsActive(true);
         InventoryStats.Instance.UpdateStatsPanel();
+        SoundManager.Instance.SetBgm(SoundManager.Instance.inventoryBgTag);
         //InventoryController.Instance.OnStoreReroll();
     }
     public void CloseInventory()
@@ -165,6 +166,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         //인벤토리에 장착한 아이템 적용하기 있다면 패스
         inventoryUI.SetActive(false);
         SetStageAndStart();//스테이지 생성 시작
+        SoundManager.Instance.SetBgm(SoundManager.Instance.dungeonBgTag);
         //플레이어 위치 조정
         //맵을 동적으로 구워야 하면 적용
     }

@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &895147059436178385
 AudioSource:
@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundClip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
+  lobbyBgTag: LobbyBG
+  inventoryBgTag: InventoryBG
+  dungeonBgTag: DungeonBG
   bgmVolumePercent: 10
   maxBgmVolume: 0.4
   sfxVolumePercent: 30
@@ -149,9 +152,6 @@ MonoBehaviour:
   soundEffectList:
   - tag: AddBlock
     clip: {fileID: 8300000, guid: 5a6a62f5285d23b4ab559a80f5fe2a56, type: 3}
-    volumePercent: 50
-  - tag: 
-    clip: {fileID: 8300000, guid: 3d88d7f740141a347b752b7ca982e800, type: 3}
     volumePercent: 50
   - tag: Attack
     clip: {fileID: 8300000, guid: 702a84257ebd5bd4899f1dfaca5f52fd, type: 3}
@@ -191,6 +191,15 @@ MonoBehaviour:
     volumePercent: 50
   - tag: Purchase
     clip: {fileID: 8300000, guid: 07d682cf71fb22d459e51666c51ff898, type: 3}
+    volumePercent: 50
+  - tag: DungeonBG
+    clip: {fileID: 8300000, guid: df6a89ba1e9e3a040a0309b6ceb7f4ef, type: 3}
+    volumePercent: 50
+  - tag: LobbyBG
+    clip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
+    volumePercent: 50
+  - tag: InventoryBG
+    clip: {fileID: 8300000, guid: 7e0356f39925c544385c1683730c6cdb, type: 3}
     volumePercent: 50
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
