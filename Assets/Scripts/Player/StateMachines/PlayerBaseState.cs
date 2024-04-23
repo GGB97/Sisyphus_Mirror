@@ -38,7 +38,10 @@ public class PlayerBaseState : IState
     public virtual void Update()
     {
         Move();
-        stateMachine.DashCoolTime += Time.deltaTime;
+        if(stateMachine.DashCoolTime < player.currentStat.dashCoolTime)
+        {
+            stateMachine.DashCoolTime += Time.deltaTime;
+        }
 
         if (player.isHit)
         {
@@ -80,6 +83,7 @@ public class PlayerBaseState : IState
         if (stateMachine.DashCoolTime > player.currentStat.dashCoolTime)
         {
             stateMachine.ChangeState(stateMachine.dashState);
+            SkillCoolTimeUI.Instance.TestSkill(stateMachine.DashCoolTime, player.currentStat.dashCoolTime);
         }
         else
             return;
