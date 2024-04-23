@@ -14,6 +14,7 @@ public enum ItemGrade
     Normal,
     Rare,
     Unique,
+    Epic,
     RuneStone
 }
 

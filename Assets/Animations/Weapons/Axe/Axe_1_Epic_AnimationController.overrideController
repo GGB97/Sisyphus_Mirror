@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Axe_1_Epic_AnimationController
+  m_Controller: {fileID: 9100000, guid: 5a3533c9b8c397844b892f523810b999, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f415d3c1bbc554b4799044a58ded89e9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f415d3c1bbc554b4799044a58ded89e9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f4f57a6f262175641b70837da621ba3d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 347ed6266e5ee8240986ba16239dc5ba, type: 2}

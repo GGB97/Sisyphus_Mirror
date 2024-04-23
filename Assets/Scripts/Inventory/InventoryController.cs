@@ -657,6 +657,8 @@ public class InventoryController : MonoBehaviour
                     else if (selectedItemId % 10 == 2) selectedItemId += 1;
                 }
 
+                if(selectedItemId % 10 == 4) selectedItemId -= 1;
+
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
         }

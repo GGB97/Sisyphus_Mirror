@@ -105,6 +105,7 @@ public class PlayerBaseState : IState
     {
         Vector3 movementDirection = GetMovementDirection();
         Rotate(movementDirection);
+        // TODO : curState의 이동 속도 반영하기(아이템 디메리트)
         float movementSpeed = curState.moveSpeed * stateMachine.MovementSpeedModifier;
         stateMachine.Player.Controller.Move(
             (movementDirection * movementSpeed) * Time.deltaTime

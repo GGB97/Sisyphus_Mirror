@@ -17,3 +17,5 @@ MonoBehaviour:
     _prefabPath: Particle/Prefabs/Sword_1
   - _id: 71000002
     _prefabPath: Particle/Prefabs/Axe_1
+  - _id: 10111014
+    _prefabPath: Items/Prefabs/Weapons/Skill/Axe_1_Epic_Skill
