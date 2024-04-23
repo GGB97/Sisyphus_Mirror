@@ -15,7 +15,10 @@ public class AvailableCount : MonoBehaviour
         currentCount = storage.currentCount;
         maxCount = storage.maxCount;
         remainCount = maxCount - currentCount;
-        countText.text = string.Format($"{remainCount}");
+        if (remainCount > 0)//놓을 수 있을 때 흰 텍스트
+            countText.text = string.Format($"<color=white>{remainCount}</color>");
+        else
+            countText.text = string.Format($"<color=red>{remainCount}</color>");
     }
     public void Init()
     {
