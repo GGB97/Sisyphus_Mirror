@@ -10,15 +10,6 @@ public class AvailableCount : MonoBehaviour
     int maxCount = 0;
     int remainCount = 0;
     public TextMeshProUGUI countText;
-    // Start is called before the first frame update
-
-    //private void Update()
-    //{
-    //    currentCount = storage.currentCount;
-    //    maxCount = storage.maxCount;
-    //    remainCount = maxCount - currentCount;
-    //    countText.text = string.Format($"{remainCount}");
-    //}
     public void CountUpdate()
     {
         currentCount = storage.currentCount;
@@ -31,11 +22,9 @@ public class AvailableCount : MonoBehaviour
         storage = InventoryController.Instance.storageGrid;
         storage.currentCountEvent += CountUpdate;
         CountUpdate();
-        Debug.Log("init");
     }
     private void OnDestroy()
     {
         storage.currentCountEvent -= CountUpdate;
-        Debug.Log("destroy");
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ItemDescription : MonoBehaviour
 {
     private InventoryController inventoryController;
     private Transform canvasTransform;
@@ -54,31 +54,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             newPos += new Vector2(0, -distance);
 
         rectTransform.position = newPos;
-        //if (newtransform.position.y > 0.5f * Screen.height)//스크린 중간 보다 위에 있을 때
-        //{
-        //    posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-        //    posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
-
-        //    distance = posY - rectTransform.sizeDelta.y;
-        //    if (distance < 0)
-        //    {
-        //        posY += -distance;
-        //    }
-        //}
-        //else
-        //{
-        //    posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-        //    posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
-
-        //    distance = posY;
-        //    if (distance > Screen.height)
-        //    {
-        //        distance = Screen.height - distance;
-        //        posY += distance;
-        //    }
-        //}
-
-        //rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
     }
     public void SetCurrentItemNull()//아이템 null 초기화
     {
@@ -107,20 +82,6 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
             }
         }
     }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //transform.SetParent(InventoryController.Instance.canvasTransform);//호버되면 독립적인 객체로 존재
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //ItemDrag itemDrag = currentItem.GetComponent<ItemDrag>();
-        //if (itemDrag != null)
-        //{
-        //    itemDrag.ExitUI();
-        //}
-    }
-
     private void SetDescriptionText()//설명 적기
     {
         nameText.text = currentItem.itemSO.Name;//이름 부분
@@ -211,7 +172,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         inventoryController.CombineWeaponItem(currentItem);
         ExitExplnationUI();//툴팁 닫기
     }
-    public void ClickUseButton()
+    public void ClickUseButton()//사용 버튼
     {
         inventoryController.UseConsumableItem(currentItem);
         SoundManager.Instance.PlayAudioClip("Drink");

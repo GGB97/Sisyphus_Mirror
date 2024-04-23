@@ -67,7 +67,7 @@ public class ItemSO
     }
     public virtual StringBuilder SetExplantion(ItemSO itemSO)
     {
-        StringBuilder sb = new StringBuilder(300);
+        StringBuilder sb = new StringBuilder(270);
         sb.Append($"{itemSO.Description}\n");//설명 적기
         Utilities.AddText(sb, "무게", itemSO.Weight, false, true);
         return sb;

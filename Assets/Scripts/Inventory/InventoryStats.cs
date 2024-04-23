@@ -27,7 +27,7 @@ public class InventoryStats : MonoBehaviour
         if (playerStats == null)
             playerStats = GameManager.Instance.Player.currentStat;
 
-        StringBuilder sb = new StringBuilder(300);
+        StringBuilder sb = new StringBuilder(200);
         Utilities.AddText(sb, "최대 체력", playerStats.maxHealth);
         Utilities.AddText(sb, "현재 체력", playerStats.health);
         Utilities.AddText(sb, "방어력", playerStats.def);
