@@ -184,10 +184,10 @@ RectTransform:
   m_Father: {fileID: 7102234265747407390}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 22, y: 22}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &936724422368460354
 MonoBehaviour:
@@ -480,7 +480,7 @@ RectTransform:
   m_Children:
   - {fileID: 1593793192012610278}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1323,7 +1323,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uC804\uC0AC\n\uCCB4\uB825 +10\n\uBB3C\uB9AC\uACF5\uACA9\uB825 +5\n\uBC29\uC5B4\uB825
-    + 2\n\uC2DC\uC791\uBB34\uAE30 : \uB3C4\uB07C"
+    + 5\n\uC2DC\uC791\uBB34\uAE30 : \uB3C4\uB07C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6151a5fee968a484fa6910aea8d62ae3, type: 2}
   m_sharedMaterial: {fileID: 2991598357047004314, guid: 6151a5fee968a484fa6910aea8d62ae3,
@@ -1868,7 +1868,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0007324219, y: 200}
-  m_SizeDelta: {x: -870, y: 800}
+  m_SizeDelta: {x: 0, y: 800}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1554248137792563725
 MonoBehaviour:
