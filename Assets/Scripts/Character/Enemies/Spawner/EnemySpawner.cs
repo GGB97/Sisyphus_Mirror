@@ -101,13 +101,13 @@ public class EnemySpawner : MonoBehaviour
 
         SetSpawnPos();
 
-        yield return delay;
+        yield return new WaitForSeconds(1f);
 
         // 보스 스테이지 일때는 시작시 보스 스폰하고 시작하면 될듯
         if (DungeonManager.Instance.currnetstage % 5 == 0)
         {
             arriveBoss = true;
-            SpawnEnemyBoss();
+            SpawnEnemyBoss(new(-10, 0, 10));
         }
         // --
 
@@ -174,11 +174,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemyBoss()
+    void SpawnEnemyBoss(Vector3 pos)
     {
         int rand = Random.Range(0, waveData.boss.Length);
-        Vector3 pos = new(10, 0, 10);
-
         EnemyPooler.Instance.SpawnFromPool(waveData.boss[rand], pos, Quaternion.identity);
         currentEnemyCnt++;
     }
