@@ -56,7 +56,10 @@ public class Sword_1_Epic_Skill : MonoBehaviour
             if(other.TryGetComponent<HealthSystem>(out HealthSystem enemy))
             {
                 enemy.TakeDamage(200, DamageType.Magic);
-                ParticleObjectPool.Instance.SpawnFromPool(hitId, enemy.transform.position, Quaternion.identity);
+                Vector3 pos = enemy.transform.position;
+                pos.y = 1;
+                Particle hit = ParticleObjectPool.Instance.SpawnFromPool(hitId, pos, Quaternion.identity).GetComponent<Particle>();
+                hit.PlayerPartcle();
             }
         }
     }
