@@ -6,86 +6,68 @@ using UnityEngine.InputSystem;
 
 public class Adrenaline : Skill_Base
 {
-    [Header("Skill 1")]
-    [SerializeField] ParticleSystem skill01_Ps;
+    [Header("Skill")]
+    [SerializeField] ParticleSystem effect_Ps;
 
-    bool skill01_IsCooldown;
-    float skill01_Cooldown = 20f;
-    [SerializeField] float skill01_CurrentCooldown;
-
-    bool skill01_IsActive;
-    float skill01_duration = 6f;
-    [SerializeField] float skill01_Currentduration;
+    bool _isActive;
+    float _duration = 6f;
+    [SerializeField] float _currentduration;
 
     protected override void Init()
     {
-        skill01_IsCooldown = false;
-        skill01_Cooldown = 10f;
-        skill01_CurrentCooldown = skill01_Cooldown;
+        _isCooldown = false;
+        _cooldown = 10f;
+        _currentCooldown = _cooldown;
 
-        skill01_IsActive = false;
-        skill01_duration = 6f;
-        skill01_Currentduration = skill01_duration;
+        _isActive = false;
+        _duration = 6f;
+        _currentduration = _duration;
     }
 
     protected override void SubEvent()
     {
-        _player.Input.PlayerActions.Skill.started += UseSkill;
+        base.SubEvent();
 
         _dm.OnStageClear += StopSkill;
     }
 
     protected override void UnSubEvent()
     {
-        _player.Input.PlayerActions.Skill.started -= UseSkill;
+        base.UnSubEvent();
 
         _dm.OnStageClear -= StopSkill;
     }
 
-    protected override void UseSkill(InputAction.CallbackContext context)
-    {
-        if (_dm.gameState != DungeonState.Playing)
-        {
-            Debug.Log("Is not Playing");
-            return;
-        }
-
-        if (skill01_IsCooldown == false)
-        {
-            Skill();
-        }
-    }
-
     public override void Skill()
     {
-        StartCoroutine(nameof(ActiveSkill01));
+        StartCoroutine(nameof(ActiveSkill));
         StartCoroutine(nameof(CoolDown));
     }
 
-    IEnumerator ActiveSkill01()
+    IEnumerator ActiveSkill()
     {
-        skill01_IsActive = true;
+        _isActive = true;
 
-        if (skill01_Ps != null)
-            skill01_Ps.Play();
+        if (effect_Ps != null)
+            effect_Ps.Play();
 
         _player.currentStat.critRate += 20;
 
-        while (skill01_Currentduration > 0)
+        while (_currentduration > 0)
         {
-            skill01_Currentduration -= Time.deltaTime;
+            _currentduration -= Time.deltaTime;
 
             yield return null;
         }
 
-        if (skill01_Currentduration < 0)
+        if (_currentduration < 0)
         {
-            skill01_Currentduration = 0;
+            _currentduration = 0;
 
             _player.currentStat.critRate -= 20;
 
-            skill01_Ps.Stop();
-            skill01_Ps.Clear();
+            effect_Ps.Stop();
+            effect_Ps.Clear();
 
             ActiveInfoInit();
         }
@@ -93,41 +75,18 @@ public class Adrenaline : Skill_Base
 
     void StopSkill()
     {
-        StopCoroutine(nameof(ActiveSkill01));
-        skill01_Ps.Stop();
-        skill01_Ps.Clear();
+        StopCoroutine(nameof(ActiveSkill));
+        effect_Ps.Stop();
+        effect_Ps.Clear();
         ActiveInfoInit();
 
         StopCoroutine(nameof(CoolDown));
         CoolDownInit();
     }
 
-    void CoolDownInit()
-    {
-        skill01_IsCooldown = false;
-        skill01_CurrentCooldown = skill01_Cooldown;
-    }
-
     void ActiveInfoInit()
     {
-        skill01_IsActive = false;
-        skill01_Currentduration = skill01_duration;
-    }
-
-    IEnumerator CoolDown()
-    {
-        skill01_IsCooldown = true;
-
-        while (skill01_CurrentCooldown > 0)
-        {
-            skill01_CurrentCooldown -= Time.deltaTime;
-
-            yield return null;
-        }
-
-        if(skill01_CurrentCooldown <= 0)
-        {
-            CoolDownInit();
-        }
+        _isActive = false;
+        _currentduration = _duration;
     }
 }

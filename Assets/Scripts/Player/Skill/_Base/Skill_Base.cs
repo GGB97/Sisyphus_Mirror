@@ -10,6 +10,10 @@ public class Skill_Base : MonoBehaviour
 
     protected Player _player;
 
+    protected bool _isCooldown;
+    protected float _cooldown;
+    [SerializeField] protected float _currentCooldown;
+
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -40,7 +44,16 @@ public class Skill_Base : MonoBehaviour
 
     protected virtual void UseSkill(InputAction.CallbackContext context)
     {
+        if (_dm.gameState != DungeonState.Playing)
+        {
+            Debug.Log("Is not Playing");
+            return;
+        }
 
+        if (_isCooldown == false)
+        {
+            Skill();
+        }
     }
 
     public virtual void Skill()
@@ -48,13 +61,36 @@ public class Skill_Base : MonoBehaviour
 
     }
 
+    protected IEnumerator CoolDown()
+    {
+        _isCooldown = true;
+
+        while (_currentCooldown > 0)
+        {
+            _currentCooldown -= Time.deltaTime;
+
+            yield return null;
+        }
+
+        if (_currentCooldown <= 0)
+        {
+            CoolDownInit();
+        }
+    }
+
+    protected void CoolDownInit()
+    {
+        _isCooldown = false;
+        _currentCooldown = _cooldown;
+    }
+
     protected virtual void SubEvent()
     {
-
+        _player.Input.PlayerActions.Skill.started += UseSkill;
     }
 
     protected virtual void UnSubEvent()
     {
-
+        _player.Input.PlayerActions.Skill.started -= UseSkill;
     }
 }

@@ -1578,6 +1578,7 @@ MonoBehaviour:
   isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   <Data>k__BackingField:
     health: 0
     maxHealth: 0
@@ -1677,9 +1678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3622097be23ded847b9998e0d548e575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill01_Ps: {fileID: 5511517221616864416}
-  skill01_CurrentCooldown: 0
-  skill01_Currentduration: 0
+  effect_Ps: {fileID: 5511517221616864416}
+  _currentCooldown: 0
+  _currentduration: 0
 --- !u!1 &8622176936798647605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1963477487284756, guid: 2ead5d2ff838cf4418f69e03b31d0dd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4407705269331244, guid: 2ead5d2ff838cf4418f69e03b31d0dd0, type: 3}
       propertyPath: m_RootOrder

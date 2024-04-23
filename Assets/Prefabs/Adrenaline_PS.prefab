@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 198427202509800386}
   - component: {fileID: 199387433611507196}
   m_Layer: 0
-  m_Name: Thief_PS
+  m_Name: Adrenaline_PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
