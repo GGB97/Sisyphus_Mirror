@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2774086941403561706}
   - component: {fileID: 7512353902239615690}
   - component: {fileID: 953125788831898648}
+  - component: {fileID: -2924565550436931357}
   m_Layer: 0
   m_Name: Axe_1_Epic
   m_TagString: Untagged
@@ -122,6 +123,20 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
+--- !u!114 &-2924565550436931357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152121925438791082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7f11e312d1144593c201c8e193c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 2774086941403561706}
+  Target: []
 --- !u!1 &1850262179244702075
 GameObject:
   m_ObjectHideFlags: 0

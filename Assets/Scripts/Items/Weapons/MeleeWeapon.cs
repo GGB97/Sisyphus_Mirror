@@ -232,4 +232,9 @@ public class MeleeWeapon : MonoBehaviour
 
         return Mathf.Ceil(damage);
     }
+
+    public int GetWeaponId()
+    {
+        return id;
+    }
 }
