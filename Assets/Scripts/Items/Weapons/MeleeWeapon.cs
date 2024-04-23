@@ -140,7 +140,7 @@ public class MeleeWeapon : MonoBehaviour
     {
         Target.Clear();
 
-        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, _weaponData.Range, LayerData.Enemy);
+        Collider[] colliders = Physics.OverlapSphere(_player.transform.position, _weaponData.Range, LayerData.Enemy);
         if (colliders.Length == 0) return;
 
         foreach (Collider collider in colliders)
@@ -236,5 +236,11 @@ public class MeleeWeapon : MonoBehaviour
     public int GetWeaponId()
     {
         return id;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(_player.transform.position, _weaponData.Range);
     }
 }
