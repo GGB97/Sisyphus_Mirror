@@ -41,6 +41,7 @@ public class InventoryController : MonoBehaviour
     public StoreGrid storeGrid;// 상점 그리드
 
     public AddBlockDescription addBlockDescription;
+    public GameObject levelUpBG;
 
     [SerializeField]
     private InventoryHighlight inventoryHighlight;

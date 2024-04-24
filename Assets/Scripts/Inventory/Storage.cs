@@ -1,12 +1,16 @@
+using Unity.VisualScripting;
+
 public class Storage : ItemGrid
 {
     //public Dictionary<ItemType, List<InventoryItem>> storage = new Dictionary<ItemType, List<InventoryItem>>();//창고 아이템
-
+    
+    public AvailableCount availableCount;
     protected override void Start()
     {
         base.Start();
         CreateBaseBlock(gridSizeWidth, gridSizeWidth);
         maxCount = 2;
+        availableCount.Init();
     }
     public void CreateBaseBlock(int gridWidth, int gridHeight)//중앙에 block 변경
     {

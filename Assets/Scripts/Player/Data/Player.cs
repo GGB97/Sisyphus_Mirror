@@ -155,7 +155,7 @@ public class Player : CharacterBehaviour
 
     public void InvokeShieldChange()
     {
-        int maxShield = Mathf.RoundToInt(currentStat.maxHealth * 0.2f);
+        int maxShield = Mathf.RoundToInt(currentStat.maxHealth * 0.5f);
         if (currentStat.shield > maxShield)
         {
             currentStat.shield = maxShield;
@@ -232,10 +232,12 @@ public class Player : CharacterBehaviour
     {
         LayerMask excludeTarget = LayerData.Enemy | LayerData.Projectile;
         Controller.excludeLayers = excludeTarget;
+        isInvincibility = true;
     }
 
     public void UnInvincibility()
     {
         Controller.excludeLayers = 0;
+        isInvincibility = false;
     }
 }

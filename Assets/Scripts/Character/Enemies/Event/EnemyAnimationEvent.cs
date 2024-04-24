@@ -28,4 +28,13 @@ public class EnemyAnimationEvent : MonoBehaviour
     {
         enemy.AreaAttack(index);
     }
+
+    public void EnableRange(int index)
+    {
+        enemy.ActiveMeleeRange(index, true);
+    }
+    public void DisableRange(int index)
+    {
+        enemy.ActiveMeleeRange(index, false);
+    }
 }

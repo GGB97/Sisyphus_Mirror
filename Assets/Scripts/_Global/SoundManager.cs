@@ -17,6 +17,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip backgroundClip;//배경 음악
     private AudioSource backgroundAudioSource;//배경 음악 오디오 소스
+    public string lobbyBgTag = "LobbyBG";
+    public string inventoryBgTag = "InventoryBG";
+    public string dungeonBgTag = "DungeonBG";
 
     [SerializeField]
     [Range(0, 100f)] public float bgmVolumePercent; //브금 0 ~ 100 조절
@@ -101,8 +104,18 @@ public class SoundManager : MonoBehaviour
     }
     void Start()
     {
-        backgroundAudioSource.clip = backgroundClip;
-        backgroundAudioSource.Play();
+        //backgroundAudioSource.clip = backgroundClip;
+        //backgroundAudioSource.Play();
+        SetBgm(lobbyBgTag);
+    }
+    public void SetBgm(string bgmTag)
+    {
+        if (audioDictionary.ContainsKey(bgmTag) == true)// 저장이 되어있을 때만 재생
+        { 
+            backgroundAudioSource.clip = audioDictionary[bgmTag].clip;
+            backgroundAudioSource.Play();
+            backgroundAudioSource.loop = true;
+        }
     }
     public void PlayAudioClip(string tag)//tag값으로 오디오 재생
     {

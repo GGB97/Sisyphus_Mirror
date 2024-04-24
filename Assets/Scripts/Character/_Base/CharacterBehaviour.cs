@@ -16,6 +16,8 @@ public class CharacterBehaviour : MonoBehaviour
     public Action OnHitEvent;
     public float knockbackDelay;
 
+    public bool isInvincibility;
+
     protected virtual void Awake()
     {
         // Active ID 할당

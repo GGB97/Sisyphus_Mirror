@@ -277,9 +277,9 @@ MonoBehaviour:
     _count: 1500
     _exp: 0
     _gold: 0
-    _reward_1: 11
+    _reward_1: 10
     _rewardCount_1: 10
-    _reward_2: 11
+    _reward_2: 10
     _rewardCount_2: 10
     _reward_3: 0
     _rewardCount_3: 0
@@ -292,9 +292,9 @@ MonoBehaviour:
     _count: 10
     _exp: 0
     _gold: 0
-    _reward_1: 11
+    _reward_1: 10
     _rewardCount_1: 11
-    _reward_2: 11
+    _reward_2: 10
     _rewardCount_2: 11
     _reward_3: 0
     _rewardCount_3: 0
@@ -307,9 +307,9 @@ MonoBehaviour:
     _count: 200
     _exp: 0
     _gold: 0
-    _reward_1: 11
+    _reward_1: 10
     _rewardCount_1: 12
-    _reward_2: 11
+    _reward_2: 0
     _rewardCount_2: 12
     _reward_3: 0
     _rewardCount_3: 0
@@ -322,9 +322,9 @@ MonoBehaviour:
     _count: 20
     _exp: 0
     _gold: 0
-    _reward_1: 11
+    _reward_1: 10
     _rewardCount_1: 13
-    _reward_2: 11
+    _reward_2: 10
     _rewardCount_2: 13
     _reward_3: 0
     _rewardCount_3: 0
@@ -337,9 +337,9 @@ MonoBehaviour:
     _count: 5
     _exp: 0
     _gold: 0
-    _reward_1: 11
+    _reward_1: 10
     _rewardCount_1: 14
-    _reward_2: 11
+    _reward_2: 10
     _rewardCount_2: 14
     _reward_3: 0
     _rewardCount_3: 0

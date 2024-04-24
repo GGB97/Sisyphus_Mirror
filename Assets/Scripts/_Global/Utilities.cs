@@ -64,18 +64,10 @@ public static class Utilities
         }
         return str;
     }
-    //public static string SetStringColor(Color newColor, string str)
-    //{
-
-    //}
-    public static Color HexColor(string hexCode)
+    public static string SetStringGreen(int value)
     {
-        Color color;
-        if (ColorUtility.TryParseHtmlString(hexCode, out color))
-        {
-            return color;
-        }
-
-        return Color.white;
+        string str;
+        str = string.Format($"<color=green>{value}</color>");
+        return str;
     }
 }
