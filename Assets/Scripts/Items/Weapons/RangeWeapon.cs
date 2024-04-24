@@ -155,7 +155,7 @@ public class RangeWeapon : MonoBehaviour
         }
     }
 
-    private float SetAttackDamage()
+    public float SetAttackDamage()
     {
         float damage = 0;
         Status _player = GameManager.Instance.Player.currentStat;
@@ -176,5 +176,10 @@ public class RangeWeapon : MonoBehaviour
     public int GetWeaponId()
     {
         return id;
+    }
+
+    public Vector3 GetWeaponPivot()
+    {
+        return _weaponPivot.position;
     }
 }

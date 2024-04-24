@@ -11,6 +11,7 @@ public class Wand_1_Epic_Skill : MonoBehaviour
     float _coolTime = 3.5f;
     float _skillStartTime;
     bool _skillStart;
+    float _damage;
 
     void Update()
     {
@@ -23,6 +24,7 @@ public class Wand_1_Epic_Skill : MonoBehaviour
         _skillStartTime = Time.time;
         _skillStart = true;
         _skillSFX.PlaySFX(_sfxTag);
+        _damage = Mathf.Floor(50 + (0.5f * DungeonManager.Instance.currnetstage));
     }
 
     private void OnTriggerStay(Collider other)
@@ -32,7 +34,7 @@ public class Wand_1_Epic_Skill : MonoBehaviour
             if(other.TryGetComponent<HealthSystem>(out HealthSystem enemy))
             {
                 if (!other.GetComponent<Enemy>().IsSpawning)
-                    enemy.TakeDamage(50, DamageType.Magic);
+                    enemy.TakeDamage(_damage, DamageType.Magic);
             }
         }
     }

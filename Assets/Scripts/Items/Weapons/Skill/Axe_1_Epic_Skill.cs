@@ -10,6 +10,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
     float _range = 6;
     float _skillStartTime;
     bool _skillStart = false;
+    float _damage;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         _skillStartTime = Time.time;
         _skillStart = true;
         _skillSFX.PlaySFX(_sfxTag);
+        _damage = 198 + (2 * DungeonManager.Instance.currnetstage);
     }
 
     private void Update()
@@ -40,7 +42,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         foreach(Collider collider in colliders)
         {
             if (!collider.GetComponent<Enemy>().IsSpawning)
-                collider.GetComponent<HealthSystem>().TakeDamage(200, DamageType.Magic);
+                collider.GetComponent<HealthSystem>().TakeDamage(_damage, DamageType.Magic);
         }
         _skillStart = false;
     }
