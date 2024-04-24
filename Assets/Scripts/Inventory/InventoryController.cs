@@ -1,3 +1,4 @@
+using Constants;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -438,8 +439,16 @@ public class InventoryController : MonoBehaviour
                         storeGrid.currentStoreItem[i] = null;
                         // 아이템 구매 시 플레이어 골드 차감하기
                         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
-                        if (currentStage == 1) player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
-                        else player.Data.Gold = player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage) <= 0 ? 0 : player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
+                        if (currentStage == 1)
+                        {
+                            player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
+                            QuestManager.Instance.NotifyQuest(QuestType.UseGold,20, selectedItem.itemSO.Price);//골드 소모 퀘스트
+                        }
+                        else
+                        {
+                            player.Data.Gold = player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage) <= 0 ? 0 : player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
+                            QuestManager.Instance.NotifyQuest(QuestType.UseGold, 20, Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage));//골드 소모 퀘스트
+                        }
                         SetPlayerGoldText();
 
                         SelectedItemGrid = previousItemGird;//이동 전 그리드로 설정
@@ -852,6 +861,9 @@ public class InventoryController : MonoBehaviour
         {
             foreach (var item in list.Value)
             {
+                if (list.Key == ItemType.Weapon)
+                    QuestManager.Instance.NotifyQuest(QuestType.Equip,50,1);
+
                 Debug.Log($"{item.itemSO.Name} - {item.itemSO.Grade}");
             }
         }

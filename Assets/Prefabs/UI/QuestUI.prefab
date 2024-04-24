@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6852758272415740781}
   - component: {fileID: 8193796008509641673}
   m_Layer: 5
-  m_Name: QuestCanvas
+  m_Name: ClearQuestCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 400
   m_TargetDisplay: 0
 --- !u!114 &6852758272415740781
 MonoBehaviour:
@@ -112,8 +112,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2309768792712340352}
+  - component: {fileID: 6452009232120250066}
   m_Layer: 0
-  m_Name: Quest
+  m_Name: QuestUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,58 +132,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3546232034679896703}
   - {fileID: 3915346898192135810}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8934331647211173092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3546232034679896703}
-  - component: {fileID: 1023763330751889759}
-  m_Layer: 0
-  m_Name: TestQuest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3546232034679896703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8934331647211173092}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1733.727, y: 46.538116, z: 0.06472406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2309768792712340352}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1023763330751889759
+--- !u!114 &6452009232120250066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8934331647211173092}
+  m_GameObject: {fileID: 5357393499172285866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e888d4e57346aad498e2b3cb00cddf51, type: 3}
+  m_Script: {fileID: 11500000, guid: afef98497c61bbf46aa76d718f9500bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  target: 30000000
-  count: 10
 --- !u!1001 &3986283251191910517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -194,6 +159,36 @@ PrefabInstance:
     - target: {fileID: 8330954032677275, guid: 811f72b05f769f54ca5e65b87d8a7d7c, type: 3}
       propertyPath: m_Name
       value: ClearQuestUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261939520898576419, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2580414090672447778, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
         type: 3}
@@ -328,6 +323,16 @@ PrefabInstance:
     - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
         type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8383871735743325046, guid: 811f72b05f769f54ca5e65b87d8a7d7c,

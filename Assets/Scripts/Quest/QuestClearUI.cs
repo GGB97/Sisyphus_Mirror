@@ -51,16 +51,16 @@ public class QuestClearUI : MonoBehaviour
     }
     public IEnumerator ShowAllAchievement()
     {
-        isAnimating = true;
+        isAnimating = true;//화면에 노출 중이다.
 
-        while (achievementQueue.Count > 0)
+        while (achievementQueue.Count > 0)//화면에 노출 시킬 업적이 존재하면
         {
-            QuestData questData = achievementQueue.Dequeue(); // 큐에서 업적을 가져옴
+            QuestData questData = achievementQueue.Dequeue(); // 큐에서 업적을 가져온다.
 
             // UI에 업적을 표시하고 애니메이션 진행
-            SetUIDescription(questData);
-            ShowAchievementUI();
-            yield return new WaitForSeconds(4.7f);
+            SetUIDescription(questData);//텍스트 설정
+            ShowAchievementUI();//Dotween을 이용한 화면 노출 4.6초
+            yield return new WaitForSeconds(4.7f);//비동기적으로 기다리기
         }
 
     }

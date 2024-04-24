@@ -3,6 +3,12 @@ using System;
 namespace Constants
 {
     [Serializable]
+    public enum QuestMode
+    {
+        DailyQuest,
+        Achievement
+    }
+    [Serializable]
     public enum QuestType
     {
         KillMonster,

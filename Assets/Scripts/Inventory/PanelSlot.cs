@@ -1,3 +1,4 @@
+using Constants;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -68,6 +69,7 @@ public class PanelSlot : MonoBehaviour, IPointerClickHandler
             {
                 InventoryController.Instance.playerInventoryGrid.CreateAddSlot();
                 SoundManager.Instance.PlayAudioClip("AddBlock");
+                QuestManager.Instance.NotifyQuest(QuestType.AddBlock, 40, 1);
             }
         }
     }

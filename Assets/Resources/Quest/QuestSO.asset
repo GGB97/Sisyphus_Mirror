@@ -16,13 +16,14 @@ MonoBehaviour:
   - _id: 100
     _name: "\uBE0C\uB860\uC988"
     _description: "\uBAAC\uC2A4\uD130 10 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 10
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -31,13 +32,14 @@ MonoBehaviour:
   - _id: 101
     _name: "\uC2E4\uBC84"
     _description: "\uBAAC\uC2A4\uD130 100 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 100
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -46,13 +48,14 @@ MonoBehaviour:
   - _id: 102
     _name: "\uACE8\uB4DC"
     _description: "\uBAAC\uC2A4\uD130 500 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 500
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -61,13 +64,14 @@ MonoBehaviour:
   - _id: 103
     _name: "\uD50C\uB808\uD2F0\uB118"
     _description: "\uBAAC\uC2A4\uD130 1000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 1000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -76,13 +80,14 @@ MonoBehaviour:
   - _id: 104
     _name: "\uC5D0\uBA54\uB784\uB4DC"
     _description: "\uBAAC\uC2A4\uD130 2000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 2000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -91,13 +96,14 @@ MonoBehaviour:
   - _id: 105
     _name: "\uB2E4\uC774\uC544"
     _description: "\uBAAC\uC2A4\uD130 3000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 3000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -106,13 +112,14 @@ MonoBehaviour:
   - _id: 106
     _name: "\uB9C8\uC2A4\uD130"
     _description: "\uBAAC\uC2A4\uD130 4000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 4000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -121,13 +128,14 @@ MonoBehaviour:
   - _id: 107
     _name: "\uADF8\uB79C\uB4DC \uB9C8\uC2A4\uD130"
     _description: "\uBAAC\uC2A4\uD130 5000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 5000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -136,13 +144,14 @@ MonoBehaviour:
   - _id: 108
     _name: "\uCCBC\uB9B0\uC800"
     _description: "\uBAAC\uC2A4\uD130 6000 \uB9C8\uB9AC \uCC98\uCE58"
+    _mode: 1
     _type: 0
     _target: 30
     _count: 6000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -151,13 +160,14 @@ MonoBehaviour:
   - _id: 200
     _name: "\uB358\uC804 \uC548\uC740 \uC0DD\uAC01\uBCF4\uB2E4 \n\uC26C\uC6B4\uB370?"
     _description: "\uC2A4\uD14C\uC774\uC9C0 5 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 5
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -166,13 +176,14 @@ MonoBehaviour:
   - _id: 201
     _name: "\uC2DC\uAC04\uC740 \uAE08\uC774\uB77C\uAD6C \uCE5C\uAD6C~"
     _description: "\uC2A4\uD14C\uC774\uC9C0 10 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 10
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -181,13 +192,14 @@ MonoBehaviour:
   - _id: 202
     _name: "\uC624\uC9C1 \uC2DC\uC2DC\uD3EC\uC2A4\uB9CC.."
     _description: "\uC2A4\uD14C\uC774\uC9C0 15 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 15
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -197,13 +209,14 @@ MonoBehaviour:
     _name: "\uAE30\uB300\uB97C \uD558\uB2C8\uAE4C \uBC30\uC2E0\uC744 \n\uB2F9\uD558\uB294
       \uAC70\uB2E4"
     _description: "\uC2A4\uD14C\uC774\uC9C0 20 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 20
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -212,13 +225,14 @@ MonoBehaviour:
   - _id: 204
     _name: "\uB10C \uBABB \uC9C0\uB098\uAC04\uB2E4"
     _description: "\uC2A4\uD14C\uC774\uC9C0 25 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 25
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -227,13 +241,14 @@ MonoBehaviour:
   - _id: 205
     _name: "\uBD10\uC8FC\uB294 \uAC74 \n\uC5EC\uAE30\uAE4C\uC9C0\uC785\uB2C8\uB2E4"
     _description: "\uC2A4\uD14C\uC774\uC9C0 30 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 30
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -242,13 +257,14 @@ MonoBehaviour:
   - _id: 206
     _name: Trust me
     _description: "\uC2A4\uD14C\uC774\uC9C0 35 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 35
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -257,90 +273,97 @@ MonoBehaviour:
   - _id: 207
     _name: The cake is a lie
     _description: "\uC2A4\uD14C\uC774\uC9C0 40 \uCE35 \uD074\uB9AC\uC5B4"
+    _mode: 1
     _type: 2
     _target: 10
     _count: 40
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 0
   - _id: 310
-    _name: "\uACE8\uB4DC \uC18C\uBAA8\uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC951"
     _description: "1500 \uACE8\uB4DC \uC0AC\uC6A9\uD558\uAE30"
+    _mode: 0
     _type: 3
     _target: 20
     _count: 1500
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 10
-    _reward_2: 10
-    _rewardCount_2: 10
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
   - _id: 320
-    _name: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
-    _description: "\uD55C \uBC88\uC5D0 10\uCE35 \uD074\uB9AC\uC5B4 \uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC952"
+    _description: "\uD55C \uBC88\uC5D0 10\uCE35 \uB3C4\uB2EC\uD558\uAE30"
+    _mode: 0
     _type: 2
     _target: 10
     _count: 10
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 11
-    _reward_2: 10
-    _rewardCount_2: 11
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 0
   - _id: 330
-    _name: "\uBAAC\uC2A4\uD130 \uC8FD\uC774\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC953"
     _description: "\uBAAC\uC2A4\uD130 200\uB9C8\uB9AC \uC8FD\uC774\uAE30"
+    _mode: 0
     _type: 0
     _target: 30
     _count: 200
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 12
+    _rewardCount_1: 5
     _reward_2: 0
-    _rewardCount_2: 12
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
   - _id: 340
-    _name: "\uC778\uBCA4\uD1A0\uB9AC \uCE78 \uD655\uC7A5\uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC954"
     _description: "\uC778\uBCA4\uD1A0\uB9AC 20 \uCE78 \uD655\uC7A5\uD558\uAE30"
+    _mode: 0
     _type: 4
     _target: 40
     _count: 20
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 13
-    _reward_2: 10
-    _rewardCount_2: 13
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
   - _id: 350
-    _name: "\uBB34\uAE30 \uC7A5\uCC29\uD558\uAE30"
-    _description: "\uBB34\uAE30 5\uAC1C \uC7A5\uCC29\uD55C \uC0C1\uD0DC\uB85C \uC8FD\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC955"
+    _description: "\uBB34\uAE30 5\uAC1C \uC774\uC0C1 \uC7A5\uCC29\uD55C \uC0C1\uD0DC\uB85C
+      \uC8FD\uAE30"
+    _mode: 0
     _type: 1
     _target: 50
     _count: 5
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 14
-    _reward_2: 10
-    _rewardCount_2: 14
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 0
