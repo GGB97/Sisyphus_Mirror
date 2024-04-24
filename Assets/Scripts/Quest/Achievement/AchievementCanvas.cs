@@ -23,6 +23,7 @@ public class AchievementCanvas : MonoBehaviour
     }
     public void CreateSlot()
     {
-        achievementUI.CreateDailySlot();
+        achievementUI.CreateDailySlot();//일일 퀘스트 슬롯 생성
+        achievementUI.CreateAchievementSlot();//업적 슬롯 생성
     }
 }

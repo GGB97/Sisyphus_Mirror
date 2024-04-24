@@ -9,18 +9,18 @@ using UnityEngine.SceneManagement;
 public class QuestSaveData
 {
     public Dictionary<int, int> ongoingQuests;// = new Dictionary<int, int>();//현재 진행중인 퀘스트 집합
-    public HashSet<int> completeQuests; //= new HashSet<int>();//완료한 퀘스트의 id 집합
+    public Dictionary<int, bool> completeQuests; //= new HashSet<int>();//완료한 퀘스트의 id 집합
     public QuestSaveData()
     {
         ongoingQuests = new Dictionary<int, int>();
-        completeQuests = new HashSet<int>();
+        completeQuests = new Dictionary<int, bool>();
     }
 }
 public class QuestSaveManager : SingletoneBase<QuestSaveManager>
 {
     QuestSaveData saveData = new QuestSaveData();
     public event Action loadDataEvent;
-    private string dataKey = "QuestSaveData";
+    private string dataKey = "QuestSaveData1";
     private void Awake()
     {
         if(Instance != this)
@@ -35,11 +35,11 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
         LoadData();
         //PlayerPrefs.DeleteKey(dataKey);
     }
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)//로비로 돌아올 때 호출되게
     {
         if (scene.buildIndex == 1 && QuestManager.Instance.GetTotalQuestCount() == true)//퀘스트 로드가 되어 있을 때
         {
-            loadDataEvent?.Invoke();
+            loadDataEvent?.Invoke();//퀘스트 슬롯 다시 생성
         }
 
     }

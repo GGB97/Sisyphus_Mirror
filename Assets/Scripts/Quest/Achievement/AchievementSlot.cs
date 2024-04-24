@@ -4,6 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Constants;
 
 public class AchievementSlot : MonoBehaviour
 {
@@ -18,12 +19,12 @@ public class AchievementSlot : MonoBehaviour
     [SerializeField]
     public Button rewardButton;//보상 버튼
 
-    public void Init(int questId)//초기화
+    public void Init(int questId,QuestMode questMode)//초기화
     {
         this.questId = questId;
         QuestData questData = DataBase.Quest.Get(questId);
 
-        if(questData == null)//퀘스트 정보가 없으면
+        if(questData == null && questMode == questData.Mode)//퀘스트 정보가 없거나 모드가 일치하지 않으면 삭제
             Destroy(gameObject);
 
         //QuestManager.Instance.QuestStart(questId);//퀘스트 시작

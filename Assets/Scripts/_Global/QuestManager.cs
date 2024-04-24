@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestManager : SingletoneBase<QuestManager>
 {
     private Dictionary<int, Quest> _ongoingQuests = new Dictionary<int, Quest>();//현재 진행중인 퀘스트 집합
-    private HashSet<int> _completeQuests = new HashSet<int>();//완료한 퀘스트의 id 집합
+    private Dictionary<int,bool> _completeQuests = new Dictionary<int, bool>();//완료한 퀘스트의 id 집합
     private Dictionary<QuestType, List<QuestData>> _subscribeQuests = new Dictionary<QuestType, List<QuestData>>();//퀘스트 참조 베이스 데이터 집합
 
     public event Action<int> OnQuestStartCallback;//콜백
@@ -105,7 +105,7 @@ public class QuestManager : SingletoneBase<QuestManager>
         _ongoingQuests.Remove(questId);//제거
 
         UnsubscribeQuest(questId);//참조에서 빼기
-        _completeQuests.Add(questId);//완료에 넣음
+        _completeQuests.Add(questId,true);//완료에 넣음
 
         Debug.Log($"퀘스트 완료 : {DataBase.Quest.Get(questId).Name}");
 
@@ -114,7 +114,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
     public bool IsClear(int id)//클리어에 있는지 확인
     {
-        return _completeQuests.Contains(id);
+        return _completeQuests.ContainsKey(id);
     }
     public void StartQuestSetting()//처음 시작했을 때 기본 퀘스트 등록 일일 퀘스트 제외
     {
@@ -132,7 +132,7 @@ public class QuestManager : SingletoneBase<QuestManager>
             {
                 _ongoingQuests[questId].ResetQuest();//진행도 0 및 진행으로 변경
             }
-            else if (_completeQuests.Contains(questId) == true)//클리어 한 퀘스트라면 보상 받았는지 여부X
+            else if (_completeQuests.ContainsKey(questId) == true)//클리어 한 퀘스트라면 보상 받았는지 여부X
             {
                 _completeQuests.Remove(questId); //클리어 목록에서 제거
                 QuestStart(questId);//퀘스트 다시 시작
@@ -181,12 +181,31 @@ public class QuestManager : SingletoneBase<QuestManager>
             else
             {
                 questSaveData.ongoingQuests[quest.Key] = 0;
-                _ongoingQuests[quest.Key].ProgressClear();
+                _ongoingQuests[quest.Key].ProgressClear();//현재 신행 상황도 초기화
             }
         }
         questSaveData.completeQuests = _completeQuests;
 
         return questSaveData;
+    }
+    public bool CheckReward(int questId)
+    {
+        if (_completeQuests.ContainsKey(questId) == false)
+        {
+            Debug.Log("퀘스트가 존재하지 않습니다.");
+            return false;//id가 존재하지 않으면 보상 X
+        }
+        else
+        {
+            if (_completeQuests[questId] == true)//보상을 받을 수 있으면 true
+            {
+                return true;
+            }
+            else
+            { 
+                return false;
+            }
+        }
     }
     public void FieldInit()
     {
@@ -200,7 +219,7 @@ public class QuestManager : SingletoneBase<QuestManager>
         if (_ongoingQuests.ContainsKey(questId) == true)//진행 중인 퀘스트라면 
             return _ongoingQuests[questId].QuestProgress;
 
-        if (_completeQuests.Contains(questId) == true)//클리어 한 퀘스트라면
+        if (_completeQuests.ContainsKey(questId) == true)//클리어 한 퀘스트라면
         {
             QuestData questData = DataBase.Quest.Get(questId);
             return questData.Count;
@@ -219,5 +238,23 @@ public class QuestManager : SingletoneBase<QuestManager>
     public bool GetTotalQuestCount()
     {
         return _ongoingQuests.Count + _completeQuests.Count > 0 ? true : false;
+    }
+    public List<int> GetAchievementQuestIdList()//진행 중과 클리어에서 업적만 뽑아서 리스트로 반환
+    {
+        List<int> questList = new List<int>();
+        foreach (var questId in _ongoingQuests.Keys)
+        {
+            QuestData questData = DataBase.Quest.Get(questId);
+            if(questData != null && questData.Mode == QuestMode.Achievement)//업적인 것만 저장.
+                questList.Add(questId);
+        }
+
+        foreach (var questId2 in _completeQuests.Keys)
+        {
+            QuestData questData = DataBase.Quest.Get(questId2);
+            if (questData != null && questData.Mode == QuestMode.Achievement)//업적인 것만 저장.
+                questList.Add(questId2);
+        }
+        return questList;
     }
 }
