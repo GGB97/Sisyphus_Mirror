@@ -18,7 +18,6 @@ public class Weapon_Axe_1_Epic : Weapon_Epic
 
     protected override void Skill()
     {
-        Debug.Log($"Weapon Skill {_weaponID}");
         Axe_1_Epic_Skill skill = ParticleObjectPool.Instance.SpawnFromPool(_weaponID, _target.transform.position, Quaternion.identity).GetComponent<Axe_1_Epic_Skill>();
         skill.OnSkillStart();
 

@@ -419,6 +419,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
         type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792156381933009270, guid: 3ad6581d9e6a10e4987680f1483aab44,
+        type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1.5
       objectReference: {fileID: 0}

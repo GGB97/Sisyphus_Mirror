@@ -417,6 +417,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7189649323197096078}
     m_Modifications:
+    - target: {fileID: 1358873130082941115, guid: 9ba5c59aab8437a4f9a41fca9b2c4634,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358873130979058443, guid: 9ba5c59aab8437a4f9a41fca9b2c4634,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1358873130979058443, guid: 9ba5c59aab8437a4f9a41fca9b2c4634,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
