@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class OpenTutorialBoard : MonoBehaviour
 {
     [SerializeField] Button _openTutorialButton;
+    [SerializeField] GameObject _menu;
 
     private void Start()
     {
@@ -18,6 +19,11 @@ public class OpenTutorialBoard : MonoBehaviour
     void OnClickOpenTutorialBoard()
     {
         TutorialManager.Instance.GetTutorialBoard();
+        if(_menu != null && _menu.activeSelf == true)
+        {
+            _menu.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
     }
 
     private void OnDisable()
