@@ -287,7 +287,7 @@ MonoBehaviour:
     _rewardCount_3: 0
     isStorable: 0
   - _id: 310
-    _name: "\uACE8\uB4DC \uC18C\uBAA8\uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC951"
     _description: "1500 \uACE8\uB4DC \uC0AC\uC6A9\uD558\uAE30"
     _mode: 0
     _type: 3
@@ -303,7 +303,7 @@ MonoBehaviour:
     _rewardCount_3: 0
     isStorable: 1
   - _id: 320
-    _name: "\uC2A4\uD14C\uC774\uC9C0 \uD074\uB9AC\uC5B4"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC952"
     _description: "\uD55C \uBC88\uC5D0 10\uCE35 \uB3C4\uB2EC\uD558\uAE30"
     _mode: 0
     _type: 2
@@ -319,7 +319,7 @@ MonoBehaviour:
     _rewardCount_3: 0
     isStorable: 0
   - _id: 330
-    _name: "\uBAAC\uC2A4\uD130 \uC8FD\uC774\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC953"
     _description: "\uBAAC\uC2A4\uD130 200\uB9C8\uB9AC \uC8FD\uC774\uAE30"
     _mode: 0
     _type: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
     _rewardCount_3: 0
     isStorable: 1
   - _id: 340
-    _name: "\uC778\uBCA4\uD1A0\uB9AC \uCE78 \uD655\uC7A5\uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC954"
     _description: "\uC778\uBCA4\uD1A0\uB9AC 20 \uCE78 \uD655\uC7A5\uD558\uAE30"
     _mode: 0
     _type: 4
@@ -351,7 +351,7 @@ MonoBehaviour:
     _rewardCount_3: 0
     isStorable: 1
   - _id: 350
-    _name: "\uBB34\uAE30 \uC7A5\uCC29\uD558\uAE30"
+    _name: "\uAC15\uD574\uC9C0\uB294 \uBC29\uBC955"
     _description: "\uBB34\uAE30 5\uAC1C \uC774\uC0C1 \uC7A5\uCC29\uD55C \uC0C1\uD0DC\uB85C
       \uC8FD\uAE30"
     _mode: 0

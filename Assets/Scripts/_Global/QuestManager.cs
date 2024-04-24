@@ -22,7 +22,8 @@ public class QuestManager : SingletoneBase<QuestManager>
     }
     private void Start()
     {
-        InvokeRepeating("StartDailyQuest", GetTimeUntilMidnight(), 86400);// 인보크 리피팅이 다시 호출되어도 덮어써서 괜찮다고 한다.게임을 껐다 켜도 적용되는 지는 아직 잘 모르겠다.
+        InvokeRepeating("StartDailyQuest", GetTimeUntilMidnight(), 86400);
+        //InvokeRepeating("StartDailyQuest", 5f, 86400f);
     }
     public void SubsrcipbeQuest(int questId)//참조 등록
     {
@@ -140,8 +141,12 @@ public class QuestManager : SingletoneBase<QuestManager>
             else//처음 퀘스트를 받는 거라면
             {
                 QuestStart(questId);
+                return;
             }
         }
+        Debug.Log("초기화");
+        SoundManager.Instance.PlayAudioClip("Wand_1");
+        QuestSaveManager.Instance.InvokeLoadDataEvent();
     }
     public void PrintCurrentQuestList()
     {

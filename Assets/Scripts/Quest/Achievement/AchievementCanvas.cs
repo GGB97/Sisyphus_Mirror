@@ -23,7 +23,15 @@ public class AchievementCanvas : MonoBehaviour
     }
     public void CreateSlot()
     {
+        DestroyAll();
         achievementUI.CreateDailySlot();//일일 퀘스트 슬롯 생성
         achievementUI.CreateAchievementSlot();//업적 슬롯 생성
+    }
+    public void DestroyAll()
+    {
+        if(achievementUI.gameObject.activeSelf == true)//켜져있다면 끈다
+            achievementUI.gameObject.SetActive(false);
+
+        achievementUI.DestroyAllQuestSlot();
     }
 }

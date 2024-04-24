@@ -13,6 +13,8 @@ public class AchievementSlot : MonoBehaviour
     private List<int> rewardAmount;
     public Sprite icon;//아이콘
     [SerializeField]
+    public TextMeshProUGUI questNameText;
+    [SerializeField]
     public TextMeshProUGUI questDescription;//퀘스트 설명
     [SerializeField]
     public TextMeshProUGUI rewardText;//보상 텍스트
@@ -30,6 +32,7 @@ public class AchievementSlot : MonoBehaviour
         if (questData == null && questMode == questData.Mode)//퀘스트 정보가 없거나 모드가 일치하지 않으면 삭제
             Destroy(gameObject);
 
+        questNameText.text = questData.Name;
         questDescription.text = questData.Description;//퀘스트 설명
         StringBuilder sb = new StringBuilder(50);
         sb.Append("보상 : ");

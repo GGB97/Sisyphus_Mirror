@@ -52,4 +52,22 @@ public class AchievementUI : UI_Base
         }
         //퀘스트 진행 중인거와 클리어에서 업적 퀘스트의 id 리스트를 받아옴
     }
+    public void DestroyAllQuestSlot()
+    {
+        Transform[] children1 = content1.GetComponentsInChildren<Transform>();
+        Transform[] children2 = content2.GetComponentsInChildren<Transform>();
+        // 가져온 자식들을 순회하면서 처리합니다.
+        foreach (Transform child in children1)
+        {
+            if (child == content1.transform)
+                continue;
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in children2)
+        {
+            if (child == content2.transform)
+                continue;
+            Destroy(child.gameObject);
+        }
+    }
 }
