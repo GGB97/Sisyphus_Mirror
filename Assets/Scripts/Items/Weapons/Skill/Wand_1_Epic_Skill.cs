@@ -7,6 +7,7 @@ public class Wand_1_Epic_Skill : MonoBehaviour
     [SerializeField] ParticleSystem _skillEffect;
     [SerializeField] ParticleSFX _skillSFX;
 
+    string _sfxTag = "Wand_1_Epic_Skill";
     float _coolTime = 3.5f;
     float _skillStartTime;
     bool _skillStart;
@@ -21,7 +22,7 @@ public class Wand_1_Epic_Skill : MonoBehaviour
         _skillEffect.Play();
         _skillStartTime = Time.time;
         _skillStart = true;
-        _skillSFX.PlaySFX();
+        _skillSFX.PlaySFX(_sfxTag);
     }
 
     private void OnTriggerStay(Collider other)

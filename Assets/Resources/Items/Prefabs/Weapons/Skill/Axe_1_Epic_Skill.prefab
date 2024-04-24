@@ -24504,8 +24504,8 @@ GameObject:
   - component: {fileID: 8925504250726196253}
   - component: {fileID: 931263109607490947}
   - component: {fileID: 7168975045376797338}
-  - component: {fileID: 2881127134036405218}
   - component: {fileID: 2588804488027183451}
+  - component: {fileID: 5742216297963315881}
   m_Layer: 0
   m_Name: Axe_1_Epic_Skill
   m_TagString: Untagged
@@ -29499,24 +29499,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2881127134036405218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640686030600831662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79ba5bb0b3780b4a98ce45e779b6441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Repeating: 1
-  RepeatTime: 3
-  StartTime: 0
-  RandomVolume: 0
-  minVolume: 0.4
-  maxVolume: 1
 --- !u!114 &2588804488027183451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29530,6 +29512,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillEffect: {fileID: 8925504250726196253}
+  _skillSFX: {fileID: 0}
+--- !u!114 &5742216297963315881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640686030600831662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60216cc704a94b9438f480e778fef832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: 
 --- !u!1 &5292991978723751799
 GameObject:
   m_ObjectHideFlags: 0

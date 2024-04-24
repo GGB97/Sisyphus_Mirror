@@ -3,7 +3,9 @@ using UnityEngine;
 public class Axe_1_Epic_Skill : MonoBehaviour
 {
     [SerializeField] ParticleSystem _skillEffect;
+    [SerializeField] ParticleSFX _skillSFX;
 
+    string _sfxTag = "Axe_1_Epic_Skill";
     float _duration;
     float _range = 6;
     float _skillStartTime;
@@ -19,6 +21,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         _skillEffect.Play();
         _skillStartTime = Time.time;
         _skillStart = true;
+        _skillSFX.PlaySFX(_sfxTag);
     }
 
     private void Update()
