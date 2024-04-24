@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class TutorialBoard : MonoBehaviour
 {
+    [SerializeField] GameObject _tutorialBoardCanvas;
+
+    public void PopupTutorialBoard()
+    {
+        _tutorialBoardCanvas.SetActive(true);
+    }
+
     public void OnClickLobbyTutorialButton()
     {
         TutorialManager.Instance.PopupTutorial(TutorialType.DungeonStart, 60003011);
@@ -19,6 +26,6 @@ public class TutorialBoard : MonoBehaviour
 
     public void OnClickCloseButton()
     {
-        gameObject.SetActive(false);
+        _tutorialBoardCanvas.SetActive(false);
     }
 }
