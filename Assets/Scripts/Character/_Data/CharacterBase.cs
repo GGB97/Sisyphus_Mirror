@@ -68,6 +68,7 @@ public class Status
     {
         maxHealth = baseStat.maxHealth + modifier.maxHealth;
         if(maxHealth <= 1) maxHealth = 1;
+        health = baseStat.health + modifier.health;
         if(health > maxHealth) health = maxHealth;
 
         attackRange = baseStat.attackRange + modifier.attackRange;
