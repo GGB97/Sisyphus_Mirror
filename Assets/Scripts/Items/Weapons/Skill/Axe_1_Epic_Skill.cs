@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Axe_1_Epic_Skill : MonoBehaviour
 {
-    //[SerializeField] MeleeWeapon _weapon;
     [SerializeField] ParticleSystem _skillEffect;
 
     float _duration;

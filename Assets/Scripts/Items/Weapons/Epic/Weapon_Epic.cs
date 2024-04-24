@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon_Epic : MonoBehaviour
 {
-    [SerializeField] protected MeleeWeapon _weapon;
+    [SerializeField] protected MeleeWeapon _meleeWeapon;
+    [SerializeField] protected RangeWeapon _rangeWeapon;
     public List<Enemy> Target = new List<Enemy>();
     protected Enemy _target;
 
@@ -17,7 +18,9 @@ public abstract class Weapon_Epic : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        _weaponID = _weapon.GetWeaponId();
+        if(_meleeWeapon != null)
+        _weaponID = _meleeWeapon.GetWeaponId();
+        else _weaponID = _rangeWeapon.GetWeaponId();
         _timeSinceLastSkill = Time.time;
     }
 
