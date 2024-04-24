@@ -207,6 +207,9 @@ MonoBehaviour:
   - tag: Axe_1_Epic_Skill
     clip: {fileID: 8300000, guid: d64e4487ce196b64b97f65f33819a0e0, type: 3}
     volumePercent: 50
+  - tag: ItemGain
+    clip: {fileID: 8300000, guid: 81bc7fdcdf94fce43b269cf3aac0c1eb, type: 3}
+    volumePercent: 50
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Constants;
-using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
 
 public class AchievementSlot : MonoBehaviour
 {
