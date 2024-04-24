@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -368,7 +367,7 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
-    private Vector2Int GetTileGridPositionWithBaseItem(Vector2 putPosition,InventoryItem item)//특정 좌표의 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
+    private Vector2Int GetTileGridPositionWithBaseItem(Vector2 putPosition, InventoryItem item)//특정 좌표의 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
     {
         Vector2 position = putPosition; //마우스위치에는 물체의 중심이 온다.
 
@@ -444,10 +443,10 @@ public class InventoryController : MonoBehaviour
                         SetPlayerGoldText();
 
                         SelectedItemGrid = previousItemGird;//이동 전 그리드로 설정
-                        Vector2Int tileGridStartPosition = GetTileGridPositionWithBaseItem(startPosition,selectedItem); //원래의 있던 곳의 위치
+                        Vector2Int tileGridStartPosition = GetTileGridPositionWithBaseItem(startPosition, selectedItem); //원래의 있던 곳의 위치
 
                         SelectedItemGrid = tempGrid;//현재 그리드로 재설정
-                        storeGrid.PannelImageClear(tileGridStartPosition,selectedItem);// 판넬 투명하게 하기
+                        storeGrid.PannelImageClear(tileGridStartPosition, selectedItem);// 판넬 투명하게 하기
 
                         itemCost[i].transform.parent.gameObject.SetActive(false);
                     }
@@ -658,7 +657,7 @@ public class InventoryController : MonoBehaviour
                     else if (selectedItemId % 10 == 2) selectedItemId += 1;
                 }
 
-                if(selectedItemId % 10 == 4) selectedItemId -= 1;
+                if (selectedItemId % 10 == 4) selectedItemId -= 1;
 
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
@@ -849,14 +848,14 @@ public class InventoryController : MonoBehaviour
     void PrintItemList()
     {
         Debug.Log("-----------던전 종료 시 소지 중인 아이템 목록-----------");
-        foreach(var list in playerInventoryGrid.inventory)
+        foreach (var list in playerInventoryGrid.inventory)
         {
-            foreach(var item in list.Value)
+            foreach (var item in list.Value)
             {
                 Debug.Log($"{item.itemSO.Name} - {item.itemSO.Grade}");
             }
         }
     }
 
-   
+
 }

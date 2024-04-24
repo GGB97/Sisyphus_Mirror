@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,7 @@ public class SkillCoolTimeUI : MonoBehaviour
 
     IEnumerator CoolTimeFunc(float cooltime, float cooltimeMax)
     {
+        WaitForFixedUpdate waitFixed = new();
         yield return null;
         while (cooltime > 0f)
         {
@@ -32,14 +32,14 @@ public class SkillCoolTimeUI : MonoBehaviour
 
             skill.fillAmount = cooltime / cooltimeMax;
 
-            yield return new WaitForFixedUpdate();
+            yield return waitFixed;
         }
         gameObject.SetActive(false);
     }
 
     public void TestSkill(float coolTime, float coolTimeMax)
     {
-        gameObject.SetActive (true);
+        gameObject.SetActive(true);
         StartCoroutine(CoolTimeFunc(coolTime, coolTimeMax));
     }
 }

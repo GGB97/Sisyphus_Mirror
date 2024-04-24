@@ -60,7 +60,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.buildIndex == 2 && GameManager.Instance.Player != null)
+        if (scene.buildIndex == 2 && GameManager.Instance.Player != null)
         {
             Debug.Log($"입장 캐릭터 : {GameManager.Instance.Player.name}");
             LogCreator.Instance.SetTryCounter();

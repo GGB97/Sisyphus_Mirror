@@ -39,7 +39,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, _range, LayerData.Enemy);
         if (colliders.Length == 0) return;
 
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
             if (!collider.GetComponent<Enemy>().IsSpawning)
                 collider.GetComponent<HealthSystem>().TakeDamage(_damage, DamageType.Magic);

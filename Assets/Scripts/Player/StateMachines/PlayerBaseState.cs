@@ -38,7 +38,7 @@ public class PlayerBaseState : IState
     public virtual void Update()
     {
         Move();
-        if(stateMachine.DashCoolTime < player.currentStat.dashCoolTime)
+        if (stateMachine.DashCoolTime < player.currentStat.dashCoolTime)
         {
             stateMachine.DashCoolTime += Time.deltaTime;
         }

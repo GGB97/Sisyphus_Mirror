@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,13 +9,13 @@ public class TapButton : MonoBehaviour
 
     public void Select()
     {
-        if(onTabSelected != null)
+        if (onTabSelected != null)
             onTabSelected.Invoke();
     }
 
     public void Unselect()
     {
-        if(onTabUnselected != null)
+        if (onTabUnselected != null)
             onTabUnselected.Invoke();
     }
     public void OnSelectTab(TapButton button)

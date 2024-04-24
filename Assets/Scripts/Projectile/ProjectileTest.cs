@@ -72,6 +72,7 @@ public class ProjectileTest : MonoBehaviour
         if (_duration <= 0)
         {
             // TODO : Object Pooling
+            ps.Clear();
             gameObject.SetActive(false);
         }
     }

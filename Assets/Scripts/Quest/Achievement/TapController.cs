@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TapController : MonoBehaviour
@@ -8,7 +5,7 @@ public class TapController : MonoBehaviour
     private static TapController _instance;
     public static TapController Instance
     {
-        get 
+        get
         {
             if (_instance == null)
             {

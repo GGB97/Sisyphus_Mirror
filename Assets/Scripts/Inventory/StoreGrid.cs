@@ -46,7 +46,7 @@ public class StoreGrid : ItemGrid
         if (panelSlots[1, 1].CompareState(PanelSlotState.Empty))
         {
             PlaceItem(item, 1, 1);
-            if(InventoryController.Instance.itemCost[0].transform.parent.gameObject.activeSelf == false)
+            if (InventoryController.Instance.itemCost[0].transform.parent.gameObject.activeSelf == false)
                 InventoryController.Instance.itemCost[0].transform.parent.gameObject.SetActive(true);
             InventoryController.Instance.itemCost[0].transform.parent.position = SetTransform(item);
             InventoryController.Instance.itemCost[0].text = price.ToString() + "<color=yellow> G</color>";

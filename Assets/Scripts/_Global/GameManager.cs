@@ -60,7 +60,7 @@ public class GameManager : SingletoneBase<GameManager>
         //}
         //else
         //{
-            
+
         //    Menu.OpenMenu();
         //}
     }

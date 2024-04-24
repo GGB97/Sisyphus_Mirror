@@ -1,9 +1,7 @@
-using Unity.VisualScripting;
-
 public class Storage : ItemGrid
 {
     //public Dictionary<ItemType, List<InventoryItem>> storage = new Dictionary<ItemType, List<InventoryItem>>();//창고 아이템
-    
+
     public AvailableCount availableCount;
     protected override void Start()
     {
