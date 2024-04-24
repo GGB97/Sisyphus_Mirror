@@ -36,6 +36,8 @@ public class Player : CharacterBehaviour
 
     public float magnetDistance;
 
+    [SerializeField] GameObject shield_Obj;
+
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +60,8 @@ public class Player : CharacterBehaviour
         stateMachine = new PlayerStateMachine(this);
 
         SetUpgradeModifier();
+
+        PlayerSheildChange += ShieldEffect;
     }
 
     private void OnEnable()
@@ -161,6 +165,21 @@ public class Player : CharacterBehaviour
             currentStat.shield = maxShield;
         }
         PlayerSheildChange?.Invoke(currentStat.shield);
+    }
+
+    void ShieldEffect(float dump)
+    {
+        if (shield_Obj != null)
+        {
+            if (currentStat.shield > 0)
+            {
+                shield_Obj.SetActive(true);
+            }
+            else
+            {
+                shield_Obj.SetActive(false);
+            }
+        }
     }
 
     public void GetEXP(int exp)

@@ -25,6 +25,7 @@ public class SkillCoolTimeUI : MonoBehaviour
 
     IEnumerator CoolTimeFunc(float cooltime, float cooltimeMax)
     {
+        WaitForFixedUpdate waitFixed = new();
         yield return null;
         while (cooltime > 0f)
         {
@@ -32,7 +33,7 @@ public class SkillCoolTimeUI : MonoBehaviour
 
             skill.fillAmount = cooltime / cooltimeMax;
 
-            yield return new WaitForFixedUpdate();
+            yield return waitFixed;
         }
         gameObject.SetActive(false);
     }
