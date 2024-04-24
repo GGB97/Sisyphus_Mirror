@@ -22,8 +22,8 @@ MonoBehaviour:
     _count: 10
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -38,8 +38,8 @@ MonoBehaviour:
     _count: 100
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     _count: 500
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
     _count: 1000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -86,8 +86,8 @@ MonoBehaviour:
     _count: 2000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -102,8 +102,8 @@ MonoBehaviour:
     _count: 3000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -118,8 +118,8 @@ MonoBehaviour:
     _count: 4000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
     _count: 5000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
     _count: 6000
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
     _count: 5
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -182,8 +182,8 @@ MonoBehaviour:
     _count: 10
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 5
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
     _count: 15
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -215,8 +215,8 @@ MonoBehaviour:
     _count: 20
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 10
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -231,8 +231,8 @@ MonoBehaviour:
     _count: 25
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -247,8 +247,8 @@ MonoBehaviour:
     _count: 30
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 20
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
     _count: 35
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -279,8 +279,8 @@ MonoBehaviour:
     _count: 40
     _exp: 0
     _gold: 0
-    _reward_1: 0
-    _rewardCount_1: 0
+    _reward_1: 10
+    _rewardCount_1: 30
     _reward_2: 0
     _rewardCount_2: 0
     _reward_3: 0
@@ -296,9 +296,9 @@ MonoBehaviour:
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 10
-    _reward_2: 10
-    _rewardCount_2: 10
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
@@ -312,9 +312,9 @@ MonoBehaviour:
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 11
-    _reward_2: 10
-    _rewardCount_2: 11
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 0
@@ -328,9 +328,9 @@ MonoBehaviour:
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 12
+    _rewardCount_1: 5
     _reward_2: 0
-    _rewardCount_2: 12
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
@@ -344,9 +344,9 @@ MonoBehaviour:
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 13
-    _reward_2: 10
-    _rewardCount_2: 13
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 1
@@ -361,9 +361,9 @@ MonoBehaviour:
     _exp: 0
     _gold: 0
     _reward_1: 10
-    _rewardCount_1: 14
-    _reward_2: 10
-    _rewardCount_2: 14
+    _rewardCount_1: 5
+    _reward_2: 0
+    _rewardCount_2: 0
     _reward_3: 0
     _rewardCount_3: 0
     isStorable: 0

@@ -195,16 +195,14 @@ public class QuestManager : SingletoneBase<QuestManager>
             Debug.Log("퀘스트가 존재하지 않습니다.");
             return false;//id가 존재하지 않으면 보상 X
         }
-        else
+
+        if (_completeQuests[questId] == true)//보상을 받을 수 있으면 true
         {
-            if (_completeQuests[questId] == true)//보상을 받을 수 있으면 true
-            {
-                return true;
-            }
-            else
-            { 
-                return false;
-            }
+            return true;
+        }
+        else
+        { 
+            return false;
         }
     }
     public void FieldInit()
@@ -256,5 +254,12 @@ public class QuestManager : SingletoneBase<QuestManager>
                 questList.Add(questId2);
         }
         return questList;
+    }
+    public void ChangeRewardState(int questId,bool isAvailable)
+    {
+        if (_completeQuests.ContainsKey(questId) == false)
+            return;
+
+        _completeQuests[questId] = isAvailable;
     }
 }

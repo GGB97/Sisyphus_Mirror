@@ -100,6 +100,7 @@ MonoBehaviour:
   rewardText: {fileID: 394484472874699524}
   progressText: {fileID: 1007917731748217312}
   rewardButton: {fileID: 6102975799437484714}
+  buttonSoundTag: ItemGain
 --- !u!1 &924181624068190336
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +880,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8649204431160350348}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7641673255161376039}
+        m_TargetAssemblyTypeName: AchievementSlot, Assembly-CSharp
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7671864139491626041
 GameObject:
   m_ObjectHideFlags: 0

@@ -91,5 +91,6 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
     protected override void OnApplicationQuit()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        SaveData();
     }
 }
