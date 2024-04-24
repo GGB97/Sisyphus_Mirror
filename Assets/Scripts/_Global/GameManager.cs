@@ -114,7 +114,7 @@ public class GameManager : SingletoneBase<GameManager>
     public void Retry()
     {
         QuestSaveManager.Instance.SaveData();
-        QuestManager.Instance.FieldInit();
+        //QuestManager.Instance.FieldInit();
         Destroy(DungeonManager.Instance.gameObject);
 
         _player.playerReset();
@@ -123,6 +123,7 @@ public class GameManager : SingletoneBase<GameManager>
         totalGold = 0;
 
         gameState = GameState.Lobby;
+        SoundManager.Instance.SetBgm(SoundManager.Instance.lobbyBgTag);
         LoadScene(SceneName.Lobby);
     }
 

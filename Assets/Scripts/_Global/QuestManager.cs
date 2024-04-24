@@ -18,7 +18,7 @@ public class QuestManager : SingletoneBase<QuestManager>
 
     private void OnEnable()//꺼질일이 없어서 처음 들어올 때만 실행 로드하기 전
     {
-        FieldInit();
+        //FieldInit();
     }
     private void Start()
     {
@@ -174,13 +174,14 @@ public class QuestManager : SingletoneBase<QuestManager>
         foreach (var quest in _ongoingQuests)
         {
             var questData = DataBase.Quest.Get(quest.Key);
-            if (questData.IsStorable == true)
+            if (questData.IsStorable == true)//진행도 저장이 가능한 퀘스트인지
             {
                 questSaveData.ongoingQuests[quest.Key] = quest.Value.QuestProgress;//id와 진행상황 저장
             }
             else
             {
                 questSaveData.ongoingQuests[quest.Key] = 0;
+                _ongoingQuests[quest.Key].ProgressClear();
             }
         }
         questSaveData.completeQuests = _completeQuests;
@@ -196,7 +197,7 @@ public class QuestManager : SingletoneBase<QuestManager>
     }
     public int? CheckQuestProgress(int questId)//퀘스트 진행도 체크
     {
-        if (_ongoingQuests[questId] != null)//진행 중인 퀘스트라면 
+        if (_ongoingQuests.ContainsKey(questId) == true)//진행 중인 퀘스트라면 
             return _ongoingQuests[questId].QuestProgress;
 
         if (_completeQuests.Contains(questId) == true)//클리어 한 퀘스트라면
@@ -214,5 +215,9 @@ public class QuestManager : SingletoneBase<QuestManager>
         System.TimeSpan timeUntilMidnight = tomorrow - now;
         Debug.Log($"리셋까지 남은 시간(초) : {(float)timeUntilMidnight.TotalSeconds}");
         return (float)timeUntilMidnight.TotalSeconds;
+    }
+    public bool GetTotalQuestCount()
+    {
+        return _ongoingQuests.Count + _completeQuests.Count > 0 ? true : false;
     }
 }

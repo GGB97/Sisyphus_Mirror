@@ -26,7 +26,7 @@ public class AchievementSlot : MonoBehaviour
         if(questData == null)//퀘스트 정보가 없으면
             Destroy(gameObject);
 
-        QuestManager.Instance.QuestStart(questId);//퀘스트 시작
+        //QuestManager.Instance.QuestStart(questId);//퀘스트 시작
         questDescription.text = questData.Description;//퀘스트 설명
         StringBuilder sb = new StringBuilder(50);
         sb.Append("보상 : ");
@@ -38,8 +38,11 @@ public class AchievementSlot : MonoBehaviour
         sb = null;
 
         int? value = QuestManager.Instance.CheckQuestProgress(questId).Value;
-        if(value != null)//널이 아닐 때만
-            progressText.text = string.Format($"({value} / {questData.Count})");//진행도 설정
+        if (value != null)//널이 아닐 때만
+        {
+            ButtonIsActive((int)value, questData.Count);
+            progressText.text = string.Format($"진행도 : ({value} / {questData.Count})");//진행도 설정
+        }
 
     }
     public void SlotUpdate()
@@ -54,6 +57,20 @@ public class AchievementSlot : MonoBehaviour
         else
         {
             progressText.text = string.Empty;
+        }
+    }
+    public void ButtonIsActive(int progress, int maxCount)
+    {
+        TextMeshProUGUI text = rewardButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (progress == maxCount)
+        {
+            rewardButton.interactable = true;
+            text.text = "보상 받기";
+        }
+        else
+        {
+            rewardButton.interactable = false;
+            text.text = "진행 중";
         }
     }
 }

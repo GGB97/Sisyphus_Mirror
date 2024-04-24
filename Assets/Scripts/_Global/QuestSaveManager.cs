@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class QuestSaveData
@@ -18,13 +19,29 @@ public class QuestSaveData
 public class QuestSaveManager : SingletoneBase<QuestSaveManager>
 {
     QuestSaveData saveData = new QuestSaveData();
-
+    public event Action loadDataEvent;
     private string dataKey = "QuestSaveData";
+    private void Awake()
+    {
+        if(Instance != this)
+            Destroy(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
+    }
     void Start()
     {
         // PlayerPrefs에서 목록 불러오기
         LoadData();
         //PlayerPrefs.DeleteKey(dataKey);
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1 && QuestManager.Instance.GetTotalQuestCount() == true)//퀘스트 로드가 되어 있을 때
+        {
+            loadDataEvent?.Invoke();
+        }
+
     }
 
     public void SaveData()
@@ -65,5 +82,14 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
             SaveData();
             Debug.Log("퀘스트 첫 로드");
         }
+        loadDataEvent?.Invoke();
+    }
+    protected override void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    protected override void OnApplicationQuit()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

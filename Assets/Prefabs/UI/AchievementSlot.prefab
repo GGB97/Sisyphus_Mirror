@@ -96,10 +96,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questId: 0
   icon: {fileID: 0}
-  questDescription: {fileID: 0}
-  rewardText: {fileID: 0}
-  progressText: {fileID: 0}
-  rewardButton: {fileID: 0}
+  questDescription: {fileID: 6136692835163181214}
+  rewardText: {fileID: 394484472874699524}
+  progressText: {fileID: 1007917731748217312}
+  rewardButton: {fileID: 6102975799437484714}
 --- !u!1 &924181624068190336
 GameObject:
   m_ObjectHideFlags: 0

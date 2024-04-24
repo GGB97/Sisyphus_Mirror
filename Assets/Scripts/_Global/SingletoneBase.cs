@@ -19,6 +19,10 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 
                     DontDestroyOnLoad(go);
                 }
+                else
+                {
+                    DontDestroyOnLoad(_instance);
+                }
             }
 
             return _instance;
