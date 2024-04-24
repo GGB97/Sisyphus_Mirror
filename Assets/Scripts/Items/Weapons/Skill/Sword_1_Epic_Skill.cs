@@ -22,7 +22,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
 
     private void Update()
     {
-        if(Time.time - _timeSinceFired >= duration) Disappear();
+        if (Time.time - _timeSinceFired >= duration) Disappear();
     }
 
     public void OnSkillStart()
@@ -35,7 +35,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
     {
         if (speed != 0)
         {
-            rb.velocity = transform.forward * speed;   
+            rb.velocity = transform.forward * speed;
         }
     }
 
@@ -53,7 +53,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
     {
         if (LayerData.Enemy == (1 << other.gameObject.layer | LayerData.Enemy))
         {
-            if(other.TryGetComponent<HealthSystem>(out HealthSystem enemy))
+            if (other.TryGetComponent<HealthSystem>(out HealthSystem enemy))
             {
                 enemy.TakeDamage(200, DamageType.Magic);
                 Vector3 pos = enemy.transform.position;

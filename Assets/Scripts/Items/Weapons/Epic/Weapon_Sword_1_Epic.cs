@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon_Sword_1_Epic : Weapon_Epic

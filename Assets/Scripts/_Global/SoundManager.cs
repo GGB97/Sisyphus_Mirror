@@ -111,7 +111,7 @@ public class SoundManager : MonoBehaviour
     public void SetBgm(string bgmTag)
     {
         if (audioDictionary.ContainsKey(bgmTag) == true)// 저장이 되어있을 때만 재생
-        { 
+        {
             backgroundAudioSource.clip = audioDictionary[bgmTag].clip;
             backgroundAudioSource.Play();
             backgroundAudioSource.loop = true;

@@ -1,15 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class Adrenaline : Skill_Base
 {
     protected override void Init()
     {
         _isCooldown = false;
-        _cooldown = 10f;
+        _cooldown = 20f;
         _currentCooldown = _cooldown;
 
         _isActive = false;

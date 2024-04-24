@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : SingletoneBase<UIManager>
 {
@@ -69,7 +68,7 @@ public class UIManager : SingletoneBase<UIManager>
         if (_ui.Count != 0)
         {
             var ui = _ui.Last().Value.GetComponent<UI_Base>();
-            
+
             ui.CloseUI();
             _ui.Remove(ui.gameObject.name);
 

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AchievementUI : UI_Base
 {
@@ -30,9 +28,9 @@ public class AchievementUI : UI_Base
     {
         List<int> dailyQuestList = QuestManager.Instance.dailyQuestList;
 
-        foreach (var questId in dailyQuestList) 
+        foreach (var questId in dailyQuestList)
         {
-             GameObject go = Instantiate(achievementSlotPrefab, questContent.transform);
+            GameObject go = Instantiate(achievementSlotPrefab, questContent.transform);
             AchievementSlot aSlot = go.GetComponent<AchievementSlot>();
             aSlot.Init(questId);
         }

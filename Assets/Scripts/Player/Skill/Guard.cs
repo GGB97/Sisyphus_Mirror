@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Guard : Skill_Base
 {
     protected override void Init()
@@ -11,7 +7,7 @@ public class Guard : Skill_Base
         _currentCooldown = _cooldown;
 
         _isActive = false;
-        _duration = 6f;
+        _duration = 10f;
         _currentduration = _duration;
     }
 
@@ -20,7 +16,7 @@ public class Guard : Skill_Base
         _player.currentStat.def += 60;
         _player.currentStat.shield = _player.currentStat.maxHealth * 0.5f;
 
-        if(_player != null)
+        if (_player != null)
         {
             _player.InvokeShieldChange();
         }

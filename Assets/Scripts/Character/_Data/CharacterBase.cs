@@ -67,8 +67,8 @@ public class Status
     public void InitStatus(Status baseStat, Status modifier)
     {
         maxHealth = baseStat.maxHealth + modifier.maxHealth;
-        if(maxHealth <= 1) maxHealth = 1;
-        if(health > maxHealth) health = maxHealth;
+        if (maxHealth <= 1) maxHealth = 1;
+        if (health > maxHealth) health = maxHealth;
 
         attackRange = baseStat.attackRange + modifier.attackRange;
         physicalAtk = baseStat.physicalAtk + modifier.physicalAtk;

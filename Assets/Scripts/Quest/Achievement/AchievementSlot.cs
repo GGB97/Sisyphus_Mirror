@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -23,7 +21,7 @@ public class AchievementSlot : MonoBehaviour
         this.questId = questId;
         QuestData questData = DataBase.Quest.Get(questId);
 
-        if(questData == null)//퀘스트 정보가 없으면
+        if (questData == null)//퀘스트 정보가 없으면
             Destroy(gameObject);
 
         QuestManager.Instance.QuestStart(questId);//퀘스트 시작
@@ -38,7 +36,7 @@ public class AchievementSlot : MonoBehaviour
         sb = null;
 
         int? value = QuestManager.Instance.CheckQuestProgress(questId).Value;
-        if(value != null)//널이 아닐 때만
+        if (value != null)//널이 아닐 때만
             progressText.text = string.Format($"({value} / {questData.Count})");//진행도 설정
 
     }

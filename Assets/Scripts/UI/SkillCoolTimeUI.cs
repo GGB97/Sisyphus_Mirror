@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +39,7 @@ public class SkillCoolTimeUI : MonoBehaviour
 
     public void TestSkill(float coolTime, float coolTimeMax)
     {
-        gameObject.SetActive (true);
+        gameObject.SetActive(true);
         StartCoroutine(CoolTimeFunc(coolTime, coolTimeMax));
     }
 }

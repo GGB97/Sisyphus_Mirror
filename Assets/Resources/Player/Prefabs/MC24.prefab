@@ -1680,9 +1680,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3622097be23ded847b9998e0d548e575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 9a277565cc88f0f48904204b3b6ea7ed, type: 3}
+  icon: {fileID: 21300000, guid: f7632ce902723454bad9db3c35097341, type: 3}
   effect_Ps: {fileID: 5511517221616864416}
+  _isCooldown: 0
   _currentCooldown: 0
+  _isActive: 0
   _currentduration: 0
 --- !u!1 &8622176936798647605
 GameObject:
