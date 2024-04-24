@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 4517731287504254671}
   - component: {fileID: 5723368311468652235}
   - component: {fileID: 8889710827927102596}
+  - component: {fileID: 2464574466025326512}
   m_Layer: 0
   m_Name: Bow_1_Epic
   m_TagString: Untagged
@@ -371,6 +372,22 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 1
+--- !u!114 &2464574466025326512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5501176995201338891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124c3788ddc27d043b2ff6db66ef0e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meleeWeapon: {fileID: 0}
+  _rangeWeapon: {fileID: 5723368311468652235}
+  Target: []
+  _weapon: {fileID: 0}
 --- !u!1 &6596509542381996908
 GameObject:
   m_ObjectHideFlags: 0

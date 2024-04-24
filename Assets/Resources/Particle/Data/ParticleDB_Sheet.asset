@@ -19,7 +19,11 @@ MonoBehaviour:
     _prefabPath: Particle/Prefabs/Axe_1
   - _id: 71000003
     _prefabPath: Particle/Prefabs/Dagger_Hit
+  - _id: 71000004
+    _prefabPath: Particle/Prefabs/Magic_Hit
   - _id: 10111014
     _prefabPath: Items/Prefabs/Weapons/Skill/Axe_1_Epic_Skill
   - _id: 10112014
     _prefabPath: Items/Prefabs/Weapons/Skill/Sword_1_Epic_Skill
+  - _id: 10122014
+    _prefabPath: Items/Prefabs/Weapons/Skill/Wand_1_Epic_Skill

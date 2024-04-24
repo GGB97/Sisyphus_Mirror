@@ -5,6 +5,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
     public float duration = 2f;
     float _timeSinceFired;
     public float speed = 15f;
+    float _damage = 200;
 
     public int hitId;
     public GameObject flash;
@@ -28,6 +29,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
     public void OnSkillStart()
     {
         _timeSinceFired = Time.time;
+        _damage = 198 + (2 * DungeonManager.Instance.currnetstage);
     }
 
     // Update is called once per frame
@@ -55,7 +57,7 @@ public class Sword_1_Epic_Skill : MonoBehaviour
         {
             if(other.TryGetComponent<HealthSystem>(out HealthSystem enemy))
             {
-                enemy.TakeDamage(200, DamageType.Magic);
+                enemy.TakeDamage(_damage, DamageType.Magic);
                 Vector3 pos = enemy.transform.position;
                 pos.y = 1;
                 Particle hit = ParticleObjectPool.Instance.SpawnFromPool(hitId, pos, Quaternion.identity).GetComponent<Particle>();

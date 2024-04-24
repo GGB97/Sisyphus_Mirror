@@ -33,6 +33,7 @@ public class RangeWeapon : MonoBehaviour
     public void Init(int id)
     {
         weaponData = DataBase.Weapon.Get(id);
+        this.id = id;
     }
 
     private Vector3 GetRandomPosition()
@@ -154,7 +155,7 @@ public class RangeWeapon : MonoBehaviour
         }
     }
 
-    private float SetAttackDamage()
+    public float SetAttackDamage()
     {
         float damage = 0;
         Status _player = GameManager.Instance.Player.currentStat;
@@ -170,5 +171,15 @@ public class RangeWeapon : MonoBehaviour
         if (_player.critRate > random) damage += (damage * _player.critDamage / 100);
 
         return Mathf.Ceil(damage);
+    }
+
+    public int GetWeaponId()
+    {
+        return id;
+    }
+
+    public Vector3 GetWeaponPivot()
+    {
+        return _weaponPivot.position;
     }
 }

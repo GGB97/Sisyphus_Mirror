@@ -1,15 +1,16 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Axe_1_Epic_Skill : MonoBehaviour
 {
-    //[SerializeField] MeleeWeapon _weapon;
     [SerializeField] ParticleSystem _skillEffect;
+    [SerializeField] ParticleSFX _skillSFX;
 
+    string _sfxTag = "Axe_1_Epic_Skill";
     float _duration;
     float _range = 6;
     float _skillStartTime;
     bool _skillStart = false;
+    float _damage;
 
     private void Start()
     {
@@ -21,6 +22,8 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         _skillEffect.Play();
         _skillStartTime = Time.time;
         _skillStart = true;
+        _skillSFX.PlaySFX(_sfxTag);
+        _damage = 198 + (2 * DungeonManager.Instance.currnetstage);
     }
 
     private void Update()
@@ -39,7 +42,7 @@ public class Axe_1_Epic_Skill : MonoBehaviour
         foreach(Collider collider in colliders)
         {
             if (!collider.GetComponent<Enemy>().IsSpawning)
-                collider.GetComponent<HealthSystem>().TakeDamage(200, DamageType.Magic);
+                collider.GetComponent<HealthSystem>().TakeDamage(_damage, DamageType.Magic);
         }
         _skillStart = false;
     }

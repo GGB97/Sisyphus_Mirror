@@ -291,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3c340dbcb539b4a9c0bdceb4b65d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 5792173064788964418}
+  _meleeWeapon: {fileID: 5792173064788964418}
+  _rangeWeapon: {fileID: 0}
   Target: []
 --- !u!1 &9176158309255270885
 GameObject:

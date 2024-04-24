@@ -55,4 +55,8 @@ MonoBehaviour:
     size: 5
   - id: 71000003
     size: 5
+  - id: 10122014
+    size: 5
+  - id: 71000004
+    size: 10
   _spawnObjects: []

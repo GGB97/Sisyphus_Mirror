@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3026900893736275420}
   - component: {fileID: 417528331206964349}
   - component: {fileID: 5845205349295261369}
+  - component: {fileID: -3315033241548104125}
   m_Layer: 0
   m_Name: Wand_1_Epic
   m_TagString: Untagged
@@ -197,6 +198,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3315033241548104125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144760406489050288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b1b4954f2fe824ca602220c93b9efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meleeWeapon: {fileID: 0}
+  _rangeWeapon: {fileID: 3026900893736275420}
+  Target: []
 --- !u!1001 &5669165473028642236
 PrefabInstance:
   m_ObjectHideFlags: 0

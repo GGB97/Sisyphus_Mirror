@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class Weapon_Axe_1_Epic : Weapon_Epic
+public class Weapon_Wand_1_Epic : Weapon_Epic
 {
+    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -16,7 +17,7 @@ public class Weapon_Axe_1_Epic : Weapon_Epic
 
     protected override void Skill()
     {
-        Axe_1_Epic_Skill skill = ParticleObjectPool.Instance.SpawnFromPool(_weaponID, _target.transform.position, Quaternion.identity).GetComponent<Axe_1_Epic_Skill>();
+        Wand_1_Epic_Skill skill = ParticleObjectPool.Instance.SpawnFromPool(_weaponID, _target.transform.position, Quaternion.identity).GetComponent<Wand_1_Epic_Skill>();
         skill.OnSkillStart();
 
         _isSkillAvailable = false;
