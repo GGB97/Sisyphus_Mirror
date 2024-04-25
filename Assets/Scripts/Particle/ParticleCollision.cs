@@ -37,7 +37,9 @@ public class ParticleCollision : MonoBehaviour
                 EffectsOnCollision.transform.rotation *= Quaternion.Euler(rotationOffset);
             }
             //Destroy(instance, DestroyTimeDelay);
+            
             _skillSFX.PlaySFX("Magic_Hit");
+            EffectsOnCollision.GetComponent<Particle>().PlayerPartcle();
         }
         if (DestoyMainEffect == true)
         {
