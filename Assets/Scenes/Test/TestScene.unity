@@ -2021,6 +2021,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[0].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[1].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[2].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[3].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[4].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[5].size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216972027757766410, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
+        type: 3}
+      propertyPath: _pools.Array.data[6].size
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5727504181054894063, guid: 6f19ec9ee551e3348b76c4e1c04b1f7f,
         type: 3}
       propertyPath: m_Name
