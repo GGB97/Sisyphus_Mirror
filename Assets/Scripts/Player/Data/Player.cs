@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : CharacterBehaviour
@@ -37,6 +38,7 @@ public class Player : CharacterBehaviour
     public float magnetDistance;
 
     [SerializeField] GameObject shield_Obj;
+    [SerializeField] GameObject hitEffect;
 
     protected override void Awake()
     {
@@ -258,5 +260,19 @@ public class Player : CharacterBehaviour
     {
         Controller.excludeLayers = 0;
         isInvincibility = false;
+    }
+
+    public void OnHitEffect()
+    {
+        StartCoroutine(PlayHitEffect());
+    }
+
+    IEnumerator PlayHitEffect()
+    {
+        hitEffect.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+        
+        hitEffect.SetActive(false);
     }
 }
