@@ -116,15 +116,28 @@ public class ItemDescription : MonoBehaviour
 
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
-                combineButton.gameObject.SetActive(true);
-                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
-                {
-                    combineButton.interactable = true;
+                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true)//다음 등급 있을 때만
+                { 
+                    combineButton.gameObject.SetActive(true);
+                    if (inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+                    {
+                        combineButton.interactable = true;//가능할 때
+                    }
+                    else
+                    {
+                        combineButton.interactable = false;
+                    }
                 }
                 else
-                {
-                    combineButton.interactable = false;
-                }
+                    combineButton.gameObject.SetActive(false);
+                //if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+                //{
+                //    combineButton.interactable = true;//가능할 때
+                //}
+                //else
+                //{
+                //    combineButton.interactable = false;
+                //}
             }
             else
             {
