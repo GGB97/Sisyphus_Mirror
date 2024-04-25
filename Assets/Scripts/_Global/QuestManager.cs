@@ -141,7 +141,6 @@ public class QuestManager : SingletoneBase<QuestManager>
             else//처음 퀘스트를 받는 거라면
             {
                 QuestStart(questId);
-                return;
             }
         }
         Debug.Log("초기화");
