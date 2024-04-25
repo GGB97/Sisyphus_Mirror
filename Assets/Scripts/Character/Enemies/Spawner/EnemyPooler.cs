@@ -116,7 +116,7 @@ public class EnemyPooler : MonoBehaviour
         for (int i = 0; i < waveData.normal.Length; i++)
         {
             _pools[i].id = waveData.normal[i];
-            _pools[i].size = waveData.maxEnemyCnt / waveData.normal.Length + 5;
+            _pools[i].size = waveData.maxEnemyCnt / waveData.normal.Length + 10;
         }
 
         // Elite 세팅

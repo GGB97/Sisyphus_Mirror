@@ -5105,8 +5105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 3, z: 1}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 2.1450517, y: 3, z: 3.6551032}
+  m_Center: {x: 0.060326934, y: 1.5, z: -1.3275516}
 --- !u!114 &485611186007557630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5247,6 +5247,7 @@ MonoBehaviour:
   isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   target: {fileID: 0}
   chasingDelay: 0
   attackDelay: 0
