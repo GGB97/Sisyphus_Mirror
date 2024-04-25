@@ -20,21 +20,23 @@ public class QuestSaveData
 public class QuestSaveManager : SingletoneBase<QuestSaveManager>
 {
     QuestSaveData saveData = new QuestSaveData();
+    QuestManager questManager;
     public event Action loadDataEvent;
-    private string dataKey = "QuestSaveData1";
+    private string dataKey = "QuestSaveData11";
     private void Awake()
     {
         if(Instance != this)
             Destroy(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+        questManager = QuestManager.Instance;
     }
     void Start()
     {
         // PlayerPrefs에서 목록 불러오기
         LoadData();
         //PlayerPrefs.DeleteKey(dataKey);
+        
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)//로비로 돌아올 때 호출되게
     {
@@ -47,16 +49,18 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
 
     public void SaveData()
     {
-        saveData = QuestManager.Instance.SaveData();
-
+        saveData = questManager.SaveData();
+        SaveCurrentTime();
         BinaryFormatter bf = new BinaryFormatter();
         MemoryStream ms = new MemoryStream();
-        bf.Serialize(ms, saveData); string result = Convert.ToBase64String(ms.GetBuffer());
+        bf.Serialize(ms, saveData); 
+        string result = Convert.ToBase64String(ms.GetBuffer());
         PlayerPrefs.SetString(dataKey, result);
 
         //Debug.Log("json 변환 " + result);
 
         // PlayerPrefs 저장
+        Debug.Log("퀘스트 저장");
         PlayerPrefs.Save();
     }
 
@@ -80,13 +84,21 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
             data = (QuestSaveData)binaryFormatter.Deserialize(memoryStream);
             saveData = data;
             // JSON 문자열을 목록으로 역직렬화
-            QuestManager.Instance.LoadData(saveData);
-            Debug.Log("퀘스트 로드 성공");
+            if (saveData.ongoingQuests.Count == 0 && saveData.completeQuests.Count == 0)
+            {
+                questManager.StartQuestSetting();
+                SaveData();
+                Debug.Log("퀘스트 없어서 다시 로드");
+            }
+            else
+            {
+                questManager.LoadData(saveData);
+                Debug.Log("퀘스트 로드 성공");
+            }
         }
         else
         {
-            QuestManager.Instance.StartQuestSetting();
-            saveData = QuestManager.Instance.SaveData();
+            questManager.StartQuestSetting();
             SaveData();
             Debug.Log("퀘스트 첫 로드");
         }
@@ -100,7 +112,6 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
     protected override void OnApplicationQuit()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SaveCurrentTime();
         SaveData();
     }
     public void InvokeLoadDataEvent()
@@ -122,7 +133,7 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
             {
                 //리셋
                 Debug.Log("시간 차로 인한 리셋 완료");
-                QuestManager.Instance.StartDailyQuest();//리셋
+                questManager.StartDailyQuest();//리셋
                 return true;
             }
             else
