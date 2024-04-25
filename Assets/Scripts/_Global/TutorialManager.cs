@@ -3,6 +3,7 @@ using UnityEngine;
 public class TutorialManager : SingletoneBase<TutorialManager>
 {
     [SerializeField] GameObject _tutorialUI;
+    [SerializeField] GameObject _tutorialBoard;
 
     [Header("Tutorial Flag")]
     public int runestoneTutorialFlag;
@@ -29,6 +30,12 @@ public class TutorialManager : SingletoneBase<TutorialManager>
             dungeonStartTutorialFlag = PlayerPrefs.GetInt("dungeonStartTutorialFlag");
         }
         else dungeonStartTutorialFlag = 0;
+    }
+
+    public void GetTutorialBoard()
+    {
+        if (_tutorialBoard == null) _tutorialBoard = Instantiate(Resources.Load("Tutorials/Prefabs/TutorialBoardUI") as GameObject);
+        _tutorialBoard.GetComponent<TutorialBoard>().PopupTutorialBoard();
     }
 
     public void PopupTutorial(TutorialType type, int id)

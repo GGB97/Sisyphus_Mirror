@@ -1491,7 +1491,7 @@ Transform:
   - {fileID: 3512613657997164914}
   - {fileID: 4198922562375677709}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2674368150753315868
 GameObject:
@@ -2911,6 +2911,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55e5de7f1954ffa46be62ee4bb41e5df, type: 2}
   - {fileID: 11400000, guid: 46334cc144a25ec4cbcb6e511d94d043, type: 2}
   - {fileID: 11400000, guid: 4cbdea3adbd0e1d4e8146922c88d55b2, type: 2}
+  - {fileID: 11400000, guid: d381f5ee016c7c140930a2d78c4e7139, type: 2}
   addCount: 6
   blocksPerLevel: 2
   startPosition: {x: 0, y: 0}
@@ -5927,6 +5928,7 @@ GameObject:
   - component: {fileID: 6685183395386299080}
   - component: {fileID: 6926488624027232532}
   - component: {fileID: 9157050060851768571}
+  - component: {fileID: 8128366620592666801}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -6036,6 +6038,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8128366620592666801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020222257525287434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08cd2e9370d87d40976a7c41a1dc9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _openTutorialButton: {fileID: 9157050060851768571}
+  _menu: {fileID: 0}
 --- !u!1 &8077983541754135939
 GameObject:
   m_ObjectHideFlags: 0
