@@ -439,6 +439,8 @@ public class InventoryController : MonoBehaviour
                         storeGrid.currentStoreItem[i] = null;
                         // 아이템 구매 시 플레이어 골드 차감하기
                         int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
+                        int price = Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
+
                         if (currentStage == 1)
                         {
                             player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
@@ -446,8 +448,8 @@ public class InventoryController : MonoBehaviour
                         }
                         else
                         {
-                            player.Data.Gold = player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage) <= 0 ? 0 : player.Data.Gold - Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
-                            QuestManager.Instance.NotifyQuest(QuestType.UseGold, 20, Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage));//골드 소모 퀘스트
+                            player.Data.Gold = player.Data.Gold - price <= 0 ? 0 : player.Data.Gold - price;
+                            QuestManager.Instance.NotifyQuest(QuestType.UseGold, 20, price);//골드 소모 퀘스트
                         }
                         SetPlayerGoldText();
 
@@ -708,6 +710,16 @@ public class InventoryController : MonoBehaviour
         if (isAdding == true)
             return;
 
+        RemoveStoreStock();
+
+        for (int i = 0; i < 5; ++i)
+            InsertRandomStoreItem();
+
+        storeGrid.ClearEmptySolts();
+    }
+
+    public void InitStoreOnNextStage()
+    {
         RemoveStoreStock();
 
         for (int i = 0; i < 5; ++i)
