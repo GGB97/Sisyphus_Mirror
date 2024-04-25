@@ -159,7 +159,7 @@ public class DungeonManager : SingletoneBase<DungeonManager>
         InventoryController.Instance.NextStageIsActive(true);
         InventoryStats.Instance.UpdateStatsPanel();
         SoundManager.Instance.SetBgm(SoundManager.Instance.inventoryBgTag);
-        //InventoryController.Instance.OnStoreReroll();
+        InventoryController.Instance.InitStoreOnNextStage();
     }
     public void CloseInventory()
     {

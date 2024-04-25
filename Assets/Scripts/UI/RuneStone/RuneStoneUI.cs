@@ -46,6 +46,13 @@ public class RuneStoneUI : MonoBehaviour
     [SerializeField] bool _isUpdate = false;
     public float sliderRate = 0.05f;
 
+    [Header("ResultNotice")]
+    [SerializeField] GameObject _gridLayout;    // 결과창을 띄울 Grid Layout
+    [SerializeField] GameObject _noticePopup;
+    [SerializeField] GameObject _noticeStatPrefab;
+    List<string> _modifiedStats = new List<string>();
+    List<float> _modifiedStatsValue = new List<float>();
+
     bool _isTried = false;
 
     // Start is called before the first frame update
@@ -244,6 +251,8 @@ public class RuneStoneUI : MonoBehaviour
     private void SetPlayerStat(int bonusMin, int bonusMax)
     {
         Status _modifier = new Status();
+        _modifiedStats.Clear();
+        _modifiedStatsValue.Clear();
         int bonus = 0;
 
         foreach (var stat in _selectedStatus)
@@ -253,30 +262,39 @@ public class RuneStoneUI : MonoBehaviour
             {
                 case PlayerStatType.Health:
                     _modifier.maxHealth += bonus;
+                    SetModifiedStats("체력", _modifier.maxHealth);
                     break;
                 case PlayerStatType.PhysicalAtk:
                     _modifier.physicalAtk += bonus;
+                    SetModifiedStats("물리 공격력", _modifier.physicalAtk);
                     break;
                 case PlayerStatType.MagicAtk:
                     _modifier.magicAtk += bonus;
+                    SetModifiedStats("마법 공격력", _modifier.magicAtk);
                     break;
                 case PlayerStatType.AtkSpeed:
                     _modifier.attackSpeed += bonus;
+                    SetModifiedStats("공격 속도", _modifier.attackSpeed);
                     break;
                 case PlayerStatType.MoveSpeed:
                     _modifier.moveSpeed += bonus;
+                    SetModifiedStats("이동 속도", _modifier.moveSpeed);
                     break;
                 case PlayerStatType.Def:
                     _modifier.def += bonus;
+                    SetModifiedStats("방어력", _modifier.def);
                     break;
                 case PlayerStatType.CritRate:
                     _modifier.critRate += bonus;
+                    SetModifiedStats("치명타 확률", _modifier.critRate);
                     break;
                 case PlayerStatType.CritDamage:
                     _modifier.critDamage += bonus;
+                    SetModifiedStats("치명타 데미지", _modifier.critDamage);
                     break;
                 case PlayerStatType.LifeSteal:
                     _modifier.lifeSteal += bonus;
+                    SetModifiedStats("피해 흡혈", _modifier.lifeSteal);
                     break;
             }
         }
@@ -285,6 +303,26 @@ public class RuneStoneUI : MonoBehaviour
         {
             playerStats.UpdateStatsPanel();
         }
+
+        // TODO : 강화 결과 알려주기
+        _noticePopup.gameObject.SetActive(true);
+
+        for(int i = 0; i < _modifiedStats.Count; i++)
+        {
+            GameObject go = Instantiate(_noticeStatPrefab, _gridLayout.transform);
+            go.GetComponent<NoticeStat>().SetNoticeStatText(_modifiedStats[i], _modifiedStatsValue[i].ToString("n2"));
+        }
+    }
+
+    void SetModifiedStats(string type, float value)
+    {
+        _modifiedStats.Add(type);
+        _modifiedStatsValue.Add(value);
+    }
+
+    public void OnClickNoticeCloseButton()
+    {
+        _noticePopup.gameObject.SetActive(false);
     }
 
     private void OnDisable()

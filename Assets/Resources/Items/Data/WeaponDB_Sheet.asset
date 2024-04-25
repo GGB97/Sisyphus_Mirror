@@ -46,7 +46,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Rare
-    _price: 48
+    _price: 68
     _weight: 10
     _grade: 1
     _physicalAtk: 45
@@ -71,7 +71,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Unique
-    _price: 96
+    _price: 186
     _weight: 10
     _grade: 2
     _physicalAtk: 60
@@ -95,7 +95,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Epic
-    _price: 0
+    _price: 558
     _weight: 10
     _grade: 3
     _physicalAtk: 120
@@ -141,7 +141,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Rare
-    _price: 56
+    _price: 72
     _weight: 15
     _grade: 1
     _physicalAtk: 40
@@ -165,7 +165,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Unique
-    _price: 112
+    _price: 208
     _weight: 15
     _grade: 2
     _physicalAtk: 50
@@ -189,7 +189,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Epic
-    _price: 0
+    _price: 618
     _weight: 15
     _grade: 3
     _physicalAtk: 50
@@ -235,7 +235,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Rare
-    _price: 70
+    _price: 105
     _weight: 10
     _grade: 1
     _physicalAtk: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Unique
-    _price: 140
+    _price: 298
     _weight: 10
     _grade: 2
     _physicalAtk: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Epic
-    _price: 0
+    _price: 894
     _weight: 10
     _grade: 3
     _physicalAtk: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Rare
-    _price: 70
+    _price: 105
     _weight: 15
     _grade: 1
     _physicalAtk: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Unique
-    _price: 90
+    _price: 298
     _weight: 15
     _grade: 2
     _physicalAtk: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Epic
-    _price: 0
+    _price: 894
     _weight: 15
     _grade: 3
     _physicalAtk: 0

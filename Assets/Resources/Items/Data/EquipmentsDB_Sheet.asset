@@ -85,7 +85,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_3
-    _price: 28
+    _price: 36
     _weight: 2
     _grade: 0
     _type: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
     _type: 0
     _health: 0
     _physicalAtk: 0
-    _magicAtk: 25
+    _magicAtk: 15
     _def: -2
     _atkSpeed: 0
     _moveSpeed: 0
