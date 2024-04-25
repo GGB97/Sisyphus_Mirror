@@ -86,14 +86,14 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
+        Init();
+        _spawner.onEnemiesDeSpawn += DeSpawn;
+        _gameManager.onGameOverEvent += ChangeVictory;
+
         StartSpawn();
 
         Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
         stateMachine.ChangeState(stateMachine.IdleState);
-        Init();
-
-        _spawner.onEnemiesDeSpawn += DeSpawn;
-        _gameManager.onGameOverEvent += ChangeVictory;
 
         InvokeChangeHealth();
     }

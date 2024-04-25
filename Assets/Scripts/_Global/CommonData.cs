@@ -97,7 +97,7 @@ public enum UpgradeType
 
 public struct EnemyStageModifier
 {
-    public static readonly int maxHealth = 2;
+    public static readonly int maxHealth = 3;
     public static readonly float bossMaxHealth = 0.75f;
 
     public static readonly float physicalAtk = 0.1f;

@@ -37,7 +37,7 @@ public class ParticleObjectPool : MonoBehaviour
             {
                 GameObject particlePrefab = Resources.Load<GameObject>(DataBase.Particle.Get(pool.id).PrefabPath);
                 var obj = CreateNewObject(pool.id, particlePrefab);
-                //ArrangePool(obj); // 실행하지 않아도 상관없음
+                ArrangePool(obj); // 실행하지 않아도 상관없음
             }
         }
     }
@@ -57,7 +57,7 @@ public class ParticleObjectPool : MonoBehaviour
             GameObject particlePrefab = Resources.Load<GameObject>(DataBase.Particle.Get(pool.id).PrefabPath);
             var obj = CreateNewObject(pool.id, particlePrefab);
             // ObjectPool 정렬시키기
-            //ArrangePool(obj); // 실행하지 않아도 상관없음
+            ArrangePool(obj); // 실행하지 않아도 상관없음
         }
 
         // 큐에서 꺼내서 사용
