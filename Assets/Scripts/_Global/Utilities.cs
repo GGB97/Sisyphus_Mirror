@@ -1,4 +1,5 @@
 using System.Text;
+using UnityEngine;
 
 public static class Utilities
 {
@@ -16,11 +17,11 @@ public static class Utilities
             {
                 if (value > 0)
                 {
-                    str = string.Format($"<color=red>{value}</color> % \n");
+                    str = string.Format($"<color=red>{value.ToString("F2")}</color> % \n");
                 }
                 else
                 {
-                    str = string.Format($"<color=green>{value}</color> % \n");
+                    str = string.Format($"<color=green>{value.ToString("F2")}</color> % \n");
                 }
             }
             else
@@ -42,11 +43,11 @@ public static class Utilities
             {
                 if (value > 0)
                 {
-                    str = string.Format($"<color=green>{value}</color> % \n");
+                    str = string.Format($"<color=green>{value.ToString("F2")}</color> % \n");
                 }
                 else
                 {
-                    str = string.Format($"<color=red>{value}</color> % \n");
+                    str = string.Format($"<color=red>{value.ToString("F2")}</color> % \n");
                 }
             }
             else
