@@ -8,6 +8,9 @@ public class PlayerBaseData : CharacterBase
     public float EXP;
     public float maxEXP;
 
+    public string description;
+    public string job;
+
     public override void Init()
     {
         base.Init();

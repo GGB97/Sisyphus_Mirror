@@ -11,8 +11,7 @@ public class PlayerHitState : PlayerBaseState
         base.Enter();
         player.hitDelay = 0;
         StartAnimation(stateMachine.Player.AnimationData.HitParameterHash);
-        //Debug.Log("damage");
-        //  player.Controller.detectCollisions = false;
+        player.OnHitEffect();
     }
 
     public override void Exit()
@@ -20,7 +19,7 @@ public class PlayerHitState : PlayerBaseState
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.HitParameterHash);
         player.isHit = false;
-        //    player.Controller.detectCollisions = true;
+        
     }
 
     public override void Update()
