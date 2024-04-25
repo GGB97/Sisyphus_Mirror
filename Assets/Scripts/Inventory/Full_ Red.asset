@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f181361d2397b41baf00f62eaeca00, type: 3}
   m_Name: Full_ Red
   m_EditorClassIdentifier: 
+  Grade: 4
   color: {r: 0.3882353, g: 0.07450981, b: 0.09019608, a: 1}

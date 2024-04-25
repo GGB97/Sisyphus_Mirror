@@ -772,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 4725915538729635105, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 107.96035
       objectReference: {fileID: 0}
     - target: {fileID: 4725915538729635105, guid: 893321a39c3a8b64ebca7770db307908,
         type: 3}
@@ -7174,6 +7174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openTutorialButton: {fileID: 0}
+  _menu: {fileID: 0}
 --- !u!1 &2014070281
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,6 +8105,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114275268874575408, guid: 2b9daf9c1e8f12448ac7ae73c63f6583,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7134748138933127852, guid: 2b9daf9c1e8f12448ac7ae73c63f6583,
         type: 3}
