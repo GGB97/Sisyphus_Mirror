@@ -14,6 +14,8 @@ public class ParticleCollision : MonoBehaviour
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
 
+    [SerializeField] ParticleSFX _skillSFX;
+
     void Start()
     {
         part = GetComponent<ParticleSystem>();
@@ -35,6 +37,7 @@ public class ParticleCollision : MonoBehaviour
                 EffectsOnCollision.transform.rotation *= Quaternion.Euler(rotationOffset);
             }
             //Destroy(instance, DestroyTimeDelay);
+            _skillSFX.PlaySFX("Magic_Hit");
         }
         if (DestoyMainEffect == true)
         {

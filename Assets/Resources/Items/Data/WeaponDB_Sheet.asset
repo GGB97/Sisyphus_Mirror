@@ -276,8 +276,8 @@ MonoBehaviour:
   - _id: 10121014
     _itemType: 0
     _name: "\uC704\uB354\uC2A4\uD2B8\uB9C1"
-    _description: "<color=\"red\">\uC2A4\uD0AC</color> : \uBD84\uB178\uB97C \uBC1C\uC0B0\uD558\uC5EC
-      \uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uC5F0\uC0AC\uB825\uC774 \uC62C\uB77C\uAC11\uB2C8\uB2E4."
+    _description: "<color=\"red\">\uC2A4\uD0AC</color> : 2\uCD08\uB9C8\uB2E4 \uC8FC\uBCC0\uC744
+      \uD5A5\uD574 \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
     _spritePath: Items/Icons/Weapons/Range/Bow_1_Epic
     _iconWidth: 2
     _iconHeight: 3

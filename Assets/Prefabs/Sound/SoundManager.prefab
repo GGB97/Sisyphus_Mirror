@@ -210,6 +210,9 @@ MonoBehaviour:
   - tag: ItemGain
     clip: {fileID: 8300000, guid: 81bc7fdcdf94fce43b269cf3aac0c1eb, type: 3}
     volumePercent: 50
+  - tag: Magic_Hit
+    clip: {fileID: 8300000, guid: 80a04f4eb8c56a24c82b1f4314f0ba78, type: 3}
+    volumePercent: 50
   AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
     type: 3}
   maxQueueCount: 10

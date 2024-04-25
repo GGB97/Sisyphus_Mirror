@@ -9918,6 +9918,7 @@ GameObject:
   - component: {fileID: 6552000641137209974}
   - component: {fileID: 1141269486042296550}
   - component: {fileID: 4866389348881710059}
+  - component: {fileID: 6483713410066541331}
   m_Layer: 0
   m_Name: Projectiles
   m_TagString: Untagged
@@ -14824,6 +14825,20 @@ MonoBehaviour:
   useOnlyRotationOffset: 1
   UseFirePointRotation: 0
   DestoyMainEffect: 0
+  _skillSFX: {fileID: 6483713410066541331}
+--- !u!114 &6483713410066541331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570605105490400862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60216cc704a94b9438f480e778fef832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: 
 --- !u!1 &7852659979824138754
 GameObject:
   m_ObjectHideFlags: 0
