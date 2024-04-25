@@ -78,7 +78,7 @@ public class Status
         def = baseStat.def + modifier.def;
 
         attackSpeed = baseStat.attackSpeed + modifier.attackSpeed;
-        moveSpeed = baseStat.moveSpeed + modifier.moveSpeed;
+        moveSpeed = baseStat.moveSpeed + (baseStat.moveSpeed * (modifier.moveSpeed / 10));
 
         knockbackPower = baseStat.knockbackPower + modifier.knockbackPower;
         dashRange = baseStat.dashRange + modifier.dashRange;
