@@ -58,9 +58,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8
-  m_Height: 0.8
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0.3}
+  m_Center: {x: 0, y: 0.7, z: 0.3}
 --- !u!195 &1571019749224645199
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -96,9 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 30700000
+  activeID: 0
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -111,16 +113,24 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   target: {fileID: 0}
   chasingDelay: 0
   attackDelay: 0
   <Info>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -133,6 +143,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
     type: 0
@@ -145,6 +161,7 @@ MonoBehaviour:
   modifier:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -157,7 +174,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
-  enemyRenderer: {fileID: 0}
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders:
@@ -166,6 +188,7 @@ MonoBehaviour:
   _projectileTag: 
   _areaAttackTag: 
   dropGoldValue: 0
+  hitSound: hit20
 --- !u!114 &8455117203742401955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCanvas: {fileID: 3378446411523269179}
+  Ps_Healing: {fileID: 0}
 --- !u!1 &2277016993426381792
 GameObject:
   m_ObjectHideFlags: 0
