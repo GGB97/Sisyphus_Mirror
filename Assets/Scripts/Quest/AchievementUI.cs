@@ -41,6 +41,7 @@ public class AchievementUI : UI_Base
             aSlot.Init(questId,QuestMode.DailyQuest, ref rewardList);
         }
         RewardLayerSetting(ref rewardList);
+        rewardList.Clear();
     }
     public void CreateAchievementSlot()
     {
@@ -54,6 +55,7 @@ public class AchievementUI : UI_Base
             aSlot.Init(questId, QuestMode.Achievement, ref rewardList);
         }
         RewardLayerSetting(ref rewardList);
+        rewardList.Clear();
         //퀘스트 진행 중인거와 클리어에서 업적 퀘스트의 id 리스트를 받아옴
     }
     public void DestroyAllQuestSlot()

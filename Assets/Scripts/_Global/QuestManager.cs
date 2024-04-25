@@ -217,7 +217,7 @@ public class QuestManager : SingletoneBase<QuestManager>
         _completeQuests.Clear();
         _subscribeQuests.Clear();
     }
-    public int? CheckQuestProgress(int questId)//퀘스트 진행도 체크
+    public int CheckQuestProgress(int questId)//퀘스트 진행도 체크
     {
         if (_ongoingQuests.ContainsKey(questId) == true)//진행 중인 퀘스트라면 
             return _ongoingQuests[questId].QuestProgress;
@@ -227,8 +227,7 @@ public class QuestManager : SingletoneBase<QuestManager>
             QuestData questData = DataBase.Quest.Get(questId);
             return questData.Count;
         }
-
-        return null;
+        return 0;
     }
     public float GetTimeUntilMidnight()//현재 시간부터 자정까지의 시간 반환
     {

@@ -42,8 +42,8 @@ public class AchievementSlot : MonoBehaviour
         rewardText.text = sb.ToString();
         sb = null;
 
-        int? value = QuestManager.Instance.CheckQuestProgress(questId);
-        if (value != null)//널이 아닐 때만
+        int value = QuestManager.Instance.CheckQuestProgress(questId);
+        if (value >= 0)//널이 아닐 때만
         {
             ButtonIsActive((int)value, questData.Count, ref rewardList);
             progressText.text = string.Format($"진행도 : ({value} / {questData.Count})");//진행도 설정
@@ -52,7 +52,7 @@ public class AchievementSlot : MonoBehaviour
     }
     public void SlotUpdate()
     {
-        int? value = QuestManager.Instance.CheckQuestProgress(questId).Value;
+        int? value = QuestManager.Instance.CheckQuestProgress(questId);
 
         if (value != null)//널이 아닐 때만
         {

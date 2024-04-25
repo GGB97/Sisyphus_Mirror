@@ -17,7 +17,6 @@ public class OptionUI : UI_Base
     private void Awake()
     {
         DontDestroyOnLoad(this);
-
         _ui = UIManager.Instance;
     }
 
@@ -37,7 +36,6 @@ public class OptionUI : UI_Base
         maxVolume.value = SoundManager.Instance.maxBgmVolume * 100f;
         bgmVolume.value = SoundManager.Instance.bgmVolumePercent;
         sfxVolume.value = SoundManager.Instance.sfxVolumePercent;
-
         gameObject.SetActive(false);
     }
 
