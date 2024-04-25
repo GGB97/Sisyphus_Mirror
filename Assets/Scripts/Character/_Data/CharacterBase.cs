@@ -78,7 +78,13 @@ public class Status
         def = baseStat.def + modifier.def;
 
         attackSpeed = baseStat.attackSpeed + modifier.attackSpeed;
-        moveSpeed = baseStat.moveSpeed + (baseStat.moveSpeed * (modifier.moveSpeed / 10));
+        float speed = Mathf.Floor(modifier.moveSpeed / 10 * 100) / 100;
+        //if (speed <= 0)
+        //    moveSpeed = baseStat.moveSpeed + (Mathf.Floor(baseStat.moveSpeed * speed * 10) / 10) / 10;
+        //else moveSpeed = baseStat.moveSpeed + (Mathf.Ceil(baseStat.moveSpeed * speed * 10) / 10) / 10;
+        if (speed <= 0)
+            moveSpeed = baseStat.moveSpeed + (Mathf.Floor(baseStat.moveSpeed * speed * 10) / 10);
+        else moveSpeed = baseStat.moveSpeed + (Mathf.Ceil(baseStat.moveSpeed * speed * 10) / 10);
 
         knockbackPower = baseStat.knockbackPower + modifier.knockbackPower;
         dashRange = baseStat.dashRange + modifier.dashRange;

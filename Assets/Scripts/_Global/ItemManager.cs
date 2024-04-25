@@ -130,8 +130,8 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal += weapon.LifeSteal;
             _modifier.weight += weapon.Weight;
-            _modifier.maxHealth -= Mathf.Round(weapon.Weight / 20);
-            _modifier.moveSpeed -= Mathf.Round(weapon.Weight / 20);
+            _modifier.maxHealth -= Mathf.Round(weapon.Weight * 10 / 20) / 10;
+            _modifier.moveSpeed -= Mathf.Round(weapon.Weight * 10 / 20) / 10;
 
             itemWeight += weapon.Weight;
         }
@@ -147,8 +147,8 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal -= weapon.LifeSteal;
             _modifier.weight -= weapon.Weight;
-            _modifier.maxHealth += Mathf.Round(weapon.Weight / 20);
-            _modifier.moveSpeed += Mathf.Round(weapon.Weight / 20);
+            _modifier.maxHealth += Mathf.Round(weapon.Weight * 10 / 20) / 10;
+            _modifier.moveSpeed += Mathf.Round(weapon.Weight * 10 / 20) / 10;
 
             itemWeight -= weapon.Weight;
         }
@@ -177,8 +177,8 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal += equipment.LifeSteal;
             _modifier.weight += equipment.Weight;
-            _modifier.maxHealth -= Mathf.Round(equipment.Weight / 20);
-            _modifier.moveSpeed -= Mathf.Round(equipment.Weight / 20);
+            _modifier.maxHealth -= Mathf.Round(equipment.Weight * 10 / 20) / 10;
+            _modifier.moveSpeed -= Mathf.Round(equipment.Weight * 10 / 20) / 10;
 
             itemWeight += equipment.Weight;
         }
@@ -199,8 +199,8 @@ public class ItemManager : MonoBehaviour
 
             _modifier.lifeSteal -= equipment.LifeSteal;
             _modifier.weight -= equipment.Weight;
-            _modifier.maxHealth += Mathf.Round(equipment.Weight / 20);
-            _modifier.moveSpeed += Mathf.Round(equipment.Weight / 20);
+            _modifier.maxHealth += Mathf.Round(equipment.Weight * 10 / 20) / 10;
+            _modifier.moveSpeed += Mathf.Round(equipment.Weight * 10 / 20) / 10;
 
             itemWeight -= equipment.Weight;
         }
@@ -248,7 +248,8 @@ public class ItemManager : MonoBehaviour
 
             itemWeight += consumable.Weight;
             _modifier.maxHealth -= Mathf.Round(consumable.Weight / 20);
-            _modifier.moveSpeed -= Mathf.Round(consumable.Weight / 20);
+            //_modifier.moveSpeed -= Mathf.Round(consumable.Weight / 20);
+            _modifier.moveSpeed -= Mathf.Round(consumable.Weight * 10 / 20) / 10;
         }
         else
         {
@@ -256,7 +257,8 @@ public class ItemManager : MonoBehaviour
 
             itemWeight -= consumable.Weight;
             _modifier.maxHealth += Mathf.Round(consumable.Weight / 20);
-            _modifier.moveSpeed += Mathf.Round(consumable.Weight / 20);
+            //_modifier.moveSpeed += Mathf.Round(consumable.Weight / 20);
+            _modifier.moveSpeed += Mathf.Round(consumable.Weight * 10 / 20) / 10;
         }
 
         _playerStats.InitStatus(Player.currentStat, _modifier);
