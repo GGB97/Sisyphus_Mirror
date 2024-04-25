@@ -290,6 +290,8 @@ public class ItemManager : MonoBehaviour
     public void ResetModifierStat()
     {
         _modifier.maxHealth = 0;
+
+        _modifier.health = 0;
         _modifier.attackRange = 0;
         _modifier.physicalAtk = 0;
         _modifier.magicAtk = 0;
