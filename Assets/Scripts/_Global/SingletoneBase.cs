@@ -17,8 +17,10 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
                     GameObject go = new(typeName);
                     _instance = go.AddComponent<T>();
 
-                    DontDestroyOnLoad(go);
                 }
+
+                DontDestroyOnLoad(_instance);
+
             }
 
             return _instance;

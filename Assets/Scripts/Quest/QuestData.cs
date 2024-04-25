@@ -9,7 +9,8 @@ public class QuestData
     [SerializeField] private int _id;
     [SerializeField] private string _name;
     [SerializeField] private string _description;
-    [SerializeField] private QuestType _type;
+    [SerializeField] private QuestMode _mode;//일일 , 업적 
+    [SerializeField] private QuestType _type;//퀘스트의 종류
     [SerializeField] private int _target;
     [SerializeField] private int _count;
     [SerializeField] private int _exp;
@@ -26,6 +27,7 @@ public class QuestData
     public int Id { get => _id; }
     public string Name { get => _name; }
     public string Description { get => _description; }
+    public QuestMode Mode { get => _mode; }
     public QuestType Type { get => _type; }
     public int Target { get => _target; }
     public int Count { get => _count; }
