@@ -22,7 +22,7 @@ public class AchievementSlot : MonoBehaviour
     public Button rewardButton;//보상 버튼
     [SerializeField]
     private string buttonSoundTag = "ItemGain";
-    public void Init(int questId,QuestMode questMode)//초기화
+    public void Init(int questId,QuestMode questMode,ref List<AchievementSlot> rewardList)//초기화
     {
         this.questId = questId;
         rewardAmount = new List<int>();
@@ -42,17 +42,17 @@ public class AchievementSlot : MonoBehaviour
         rewardText.text = sb.ToString();
         sb = null;
 
-        int? value = QuestManager.Instance.CheckQuestProgress(questId);
-        if (value != null)//널이 아닐 때만
+        int value = QuestManager.Instance.CheckQuestProgress(questId);
+        if (value >= 0)//널이 아닐 때만
         {
-            ButtonIsActive((int)value, questData.Count);
+            ButtonIsActive((int)value, questData.Count, ref rewardList);
             progressText.text = string.Format($"진행도 : ({value} / {questData.Count})");//진행도 설정
         }
 
     }
     public void SlotUpdate()
     {
-        int? value = QuestManager.Instance.CheckQuestProgress(questId).Value;
+        int? value = QuestManager.Instance.CheckQuestProgress(questId);
 
         if (value != null)//널이 아닐 때만
         {
@@ -64,20 +64,23 @@ public class AchievementSlot : MonoBehaviour
             progressText.text = string.Empty;
         }
     }
-    public void ButtonIsActive(int progress, int maxCount)
+    public void ButtonIsActive(int progress, int maxCount,ref List<AchievementSlot> rewardList)
     {
         TextMeshProUGUI text = rewardButton.GetComponentInChildren<TextMeshProUGUI>();
+        RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         if (progress == maxCount)//완료되었는지
         {
             if(QuestManager.Instance.CheckReward(questId) == true)//보상 받을 수 있는지
             {
                 rewardButton.interactable = true;
                 text.text = "보상 받기";
+                rectTransform.SetAsFirstSibling();
             }
             else
             {
                 rewardButton.interactable = false;
                 text.text = "수령 완료";
+                rewardList.Add(this);
             }
         }
         else
@@ -89,8 +92,10 @@ public class AchievementSlot : MonoBehaviour
     public void PressButton()
     {
         TextMeshProUGUI text = rewardButton.GetComponentInChildren<TextMeshProUGUI>();//텍스트
+        RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         text.text = "수령 완료";//텍스트 변경
         rewardButton.interactable = false;//버튼 비활성화
+        rectTransform.SetAsLastSibling();
 
         QuestManager.Instance.ChangeRewardState(questId,false);//리워드 받은 처리
         SoundManager.Instance.PlayAudioClip(buttonSoundTag);//사운드 재생

@@ -32,23 +32,30 @@ public class AchievementUI : UI_Base
     public void CreateDailySlot()//일일 퀘스트 슬롯 생성
     {
         List<int> dailyQuestList = _questManager.dailyQuestList;
+        List<AchievementSlot> rewardList = new List<AchievementSlot>();
 
         foreach (var questId in dailyQuestList)
         {
             GameObject go = Instantiate(achievementSlotPrefab, content1.transform);
             AchievementSlot aSlot = go.GetComponent<AchievementSlot>();
-            aSlot.Init(questId,QuestMode.DailyQuest);
+            aSlot.Init(questId,QuestMode.DailyQuest, ref rewardList);
         }
+        RewardLayerSetting(ref rewardList);
+        rewardList.Clear();
     }
     public void CreateAchievementSlot()
     {
         List<int> AchievementList = _questManager.GetAchievementQuestIdList();//업적의 리스트만 반환
+        List<AchievementSlot> rewardList = new List<AchievementSlot>();
+
         foreach (var questId in AchievementList)
         {
             GameObject go = Instantiate(achievementSlotPrefab, content2.transform);
             AchievementSlot aSlot = go.GetComponent<AchievementSlot>();
-            aSlot.Init(questId, QuestMode.Achievement);
+            aSlot.Init(questId, QuestMode.Achievement, ref rewardList);
         }
+        RewardLayerSetting(ref rewardList);
+        rewardList.Clear();
         //퀘스트 진행 중인거와 클리어에서 업적 퀘스트의 id 리스트를 받아옴
     }
     public void DestroyAllQuestSlot()
@@ -67,6 +74,20 @@ public class AchievementUI : UI_Base
             if (child == content2.transform)
                 continue;
             Destroy(child.gameObject);
+        }
+    }
+    public void RewardLayerSetting(ref List<AchievementSlot> rewardList)
+    {
+        if (rewardList == null)
+            return;
+
+        foreach (var slot in rewardList)
+        {
+            if (slot != null)
+            {
+                RectTransform rectTransform = slot.GetComponent<RectTransform>();
+                rectTransform.SetAsLastSibling();
+            }
         }
     }
 }
