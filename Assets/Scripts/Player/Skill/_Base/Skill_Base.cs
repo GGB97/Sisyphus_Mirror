@@ -118,8 +118,6 @@ public class Skill_Base : MonoBehaviour
     protected virtual void ResetBuff()
     {
         // 버프 해제
-        if (_isActive == false)
-            return;
     }
 
     protected IEnumerator CoolDown()

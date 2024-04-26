@@ -24,7 +24,9 @@ public class Guard : Skill_Base
 
     protected override void ResetBuff()
     {
-        base.ResetBuff();
+        if (_isActive == false)
+            return;
+
         _player.currentStat.def -= 60;
     }
 }
