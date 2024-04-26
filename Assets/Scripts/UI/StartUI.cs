@@ -15,7 +15,7 @@ public class StartUI : MonoBehaviour, ClickButton
         btn.enabled = false;
         PlaySound();
 
-        //PlayerPrefs.SetInt("Intro", 0); // Test용
+        PlayerPrefs.SetInt("Intro", 0); // Test용
         int introCheck = PlayerPrefs.GetInt("Intro");
 
         if (introCheck == 1) // 처음이 아니라면 기존 씬전환으로
