@@ -63,7 +63,7 @@ MonoBehaviour:
     _lv: 1
     _exp: 0
     _maxEXP: 100
-    _startItemID: 10121011
+    _startItemID: 10112011
     _startInventory: 10
     id: 20000002
     prefabPath: Player/Prefabs/MC24
