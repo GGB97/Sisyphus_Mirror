@@ -47,7 +47,7 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _physicalAtk: 15
+    _physicalAtk: 10
     _magicAtk: 0
     _def: 0
     _atkSpeed: -1
@@ -91,7 +91,7 @@ MonoBehaviour:
     _type: 1
     _health: 0
     _physicalAtk: 0
-    _magicAtk: 15
+    _magicAtk: 10
     _def: 0
     _atkSpeed: 1
     _moveSpeed: 0
@@ -212,16 +212,37 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 2
     _prefabPath: None
-    _price: 46
+    _price: 182
     _weight: 7
-    _grade: 0
+    _grade: 2
     _type: 0
     _health: 0
     _physicalAtk: 0
-    _magicAtk: 15
+    _magicAtk: 35
     _def: -2
     _atkSpeed: 0
     _moveSpeed: 0
     _critRate: 5
     _critDamage: 10
+    _lifeSteal: 0
+  - _id: 10202051
+    _itemType: 1
+    _name: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
+    _description: "\uCC29\uC6A9\uD558\uBA74 \uAC15\uD574\uC9C8\uC9C0\uB3C4?"
+    _spritePath: Items/Icons/Equipments/Armor_5
+    _iconWidth: 2
+    _iconHeight: 2
+    _prefabPath: None
+    _price: 192
+    _weight: 7
+    _grade: 2
+    _type: 0
+    _health: 10
+    _physicalAtk: 35
+    _magicAtk: 0
+    _def: 5
+    _atkSpeed: 0
+    _moveSpeed: 0
+    _critRate: 3
+    _critDamage: 5
     _lifeSteal: 0
