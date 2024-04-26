@@ -48,7 +48,7 @@ public class Player : CharacterBehaviour
 
         AnimationData.Initialize();
         Data = DataBase.Player.Get(id);
-        currentStat.InitStatus(Data, modifire);
+        currentStat.InitStatus(Data, modifire, true);
         Data.Init();
 
         Rigidbody = GetComponent<Rigidbody>();
@@ -106,7 +106,7 @@ public class Player : CharacterBehaviour
     {
         stateMachine.ChangeState(stateMachine.idleState);
 
-        currentStat.InitStatus(Data, modifire);
+        currentStat.InitStatus(Data, modifire, true);
         currentStat.Init();
 
         isDie = false;
