@@ -47,10 +47,10 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _physicalAtk: 10
+    _physicalAtk: 15
     _magicAtk: 0
     _def: 0
-    _atkSpeed: -1
+    _atkSpeed: 1
     _moveSpeed: 0
     _critRate: 2
     _critDamage: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_2
-    _price: 24
+    _price: 26
     _weight: 2
     _grade: 0
     _type: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
     _moveSpeed: 0
     _critRate: 0
     _critDamage: 0
-    _lifeSteal: 5
+    _lifeSteal: 2
   - _id: 10201031
     _itemType: 1
     _name: "\uB108\uB4DC \uC548\uACBD"
@@ -143,8 +143,8 @@ MonoBehaviour:
     _lifeSteal: 0
   - _id: 10202011
     _itemType: 1
-    _name: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
-    _description: "\uCC29\uC6A9\uD558\uBA74 \uC6A9\uB9F9\uD574\uC9C8\uC9C0\uB3C4?"
+    _name: "\uD50C\uB808\uC774\uD2B8 \uD22C\uAD6C"
+    _description: "\uCC29\uC6A9\uD558\uBA74 \uAC15\uD574\uC9C8\uC9C0\uB3C4?"
     _spritePath: Items/Icons/Equipments/Armor_1
     _iconWidth: 2
     _iconHeight: 2
@@ -228,7 +228,7 @@ MonoBehaviour:
   - _id: 10202051
     _itemType: 1
     _name: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
-    _description: "\uCC29\uC6A9\uD558\uBA74 \uAC15\uD574\uC9C8\uC9C0\uB3C4?"
+    _description: "\uCC29\uC6A9\uD558\uBA74 \uC639\uB9F9\uD574\uC9C8\uC9C0\uB3C4?"
     _spritePath: Items/Icons/Equipments/Armor_5
     _iconWidth: 2
     _iconHeight: 2
