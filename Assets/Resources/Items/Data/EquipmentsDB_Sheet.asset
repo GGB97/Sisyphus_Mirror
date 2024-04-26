@@ -42,19 +42,19 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_1
-    _price: 24
+    _price: 40
     _weight: 5
     _grade: 0
     _type: 1
     _health: 0
-    _physicalAtk: 15
+    _physicalAtk: 5
     _magicAtk: 0
     _def: 0
     _atkSpeed: 1
     _moveSpeed: 0
-    _critRate: 2
+    _critRate: 0
     _critDamage: 0
-    _lifeSteal: 0
+    _lifeSteal: 5
   - _id: 10201021
     _itemType: 1
     _name: "\uD574\uC801 \uD328\uCE58"
@@ -64,19 +64,19 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_2
-    _price: 26
+    _price: 24
     _weight: 2
     _grade: 0
     _type: 1
-    _health: 0
-    _physicalAtk: 10
+    _health: 5
+    _physicalAtk: 0
     _magicAtk: 0
-    _def: 0
-    _atkSpeed: 1
+    _def: 5
+    _atkSpeed: 0
     _moveSpeed: 0
     _critRate: 0
     _critDamage: 0
-    _lifeSteal: 2
+    _lifeSteal: 0
   - _id: 10201031
     _itemType: 1
     _name: "\uB108\uB4DC \uC548\uACBD"
@@ -85,7 +85,7 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Accessories_3
-    _price: 36
+    _price: 45
     _weight: 2
     _grade: 0
     _type: 1
@@ -93,10 +93,10 @@ MonoBehaviour:
     _physicalAtk: 0
     _magicAtk: 10
     _def: 0
-    _atkSpeed: 1
+    _atkSpeed: 0
     _moveSpeed: 0
-    _critRate: 1
-    _critDamage: 1
+    _critRate: 0
+    _critDamage: 0
     _lifeSteal: 0
   - _id: 10201041
     _itemType: 1
@@ -107,18 +107,18 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: None
-    _price: 24
+    _price: 80
     _weight: 2
-    _grade: 0
+    _grade: 1
     _type: 1
     _health: 0
-    _physicalAtk: 5
+    _physicalAtk: 0
     _magicAtk: 0
     _def: 0
     _atkSpeed: 0
-    _moveSpeed: 3
-    _critRate: 0
-    _critDamage: 0
+    _moveSpeed: 5
+    _critRate: 5
+    _critDamage: 10
     _lifeSteal: 0
   - _id: 10201051
     _itemType: 1
@@ -128,19 +128,19 @@ MonoBehaviour:
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: None
-    _price: 36
+    _price: 85
     _weight: 2
-    _grade: 0
+    _grade: 1
     _type: 1
     _health: 0
-    _physicalAtk: 7
-    _magicAtk: 7
+    _physicalAtk: 15
+    _magicAtk: 0
     _def: 0
-    _atkSpeed: 0
-    _moveSpeed: 2
-    _critRate: 0
+    _atkSpeed: 10
+    _moveSpeed: 3
+    _critRate: 10
     _critDamage: 0
-    _lifeSteal: 0
+    _lifeSteal: 5
   - _id: 10202011
     _itemType: 1
     _name: "\uD50C\uB808\uC774\uD2B8 \uD22C\uAD6C"
@@ -149,19 +149,19 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 2
     _prefabPath: Items/Prefabs/Equipments/Armor_1
-    _price: 32
+    _price: 82
     _weight: 7
-    _grade: 0
+    _grade: 1
     _type: 0
     _health: 20
     _physicalAtk: 0
     _magicAtk: 0
-    _def: 5
-    _atkSpeed: -1
-    _moveSpeed: -1
+    _def: 10
+    _atkSpeed: 0
+    _moveSpeed: 0
     _critRate: 0
     _critDamage: 0
-    _lifeSteal: 0
+    _lifeSteal: 5
   - _id: 10202021
     _itemType: 1
     _name: "\uC5B4\uB460\uC758 \uC7A5\uB9C9"
@@ -170,18 +170,18 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 1
     _prefabPath: Items/Prefabs/Equipments/Armor_2
-    _price: 34
+    _price: 90
     _weight: 7
-    _grade: 0
+    _grade: 1
     _type: 0
-    _health: 5
-    _physicalAtk: 10
-    _magicAtk: 0
-    _def: -2
-    _atkSpeed: 2
-    _moveSpeed: 1
-    _critRate: 5
-    _critDamage: 10
+    _health: 0
+    _physicalAtk: 0
+    _magicAtk: 20
+    _def: 0
+    _atkSpeed: 5
+    _moveSpeed: 5
+    _critRate: 10
+    _critDamage: 0
     _lifeSteal: 0
   - _id: 10202031
     _itemType: 1
@@ -191,19 +191,19 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 3
     _prefabPath: None
-    _price: 32
+    _price: 180
     _weight: 10
-    _grade: 0
+    _grade: 2
     _type: 0
-    _health: 20
+    _health: 40
     _physicalAtk: 0
     _magicAtk: 0
     _def: 20
-    _atkSpeed: -1
-    _moveSpeed: -1
+    _atkSpeed: 0
+    _moveSpeed: 0
     _critRate: 0
     _critDamage: 0
-    _lifeSteal: 0
+    _lifeSteal: 5
   - _id: 10202041
     _itemType: 1
     _name: "\uC8FD\uC74C\uBAA8\uC790"
@@ -212,17 +212,17 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 2
     _prefabPath: None
-    _price: 182
+    _price: 192
     _weight: 7
     _grade: 2
     _type: 0
     _health: 0
     _physicalAtk: 0
     _magicAtk: 35
-    _def: -2
-    _atkSpeed: 0
-    _moveSpeed: 0
-    _critRate: 5
+    _def: 0
+    _atkSpeed: 2
+    _moveSpeed: 3
+    _critRate: 10
     _critDamage: 10
     _lifeSteal: 0
   - _id: 10202051
@@ -233,16 +233,16 @@ MonoBehaviour:
     _iconWidth: 2
     _iconHeight: 2
     _prefabPath: None
-    _price: 192
+    _price: 190
     _weight: 7
     _grade: 2
     _type: 0
-    _health: 10
+    _health: 0
     _physicalAtk: 35
     _magicAtk: 0
-    _def: 5
-    _atkSpeed: 0
-    _moveSpeed: 0
-    _critRate: 3
-    _critDamage: 5
-    _lifeSteal: 0
+    _def: 0
+    _atkSpeed: 10
+    _moveSpeed: 3
+    _critRate: 10
+    _critDamage: 10
+    _lifeSteal: 10
