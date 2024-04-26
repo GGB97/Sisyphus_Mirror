@@ -44,8 +44,8 @@ GameObject:
   - component: {fileID: 1078095660752711064}
   - component: {fileID: 3026900893736275420}
   - component: {fileID: 417528331206964349}
-  - component: {fileID: 5845205349295261369}
   - component: {fileID: -3315033241548104125}
+  - component: {fileID: 4223391058610201722}
   m_Layer: 0
   m_Name: Wand_1_Epic
   m_TagString: Untagged
@@ -177,27 +177,6 @@ MonoBehaviour:
   isFloating: 1
   floatSpeed: 0.005
   floatRate: 0.5
---- !u!95 &5845205349295261369
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6144760406489050288}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: b60811be6b5da38478bf36fe26dc48a9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-3315033241548104125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +192,27 @@ MonoBehaviour:
   _meleeWeapon: {fileID: 0}
   _rangeWeapon: {fileID: 3026900893736275420}
   Target: []
+--- !u!95 &4223391058610201722
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144760406489050288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 22b91661b715f154fb0289d49a97c5a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5669165473028642236
 PrefabInstance:
   m_ObjectHideFlags: 0
