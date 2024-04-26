@@ -89,6 +89,7 @@ public class QuestClearUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        _questManager.OnQuestClearCallback -= AddClearQuestData;
+        if (_questManager != null)
+            _questManager.OnQuestClearCallback -= AddClearQuestData;
     }
 }
