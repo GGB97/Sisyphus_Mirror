@@ -66,8 +66,11 @@ public class Status
 
     public void InitStatus(Status baseStat, Status modifier, bool isPlayer)
     {
-        maxHealth = Mathf.Ceil(baseStat.maxHealth + modifier.maxHealth);
-        if(maxHealth <= 1) maxHealth = 1;
+        if (modifier.maxHealth <= 0)
+            maxHealth = Mathf.Floor(baseStat.maxHealth + modifier.maxHealth);
+        else maxHealth = Mathf.Ceil(baseStat.maxHealth + modifier.maxHealth);
+
+        if (maxHealth <= 1) maxHealth = 1;
         health = baseStat.health + modifier.health;
         if(health > maxHealth) health = maxHealth;
 
