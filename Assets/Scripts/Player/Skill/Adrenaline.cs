@@ -19,6 +19,7 @@ public class Adrenaline : Skill_Base
 
     protected override void ResetBuff()
     {
+        base.ResetBuff();
         _player.currentStat.critRate -= 40;
         _player.currentStat.attackSpeed -= 5;
     }
