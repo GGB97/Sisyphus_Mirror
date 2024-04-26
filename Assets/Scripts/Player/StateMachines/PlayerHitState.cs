@@ -12,6 +12,7 @@ public class PlayerHitState : PlayerBaseState
         player.hitDelay = 0;
         StartAnimation(stateMachine.Player.AnimationData.HitParameterHash);
         player.OnHitEffect();
+        SoundManager.Instance.PlayAudioClip(player.HitSound);
     }
 
     public override void Exit()

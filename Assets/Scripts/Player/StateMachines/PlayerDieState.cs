@@ -9,6 +9,7 @@ public class PlayerDieState : PlayerBaseState
         StartAnimation(stateMachine.Player.AnimationData.DieParameterHash);
         player.enabled = false;
         GameManager.Instance.Gameover();
+        SoundManager.Instance.PlayAudioClip(player.DieSound);
     }
 
     public override void Exit()

@@ -29,6 +29,8 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
     public int prevPageIndex = 0;            // 이전 페이지의 인덱스
     private Rect currentViewRect;             // 스크롤 뷰의 사각형 크기
 
+    public string ChangeSound = "ChangeCharacter";
+
     public ParticleSystem CharacterChangeEffect;
 
     public RectTransform CachedRectTransform
@@ -165,6 +167,7 @@ public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandle
         PlayerManager.Instance.ChangePlayer(prevPageIndex);
         ExitUI();
         CharacterChangeEffect.Play();
+        SoundManager.Instance.PlayAudioClip(ChangeSound);
     }
 
     public void ExitUI()
