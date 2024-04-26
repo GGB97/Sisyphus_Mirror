@@ -153,7 +153,7 @@ public class ItemManager : MonoBehaviour
             itemWeight -= weapon.Weight;
         }
 
-        _playerStats.InitStatus(Player.currentStat, _modifier);
+        _playerStats.InitStatus(Player.currentStat, _modifier, true);
     }
 
     public void ModifyPlayerStat(EquipmentsData equipment, bool isEquip)
@@ -205,7 +205,7 @@ public class ItemManager : MonoBehaviour
             itemWeight -= equipment.Weight;
         }
 
-        _playerStats.InitStatus(Player.currentStat, _modifier);
+        _playerStats.InitStatus(Player.currentStat, _modifier, true);
     }
 
     public void ModifyPlayerStat(ConsumableData consumable, bool isUsed)
@@ -235,7 +235,7 @@ public class ItemManager : MonoBehaviour
             _modifier.moveSpeed -= consumable.MoveSpeed;
         }
 
-        _playerStats.InitStatus(Player.currentStat, _modifier);
+        _playerStats.InitStatus(Player.currentStat, _modifier, true);
     }
 
     public void ConsumableToInventory(ConsumableData consumable, bool isAdded)
@@ -261,7 +261,7 @@ public class ItemManager : MonoBehaviour
             _modifier.moveSpeed += Mathf.Round(consumable.Weight * 10 / 20) / 10;
         }
 
-        _playerStats.InitStatus(Player.currentStat, _modifier);
+        _playerStats.InitStatus(Player.currentStat, _modifier, true);
     }
 
     public void WeaponInit()
