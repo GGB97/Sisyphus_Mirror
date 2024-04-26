@@ -64,10 +64,13 @@ public class Status
         health = maxHealth;
     }
 
-    public void InitStatus(Status baseStat, Status modifier)
+    public void InitStatus(Status baseStat, Status modifier, bool isPlayer)
     {
-        maxHealth = baseStat.maxHealth + modifier.maxHealth;
-        if(maxHealth <= 1) maxHealth = 1;
+        if (modifier.maxHealth <= 0)
+            maxHealth = Mathf.Floor(baseStat.maxHealth + modifier.maxHealth);
+        else maxHealth = Mathf.Ceil(baseStat.maxHealth + modifier.maxHealth);
+
+        if (maxHealth <= 1) maxHealth = 1;
         health = baseStat.health + modifier.health;
         if(health > maxHealth) health = maxHealth;
 
@@ -78,13 +81,16 @@ public class Status
         def = baseStat.def + modifier.def;
 
         attackSpeed = baseStat.attackSpeed + modifier.attackSpeed;
+
         float speed = Mathf.Floor(modifier.moveSpeed / 10 * 100) / 100;
-        //if (speed <= 0)
-        //    moveSpeed = baseStat.moveSpeed + (Mathf.Floor(baseStat.moveSpeed * speed * 10) / 10) / 10;
-        //else moveSpeed = baseStat.moveSpeed + (Mathf.Ceil(baseStat.moveSpeed * speed * 10) / 10) / 10;
-        if (speed <= 0)
-            moveSpeed = baseStat.moveSpeed + (Mathf.Floor(baseStat.moveSpeed * speed * 10) / 10);
-        else moveSpeed = baseStat.moveSpeed + (Mathf.Ceil(baseStat.moveSpeed * speed * 10) / 10);
+        if (isPlayer)
+        {
+            float playerSpeed = GameManager.Instance.Player.Data.moveSpeed;
+            if (speed <= 0)
+                moveSpeed = baseStat.moveSpeed + (Mathf.Floor(playerSpeed * speed * 10) / 10);
+            else moveSpeed = baseStat.moveSpeed + (Mathf.Ceil(playerSpeed * speed * 10) / 10);
+        }
+        else moveSpeed = baseStat.moveSpeed + modifier.moveSpeed;
 
         knockbackPower = baseStat.knockbackPower + modifier.knockbackPower;
         dashRange = baseStat.dashRange + modifier.dashRange;
