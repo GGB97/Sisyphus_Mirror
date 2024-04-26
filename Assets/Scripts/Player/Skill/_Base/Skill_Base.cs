@@ -119,6 +119,7 @@ public class Skill_Base : MonoBehaviour
     protected virtual void ResetBuff()
     {
         // 버프 해제
+        
     }
 
     protected IEnumerator CoolDown()
