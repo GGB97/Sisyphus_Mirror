@@ -69,18 +69,11 @@ public class MeleeWeapon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 선형 보간 시작한 시간
-        float timeSinceStarted = Time.time - _timeStartedMoving;
-        // 선형 보간 진행 정도
-        //float percentageComplete = timeSinceStarted / (_weaponData.AtkSpeed / 3);
-        float percentageComplete = timeSinceStarted / (atkSpeed);
-
         if (Target.Count != 0 && _isMoving && _canAttack)
         {
             _animationEnd = false;
 
             // 무기 방향 회전
-            //Vector3 dir = transform.position - targetPos;
             Vector3 dir = _target.transform.position - transform.position;
             dir.y = 0;
 
@@ -92,7 +85,6 @@ public class MeleeWeapon : MonoBehaviour
             Vector3 targetPos = new Vector3(_target.transform.position.x - (0.3f * dir.normalized.x), _target.transform.position.y + .5f, _target.transform.position.z - (0.3f * dir.normalized.z));
 
             // 근접 공격 이동
-            //transform.position = Vector3.Lerp(transform.position, targetPos, percentageComplete);
             transform.position = Vector3.Lerp(transform.position, targetPos, atkSpeed / 5);
 
             // 이동이 완료되면
