@@ -19,10 +19,7 @@ public class Adrenaline : Skill_Base
 
     protected override void ResetBuff()
     {
-        if (_isActive)
-        {
-            _player.currentStat.critRate -= 40;
-            _player.currentStat.attackSpeed -= 5;
-        }
+        _player.currentStat.critRate -= 40;
+        _player.currentStat.attackSpeed -= 5;
     }
 }
