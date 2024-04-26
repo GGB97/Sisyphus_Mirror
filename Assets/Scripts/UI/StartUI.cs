@@ -24,7 +24,10 @@ public class StartUI : MonoBehaviour, ClickButton
         }
         else if (introCheck == 0) // 처음이라면 인트로 재생 후 씬 전환으로
         {
-            StartCoroutine(LoadAsyncSceneIntro(SceneName.Lobby, "Intro/IntroCanvas"));
+            UIManager.Instance.FadeOut(0.5f, () =>
+            {
+                StartCoroutine(LoadAsyncSceneIntro(SceneName.Lobby, "UI/Intro/IntroCanvas"));
+            });
         }
     }
 
