@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterDescription : MonoBehaviour
+public class CharacterDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public int characterID;
     public GameObject descriptionUI;
@@ -55,5 +56,15 @@ public class CharacterDescription : MonoBehaviour
         
         Vector2 newPos = transform.position + new Vector3(posX, -100, 0);
         descriptionUI.transform.position = newPos;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OpenUI();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        CloseUI();
     }
 }
