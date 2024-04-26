@@ -105,9 +105,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
-  m_Height: 2
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!195 &6476697723984847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -143,9 +143,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 31000000
+  activeID: 0
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -158,16 +160,24 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   target: {fileID: 0}
   chasingDelay: 0
   attackDelay: 0
   <Info>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -180,6 +190,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
     type: 0
@@ -192,6 +208,7 @@ MonoBehaviour:
   modifier:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
     physicalAtk: 0
     magicAtk: 0
@@ -204,7 +221,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
-  enemyRenderer: {fileID: 0}
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders: []
@@ -213,6 +235,7 @@ MonoBehaviour:
   _projectileTag: 655a6202
   _areaAttackTag: 
   dropGoldValue: 0
+  hitSound: hit20
 --- !u!114 &559669192185584168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCanvas: {fileID: 3017565329901610478}
+  Ps_Healing: {fileID: 0}
 --- !u!1001 &2258524752830893800
 PrefabInstance:
   m_ObjectHideFlags: 0

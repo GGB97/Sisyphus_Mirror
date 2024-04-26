@@ -52,6 +52,7 @@ public class RuneStoneUI : MonoBehaviour
     [SerializeField] GameObject _noticeStatPrefab;
     List<string> _modifiedStats = new List<string>();
     List<float> _modifiedStatsValue = new List<float>();
+    List<GameObject> _noticeStats = new List<GameObject>();
 
     bool _isTried = false;
 
@@ -298,7 +299,7 @@ public class RuneStoneUI : MonoBehaviour
                     break;
             }
         }
-        _playerStatus.InitStatus(_playerStatus, _modifier);
+        _playerStatus.InitStatus(_playerStatus, _modifier, true);
         if (_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
             playerStats.UpdateStatsPanel();
@@ -311,6 +312,7 @@ public class RuneStoneUI : MonoBehaviour
         {
             GameObject go = Instantiate(_noticeStatPrefab, _gridLayout.transform);
             go.GetComponent<NoticeStat>().SetNoticeStatText(_modifiedStats[i], _modifiedStatsValue[i].ToString("n2"));
+            _noticeStats.Add(go);
         }
     }
 
@@ -322,6 +324,11 @@ public class RuneStoneUI : MonoBehaviour
 
     public void OnClickNoticeCloseButton()
     {
+        foreach(var go in _noticeStats)
+        {
+            Destroy(go);
+        }
+        _noticeStats.Clear();
         _noticePopup.gameObject.SetActive(false);
     }
 

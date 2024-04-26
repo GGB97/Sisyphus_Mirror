@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 1.6
     physicalAtk: 2
@@ -104,7 +104,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 0
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 1.7
     physicalAtk: 2
@@ -194,7 +194,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 0
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 1.6
     physicalAtk: 2
@@ -224,7 +224,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 1
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 2.3
     physicalAtk: 3
@@ -314,7 +314,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 2
   - health: 0
-    maxHealth: 1500
+    maxHealth: 2500
     shield: 0
     attackRange: 6
     physicalAtk: 12
@@ -344,7 +344,7 @@ MonoBehaviour:
     attackAngle: 20
     gold: 50
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 2
     physicalAtk: 2
@@ -374,7 +374,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 1
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 3
     physicalAtk: 3
@@ -404,7 +404,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 1
   - health: 0
-    maxHealth: 30
+    maxHealth: 40
     shield: 0
     attackRange: 2.5
     physicalAtk: 3
@@ -434,7 +434,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 3
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 2
     physicalAtk: 3
@@ -464,7 +464,7 @@ MonoBehaviour:
     attackAngle: 30
     gold: 1
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 10
     physicalAtk: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
     attackAngle: 10
     gold: 2
   - health: 0
-    maxHealth: 10
+    maxHealth: 20
     shield: 0
     attackRange: 10
     physicalAtk: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
     attackAngle: 10
     gold: 2
   - health: 0
-    maxHealth: 1000
+    maxHealth: 2000
     shield: 0
     attackRange: 15
     physicalAtk: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
     attackAngle: 10
     gold: 50
   - health: 0
-    maxHealth: 30
+    maxHealth: 40
     shield: 0
     attackRange: 20
     physicalAtk: 0

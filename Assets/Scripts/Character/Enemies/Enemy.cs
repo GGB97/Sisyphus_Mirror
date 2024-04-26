@@ -86,14 +86,14 @@ public class Enemy : CharacterBehaviour
 
     private void OnEnable()
     {
+        Init();
+        _spawner.onEnemiesDeSpawn += DeSpawn;
+        _gameManager.onGameOverEvent += ChangeVictory;
+
         StartSpawn();
 
         Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
         stateMachine.ChangeState(stateMachine.IdleState);
-        Init();
-
-        _spawner.onEnemiesDeSpawn += DeSpawn;
-        _gameManager.onGameOverEvent += ChangeVictory;
 
         InvokeChangeHealth();
     }
@@ -154,7 +154,7 @@ public class Enemy : CharacterBehaviour
     void Init()
     {
         modifier.Init_EnemyModifier(Info, Info.rank);
-        currentStat.InitStatus(Info, modifier);
+        currentStat.InitStatus(Info, modifier, false);
         currentStat.SyncHealth();
 
         StaticInstanceInit();

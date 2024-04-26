@@ -503,6 +503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8815659111366128549, guid: 99958e81d4cc9c34d8b0ad29dba5b069,
+        type: 3}
+      propertyPath: soundEffectList.Array.data[17].volumePercent
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
