@@ -102,11 +102,10 @@ public class Skill_Base : MonoBehaviour
         {
             _currentduration = 0;
 
-            ResetBuff();
-
             effect_Ps.Stop();
             effect_Ps.Clear();
 
+            ResetBuff();
             ActiveInfoInit();
         }
     }
@@ -169,10 +168,11 @@ public class Skill_Base : MonoBehaviour
         StopCoroutine(nameof(ActiveSkill));
         effect_Ps.Stop();
         effect_Ps.Clear();
-        ActiveInfoInit();
 
         StopCoroutine(nameof(CoolDown));
         CoolDownInit();
         ResetBuff();
+
+        ActiveInfoInit();
     }
 }
