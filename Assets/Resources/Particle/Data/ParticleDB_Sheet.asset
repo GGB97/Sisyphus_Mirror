@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3431e0ad5865874599dc79aa1e1ea49, type: 3}
+  m_Name: ParticleDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 71000001
+    _prefabPath: Particle/Prefabs/Sword_1
+  - _id: 71000002
+    _prefabPath: Particle/Prefabs/Axe_1
+  - _id: 71000003
+    _prefabPath: Particle/Prefabs/Dagger_Hit
+  - _id: 71000004
+    _prefabPath: Particle/Prefabs/Magic_Hit
+  - _id: 10111014
+    _prefabPath: Items/Prefabs/Weapons/Skill/Axe_1_Epic_Skill
+  - _id: 10112014
+    _prefabPath: Items/Prefabs/Weapons/Skill/Sword_1_Epic_Skill
+  - _id: 10122014
+    _prefabPath: Items/Prefabs/Weapons/Skill/Wand_1_Epic_Skill

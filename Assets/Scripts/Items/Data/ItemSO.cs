@@ -13,7 +13,9 @@ public enum ItemGrade
 {
     Normal,
     Rare,
-    Unique
+    Unique,
+    Epic,
+    RuneStone
 }
 
 [Serializable]
@@ -59,14 +61,16 @@ public class ItemSO
     {
         get
         {
-            if(_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
+            if (_prefabPath.Equals("None")) return null;
+            if (_prefab == null) _prefab = Resources.Load<GameObject>(PrefabPath);
             return _prefab;
         }
     }
     public virtual StringBuilder SetExplantion(ItemSO itemSO)
     {
-        StringBuilder sb = new StringBuilder(300);
+        StringBuilder sb = new StringBuilder(270);
         sb.Append($"{itemSO.Description}\n");//설명 적기
+        Utilities.AddText(sb, "무게", itemSO.Weight, false, true);
         return sb;
     }
 }

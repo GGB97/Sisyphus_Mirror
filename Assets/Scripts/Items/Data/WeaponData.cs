@@ -25,6 +25,12 @@ public class WeaponData : ItemSO
     [SerializeField] private ProjectileID _projectileID;
     [SerializeField] private int _numberOfProjectile;
 
+    [field: Header("SFX")]
+    [SerializeField] private string _sfxTag;
+
+    [field: Header("VFX")]
+    [SerializeField] int _particleID;
+
     public float PhysicalAtk => _physicalAtk;
     public float MagicAtk => _magicAtk;
     public float AtkSpeed => _atkSpeed;
@@ -36,36 +42,41 @@ public class WeaponData : ItemSO
 
     public ProjectileID ProjectileID => _projectileID;
     public int NumberOfProjectile => _numberOfProjectile;
+
+    public string SfxTag => _sfxTag;    // 공격 시 효과음
+
+    public int ParticleID => _particleID;    // 공격 적중 시 발생하는 파티클
+
     public override StringBuilder SetExplantion(ItemSO itemSO)
     {
         StringBuilder sb = base.SetExplantion(itemSO);
         if (PhysicalAtk != 0)
         {
-            Utilities.AddText(sb,nameof(PhysicalAtk), PhysicalAtk);
+            Utilities.AddText(sb, "물리 공격력", PhysicalAtk);
         }
         if (MagicAtk != 0)
         {
-            Utilities.AddText(sb, nameof(MagicAtk), MagicAtk);
+            Utilities.AddText(sb, "마법 공격력", MagicAtk);
         }
         if (AtkSpeed != 0)
         {
-            Utilities.AddText(sb, nameof(AtkSpeed), AtkSpeed);
+            Utilities.AddText(sb, "공격 속도", AtkSpeed, true);
         }
         if (CritRate != 0)
         {
-            Utilities.AddText(sb, nameof(CritRate), CritRate);
+            Utilities.AddText(sb, "치명타 확률", CritRate, true);
         }
         if (CritDamage != 0)
         {
-            Utilities.AddText(sb, nameof(CritDamage), CritDamage);
+            Utilities.AddText(sb, "치명타 데미지", CritDamage);
         }
         if (Range != 0)
         {
-            Utilities.AddText(sb, nameof(Range), Range);
+            Utilities.AddText(sb, "공격 범위", Range, true);
         }
         if (LifeSteal != 0)
         {
-            Utilities.AddText(sb, nameof(LifeSteal), LifeSteal);
+            Utilities.AddText(sb, "피해 흡혈", LifeSteal, true);
         }
 
         return sb;

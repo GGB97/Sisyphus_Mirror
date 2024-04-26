@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHitState : PlayerBaseState
@@ -13,7 +11,8 @@ public class PlayerHitState : PlayerBaseState
         base.Enter();
         player.hitDelay = 0;
         StartAnimation(stateMachine.Player.AnimationData.HitParameterHash);
-        //Debug.Log("damage");
+        player.OnHitEffect();
+        SoundManager.Instance.PlayAudioClip(player.HitSound);
     }
 
     public override void Exit()
@@ -21,19 +20,20 @@ public class PlayerHitState : PlayerBaseState
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.HitParameterHash);
         player.isHit = false;
+        
     }
 
     public override void Update()
     {
         base.Update();
         player.hitDelay += Time.deltaTime;
-        if(player.hitDelay > 0.5f) 
+        if (player.hitDelay > 0.5f)
         {
             stateMachine.ChangeState(stateMachine.idleState);
         }
-        if(player.currentStat.health <= 0)
-        {
-          //  stateMachine.ChangeState(stateMachine.dieState);
-        }
+        //if (player.currentStat.health <= 0)
+        //{
+        //    stateMachine.ChangeState(stateMachine.dieState);
+        //}
     }
 }

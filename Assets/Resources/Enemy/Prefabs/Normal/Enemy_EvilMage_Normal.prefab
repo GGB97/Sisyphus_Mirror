@@ -59,9 +59,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
-  m_Height: 1.6
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!195 &2904840466748531719
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -97,11 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 30900000
+  activeID: 0
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -112,18 +114,26 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   target: {fileID: 0}
   chasingDelay: 0
   attackDelay: 0
   <Info>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -134,6 +144,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
     type: 0
@@ -142,11 +158,13 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 0
     attackAngle: 0
+    gold: 0
   modifier:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -157,13 +175,21 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
-  enemyRenderer: {fileID: 0}
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   animAttackSpeed: 1
   animMoveSpeed: 1
   _meleeAttackColliders: []
   _rangeAttackPos:
   - {fileID: 7304681824439530632}
   _projectileTag: 645a6202
+  _areaAttackTag: 
+  dropGoldValue: 0
+  hitSound: hit20
 --- !u!114 &4161329191314674582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCanvas: {fileID: 2086489072980365022}
+  Ps_Healing: {fileID: 0}
 --- !u!1 &1371084417138996174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1478,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 7f074d9fbe1ae6144abd9e2041e04191,
         type: 2}
+    - target: {fileID: 3972964382695621628, guid: 9b551562a7704a69bb4b5a781408b6a2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be8812709c5e9404089fdcfafb9f2eae, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

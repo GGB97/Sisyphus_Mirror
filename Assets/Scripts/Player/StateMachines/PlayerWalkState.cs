@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,8 +14,8 @@ public class PlayerWalkState : PlayerBaseState
         StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
     }
 
-    public override void Exit() 
-    { 
+    public override void Exit()
+    {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
     }
@@ -32,5 +30,6 @@ public class PlayerWalkState : PlayerBaseState
         stateMachine.ChangeState(stateMachine.idleState);
 
         base.OnMoveCanceled(context);
-    }    
+    }
+
 }

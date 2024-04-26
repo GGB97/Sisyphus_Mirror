@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +31,7 @@ public class MakeEnemyID : MonoBehaviour
 
     public void TimeScale()
     {
-        if(Time.timeScale < 1f)
+        if (Time.timeScale < 1f)
             Time.timeScale = 1f;
         else
             Time.timeScale = 0.2f;

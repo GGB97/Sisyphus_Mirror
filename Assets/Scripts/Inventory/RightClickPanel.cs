@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,7 +13,7 @@ public class RightClickPanel : MonoBehaviour, IPointerDownHandler
     }
     private void OnEnable()
     {
-        
+
     }
     public void OnPointerDown(PointerEventData eventData)//바닥을 클릭 했을 때
     {

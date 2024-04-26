@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimationEvent : MonoBehaviour
@@ -24,5 +22,19 @@ public class EnemyAnimationEvent : MonoBehaviour
     public void Shoot(int index)
     {
         enemy.RangedAttack(index);
+    }
+
+    public void AreaAttack(int index)
+    {
+        enemy.AreaAttack(index);
+    }
+
+    public void EnableRange(int index)
+    {
+        enemy.ActiveMeleeRange(index, true);
+    }
+    public void DisableRange(int index)
+    {
+        enemy.ActiveMeleeRange(index, false);
     }
 }

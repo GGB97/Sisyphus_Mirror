@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2977919134178049259}
   - component: {fileID: 3662788808116271918}
   - component: {fileID: 4372814533691007186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 8697376846969890563}
   - {fileID: 1647467603082091538}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2977919134178049259
 SphereCollider:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 40000001
-  target:
+  _target:
     serializedVersion: 2
     m_Bits: 0
   ps: {fileID: 4335411094773941086}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3599131708785962516}
   - component: {fileID: 8970034815068920024}
   - component: {fileID: 40932738982791634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile 23 cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5109,7 +5109,7 @@ GameObject:
   - component: {fileID: 8697376846969890563}
   - component: {fileID: 6084922323496830590}
   - component: {fileID: 3339013000188863768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubTriangles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9951,8 +9951,20 @@ PrefabInstance:
       value: Hit 23
       objectReference: {fileID: 0}
     - target: {fileID: 1148406988041044, guid: 1ae2b1c728484264bbdc53ecaee73c6a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148406988041044, guid: 1ae2b1c728484264bbdc53ecaee73c6a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691868717723806, guid: 1ae2b1c728484264bbdc53ecaee73c6a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1840720709301702, guid: 1ae2b1c728484264bbdc53ecaee73c6a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4052716703733502, guid: 1ae2b1c728484264bbdc53ecaee73c6a, type: 3}
       propertyPath: m_RootOrder
@@ -10038,9 +10050,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1385781431600392497}
     m_Modifications:
+    - target: {fileID: 1048877942444212, guid: d629efdae70f475409893aa79aeafd1e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641732374511974, guid: d629efdae70f475409893aa79aeafd1e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1902990887318610, guid: d629efdae70f475409893aa79aeafd1e, type: 3}
       propertyPath: m_Name
       value: Flash 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902990887318610, guid: d629efdae70f475409893aa79aeafd1e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4671481552515780, guid: d629efdae70f475409893aa79aeafd1e, type: 3}
       propertyPath: m_RootOrder

@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ItemDescription : MonoBehaviour
 {
     private InventoryController inventoryController;
     private Transform canvasTransform;
@@ -33,8 +28,8 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Button combineButton;
     public Button putOutSideButton;
     public Button exitButton;
+    public Button useButton;
 
-    public bool isHovering = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -48,19 +43,16 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         RectTransform newtransform = currentItem.gameObject.GetComponent<RectTransform>();
         float posX;
         float posY;
+        float distance;
 
-        if (newtransform.position.y > 0.5f * Screen.height)//스크린 중간 보다 위에 있을 때
-        {
-            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-            posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
-        }
-        else
-        {
-            posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
-            posY = (-ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2) + (rectTransform.sizeDelta.y);
-        }
-      
-        rectTransform.position = newtransform.position + new Vector3(posX + x, posY + y, 0);
+        posX = ItemGrid.TileSizeWidth * currentItem.WIDTH / 2;
+        posY = ItemGrid.TileSizeHeight * currentItem.HEIGHT / 2;
+        Vector2 newPos = newtransform.position + new Vector3(posX + x, posY + y, 0);
+        distance = newPos.y - rectTransform.sizeDelta.y; //좌하단의 좌표
+        if (distance < 0)
+            newPos += new Vector2(0, -distance);
+
+        rectTransform.position = newPos;
     }
     public void SetCurrentItemNull()//아이템 null 초기화
     {
@@ -77,7 +69,7 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         rightClickPanel.SetActive(false);
         if (currentItem == null)//아이템이 삭제된 후에 실행됐을 때
         {
-            
+
         }
         else
         {
@@ -87,28 +79,9 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 itemDrag.isPressed = false;
                 itemDrag.ExitUI();
             }
-        } 
+        }
     }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //transform.SetParent(InventoryController.Instance.canvasTransform);//호버되면 독립적인 객체로 존재
-        isHovering = true;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isHovering = false;
-        //ItemDrag itemDrag = currentItem.GetComponent<ItemDrag>();
-        //if (itemDrag != null)
-        //{
-        //    itemDrag.ExitUI();
-        //}
-    }
-    public void ClickSellItemButton()//아이템 판매 버튼
-    {
-        inventoryController.SellItemButton(currentItem);
-    }
-    public void SetDescriptionText()//설명 적기
+    private void SetDescriptionText()//설명 적기
     {
         nameText.text = currentItem.itemSO.Name;//이름 부분
         gradeText.text = string.Format($"등급{(int)currentItem.itemSO.Grade + 1}");
@@ -130,22 +103,92 @@ public class ItemDescription : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
-            if (inventoryController.CheckInventoryToStorage(currentItem) == true)
+            if (currentItem.itemSO.Price == 0)//가격이 0이면 버튼 비활성화
             {
-                putOutSideButton.interactable = true;
+                sellButton.gameObject.SetActive(false);
+                putOutSideButton.gameObject.SetActive(false);
             }
             else
             {
-                putOutSideButton.interactable = false;
+                sellButton.gameObject.SetActive(true);
+                putOutSideButton.gameObject.SetActive(true);
             }
+
+            if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
+            {
+                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true)//다음 등급 있을 때만
+                { 
+                    combineButton.gameObject.SetActive(true);
+                    if (inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+                    {
+                        combineButton.interactable = true;//가능할 때
+                    }
+                    else
+                    {
+                        combineButton.interactable = false;
+                    }
+                }
+                else
+                    combineButton.gameObject.SetActive(false);
+                //if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
+                //{
+                //    combineButton.interactable = true;//가능할 때
+                //}
+                //else
+                //{
+                //    combineButton.interactable = false;
+                //}
+            }
+            else
+            {
+                combineButton.gameObject.SetActive(false);
+            }
+
+            if (currentItem.itemSO.ItemType == ItemType.Consumable)
+            {
+                useButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                useButton.gameObject.SetActive(false);
+            }
+
+            if (putOutSideButton.gameObject.activeSelf == true)//빼두기가 활성화 되어 있을 때
+            {
+                if (inventoryController.CheckInventoryToStorage(currentItem) == true)
+                {
+                    putOutSideButton.interactable = true;
+                }
+                else
+                {
+                    putOutSideButton.interactable = false;
+                }
+            }
+
             buttonPanel.SetActive(true);
         }
 
         SetDescriptionText();//설명 적기
     }
-    public void ClickPutOutSideButton()
+    public void ClickSellItemButton()//아이템 판매 버튼
     {
-        inventoryController.MoveInventoryToStorage(currentItem);
+        inventoryController.SellItemButton(currentItem);//아이템 판매
+        SoundManager.Instance.PlayAudioClip("Purchase");
+    }
+    public void ClickPutOutSideButton()//빼두기 버튼
+    {
+        inventoryController.MoveInventoryToStorage(currentItem);//인벤토리에서 창고로 이동
+        ExitExplnationUI();//툴팁 닫기
+    }
+    public void ClickCombineButton()//업그레이드 버튼
+    {
+        inventoryController.CombineWeaponItem(currentItem);
+        ExitExplnationUI();//툴팁 닫기
+    }
+    public void ClickUseButton()//사용 버튼
+    {
+        inventoryController.UseConsumableItem(currentItem);
+        SoundManager.Instance.PlayAudioClip("Drink");
         ExitExplnationUI();
     }
 }

@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
+using Constants;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,48 +22,77 @@ public class DungeonManager : SingletoneBase<DungeonManager>
 
     public float timeLimit = 50f;
     public float currentTime = 0f;
-    public bool isStarted = false;
+    public DungeonState gameState;
+    public bool isStageCompleted = false;
     public int currnetstage = 0;
 
-    private void Start()
-    {
-    }
+    public event Action OnStageStart;
+    public event Action OnStageClear;
+    public event Action<int> OnClearUI;
+
     private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        OnStageStart += ResetPlayerPos;
+    }
+
+    public override void Init()
     {
         inventoryUI = GameObject.FindGameObjectWithTag(inventoryTag);
         stageUI = GameObject.FindGameObjectWithTag(stageTag);
-        InventoryController.Instance.nextStage += CloseInventory;
+        //InventoryController.Instance.nextStage += CloseInventory;
 
         if (inventoryUI == null && stageUI == null)
         {
-            Debug.Log("찾기 실패");
+            //Debug.LogError("(LogError) : DungeonManager에서 UI 찾기 실패");
         }
         else
         {
             TextMeshProUGUI[] arr = stageUI.GetComponentsInChildren<TextMeshProUGUI>();
             stageText = System.Array.Find(arr, x => x.name == stageTextName);
             timeText = System.Array.Find(arr, x => x.name == TimeTextName);
-
-            //Debug.Log("찾기 성공");
-            //inventoryUI.SetActive(false);
         }
+
+        if (InventoryController.Instance != null)
+            InventoryController.Instance.nextStage += CloseInventory;
     }
-    
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 2 && GameManager.Instance.Player != null)
+        {
+            Debug.Log($"입장 캐릭터 : {GameManager.Instance.Player.name}");
+            LogCreator.Instance.SetTryCounter();
+        }
+        Init();
+    }
+
     private void Update()
     {
-        if (isStarted == true)
+        if (gameState == DungeonState.Playing)
         {
             UpdateTimeText();
+
+            if (isStageCompleted)
+            {
+                StageClear();
+            }
 
             if (currentTime > 0.0f)
             {
                 currentTime -= Time.deltaTime;//시간 빼기
                 currentTime = Mathf.Clamp(currentTime, 0.00f, timeLimit);
             }
+            else if (currentTime <= 0 && EnemySpawner.Instance.arriveBoss == true)
+            {
+                // 끝
+                GameManager.Instance.Gameover();
+            }
             else
             {
                 //모든 몬스터 죽기
-                EndStage();
+                StageClear();
             }
         }
     }
@@ -78,51 +104,94 @@ public class DungeonManager : SingletoneBase<DungeonManager>
     {
         //맵정보 받아오면 적용
         currnetstage += 1;
+        isStageCompleted = false;
+
         if (currnetstage % 5 == 0)//5스테이지 마다 시간 다르게 적용?
         {
-            timeLimit = 60f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Boss;//나중에 상수로 따로 빼두면 좋음
         }
         else
         {
-            timeLimit = 10f;//나중에 상수로 따로 빼두면 좋음
+            timeLimit = StageTimeLimit.Normal;//나중에 상수로 따로 빼두면 좋음
         }
 
         currentTime = timeLimit;//시간 설정
-        stageText.text = String.Format("Stage : "+ currnetstage.ToString());
+        stageText.text = String.Format("Stage : " + currnetstage.ToString());
 
-        isStarted = true;
+        gameState = DungeonState.Playing;
+        OnStageStart?.Invoke();
         EnemySpawner.Instance.GameStart();
     }
-    public void EndStage()//스테이지 끝나면 호출
+    public void StageClear()//스테이지 끝나면 호출
     {
-        isStarted = false;
+        gameState = DungeonState.Clear;
+
         //모든 동작 멈추고
         EnemySpawner.Instance.SpawnStop();
-        EnemySpawner.Instance.FindAllEnemiesDeSpawn();
+        EnemySpawner.Instance.AllEnemiesDeSpawn();
 
-        Invoke("OpenInventory",1f);//인벤토리 열기
+        // 기본 1개 + 10스테이지마다 하나씩 늘어나게?
+        GameManager.Instance.Player.GetComponent<Player>().ChangeRune(1 + (currnetstage / 10));
+
+        OnStageClear?.Invoke();
+        QuestManager.Instance.NotifyQuest(QuestType.StageClear, 10, 1);//스테이지 클리어 시 카운트 증가
+
+        Invoke(nameof(InvokeInventory), 2f);
+        //Invoke("OpenInventory", 1f);//인벤토리 열기
     }
+
+    void InvokeInventory()
+    {
+        UIManager.Instance.FadeOut(0.5f, () =>
+        {
+            OpenInventory();
+            OnClearUI?.Invoke(currnetstage);
+            UIManager.Instance.FadeIn(0.5f);
+        });
+    }
+
     public void OpenInventory()
     {
         //위 혹은 여기에 플레이어 동작 , 몬스터 소환 멈추는 코드
 
         inventoryUI.SetActive(true);
-        InventoryController.Instance.OnStoreReroll();
+        InventoryController.Instance.AddBlock();
+        InventoryController.Instance.NextStageIsActive(true);
+        InventoryStats.Instance.UpdateStatsPanel();
+        SoundManager.Instance.SetBgm(SoundManager.Instance.inventoryBgTag);
+        InventoryController.Instance.InitStoreOnNextStage();
     }
     public void CloseInventory()
     {
         //인벤토리에 장착한 아이템 적용하기 있다면 패스
         inventoryUI.SetActive(false);
         SetStageAndStart();//스테이지 생성 시작
+        SoundManager.Instance.SetBgm(SoundManager.Instance.dungeonBgTag);
         //플레이어 위치 조정
         //맵을 동적으로 구워야 하면 적용
     }
-    public override void Init()
+
+    void ResetPlayerPos()
     {
-        
+        GameManager.Instance.Player.transform.position = Vector3.zero;
     }
+
     public void Print()
     {
         Debug.Log("게임 매니저 생성");
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    protected override void OnApplicationQuit()
+    {
+        base.OnApplicationQuit();
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

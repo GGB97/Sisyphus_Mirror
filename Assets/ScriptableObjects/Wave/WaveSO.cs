@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WaveSO")]
@@ -19,5 +17,13 @@ public class WaveSO : ScriptableObject
     public int GetAllLength()
     {
         return normal.Length + elite.Length + boss.Length;
+    }
+
+    public void ModifierInit()
+    {
+        int stage = DungeonManager.Instance.currnetstage;
+
+        maxEnemyCnt = (stage / 3) * 2;
+        numPerSpawn = stage / 3;
     }
 }

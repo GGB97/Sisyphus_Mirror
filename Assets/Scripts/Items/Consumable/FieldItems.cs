@@ -9,8 +9,40 @@ public enum FieldItemType
 
 public class FieldItems : MonoBehaviour
 {
+    DungeonManager _dm;
+
     [SerializeField] FieldItemType _type;
-    float _value;
+    int _value;
+
+    public float moveSpeed = 20f;
+
+    Player _player;
+    private Transform playerPos;
+
+    private void OnEnable()
+    {
+        if (_type != FieldItemType.Gold)
+        {
+            if (_dm == null)
+            {
+                _dm = DungeonManager.Instance;
+            }
+            _dm.OnStageClear += ActiveFalse;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_type != FieldItemType.Gold)
+        {
+            if (_dm != null)
+            {
+                _dm.OnStageClear -= ActiveFalse;
+            }
+        }
+
+        FieldItemsPooler.Instance.ReturnToPull(gameObject);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,28 +50,75 @@ public class FieldItems : MonoBehaviour
         {
             switch (_type)
             {
-                case FieldItemType.Heart:   
+                case FieldItemType.Heart:
                     // TODO : 플레이어 체력 회복하기
-
+                    PlayerGetHeart();
                     break;
                 case FieldItemType.Shield:
                     // TODO : 플레이어 무적?
+                    PlayerGetShield();
                     break;
                 case FieldItemType.Gold:
-                    PlayerGetGole();
-                    Destroy(gameObject); // 이 아이템들도 오브젝트 풀로 관리?
+                    PlayerGetGold();
                     break;
             }
         }
     }
 
-    public void SetValue(float value)
+    private void Start()
     {
-        _value = value;
+        _player = GameManager.Instance.Player;
+        playerPos = _player.transform;
     }
 
-    void PlayerGetGole()
+    private void Update()
     {
-        Debug.Log($"Player Get '{_value}' Gold");
+        Magnet();
+    }
+
+
+    public void SetValue(int index)
+    {
+        _value = index;
+    }
+
+    void PlayerGetGold()
+    {
+        _player.ChangeGold(_value);
+        GameManager.Instance.totalGold += _value;
+
+        gameObject.SetActive(false);
+    }
+
+    void PlayerGetHeart()
+    {
+        _player.HealthSystem.TakeHeal(_value, DamageType.Heal);
+        _player.HealthChange();
+
+        gameObject.SetActive(false);
+    }
+
+    void PlayerGetShield()
+    {
+        _player.currentStat.shield += _value;
+        _player.InvokeShieldChange();
+
+        gameObject.SetActive(false);
+    }
+
+    void Magnet()
+    {
+        float magnetDistance = GameManager.Instance.Player.magnetDistance;
+        float distance = Vector3.Distance(transform.position, playerPos.position);
+
+        if (distance <= magnetDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerPos.position, moveSpeed * Time.deltaTime);
+        }
+    }
+
+    void ActiveFalse()
+    {
+        gameObject.SetActive(false);
     }
 }

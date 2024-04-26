@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class EnemyIdleState : EnemyBaseState
 {
     public EnemyIdleState(EnemyStateMachine enemyStateMachine) : base(enemyStateMachine)
@@ -43,7 +39,7 @@ public class EnemyIdleState : EnemyBaseState
         {
             LookTargetSlerp();
         }
-            
+
     }
 
     public override void Exit()

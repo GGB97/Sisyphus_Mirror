@@ -13,10 +13,31 @@ MonoBehaviour:
   m_Name: EquipmentsDB_Sheet
   m_EditorClassIdentifier: 
   Entities:
+  - _id: 10112011
+    _itemType: 1
+    _name: RuneStone
+    _description: "\uB8EC\uC2A4\uD1A4"
+    _spritePath: Items/Icons/Equipments/RuneStone/RuneStone_1
+    _iconWidth: 1
+    _iconHeight: 1
+    _prefabPath: None
+    _price: 0
+    _weight: 5
+    _grade: 4
+    _type: 2
+    _health: 0
+    _physicalAtk: 0
+    _magicAtk: 0
+    _def: 0
+    _atkSpeed: 0
+    _moveSpeed: 0
+    _critRate: 0
+    _critDamage: 0
+    _lifeSteal: 0
   - _id: 10201011
     _itemType: 1
-    _name: NightVision
-    _description: NightVision
+    _name: "\uC57C\uAC04 \uD22C\uC2DC\uACBD"
+    _description: "\uC5B4\uB460 \uC18D\uC5D0\uC11C\uB3C4 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     _spritePath: Items/Icons/Equipments/Accessories_1
     _iconWidth: 2
     _iconHeight: 1
@@ -26,7 +47,7 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _physicalAtk: 2
+    _physicalAtk: 10
     _magicAtk: 0
     _def: 0
     _atkSpeed: -1
@@ -36,8 +57,9 @@ MonoBehaviour:
     _lifeSteal: 0
   - _id: 10201021
     _itemType: 1
-    _name: PiratePatch
-    _description: "\uD574\uC801 \uD328\uCE58"
+    _name: "\uD574\uC801 \uD328\uCE58"
+    _description: "\uCC29\uC6A9\uD558\uB294 \uAC83\uB9CC\uC73C\uB85C\uB3C4 \uC6A9\uAE30\uAC00
+      \uB0A9\uB2C8\uB2E4."
     _spritePath: Items/Icons/Equipments/Accessories_2
     _iconWidth: 1
     _iconHeight: 1
@@ -47,18 +69,82 @@ MonoBehaviour:
     _grade: 0
     _type: 1
     _health: 0
-    _physicalAtk: 1
+    _physicalAtk: 10
     _magicAtk: 0
     _def: 0
     _atkSpeed: 1
     _moveSpeed: 0
     _critRate: 0
     _critDamage: 0
-    _lifeSteal: 1
+    _lifeSteal: 5
+  - _id: 10201031
+    _itemType: 1
+    _name: "\uB108\uB4DC \uC548\uACBD"
+    _description: "\uB9C8\uBC95 \uACF5\uACA9\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Equipments/Accessories_3
+    _iconWidth: 2
+    _iconHeight: 1
+    _prefabPath: Items/Prefabs/Equipments/Accessories_3
+    _price: 36
+    _weight: 2
+    _grade: 0
+    _type: 1
+    _health: 0
+    _physicalAtk: 0
+    _magicAtk: 10
+    _def: 0
+    _atkSpeed: 1
+    _moveSpeed: 0
+    _critRate: 1
+    _critDamage: 1
+    _lifeSteal: 0
+  - _id: 10201041
+    _itemType: 1
+    _name: "\uC9C0\uD321\uC774"
+    _description: "\uC774\uAC70 \uD558\uB098\uBA74 \uD788\uB9D0\uB77C\uC57C\uB3C4
+      \uCDA9\uBD84\uD558\uC9C0!"
+    _spritePath: Items/Icons/Equipments/Accessories_4
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: None
+    _price: 24
+    _weight: 2
+    _grade: 0
+    _type: 1
+    _health: 0
+    _physicalAtk: 5
+    _magicAtk: 0
+    _def: 0
+    _atkSpeed: 0
+    _moveSpeed: 3
+    _critRate: 0
+    _critDamage: 0
+    _lifeSteal: 0
+  - _id: 10201051
+    _itemType: 1
+    _name: "\uC9C0\uD321\uC774\uCE7C"
+    _description: "\uCE7C\uC774 \uB4E0 \uC9C0\uD321\uC774. \uB2E4\uB9CC \uC7A5\uC2DD\uC6A9\uC774\uB2E4."
+    _spritePath: Items/Icons/Equipments/Accessories_5
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: None
+    _price: 36
+    _weight: 2
+    _grade: 0
+    _type: 1
+    _health: 0
+    _physicalAtk: 7
+    _magicAtk: 7
+    _def: 0
+    _atkSpeed: 0
+    _moveSpeed: 2
+    _critRate: 0
+    _critDamage: 0
+    _lifeSteal: 0
   - _id: 10202011
     _itemType: 1
-    _name: Helm of Valor
-    _description: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
+    _name: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
+    _description: "\uCC29\uC6A9\uD558\uBA74 \uC6A9\uB9F9\uD574\uC9C8\uC9C0\uB3C4?"
     _spritePath: Items/Icons/Equipments/Armor_1
     _iconWidth: 2
     _iconHeight: 2
@@ -67,10 +153,10 @@ MonoBehaviour:
     _weight: 7
     _grade: 0
     _type: 0
-    _health: 5
+    _health: 20
     _physicalAtk: 0
     _magicAtk: 0
-    _def: 3
+    _def: 5
     _atkSpeed: -1
     _moveSpeed: -1
     _critRate: 0
@@ -78,8 +164,8 @@ MonoBehaviour:
     _lifeSteal: 0
   - _id: 10202021
     _itemType: 1
-    _name: Shadow Veil
-    _description: "\uC5B4\uB460\uC758 \uC7A5\uB9C9"
+    _name: "\uC5B4\uB460\uC758 \uC7A5\uB9C9"
+    _description: "\uC5B4\uB460 \uC18D\uC73C\uB85C\u2026"
     _spritePath: Items/Icons/Equipments/Armor_2
     _iconWidth: 2
     _iconHeight: 1
@@ -88,12 +174,75 @@ MonoBehaviour:
     _weight: 7
     _grade: 0
     _type: 0
-    _health: 0
-    _physicalAtk: 3
+    _health: 5
+    _physicalAtk: 10
     _magicAtk: 0
     _def: -2
     _atkSpeed: 2
-    _moveSpeed: 2
-    _critRate: 2
+    _moveSpeed: 1
+    _critRate: 5
+    _critDamage: 10
+    _lifeSteal: 0
+  - _id: 10202031
+    _itemType: 1
+    _name: "\uC6A9\uB9F9\uC758 \uBC29\uD328"
+    _description: "\uB4E4\uBA74 \uC6A9\uB9F9\uD574\uC9C8\uC9C0\uB3C4?"
+    _spritePath: Items/Icons/Equipments/Armor_3
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: None
+    _price: 32
+    _weight: 10
+    _grade: 0
+    _type: 0
+    _health: 20
+    _physicalAtk: 0
+    _magicAtk: 0
+    _def: 20
+    _atkSpeed: -1
+    _moveSpeed: -1
+    _critRate: 0
     _critDamage: 0
+    _lifeSteal: 0
+  - _id: 10202041
+    _itemType: 1
+    _name: "\uC8FD\uC74C\uBAA8\uC790"
+    _description: "\uC5B4\uB77C\u2026 \uB370\uC2A4\uCF11\u2026?"
+    _spritePath: Items/Icons/Equipments/Armor_4
+    _iconWidth: 2
+    _iconHeight: 2
+    _prefabPath: None
+    _price: 182
+    _weight: 7
+    _grade: 2
+    _type: 0
+    _health: 0
+    _physicalAtk: 0
+    _magicAtk: 35
+    _def: -2
+    _atkSpeed: 0
+    _moveSpeed: 0
+    _critRate: 5
+    _critDamage: 10
+    _lifeSteal: 0
+  - _id: 10202051
+    _itemType: 1
+    _name: "\uC6A9\uB9F9\uC758 \uD22C\uAD6C"
+    _description: "\uCC29\uC6A9\uD558\uBA74 \uAC15\uD574\uC9C8\uC9C0\uB3C4?"
+    _spritePath: Items/Icons/Equipments/Armor_5
+    _iconWidth: 2
+    _iconHeight: 2
+    _prefabPath: None
+    _price: 192
+    _weight: 7
+    _grade: 2
+    _type: 0
+    _health: 10
+    _physicalAtk: 35
+    _magicAtk: 0
+    _def: 5
+    _atkSpeed: 0
+    _moveSpeed: 0
+    _critRate: 3
+    _critDamage: 5
     _lifeSteal: 0

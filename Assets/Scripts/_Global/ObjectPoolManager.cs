@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
@@ -46,8 +45,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(id))
             return null;
-
-        //Debug.Log(id);
 
         // 큐에 없으면 새로 추가
         Queue<GameObject> poolQueue = poolDictionary[id];

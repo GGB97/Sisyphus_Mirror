@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5319135045704964896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731381036339047557}
+  - component: {fileID: 895147059436178385}
+  - component: {fileID: 8815659111366128549}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1731381036339047557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319135045704964896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &895147059436178385
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319135045704964896}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.489
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8815659111366128549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319135045704964896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316f91ab89531b841895ae2fb17b31ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundClip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
+  lobbyBgTag: LobbyBG
+  inventoryBgTag: InventoryBG
+  dungeonBgTag: DungeonBG
+  bgmVolumePercent: 10
+  maxBgmVolume: 0.4
+  sfxVolumePercent: 30
+  isPlayingBgm: 1
+  soundEffectList:
+  - tag: AddBlock
+    clip: {fileID: 8300000, guid: 5a6a62f5285d23b4ab559a80f5fe2a56, type: 3}
+    volumePercent: 50
+  - tag: Attack
+    clip: {fileID: 8300000, guid: 702a84257ebd5bd4899f1dfaca5f52fd, type: 3}
+    volumePercent: 50
+  - tag: AreaAttack_Ice
+    clip: {fileID: 8300000, guid: 54916f2406bc54140b7d77b744922dbf, type: 3}
+    volumePercent: 5
+  - tag: hit20
+    clip: {fileID: 8300000, guid: f0076dda3a3e18648905c720fa1054f0, type: 3}
+    volumePercent: 51
+  - tag: die_1
+    clip: {fileID: 8300000, guid: 56595ea36baae0348bf909928b7f2ec5, type: 3}
+    volumePercent: 10
+  - tag: Axe_1
+    clip: {fileID: 8300000, guid: 38298500ea87e3846937c49dd9ab0017, type: 3}
+    volumePercent: 10
+  - tag: Sword_1
+    clip: {fileID: 8300000, guid: a779b9c8ec2f8cf448ecd4d32503d589, type: 3}
+    volumePercent: 10
+  - tag: Bow_1
+    clip: {fileID: 8300000, guid: 705db4ad3bf5b54438418c9799a43cb5, type: 3}
+    volumePercent: 100
+  - tag: Wand_1
+    clip: {fileID: 8300000, guid: e0bf0ff52e9007840a022fa500c8df37, type: 3}
+    volumePercent: 1
+  - tag: Arrow_1
+    clip: {fileID: 8300000, guid: 217d6d757a155554693f8815df5d438c, type: 3}
+    volumePercent: 10
+  - tag: Drink
+    clip: {fileID: 8300000, guid: 736e77e280ced6143a90198ab55d903a, type: 3}
+    volumePercent: 100
+  - tag: PutDownItem
+    clip: {fileID: 8300000, guid: 01cf1b3d696e732468ccf0345223bc38, type: 3}
+    volumePercent: 100
+  - tag: ClickButton
+    clip: {fileID: 8300000, guid: efcb67f6d0ee4e74f82bed37348bb84c, type: 3}
+    volumePercent: 50
+  - tag: Purchase
+    clip: {fileID: 8300000, guid: 07d682cf71fb22d459e51666c51ff898, type: 3}
+    volumePercent: 50
+  - tag: DungeonBG
+    clip: {fileID: 8300000, guid: df6a89ba1e9e3a040a0309b6ceb7f4ef, type: 3}
+    volumePercent: 50
+  - tag: LobbyBG
+    clip: {fileID: 8300000, guid: c0dc66e59bc014f49bdf2a5929a45d9d, type: 3}
+    volumePercent: 50
+  - tag: InventoryBG
+    clip: {fileID: 8300000, guid: 7e0356f39925c544385c1683730c6cdb, type: 3}
+    volumePercent: 50
+  - tag: Wand_1_Epic_Skill
+    clip: {fileID: 8300000, guid: 55c745a0fc7464e448b6120951de8779, type: 3}
+    volumePercent: 50
+  - tag: Axe_1_Epic_Skill
+    clip: {fileID: 8300000, guid: d64e4487ce196b64b97f65f33819a0e0, type: 3}
+    volumePercent: 50
+  - tag: ItemGain
+    clip: {fileID: 8300000, guid: 81bc7fdcdf94fce43b269cf3aac0c1eb, type: 3}
+    volumePercent: 50
+  - tag: Magic_Hit
+    clip: {fileID: 8300000, guid: 80a04f4eb8c56a24c82b1f4314f0ba78, type: 3}
+    volumePercent: 50
+  - tag: Player_Hit
+    clip: {fileID: 8300000, guid: 572fe06c861000149bc4b51cc1fdb09d, type: 3}
+    volumePercent: 50
+  - tag: Player_Die
+    clip: {fileID: 8300000, guid: c61a58e3035da7b46a1dd47889d38d2b, type: 3}
+    volumePercent: 50
+  - tag: ChangeCharacter
+    clip: {fileID: 8300000, guid: 7c7c0a86e2d72ba4985f437397013dd6, type: 3}
+    volumePercent: 50
+  AudioSoundPrefab: {fileID: 8985032663864764491, guid: 0cd3fd04f84256742b9a34e71a77f5d1,
+    type: 3}
+  maxQueueCount: 10

@@ -1,28 +1,39 @@
-using System.Collections;
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager instance;
+    public static PlayerManager Instance;
 
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
-    public Transform transform;
 
+    [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {
-        instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        currentPlayer = Instantiate(players[0]);
+        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
     }
 
     private void Start()
     {
-        currentPlayer = Instantiate(players[0]);
+        vcam.Follow = currentPlayer.transform;
+        vcam.LookAt = currentPlayer.transform;
     }
 
     public void ChangePlayer(int index)
     {
         Destroy(currentPlayer);
-        currentPlayer = Instantiate(players[index], transform);
+        currentPlayer = Instantiate(players[index]);
+        GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
+
+        vcam.Follow = currentPlayer.transform;
+        vcam.LookAt = currentPlayer.transform;
     }
 }

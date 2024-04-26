@@ -118,3 +118,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverTime: 0.3
+  isHovering: 0
+  isPressed: 0

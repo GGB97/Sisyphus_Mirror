@@ -15,8 +15,9 @@ MonoBehaviour:
   Entities:
   - _id: 10111011
     _itemType: 0
-    _name: Axe
-    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _name: "\uB098\uBB34\uAFBC\uC758 \uB3C4\uB07C"
+    _description: "\uC54C \uC218 \uC5C6\uB294 \uC774\uC720\uB85C \uD56D\uC0C1 \uBC1C\uC744
+      \uD5A5\uD574 \uB5A8\uC5B4\uC9C4\uB2E4."
     _spritePath: Items/Icons/Weapons/Melee/Axe_1
     _iconWidth: 1
     _iconHeight: 2
@@ -24,67 +25,100 @@ MonoBehaviour:
     _price: 24
     _weight: 10
     _grade: 0
-    _physicalAtk: 20
+    _physicalAtk: 30
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
     _critDamage: 1
     _range: 7
+    _lifeSteal: 0
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+    _sfxTag: Axe_1
+    _particleID: 71000002
+  - _id: 10111012
+    _itemType: 0
+    _name: "\uB098\uBB34\uAFBC\uC758 \uB3C4\uB07C"
+    _description: "\uC801\uB4E4\uC758 \uBA38\uB9AC \uC704\uB85C \uB0A0\uC544\uAC00
+      \uBC1C\uC744 \uD5A5\uD574 \uB5A8\uC5B4\uC9C4\uB2E4."
+    _spritePath: Items/Icons/Weapons/Melee/Axe_1
+    _iconWidth: 1
+    _iconHeight: 2
+    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Rare
+    _price: 68
+    _weight: 10
+    _grade: 1
+    _physicalAtk: 45
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 3
+    _critDamage: 3
+    _range: 7
     _lifeSteal: 1
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
-  - _id: 10111012
+    _sfxTag: Axe_1
+    _particleID: 71000002
+  - _id: 10111013
     _itemType: 0
-    _name: Axe
-    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
+    _name: "\uB098\uBB34\uAFBC\uC758 \uB3C4\uB07C"
+    _description: "\uB3C4\uB07C\uAC00 \uBC1C\uC744 \uD5A5\uD574 \uB5A8\uC5B4\uC9C0\uB294
+      \uAC83\uC740 \uC6D0\uD55C\uC744 \uD488\uC740 \uC815\uB839\uC758 \uC9D3\uC774\uB77C\uACE0
+      \uD55C\uB2E4."
     _spritePath: Items/Icons/Weapons/Melee/Axe_1
     _iconWidth: 1
     _iconHeight: 2
-    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
-    _price: 28
+    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Unique
+    _price: 186
     _weight: 10
-    _grade: 1
-    _physicalAtk: 25
+    _grade: 2
+    _physicalAtk: 60
     _magicAtk: 0
     _atkSpeed: 1
-    _critRate: 1
-    _critDamage: 1
+    _critRate: 5
+    _critDamage: 5
     _range: 7
     _lifeSteal: 3
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
-  - _id: 10111013
+    _sfxTag: Axe_1
+    _particleID: 71000002
+  - _id: 10111014
     _itemType: 0
-    _name: Axe
-    _description: "\uBC1C\uB4F1 \uC870\uC2EC\uD558\uC138\uC694."
-    _spritePath: Items/Icons/Weapons/Melee/Axe_1
+    _name: "\uC232 \uC815\uB839\uC758 \uB3C4\uB07C"
+    _description: "<color=\"red\">\uC2A4\uD0AC</color> : \uD3ED\uBC1C\uD558\uB294
+      \uB098\uBB47\uC78E\uB4E4\uC744 \uC8FC\uBCC0\uC5D0 \uC0DD\uC131\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Weapons/Melee/Axe_1_Epic
     _iconWidth: 1
     _iconHeight: 2
-    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1
-    _price: 32
+    _prefabPath: Items/Prefabs/Weapons/Melee/Axe_1_Epic
+    _price: 558
     _weight: 10
-    _grade: 2
-    _physicalAtk: 30
+    _grade: 3
+    _physicalAtk: 120
     _magicAtk: 0
     _atkSpeed: 1
-    _critRate: 1
-    _critDamage: 1
+    _critRate: 5
+    _critDamage: 5
     _range: 7
     _lifeSteal: 5
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
+    _sfxTag: Axe_1
+    _particleID: 71000002
   - _id: 10112011
     _itemType: 0
-    _name: Sword
-    _description: "\uCE7C"
+    _name: "\uD3C9\uBC94\uD55C \uAC80"
+    _description: "\uD3C9\uBC94\uD55C \uAC80\uC774\uB2E4."
     _spritePath: Items/Icons/Weapons/Melee/Sword_1
     _iconWidth: 1
     _iconHeight: 3
     _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1
-    _price: 35
+    _price: 28
     _weight: 15
     _grade: 0
     _physicalAtk: 30
@@ -97,31 +131,83 @@ MonoBehaviour:
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
-  - _id: 10113011
+    _sfxTag: Sword_1
+    _particleID: 71000001
+  - _id: 10112012
     _itemType: 0
-    _name: Spear
-    _description: "\uCC3D"
-    _spritePath: Items/Icons/Weapons/Melee/Spear_1
+    _name: "\uD3C9\uBC94\uD55C \uAC80"
+    _description: "\uC774\uC0C1\uD55C \uD798\uC774 \uB290\uAEF4\uC9C0\uB294 \uAC80\uC774\uB2E4."
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1
     _iconWidth: 1
     _iconHeight: 3
-    _prefabPath: Items/Prefabs/Weapons/Melee/Spear_1
-    _price: 30
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Rare
+    _price: 72
     _weight: 15
-    _grade: 0
-    _physicalAtk: 20
+    _grade: 1
+    _physicalAtk: 40
     _magicAtk: 0
-    _atkSpeed: 0.7
-    _critRate: 1
-    _critDamage: 1
+    _atkSpeed: 1
+    _critRate: 3
+    _critDamage: 3
     _range: 7
-    _lifeSteal: 1
+    _lifeSteal: 3
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
+    _sfxTag: Sword_1
+    _particleID: 71000001
+  - _id: 10112013
+    _itemType: 0
+    _name: "\uD3C9\uBC94\uD55C \uAC80"
+    _description: "\uAC80\uAE30\uB77C\uB3C4 \uB098\uAC08 \uAC83 \uAC19\uC740 \uD798\uC774
+      \uB290\uAEF4\uC9C4\uB2E4."
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Unique
+    _price: 208
+    _weight: 15
+    _grade: 2
+    _physicalAtk: 50
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 5
+    _critDamage: 5
+    _range: 7
+    _lifeSteal: 5
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+    _sfxTag: Sword_1
+    _particleID: 71000001
+  - _id: 10112014
+    _itemType: 0
+    _name: "\uC5B4\uB460\uC758 \uAC80"
+    _description: "<color=\"red\">\uC2A4\uD0AC</color> : \uC801\uB4E4\uC744 \uAD00\uD1B5\uD558\uB294
+      \uAC80\uAE30\uB97C \uBC1C\uC0B0\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Weapons/Melee/Sword_1_Epic
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Melee/Sword_1_Epic
+    _price: 618
+    _weight: 15
+    _grade: 3
+    _physicalAtk: 50
+    _magicAtk: 0
+    _atkSpeed: 1
+    _critRate: 5
+    _critDamage: 5
+    _range: 7
+    _lifeSteal: 5
+    _type: 0
+    _projectileID: 0
+    _numberOfProjectile: 0
+    _sfxTag: Sword_1
+    _particleID: 71000001
   - _id: 10121011
     _itemType: 0
-    _name: Bow
-    _description: "\uD65C."
+    _name: "\uC12C\uAD11 \uC2A4\uD2B8\uB77C\uC774\uCEE4"
+    _description: "GPT\uC57C, \uD65C\uC5D0 \uB300\uD55C \uC774\uB984\uC744 \uC9C0\uC5B4\uC918."
     _spritePath: Items/Icons/Weapons/Range/Bow_1
     _iconWidth: 2
     _iconHeight: 3
@@ -129,20 +215,93 @@ MonoBehaviour:
     _price: 35
     _weight: 10
     _grade: 0
-    _physicalAtk: 30
-    _magicAtk: 0
+    _physicalAtk: 0
+    _magicAtk: 20
     _atkSpeed: 0.7
     _critRate: 5
     _critDamage: 1
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000000
+    _projectileID: 40000003
     _numberOfProjectile: 1
+    _sfxTag: Bow_1
+    _particleID: 0
+  - _id: 10121012
+    _itemType: 0
+    _name: "\uC12C\uAD11 \uC2A4\uD2B8\uB77C\uC774\uCEE4"
+    _description: "\uC5B4\uB54C\uC694, \uB9C8\uC74C\uC5D0 \uB4DC\uC2DC\uB098\uC694?"
+    _spritePath: Items/Icons/Weapons/Range/Bow_1
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Rare
+    _price: 105
+    _weight: 10
+    _grade: 1
+    _physicalAtk: 0
+    _magicAtk: 25
+    _atkSpeed: 0.6
+    _critRate: 7
+    _critDamage: 3
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000003
+    _numberOfProjectile: 2
+    _sfxTag: Bow_1
+    _particleID: 0
+  - _id: 10121013
+    _itemType: 0
+    _name: "\uC12C\uAD11 \uC2A4\uD2B8\uB77C\uC774\uCEE4"
+    _description: "\uC544\uC9C1 AI\uB294 \uAC08 \uAE38\uC774 \uBA3C \uAC83 \uAC19\uB124."
+    _spritePath: Items/Icons/Weapons/Range/Bow_1
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Unique
+    _price: 298
+    _weight: 10
+    _grade: 2
+    _physicalAtk: 0
+    _magicAtk: 30
+    _atkSpeed: 0.5
+    _critRate: 10
+    _critDamage: 5
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000003
+    _numberOfProjectile: 3
+    _sfxTag: Bow_1
+    _particleID: 0
+  - _id: 10121014
+    _itemType: 0
+    _name: "\uC704\uB354\uC2A4\uD2B8\uB9C1"
+    _description: "<color=\"red\">\uC2A4\uD0AC</color> : 2\uCD08\uB9C8\uB2E4 \uC8FC\uBCC0\uC744
+      \uD5A5\uD574 \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Weapons/Range/Bow_1_Epic
+    _iconWidth: 2
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Bow_1_Epic
+    _price: 894
+    _weight: 10
+    _grade: 3
+    _physicalAtk: 0
+    _magicAtk: 60
+    _atkSpeed: 0.5
+    _critRate: 15
+    _critDamage: 10
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000003
+    _numberOfProjectile: 3
+    _sfxTag: Bow_1
+    _particleID: 0
   - _id: 10122011
     _itemType: 0
-    _name: Wand
-    _description: "\uC644\uB4DC"
+    _name: "\uC5D0\uD14C\uB9AC\uC5BC \uC2A4\uD0DC\uD504"
+    _description: "\uC2E0\uBE44\uB85C\uC6B0\uBA74\uC11C\uB3C4 \uACE0\uADC0\uD558\uACE0
+      \uC6B0\uC544\uD55C \uB290\uB08C\uC758 \uC2A4\uD0DC\uD504."
     _spritePath: Items/Icons/Weapons/Range/Wand_1
     _iconWidth: 1
     _iconHeight: 3
@@ -153,10 +312,84 @@ MonoBehaviour:
     _physicalAtk: 0
     _magicAtk: 20
     _atkSpeed: 1
-    _critRate: 5
+    _critRate: 1
     _critDamage: 1
     _range: 10
     _lifeSteal: 0
     _type: 1
-    _projectileID: 40000001
+    _projectileID: 40000004
     _numberOfProjectile: 3
+    _sfxTag: Wand_1
+    _particleID: 0
+  - _id: 10122012
+    _itemType: 0
+    _name: "\uC5D0\uD14C\uB9AC\uC5BC \uC2A4\uD0DC\uD504"
+    _description: "\uC6D0\uC18C\uC758 \uD798\uC73C\uB85C \uD050\uBE0C\uB97C \uC0DD\uC131\uD574
+      \uACF5\uACA9\uD55C\uB2E4."
+    _spritePath: Items/Icons/Weapons/Range/Wand_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Rare
+    _price: 105
+    _weight: 15
+    _grade: 1
+    _physicalAtk: 0
+    _magicAtk: 30
+    _atkSpeed: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000004
+    _numberOfProjectile: 3
+    _sfxTag: Wand_1
+    _particleID: 0
+  - _id: 10122013
+    _itemType: 0
+    _name: "\uC5D0\uD14C\uB9AC\uC5BC \uC2A4\uD0DC\uD504"
+    _description: "\uC8FC\uC778\uC774 \uC131\uC7A5\uD568\uC5D0 \uB530\uB77C \uC2A4\uD0DC\uD504
+      \uB610\uD55C \uC131\uC7A5\uD558\uB294 \uB4EF \uD558\uB2E4."
+    _spritePath: Items/Icons/Weapons/Range/Wand_1
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Unique
+    _price: 298
+    _weight: 15
+    _grade: 2
+    _physicalAtk: 0
+    _magicAtk: 60
+    _atkSpeed: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000004
+    _numberOfProjectile: 3
+    _sfxTag: Wand_1
+    _particleID: 0
+  - _id: 10122014
+    _itemType: 0
+    _name: "\uB8EC\uC6E8\uC774\uBC84"
+    _description: "<color=\"red\">\uC2A4\uD0AC</color> : \uC704\uC5D0 \uC788\uC73C\uBA74
+      \uB370\uBBF8\uC9C0\uB97C \uC8FC\uB294 \uC7A5\uD310\uC744 \uC0DD\uC131\uD569\uB2C8\uB2E4."
+    _spritePath: Items/Icons/Weapons/Range/Wand_1_Epic
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: Items/Prefabs/Weapons/Range/Wand_1_Epic
+    _price: 894
+    _weight: 15
+    _grade: 3
+    _physicalAtk: 0
+    _magicAtk: 90
+    _atkSpeed: 1
+    _critRate: 1
+    _critDamage: 1
+    _range: 10
+    _lifeSteal: 0
+    _type: 1
+    _projectileID: 40000004
+    _numberOfProjectile: 3
+    _sfxTag: Wand_1
+    _particleID: 0

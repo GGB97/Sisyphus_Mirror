@@ -126,9 +126,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.4, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &3263090115381624221
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -167,8 +167,9 @@ MonoBehaviour:
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -179,6 +180,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
   isDieTrigger: 0
   isHit: 0
@@ -189,8 +196,9 @@ MonoBehaviour:
   <Info>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -201,6 +209,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
     type: 0
@@ -209,11 +223,13 @@ MonoBehaviour:
     size: 0
     rotationSpeed: 0
     attackAngle: 0
+    gold: 0
   modifier:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -224,6 +240,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   enemyRenderer: {fileID: 0}
   animAttackSpeed: 1
   animMoveSpeed: 1
@@ -231,6 +253,9 @@ MonoBehaviour:
   - {fileID: 8307763689865581569}
   _rangeAttackPos: []
   _projectileTag: 
+  _areaAttackTag: 
+  dropGoldValue: 0
+  hitSound: hit20
 --- !u!114 &1928164017139885424
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,16 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
+using UnityEngine.UI;
 
 
 [RequireComponent(typeof(RectTransform))]  //해당 컴포넌트를 자동으로 추가해줌
 [RequireComponent(typeof(ScrollRect))]
 
-public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDragHandler
+public class UIPagingViewController : UI_Base, IBeginDragHandler, IEndDragHandler
 {
+    UIManager _ui;
+
     [SerializeField] protected GameObject gbj_ContentRoot = null;
 
     [SerializeField] protected UIPageControl pageControl;
@@ -29,6 +29,9 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
     public int prevPageIndex = 0;            // 이전 페이지의 인덱스
     private Rect currentViewRect;             // 스크롤 뷰의 사각형 크기
 
+    public string ChangeSound = "ChangeCharacter";
+
+    public ParticleSystem CharacterChangeEffect;
 
     public RectTransform CachedRectTransform
     {
@@ -37,7 +40,7 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
 
     public ScrollRect CachedScrollRect
     {
-        get { return GetComponent<ScrollRect>();}
+        get { return GetComponent<ScrollRect>(); }
     }
 
     public void OnBeginDrag(PointerEventData eventData)         // 드래그가 시작될 때 호출
@@ -63,9 +66,9 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
         }
 
         // 첫 페이지 또는 마지막 페이지일 경우 그 이상 스크롤하지 않도록
-        if(pageIndex < 0)
+        if (pageIndex < 0)
         {
-            pageIndex =  0;
+            pageIndex = 0;
         }
         else if (pageIndex > grid.transform.childCount - 1)
         {
@@ -86,7 +89,7 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
 
         isAnimating = true; // 애니메이션 재생 중을 나타내는 플래그
 
-        if(pageControl != null) // 페이지 컨트롤 표시를 갱신
+        if (pageControl != null) // 페이지 컨트롤 표시를 갱신
         {
             pageControl.SetCurrentPage(pageIndex);
         }
@@ -94,7 +97,7 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
 
     private void LateUpdate()    // 매 프래임마다 update 메서드가 처리된 다음 호출
     {
-        if(isAnimating)
+        if (isAnimating)
         {
             if (Time.time >= animationCurve.keys[animationCurve.length - 1].time)
             {
@@ -110,11 +113,16 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
         }
     }
 
+    private void Awake()
+    {
+        _ui = UIManager.Instance;
+    }
+
     private void Start()
     {
         UpdateView();
 
-        if(pageControl != null)
+        if (pageControl != null)
         {
             if (gbj_ContentRoot != null)
                 pageControl.SetNumberOfPages(gbj_ContentRoot.transform.childCount);
@@ -122,9 +130,19 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
         }
     }
 
+    private void OnEnable()
+    {
+        _ui.AddActiveUI(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        _ui.RemoveActiveUI(gameObject);
+    }
+
     private void Update()
     {
-        if(CachedRectTransform.rect.width != currentViewRect.width || CachedRectTransform.rect.height != currentViewRect.height)
+        if (CachedRectTransform.rect.width != currentViewRect.width || CachedRectTransform.rect.height != currentViewRect.height)
         {
             // 스크롤 뷰의 폭이나 높이가 변화하면 Scroll Content의 Padding을 갱신
             UpdateView();
@@ -145,7 +163,15 @@ public class UIPagingViewController : MonoBehaviour, IBeginDragHandler, IEndDrag
 
     public void SelectButton()
     {
-        PlayerManager.instance.ChangePlayer(prevPageIndex);
+        //  Debug.Log(prevPageIndex);
+        PlayerManager.Instance.ChangePlayer(prevPageIndex);
+        ExitUI();
+        CharacterChangeEffect.Play();
+        SoundManager.Instance.PlayAudioClip(ChangeSound);
+    }
+
+    public void ExitUI()
+    {
         gameObject.SetActive(false);
     }
 }

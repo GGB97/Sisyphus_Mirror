@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181bde3081cb4ee469f43c476544eaf8, type: 3}
+  m_Name: PlayerUpgradeDB_Sheet
+  m_EditorClassIdentifier: 
+  Entities:
+  - _id: 50000000
+    _name: "\uBB3C\uB9AC \uACF5\uACA9\uB825 \uC99D\uAC00"
+    _desc: "\uACF5\uACA9\uB825 #N \uC99D\uAC00"
+    _type: 0
+    _target: 0
+    _count: 0
+    _upgradeType: 50000000
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 5
+    _cost_2: 10
+    _cost_3: 20
+    _cost_4: 40
+    _cost_5: 60
+    _modifier_1: 5
+    _modifier_2: 10
+    _modifier_3: 15
+    _modifier_4: 20
+    _modifier_5: 25
+    _costModifiers: []
+  - _id: 50000001
+    _name: "\uB9C8\uBC95 \uACF5\uACA9\uB825 \uC99D\uAC00"
+    _desc: "\uACF5\uACA9\uB825 #N \uC99D\uAC00"
+    _type: 0
+    _target: 0
+    _count: 0
+    _upgradeType: 50000001
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 5
+    _cost_2: 10
+    _cost_3: 20
+    _cost_4: 40
+    _cost_5: 60
+    _modifier_1: 5
+    _modifier_2: 10
+    _modifier_3: 15
+    _modifier_4: 20
+    _modifier_5: 25
+    _costModifiers: []
+  - _id: 50000002
+    _name: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
+    _desc: "\uCCB4\uB825 #N \uC99D\uAC00"
+    _type: 0
+    _target: 0
+    _count: 0
+    _upgradeType: 50000002
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 10
+    _cost_2: 20
+    _cost_3: 40
+    _cost_4: 60
+    _cost_5: 80
+    _modifier_1: 10
+    _modifier_2: 20
+    _modifier_3: 30
+    _modifier_4: 40
+    _modifier_5: 50
+    _costModifiers: []
+  - _id: 50000003
+    _name: "\uC2DC\uC791 \uACE8\uB4DC \uC99D\uAC00"
+    _desc: "\uACE8\uB4DC #N \uC99D\uAC00"
+    _type: 0
+    _target: 0
+    _count: 0
+    _upgradeType: 50000003
+    _maxGrade: 5
+    _reward: 0
+    _currentGrade: 0
+    _cost_1: 20
+    _cost_2: 40
+    _cost_3: 60
+    _cost_4: 80
+    _cost_5: 100
+    _modifier_1: 50
+    _modifier_2: 70
+    _modifier_3: 90
+    _modifier_4: 110
+    _modifier_5: 130
+    _costModifiers: []

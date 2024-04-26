@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,14 +10,14 @@ public class PlayerAnimationData
     [SerializeField] private string dashParameterName = "Dash";
     [SerializeField] private string hitParameterName = "Hit";
     [SerializeField] private string dieParameterName = "Die";
-    
 
-    public int IdleParameterHash { get; private set; }  
+
+    public int IdleParameterHash { get; private set; }
     public int WalkParameterHash { get; private set; }
     public int DashParameterHash { get; private set; }
     public int HitParameterHash { get; private set; }
     public int DieParameterHash { get; private set; }
-   
+
 
     public void Initialize()
     {
@@ -28,6 +26,6 @@ public class PlayerAnimationData
         DashParameterHash = Animator.StringToHash(dashParameterName);
         HitParameterHash = Animator.StringToHash(hitParameterName);
         DieParameterHash = Animator.StringToHash(dieParameterName);
-       
+
     }
 }

@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : CharacterBehaviour
 {
+    GameManager _gameManager;
+    DungeonManager _dungeonManager;
+
     [field: Header("References")]
-    [field: SerializeField] public PlayerBaseData Data {  get; private set; }
+    [field: SerializeField] public PlayerBaseData Data { get; private set; }
     public Status modifire;
 
     [field: Header("Animations")]
-    [field: SerializeField] public PlayerAnimationData AnimationData {  get; private set; }
+    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
@@ -24,25 +26,90 @@ public class Player : CharacterBehaviour
 
     public event Action<float, float> PlayerHealthChange;
     public float health;
+    public event Action<float, float> PlayerExpChange;
+    public event Action<float> PlayerSheildChange;
 
-    private void Awake()
+
+    public int rune;
+    public event Action PlayerRuneChange;
+
+    public event Action PlayerGoldChange;
+
+    public float magnetDistance;
+
+    public string HitSound = "Player_Hit";
+    public string DieSound = "Player_Die";
+
+    [SerializeField] GameObject shield_Obj;
+    [SerializeField] GameObject hitEffect;
+
+    protected override void Awake()
     {
+        base.Awake();
+
+        _gameManager = GameManager.Instance;
+
         AnimationData.Initialize();
         Data = DataBase.Player.Get(id);
-        currentStat.InitStatus(Data, modifire);
+        currentStat.InitStatus(Data, modifire, true);
+        Data.Init();
+
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         HealthSystem = GetComponent<HealthSystem>();
 
-        stateMachine = new PlayerStateMachine(this);  
+        rune = PlayerPrefs.GetInt("Rune"); // 나중에 저장해야함.
+
+        stateMachine = new PlayerStateMachine(this);
+
+        SetUpgradeModifier();
+
+        PlayerSheildChange += ShieldEffect;
+    }
+
+    private void OnEnable()
+    {
+        if (_gameManager.gameState == GameState.Dungeon)
+        {
+            if (_dungeonManager == null)
+            {
+                _dungeonManager = DungeonManager.Instance;
+            }
+
+            currentStat.SyncHealth();
+
+            _dungeonManager.OnStageStart += ResetMagnet;
+            _dungeonManager.OnStageStart += ResetShield;
+            _dungeonManager.OnStageStart += UnInvincibility;
+
+            _dungeonManager.OnStageClear += Invincibility;
+            _dungeonManager.OnStageClear += StageClearGetitem;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_gameManager.gameState == GameState.Dungeon)
+        {
+            if (_dungeonManager != null)
+            {
+                _dungeonManager.OnStageStart -= ResetMagnet;
+                _dungeonManager.OnStageStart -= ResetShield;
+                _dungeonManager.OnStageStart -= UnInvincibility;
+
+                _dungeonManager.OnStageClear -= Invincibility;
+                _dungeonManager.OnStageClear -= StageClearGetitem;
+            }
+        }
     }
 
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.idleState);
-        //health = currentStat.maxHealth;
+
+        currentStat.InitStatus(Data, modifire, true);
         currentStat.Init();
 
         isDie = false;
@@ -63,20 +130,152 @@ public class Player : CharacterBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    void ChangeDieState()
+    public void ChangeDieState()
     {
+        InvokeShieldChange();
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
         stateMachine.ChangeState(stateMachine.dieState);
     }
 
     void ChangeHitState()
     {
-        stateMachine.ChangeState(stateMachine.hitState);
+        InvokeShieldChange();
         PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+        stateMachine.ChangeState(stateMachine.hitState);
+    }
+
+    public void ChangeRune(int value)
+    {
+        rune += value;
+        PlayerPrefs.SetInt("Rune", rune);
+        PlayerRuneChange?.Invoke();
+    }
+
+    public void ChangeGold(int value)
+    {
+        Data.Gold += value;
+        PlayerGoldChange?.Invoke();
     }
 
     public void InvokeEvent(Action action)
     {
         action?.Invoke();
     }
-    
+
+    public void InvokeShieldChange()
+    {
+        int maxShield = Mathf.RoundToInt(currentStat.maxHealth * 0.5f);
+        if (currentStat.shield > maxShield)
+        {
+            currentStat.shield = maxShield;
+        }
+        PlayerSheildChange?.Invoke(currentStat.shield);
+    }
+
+    void ShieldEffect(float dump)
+    {
+        if (shield_Obj != null)
+        {
+            if (currentStat.shield > 0)
+            {
+                shield_Obj.SetActive(true);
+            }
+            else
+            {
+                shield_Obj.SetActive(false);
+            }
+        }
+    }
+
+    public void GetEXP(int exp)
+    {
+        Data.EXP += exp;
+        if (Data.EXP >= Data.maxEXP)
+        {
+            LevelUp();
+        }
+        GameManager.Instance.killenemys++;
+        PlayerExpChange?.Invoke(Data.EXP, Data.maxEXP);
+    }
+
+    public void LevelUp()
+    {
+        Data.EXP = Data.EXP - Data.maxEXP;
+        Data.LV++;
+        Data.maxEXP = Data._maxEXP + ((Data.LV - 1) * 10);
+        currentStat.maxHealth = currentStat.maxHealth + 2;
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+    }
+
+    public void SetUpgradeModifier() // 던전 입장시 실행해야하고 currentStatus 초기화 전 실행해야할듯.
+    {
+        modifire.physicalAtk += DataBase.PlayerUpgrade.Get((int)UpgradeType.PhysicalAtk).Reward;
+        modifire.magicAtk += DataBase.PlayerUpgrade.Get((int)UpgradeType.MagicAtk).Reward;
+
+        modifire.maxHealth += DataBase.PlayerUpgrade.Get((int)UpgradeType.MaxHP).Reward;
+        Data.Gold += (int)DataBase.PlayerUpgrade.Get((int)UpgradeType.StartGold).Reward;
+    }
+
+
+    public void playerReset()
+    {
+        Data.Init();
+    }
+
+    void StageClearGetitem()
+    {
+        magnetDistance = 100;
+    }
+
+    void ResetMagnet()
+    {
+        magnetDistance = 3;
+    }
+    void ResetShield()
+    {
+        currentStat.shield = 0;
+        InvokeShieldChange();
+    }
+
+    public void HealthChange()
+    {
+        if (currentStat.health > currentStat.maxHealth) currentStat.health = currentStat.maxHealth;
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+    }
+
+    public void HealthChange(int _health)
+    {
+        if (currentStat.health + _health > currentStat.maxHealth)
+            currentStat.health = currentStat.maxHealth;
+        else currentStat.health += _health;
+
+        PlayerHealthChange?.Invoke(currentStat.maxHealth, currentStat.health);
+    }
+
+    public void Invincibility()
+    {
+        LayerMask excludeTarget = LayerData.Enemy | LayerData.Projectile;
+        Controller.excludeLayers = excludeTarget;
+        isInvincibility = true;
+    }
+
+    public void UnInvincibility()
+    {
+        Controller.excludeLayers = 0;
+        isInvincibility = false;
+    }
+
+    public void OnHitEffect()
+    {
+        StartCoroutine(PlayHitEffect());
+    }
+
+    IEnumerator PlayHitEffect()
+    {
+        hitEffect.SetActive(true);
+
+        yield return new WaitForSeconds(0.2f);
+        
+        hitEffect.SetActive(false);
+    }
 }

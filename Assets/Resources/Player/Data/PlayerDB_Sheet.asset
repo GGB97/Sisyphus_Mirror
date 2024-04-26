@@ -15,41 +15,63 @@ MonoBehaviour:
   Entities:
   - health: 0
     maxHealth: 60
+    shield: 0
     attackRange: 0
-    meleeAtk: 3
+    physicalAtk: 5
     magicAtk: 0
-    def: 2
+    def: 5
     attackSpeed: 0
     moveSpeed: 5
     knockbackPower: 0
-    dashRange: 0.2
+    dashRange: 0.25
     dashCoolTime: 1
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 1
+    _exp: 0
+    _maxEXP: 100
+    _startItemID: 10111011
+    _startInventory: 10
     id: 21234567
-    prefabPath: 
-    LV: 1
+    prefabPath: Player/Prefabs/MC01
+    Gold: 0
+    LV: 0
     EXP: 0
-    maxEXP: 100
-    startItemID: 10111011
+    maxEXP: 0
+    description: "\uC2A4\uD0AC \uC0AC\uC6A9\uC2DC 10\uCD08\uAC04 \uBC29\uC5B4\uB825\uC774
+      60 \uC99D\uAC00\uD558\uACE0 \uCD5C\uB300\uCCB4\uB825\uC758 50%\uC758 \uC274\uB4DC\uB97C
+      \uC5BB\uB294\uB2E4 \uCFE8\uD0C0\uC784 : 20\uCD08"
+    job: "\uC804\uC0AC"
   - health: 0
     maxHealth: 50
+    shield: 0
     attackRange: 0
-    meleeAtk: 3
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 20
     moveSpeed: 5
     knockbackPower: 0
-    dashRange: 0.2
+    dashRange: 0.25
     dashCoolTime: 1
-    critRate: 5
-    critDamage: 0
+    critRate: 10
+    critDamage: 10
     lifeSteal: 0
+    weight: 0
+    _lv: 1
+    _exp: 0
+    _maxEXP: 100
+    _startItemID: 10112011
+    _startInventory: 10
     id: 20000002
-    prefabPath: 
-    LV: 1
+    prefabPath: Player/Prefabs/MC24
+    Gold: 0
+    LV: 0
     EXP: 0
-    maxEXP: 100
-    startItemID: 10121011
+    maxEXP: 0
+    description: "\uC2A4\uD0AC \uC0AC\uC6A9\uC2DC 6\uCD08\uAC04 \uCE58\uBA85\uD0C0
+      \uD655\uB960\uC774 40\uD37C \uC99D\uAC00\uD558\uACE0 \uACF5\uACA9\uC18D\uB3C4\uAC00
+      5% \uC99D\uAC00\uD55C\uB2E4 \uCFE8\uD0C0\uC784 : 20\uCD08"
+    job: "\uB3C4\uC801"

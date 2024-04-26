@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -114,10 +113,10 @@ public class EnemyPooler : MonoBehaviour
         _pools = new Pool[cnt];
 
         // Normal 세팅
-        for(int i =0; i< waveData.normal.Length; i++)
+        for (int i = 0; i < waveData.normal.Length; i++)
         {
             _pools[i].id = waveData.normal[i];
-            _pools[i].size = 15;
+            _pools[i].size = waveData.maxEnemyCnt / waveData.normal.Length + 10;
         }
 
         // Elite 세팅
@@ -125,7 +124,7 @@ public class EnemyPooler : MonoBehaviour
         for (int i = 0; i < waveData.elite.Length; i++)
         {
             _pools[i + ptr].id = waveData.elite[i];
-            _pools[i + ptr].size = 5;
+            _pools[i + ptr].size = 10;
         }
 
         // Boss 세팅
@@ -133,7 +132,7 @@ public class EnemyPooler : MonoBehaviour
         for (int i = 0; i < waveData.boss.Length; i++)
         {
             _pools[i + ptr].id = waveData.boss[i];
-            _pools[i + ptr].size = 3;
+            _pools[i + ptr].size = 1;
         }
 
         StartPool();

@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private InventoryController inventoryController;
     private Image image;
@@ -14,6 +13,7 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     public bool isHovering;
     public bool isPressed = false;
     private Coroutine displayCoroutine;
+    private string putDownSoundTag = "PutDownItem";
 
     private void Awake()
     {
@@ -22,12 +22,14 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerDown(PointerEventData eventData) //마우스를 누른 순간 실행
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (isPressed == true)
             return;
 
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
-            Debug.Log("Click Down");
             image.raycastTarget = false;
             inventoryController.startPosition = transform.position; ;//시작 위치 지정
             inventoryController.LeftMouseButtonPress();
@@ -53,15 +55,21 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
 
     public void OnPointerUp(PointerEventData eventData)//손을 뗐을 때 실행
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (eventData.button == PointerEventData.InputButton.Left)//마우스 왼쪽 클릭일 때만
         {
             image.raycastTarget = true;
-            Debug.Log("Click Up");
             inventoryController.LeftMouseButtonPut();
+            SoundManager.Instance.PlayAudioClip(putDownSoundTag);
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         if (inventoryController.selectedItem != null)
         {
             return;
@@ -75,13 +83,14 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
         }
         isHovering = true;
         displayCoroutine = StartCoroutine(WaitSecondsOnUI());//아이템 이미지 위에서 hover시간 만큼 기다리기
-        Debug.Log("Enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (inventoryController.isAdding == true)
+            return;
+
         ExitUI();
-        Debug.Log("Exit");
     }
 
 
@@ -98,10 +107,9 @@ public class ItemDrag : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, IP
             itemDesription.gameObject.SetActive(true);
             itemDesription.SetTransform();
             itemDesription.transform.SetAsLastSibling();
-            Debug.Log("호출");
         }
     }
-    public  void ExitUI()
+    public void ExitUI()
     {
         if (isPressed == false)
         {

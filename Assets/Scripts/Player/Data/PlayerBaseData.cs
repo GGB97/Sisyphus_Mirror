@@ -1,24 +1,22 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class PlayerBaseData : CharacterBase
 {
-    [Header("AddInfo")]
-    //public float dashRange;
-    //public float dashRate;
-
-    //public float critRate;
-    //public float critDamage;
-
-    //public float lifeSteal;
-
+    public int Gold;
     public int LV;
     public float EXP;
     public float maxEXP;
 
-    public int startItemID;
+    public string description;
+    public string job;
 
+    public override void Init()
+    {
+        base.Init();
+        LV = _lv;
+        EXP = _exp;
+        maxEXP = _maxEXP;
+        Gold = 0;
+    }
 }

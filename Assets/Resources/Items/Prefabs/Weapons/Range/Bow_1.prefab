@@ -214,15 +214,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3680837262391604208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8839151847106888427}
   - {fileID: 5884384780264575644}
   - {fileID: 6125326252726253681}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &875582591984009813
 Animator:
@@ -284,6 +284,8 @@ MonoBehaviour:
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
+    _sfxTag: 
+    _particleID: 0
   canAttack: 0
 --- !u!114 &7306316685237021643
 MonoBehaviour:

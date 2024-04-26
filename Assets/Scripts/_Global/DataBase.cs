@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DataBase : SingletoneBase<DataBase>
@@ -9,7 +7,11 @@ public class DataBase : SingletoneBase<DataBase>
     [SerializeField] EquipmentsDB _equipments;
     [SerializeField] ConsumableDB _consumable;
     [SerializeField] PlayerDB _player;
-    [SerializeField] ProjectileDB _Projectile; 
+    [SerializeField] ProjectileDB _Projectile;
+    [SerializeField] PlayerUpgradeDB _PlayerUpgrade;
+    [SerializeField] TutorialDB _tutorial;
+    [SerializeField] QuestDB _quest;
+    [SerializeField] ParticleDB _particle;
 
     public static EnemyDB EnemyStats
     {
@@ -26,7 +28,7 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if(Instance._weapon == null)
+            if (Instance._weapon == null)
                 Instance._weapon = new WeaponDB();
 
             return Instance._weapon;
@@ -59,7 +61,7 @@ public class DataBase : SingletoneBase<DataBase>
     {
         get
         {
-            if( Instance._player == null)
+            if (Instance._player == null)
                 Instance._player = new PlayerDB();
 
             return Instance._player;
@@ -74,6 +76,49 @@ public class DataBase : SingletoneBase<DataBase>
                 Instance._Projectile = new ProjectileDB();
 
             return Instance._Projectile;
+        }
+    }
+
+    public static PlayerUpgradeDB PlayerUpgrade
+    {
+        get
+        {
+            if (Instance._PlayerUpgrade == null)
+                Instance._PlayerUpgrade = new PlayerUpgradeDB();
+
+            return Instance._PlayerUpgrade;
+        }
+    }
+
+    public static TutorialDB Tutorial
+    {
+        get
+        {
+            if (Instance._tutorial == null)
+                Instance._tutorial = new TutorialDB();
+
+            return Instance._tutorial;
+        }
+    }
+    public static QuestDB Quest
+    {
+        get
+        {
+            if (Instance._quest == null)
+                Instance._quest = new QuestDB();
+
+            return Instance._quest;
+        }
+    }
+
+    public static ParticleDB Particle
+    {
+        get
+        {
+            if (Instance._particle == null)
+                Instance._particle = new ParticleDB();
+
+            return Instance._particle;
         }
     }
 }

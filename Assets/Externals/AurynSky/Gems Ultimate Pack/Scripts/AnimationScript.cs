@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class AnimationScript : MonoBehaviour {
+public class AnimationScript : MonoBehaviour
+{
 
     public bool isAnimated = false;
 
@@ -15,7 +16,7 @@ public class AnimationScript : MonoBehaviour {
     private bool goingUp = true;
     public float floatRate;
     private float floatTimer;
-   
+
     public Vector3 startScale;
     public Vector3 endScale;
 
@@ -24,16 +25,18 @@ public class AnimationScript : MonoBehaviour {
     public float scaleRate;
     private float scaleTimer;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(isAnimated)
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isAnimated)
         {
-            if(isRotating)
+            if (isRotating)
             {
                 transform.Rotate(rotationAngle * rotationSpeed * Time.deltaTime);
             }
@@ -80,5 +83,5 @@ public class AnimationScript : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 }

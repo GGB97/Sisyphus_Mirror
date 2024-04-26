@@ -1,28 +1,31 @@
-using System;
 using UnityEngine;
 
 public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 {
     // 프로퍼티
     private static T _instance;
-
     public static T Instance
     {
         get
         {
             if (_instance == null)
             {
-                string typeName = typeof(T).FullName;
-                GameObject go = new GameObject(typeName);
-                _instance = go.AddComponent<T>();
+                _instance = FindAnyObjectByType<T>();
+                if (_instance == null)
+                {
+                    string typeName = typeof(T).FullName;
+                    GameObject go = new(typeName);
+                    _instance = go.AddComponent<T>();
 
-                DontDestroyOnLoad(go);
+                }
+
+                DontDestroyOnLoad(_instance);
+
             }
 
             return _instance;
         }
     }
-
 
     void Awake()
     {
@@ -31,6 +34,17 @@ public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 
     public virtual void Init()
     {
-        //Debug.Log(transform.name + " is Init");
+
+    }
+
+    protected virtual void OnDestroy()
+    {
+        _instance = null;
+    }
+
+    protected virtual void OnApplicationQuit()
+    {
+        _instance = null;
     }
 }
+

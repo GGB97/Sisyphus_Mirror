@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyHitState : EnemyBaseState
@@ -14,6 +11,7 @@ public class EnemyHitState : EnemyBaseState
 
         StartAnimation(EnemyAnimData.HitParameterHash);
         enemy.knockbackDelay = 0f;
+        SoundManager.Instance.PlayAudioClip(enemy.hitSound);
     }
 
     public override void Update()

@@ -1,9 +1,7 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -12,6 +10,8 @@ public class HealthSystem : MonoBehaviour
 
     public Canvas damageCanvas;
     Queue<TMP_Text> textQueue;
+
+    [SerializeField] ParticleSystem Ps_Healing;
 
     private void Awake()
     {
@@ -29,27 +29,28 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(float value)
+    public void TakeDamage(float value, DamageType type)
     {
-        stat.health = value; // 방어력 포함해서 계산해야할듯?
-
-        if (stat.health <= 0)
+        if (character.isInvincibility)
         {
-            stat.health = 0;
-            character.isDie = true;
+            // 데미지를 받지 않는 상태
+            return;
         }
-        else if (stat.health > stat.maxHealth)
+
+        stat = character.currentStat;
+        float def = stat.def > 90f ? 90f : stat.def;
+        int damage = Mathf.RoundToInt(value - (value * (def * 0.01f)));
+
+        #region 보호막 데미지 처리
+        stat.shield -= damage;
+        if (stat.shield < 0)
         {
-            stat.health -= stat.maxHealth;
+            stat.health -= Mathf.Abs(stat.shield);
+            stat.shield = 0;
         }
-    }
+        #endregion
 
-    public void TakeDamage(float value)
-    {
-        stat.health -= value;
-        if (gameObject.tag.Equals("Player"))
-            Debug.Log($"Take Damage : {value}, name : {gameObject.name}, health : {stat.health}");
-
+        #region 체력 감소 처리
         if (stat.health <= 0)
         {
             stat.health = 0;
@@ -60,21 +61,76 @@ public class HealthSystem : MonoBehaviour
         {
             character.isHit = true;
         }
+        #endregion
 
-        ShowDamage(value);
+        if (damage == 0)
+            return;
+
+        ShowDamage(damage, type);
     }
 
-    void ShowDamage(float value) // Player는 지금 DamageCanvas가 없음
+    public void TakeHeal(float value, DamageType type)
     {
+        stat.health += value;
+
+        if (stat.health > stat.maxHealth)
+        {
+            stat.health = stat.maxHealth;
+        }
+
+        if (value == 0)
+            return;
+
+
+        if (Ps_Healing != null)
+        {
+            Ps_Healing.Play();
+        }
+
+        ShowDamage(value, type);
+    }
+
+    void ShowDamage(float value, DamageType type)
+    {
+        if (textQueue.Count == 0)
+        {
+            GameObject go = Instantiate(Resources.Load<GameObject>("UI/DamageText"), damageCanvas.transform);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+
+            textQueue.Enqueue(go.GetComponent<TMP_Text>());
+        }
+
         TMP_Text text = textQueue.Dequeue();
-        
-        text.text = value.ToString();
-        // 데미지 타입별로 색상 조절해도 괜찮을듯
+        if (text != null)
+            text.text = value.ToString();
+
+
+        // 데미지 타입별로 색상 조절
+        switch (type)
+        {
+            case DamageType.Physical:
+                text.color = Color.yellow;
+                break;
+            case DamageType.Magic:
+                text.color = new Color(175f / 255f, 50f / 255f, 207f / 255f);
+                break;
+            case DamageType.Heal:
+                text.color = Color.green;
+                break;
+        }
 
         text.gameObject.SetActive(true);
 
-        text.DOFade(0, 1);
-        text.transform.DOLocalMoveY(0.5f, 1).OnComplete(()=>
+        float rand = Random.Range(-0.35f, 0.35f);
+        text.transform.localPosition = new(rand, 0, 0);
+
+        text.DOFade(0, 0.5f);
+        text.transform.DOScale(1.2f, 0.1f).OnComplete(() =>
+        {
+            text.transform.DOScale(1f, 0.1f);
+        });
+        text.transform.DOLocalMoveY(0.5f, 0.75f).OnComplete(() =>
         {
             OnShowDamageComplete(text);
         });
@@ -84,6 +140,8 @@ public class HealthSystem : MonoBehaviour
         text.gameObject.SetActive(false);
         text.color = Color.white;
         text.transform.localPosition = Vector3.zero;
+        text.transform.localRotation = Quaternion.identity;
+        text.transform.localScale = Vector3.one;
 
         textQueue.Enqueue(text);
     }

@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters;
-using System;
 using UnityEngine;
 
 public class HS_DemoShooting : MonoBehaviour
@@ -113,7 +111,7 @@ public class HS_DemoShooting : MonoBehaviour
         {
             camAnim.Play(camAnim.clip.name);
             GetPooledObjects(Prefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            if(flashPoolDictionary.ContainsKey(Prefab))
+            if (flashPoolDictionary.ContainsKey(Prefab))
                 GetPooledFlashes(Prefab, FirePoint.transform.position, FirePoint.transform.rotation);
         }
 

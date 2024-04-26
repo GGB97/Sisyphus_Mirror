@@ -6,26 +6,58 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Image _healthBar;
     [SerializeField] TextMeshProUGUI _healthText;
+    [SerializeField] Image _expBar;
+    [SerializeField] TextMeshProUGUI _shieldText;
 
     Player _player;
+    InventoryController _inventoryController;
 
-    // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _player = GameManager.Instance.Player;
+        _inventoryController = InventoryController.Instance;
+        _inventoryController.nextStage += SetHealthBar;
         _player.PlayerHealthChange += UpdateHealthBar;
         _healthText.text = $"{_player.currentStat.health} / {_player.currentStat.maxHealth}";
+        _player.PlayerExpChange += UpdateExpBar;
+
+        _player.PlayerSheildChange += UpdateShield;
     }
 
-    // Update is called once per frame
-    void Update()
+    void SetHealthBar()
     {
-        
+        _healthText.text = $"{(int)_player.currentStat.health} / {_player.currentStat.maxHealth}";
+        _healthBar.fillAmount = _player.currentStat.health / _player.currentStat.maxHealth;
     }
 
     void UpdateHealthBar(float maxHealth, float health)
     {
-        _healthText.text = $"{health} / {maxHealth}";
+        _healthText.text = $"{(int)health} / {maxHealth}";
         _healthBar.fillAmount = health / maxHealth;
+    }
+
+    void UpdateExpBar(float exp, float maxExp)
+    {
+        _expBar.fillAmount = exp / maxExp;
+    }
+
+    void UpdateShield(float value)
+    {
+        if (value <= 0)
+        {
+            _shieldText.text = "";
+        }
+        else
+        {
+            _shieldText.text = value.ToString("N0");
+        }
+    }
+
+    private void OnDisable()
+    {
+        _inventoryController.nextStage -= SetHealthBar;
+        _player.PlayerHealthChange -= UpdateHealthBar;
+        _player.PlayerExpChange -= UpdateExpBar;
+        _player.PlayerSheildChange -= UpdateShield;
     }
 }

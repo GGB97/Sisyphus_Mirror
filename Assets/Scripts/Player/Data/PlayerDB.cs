@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,14 +15,14 @@ public class PlayerDB
             return;
 
         var entityCount = entities.Count;
-        for(int i = 0; i < entityCount; i++)
+        for (int i = 0; i < entityCount; i++)
         {
             var player = entities[i];
 
             if (_player.ContainsKey(player.id))
                 _player[player.id] = player;
             else
-                _player.Add(player.id, player);         
+                _player.Add(player.id, player);
         }
     }
 

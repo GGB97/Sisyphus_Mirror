@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct EnemyAnimData
@@ -12,6 +10,7 @@ public struct EnemyAnimData
 
     #region Parameter
     public static readonly int IdleParameterHash = Animator.StringToHash("Idle");
+    public static readonly int IdleFloatParameterHash = Animator.StringToHash("Idle_Float");
 
     public static readonly int MoveParameterHash = Animator.StringToHash("Move");
     public static readonly int MoveSpeedParameterHash = Animator.StringToHash("MoveSpeed");

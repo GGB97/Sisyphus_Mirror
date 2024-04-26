@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
     public ItemSO itemSO;//아이템 가로,세로,스프라이트 정보
-
     public int HEIGHT
     {
         get
@@ -73,7 +69,7 @@ public class InventoryItem : MonoBehaviour
             rotationDegree -= 360f;
 
         RectTransform rectTransform = GetComponent<RectTransform>();
-        rectTransform.rotation = Quaternion.Euler(0,0, rotationDegree);//회전 적용
+        rectTransform.rotation = Quaternion.Euler(0, 0, rotationDegree);//회전 적용
     }
     public void SetRotation(float degree)//degree로 로테이션 설정
     {

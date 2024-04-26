@@ -17,22 +17,22 @@ public class WeaponDB
 
         var entityCount = entities.Count;
 
-        for(int i = 0; i < entityCount; i++)
+        for (int i = 0; i < entityCount; i++)
         {
             var weapon = entities[i];
 
             if (_weapons.ContainsKey(weapon.Id)) _weapons[weapon.Id] = weapon;
             else
-            { 
+            {
                 _weapons.Add(weapon.Id, weapon);
                 idList.Add(weapon.Id); //변경점
-            } 
+            }
         }
     }
 
     public WeaponData Get(int id)
     {
-        if(_weapons.ContainsKey(id)) return _weapons[id];
+        if (_weapons.ContainsKey(id)) return _weapons[id];
 
         return null;
     }
@@ -56,5 +56,16 @@ public class WeaponDB
     public IEnumerator WeaponDBEnumerator()
     {
         return _weapons.GetEnumerator();
+    }
+    public bool CheckItemId(int targetId)
+    {
+        foreach (var weaponId in idList)
+        {
+            if (weaponId == targetId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

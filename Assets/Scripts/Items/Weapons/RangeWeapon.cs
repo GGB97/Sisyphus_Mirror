@@ -7,6 +7,7 @@ public class RangeWeapon : MonoBehaviour
     [SerializeField] private Transform _weaponContainer;
 
     public List<Transform> Target = new List<Transform>();
+    Transform currentTarget;
 
     [SerializeField] private Animator _animator;
 
@@ -20,7 +21,6 @@ public class RangeWeapon : MonoBehaviour
 
     void Start()
     {
-        weaponData = DataBase.Weapon.Get(id);
         _animator = GetComponent<Animator>();
 
         _weaponContainer = transform.parent;
@@ -30,10 +30,16 @@ public class RangeWeapon : MonoBehaviour
         canAttack = true;
     }
 
+    public void Init(int id)
+    {
+        weaponData = DataBase.Weapon.Get(id);
+        this.id = id;
+    }
+
     private Vector3 GetRandomPosition()
     {
-        float x = Random.Range(-1f, 1f);
-        float z = Random.Range(-1f, 1f);
+        float x = Random.Range(-1.5f, -1f);
+        float z = Random.Range(-1.5f, -1f);
 
         return new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
     }
@@ -42,7 +48,7 @@ public class RangeWeapon : MonoBehaviour
     {
         _coolDown -= Time.deltaTime;
 
-        if (_coolDown <= 0 && canAttack)
+        if (_coolDown <= 0 && canAttack && DungeonManager.Instance.gameState == DungeonState.Playing)
         {
             canAttack = false;
             Target.Clear();
@@ -66,12 +72,11 @@ public class RangeWeapon : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            //Debug.Log($"Detect : {collider.name}");
             Target.Add(collider.transform);
         }
 
         int random = Random.Range(0, colliders.Length);
-        if (Target[random].GetComponent<Enemy>().isDie)
+        if (Target[random].GetComponent<Enemy>().isDie || Target[random].GetComponent<Enemy>().IsSpawning)
         {
             Target.RemoveAt(random);
             Target.Clear();
@@ -80,7 +85,9 @@ public class RangeWeapon : MonoBehaviour
             return;
         }
 
-        RotateWeapon(Target[random].position);
+        currentTarget = Target[random];
+
+        RotateWeapon(currentTarget.position);
     }
 
     private void RotateWeapon(Vector3 target)
@@ -90,6 +97,7 @@ public class RangeWeapon : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
 
         transform.rotation = rot;
+        SoundManager.Instance.PlayAudioClip(weaponData.SfxTag);
         Attack();
     }
 
@@ -106,11 +114,12 @@ public class RangeWeapon : MonoBehaviour
     {
         GameObject _go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, _weaponPivot.rotation);
         ProjectileTest _projectile = _go.GetComponent<ProjectileTest>();
-        _projectile.AddTarget(LayerData.Enemy);
+        if (_projectile.sfxTag != null) SoundManager.Instance.PlayAudioClip(_projectile.sfxTag);
+        SetProjectileTarget(_projectile);
         _projectile.AddExcludeLayer(LayerData.Player);
         _projectile.AddExcludeLayer(LayerMask.NameToLayer("Default"));
 
-        float value = _projectile.GetDamageType == DamageType.Physical ? weaponData.PhysicalAtk : weaponData.MagicAtk;
+        float value = SetAttackDamage();
         _projectile.SetValue(value);
         _projectile.SetVelocity(1f); // 속도 배율 설정
 
@@ -123,14 +132,54 @@ public class RangeWeapon : MonoBehaviour
                 float randomRot = Random.Range(_weaponPivot.rotation.y - .1f, _weaponPivot.rotation.y + .1f);
                 Quaternion rot = _weaponPivot.rotation;
                 rot.y = randomRot;
-                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)ProjectileID.Arrow, _weaponPivot.position, rot);
+                GameObject go = ObjectPoolManager.Instance.SpawnFromPool((int)weaponData.ProjectileID, _weaponPivot.position, rot);
 
                 ProjectileTest projectile = go.GetComponent<ProjectileTest>();
-                projectile.AddTarget(LayerData.Enemy);
+                SetProjectileTarget(projectile);
 
                 projectile.SetValue(value);
                 projectile.SetVelocity(1f); // 속도 배율 설정
             }
         }
+    }
+
+    void SetProjectileTarget(ProjectileTest projectile)
+    {
+        if (projectile is Projectile_Guided)
+        {
+            projectile.AddTarget(LayerData.Enemy, currentTarget);
+        }
+        else
+        {
+            projectile.AddTarget(LayerData.Enemy);
+        }
+    }
+
+    public float SetAttackDamage()
+    {
+        float damage = 0;
+        Status _player = GameManager.Instance.Player.currentStat;
+
+        if (weaponData.PhysicalAtk != 0)
+            damage = weaponData.PhysicalAtk + _player.physicalAtk;
+        else
+            damage = weaponData.MagicAtk + _player.magicAtk;
+
+        damage /= weaponData.NumberOfProjectile;
+
+        float random = UnityEngine.Random.Range(1, 101);
+        if (_player.critRate > random) damage += (damage * _player.critDamage / 100);
+
+        return Mathf.Ceil(damage);
+    }
+
+    public int GetWeaponId()
+    {
+        return id;
+    }
+
+    public Vector3 GetWeaponPivot()
+    {
+        return _weaponPivot.position;
     }
 }

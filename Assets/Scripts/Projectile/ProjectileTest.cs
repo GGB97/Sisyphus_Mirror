@@ -1,29 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class ProjectileTest : MonoBehaviour
 {
     public int id;
-    ProjectileData _data;
+    protected ProjectileData _data;
 
-    public LayerMask target; // 부딪혀서 데미지를 줘야하는 하는 대상 Layer
+    [SerializeField] protected LayerMask _target; // 부딪혀서 데미지를 줘야하는 하는 대상 Layer
+    protected Dictionary<int, Transform> attackedTarget = new();
+
 
     public ParticleSystem ps;
-    Collider _projectileCollider;
-    Rigidbody _rb;
+    protected Collider _projectileCollider;
+    protected Rigidbody _rb;
 
-    [SerializeField] GameObject hitParticle;
+    [SerializeField] protected GameObject hitParticle;
 
-    float _value; // 데미지
-    float _velocity;
-    float _duration;
+    protected float _value; // 데미지
+    protected float _velocity;
+    protected float _duration;
 
     public DamageType GetDamageType => _data.type;
+    public string sfxTag => _data.sfxTag;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _projectileCollider = GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
@@ -38,16 +38,18 @@ public class ProjectileTest : MonoBehaviour
         Init();
     }
 
-    void Init()
+    protected virtual void Init()
     {
         hitParticle.SetActive(false);
         _projectileCollider.enabled = true;
 
-        target = 0; // target 초기화
+        _target = LayerData.Terrain; // target 초기화
         _projectileCollider.includeLayers = LayerData.Terrain; // 기본적으로 벽/바닥에는 부딪히고 사라져야 하니까
         _projectileCollider.excludeLayers = LayerData.Projectile; // 투사체간의 충돌로 지워지지 않게 하기 위해 초기값으로
 
-        _duration = 3f;
+        _duration = _data.duration;
+
+        attackedTarget.Clear();
     }
 
     private void OnDisable()
@@ -57,38 +59,51 @@ public class ProjectileTest : MonoBehaviour
         hitParticle.SetActive(false);
     }
 
-    public void Update()
+    protected virtual void Update()
+    {
+        DurationCheck();
+
+        MoveToTarget();
+    }
+
+    protected virtual void DurationCheck()
     {
         _duration -= Time.deltaTime;
         if (_duration <= 0)
         {
             // TODO : Object Pooling
+            ps.Clear();
             gameObject.SetActive(false);
         }
-        // TODO : 발사체 이동 처리
+    }
+
+    protected virtual void MoveToTarget()
+    {
         // 속도가 점점 느려지게 하려면 AddForce의 ForceMode.Impulse를 사용하거나 _velodity를 조건을 통해 점점 낮추면 될듯
-        _rb.velocity = gameObject.transform.forward * (_data.speed * _velocity); 
+        _rb.velocity = gameObject.transform.forward * (_data.speed * _velocity);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         int hitLayer = 1 << other.gameObject.layer;
-        bool isContained = (hitLayer & target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
+        bool isContained = (hitLayer & _target) != 0; // 현재 충돌한 객체가 target에 포함이 되는지
         if (isContained)
         {
-            // 데미지 처리 예정
-            //Debug.Log($"ProjectileName : {gameObject.name}, OnTriggerEnter : {other.gameObject.name}");
-
-            if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
+            if (other.gameObject.TryGetComponent(out HealthSystem _healthSystem))
             {
-                _healthSystem.TakeDamage(_value);
+                int key = other.gameObject.GetComponent<CharacterBehaviour>().GetActiveID();
+                if (attackedTarget.ContainsKey(key) == false) // 중복검사
+                {
+                    _healthSystem.TakeDamage(_value, _data.type);
+                    attackedTarget.Add(key, other.gameObject.transform);
+                }
             }
         }
-        else return;
-        OnHit(); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
+
+        OnHit(other.gameObject.layer); // 일단 ExcludeLayer가 아니니까 들어온 이상 사라져야함
     }
 
-    void OnHit()
+    protected virtual void OnHit(LayerMask layer)
     {
         _projectileCollider.enabled = false;
         //rb.velocity = Vector3.zero;
@@ -105,13 +120,18 @@ public class ProjectileTest : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void AddTarget(LayerMask layer) // 부딪히고 조건검사 해야할 Layer 추가
+    public virtual void AddTarget(LayerMask layer) // 부딪히고 조건검사 해야할 Layer 추가
     {
-        target |= layer;
-        _projectileCollider.includeLayers |= target;
+        _target |= layer;
+        _projectileCollider.includeLayers |= _target;
     }
-    
-    public void AddExcludeLayer(LayerMask layer) // 부딪히지 않아야할 Layer 추가
+
+    public virtual void AddTarget(LayerMask layer, Transform target) // 부딪히고 조건검사 해야할 Layer 추가
+    {
+        AddTarget(layer);
+    }
+
+    public virtual void AddExcludeLayer(LayerMask layer) // 부딪히지 않아야할 Layer 추가
     {
         _projectileCollider.excludeLayers |= layer;
     }

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class EnemyBaseState : IState
 {
@@ -54,7 +50,7 @@ public class EnemyBaseState : IState
 
         if (enemy.isHit)
         {
-            enemy.HitFade();
+            enemy.InvokeChangeHealth();
             if (enemy.Info.rank != EnemyRank.Boss && enemy.knockbackDelay > EnemyData.KnockBackDelayTime)
             {
                 enemy.InvokeEvent(enemy.OnHitEvent);
@@ -127,15 +123,15 @@ public class EnemyBaseState : IState
         Quaternion targetRotation = LookTargetPos();
 
         // 바라보는 방향 수정
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime); // 보간
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.Info.rotationSpeed * Time.deltaTime);
     }
 
     protected virtual void ChangeAttackState()
     {
-        if(enemy.Info.rank == EnemyRank.Boss)
+        if (enemy.Info.rank == EnemyRank.Boss)
         {
             int rand = Random.Range(0, 10);
-            if(rand < 3)
+            if (rand < 3)
                 stateMachine.ChangeState(stateMachine.Skill01State);
             else
                 stateMachine.ChangeState(stateMachine.AttackState);

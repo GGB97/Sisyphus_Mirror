@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputSettings;
 
 public class ItemGrid : MonoBehaviour
 {
@@ -12,25 +11,7 @@ public class ItemGrid : MonoBehaviour
     public Dictionary<ItemType, List<InventoryItem>> inventory = new Dictionary<ItemType, List<InventoryItem>>();//인벤토리에 들어있는 아이템들
     public int maxCount = 1;
     public int currentCount = 0;
-    //public int currnetCount
-    //{
-    //    get
-    //    {
-    //        int num = 0;
-    //        foreach (var itemType in inventory)
-    //        {
-    //            foreach (var item in itemType.Value)
-    //            {
-    //                if (item != null)
-    //                {
-    //                    Debug.Log($"{itemType.Key} - {item.itemData.itemIcon.name}");
-    //                    num++;
-    //                }
-    //            }
-    //        }
-    //        return num;
-    //    }
-    //}
+    public event Action currentCountEvent;
 
     public InventoryItem[,] inventoryItemSlot;//해당칸의 아이템 정보를 담는 배열
 
@@ -38,8 +19,8 @@ public class ItemGrid : MonoBehaviour
 
     RectTransform rectTransform;//UI 그리드의 트랜스 폼
 
-    protected int gridSizeWidth = 10;//가로 길이
-    protected int gridSizeHeight = 10; // 세로 길이
+    [SerializeField] protected int gridSizeWidth = 10;//가로 길이
+    [SerializeField] protected int gridSizeHeight = 10; // 세로 길이
 
     protected Vector2 mousePositionOnTheGrid; //그리드 왼쪽 상단에서 마우스의 위치 값
     protected Vector2Int tileGridPosition = new Vector2Int(); //그리드 위에서의 좌표
@@ -58,13 +39,14 @@ public class ItemGrid : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        //Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
     protected virtual void Start()
     {
         Init(gridSizeWidth, gridSizeHeight);// 가로, 세로 길이만큼 grid 칸 생성
     }
 
-    private void Init(int width, int height)//그리드 초기 생성
+    protected void Init(int width, int height)//그리드 초기 생성
     {
         inventoryPanel = GetComponentInChildren<InventoryPanel>();
         GridInit(width, height);
@@ -75,7 +57,6 @@ public class ItemGrid : MonoBehaviour
         List<InventoryItem> itemList = null;
         if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
-            Debug.Log($"{seletecteditem.itemSO.Name}");
             itemList = inventory[seletecteditem.itemSO.ItemType];
             itemList.Add(seletecteditem);
             inventory[seletecteditem.itemSO.ItemType] = itemList;
@@ -86,24 +67,26 @@ public class ItemGrid : MonoBehaviour
             inventory.Add(seletecteditem.itemSO.ItemType, itemList);
         }
         ItemManager.Instance.OnEquip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
-        //Debug.Log($"아이템 추가 - {seletecteditem.itemSO.Sprite.name}");
+        InventoryStats.Instance.UpdateStatsPanel();
     }
     public void SubtractItemFromInventory(InventoryItem seletecteditem)//플레이어 인벤토리만 이 메서드를 사용한다. 아이템 딕셔너리에서 빼는 기능
     {
         if (inventory.ContainsKey(seletecteditem.itemSO.ItemType))//키가 존재하다면
         {
             inventory[seletecteditem.itemSO.ItemType].Remove(seletecteditem);
-            Debug.Log($"아이템 빼기 - {seletecteditem.itemSO.Sprite.name}");
             ItemManager.Instance.OnUnequip(seletecteditem.itemSO.Id, seletecteditem.itemSO.ItemType);
+            InventoryStats.Instance.UpdateStatsPanel();
         }
         else//키가 존재하지 않다면
         {
-            Debug.Log($"아이템이 존재하지 않습니다.");
+            Debug.Log($"(LogError) : 아이템이 존재하지 않습니다.");
         }
     }
+
     public void AddCurrentCount(int num)//현재 Grid에 있는 아이템의 수를 num 만큼 증가시킨다.
     {
         currentCount += num;
+        currentCountEvent?.Invoke();
     }
     private void GridInit(int width, int height)//Gird 공간 마련
     {
@@ -113,7 +96,7 @@ public class ItemGrid : MonoBehaviour
     }
     private void PanelInit(int width, int height)//바닥 공간 마련
     {
-        panelSlots = new PanelSlot[width, height];
+        if (panelSlots == null) panelSlots = new PanelSlot[width, height];
 
         if (inventoryPanel != null) //판넬이 있을 때
         {
@@ -129,7 +112,7 @@ public class ItemGrid : MonoBehaviour
                     //parentGrid.inventoryItemSlot[x,y].panelSlot = panelSlots[x, y];
                 }
             }
-            
+
         }
     }
     public void SetGridSize(int width, int height) //그리드의 사이즈를 설정
@@ -161,7 +144,7 @@ public class ItemGrid : MonoBehaviour
         else
             return true;
     }
-    public bool PlaceItem(InventoryItem inventoryItem,int posX,int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
+    public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapitem) //그리드 좌표 x,y에 아이템 배치
     {
         if (BoundryCheck(posX, posY, inventoryItem.WIDTH, inventoryItem.HEIGHT) == false) //아이템이 Grid 안에 있는지 체크 
         {
@@ -182,7 +165,7 @@ public class ItemGrid : MonoBehaviour
         {
             return false;
         }
-        
+
         PlaceItem(inventoryItem, posX, posY);//새로운 아이템 놓기
 
         return true;
@@ -233,7 +216,7 @@ public class ItemGrid : MonoBehaviour
                     else
                     {
                         if (overlapitem != inventoryItemSlot[posX + x, posY + y]) //같은 아이템이 아니라면
-                        { 
+                        {
                             return false; //아니면 false
                         }
                     }
@@ -241,7 +224,7 @@ public class ItemGrid : MonoBehaviour
             }
         }
 
-        return true; 
+        return true;
     }
     private bool CheckAvailableSpace(int posX, int posY, int width, int height)//인벤토리 공간에 아이템을 설치할 수 있는지 체크 
     {
@@ -255,7 +238,7 @@ public class ItemGrid : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 if (inventoryItemSlot[posX + x, posY + y] != null || !panelSlots[posX + x, posY + y].CompareState(PanelSlotState.Empty)) //물체의 크기만큼 바닥과 설치할 공간이 있는지 확인
-                {    
+                {
                     return false; //아니면 false
                 }
             }
@@ -290,7 +273,7 @@ public class ItemGrid : MonoBehaviour
     bool PositionCheck(int posX, int posY) //Grid 안에 있고 바닥이 비었는지 체크 후 bool 값 리턴
     {
         if (GridPositionCheck(posX, posY) == false)
-        {    
+        {
             return false;
         }
 
@@ -351,8 +334,8 @@ public class ItemGrid : MonoBehaviour
 
     public Vector2Int? FindSpaceForObject(InventoryItem itemToInsert)//전체 배열에서 아이템을 설치할 수 있는지 체크
     {
-        int height = gridSizeHeight - itemToInsert.HEIGHT +1;
-        int width = gridSizeWidth - itemToInsert.WIDTH +1;
+        int height = gridSizeHeight - itemToInsert.HEIGHT + 1;
+        int width = gridSizeWidth - itemToInsert.WIDTH + 1;
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)

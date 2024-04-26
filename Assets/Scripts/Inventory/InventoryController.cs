@@ -1,27 +1,28 @@
-using JetBrains.Annotations;
+using Constants;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
+using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
     public event Action nextStage;
     private static InventoryController instance;
-    public static InventoryController Instance { get { return instance; } private set{ instance = value; } }
+    public static InventoryController Instance { get { return instance; } private set { instance = value; } }
     //Dictionary< 아이템 종류() , List<id>> 
     //[HideInInspector]
     [SerializeField]
     private ItemGrid selectedItemGrid; //현재 그리드 정보
-    public ItemGrid SelectedItemGrid { 
-        get => selectedItemGrid; 
-        set { 
+    public ItemGrid SelectedItemGrid
+    {
+        get => selectedItemGrid;
+        set
+        {
             selectedItemGrid = value;
             inventoryHighlight.SetParent(selectedItemGrid);
-        } 
+        }
     }
     [SerializeField]
     private ItemGrid previousItemGird;//이전 그리드 정보
@@ -39,18 +40,41 @@ public class InventoryController : MonoBehaviour
     public Storage storageGrid;//창고 그리드
     public StoreGrid storeGrid;// 상점 그리드
 
+    public AddBlockDescription addBlockDescription;
+    public GameObject levelUpBG;
+
     [SerializeField]
     private InventoryHighlight inventoryHighlight;
 
     public Sprite[] slotSprites; //슬롯의 스프라이트 배열
     public BlockColor[] blockColors;//등급의 색깔 배열
-    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>(); 
+    public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>();
     public int addCount = 6;//추가 칸 개수
+    [SerializeField]
+    private int blocksPerLevel = 1;//레벨 당 추가할 블록 수
 
     public Vector2 startPosition;//처음 위치
-    public float startRotation;
+    public float startRotation;//처음 회전상태
 
+    [SerializeField] Button nextStageButton;
+
+    public Player player;
+    public int prevLevel = 1;//플레이어의 이전 레벨
+    public bool isAdding = false;//칸 추가 중인지 
+
+    [Header("Store")]
     [SerializeField] public TextMeshProUGUI[] itemCost = new TextMeshProUGUI[5];
+    [SerializeField] TextMeshProUGUI _playerGoldText;
+    [SerializeField] int _rerollCost;
+    [SerializeField] int _tempRerollCost;
+    [SerializeField] TextMeshProUGUI _rerollCostText;
+    public int rerollCount = 0;
+
+    [SerializeField] int _tutorialId;
+
+    public string PurchaseSoundTag = "Purchase";
+
+    GameManager _gameManager;
 
     private void Awake()
     {
@@ -67,12 +91,37 @@ public class InventoryController : MonoBehaviour
     }
     private void Start()
     {
-        //SelectedItemGrid = itemGrid;
-        //SelectedItemGrid.ShowRandomAddableSlot();
+        _gameManager = GameManager.Instance;
+        _gameManager.onGameOverEvent += PrintItemList;
+        _gameManager.onGameOverEvent += PrintRerollCount;
+
+        player = _gameManager.Player;
+        InventoryStats.Instance?.UpdateStatsPanel();
+
+        _rerollCost = 5;
+        _tempRerollCost = _rerollCost;
+        SetPlayerGoldText();    // 플레이어 골드 텍스트 표시하기
+        SetRerollButtonText();
     }
+
+    private void OnEnable()
+    {
+        SetRerollButtonText();
+        ReSetRerollCount();
+        if (PlayerPrefs.GetInt("inventoryTutorialFlag") == 0) TutorialManager.Instance.PopupTutorial(TutorialType.Inventory, _tutorialId);
+    }
+    private void OnDisable()
+    {
+        _gameManager.onGameOverEvent -= PrintItemList;
+        _gameManager.onGameOverEvent -= PrintRerollCount;
+    }
+
     private void Update()
     {
-        ItemIconDrag();
+        if (isAdding == true)//추가 중이면 아무 동작 하지 않겠다.
+            return;
+
+        ItemIconDrag();//아이콘 드래그
 
         //if (Input.GetKeyDown(KeyCode.W))
         //{
@@ -91,7 +140,7 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.Show(false); //하이라이트 끔
             return;
         }
-        HandleHightlight();//하이라이트 
+        HandleHightlight();//하이라이트 표시
 
         //if (Input.GetMouseButtonDown(0))
         //{
@@ -112,11 +161,23 @@ public class InventoryController : MonoBehaviour
         selectedItem.Rotate();
     }
 
-    public void StartButton()//칸 확장 기능
+    public void AddBlock()//칸 확장 기능
     {
-        addCount = 6;
-        SelectedItemGrid = playerInventoryGrid;
-        playerInventoryGrid.ShowRandomAddableSlot();
+        //플레이어 레벨에 맞게 addCount 변경
+        int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정 /isAdding 설정
+        addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
+
+        if (addCount != 0 && playerInventoryGrid.GetAddableSlotCount() != 0)//추가할 블록이 있으면서 남은 칸 확장 슬롯이 있을 때
+        {
+            addBlockDescription.Active(true);
+            SelectedItemGrid = playerInventoryGrid;
+            playerInventoryGrid.ShowRandomAddableSlot();
+        }
+        else
+        {
+            addBlockDescription.Active(false);
+            isAdding = false;
+        }
     }
     private void InsertRandomItem()//아이템 랜덤 생성 후 배치
     {
@@ -135,7 +196,6 @@ public class InventoryController : MonoBehaviour
         if (posOnGrid == null)//설치 불가능 이면 return
         {
             Destroy(itemToInsert.gameObject);
-            Debug.Log("삭제완료");
             return;
         }
 
@@ -155,6 +215,10 @@ public class InventoryController : MonoBehaviour
         if (selectedItemGrid == storeGrid)
         {
             inventoryHighlight.Show(false);
+            return;
+        }
+        if (selectedItemGrid.CheckMaxCount() == true)
+        {
             return;
         }
 
@@ -183,15 +247,21 @@ public class InventoryController : MonoBehaviour
             //}
 
             if (selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT) == false)
-            { 
+            {
                 inventoryHighlight.Show(false);
                 return;
             }
 
+            if (selectedItemGrid != playerInventoryGrid && selectedItem.itemSO.Price == 0) return;//인벤토리가 아니고 룬 스톤이면 표시 x
+
+            if (selectedItemGrid.CheckMaxCount() == true)//선택된 그리드가 꽉찬 상태라면 하이라이트 표시 x
+                return;
+
             inventoryHighlight.Show(selectedItemGrid.BoundryCheck(positionOnGrid.x, positionOnGrid.y, selectedItem.WIDTH, selectedItem.HEIGHT));//활성화
-            inventoryHighlight.SetSize(selectedItem);//사이즈 지정
+            inventoryHighlight.SetOriginSize(selectedItem);//origin 사이즈 지정
             inventoryHighlight.SetImage(selectedItem);
-            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem,positionOnGrid.x,positionOnGrid.y); //위치 지정
+            inventoryHighlight.SetRotation(selectedItem);
+            inventoryHighlight.SetPosition(selectedItemGrid, selectedItem, positionOnGrid.x, positionOnGrid.y); //위치 지정
         }
 
     }
@@ -295,6 +365,17 @@ public class InventoryController : MonoBehaviour
         }
         return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
     }
+    private Vector2Int GetTileGridPositionWithBaseItem(Vector2 putPosition, InventoryItem item)//특정 좌표의 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
+    {
+        Vector2 position = putPosition; //마우스위치에는 물체의 중심이 온다.
+
+        if (item != null) //선택 된 Grid가 있다면
+        {
+            position.x -= (item.itemSO.IconWidth - 1) * ItemGrid.TileSizeWidth / 2; //물체의 중심을 첫 번째 칸으로 이동.
+            position.y += (item.itemSO.IconHeight - 1) * ItemGrid.TileSizeHeight / 2; //물체의 중심을 첫 번째 칸으로 이동.
+        }
+        return selectedItemGrid.GetTileGridPosition(position); //position의 스크린 상 좌표를 Grid상 좌표로 변환
+    }
     private Vector2Int GetTileGridPosition() //마우스의 위치를 가지고 Grid상의 좌표를 얻는다. 아이템을 선택했다면 첫칸의 좌표
     {
         Vector2 position = Input.mousePosition; //마우스위치에는 물체의 중심이 온다.
@@ -310,7 +391,9 @@ public class InventoryController : MonoBehaviour
     {
         // 변경점.
         // 설치하려는 ItemGrid가 상점일 경우 false
-        if(selectedItemGrid == storeGrid) return false;
+        if (selectedItemGrid == storeGrid) return false;
+        if (selectedItem.itemSO.Price == 0 && selectedItemGrid != playerInventoryGrid) return false;
+        if (selectedItem.itemSO.Price > player.Data.Gold && previousItemGird == storeGrid) return false;     // 선택한 아이템의 가격이 현재 소지 중인 골드보다 클 경우 false
 
         bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
@@ -341,12 +424,40 @@ public class InventoryController : MonoBehaviour
             }
             // 변경점.
             // 상점 → 플레이어 인벤토리로 이동 시
-            if(previousItemGird == storeGrid && selectedItemGrid == playerInventoryGrid)
+            if (previousItemGird == storeGrid)
             {
                 // 상점에 저장된 아이템 GameObject 초기화
                 for (int i = 0; i < storeGrid.currentStoreItem.Count; ++i)
                 {
-                    if (storeGrid.currentStoreItem[i] == selectedItem) storeGrid.currentStoreItem[i] = null;
+                    if (storeGrid.currentStoreItem[i] == selectedItem)
+                    {
+                        ItemGrid tempGrid = SelectedItemGrid;//옮길려고 하는 Grid 저장
+
+                        storeGrid.currentStoreItem[i] = null;
+                        // 아이템 구매 시 플레이어 골드 차감하기
+                        int currentStage = DungeonManager.Instance.currnetstage == 0 ? 1 : DungeonManager.Instance.currnetstage;
+                        int price = Mathf.FloorToInt(selectedItem.itemSO.Price + 1.1f * currentStage);
+
+                        if (currentStage == 1)
+                        {
+                            player.Data.Gold = player.Data.Gold - selectedItem.itemSO.Price;
+                            QuestManager.Instance.NotifyQuest(QuestType.UseGold,20, selectedItem.itemSO.Price);//골드 소모 퀘스트
+                        }
+                        else
+                        {
+                            player.Data.Gold = player.Data.Gold - price <= 0 ? 0 : player.Data.Gold - price;
+                            QuestManager.Instance.NotifyQuest(QuestType.UseGold, 20, price);//골드 소모 퀘스트
+                        }
+                        SetPlayerGoldText();
+
+                        SelectedItemGrid = previousItemGird;//이동 전 그리드로 설정
+                        Vector2Int tileGridStartPosition = GetTileGridPositionWithBaseItem(startPosition, selectedItem); //원래의 있던 곳의 위치
+
+                        SelectedItemGrid = tempGrid;//현재 그리드로 재설정
+                        storeGrid.PannelImageClear(tileGridStartPosition, selectedItem);// 판넬 투명하게 하기
+
+                        itemCost[i].transform.parent.gameObject.SetActive(false);
+                    }
                 }
             }
             //previousItemGird.SubtractItemFromInventory(selectedItem); //원래 이거였던 것
@@ -361,7 +472,7 @@ public class InventoryController : MonoBehaviour
     }
     public void PlaceItem(Vector2Int tileGridPosition) //물체 설치
     {
-        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y,ref overlapitem); //설치할 수 있으면 바로 설치
+        bool complete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapitem); //설치할 수 있으면 바로 설치
         if (complete) // 설치가 되었으면
         {
             selectedItem = null; //선택을 초기화
@@ -379,10 +490,9 @@ public class InventoryController : MonoBehaviour
     {
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y); // 선택한 아이템으로 설정
         previousItemGird = selectedItemGrid;//이전 그리드 설정
-        //Debug.Log($"{tileGridPosition.x}, {tileGridPosition.y}");
+
         if (selectedItem != null)
         {
-            Debug.Log($"현재 아이템 : {selectedItem.itemSO.Sprite.name}");
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
             rectTransform.SetAsLastSibling();
@@ -404,12 +514,10 @@ public class InventoryController : MonoBehaviour
             {
                 if (item != null)
                 {
-                    Debug.Log($"{itemType.Key} - {item.itemSO.Sprite.name}");
                     num++;
                 }
             }
         }
-        Debug.Log($"소지한 아이템 수 : {num}");
     }
     public void AddBigInventory() //실험용 넓은 판대기 적용
     {
@@ -434,7 +542,73 @@ public class InventoryController : MonoBehaviour
         DragPlaceItem(storagePosition.Value);
         selectedItemGrid = playerInventoryGrid;
     }
+    public void CombineWeaponItem(InventoryItem currentItem)// 무기 업그레이드
+    {
+        int posX = currentItem.onGridPositionX;//처음 위치
+        int posY = currentItem.onGridPositionY;//처음 위치
+        int nextId = currentItem.itemSO.Id + 1;//다음 등급 id
+        float startRotation = currentItem.rotationDegree;//처음 회전 상태
 
+        //현재 아이템 삭제 후 같은 id 아이템 두 개 삭제
+        playerInventoryGrid.DeleteSameItem(currentItem);
+
+        //다음 등급 아이템 생성
+        InventoryItem nextItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        ItemSO itemData = DataBase.Weapon.Get(nextId);//데이터베이스에서 다음 무기 정보 가져 옴
+        nextItem.Set(itemData);//아이템 정보 적용
+        nextItem.SetRotation(startRotation);//회전 적용
+
+        selectedItem = nextItem;
+        PlaceItem(new Vector2Int(posX, posY));//처음 위치에 설치
+        playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
+        playerInventoryGrid.AddCurrentCount(1);
+    }
+    public void UseConsumableItem(InventoryItem currentItem)
+    {
+        //InventoryItem consumableItem = new InventoryItem();
+        //consumableItem.Set(currentItem.itemSO);
+        //ConsumableData consumableData = consumableItem.itemSO as ConsumableData;
+        ConsumableData consumableData = currentItem.itemSO as ConsumableData;
+
+        if (consumableData != null)
+        {
+            playerInventoryGrid.PickUpItem(currentItem.onGridPositionX, currentItem.onGridPositionY);
+            SelectedItemGrid.AddCurrentCount(-1);
+
+            ItemManager.Instance.UseConsumable(consumableData);
+            playerInventoryGrid.SubtractItemFromInventory(currentItem);
+            Destroy(currentItem.gameObject);
+        }
+
+    }
+    public bool CheckUpgradableItem(int targetid)//인벤토리에서 무기 업그레이드가 가능한지 체크
+    {
+        if (playerInventoryGrid.FindSameWeaponItem(targetid) == false)
+            return false;
+        else
+            return true;
+    }
+    public int LevelCounting()
+    {
+        int currentLevel = GameManager.Instance.Player.Data.LV;//현재 레벨을 가져옴
+        int count = currentLevel - prevLevel;
+        prevLevel = currentLevel;
+        if (count > 0)
+        {
+            isAdding = true;
+            return count;
+            //블럭 추가 실행
+        }
+        else
+        {
+            isAdding = false;
+            return 0;
+        }
+    }
+    public void NextStageIsActive(bool isActive)
+    {
+        nextStageButton.enabled = isActive;
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 상점
     private void CreateRandomStoreItem() //아이템 랜덤 생성
@@ -466,17 +640,37 @@ public class InventoryController : MonoBehaviour
                 itemData = DataBase.Consumable.Get(selectedItemId);
                 break;
             case 1:
-                selectedItemId = UnityEngine.Random.Range(0, DataBase.Equipments.GetItemIdCount());
+                selectedItemId = UnityEngine.Random.Range(1, DataBase.Equipments.GetItemIdCount()); // 룬스톤을 제외한 나머지 Equipments 범위에서 ID 가져오기
                 selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
                 itemData = DataBase.Equipments.Get(selectedItemId);
                 break;
             default:
                 selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
+                random = UnityEngine.Random.Range(0, 15);
                 selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
+
+                if (random < 10)
+                {
+                    if (selectedItemId % 10 == 2) selectedItemId -= 1;
+                    else if (selectedItemId % 10 == 3) selectedItemId -= 2;
+                }
+                else if (random >= 10 && random < 14)
+                {
+                    if (selectedItemId % 10 == 1) selectedItemId += 1;
+                    else if (selectedItemId % 10 == 3) selectedItemId -= 1;
+                }
+                else
+                {
+                    if (selectedItemId % 10 == 1) selectedItemId += 2;
+                    else if (selectedItemId % 10 == 2) selectedItemId += 1;
+                }
+
+                if (selectedItemId % 10 == 4) selectedItemId -= 1;
+
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
         }
-        
+
         //WeaponData weaponData = DataBase.Weapon.Get(selectedItemId);
         return itemData;
     }
@@ -498,7 +692,6 @@ public class InventoryController : MonoBehaviour
         if (posOnGrid == null)//설치 불가능 이면 return
         {
             Destroy(itemToInsert.gameObject);
-            Debug.Log("삭제완료");
             return;
         }
 
@@ -511,6 +704,9 @@ public class InventoryController : MonoBehaviour
 
     public void OnStoreReroll()
     {
+        if (isAdding == true)
+            return;
+
         RemoveStoreStock();
 
         for (int i = 0; i < 5; ++i)
@@ -519,16 +715,65 @@ public class InventoryController : MonoBehaviour
         storeGrid.ClearEmptySolts();
     }
 
+    public void InitStoreOnNextStage()
+    {
+        RemoveStoreStock();
+
+        for (int i = 0; i < 5; ++i)
+            InsertRandomStoreItem();
+
+        storeGrid.ClearEmptySolts();
+    }
+
+    public void OnClickStoreReroll()
+    {
+        if (_tempRerollCost > player.Data.Gold || isAdding) return;
+        OnStoreReroll();
+
+        player.Data.Gold -= _tempRerollCost;
+        _tempRerollCost = Mathf.FloorToInt(_tempRerollCost * 1.2f);
+        rerollCount++;
+
+        SetPlayerGoldText();
+        SetRerollButtonText();
+        SoundManager.Instance.PlayAudioClip(PurchaseSoundTag);
+    }
+
+    public void SetRerollButtonText()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("Reroll ");
+
+        sb.Append($"<color=\"yellow\">-{_tempRerollCost.ToString()} G</color>");
+
+        _rerollCostText.text = sb.ToString();
+    }
+
     public void RemoveStoreStock()
     {
-        if (storeGrid.currentStoreItem == null) return;
+        if (storeGrid.currentStoreItem == null || storageGrid.panelSlots == null) return;
 
         storeGrid.ResetPanelStates();
     }
-    
+
+
     public void OnClickNextStageButton()
-    { 
-        nextStage();
+    {
+        if (isAdding == true)
+            return;
+
+        NextStageIsActive(false);
+
+        UIManager.Instance.FadeOut(0.5f, () =>
+        {
+            OnStoreReroll();
+            nextStage();
+            _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
+            _tempRerollCost = _rerollCost;
+            SetRerollButtonText();
+
+            UIManager.Instance.FadeIn(0.5f);
+        });
     }
 
     public void AddStartWeapon(ItemSO item)
@@ -547,17 +792,91 @@ public class InventoryController : MonoBehaviour
         PickUpItem(gridPosition);
         //Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         //PickUpItem(tileGridPosition);
-        if (selectedItem == null) 
+        if (selectedItem == null)
             return;
         playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+
+        // 변경점 : 아이템 판매 시 플레이어 골드에 반영
+        player.Data.Gold += selectedItem.itemSO.Price / 2;
+        SetPlayerGoldText();    // 플레이어 골드 Text 최신화
+
         Destroy(selectedItem.gameObject);
         selectedItem = null;
         SelectedItemGrid.AddCurrentCount(-1);
 
         ItemDescription itemDescription = itemDescriptionUI.GetComponent<ItemDescription>();
 
-        if(itemDescription != null)
+        if (itemDescription != null)
             itemDescription.ExitExplnationUI();
     }
+
+    public void AddRuneStone(ItemSO item)
+    {
+        selectedItemGrid = playerInventoryGrid;
+
+        CreateRuneStoneWithId(item.Id);
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        InsertItem(itemToInsert);
+    }
+
+    private void CreateRuneStoneWithId(int id) //아이템 랜덤 생성
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>(); //빈 아이템 객체 생성
+        selectedItem = inventoryItem;//선택한 아이템 설정
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();//트랜스폼 가져옴
+        rectTransform.SetParent(canvasTransform);//Canvas 위에 그릴 수 있게
+        rectTransform.SetAsLastSibling();//맨 앞으로 보이게 설정
+
+        ItemSO RuneStoneData = GetRuneStone(id);
+        inventoryItem.Set(RuneStoneData);//아이템 설정
+    }
+
+    public ItemSO GetRuneStone(int id)//랜덤한 아이템 반환 
+    {
+        EquipmentsData runeStoneData = DataBase.Equipments.Get(id);
+        return runeStoneData;
+    }
+
+    // 현재 소지 중인 골드로 Text 최신화
+    public void SetPlayerGoldText()
+    {
+        if (player == null || _playerGoldText == null) return;
+
+        //_playerGoldText.text = player.Data.Gold.ToString();
+        StringBuilder sb = new StringBuilder();
+        sb.Append("골드 : ");
+
+        sb.Append(player.Data.Gold.ToString());
+        sb.Append("<color=\"yellow\"> G</color>");
+
+        _playerGoldText.text = sb.ToString();
+    }
+    public void ReSetRerollCount()
+    {
+        rerollCount = 0;
+    }
+
+    private void PrintRerollCount()
+    {
+        Debug.Log($"리롤 카운트 : {rerollCount}");
+    }
+
+    void PrintItemList()
+    {
+        Debug.Log("-----------던전 종료 시 소지 중인 아이템 목록-----------");
+        foreach (var list in playerInventoryGrid.inventory)
+        {
+            foreach (var item in list.Value)
+            {
+                if (list.Key == ItemType.Weapon)
+                    QuestManager.Instance.NotifyQuest(QuestType.Equip,50,1);
+
+                Debug.Log($"{item.itemSO.Name} - {item.itemSO.Grade}");
+            }
+        }
+    }
+
 
 }
