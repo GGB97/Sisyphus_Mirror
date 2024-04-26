@@ -271,7 +271,6 @@ public class ItemManager : MonoBehaviour
             GameObject go = Instantiate(weapon.Prefab, weaponContainer);
             if (go.TryGetComponent<MeleeWeapon>(out MeleeWeapon _weapon))
             {
-                Debug.Log(weapon.Id);
                 _weapon.Init(weapon.Id);
             }
             else go.GetComponent<RangeWeapon>().Init(weapon.Id);

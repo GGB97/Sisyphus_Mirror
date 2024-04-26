@@ -31,7 +31,6 @@ public class ParticleObjectPool : MonoBehaviour
         // 미리 생성
         foreach (Pool pool in _pools)
         {
-            Debug.Log("Particle ObjectPooler Start");
             poolDictionary.Add(pool.id, new Queue<GameObject>());
             for (int i = 0; i < pool.size; ++i)
             {

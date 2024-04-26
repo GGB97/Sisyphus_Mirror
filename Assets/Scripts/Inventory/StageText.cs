@@ -17,7 +17,7 @@ public class StageText : MonoBehaviour
         if (dungeonManager != null)
         {
             TextUpdate();
-            Debug.Log("스테이지 onEnable");
+            //Debug.Log("스테이지 onEnable");
         }
     }
     public void TextUpdate()
