@@ -299,7 +299,7 @@ public class RuneStoneUI : MonoBehaviour
                     break;
             }
         }
-        _playerStatus.InitStatus(_playerStatus, _modifier);
+        _playerStatus.InitStatus(_playerStatus, _modifier, true);
         if (_playerStatusUI.TryGetComponent<RuneStonePlayerStat>(out RuneStonePlayerStat playerStats))
         {
             playerStats.UpdateStatsPanel();

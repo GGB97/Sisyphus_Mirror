@@ -50,7 +50,8 @@ public class CharacterDescription : MonoBehaviour
     {
         RectTransform transform = gameObject.GetComponent<RectTransform>();
         
-        float posX = (transform.rect.width + 500) / 2;
+        // 
+        float posX = (transform.rect.width + 500) / 2;    
         
         Vector2 newPos = transform.position + new Vector3(posX, -100, 0);
         descriptionUI.transform.position = newPos;
