@@ -172,5 +172,6 @@ public class Skill_Base : MonoBehaviour
 
         StopCoroutine(nameof(CoolDown));
         CoolDownInit();
+        ResetBuff();
     }
 }

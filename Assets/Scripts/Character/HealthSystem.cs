@@ -38,7 +38,8 @@ public class HealthSystem : MonoBehaviour
         }
 
         stat = character.currentStat;
-        int damage = Mathf.RoundToInt(value - (value * (stat.def * 0.01f)));
+        float def = stat.def > 90f ? 90f : stat.def;
+        int damage = Mathf.RoundToInt(value - (value * (def * 0.01f)));
 
         #region 보호막 데미지 처리
         stat.shield -= damage;
