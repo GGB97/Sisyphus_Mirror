@@ -1646,7 +1646,7 @@ Transform:
   - {fileID: 7398401361149915247}
   - {fileID: 6320685402560007652}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6094296292131080838
 GameObject:
@@ -44144,9 +44144,19 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 404049917511195599, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 565068468184221248, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 565068468184221248, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 565075818291456110, guid: 114ab6919cf39484e946697e02cfa078,
@@ -44154,9 +44164,19 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 565075818291456110, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 889399729305089795, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 889399729305089795, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 993896116958419404, guid: 114ab6919cf39484e946697e02cfa078,
@@ -44164,15 +44184,30 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 993896116958419404, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1539878353246482621, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539878353246482621, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2605316480486226868, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: m_Name
       value: Lvl up
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605316480486226868, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2608294652711728644, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
@@ -44234,9 +44269,19 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2801501505124197854, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2883240969402054482, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2883240969402054482, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3187302024913976523, guid: 114ab6919cf39484e946697e02cfa078,
@@ -44244,9 +44289,19 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3187302024913976523, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4480478777089510912, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480478777089510912, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4480998560539544636, guid: 114ab6919cf39484e946697e02cfa078,
@@ -44254,9 +44309,19 @@ PrefabInstance:
       propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4480998560539544636, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5505096340165731108, guid: 114ab6919cf39484e946697e02cfa078,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505096340165731108, guid: 114ab6919cf39484e946697e02cfa078,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

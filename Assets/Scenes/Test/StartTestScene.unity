@@ -1026,6 +1026,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8681998657783959048, guid: 0ee6dd524a353aa4194166b6ef79a81a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GameExitButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8773019133474459386, guid: 0ee6dd524a353aa4194166b6ef79a81a,
         type: 3}
       propertyPath: option

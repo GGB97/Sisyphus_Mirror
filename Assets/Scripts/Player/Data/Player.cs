@@ -37,6 +37,9 @@ public class Player : CharacterBehaviour
 
     public float magnetDistance;
 
+    public string HitSound = "Player_Hit";
+    public string DieSound = "Player_Die";
+
     [SerializeField] GameObject shield_Obj;
     [SerializeField] GameObject hitEffect;
 
