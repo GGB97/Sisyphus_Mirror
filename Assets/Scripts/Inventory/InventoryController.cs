@@ -51,7 +51,7 @@ public class InventoryController : MonoBehaviour
     public Dictionary<ItemGrade, BlockColor> BlockColorDictionary = new Dictionary<ItemGrade, BlockColor>();
     public int addCount = 6;//추가 칸 개수
     [SerializeField]
-    private int blocksPerLevel = 2;//레벨 당 추가할 블록 수
+    private int blocksPerLevel = 1;//레벨 당 추가할 블록 수
 
     public Vector2 startPosition;//처음 위치
     public float startRotation;//처음 회전상태
@@ -164,22 +164,19 @@ public class InventoryController : MonoBehaviour
     public void AddBlock()//칸 확장 기능
     {
         //플레이어 레벨에 맞게 addCount 변경
-        int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정
+        int addLevel = LevelCounting();//레벨업을 얼마나 했는지 설정 /isAdding 설정
         addCount = addLevel * blocksPerLevel;//블럭 추가를 몇번 실행할지 결정 ( 레벨 * 레벨당 추가할 블록 수)
 
-        if (addCount != 0)
+        if (addCount != 0 && playerInventoryGrid.GetAddableSlotCount() != 0)//추가할 블록이 있으면서 남은 칸 확장 슬롯이 있을 때
         {
             addBlockDescription.Active(true);
+            SelectedItemGrid = playerInventoryGrid;
+            playerInventoryGrid.ShowRandomAddableSlot();
         }
         else
         {
             addBlockDescription.Active(false);
-        }
-
-        if (addCount != 0)//추가할 블록이 있다면 실행
-        {
-            SelectedItemGrid = playerInventoryGrid;
-            playerInventoryGrid.ShowRandomAddableSlot();
+            isAdding = false;
         }
     }
     private void InsertRandomItem()//아이템 랜덤 생성 후 배치

@@ -354,4 +354,8 @@ public class PlayerInventory : ItemGrid
     {
         combineList.Clear();
     }
+    public int GetAddableSlotCount()
+    {
+        return addableSlotList.Count;
+    }
 }

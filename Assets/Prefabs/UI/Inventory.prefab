@@ -2913,7 +2913,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4cbdea3adbd0e1d4e8146922c88d55b2, type: 2}
   - {fileID: 11400000, guid: d381f5ee016c7c140930a2d78c4e7139, type: 2}
   addCount: 6
-  blocksPerLevel: 2
+  blocksPerLevel: 1
   startPosition: {x: 0, y: 0}
   startRotation: 0
   nextStageButton: {fileID: 1124596742417385973}
