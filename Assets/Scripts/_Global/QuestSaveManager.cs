@@ -22,7 +22,7 @@ public class QuestSaveManager : SingletoneBase<QuestSaveManager>
     QuestSaveData saveData = new QuestSaveData();
     QuestManager questManager;
     public event Action loadDataEvent;
-    private string dataKey = "QuestSaveData11";
+    private string dataKey = "QuestSaveData12";
     private void Awake()
     {
         if(Instance != this)
