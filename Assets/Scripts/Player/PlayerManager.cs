@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     public List<GameObject> players = new List<GameObject>();
     private GameObject currentPlayer;
-
+    
     [SerializeField] CinemachineVirtualCamera vcam;
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     public void ChangePlayer(int index)
     {
         Destroy(currentPlayer);
-        currentPlayer = Instantiate(players[index]);
+        currentPlayer = Instantiate(players[index + 1]);
         GameManager.Instance.SetPlayer(currentPlayer.GetComponent<Player>());
 
         vcam.Follow = currentPlayer.transform;
