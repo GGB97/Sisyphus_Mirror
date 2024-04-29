@@ -794,7 +794,8 @@ public class InventoryController : MonoBehaviour
         //PickUpItem(tileGridPosition);
         if (selectedItem == null)
             return;
-        playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+        if(selectedItemGrid == playerInventoryGrid)
+            playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
 
         // 변경점 : 아이템 판매 시 플레이어 골드에 반영
         player.Data.Gold += selectedItem.itemSO.Price / 2;
