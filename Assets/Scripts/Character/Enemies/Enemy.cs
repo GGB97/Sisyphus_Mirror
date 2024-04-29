@@ -93,7 +93,12 @@ public class Enemy : CharacterBehaviour
         StartSpawn();
 
         Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
-        stateMachine.ChangeState(stateMachine.IdleState);
+
+        if(DungeonManager.Instance.gameState == DungeonState.Playing)
+            stateMachine.ChangeState(stateMachine.IdleState);
+        else if (DungeonManager.Instance.gameState == DungeonState.Clear)
+            stateMachine.ChangeState(stateMachine.DieState);
+
 
         InvokeChangeHealth();
     }

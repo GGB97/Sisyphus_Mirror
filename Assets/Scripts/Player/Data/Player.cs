@@ -83,7 +83,9 @@ public class Player : CharacterBehaviour
             _dungeonManager.OnStageStart += ResetMagnet;
             _dungeonManager.OnStageStart += ResetShield;
             _dungeonManager.OnStageStart += UnInvincibility;
+            _dungeonManager.OnStageStart += EnablePlayerInput;
 
+            _dungeonManager.OnStageClear += DisablePlayerInput;
             _dungeonManager.OnStageClear += Invincibility;
             _dungeonManager.OnStageClear += StageClearGetitem;
         }
@@ -98,7 +100,9 @@ public class Player : CharacterBehaviour
                 _dungeonManager.OnStageStart -= ResetMagnet;
                 _dungeonManager.OnStageStart -= ResetShield;
                 _dungeonManager.OnStageStart -= UnInvincibility;
+                _dungeonManager.OnStageStart -= EnablePlayerInput;
 
+                _dungeonManager.OnStageClear -= DisablePlayerInput;
                 _dungeonManager.OnStageClear -= Invincibility;
                 _dungeonManager.OnStageClear -= StageClearGetitem;
             }
@@ -277,5 +281,14 @@ public class Player : CharacterBehaviour
         yield return new WaitForSeconds(0.2f);
         
         hitEffect.SetActive(false);
+    }
+
+    void EnablePlayerInput()
+    {
+        Input.enabled = true;
+    }
+    void DisablePlayerInput()
+    {
+        Input.enabled = false;
     }
 }
