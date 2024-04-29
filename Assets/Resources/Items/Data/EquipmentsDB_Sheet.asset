@@ -136,7 +136,7 @@ MonoBehaviour:
     _physicalAtk: 15
     _magicAtk: 0
     _def: 0
-    _atkSpeed: 10
+    _atkSpeed: 5
     _moveSpeed: 3
     _critRate: 10
     _critDamage: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
     _magicAtk: 20
     _def: 0
     _atkSpeed: 5
-    _moveSpeed: 5
+    _moveSpeed: 1
     _critRate: 10
     _critDamage: 0
     _lifeSteal: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     _magicAtk: 35
     _def: 0
     _atkSpeed: 2
-    _moveSpeed: 3
+    _moveSpeed: 0
     _critRate: 10
     _critDamage: 10
     _lifeSteal: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     _magicAtk: 0
     _def: 0
     _atkSpeed: 10
-    _moveSpeed: 3
+    _moveSpeed: 0
     _critRate: 10
     _critDamage: 10
     _lifeSteal: 10
