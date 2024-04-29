@@ -58,4 +58,15 @@ public class EquipmentsDB
     {
         return _equipments.GetEnumerator();
     }
+    public bool CheckItemId(int targetId)
+    {
+        foreach (var id in idList)
+        {
+            if (id == targetId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
