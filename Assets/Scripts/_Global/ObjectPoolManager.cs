@@ -108,7 +108,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void DisableChild()
     {
-        var projectiles = GetComponentsInChildren<GameObject>(true);
+        var projectiles = GetComponentsInChildren<GameObject>(false);
 
         foreach (var item in projectiles)
         {
