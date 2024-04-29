@@ -105,4 +105,14 @@ public class ObjectPoolManager : MonoBehaviour
             poolDictionary[id].Enqueue(obj);
         else Destroy(obj);
     }
+
+    public void DisableChild()
+    {
+        var projectiles = GetComponentsInChildren<GameObject>(false);
+
+        foreach (var item in projectiles)
+        {
+            item.SetActive(false);
+        }
+    }
 }
