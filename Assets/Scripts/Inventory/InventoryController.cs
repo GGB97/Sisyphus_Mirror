@@ -642,19 +642,23 @@ public class InventoryController : MonoBehaviour
             case 1:
                 selectedItemId = UnityEngine.Random.Range(1, DataBase.Equipments.GetItemIdCount()); // 룬스톤을 제외한 나머지 Equipments 범위에서 ID 가져오기
                 selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
+
                 itemData = DataBase.Equipments.Get(selectedItemId);
                 break;
             default:
                 selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
-                random = UnityEngine.Random.Range(0, 15);
+
+                int range = 20 - (DungeonManager.Instance.currnetstage / 5) >= 15 ? 20 - (DungeonManager.Instance.currnetstage / 5) : 15;
+
+                random = UnityEngine.Random.Range(0, range);
                 selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
 
-                if (random < 10)
+                if (random < range - 3)
                 {
                     if (selectedItemId % 10 == 2) selectedItemId -= 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 2;
                 }
-                else if (random >= 10 && random < 14)
+                else if (random >= range - 3 && random < range - 1)
                 {
                     if (selectedItemId % 10 == 1) selectedItemId += 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 1;
@@ -665,7 +669,7 @@ public class InventoryController : MonoBehaviour
                     else if (selectedItemId % 10 == 2) selectedItemId += 1;
                 }
 
-                if (selectedItemId % 10 == 4) selectedItemId -= 1;
+                if (selectedItemId % 10 == 4) selectedItemId -= 3;
 
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
@@ -768,7 +772,8 @@ public class InventoryController : MonoBehaviour
         {
             OnStoreReroll();
             nextStage();
-            _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
+            if (DungeonManager.Instance.currnetstage < 20) _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
+            else _rerollCost += 10;
             _tempRerollCost = _rerollCost;
             SetRerollButtonText();
 
@@ -794,7 +799,8 @@ public class InventoryController : MonoBehaviour
         //PickUpItem(tileGridPosition);
         if (selectedItem == null)
             return;
-        playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+        if(selectedItemGrid == playerInventoryGrid)
+            playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
 
         // 변경점 : 아이템 판매 시 플레이어 골드에 반영
         player.Data.Gold += selectedItem.itemSO.Price / 2;
