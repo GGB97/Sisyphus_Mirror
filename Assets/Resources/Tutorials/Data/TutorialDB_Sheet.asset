@@ -145,7 +145,7 @@ MonoBehaviour:
     _tutorialType: 1
     _tutorialName: "\uCE90\uB9AD\uD130 \uC2A4\uD0AC"
     _tutorialText: "\uAC01 \uCE90\uB9AD\uD130\uC5D0\uAC8C\uB294 <color=\"yellow\">\uC804\uC6A9
-      \uC2A4\uD0AC</color>\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC744 <color=\"red\">R\uD0A4</color>\uB97C
+      \uC2A4\uD0AC</color>\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uC2A4\uD0AC\uC744 <color=\"red\">Q\uD0A4</color>\uB97C
       \uB20C\uB7EC \uC0AC\uC6A9\uD558\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     _imagePath: Tutorials/Image/Inventory/Character_Skill_1
     _hasNextPage: 1
