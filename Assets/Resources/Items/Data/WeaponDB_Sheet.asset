@@ -25,7 +25,7 @@ MonoBehaviour:
     _price: 24
     _weight: 10
     _grade: 0
-    _physicalAtk: 30
+    _physicalAtk: 20
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
     _price: 68
     _weight: 10
     _grade: 1
-    _physicalAtk: 45
+    _physicalAtk: 30
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 3
@@ -74,7 +74,7 @@ MonoBehaviour:
     _price: 186
     _weight: 10
     _grade: 2
-    _physicalAtk: 60
+    _physicalAtk: 40
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 5
@@ -98,13 +98,13 @@ MonoBehaviour:
     _price: 558
     _weight: 10
     _grade: 3
-    _physicalAtk: 120
+    _physicalAtk: 80
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 5
     _critDamage: 5
     _range: 7
-    _lifeSteal: 5
+    _lifeSteal: 4
     _type: 0
     _projectileID: 0
     _numberOfProjectile: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
     _price: 618
     _weight: 15
     _grade: 3
-    _physicalAtk: 50
+    _physicalAtk: 100
     _magicAtk: 0
     _atkSpeed: 1
     _critRate: 5
