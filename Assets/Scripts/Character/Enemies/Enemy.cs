@@ -165,7 +165,7 @@ public class Enemy : CharacterBehaviour
         StaticInstanceInit();
 
         dropGoldValue = Info.gold + ((_dungeonManager.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
-        dropGoldValue = dropGoldValue > EnemyStageModifier.maxDropGold ? EnemyStageModifier.maxDropGold : EnemyStageModifier.maxDropGold;
+        dropGoldValue = dropGoldValue > EnemyStageModifier.maxDropGold ? EnemyStageModifier.maxDropGold : dropGoldValue;
 
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.
