@@ -330,11 +330,15 @@ public class InventoryController : MonoBehaviour
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
+        if (selectedItem == null)//추가
+            return;
         startRotation = selectedItem.rotationDegree;//처음 회전 값 저장.
         SelectedItemGrid.AddCurrentCount(-1);
     }
     public void LeftMouseButtonPut()//마우스 뗀 순간
     {
+        if (selectedItem == null)//추가
+            return;
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem은 유지
         {

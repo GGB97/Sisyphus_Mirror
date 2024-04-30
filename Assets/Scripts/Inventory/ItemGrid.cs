@@ -249,6 +249,9 @@ public class ItemGrid : MonoBehaviour
 
     public InventoryItem PickUpItem(int x, int y)//x,y에 해당하는 아이템을 반환 있던 자리는 null
     {
+        if(gridSizeWidth <= x || gridSizeHeight <= y || x < 0 || y < 0)//추가
+            return null;
+
         InventoryItem toReturn = inventoryItemSlot[x, y]; //아이템 임시 저장.
 
         if (toReturn == null) { return null; } //빈 공간을 터치했을 때 널 리턴
