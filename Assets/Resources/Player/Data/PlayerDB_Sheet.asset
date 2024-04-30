@@ -24,7 +24,7 @@ MonoBehaviour:
     moveSpeed: 6
     knockbackPower: 0
     dashRange: 0.25
-    dashCoolTime: 1
+    dashCoolTime: 2
     critRate: 0
     critDamage: 0
     lifeSteal: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     moveSpeed: 5
     knockbackPower: 0
     dashRange: 0.25
-    dashCoolTime: 1
+    dashCoolTime: 2
     critRate: 0
     critDamage: 0
     lifeSteal: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     moveSpeed: 5
     knockbackPower: 0
     dashRange: 0.25
-    dashCoolTime: 1
+    dashCoolTime: 2
     critRate: 10
     critDamage: 10
     lifeSteal: 0
