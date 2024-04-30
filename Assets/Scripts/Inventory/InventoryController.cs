@@ -70,6 +70,9 @@ public class InventoryController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _rerollCostText;
     public int rerollCount = 0;
 
+    [Header("ItemGrade")]
+    public Dictionary<int, bool> hasEpicWeaponFlag = new Dictionary<int, bool>();
+
     [SerializeField] int _tutorialId;
 
     public string PurchaseSoundTag = "Purchase";
@@ -92,8 +95,7 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.Instance;
-        _gameManager.onGameOverEvent += PrintItemList;
-        _gameManager.onGameOverEvent += PrintRerollCount;
+        _gameManager.onGameOverEvent += OnGameOver;
 
         player = _gameManager.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
@@ -112,8 +114,7 @@ public class InventoryController : MonoBehaviour
     }
     private void OnDisable()
     {
-        _gameManager.onGameOverEvent -= PrintItemList;
-        _gameManager.onGameOverEvent -= PrintRerollCount;
+        _gameManager.onGameOverEvent -= OnGameOver;
     }
 
     private void Update()
@@ -562,6 +563,11 @@ public class InventoryController : MonoBehaviour
         PlaceItem(new Vector2Int(posX, posY));//처음 위치에 설치
         playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
         playerInventoryGrid.AddCurrentCount(1);
+
+        // 만약 합친 아이템이 에픽 무기일 경우, hasEpicWeaponFlag에 추가.
+        // hasEpicWeaponFlag : 현재 소지 중인 에픽 무기를 체크하기 위한 딕셔너리.
+        if (nextId % 10 == 4)
+            hasEpicWeaponFlag.Add(nextId, true);
     }
     public void UseConsumableItem(InventoryItem currentItem)
     {
@@ -802,6 +808,10 @@ public class InventoryController : MonoBehaviour
         if(selectedItemGrid == playerInventoryGrid)
             playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
 
+        // 에픽 무기 판매 시 hasEpicWeaponFlag 딕셔너리에서 해당하는 에픽 무기 제거
+        if (hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id) && hasEpicWeaponFlag[currentItem.itemSO.Id] == true)
+            hasEpicWeaponFlag.Remove(currentItem.itemSO.Id);
+
         // 변경점 : 아이템 판매 시 플레이어 골드에 반영
         player.Data.Gold += selectedItem.itemSO.Price / 2;
         SetPlayerGoldText();    // 플레이어 골드 Text 최신화
@@ -884,5 +894,12 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    // 게임 오버 시 호출되는 이벤트들 정리.
+    void OnGameOver()
+    {
+        hasEpicWeaponFlag.Clear();
 
+        PrintRerollCount();
+        PrintItemList();
+    }
 }

@@ -228,13 +228,13 @@ public class RuneStoneUI : MonoBehaviour
 
         if (_runeStoneSlider.value >= 0.45f && _runeStoneSlider.value <= 0.55f)
         {
-            bonusMin = 1;
-            bonusMax = 4;
+            bonusMin = 3;
+            bonusMax = 5;
         }
         else if (_runeStoneSlider.value >= 0.33f && _runeStoneSlider.value <= 0.66f)
         {
             bonusMin = 1;
-            bonusMax = 2;
+            bonusMax = 3;
         }
         else if (_runeStoneSlider.value >= 0.2f && _runeStoneSlider.value <= 0.8f)
         {

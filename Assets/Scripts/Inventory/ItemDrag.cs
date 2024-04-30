@@ -125,4 +125,13 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             }
         }
     }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause && transform.parent.GetComponent<ItemGrid>() == null)
+        {
+            inventoryController.LeftMouseButtonPut();
+            image.raycastTarget = true;
+        }
+    }
 }
