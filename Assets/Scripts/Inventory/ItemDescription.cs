@@ -90,7 +90,14 @@ public class ItemDescription : MonoBehaviour
         StringBuilder sb = currentItem.itemSO.SetExplantion(currentItem.itemSO);//설명 부분
 
         if(CheckNextItem(currentItem.itemSO.ItemType, currentItem.itemSO.Id+1))//다음 등급이 있는지 체크
-            sb.Append($"다음 등급 : <color=green>있음</color>");
+        {
+            if (!InventoryController.Instance.hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id + 1) || InventoryController.Instance.hasEpicWeaponFlag[currentItem.itemSO.Id + 1] == false)
+            {
+                sb.Append($"다음 등급 : <color=green>있음</color>");
+            }
+            else
+                sb.Append($"다음 등급 : <color=red>이미 소지 중</color>");
+        }
         else
             sb.Append($"다음 등급 : <color=red>없음</color>");
 
@@ -130,7 +137,7 @@ public class ItemDescription : MonoBehaviour
 
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
-                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true)//다음 등급 있을 때만
+                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && (!InventoryController.Instance.hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id + 1) || InventoryController.Instance.hasEpicWeaponFlag[currentItem.itemSO.Id + 1] == false))//다음 등급 있을 때만
                 {
                     combineButton.gameObject.SetActive(true);
                     if (inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
