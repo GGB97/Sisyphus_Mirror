@@ -14,6 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities:
   - health: 0
+    maxHealth: 1
+    shield: 0
+    attackRange: 0
+    physicalAtk: 0
+    magicAtk: 0
+    def: 0
+    attackSpeed: 0
+    moveSpeed: 6
+    knockbackPower: 0
+    dashRange: 0.25
+    dashCoolTime: 2
+    critRate: 0
+    critDamage: 0
+    lifeSteal: 0
+    weight: 0
+    _lv: 1
+    _exp: 0
+    _maxEXP: 2000
+    _startItemID: 10121011
+    _startInventory: 2
+    id: 20000000
+    prefabPath: Player/Prefabs/MC02
+    Gold: 0
+    LV: 0
+    EXP: 0
+    maxEXP: 0
+    description: "\uAE30\uBCF8 \uCE90\uB9AD"
+    job: "\uC720\uB839"
+  - health: 0
     maxHealth: 60
     shield: 0
     attackRange: 0
@@ -24,7 +53,7 @@ MonoBehaviour:
     moveSpeed: 5
     knockbackPower: 0
     dashRange: 0.25
-    dashCoolTime: 1
+    dashCoolTime: 2
     critRate: 0
     critDamage: 0
     lifeSteal: 0
@@ -55,7 +84,7 @@ MonoBehaviour:
     moveSpeed: 5
     knockbackPower: 0
     dashRange: 0.25
-    dashCoolTime: 1
+    dashCoolTime: 2
     critRate: 10
     critDamage: 10
     lifeSteal: 0

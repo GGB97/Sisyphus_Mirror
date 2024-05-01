@@ -188,9 +188,10 @@ GameObject:
   - component: {fileID: -8233549704665718501}
   - component: {fileID: 9096970910352448780}
   - component: {fileID: 2767279200517724882}
-  m_Layer: 0
+  - component: {fileID: 7402323654186673714}
+  m_Layer: 4
   m_Name: MC02
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,12 +246,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081e51171e37d8a4ba6942085b29b481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 20000000
+  activeID: 0
   currentStat:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -261,14 +264,23 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   isDie: 0
+  isDieTrigger: 0
   isHit: 0
   knockbackDelay: 0
+  isInvincibility: 0
   <Data>k__BackingField:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -279,17 +291,26 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
     id: 0
     prefabPath: 
+    Gold: 0
     LV: 0
     EXP: 0
     maxEXP: 0
-    startItemID: 0
+    description: 
+    job: 
   modifire:
     health: 0
     maxHealth: 0
+    shield: 0
     attackRange: 0
-    meleeAtk: 0
+    physicalAtk: 0
     magicAtk: 0
     def: 0
     attackSpeed: 0
@@ -300,6 +321,12 @@ MonoBehaviour:
     critRate: 0
     critDamage: 0
     lifeSteal: 0
+    weight: 0
+    _lv: 0
+    _exp: 0
+    _maxEXP: 0
+    _startItemID: 0
+    _startInventory: 0
   <AnimationData>k__BackingField:
     idleParameterName: Idle
     walkParameterName: Walk
@@ -309,6 +336,12 @@ MonoBehaviour:
   HealthSystem: {fileID: 0}
   hitDelay: 0
   health: 0
+  rune: 0
+  magnetDistance: 0
+  HitSound: Player_Hit
+  DieSound: Player_Die
+  shield_Obj: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!114 &9096970910352448780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +380,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &7402323654186673714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177284364072251648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868e96c79e9a1b748880021980372e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCanvas: {fileID: 0}
+  Ps_Healing: {fileID: 0}
 --- !u!1 &1228525125906903531
 GameObject:
   m_ObjectHideFlags: 0

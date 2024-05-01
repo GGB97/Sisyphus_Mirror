@@ -147,6 +147,8 @@ public class DungeonManager : SingletoneBase<DungeonManager>
             OpenInventory();
             OnClearUI?.Invoke(currnetstage);
             UIManager.Instance.FadeIn(0.5f);
+
+            ObjectPoolManager.Instance.DisableChild();
         });
     }
 

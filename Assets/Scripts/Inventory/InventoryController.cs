@@ -70,6 +70,9 @@ public class InventoryController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _rerollCostText;
     public int rerollCount = 0;
 
+    [Header("ItemGrade")]
+    public Dictionary<int, bool> hasEpicWeaponFlag = new Dictionary<int, bool>();
+
     [SerializeField] int _tutorialId;
 
     public string PurchaseSoundTag = "Purchase";
@@ -92,8 +95,7 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.Instance;
-        _gameManager.onGameOverEvent += PrintItemList;
-        _gameManager.onGameOverEvent += PrintRerollCount;
+        _gameManager.onGameOverEvent += OnGameOver;
 
         player = _gameManager.Player;
         InventoryStats.Instance?.UpdateStatsPanel();
@@ -112,8 +114,7 @@ public class InventoryController : MonoBehaviour
     }
     private void OnDisable()
     {
-        _gameManager.onGameOverEvent -= PrintItemList;
-        _gameManager.onGameOverEvent -= PrintRerollCount;
+        _gameManager.onGameOverEvent -= OnGameOver;
     }
 
     private void Update()
@@ -329,11 +330,15 @@ public class InventoryController : MonoBehaviour
     {
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 Grid 좌표 가져옴
         PickUpItem(tileGridPosition);//마우스 위치의 아이템을 들고 selectedItem 설정
+        if (selectedItem == null)//추가
+            return;
         startRotation = selectedItem.rotationDegree;//처음 회전 값 저장.
         SelectedItemGrid.AddCurrentCount(-1);
     }
     public void LeftMouseButtonPut()//마우스 뗀 순간
     {
+        if (selectedItem == null)//추가
+            return;
         Vector2Int tileGridPosition = GetTileGridPosition();//마우스 위치의 grid 상 첫 칸의 좌표
         if (DragPlaceItem(tileGridPosition) == false)//설치할 수 없으면 selectedItem은 유지
         {
@@ -562,6 +567,11 @@ public class InventoryController : MonoBehaviour
         PlaceItem(new Vector2Int(posX, posY));//처음 위치에 설치
         playerInventoryGrid.AddItemToInventory(nextItem);//플레이어 인벤토리에 데이터 저장
         playerInventoryGrid.AddCurrentCount(1);
+
+        // 만약 합친 아이템이 에픽 무기일 경우, hasEpicWeaponFlag에 추가.
+        // hasEpicWeaponFlag : 현재 소지 중인 에픽 무기를 체크하기 위한 딕셔너리.
+        if (nextId % 10 == 4)
+            hasEpicWeaponFlag.Add(nextId, true);
     }
     public void UseConsumableItem(InventoryItem currentItem)
     {
@@ -642,19 +652,23 @@ public class InventoryController : MonoBehaviour
             case 1:
                 selectedItemId = UnityEngine.Random.Range(1, DataBase.Equipments.GetItemIdCount()); // 룬스톤을 제외한 나머지 Equipments 범위에서 ID 가져오기
                 selectedItemId = DataBase.Equipments.GetItemId(selectedItemId);
+
                 itemData = DataBase.Equipments.Get(selectedItemId);
                 break;
             default:
                 selectedItemId = UnityEngine.Random.Range(0, DataBase.Weapon.GetItemIdCount());
-                random = UnityEngine.Random.Range(0, 15);
+
+                int range = 20 - (DungeonManager.Instance.currnetstage / 5) >= 15 ? 20 - (DungeonManager.Instance.currnetstage / 5) : 15;
+
+                random = UnityEngine.Random.Range(0, range);
                 selectedItemId = DataBase.Weapon.GetItemId(selectedItemId);
 
-                if (random < 10)
+                if (random < range - 3)
                 {
                     if (selectedItemId % 10 == 2) selectedItemId -= 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 2;
                 }
-                else if (random >= 10 && random < 14)
+                else if (random >= range - 3 && random < range - 1)
                 {
                     if (selectedItemId % 10 == 1) selectedItemId += 1;
                     else if (selectedItemId % 10 == 3) selectedItemId -= 1;
@@ -665,7 +679,7 @@ public class InventoryController : MonoBehaviour
                     else if (selectedItemId % 10 == 2) selectedItemId += 1;
                 }
 
-                if (selectedItemId % 10 == 4) selectedItemId -= 1;
+                if (selectedItemId % 10 == 4) selectedItemId -= 3;
 
                 itemData = DataBase.Weapon.Get(selectedItemId);
                 break;
@@ -768,7 +782,8 @@ public class InventoryController : MonoBehaviour
         {
             OnStoreReroll();
             nextStage();
-            _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
+            if (DungeonManager.Instance.currnetstage < 20) _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
+            else _rerollCost += 10;
             _tempRerollCost = _rerollCost;
             SetRerollButtonText();
 
@@ -794,7 +809,12 @@ public class InventoryController : MonoBehaviour
         //PickUpItem(tileGridPosition);
         if (selectedItem == null)
             return;
-        playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+        if(selectedItemGrid == playerInventoryGrid)
+            playerInventoryGrid.SubtractItemFromInventory(selectedItem);//아이템 없애고
+
+        // 에픽 무기 판매 시 hasEpicWeaponFlag 딕셔너리에서 해당하는 에픽 무기 제거
+        if (hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id) && hasEpicWeaponFlag[currentItem.itemSO.Id] == true)
+            hasEpicWeaponFlag.Remove(currentItem.itemSO.Id);
 
         // 변경점 : 아이템 판매 시 플레이어 골드에 반영
         player.Data.Gold += selectedItem.itemSO.Price / 2;
@@ -878,5 +898,12 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    // 게임 오버 시 호출되는 이벤트들 정리.
+    void OnGameOver()
+    {
+        hasEpicWeaponFlag.Clear();
 
+        PrintRerollCount();
+        PrintItemList();
+    }
 }

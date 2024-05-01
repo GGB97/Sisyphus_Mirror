@@ -88,6 +88,19 @@ public class ItemDescription : MonoBehaviour
         gradeText.color = inventoryController.BlockColorDictionary[currentItem.itemSO.Grade].color;
         //gradeText.color = Utilities.HexColor(inventoryController.BlockColorDictionary[currentItem.itemSO.Grade].color);
         StringBuilder sb = currentItem.itemSO.SetExplantion(currentItem.itemSO);//설명 부분
+
+        if(CheckNextItem(currentItem.itemSO.ItemType, currentItem.itemSO.Id+1))//다음 등급이 있는지 체크
+        {
+            if (!InventoryController.Instance.hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id + 1) || InventoryController.Instance.hasEpicWeaponFlag[currentItem.itemSO.Id + 1] == false)
+            {
+                sb.Append($"다음 등급 : <color=green>있음</color>");
+            }
+            else
+                sb.Append($"다음 등급 : <color=red>이미 소지 중</color>");
+        }
+        else
+            sb.Append($"다음 등급 : <color=red>없음</color>");
+
         descriptionText.text = sb.ToString();//설명 부분
 
         if (buttonPanel.activeSelf == true)
@@ -97,9 +110,17 @@ public class ItemDescription : MonoBehaviour
     public void UISettingsAvailable()//버튼 UI를 표시할지 정하고 설명 적기
     {
         ItemGrid currentGrid = inventoryController.SelectedItemGrid;
-        if (currentGrid == inventoryController.storeGrid || currentGrid == inventoryController.storageGrid)
+        if (currentGrid == inventoryController.storeGrid)
         {
             buttonPanel.SetActive(false);
+        }
+        else if (currentGrid == inventoryController.storageGrid)//창고라면
+        {
+            putOutSideButton.gameObject.SetActive(false);//빼두기 off
+            combineButton.gameObject.SetActive(false);//합치기 off
+            useButton.gameObject.SetActive(false);//사용하기 off
+            sellButton.gameObject.SetActive(true);//판매 on
+            buttonPanel.SetActive(true);//버튼 패널 활성화
         }
         else if (currentGrid == inventoryController.playerInventoryGrid) //플레이어 인벤토리일 경우
         {
@@ -116,8 +137,8 @@ public class ItemDescription : MonoBehaviour
 
             if (currentItem.itemSO.ItemType == ItemType.Weapon)//아이템 종류가 무기일 때만 combine 버튼 활성화 
             {
-                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true)//다음 등급 있을 때만
-                { 
+                if (DataBase.Weapon.CheckItemId(currentItem.itemSO.Id + 1) == true && (!InventoryController.Instance.hasEpicWeaponFlag.ContainsKey(currentItem.itemSO.Id + 1) || InventoryController.Instance.hasEpicWeaponFlag[currentItem.itemSO.Id + 1] == false))//다음 등급 있을 때만
+                {
                     combineButton.gameObject.SetActive(true);
                     if (inventoryController.CheckUpgradableItem(currentItem.itemSO.Id) == true)
                     {
@@ -169,6 +190,24 @@ public class ItemDescription : MonoBehaviour
         }
 
         SetDescriptionText();//설명 적기
+    }
+    public bool CheckNextItem(ItemType itemType, int itemId)
+    {
+        bool isBool;
+        switch (itemType) 
+        {
+            case ItemType.Consumable:
+                isBool = DataBase.Consumable.CheckItemId(itemId);
+                return isBool;
+            case ItemType.Weapon:
+                isBool = DataBase.Weapon.CheckItemId(itemId);
+                return isBool;
+            case ItemType.Equipments:
+                isBool = DataBase.Equipments.CheckItemId(itemId);
+                return isBool;
+            default: 
+                return false;
+        }
     }
     public void ClickSellItemButton()//아이템 판매 버튼
     {

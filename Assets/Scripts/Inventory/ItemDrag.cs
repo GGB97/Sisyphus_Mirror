@@ -34,7 +34,7 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             inventoryController.startPosition = transform.position; ;//시작 위치 지정
             inventoryController.LeftMouseButtonPress();
         }
-        else if (eventData.button == PointerEventData.InputButton.Right && inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid)//오른쪽 눌렀을 때
+        else if (eventData.button == PointerEventData.InputButton.Right && ( inventoryController.SelectedItemGrid == inventoryController.playerInventoryGrid || inventoryController.SelectedItemGrid == inventoryController.storageGrid))//오른쪽 눌렀을 때
         {
             isPressed = true;
             if (itemDesription != null)
@@ -123,6 +123,15 @@ public class ItemDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             {
                 StopCoroutine(displayCoroutine); // 딜레이 후 UI 표시 코루틴 중지
             }
+        }
+    }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause && transform.parent.GetComponent<ItemGrid>() == null)
+        {
+            image.raycastTarget = true;
+            inventoryController.LeftMouseButtonPut();
         }
     }
 }

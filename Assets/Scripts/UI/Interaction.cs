@@ -39,7 +39,7 @@ public class Interaction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
+        if ((LayerData.Player | LayerData.Water) == (1 << other.gameObject.layer | (LayerData.Player | LayerData.Water)))
         {
             InteractionInfo.transform.forward = Camera.main.transform.forward;
             InteractionInfo.SetActive(true);
@@ -50,7 +50,7 @@ public class Interaction : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (LayerData.Player == (1 << other.gameObject.layer | LayerData.Player))
+        if ((LayerData.Player | LayerData.Water) == (1 << other.gameObject.layer | (LayerData.Player | LayerData.Water)))
         {
             InteractionInfo.SetActive(false);
             onInteract = false;

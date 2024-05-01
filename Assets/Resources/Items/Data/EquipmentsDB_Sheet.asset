@@ -120,27 +120,6 @@ MonoBehaviour:
     _critRate: 5
     _critDamage: 10
     _lifeSteal: 0
-  - _id: 10201051
-    _itemType: 1
-    _name: "\uC9C0\uD321\uC774\uCE7C"
-    _description: "\uCE7C\uC774 \uB4E0 \uC9C0\uD321\uC774. \uB2E4\uB9CC \uC7A5\uC2DD\uC6A9\uC774\uB2E4."
-    _spritePath: Items/Icons/Equipments/Accessories_5
-    _iconWidth: 1
-    _iconHeight: 3
-    _prefabPath: None
-    _price: 85
-    _weight: 2
-    _grade: 1
-    _type: 1
-    _health: 0
-    _physicalAtk: 15
-    _magicAtk: 0
-    _def: 0
-    _atkSpeed: 10
-    _moveSpeed: 3
-    _critRate: 10
-    _critDamage: 0
-    _lifeSteal: 5
   - _id: 10202011
     _itemType: 1
     _name: "\uD50C\uB808\uC774\uD2B8 \uD22C\uAD6C"
@@ -179,10 +158,31 @@ MonoBehaviour:
     _magicAtk: 20
     _def: 0
     _atkSpeed: 5
-    _moveSpeed: 5
+    _moveSpeed: 1
     _critRate: 10
     _critDamage: 0
     _lifeSteal: 0
+  - _id: 10201051
+    _itemType: 1
+    _name: "\uB300\uB2E8\uD55C\uC9C0\uD321\uC774"
+    _description: "\uCE7C\uC774 \uB4E0 \uC9C0\uD321\uC774. \uB2E4\uB9CC \uC7A5\uC2DD\uC6A9\uC774\uB2E4."
+    _spritePath: Items/Icons/Equipments/Accessories_5
+    _iconWidth: 1
+    _iconHeight: 3
+    _prefabPath: None
+    _price: 140
+    _weight: 2
+    _grade: 2
+    _type: 1
+    _health: 0
+    _physicalAtk: 15
+    _magicAtk: 0
+    _def: 0
+    _atkSpeed: 5
+    _moveSpeed: 3
+    _critRate: 10
+    _critDamage: 0
+    _lifeSteal: 5
   - _id: 10202031
     _itemType: 1
     _name: "\uC6A9\uB9F9\uC758 \uBC29\uD328"
@@ -221,7 +221,7 @@ MonoBehaviour:
     _magicAtk: 35
     _def: 0
     _atkSpeed: 2
-    _moveSpeed: 3
+    _moveSpeed: 0
     _critRate: 10
     _critDamage: 10
     _lifeSteal: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     _magicAtk: 0
     _def: 0
     _atkSpeed: 10
-    _moveSpeed: 3
+    _moveSpeed: 0
     _critRate: 10
     _critDamage: 10
     _lifeSteal: 10

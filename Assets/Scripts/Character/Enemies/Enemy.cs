@@ -93,7 +93,12 @@ public class Enemy : CharacterBehaviour
         StartSpawn();
 
         Animator.SetFloat(EnemyAnimData.IdleFloatParameterHash, 0f);
-        stateMachine.ChangeState(stateMachine.IdleState);
+
+        if (DungeonManager.Instance.gameState == DungeonState.Playing)
+            stateMachine.ChangeState(stateMachine.IdleState);
+        else if (DungeonManager.Instance.gameState == DungeonState.Clear)
+            stateMachine.ChangeState(stateMachine.DieState);
+
 
         InvokeChangeHealth();
     }
@@ -160,6 +165,7 @@ public class Enemy : CharacterBehaviour
         StaticInstanceInit();
 
         dropGoldValue = Info.gold + ((_dungeonManager.currnetstage / 2) * EnemyStageModifier.gold); // 2스테이지당 증가
+        dropGoldValue = dropGoldValue > EnemyStageModifier.maxDropGold ? EnemyStageModifier.maxDropGold : dropGoldValue;
 
         #region AnimatorOverrideController 으로 시도했던것
         // OverrideAnimator는 속도 조절에는 사용하지 않아도 되지만 시도해본 방법중 하나였음.

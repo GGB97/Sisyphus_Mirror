@@ -47,12 +47,13 @@ public class RuneStoneUI : MonoBehaviour
     public float sliderRate = 0.05f;
 
     [Header("ResultNotice")]
-    [SerializeField] GameObject _gridLayout;    // 결과창을 띄울 Grid Layout
+    [SerializeField] GameObject _content;    // 결과창을 띄울 Grid Layout
     [SerializeField] GameObject _noticePopup;
     [SerializeField] GameObject _noticeStatPrefab;
     List<string> _modifiedStats = new List<string>();
     List<float> _modifiedStatsValue = new List<float>();
     List<GameObject> _noticeStats = new List<GameObject>();
+    [SerializeField] TextMeshProUGUI _resultText;
 
     bool _isTried = false;
 
@@ -228,21 +229,27 @@ public class RuneStoneUI : MonoBehaviour
 
         if (_runeStoneSlider.value >= 0.45f && _runeStoneSlider.value <= 0.55f)
         {
-            bonusMin = 1;
-            bonusMax = 4;
+            _resultText.text = "<color=green>Excellent!</color>";
+
+            bonusMin = 5;
+            bonusMax = 7;
         }
         else if (_runeStoneSlider.value >= 0.33f && _runeStoneSlider.value <= 0.66f)
         {
+            _resultText.text = "<color=yellow>Good!</color>";
+
             bonusMin = 1;
-            bonusMax = 2;
+            bonusMax = 3;
         }
         else if (_runeStoneSlider.value >= 0.2f && _runeStoneSlider.value <= 0.8f)
         {
+            _resultText.text = "<color=#FF7F00>Bad</color>";
             bonusMin = -1;
             bonusMax = 1;
         }
         else
         {
+            _resultText.text = "<color=red>Miss</color>";
             bonusMin = -2;
             bonusMax = 0;
         }
@@ -310,7 +317,7 @@ public class RuneStoneUI : MonoBehaviour
 
         for(int i = 0; i < _modifiedStats.Count; i++)
         {
-            GameObject go = Instantiate(_noticeStatPrefab, _gridLayout.transform);
+            GameObject go = Instantiate(_noticeStatPrefab, _content.transform);
             go.GetComponent<NoticeStat>().SetNoticeStatText(_modifiedStats[i], _modifiedStatsValue[i].ToString("n2"));
             _noticeStats.Add(go);
         }

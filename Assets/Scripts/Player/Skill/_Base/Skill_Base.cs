@@ -164,14 +164,15 @@ public class Skill_Base : MonoBehaviour
 
     protected virtual void StopSkill()
     {
-        StopCoroutine(nameof(ActiveSkill));
         effect_Ps.Stop();
         effect_Ps.Clear();
 
+        StopCoroutine(nameof(ActiveSkill));
         StopCoroutine(nameof(CoolDown));
-        CoolDownInit();
+
         ResetBuff();
 
         ActiveInfoInit();
+        CoolDownInit();
     }
 }
