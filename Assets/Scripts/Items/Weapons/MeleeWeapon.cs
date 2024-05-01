@@ -190,12 +190,10 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent<HealthSystem>(out HealthSystem _healthSystem))
             {
-                //_hit.Play();
                 GameObject go = ParticleObjectPool.Instance.SpawnFromPool(_weaponData.ParticleID, other.gameObject.transform.position, Quaternion.identity);
                 go.GetComponent<Particle>().PlayerPartcle();
 
                 _healthSystem.TakeDamage(SetAttackDamage(), _weaponData.PhysicalAtk != 0 ? DamageType.Physical : DamageType.Magic);
-                //Invoke("ToggleParticle", atkSpeed);
 
                 if (_weaponData.LifeSteal != 0)
                 {
