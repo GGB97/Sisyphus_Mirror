@@ -30,6 +30,9 @@
 ### 게임 다운로드 : 
 https://amberjack10.itch.io/sisyphus
 
+### 팀 노션 : 
+https://teamsparta.notion.site/int-team-16-68ce5ed9fe384af8bb3d2d1d9c10f62d
+
 ### 팀 소개 :
 
 팀장 : 송상화 - 아이템 공격 로직, 튜토리얼, 대장간 , 상점
