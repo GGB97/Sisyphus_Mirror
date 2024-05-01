@@ -27,7 +27,6 @@ public class ParticleCollision : MonoBehaviour
         {
             GameObject EffectsOnCollision = ParticleObjectPool.Instance.SpawnFromPool(71000004, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion());
 
-            //var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion()) as GameObject;
             if (!UseWorldSpacePosition) EffectsOnCollision.transform.parent = transform;
             if (UseFirePointRotation) { EffectsOnCollision.transform.LookAt(transform.position); }
             else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { EffectsOnCollision.transform.rotation = Quaternion.Euler(rotationOffset); }
@@ -36,7 +35,6 @@ public class ParticleCollision : MonoBehaviour
                 EffectsOnCollision.transform.LookAt(collisionEvents[i].intersection + collisionEvents[i].normal);
                 EffectsOnCollision.transform.rotation *= Quaternion.Euler(rotationOffset);
             }
-            //Destroy(instance, DestroyTimeDelay);
             
             _skillSFX.PlaySFX("Magic_Hit");
             EffectsOnCollision.GetComponent<Particle>().PlayerPartcle();
