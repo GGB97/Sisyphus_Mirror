@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponDB
 {
     private Dictionary<int, WeaponData> _weapons = new Dictionary<int, WeaponData>();
-    private List<int> idList = new List<int>(); //변경점
+    private List<int> idList = new List<int>();
 
     public WeaponDB()
     {
