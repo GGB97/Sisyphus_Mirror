@@ -6,6 +6,8 @@
 
 ### 게임 소개 :
 혹시 로그라이트 또는 뱀파이어 서바이벌을 좋아하시나요? Sisypuhs는 로그라이트 및 뱀서 라이크의 게임으로, 캐릭터를 조종해 몬스터 웨이브에서 살아 남아 최고 층 수를 달성하는 게임입니다. WASD 키로 조작, Space 키로 대쉬를 하여 적들의 공격을 피하고 무찌르세요!
+### 시연 영상 : https://www.youtube.com/watch?v=cuAJlNy5Ruc
+
 #### 플레이어 선택 :
 <img src="https://github.com/Amberjack10/Sisyphus/assets/54103715/6d024c00-cc13-48e2-812e-5f81242bae46" width="700" height="400">
 
