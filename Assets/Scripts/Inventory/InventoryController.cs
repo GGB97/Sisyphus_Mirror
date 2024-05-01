@@ -784,6 +784,9 @@ public class InventoryController : MonoBehaviour
             nextStage();
             if (DungeonManager.Instance.currnetstage < 20) _rerollCost = Mathf.FloorToInt(_rerollCost * 1.2f);
             else _rerollCost += 10;
+
+            if(_rerollCost >= 500) _rerollCost = 500;
+
             _tempRerollCost = _rerollCost;
             SetRerollButtonText();
 
