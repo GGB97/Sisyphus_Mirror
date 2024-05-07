@@ -13,7 +13,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Update()
     {
-        if (enemy.IsSpawning)
+        if (enemy.IsSpawning) // 스폰 연출 중 추적하지 않게끔.
             return;
 
         base.Update();
@@ -35,11 +35,10 @@ public class EnemyIdleState : EnemyBaseState
             return;
         }
 
-        if (TargetInRange()) // 사거리 내에 target이 있을때는 그녀석을 바라보게
+        if (TargetInRange()) // 사거리 내에 target이 있을때는 그녀석을 바라보게 + 이 라인으로 넘어오게 된다면 공격 쿨타임
         {
             LookTargetSlerp();
         }
-
     }
 
     public override void Exit()

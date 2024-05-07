@@ -79,6 +79,7 @@ public class GameManager : SingletoneBase<GameManager>
         // allowSceneActivation == false일 때 0.9까지만 진행
         while (asyncLoad.progress < 0.9f)
         {
+            // 로딩중 진행상황 UI가 있다면 이곳에서 갱신.
             //Debug.Log("Loading : " + asyncLoad.progress);
             yield return null;
         }

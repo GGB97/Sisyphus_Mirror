@@ -38,7 +38,9 @@ public class Projectile_Ricochet : ProjectileTest
     void SearchInRange()
     {
         int size = Physics.OverlapSphereNonAlloc(
-            gameObject.transform.position, searchRange, searchTargetsArray, _target &= ~LayerData.Terrain, QueryTriggerInteraction.Ignore);
+            gameObject.transform.position, searchRange, searchTargetsArray, 
+            _target &= ~LayerData.Terrain, QueryTriggerInteraction.Ignore);
+
         searchTargets.Clear();
         for (int i = 0; i < size; i++)
         {
@@ -75,7 +77,7 @@ public class Projectile_Ricochet : ProjectileTest
         return searchTargets[rand];
     }
 
-    void SetDirection(Collider col)
+    void SetDirection(Collider col) // 방향 설정
     {
         if (col != null)
         {

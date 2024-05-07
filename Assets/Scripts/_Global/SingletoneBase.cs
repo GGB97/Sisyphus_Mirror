@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class SingletoneBase<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // 프로퍼티
     private static T _instance;
     public static T Instance
     {

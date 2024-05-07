@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
+    public static ObjectPoolManager Instance;
+
+    #region Pool Struct 
     [Serializable]
     public struct Pool
     {
         public int id;
         public int size;
     }
-
-    public static ObjectPoolManager Instance;
-
-    [SerializeField] Pool[] _pools;
-    public List<GameObject> _spawnObjects;
-
+    #endregion
+    [SerializeField] Pool[] _pools; // (int id, int size)
+    public List<GameObject> spawnObjects;
     public Dictionary<int, Queue<GameObject>> poolDictionary;
 
     private void Awake()
@@ -25,7 +25,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     void Start()
     {
-        _spawnObjects = new List<GameObject>();
+        spawnObjects = new List<GameObject>();
         poolDictionary = new Dictionary<int, Queue<GameObject>>();
 
         // 미리 생성
@@ -36,12 +36,12 @@ public class ObjectPoolManager : MonoBehaviour
             {
                 GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
                 var obj = CreateNewObject(pool.id, projectilePrefab);
-                ArrangePool(obj); // 실행하지 않아도 상관없음
+                //ArrangePool(obj); // 실행하지 않아도 상관없음
             }
         }
-    }
+    } // 시작시 미리 정의된 풀링 갯수만큼 생성.
 
-    public GameObject SpawnFromPool(int id, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(int id, Vector3 position, Quaternion rotation) // objpool로 부터 외부에서 가져올때 사용하는 함수.
     {
         if (!poolDictionary.ContainsKey(id))
             return null;
@@ -54,8 +54,7 @@ public class ObjectPoolManager : MonoBehaviour
             Pool pool = Array.Find(_pools, x => x.id == id);
             GameObject projectilePrefab = Resources.Load<GameObject>(DataBase.Projectile.Get(pool.id).prefabPath);
             var obj = CreateNewObject(pool.id, projectilePrefab);
-            // ObjectPool 정렬시키기
-            ArrangePool(obj);
+            //ArrangePool(obj);
         }
 
         // 큐에서 꺼내서 사용
@@ -75,6 +74,14 @@ public class ObjectPoolManager : MonoBehaviour
         return obj;
     }
 
+    // 생성된 프리팹에서 Disable될 때 호출됨
+    public void ReturnToPull(GameObject obj)
+    {
+        if (int.TryParse(obj.name, out int id))
+            poolDictionary[id].Enqueue(obj);
+        else Destroy(obj);
+    }
+
     void ArrangePool(GameObject obj)
     {
         // 추가된 오브젝트 묶어서 정렬
@@ -84,7 +91,7 @@ public class ObjectPoolManager : MonoBehaviour
             if (i == transform.childCount - 1)
             {
                 obj.transform.SetSiblingIndex(i);
-                _spawnObjects.Insert(i, obj);
+                spawnObjects.Insert(i, obj);
                 break;
             }
             else if (transform.GetChild(i).name == obj.name)
@@ -92,18 +99,10 @@ public class ObjectPoolManager : MonoBehaviour
             else if (isFind)
             {
                 obj.transform.SetSiblingIndex(i);
-                _spawnObjects.Insert(i, obj);
+                spawnObjects.Insert(i, obj);
                 break;
             }
         }
-    }
-
-    // 생성된 프리팹에서 Disable될 때 호출됨
-    public void ReturnToPull(GameObject obj)
-    {
-        if (int.TryParse(obj.name, out int id))
-            poolDictionary[id].Enqueue(obj);
-        else Destroy(obj);
     }
 
     public void DisableChild()
