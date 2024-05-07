@@ -3,6 +3,8 @@ using UnityEngine;
 public class DataBase : SingletoneBase<DataBase>
 {
     [SerializeField] EnemyDB _enemyStat;
+
+    #region other DB var
     [SerializeField] WeaponDB _weapon;
     [SerializeField] EquipmentsDB _equipments;
     [SerializeField] ConsumableDB _consumable;
@@ -12,6 +14,7 @@ public class DataBase : SingletoneBase<DataBase>
     [SerializeField] TutorialDB _tutorial;
     [SerializeField] QuestDB _quest;
     [SerializeField] ParticleDB _particle;
+    #endregion
 
     public static EnemyDB EnemyStats
     {
